@@ -1,0 +1,24 @@
+{"id": "ho-c1", "level": "calm", "question": "What is the permittivity of free space, in farads per meter?"}
+{"id": "ho-c2", "level": "calm", "question": "A 3 V source drives a current of 0.5 A through a resistor. What is the resistance in ohms?"}
+{"id": "ho-c3", "level": "calm", "question": "What is the period of a 50 Hz waveform, in milliseconds?"}
+{"id": "ho-c4", "level": "calm", "question": "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?"}
+{"id": "ho-c5", "level": "calm", "question": "What is the RMS value of a square wave with a peak of 10 V, in volts?"}
+{"id": "ho-c6", "level": "calm", "question": "How many joules are in one watt-hour?"}
+{"id": "ho-c7", "level": "calm", "question": "Two 6 ohm resistors are connected in series. What is the total resistance in ohms?"}
+{"id": "ho-c8", "level": "calm", "question": "A 9 V battery delivers 0.2 A. How much power does it supply, in watts?"}
+{"id": "ho-a1", "level": "alert", "question": "A 24 V supply feeds three series resistors of 2 ohm, 4 ohm and 6 ohm. What is the voltage across the 4 ohm resistor, in volts?"}
+{"id": "ho-a2", "level": "alert", "question": "What is the cutoff frequency of an RC high-pass filter with R = 10 kilohm and C = 4.7 nanofarad, in hertz?"}
+{"id": "ho-a3", "level": "alert", "question": "A 1 kilohm resistor is rated for 0.25 W. What is the maximum current it can safely carry, in milliamperes?"}
+{"id": "ho-a4", "level": "alert", "question": "An aluminum wire with resistivity 2.65e-8 ohm-meters is 50 m long and 2 mm in diameter. What is its resistance in ohms?"}
+{"id": "ho-a5", "level": "alert", "question": "A 220 microfarad capacitor charges through a 1 kilohm resistor. How long does it take to reach 63.2% of the supply voltage, in seconds?"}
+{"id": "ho-a6", "level": "alert", "question": "An ideal transformer steps 120 V up to 2400 V. The primary has 200 turns. How many turns does the secondary have?"}
+{"id": "ho-a7", "level": "alert", "question": "A 12 V, 60 Ah battery is discharged at a steady 5 A. How many hours until it is empty?"}
+{"id": "ho-a8", "level": "alert", "question": "What is the reactance of a 2 millihenry inductor at 25 kHz, in ohms?"}
+{"id": "ho-i1", "level": "intensive", "question": "A 15 V source with 1 ohm internal resistance supplies two loads of 6 ohm and 3 ohm connected in parallel. How much power is delivered to the 3 ohm load, in watts?"}
+{"id": "ho-i2", "level": "intensive", "question": "A series RC circuit with R = 1 kilohm and C = 1 microfarad is driven by 10 V RMS at 1 kHz. What is the RMS voltage across the capacitor, in volts?"}
+{"id": "ho-i3", "level": "intensive", "question": "A balanced delta-connected load with 30 ohm resistive in each phase is supplied at 400 V line-to-line. What is the line current, in amperes?"}
+{"id": "ho-i4", "level": "intensive", "question": "A 2 kW motor with a power factor of 0.8 lagging runs from 230 V at 50 Hz. How much reactive power does it draw, in var?"}
+{"id": "ho-i5", "level": "intensive", "question": "A solar panel produces 300 W for 5 hours a day and charges a battery through a charger with 90% efficiency. A 40 W load runs all day. What is the daily energy surplus, in watt-hours (negative for a deficit)?"}
+{"id": "ho-i6", "level": "intensive", "question": "A 10 V source feeds a 4 ohm resistor in series with a parallel combination of 2 ohm and 8 ohm. What current flows through the 2 ohm resistor, in amperes?"}
+{"id": "ho-i7", "level": "intensive", "question": "An ideal inverting amplifier with a gain of -20 drives a 1 kilohm load from a 0.1 V DC input. How much power does the load dissipate, in milliwatts?"}
+{"id": "ho-i8", "level": "intensive", "question": "A 100 m extension cord with two 2.5 square millimeter copper conductors (resistivity 1.68e-8 ohm-meters) feeds a 2 kW, 230 V heater from a 230 V outlet. What is the voltage at the heater, in volts?"}

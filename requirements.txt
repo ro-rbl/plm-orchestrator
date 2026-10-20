@@ -1,0 +1,2 @@
+# Python 3.13. Everything else is the standard library.
+pint==0.26.1

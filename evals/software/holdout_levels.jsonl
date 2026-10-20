@@ -1,0 +1,15 @@
+{"id": "sho-c1", "level": "calm", "prompt": "Write a function `average(nums: list[float]) -> float` that returns the arithmetic mean of a non-empty list of numbers."}
+{"id": "sho-c2", "level": "calm", "prompt": "Write a function `count_char(s: str, ch: str) -> int` that returns how many times the character `ch` appears in `s`."}
+{"id": "sho-c3", "level": "calm", "prompt": "Write a function `max_of_three(a: int, b: int, c: int) -> int` that returns the largest of three numbers."}
+{"id": "sho-c4", "level": "calm", "prompt": "Write a function `remove_spaces(s: str) -> str` that returns `s` with every space character removed."}
+{"id": "sho-c5", "level": "calm", "prompt": "Write a function `is_even(n: int) -> bool` that returns True if `n` is even."}
+{"id": "sho-a1", "level": "alert", "prompt": "Write a function `paren_depth(s: str) -> int` that returns the maximum nesting depth of parentheses in `s`, or -1 if they are unbalanced."}
+{"id": "sho-a2", "level": "alert", "prompt": "Write a function `int_to_roman(n: int) -> str` that converts an integer from 1 to 3999 to a Roman numeral."}
+{"id": "sho-a3", "level": "alert", "prompt": "Write a function `two_sum(nums: list[int], target: int) -> tuple[int, int]` that returns the indices of the two numbers that add up to `target`, in O(n) time."}
+{"id": "sho-a4", "level": "alert", "prompt": "Write a function `compress_ranges(nums: list[int]) -> list[str]` that turns a sorted list of integers into range strings, for example [1, 2, 3, 5, 7, 8] becomes ['1-3', '5', '7-8']."}
+{"id": "sho-a5", "level": "alert", "prompt": "Write a function `is_valid_email(s: str) -> bool` that checks that `s` has exactly one @, a non-empty part before it, and a domain after it with at least one dot and no empty labels."}
+{"id": "sho-i1", "level": "intensive", "prompt": "Write a class `MinStack` with `push`, `pop`, `top` and `get_min` methods, each running in O(1) time."}
+{"id": "sho-i2", "level": "intensive", "prompt": "Write a function `longest_palindromic_substring(s: str) -> str` that returns the longest substring of `s` that is a palindrome."}
+{"id": "sho-i3", "level": "intensive", "prompt": "Write a function `solve_sudoku(board: list[list[int]]) -> bool` that fills a 9x9 Sudoku grid in place using backtracking, with 0 for empty cells, and returns whether a solution exists."}
+{"id": "sho-i4", "level": "intensive", "prompt": "Write a function `num_paths(grid: list[list[int]]) -> int` that counts the paths from the top-left to the bottom-right cell of a grid with obstacles (1 = blocked), moving only right or down."}
+{"id": "sho-i5", "level": "intensive", "prompt": "Write a function `json_parse(s: str)` that parses a JSON document containing objects, arrays, strings, numbers, true, false and null, without using the json module."}

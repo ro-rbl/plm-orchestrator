@@ -1,0 +1,186 @@
+hf.co/bartowski/mlabonne_Qwen3-0.6B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-0.6B-abliterated-GGUF_Q4_K_M.jsonl
+[1/50] ee-c01 correct       141 tok    1.3s
+[2/50] ee-c02 correct        89 tok    0.8s
+[3/50] ee-c03 correct       104 tok    2.6s
+[4/50] ee-c04 correct       115 tok    2.4s
+[5/50] ee-c05 correct       161 tok    3.3s
+[6/50] ee-c06 correct       162 tok    3.4s
+[7/50] ee-c07 correct       200 tok    4.3s
+[8/50] ee-c08 wrong_value   206 tok    5.1s
+[9/50] ee-c09 correct       102 tok    2.3s
+[10/50] ee-c10 correct       115 tok    2.7s
+[11/50] ee-c11 wrong_value    95 tok    2.1s
+[12/50] ee-c12 unit_error    109 tok    2.5s
+[13/50] ee-c13 correct       117 tok    2.4s
+[14/50] ee-c14 correct       135 tok    3.1s
+[15/50] ee-c15 correct       172 tok    3.8s
+[16/50] ee-a01 wrong_value   235 tok    5.3s
+[17/50] ee-a02 correct       303 tok    6.0s
+[18/50] ee-a03 correct       196 tok    3.9s
+[19/50] ee-a04 wrong_value   418 tok    8.7s
+[20/50] ee-a05 wrong_value   111 tok    2.1s
+[21/50] ee-a06 wrong_value   346 tok    7.2s
+[22/50] ee-a07 wrong_value   266 tok    5.4s
+[23/50] ee-a08 wrong_value   278 tok    5.7s
+[24/50] ee-a09 correct       251 tok    4.9s
+[25/50] ee-a10 correct       200 tok    3.9s
+[26/50] ee-a11 wrong_value   193 tok    3.7s
+[27/50] ee-a12 wrong_value   195 tok    3.7s
+[28/50] ee-a13 correct       112 tok    2.2s
+[29/50] ee-a14 correct       151 tok    3.0s
+[30/50] ee-a15 correct       113 tok    2.4s
+[31/50] ee-a16 correct       242 tok    4.8s
+[32/50] ee-a17 correct       245 tok    4.5s
+[33/50] ee-a18 wrong_value   177 tok    3.4s
+[34/50] ee-a19 correct       106 tok    2.1s
+[35/50] ee-a20 correct       154 tok    2.9s
+[36/50] ee-i01 wrong_value   346 tok    6.5s
+[37/50] ee-i02 no_answer     290 tok    5.8s
+[38/50] ee-i03 wrong_value   565 tok   11.5s
+[39/50] ee-i04 wrong_value   557 tok   11.1s
+[40/50] ee-i05 no_answer    1024 tok   20.9s
+[41/50] ee-i06 unit_error    267 tok    5.6s
+[42/50] ee-i07 no_answer     282 tok    6.3s
+[43/50] ee-i08 no_answer     339 tok    7.1s
+[44/50] ee-i09 wrong_value   611 tok   10.8s
+[45/50] ee-i10 no_answer     649 tok   10.2s
+[46/50] ee-i11 unit_error    217 tok    4.8s
+[47/50] ee-i12 no_answer     398 tok    9.2s
+[48/50] ee-i13 wrong_value   448 tok   13.7s
+[49/50] ee-i14 no_answer     226 tok    6.4s
+[50/50] ee-i15 no_answer     430 tok    9.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       12      2     1         0     0  80%
+alert       20       11      9     0         0     0  55%
+intensive   15        0      5     2         0     8  0%
+ALL         50       23     16     3         0     8  46%
+
+level       avg tok  avg s  hit cap
+calm            135    2.8        0
+alert           215    4.3        0
+intensive       443    9.3        1
+ALL             259    5.4        1
+hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl
+[1/50] ee-c01 correct       135 tok   13.9s
+[2/50] ee-c02 correct        76 tok    6.0s
+[3/50] ee-c03 correct       109 tok    7.9s
+[4/50] ee-c04 correct        74 tok    6.0s
+[5/50] ee-c05 correct       158 tok   11.1s
+[6/50] ee-c06 correct       263 tok   20.4s
+[7/50] ee-c07 correct       195 tok   17.8s
+[8/50] ee-c08 wrong_value   240 tok   21.8s
+[9/50] ee-c09 correct       142 tok   12.7s
+[10/50] ee-c10 correct       132 tok   11.1s
+[11/50] ee-c11 unit_error    136 tok   12.2s
+[12/50] ee-c12 correct        55 tok    4.4s
+[13/50] ee-c13 correct       105 tok    7.9s
+[14/50] ee-c14 correct       141 tok   10.6s
+[15/50] ee-c15 correct       135 tok   10.7s
+[16/50] ee-a01 correct       250 tok   26.8s
+[17/50] ee-a02 correct       246 tok   24.3s
+[18/50] ee-a03 correct       145 tok   83.6s
+[19/50] ee-a04 correct       293 tok   30.4s
+[20/50] ee-a05 correct       145 tok   14.5s
+[21/50] ee-a06 wrong_value   308 tok   39.3s
+[22/50] ee-a07 correct       227 tok   28.9s
+[23/50] ee-a08 wrong_value   239 tok   22.8s
+[24/50] ee-a09 correct       197 tok   19.8s
+[25/50] ee-a10 correct       167 tok   18.5s
+[26/50] ee-a11 correct       179 tok   14.1s
+[27/50] ee-a12 correct       119 tok    8.5s
+[28/50] ee-a13 correct       130 tok    8.8s
+[29/50] ee-a14 correct       138 tok    9.7s
+[30/50] ee-a15 correct       120 tok    9.1s
+[31/50] ee-a16 correct       184 tok   11.7s
+[32/50] ee-a17 correct       246 tok   13.8s
+[33/50] ee-a18 correct       150 tok    9.5s
+[34/50] ee-a19 correct       125 tok    7.1s
+[35/50] ee-a20 correct       127 tok    8.5s
+[36/50] ee-i01 wrong_value   281 tok   21.2s
+[37/50] ee-i02 wrong_value   385 tok   28.2s
+[38/50] ee-i03 correct       358 tok   30.2s
+[39/50] ee-i04 unit_error    636 tok   52.7s
+[40/50] ee-i05 wrong_value   478 tok   35.0s
+[41/50] ee-i06 correct       278 tok   20.7s
+[42/50] ee-i07 wrong_value   331 tok   30.0s
+[43/50] ee-i08 correct       299 tok   35.5s
+[44/50] ee-i09 correct       415 tok   53.2s
+[45/50] ee-i10 wrong_value   328 tok   28.3s
+[46/50] ee-i11 correct       382 tok   30.8s
+[47/50] ee-i12 correct       237 tok   21.6s
+[48/50] ee-i13 unit_error    218 tok   24.7s
+[49/50] ee-i14 wrong_value   189 tok   19.7s
+[50/50] ee-i15 unit_error    370 tok   36.4s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       13      1     1         0     0  87%
+alert       20       18      2     0         0     0  90%
+intensive   15        6      6     3         2     0  40%
+ALL         50       37      9     4         2     0  74%
+
+level       avg tok  avg s  hit cap
+calm            140   11.6        0
+alert           187   20.5        0
+intensive       346   31.2        0
+ALL             220   21.0        0
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b.jsonl
+[1/50] ee-c01 correct       141 tok   25.1s
+[2/50] ee-c02 correct        90 tok   12.6s
+[3/50] ee-c03 correct       142 tok   18.7s
+[4/50] ee-c04 correct        74 tok   10.7s
+[5/50] ee-c05 correct       150 tok   22.7s
+[6/50] ee-c06 correct       182 tok   33.9s
+[7/50] ee-c07 correct       130 tok   26.8s
+[8/50] ee-c08 correct       265 tok   51.4s
+[9/50] ee-c09 correct       139 tok   80.4s
+[10/50] ee-c10 correct       129 tok   16.0s
+[11/50] ee-c11 unit_error     79 tok   10.1s
+[12/50] ee-c12 correct        71 tok    9.0s
+[13/50] ee-c13 correct        83 tok   11.1s
+[14/50] ee-c14 correct       126 tok   17.2s
+[15/50] ee-c15 correct        93 tok   14.1s
+[16/50] ee-a01 correct       182 tok   28.1s
+[17/50] ee-a02 correct       240 tok   32.1s
+[18/50] ee-a03 correct       145 tok   20.6s
+[19/50] ee-a04 correct       356 tok   44.9s
+[20/50] ee-a05 correct       138 tok   18.0s
+[21/50] ee-a06 wrong_value   348 tok   49.1s
+[22/50] ee-a07 correct       208 tok   29.8s
+[23/50] ee-a08 correct       218 tok   81.8s
+[24/50] ee-a09 correct       143 tok   12.8s
+[25/50] ee-a10 correct       182 tok   16.2s
+[26/50] ee-a11 correct       179 tok   17.0s
+[27/50] ee-a12 correct       107 tok    9.0s
+[28/50] ee-a13 correct       117 tok   13.6s
+[29/50] ee-a14 correct       130 tok   12.5s
+[30/50] ee-a15 correct       131 tok   13.4s
+[31/50] ee-a16 correct       185 tok   18.5s
+[32/50] ee-a17 correct       155 tok   14.0s
+[33/50] ee-a18 correct       137 tok   13.8s
+[34/50] ee-a19 correct       116 tok   12.4s
+[35/50] ee-a20 correct       144 tok   14.8s
+[36/50] ee-i01 unit_error    301 tok   28.4s
+[37/50] ee-i02 wrong_value   464 tok   45.1s
+[38/50] ee-i03 correct       405 tok   42.5s
+[39/50] ee-i04 wrong_value   797 tok  152.5s
+[40/50] ee-i05 correct       350 tok   40.7s
+[41/50] ee-i06 correct       222 tok   25.7s
+[42/50] ee-i07 unit_error    319 tok   35.7s
+[43/50] ee-i08 correct       209 tok   24.9s
+[44/50] ee-i09 unit_error    335 tok   36.2s
+[45/50] ee-i10 unit_error    381 tok   44.2s
+[46/50] ee-i11 correct       404 tok  114.1s
+[47/50] ee-i12 correct       246 tok   29.5s
+[48/50] ee-i13 correct       215 tok   27.1s
+[49/50] ee-i14 correct       323 tok   37.0s
+[50/50] ee-i15 correct       290 tok   32.7s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         0     0  93%
+alert       20       19      1     0         0     0  95%
+intensive   15        9      2     4         3     0  60%
+ALL         50       42      3     5         3     0  84%
+
+level       avg tok  avg s  hit cap
+calm            126   24.0        0
+alert           178   23.6        0
+intensive       351   47.7        0
+ALL             214   31.0        0
