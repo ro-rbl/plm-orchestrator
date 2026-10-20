@@ -8,6 +8,13 @@ always using the coder (39/45). Routing by level on top of that made it worse
 (39/45 at 83%), so the level only sets the token budget. See
 evals/simulate_code_routing.py.
 
+thorough=True adds tests written by the large model from the task alone
+(plm/software/testgen.py). In the eval that reached 42/45 but cost 228% of
+always-coder compute: about 1 in 8 generated tests is itself wrong, which flags
+correct code and forces escalation. So it is opt-in, not the default. When no
+answer passes everything, thorough mode returns the one that passed the examples
+and the most generated tests.
+
 Model names can be overridden with PLM_SMALL_MODEL, PLM_LARGE_MODEL and PLM_CODER_MODEL.
 """
 
@@ -19,12 +26,14 @@ from plm.ollama import ask
 from plm.software.codegen import build_prompt, extract_code
 from plm.software.levels import classify
 from plm.software.sandbox import run_tests
+from plm.software.testgen import failing_tests, generate_tests
 
 MODELS = {
     "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M"),
     "large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b"),
     "coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b"),
 }
+TEST_WRITER = "large"
 
 # Per level: token budget and the escalation chain of model keys. Budgets are
 # >2.5x the longest passing answer at that level in the eval sweep.
@@ -49,11 +58,12 @@ def parse_task(text):
 
 
 def attempt(task, model, num_predict, timeout):
+    """One model writes the code; it is checked against the task's own examples."""
     start = time.time()
     r = ask(model, build_prompt(task), False, num_predict, timeout)
     code = extract_code(r["response"], task["entry"] or "")
     step = {"model": model, "tokens": r["eval_tokens"], "model_text": r["response"], "code": code,
-            "capped": r["done_reason"] == "length", "issues": []}
+            "capped": r["done_reason"] == "length", "issues": [], "generated_failures": 0}
     if code is None:
         step["issues"].append("no code block")
     else:
@@ -69,7 +79,15 @@ def attempt(task, model, num_predict, timeout):
     return step
 
 
-def solve(text, level=None, timeout=600):
+def check_generated(step, task, tests):
+    """Run the generated tests on code that already passed the examples."""
+    result = run_tests(step["code"], tests)
+    fails = [(t, "error") for t in tests] if result["error"] else failing_tests(result, task["entry"])
+    step["generated_failures"] = len(fails)
+    step["issues"] += [f"failed generated test: {t}" for t, _ in fails]
+
+
+def solve(text, level=None, timeout=600, thorough=False):
     """Write code for one task. Returns the code plus a record of every model call."""
     start = time.time()
     task = parse_task(text)
@@ -79,23 +97,41 @@ def solve(text, level=None, timeout=600):
         level, reason = classify(task["prompt"])
     plan = LEVELS[level]
 
-    steps = []
+    steps, writer, tests = [], None, None
     for model_key in plan["chain"]:
-        steps.append(attempt(task, MODELS[model_key], plan["num_predict"], timeout))
-        if not steps[-1]["issues"]:
+        step = attempt(task, MODELS[model_key], plan["num_predict"], timeout)
+        steps.append(step)
+        if thorough and not step["issues"] and task["entry"]:
+            if tests is None:  # only pay for test writing once some code passes the examples
+                tests, writer = generate_tests(task, MODELS[TEST_WRITER], timeout=timeout)
+                writer["tests"] = tests
+            check_generated(step, task, tests)
+        if not step["issues"]:
             break
 
     final = steps[-1]
+    if thorough and final["issues"]:
+        passed_examples = [s for s in steps if s["code"] and not any(
+            not i.startswith("failed generated test") for i in s["issues"])]
+        if passed_examples:
+            # Fewest generated-test failures; ties go to the later, stronger model,
+            # which is the rule evals/simulate_code_routing.py measured.
+            final = min(passed_examples, key=lambda s: (s["generated_failures"], -steps.index(s)))
     checked = len(task["examples"])
+    reason += (f"; {checked} example{'s' if checked != 1 else ''} to check" if checked
+               else "; no examples given, so only loading is checked")
+    if writer:
+        reason += f"; {len(tests)} generated tests"
     return {
         "pack": "software",
         "task": text,
         "level": level,
-        "reason": reason + (f"; {checked} example{'s' if checked != 1 else ''} to check" if checked
-                            else "; no examples given, so only loading is checked"),
+        "reason": reason,
         "answer": {"code": final["code"]} if final["code"] else None,
         "trusted": not final["issues"],
+        "final_step": steps.index(final) + 1,
         "steps": steps,
-        "tokens": sum(s["tokens"] for s in steps),
+        "test_writer": writer,
+        "tokens": sum(s["tokens"] for s in steps) + (writer["tokens"] if writer else 0),
         "seconds": time.time() - start,
     }

@@ -28,6 +28,11 @@ F = {
     "coder14B": "software__qwen2.5-coder_14b.jsonl",
 }
 PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8, "coder14B": 14}
+GENCHECK = {  # test writer -> output of `evals/gen_tests.py check`
+    "4B": "software_gencheck__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl",
+    "8B": "software_gencheck__qwen3_8b.jsonl",
+    "coder14B": "software_gencheck__qwen2.5-coder_14b.jsonl",
+}
 
 
 def same(chain):
@@ -96,6 +101,34 @@ def main():
         score += ok[k][t["id"]]
         spend += cost[k][t["id"]]
     print(f"{'hindsight: cheapest correct answer':<44} {score:>3}/{n} {spend / base:>8.0%}")
+
+    # Stronger check: examples + tests from a writer model (evals/gen_tests.py). The
+    # writer's call is charged once per task. "best-of" changes only the case where
+    # no step passes: take the answer that passed the examples and the most generated
+    # tests instead of the last one.
+    chain = ["4B", "8B", "coder14B"]
+    for writer, fname in GENCHECK.items():
+        path = RESULTS / fname
+        if not path.exists():
+            continue
+        gen = {r["id"]: r for r in load_jsonl(path)}
+        for fallback in ("last", "best-of"):
+            score = spend = escalated = 0
+            for t in tasks:
+                g = gen[t["id"]]
+                spend += PARAMS[writer] * g["tokens"]
+                tried = []
+                for i, k in enumerate(chain):
+                    spend += cost[k][t["id"]]
+                    c = g["candidates"][k]
+                    tried.append((c["examples_ok"], -c["gen_fails"], i, k))
+                    if c["examples_ok"] and c["gen_ok"]:
+                        break
+                pick = k if fallback == "last" or (c["examples_ok"] and c["gen_ok"]) else max(tried)[3]
+                score += ok[pick][t["id"]]
+                escalated += len(tried) > 1
+            name = f"cascade + {writer}-written tests, {fallback}"
+            print(f"{name:<44} {score:>3}/{n} {spend / base:>8.0%} {escalated:>10}")
     print("\ncompute is relative to always coder14B")
 
 

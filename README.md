@@ -20,6 +20,7 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 .venv/bin/python -m plm "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?"
 .venv/bin/python -m plm "$(cat task.txt)"     # coding task; assert/>>> lines become checks
 .venv/bin/python -m plm --pack software --show-work "..."
+.venv/bin/python -m plm --thorough "$(cat task.txt)"   # software: also check against model-written tests
 ```
 
 Each answer comes with a report: the level, every model call, tokens, time,
@@ -31,6 +32,7 @@ and why anything was escalated. Runs are logged to `logs/runs.jsonl`.
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 47/50 at 36% of always-8B compute |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
+| software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 
 ## Layout
 
@@ -48,5 +50,6 @@ and why anything was escalated. Runs are logged to `logs/runs.jsonl`.
 .venv/bin/python evals/test_checks.py
 .venv/bin/python plm/calc.py
 .venv/bin/python -m plm.software.sandbox
+.venv/bin/python -m plm.software.testgen
 .venv/bin/python evals/software/build_tasks.py     # fails if any reference solution fails its tests
 ```

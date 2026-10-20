@@ -5,6 +5,7 @@
     .venv/bin/python -m plm < task.txt      # multi-line tasks, e.g. with assert/>>> example lines
     .venv/bin/python -m plm                 # interactive: one task per line
     .venv/bin/python -m plm --pack software --level intensive --show-work "..."
+    .venv/bin/python -m plm --thorough "$(cat task.txt)"   # software: add model-written tests (~4x compute)
 
 The pack is picked from the task text unless --pack is given. Every run is
 appended to logs/runs.jsonl (override with PLM_LOG).
@@ -39,8 +40,13 @@ def short(model):
     return re.sub(r"^[^_]*_|-GGUF.*$", "", model.rsplit("/", 1)[-1])
 
 
+def final_step(result):
+    # Thorough mode can return an earlier answer than the last one tried.
+    return result["steps"][result.get("final_step", len(result["steps"])) - 1]
+
+
 def print_answer(result):
-    ans, issues = result["answer"], "; ".join(result["steps"][-1]["issues"])
+    ans, issues = result["answer"], "; ".join(final_step(result)["issues"])
     if ans is None:
         print("\nNo answer. Last model output:\n" + result["steps"][-1]["model_text"].strip())
     elif result["pack"] == "software":
@@ -57,16 +63,25 @@ def report(result, show_work):
     print_answer(result)
     print(f"\npack    {result['pack']}")
     print(f"level   {result['level']}  ({result['reason']})")
+    chosen = final_step(result)
     for i, s in enumerate(result["steps"], 1):
         how = {"tool": "calculator", "bare": "direct"}.get(s.get("strategy"), "code")
         status = "ok" if not s["issues"] else "flagged: " + "; ".join(s["issues"])
         if s["issues"] and i < len(result["steps"]):
             status += " -> escalated"
+        if s is chosen and i < len(result["steps"]):
+            status += "  [answer used: passed the examples and the most generated tests]"
         print(f"step {i}  {short(s['model']):<22} {how:<10} {s['tokens']:>5} tok {s['seconds']:>6.1f} s   {status}")
         if show_work:
             work = s.get("program") or s.get("code") or s["model_text"]
             print("        " + work.strip().replace("\n", "\n        "))
-    calls = len(result["steps"])
+    writer = result.get("test_writer")
+    if writer:
+        print(f"tests   {short(writer['model']):<22} {'test writer':<10} {writer['tokens']:>5} tok {writer['seconds']:>6.1f} s"
+              f"   {len(writer['tests'])} tests")
+        if show_work:
+            print("        " + "\n        ".join(writer["tests"]))
+    calls = len(result["steps"]) + bool(writer)
     print(f"total   {result['tokens']} tokens, {result['seconds']:.1f} s, {calls} model call{'s' if calls > 1 else ''}")
 
 
@@ -75,8 +90,14 @@ def run_one(task, args):
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
     pack = args.pack if args.pack != "auto" else detect_pack(task)
+    extra = {}
+    if args.thorough:
+        if pack == "software":
+            extra["thorough"] = True
+        else:
+            print("plm: --thorough only applies to the software pack; ignoring it", file=sys.stderr)
     try:
-        result = PACKS[pack].solve(task, level=args.level, timeout=args.timeout)
+        result = PACKS[pack].solve(task, level=args.level, timeout=args.timeout, **extra)
     except urllib.error.HTTPError as e:
         detail = e.read().decode(errors="replace")[:200]
         sys.exit(f"Ollama error {e.code}: {detail}\nModels in use: {PACKS[pack].MODELS} "
@@ -97,6 +118,8 @@ def main():
     ap.add_argument("task", nargs="*", help="the task; omit for interactive mode")
     ap.add_argument("--pack", choices=["auto", *PACKS], default="auto", help="domain pack (default: detect from the task)")
     ap.add_argument("--level", choices=list(electrical.LEVELS), help="force an adrenaline level instead of classifying")
+    ap.add_argument("--thorough", action="store_true",
+                    help="software: also check code against tests a second model writes (~4x compute)")
     ap.add_argument("--show-work", action="store_true", help="print each model's program or reasoning")
     ap.add_argument("--json", action="store_true", help="print the full result as JSON")
     ap.add_argument("--timeout", type=int, default=600, help="seconds per model call")
