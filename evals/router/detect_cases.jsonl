@@ -48,3 +48,17 @@
 {"id": "s03", "pack": "software", "text": "Can you write a function to check if a number is prime?"}
 {"id": "s04", "pack": "software", "text": "def add(a, b): fix this so it also handles strings"}
 {"id": "s05", "pack": "software", "text": "Write a function that computes the total resistance of resistors in parallel."}
+{"id": "a01", "pack": "aerospace", "text": "A satellite orbits 700 km above Earth. What is its orbital speed, in kilometers per second? Use GM = 3.986e14 m³/s² and an Earth radius of 6371 km."}
+{"id": "a02", "pack": "aerospace", "text": "What thrust does a rocket engine produce if it expels 120 kg/s of propellant at 3100 m/s, in kilonewtons?"}
+{"id": "a03", "pack": "aerospace", "text": "How much delta-v does a rocket get from a mass ratio of 4 with a specific impulse of 350 s?"}
+{"id": "a04", "pack": "aerospace", "text": "A plane cruises at 450 knots. What is that in kilometers per hour?"}
+{"id": "a05", "pack": "aerospace", "text": "What is the orbital period of a satellite 35786 km above Earth, in hours?"}
+{"id": "a06", "pack": "aerospace", "text": "An aircraft weighing 60 kN has 300 kW of excess power. What is its rate of climb?"}
+{"id": "g41", "pack": "general", "text": "How does a jet engine work?"}
+{"id": "g42", "pack": "general", "text": "Why do airplanes have winglets?"}
+{"id": "g43", "pack": "general", "text": "Who was the first person to walk on the Moon?"}
+{"id": "g44", "pack": "general", "text": "Explain what a Hohmann transfer orbit is."}
+{"id": "g45", "pack": "general", "text": "Which is bigger, a Boeing 747 or an Airbus A380?"}
+{"id": "g46", "pack": "general", "text": "How many astronauts have walked on the Moon?"}
+{"id": "e06", "pack": "electrical", "text": "A satellite's solar array produces 2 kW at 28 V. What current does it supply, in amperes?"}
+{"id": "e07", "pack": "electrical", "text": "A spacecraft heater draws 3 A from a 28 V bus. How much power does it use, in watts?"}

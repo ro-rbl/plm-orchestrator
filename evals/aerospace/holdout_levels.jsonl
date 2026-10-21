@@ -1,0 +1,24 @@
+{"id": "aho-c1", "level": "calm", "question": "What is the Mach number of a jet flying at 600 m/s where the speed of sound is 300 m/s (unitless)?"}
+{"id": "aho-c2", "level": "calm", "question": "A rocket engine has a specific impulse of 450 s. Taking g0 = 9.80665 m/s², what is its exhaust velocity, in meters per second?"}
+{"id": "aho-c3", "level": "calm", "question": "What is the air pressure at sea level in the International Standard Atmosphere, in pascals?"}
+{"id": "aho-c4", "level": "calm", "question": "An aircraft weighing 80000 N has a wing area of 40 square meters. What is its wing loading, in pascals?"}
+{"id": "aho-c5", "level": "calm", "question": "A rocket expels 80 kg/s of propellant at 3200 m/s. Ignoring pressure thrust, what is its thrust, in kilonewtons?"}
+{"id": "aho-c6", "level": "calm", "question": "What is the load factor of an aircraft in a level turn at a 45 degree bank angle (unitless)?"}
+{"id": "aho-c7", "level": "calm", "question": "A 2 kg drone hovers in place. Taking g = 9.81 m/s², what total thrust do its rotors produce, in newtons?"}
+{"id": "aho-c8", "level": "calm", "question": "What is the escape velocity from the surface of the Moon, in kilometers per second?"}
+{"id": "aho-a1", "level": "alert", "question": "An aircraft with a wing area of 28 square meters flies at 75 m/s in air with a density of 1.0 kg/m³, at a lift coefficient of 0.45. What lift does the wing produce, in newtons?"}
+{"id": "aho-a2", "level": "alert", "question": "What is the speed of a satellite in a circular orbit 800 km above Earth, in kilometers per second? Use GM = 3.986e14 m³/s² and an Earth radius of 6371 km."}
+{"id": "aho-a3", "level": "alert", "question": "A rocket with a specific impulse of 330 s has a mass ratio of 5. Taking g0 = 9.80665 m/s², what is its ideal delta-v, in meters per second?"}
+{"id": "aho-a4", "level": "alert", "question": "What is the speed of sound in air at 250 K, in meters per second, with a ratio of specific heats of 1.4 and R = 287 J/(kg·K)?"}
+{"id": "aho-a5", "level": "alert", "question": "A glider with a lift-to-drag ratio of 30 glides in still air from an altitude of 1500 m. How far does it travel over the ground, in kilometers?"}
+{"id": "aho-a6", "level": "alert", "question": "Air at 300 K is compressed isentropically by a pressure ratio of 8. With a ratio of specific heats of 1.4, what is its temperature after compression, in kelvin?"}
+{"id": "aho-a7", "level": "alert", "question": "An airplane makes a level turn at 120 m/s with a 45 degree bank. Taking g = 9.81 m/s², what is its turn radius, in meters?"}
+{"id": "aho-a8", "level": "alert", "question": "What is the period of a circular orbit 1000 km above Earth, in minutes? Use GM = 3.986e14 m³/s² and an Earth radius of 6371 km."}
+{"id": "aho-i1", "level": "intensive", "question": "What total delta-v does a Hohmann transfer from a 400 km circular orbit to a 2000 km circular orbit take, in kilometers per second? Use GM = 3.986e14 m³/s² and an Earth radius of 6371 km."}
+{"id": "aho-i2", "level": "intensive", "question": "A two-stage rocket lifts off at 80 t. Stage 1 burns 55 t of propellant at a specific impulse of 290 s and drops 8 t of dry mass; stage 2 then burns 12 t of propellant at a specific impulse of 330 s. Taking g0 = 9.80665 m/s², what is the total ideal delta-v, in meters per second?"}
+{"id": "aho-i3", "level": "intensive", "question": "An aircraft weighing 200 kN with a wing area of 100 square meters flies level at 150 m/s where the air density is 0.9 kg/m³. With a drag polar CD = 0.025 + 0.05 CL², what thrust does it need, in kilonewtons?"}
+{"id": "aho-i4", "level": "intensive", "question": "A spacecraft with a dry mass of 5000 kg needs 2500 m/s of delta-v from an engine with a specific impulse of 300 s. Taking g0 = 9.80665 m/s², how much propellant does it need, in kilograms?"}
+{"id": "aho-i5", "level": "intensive", "question": "An aircraft flies at 600 m/s where the air temperature is 223 K. With a ratio of specific heats of 1.4 and R = 287 J/(kg·K), what is the stagnation temperature, in kelvin?"}
+{"id": "aho-i6", "level": "intensive", "question": "A satellite needs a circular orbit with a period of 6 hours. What altitude above Earth's surface does that take, in kilometers? Use GM = 3.986e14 m³/s² and an Earth radius of 6371 km."}
+{"id": "aho-i7", "level": "intensive", "question": "A jet with a lift-to-drag ratio of 15 cruises at 230 m/s with a thrust-specific fuel consumption of 0.7 per hour, until its weight falls from 1.25 to 1.0 times its final weight. Using the Breguet range equation, how far does it fly, in kilometers?"}
+{"id": "aho-i8", "level": "intensive", "question": "A rocket launched straight up burns propellant for 120 s, going from 50 t to 20 t with an exhaust velocity of 2900 m/s. Including gravity losses at a constant 9.81 m/s² and ignoring drag, what is its speed at burnout, in meters per second?"}

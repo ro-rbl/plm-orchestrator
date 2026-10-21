@@ -103,7 +103,8 @@ def self_test(problems):
     for p in problems:
         cases = [(fmt(p), "correct"), (fmt(p, value=p["answer"] * 2 + 1), "wrong_value"), ("no answer here", "no_answer")]
         if p["unit"] not in LITERAL_UNITS:
-            cases.append((fmt(p, unit="kg"), "unit_error"))
+            wrong = "s" if ureg.Quantity(1, p["unit"]).dimensionality == ureg.Quantity(1, "kg").dimensionality else "kg"
+            cases.append((fmt(p, unit=wrong), "unit_error"))
             cases.append((fmt(p, unit=""), "unit_error"))
         for response, expected in cases:
             got = grade_one(p, response)["verdict"]
@@ -148,6 +149,7 @@ def self_test(problems):
         ("ee-a06", "ANSWER: 1.12 mΩ", "wrong_value"),
     ]
     by_id = {p["id"]: p for p in problems}
+    formats = [f for f in formats if f[0] in by_id]  # the format cases name electrical problems
     for pid, response, expected in formats:
         got = grade_one(by_id[pid], response)["verdict"]
         if got != expected:

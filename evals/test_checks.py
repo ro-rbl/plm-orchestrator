@@ -27,7 +27,8 @@ def same_kind(a, b):
 
 
 def main():
-    problems = grade.load_jsonl(ROOT / "evals/electrical/problems.jsonl")
+    problems = (grade.load_jsonl(ROOT / "evals/electrical/problems.jsonl")
+                + grade.load_jsonl(ROOT / "evals/aerospace/problems.jsonl"))
     holdout = grade.load_jsonl(ROOT / "evals/electrical/holdout_levels.jsonl")
     fails = []
 
@@ -53,7 +54,19 @@ def main():
         ("ee-i11", "ANSWER: 7.6 cells", "whole number"),
         ("ee-i15", "ANSWER: 152.53 kWh", "asked for USD"),
         ("ee-c01", "ANSWER: 120 <unit>", "'<unit>'"),  # pint half-parses it; either message is a catch
+        ("ae-c02", "ANSWER: 11772 kg", "asked for N"),
+        ("ae-c10", "ANSWER: 700 kW", "asked for kN"),
+        ("ae-i07", "ANSWER: 20239 km/s", "asked for km"),
+        ("ae-a07", "ANSWER: -17.5 K", "must be positive"),
+        ("ae-i14", "ANSWER: -1225 kg", "must be positive"),
     ]
+    # Model-style aerospace answers that are fine.
+    good = [("ae-a04", "ANSWER: 7.67 km/s"), ("ae-a04", "ANSWER: 7673 m/s"), ("ae-c05", "ANSWER: 1.225 kg/m³"),
+            ("ae-a17", "ANSWER: 8.64 m/s²"), ("ae-c13", "ANSWER: 28.1 GJ"), ("ae-c01", "ANSWER: 0.75"),
+            ("ae-a12", "ANSWER: 92.4 minutes"), ("ae-i06", "ANSWER: 19.9 MW")]
+    for pid, output in good:
+        if check(by_id[pid]["question"], output):
+            fails.append(f"{pid}: {output!r} wrongly flagged: {check(by_id[pid]['question'], output)}")
     for pid, output, expect in bad:
         issues = check(by_id[pid]["question"], output)
         if not any(expect in i for i in issues):
@@ -77,7 +90,7 @@ def main():
 
     for f in fails:
         print("FAIL", f)
-    total = 2 * len(problems) + len(holdout) + len(bad) + 1 + len(agreements)
+    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements)
     print(f"checks tests: {total - len(fails)}/{total} passed")
     sys.exit(1 if fails else 0)
 

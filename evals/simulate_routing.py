@@ -7,11 +7,11 @@ saved answers. A policy gives each level a cascade of steps:
                         or verifier is set and its answer disagrees -> next step.
                         The last step's answer is always accepted.
 
-Every call made is paid for. Levels come from plm.electrical.levels.classify (what the real
+Every call made is paid for. Levels come from the pack's classifier (what the real
 controller sees) or, with --labels, the hand labels. Compute is approximated as
 model params x generated tokens; it ignores prompt tokens and model load time.
 
-    .venv/bin/python evals/simulate_routing.py [--labels]
+    .venv/bin/python evals/simulate_routing.py [--pack electrical|aerospace] [--labels]
 """
 
 import sys
@@ -23,7 +23,8 @@ sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
 from plm.numeric.checks import agree, check  # noqa: E402
-from plm.electrical.levels import classify  # noqa: E402
+from plm.aerospace.levels import classify as aerospace_classify  # noqa: E402
+from plm.electrical.levels import classify as electrical_classify  # noqa: E402
 
 RESULTS = ROOT / "results"
 F = {
@@ -79,9 +80,38 @@ POLICIES = [
     ("always orig4B (bare)", same([("orig4B", None)])),
 ]
 
+# Aerospace: "4B" is the original Qwen3-4B, the default small tier (results/run_aerospace.sh).
+# These policies were fixed before the aerospace sweep ran.
+SMALL = "hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M"
+F_AEROSPACE = {
+    "4B": f"aerospace__{SMALL}.jsonl",
+    "4B+tool": f"aerospace__{SMALL}__tool.jsonl",
+    "8B": "aerospace__qwen3_8b.jsonl",
+    "8B+tool": "aerospace__qwen3_8b__tool.jsonl",
+}
+POLICIES_AEROSPACE = [
+    ("always 8B (bare)", same([("8B", None)])),
+    ("always 8B+tool", same([("8B+tool", None)])),
+    ("always 4B (bare)", same([("4B", None)])),
+    ("always 4B+tool", same([("4B+tool", None)])),
+    ("routed: 4B+tool | 8B+tool", tiers([("4B+tool", None)], [("8B+tool", None)])),
+    ("  + escalate on failed check (the default)", tiers([("4B+tool", None), ("8B+tool", None)],
+                                                         [("8B+tool", None), ("8B", None)])),
+    ("  + escalate on disagree w/ 4B bare", tiers([("4B+tool", "4B"), ("8B+tool", None)],
+                                                  [("8B+tool", None), ("8B", None)])),
+]
+
+PACKS = {
+    "electrical": ("evals/electrical/problems.jsonl", electrical_classify, F, POLICIES),
+    "aerospace": ("evals/aerospace/problems.jsonl", aerospace_classify, F_AEROSPACE, POLICIES_AEROSPACE),
+}
+
 
 def main():
-    probs = grade.load_jsonl(ROOT / "evals/electrical/problems.jsonl")
+    pack = sys.argv[sys.argv.index("--pack") + 1] if "--pack" in sys.argv else "electrical"
+    problems_path, classify, F, policies = PACKS[pack]
+    probs = grade.load_jsonl(ROOT / problems_path)
+    n = len(probs)
     R = {k: {r["id"]: r for r in grade.load_jsonl(RESULTS / v)} for k, v in F.items()}
     ok = {k: {p["id"]: grade.grade_one(p, R[k][p["id"]]["response"])["verdict"] == "correct" for p in probs} for k in F}
     cost = {k: {p["id"]: PARAMS[k.split("+")[0]] * R[k][p["id"]]["eval_tokens"] for p in probs} for k in F}
@@ -89,7 +119,7 @@ def main():
     if "--labels" in sys.argv:
         src, levels = "hand labels", {p["id"]: p["level"] for p in probs}
     else:
-        src, levels = "plm.electrical.levels classifier", {p["id"]: classify(p["question"])[0] for p in probs}
+        src, levels = f"plm.{pack}.levels classifier", {p["id"]: classify(p["question"])[0] for p in probs}
     base = sum(cost["8B"].values())
 
     def cascade(p, steps):
@@ -110,14 +140,14 @@ def main():
 
     print(f"levels from: {src}\n")
     print(f"{'policy (calm+alert | intensive)':<44} {'score':>6} {'compute':>8} {'escalated':>10}")
-    for name, pol in POLICIES:
+    for name, pol in policies:
         score = spend = escalated = 0
         for p in probs:
             model, s, step = cascade(p, pol[levels[p["id"]]])
             score += ok[model][p["id"]]
             spend += s
             escalated += step > 0
-        print(f"{name:<44} {score:>3}/50 {spend / base:>8.0%} {escalated:>10}")
+        print(f"{name:<44} {score:>3}/{n} {spend / base:>8.0%} {escalated:>10}")
 
     # Hindsight bound: cheapest saved answer that was correct (8B bare if none were).
     spend = score = 0
@@ -126,7 +156,7 @@ def main():
         k = min(right, key=lambda k: cost[k][p["id"]]) if right else "8B"
         score += ok[k][p["id"]]
         spend += cost[k][p["id"]]
-    print(f"{'hindsight: cheapest correct answer':<44} {score:>3}/50 {spend / base:>8.0%}")
+    print(f"{'hindsight: cheapest correct answer':<44} {score:>3}/{n} {spend / base:>8.0%}")
 
 
 if __name__ == "__main__":

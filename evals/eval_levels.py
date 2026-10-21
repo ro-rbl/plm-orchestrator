@@ -2,6 +2,7 @@
 
     .venv/bin/python evals/eval_levels.py                    # electrical: main set + holdout
     .venv/bin/python evals/eval_levels.py --pack software    # software
+    .venv/bin/python evals/eval_levels.py --pack aerospace   # aerospace
     .venv/bin/python evals/eval_levels.py -v                 # also list every miss
 
 The holdout labels were written before the rules and are never used to tune them.
@@ -15,6 +16,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
+from plm.aerospace import levels as aerospace_levels  # noqa: E402
 from plm.electrical import levels as electrical_levels  # noqa: E402
 from plm.software import levels as software_levels  # noqa: E402
 
@@ -25,6 +27,8 @@ PACKS = {
                    "evals/electrical/holdout_levels.jsonl"),
     "software": (software_levels.classify, "prompt", "evals/software/tasks.jsonl",
                  "evals/software/holdout_levels.jsonl"),
+    "aerospace": (aerospace_levels.classify, "question", "evals/aerospace/problems.jsonl",
+                  "evals/aerospace/holdout_levels.jsonl"),
 }
 
 

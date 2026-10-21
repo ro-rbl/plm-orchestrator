@@ -27,13 +27,23 @@ UNIT_WORDS = {
     "henries": "H", "millihenries": "mH",
     "siemens": "S", "millisiemens": "mS",
     "decibels": "dB", "us dollars": "USD", "dollars": "USD",
+    # mechanics, flight and orbits
+    "newtons": "N", "kilonewtons": "kN", "meganewtons": "MN", "newton-seconds": "N*s",
+    "meters": "m", "kilometers": "km", "feet": "ft", "square meters": "m^2",
+    "meters per second": "m/s", "kilometers per second": "km/s", "kilometers per hour": "km/h", "knots": "kn",
+    "meters per second squared": "m/s^2",
+    "kilograms": "kg", "tonnes": "t", "kilograms per second": "kg/s", "kilograms per cubic meter": "kg/m^3",
+    "pascals": "Pa", "kilopascals": "kPa", "megapascals": "MPa",
+    "kelvin": "K", "minutes": "min", "days": "day",
+    "megawatts": "MW", "joules per kilogram": "J/kg", "kilojoules per kilogram": "kJ/kg",
 }
 _WORDS = "|".join(sorted(map(re.escape, UNIT_WORDS), key=len, reverse=True))
 UNIT_PHRASE = re.compile(rf"\b(?:in|how many) ({_WORDS})\b", re.IGNORECASE)
 COUNT_PHRASE = re.compile(r"whole number|how many (?:turns|cells|resistors|batteries)", re.IGNORECASE)
 
 # Quantities that can't be zero or negative as an answer.
-POSITIVE = {"ohm", "ohm*m", "F", "H", "S", "s", "Hz", "J", "W", "C", "V*A"}
+POSITIVE = {"ohm", "ohm*m", "F", "H", "S", "s", "Hz", "J", "W", "C", "V*A",
+            "N", "Pa", "K", "kg", "m", "m^2", "m/s", "kg/s", "kg/m^3", "J/kg"}
 
 
 def requested_unit(question):
