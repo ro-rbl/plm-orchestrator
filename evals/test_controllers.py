@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
 import plm.software.controller as software  # noqa: E402
 import plm.software.testgen as testgen  # noqa: E402
@@ -98,22 +99,45 @@ def test_software():
            and writer_calls == [large] and r["trusted"], (calls, writer_calls, r["trusted"]))
 
 
+def test_general():
+    seen = []
+
+    def chat(model, messages, num_predict, timeout, options=None):
+        seen.append((model, messages, num_predict, options))
+        return {"response": "Canberra.", "eval_tokens": 2, "prompt_tokens": 9, "load_s": 0, "wall_s": 0.0,
+                "done_reason": "stop", "thinking_chars": 0, "mode": "fake"}
+
+    general.chat = chat
+    history = [{"role": "user", "content": "Hi"}, {"role": "assistant", "content": "Hello!"},
+               {"role": "user", "content": "Capital of Australia?"}]
+    r = general.solve("Capital of Australia?", messages=history, options={"temperature": 0.3}, max_tokens=50)
+    expect("general passes the whole conversation", seen[-1] == (general.MODELS["large"], history, 50, {"temperature": 0.3}),
+           seen[-1])
+    expect("general is never trusted", r["answer"] == {"text": "Canberra."} and not r["checked"] and not r["trusted"]
+           and r["unchecked_reason"] == general.UNCHECKED, r)
+    general.solve("Plain question")
+    expect("general defaults", seen[-1][1] == [{"role": "user", "content": "Plain question"}]
+           and seen[-1][2] == general.NUM_PREDICT and seen[-1][3] is None, seen[-1])
+
+
 def test_registry():
     for name, pack in PACKS.items():
         expect(f"{name} provides the pack interface", all(hasattr(pack, a) for a in ("MODELS", "LEVELS", "solve")
                                                           ) and set(pack.LEVELS) == {"calm", "alert", "intensive"})
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
+    expect("detect general", detect("What's the capital of Australia?") == "general")
 
 
 def main():
-    real = numeric.ask, software.ask, testgen.ask
+    real = numeric.ask, software.ask, testgen.ask, general.chat
     try:
         test_electrical()
         test_software()
+        test_general()
         test_registry()
     finally:
-        numeric.ask, software.ask, testgen.ask = real
+        numeric.ask, software.ask, testgen.ask, general.chat = real
     for f in FAILS:
         print("FAIL", f)
     print(f"controller tests: {'all passed' if not FAILS else f'{len(FAILS)} failed'}")

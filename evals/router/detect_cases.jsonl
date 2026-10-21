@@ -1,0 +1,50 @@
+{"id": "g01", "pack": "general", "text": "What's the capital of Australia?"}
+{"id": "g02", "pack": "general", "text": "Write a short poem about autumn leaves."}
+{"id": "g03", "pack": "general", "text": "Summarize the plot of Romeo and Juliet in three sentences."}
+{"id": "g04", "pack": "general", "text": "How do I make cold brew coffee?"}
+{"id": "g05", "pack": "general", "text": "Explain how a transformer works."}
+{"id": "g06", "pack": "general", "text": "What is the difference between AC and DC current?"}
+{"id": "g07", "pack": "general", "text": "Why do LEDs need a resistor?"}
+{"id": "g08", "pack": "general", "text": "Translate 'good morning' into Spanish and French."}
+{"id": "g09", "pack": "general", "text": "Give me three ideas for a birthday party for a 10-year-old."}
+{"id": "g10", "pack": "general", "text": "What year did the Apollo 11 mission land on the Moon?"}
+{"id": "g11", "pack": "general", "text": "How many days are there in a leap year?"}
+{"id": "g12", "pack": "general", "text": "What is 15% of 80?"}
+{"id": "g13", "pack": "general", "text": "If a train travels 120 km in 1.5 hours, what is its average speed in km/h?"}
+{"id": "g14", "pack": "general", "text": "Can you explain what a Python decorator is?"}
+{"id": "g15", "pack": "general", "text": "What does the error 'IndexError: list index out of range' mean?"}
+{"id": "g16", "pack": "general", "text": "Recommend a good book about the history of science."}
+{"id": "g17", "pack": "general", "text": "How do I reset my router?"}
+{"id": "g18", "pack": "general", "text": "What's the weather usually like in Lisbon in March?"}
+{"id": "g19", "pack": "general", "text": "Write an email to my landlord asking to fix the heating."}
+{"id": "g20", "pack": "general", "text": "Tell me a joke about engineers."}
+{"id": "g21", "pack": "general", "text": "What is the boiling point of water in Fahrenheit?"}
+{"id": "g22", "pack": "general", "text": "Compare the pros and cons of electric cars versus gasoline cars."}
+{"id": "g23", "pack": "general", "text": "How does a solar panel generate electricity?"}
+{"id": "g24", "pack": "general", "text": "List the planets in order from the Sun."}
+{"id": "g25", "pack": "general", "text": "What is a good beginner workout routine?"}
+{"id": "g26", "pack": "general", "text": "Explain Ohm's law in simple terms."}
+{"id": "g27", "pack": "general", "text": "My phone battery drains fast, any tips?"}
+{"id": "g28", "pack": "general", "text": "What is the population of Japan?"}
+{"id": "g29", "pack": "general", "text": "Proofread this sentence: Their going to the store tomorow."}
+{"id": "g30", "pack": "general", "text": "How do I convert 5 miles to kilometers?"}
+{"id": "g31", "pack": "general", "text": "Who invented the light bulb?"}
+{"id": "g32", "pack": "general", "text": "Draft a tweet announcing our new product launch on 12 May."}
+{"id": "g33", "pack": "general", "text": "What are the main causes of the French Revolution?"}
+{"id": "g34", "pack": "general", "text": "Is it safe to charge my laptop overnight?"}
+{"id": "g35", "pack": "general", "text": "Plan a 3-day itinerary for Rome."}
+{"id": "g36", "pack": "general", "text": "What does a 10 amp fuse protect against?"}
+{"id": "g37", "pack": "general", "text": "Explain the history of the electric guitar."}
+{"id": "g38", "pack": "general", "text": "What's a good name for a black cat?"}
+{"id": "g39", "pack": "general", "text": "Write a haiku about circuits."}
+{"id": "g40", "pack": "general", "text": "What is the speed of light in meters per second?"}
+{"id": "e01", "pack": "electrical", "text": "A 12 V battery drives 3 A through a heater. How much power does the heater use, in watts?"}
+{"id": "e02", "pack": "electrical", "text": "What resistance gives 2 A from a 24 V source?"}
+{"id": "e03", "pack": "electrical", "text": "How many volts does a typical car battery have?"}
+{"id": "e04", "pack": "electrical", "text": "Calculate the current through a 100 ohm resistor connected to 5 V."}
+{"id": "e05", "pack": "electrical", "text": "What is the impedance of a 10 mH inductor at 50 Hz, in ohms?"}
+{"id": "s01", "pack": "software", "text": "Write a Python function that reverses a linked list."}
+{"id": "s02", "pack": "software", "text": "Implement a class `Stack` with push and pop."}
+{"id": "s03", "pack": "software", "text": "Can you write a function to check if a number is prime?"}
+{"id": "s04", "pack": "software", "text": "def add(a, b): fix this so it also handles strings"}
+{"id": "s05", "pack": "software", "text": "Write a function that computes the total resistance of resistors in parallel."}
