@@ -24,7 +24,10 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 ```
 
 Each answer comes with a report: the level, every model call, tokens, time,
-and why anything was escalated. Runs are logged to `logs/runs.jsonl`.
+and why anything was escalated. An answer is marked unverified if it failed a
+check, and unchecked if the task gave nothing to check against (no unit asked
+for, no code examples). Runs are logged to `logs/runs.jsonl`. See `ROADMAP.md`
+for what's next and `NEXT.md` for known open items.
 
 ## Domain packs
 
@@ -36,8 +39,12 @@ and why anything was escalated. Runs are logged to `logs/runs.jsonl`.
 
 ## Layout
 
-- `plm/`: the controller. `levels.py`, `checks.py`, `calc.py` and `controller.py`
-  are the electrical pack, and `plm/software/` is the software pack.
+- `plm/packs.py`: the pack registry and the interface every pack provides.
+- `plm/numeric/`: shared by numeric packs: answer format and parser, calculator tool,
+  unit/sanity checks, and the controller.
+- `plm/electrical/`: the electrical pack's level rules and tiers.
+- `plm/software/`: the software pack: sandbox, code prompts, level rules, controller,
+  and model-written tests for `--thorough`.
 - `evals/`: problem sets, graders, runners and offline routing simulations.
   `simulate_routing.py` and `simulate_code_routing.py` replay saved answers, so
   they need no model calls.
@@ -48,7 +55,8 @@ and why anything was escalated. Runs are logged to `logs/runs.jsonl`.
 ```bash
 .venv/bin/python evals/grade.py evals/electrical/problems.jsonl --self-test
 .venv/bin/python evals/test_checks.py
-.venv/bin/python plm/calc.py
+.venv/bin/python -m plm.numeric.calc
+.venv/bin/python evals/test_controllers.py         # controllers, with Ollama replaced by scripted replies
 .venv/bin/python -m plm.software.sandbox
 .venv/bin/python -m plm.software.testgen
 .venv/bin/python evals/software/build_tasks.py     # fails if any reference solution fails its tests

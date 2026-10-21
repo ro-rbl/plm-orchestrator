@@ -19,18 +19,10 @@ import sys
 import urllib.error
 from pathlib import Path
 
-from plm import controller as electrical
-from plm.software import controller as software
+from plm.packs import PACKS, detect
 
 ROOT = Path(__file__).resolve().parent.parent
 LOG = Path(os.environ.get("PLM_LOG", ROOT / "logs" / "runs.jsonl"))
-PACKS = {"electrical": electrical, "software": software}
-SOFTWARE_TASK = re.compile(r"\b(?:write|implement|create|code)\b.{0,40}\b(?:function|class|method|program)\b|\bdef \w+\s*\(",
-                           re.IGNORECASE | re.DOTALL)
-
-
-def detect_pack(text):
-    return "software" if SOFTWARE_TASK.search(text) else "electrical"
 
 
 def short(model):
@@ -45,18 +37,26 @@ def final_step(result):
     return result["steps"][result.get("final_step", len(result["steps"])) - 1]
 
 
+def caveat(result):
+    """Why the answer isn't trusted, or '' if it is."""
+    issues = final_step(result)["issues"]
+    if issues:
+        return f"unverified: {'; '.join(issues)}"
+    if not result.get("checked", True):
+        return f"unchecked: {result['unchecked_reason']}"
+    return ""
+
+
 def print_answer(result):
-    ans, issues = result["answer"], "; ".join(final_step(result)["issues"])
+    ans, note = result["answer"], caveat(result)
     if ans is None:
         print("\nNo answer. Last model output:\n" + result["steps"][-1]["model_text"].strip())
     elif result["pack"] == "software":
         print("\n```python\n" + ans["code"].strip() + "\n```")
-        if not result["trusted"]:
-            print(f"(unverified: {issues})")
-    elif result["trusted"]:
-        print(f"\n{ans['value']:.6g} {ans['unit']}".rstrip())
+        if note:
+            print(f"({note})")
     else:
-        print(f"\n{ans['value']:.6g} {ans['unit']}   (unverified: {issues})")
+        print(f"\n{ans['value']:.6g} {ans['unit']}".rstrip() + (f"   ({note})" if note else ""))
 
 
 def report(result, show_work):
@@ -89,7 +89,7 @@ def run_one(task, args):
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
-    pack = args.pack if args.pack != "auto" else detect_pack(task)
+    pack = args.pack if args.pack != "auto" else detect(task)
     extra = {}
     if args.thorough:
         if pack == "software":
@@ -117,7 +117,7 @@ def main():
     ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator")
     ap.add_argument("task", nargs="*", help="the task; omit for interactive mode")
     ap.add_argument("--pack", choices=["auto", *PACKS], default="auto", help="domain pack (default: detect from the task)")
-    ap.add_argument("--level", choices=list(electrical.LEVELS), help="force an adrenaline level instead of classifying")
+    ap.add_argument("--level", choices=["calm", "alert", "intensive"], help="force an adrenaline level instead of classifying")
     ap.add_argument("--thorough", action="store_true",
                     help="software: also check code against tests a second model writes (~4x compute)")
     ap.add_argument("--show-work", action="store_true", help="print each model's program or reasoning")

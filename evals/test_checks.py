@@ -1,4 +1,4 @@
-"""Tests for plm.checks against the eval set.
+"""Tests for plm.numeric.checks against the eval set.
 
     .venv/bin/python evals/test_checks.py
 
@@ -16,8 +16,8 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
-from plm.answers import LITERAL_UNITS, ureg  # noqa: E402
-from plm.checks import agree, check, requested_unit  # noqa: E402
+from plm.numeric.answers import LITERAL_UNITS, ureg  # noqa: E402
+from plm.numeric.checks import agree, check, requested_unit  # noqa: E402
 
 
 def same_kind(a, b):

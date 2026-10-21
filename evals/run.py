@@ -5,7 +5,7 @@
 
 Strategies:
     bare     the model answers directly (baseline)
-    tool     the model writes a Python program; plm/calc.py runs it and its output is graded
+    tool     the model writes a Python program; plm/numeric/calc.py runs it and its output is graded
     formula  same, but the model first states the formula and converts the givens to SI units
 
 Writes results/<set>__<model>.jsonl, one line per problem, flushed as it goes.
@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import grade  # noqa: E402
-from plm import calc  # noqa: E402
+from plm.numeric import calc  # noqa: E402
 from plm.ollama import ask  # noqa: E402
 
 

@@ -1,35 +1,20 @@
-"""Adaptive controller: pick an adrenaline level, run a specialist, check the answer, escalate.
+"""Shared controller for numeric packs: pick a level, run a specialist, check the answer, escalate.
 
-The defaults are the best policy from evals/simulate_routing.py: calm and alert
-problems go to the small model with the calculator, intensive ones to the large
-model, and any answer that fails plm.checks moves to the next step. Agreement
-checks (a second model's opinion) are not used: in the simulation they cost more
-compute than they saved.
+A numeric pack supplies only its level classifier and its tiers (models, token
+budgets, escalation chains); everything else here is the same for every pack
+whose answers are a number with a unit.
 
-Model names can be overridden with PLM_SMALL_MODEL and PLM_LARGE_MODEL.
+An answer is trusted only if it passed the checks *and* there was something to
+check: when the question names no unit (plm.numeric.checks.requested_unit is
+None) the checks can't fail, so the answer is reported as unchecked instead.
 """
 
-import os
 import time
 
-from plm import calc
-from plm.answers import ANSWER_FORMAT, parse_answer
-from plm.checks import check
-from plm.levels import classify
+from plm.numeric import calc
+from plm.numeric.answers import ANSWER_FORMAT, parse_answer
+from plm.numeric.checks import check, requested_unit
 from plm.ollama import ask
-
-MODELS = {
-    "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M"),
-    "large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b"),
-}
-
-# Per level: token budget and the escalation chain of (model, strategy) steps.
-# Budgets are >2.5x the longest calculator answer seen in the eval runs.
-LEVELS = {
-    "calm": {"num_predict": 384, "chain": [("small", "tool"), ("large", "tool")]},
-    "alert": {"num_predict": 512, "chain": [("small", "tool"), ("large", "tool")]},
-    "intensive": {"num_predict": 1024, "chain": [("large", "tool"), ("large", "bare")]},
-}
 
 
 def attempt(task, model, strategy, num_predict, timeout):
@@ -50,30 +35,33 @@ def attempt(task, model, strategy, num_predict, timeout):
     return step
 
 
-def solve(task, level=None, timeout=300):
+def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
     """Answer one task. Returns the answer plus a record of every model call."""
     start = time.time()
     if level:
         reason = "set by caller"
     else:
         level, reason = classify(task)
-    plan = LEVELS[level]
+    plan = levels[level]
 
     steps = []
     for model_key, strategy in plan["chain"]:
-        steps.append(attempt(task, MODELS[model_key], strategy, plan["num_predict"], timeout))
+        steps.append(attempt(task, models[model_key], strategy, plan["num_predict"], timeout))
         if not steps[-1]["issues"]:
             break
 
     final = steps[-1]
     parsed = parse_answer(final["output"])
+    checked = requested_unit(task) is not None
     return {
-        "pack": "electrical",
+        "pack": pack,
         "task": task,
         "level": level,
         "reason": reason,
         "answer": {"value": parsed[0], "unit": parsed[1]} if parsed else None,
-        "trusted": not final["issues"],
+        "checked": checked,
+        "unchecked_reason": None if checked else "the question names no unit, so the answer couldn't be checked",
+        "trusted": checked and not final["issues"],
         "steps": steps,
         "tokens": sum(s["tokens"] for s in steps),
         "seconds": time.time() - start,

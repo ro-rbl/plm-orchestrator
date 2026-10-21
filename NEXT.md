@@ -1,23 +1,8 @@
 # NEXT
 
-_Updated: 2026-10-20 · branch: stronger-code-checks (not merged) · last code commit: 370f428_
-
-## Blocking
-- [ ] **`stronger-code-checks` is not merged into `main`.** All gates green as of 370f428
-      (grader 271/271, checks 140/140, calc, sandbox, testgen self-tests, 45/45 references, ruff clean).
-      Resume: `git checkout main && git merge --ff-only stronger-code-checks`
-
-## Before adding more packs
-- [ ] **Electrical modules live at the top of `plm/`, while software has its own `plm/software/`.**
-      Move `levels.py`, `checks.py`, `calc.py`, `controller.py` into `plm/electrical/` so every pack has
-      the same shape. Check: all self-tests in README "Tests" still pass and
-      `.venv/bin/python evals/simulate_routing.py` still prints `47/50  36%` for `routed: 4B+tool | 8B+tool`.
+_Updated: 2026-10-20 · branch: phase1-foundation · plan: ROADMAP.md_
 
 ## Known bugs / weaknesses
-- [ ] **Electrical answers go unchecked when the question names no unit.** `plm/checks.py:requested_unit()`
-      returns None, so `check()` returns [] and the CLI reports the answer as verified. Found through the
-      empty-task bug (now refused in `plm/__main__.py:run_one`). Resume: decide whether "nothing to check"
-      should print as unverified; `plm/checks.py` and `plm/__main__.py:print_answer`.
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`
       style in `evals/software/build_tasks.py` (sw-i01, sw-i13, sw-i15) led the 8B to write 7/8 malformed tests
       for LRUCache; `plm/software/testgen.py:is_broken_test` hides them, it doesn't fix them. Changing the style
@@ -38,7 +23,7 @@ _Updated: 2026-10-20 · branch: stronger-code-checks (not merged) · last code c
       loads). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
 - [ ] **Formula-first and generated-test policies in the simulations were added after their results were seen**
       (marked in `evals/simulate_routing.py`); the software routing policies were fixed in advance.
-- [ ] **Pack auto-detection** (`plm/__main__.py:SOFTWARE_TASK`) is verified only on the 134 eval texts.
+- [ ] **Pack auto-detection** (`plm/packs.py:SOFTWARE_TASK`) is verified only on the 134 eval texts.
 
 ## Tooling notes
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now

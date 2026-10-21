@@ -5,7 +5,7 @@
     intensive an intermediate result must be computed and reused
 
 The rules are written from those definitions, not fitted per question.
-Evaluate them with:  .venv/bin/python evals/eval_levels.py
+Evaluate them with:  .venv/bin/python evals/eval_levels.py --pack electrical
 """
 
 import re

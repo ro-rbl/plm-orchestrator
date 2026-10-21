@@ -24,7 +24,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from plm.answers import (  # noqa: E402,F401
+from plm.numeric.answers import (  # noqa: E402,F401
     ANSWER_FORMAT, LITERAL_UNITS, PROMPT_VERSION, normalize, normalize_unit, parse_answer, ureg,
 )
 

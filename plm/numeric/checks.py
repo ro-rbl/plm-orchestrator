@@ -9,7 +9,7 @@ the number itself.
 
 import re
 
-from plm.answers import LITERAL_UNITS, parse_answer, ureg
+from plm.numeric.answers import LITERAL_UNITS, parse_answer, ureg
 
 # Unit words that appear in questions ("..., in microfarads?") -> unit string.
 # An explicit list rather than free parsing: pint would read "in a circuit" as years.

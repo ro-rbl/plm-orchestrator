@@ -3,11 +3,11 @@
 Every model ran every problem, so any routing decision can be replayed from the
 saved answers. A policy gives each level a cascade of steps:
 
-    (model, verifier)   take model's answer unless plm.checks.check() flags it,
+    (model, verifier)   take model's answer unless plm.numeric.checks.check() flags it,
                         or verifier is set and its answer disagrees -> next step.
                         The last step's answer is always accepted.
 
-Every call made is paid for. Levels come from plm.levels.classify (what the real
+Every call made is paid for. Levels come from plm.electrical.levels.classify (what the real
 controller sees) or, with --labels, the hand labels. Compute is approximated as
 model params x generated tokens; it ignores prompt tokens and model load time.
 
@@ -22,8 +22,8 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
-from plm.checks import agree, check  # noqa: E402
-from plm.levels import classify  # noqa: E402
+from plm.numeric.checks import agree, check  # noqa: E402
+from plm.electrical.levels import classify  # noqa: E402
 
 RESULTS = ROOT / "results"
 F = {
@@ -77,7 +77,7 @@ def main():
     if "--labels" in sys.argv:
         src, levels = "hand labels", {p["id"]: p["level"] for p in probs}
     else:
-        src, levels = "plm.levels classifier", {p["id"]: classify(p["question"])[0] for p in probs}
+        src, levels = "plm.electrical.levels classifier", {p["id"]: classify(p["question"])[0] for p in probs}
     base = sum(cost["8B"].values())
 
     def cascade(p, steps):

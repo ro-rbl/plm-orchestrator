@@ -3,7 +3,7 @@
 Each test is a Python expression that must evaluate to True. The code runs in a
 separate `python -I -S` process in an empty temp directory, with a time limit
 per test and for the whole run. Imports are limited to a standard-library
-allowlist. Like plm/calc.py, the screen guards against accidents; it is not a
+allowlist. Like plm/numeric/calc.py, the screen guards against accidents; it is not a
 security sandbox.
 """
 

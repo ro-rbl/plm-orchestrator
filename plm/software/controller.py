@@ -117,18 +117,22 @@ def solve(text, level=None, timeout=600, thorough=False):
             # Fewest generated-test failures; ties go to the later, stronger model,
             # which is the rule evals/simulate_code_routing.py measured.
             final = min(passed_examples, key=lambda s: (s["generated_failures"], -steps.index(s)))
-    checked = len(task["examples"])
-    reason += (f"; {checked} example{'s' if checked != 1 else ''} to check" if checked
+    n_examples = len(task["examples"])
+    reason += (f"; {n_examples} example{'s' if n_examples != 1 else ''} to check" if n_examples
                else "; no examples given, so only loading is checked")
     if writer:
         reason += f"; {len(tests)} generated tests"
+    # Loading and defining the entry point alone don't show the code works.
+    checked = bool(n_examples or tests)
     return {
         "pack": "software",
         "task": text,
         "level": level,
         "reason": reason,
         "answer": {"code": final["code"]} if final["code"] else None,
-        "trusted": not final["issues"],
+        "checked": checked,
+        "unchecked_reason": None if checked else "no examples given, so only loading was checked",
+        "trusted": checked and not final["issues"],
         "final_step": steps.index(final) + 1,
         "steps": steps,
         "test_writer": writer,

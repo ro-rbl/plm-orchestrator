@@ -1,7 +1,7 @@
 """The "ANSWER: <number> <unit>" contract: the prompt that asks for it and the parser that reads it.
 
-Shared by the grader (evals/grade.py), the controller (plm/controller.py) and
-its answer checks (plm/checks.py), so all of them read model output the same way.
+Shared by the grader (evals/grade.py), the numeric controller (plm/numeric/controller.py) and
+its answer checks (plm/numeric/checks.py), so all of them read model output the same way.
 """
 
 import re
