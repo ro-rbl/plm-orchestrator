@@ -21,7 +21,7 @@ def attempt(task, model, strategy, num_predict, timeout):
     fmt = calc.TOOL_FORMAT if strategy == "tool" else ANSWER_FORMAT
     start = time.time()
     r = ask(model, f"{task}\n\n{fmt}", False, num_predict, timeout)
-    step = {"model": model, "strategy": strategy, "tokens": r["eval_tokens"],
+    step = {"model": model, "strategy": strategy, "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"],
             "model_text": r["response"], "capped": r["done_reason"] == "length"}
     if strategy == "tool":
         code = calc.extract_program(r["response"])

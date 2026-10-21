@@ -62,7 +62,7 @@ def attempt(task, model, num_predict, timeout):
     start = time.time()
     r = ask(model, build_prompt(task), False, num_predict, timeout)
     code = extract_code(r["response"], task["entry"] or "")
-    step = {"model": model, "tokens": r["eval_tokens"], "model_text": r["response"], "code": code,
+    step = {"model": model, "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"], "model_text": r["response"], "code": code,
             "capped": r["done_reason"] == "length", "issues": [], "generated_failures": 0}
     if code is None:
         step["issues"].append("no code block")

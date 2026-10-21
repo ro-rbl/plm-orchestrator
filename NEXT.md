@@ -1,6 +1,6 @@
 # NEXT
 
-_Updated: 2026-10-20 · branch: phase1-foundation · plan: ROADMAP.md_
+_Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router) · plan: ROADMAP.md_
 
 ## Known bugs / weaknesses
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`
@@ -12,6 +12,12 @@ _Updated: 2026-10-20 · branch: phase1-foundation · plan: ROADMAP.md_
       every candidate fails. Measure on a fresh task set, not the 45 tasks already used to compare writers.
 - [ ] **Example-only checks pass about 1 in 4 wrong solutions** (14 of 63 in the sweep; live case: 4B's
       `bisect`-based two_sum on unsorted input). Documented, not fixed; `--thorough` is the current mitigation.
+- [ ] **Conceptual questions with a number and an electrical unit go to the electrical pack.** Holdout miss:
+      "What does a 10 amp fuse protect against?" (`evals/router/detect_cases.jsonl` g36) gets a forced numeric
+      answer. Left unfixed on purpose: fitting the rule to a holdout miss would make the holdout meaningless.
+      Resume: `.venv/bin/python evals/test_detect.py -v`; any fix needs fresh cases to judge it.
+- [ ] **Server: packs see only the last user message.** A follow-up like "now do it for 200 ohm" loses the
+      earlier question and goes wherever the follow-up alone points. `plm/server.py:parse_request`.
 
 ## Unverified
 - [ ] **Every problem, task, label and reference solution was written by Claude.** Holdouts guard against tuning
@@ -23,11 +29,18 @@ _Updated: 2026-10-20 · branch: phase1-foundation · plan: ROADMAP.md_
       loads). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
 - [ ] **Formula-first and generated-test policies in the simulations were added after their results were seen**
       (marked in `evals/simulate_routing.py`); the software routing policies were fixed in advance.
-- [ ] **Pack auto-detection** (`plm/packs.py:SOFTWARE_TASK`) is verified only on the 134 eval texts.
+- [ ] **Pack auto-detection** (`plm/packs.py:detect`) is verified on the 134 eval texts (all correct) and 50
+      cases labeled before the electrical rule (49 correct). Real traffic will differ; `logs/server.jsonl`
+      records every routing decision, so check it after real use.
 
 ## Tooling notes
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now
-  refused). Pass `"$(cat file)"` as an argument instead.
+  refused), and `with-timeout N python - <<EOF` runs an empty script. Pass `"$(cat file)"` as an argument, or
+  write the script to a file.
+- Ollama's `qwen3:4b` tag is Qwen3-4B-Thinking-2507 (always reasons first; 31/50 direct answers hit the token
+  cap with thinking suppressed), not the original hybrid Qwen3-4B the abliterated build comes from.
+- The machine pins `qwen3:8b` in memory ("Forever" in `ollama ps`, 6.3 GB), set by something outside this repo;
+  with it, swap sits around 11 GB during sweeps.
 
 ## Deferred by choice
 - Formula-first calculator prompt is not the electrical default: 48/50 at 86% compute vs 47/50 at 36%.

@@ -70,7 +70,7 @@ def generate_tests(task, model, num_predict=1024, timeout=600):
     """Ask `model` for extra tests. Returns (tests, call record)."""
     r = ask(model, build_testgen_prompt(task), False, num_predict, timeout)
     tests = parse_tests(r["response"], task["entry"], task["examples"])
-    return tests, {"model": model, "tokens": r["eval_tokens"], "seconds": r["wall_s"], "raw": r["response"],
+    return tests, {"model": model, "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"], "seconds": r["wall_s"], "raw": r["response"],
                    "capped": r["done_reason"] == "length"}
 
 

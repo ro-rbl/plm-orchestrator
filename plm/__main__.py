@@ -6,6 +6,7 @@
     .venv/bin/python -m plm                 # interactive: one task per line
     .venv/bin/python -m plm --pack software --level intensive --show-work "..."
     .venv/bin/python -m plm --thorough "$(cat task.txt)"   # software: add model-written tests (~4x compute)
+    .venv/bin/python -m plm serve           # OpenAI-compatible server, see plm/server.py
 
 The pack is picked from the task text unless --pack is given. Every run is
 appended to logs/runs.jsonl (override with PLM_LOG).
@@ -14,64 +15,37 @@ appended to logs/runs.jsonl (override with PLM_LOG).
 import argparse
 import json
 import os
-import re
 import sys
 import urllib.error
 from pathlib import Path
 
 from plm.packs import PACKS, detect
+from plm.report import answer_text, final_step, short
 
 ROOT = Path(__file__).resolve().parent.parent
 LOG = Path(os.environ.get("PLM_LOG", ROOT / "logs" / "runs.jsonl"))
 
 
-def short(model):
-    # hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M -> Qwen3-4B-abliterated
-    if "/" not in model:
-        return model
-    return re.sub(r"^[^_]*_|-GGUF.*$", "", model.rsplit("/", 1)[-1])
-
-
-def final_step(result):
-    # Thorough mode can return an earlier answer than the last one tried.
-    return result["steps"][result.get("final_step", len(result["steps"])) - 1]
-
-
-def caveat(result):
-    """Why the answer isn't trusted, or '' if it is."""
-    issues = final_step(result)["issues"]
-    if issues:
-        return f"unverified: {'; '.join(issues)}"
-    if not result.get("checked", True):
-        return f"unchecked: {result['unchecked_reason']}"
-    return ""
-
-
-def print_answer(result):
-    ans, note = result["answer"], caveat(result)
-    if ans is None:
-        print("\nNo answer. Last model output:\n" + result["steps"][-1]["model_text"].strip())
-    elif result["pack"] == "software":
-        print("\n```python\n" + ans["code"].strip() + "\n```")
-        if note:
-            print(f"({note})")
-    else:
-        print(f"\n{ans['value']:.6g} {ans['unit']}".rstrip() + (f"   ({note})" if note else ""))
+def how(step):
+    if step.get("strategy"):
+        return {"tool": "calculator", "bare": "direct"}[step["strategy"]]
+    return "code" if "code" in step else "chat"
 
 
 def report(result, show_work):
-    print_answer(result)
+    print("\n" + answer_text(result))
     print(f"\npack    {result['pack']}")
     print(f"level   {result['level']}  ({result['reason']})")
     chosen = final_step(result)
     for i, s in enumerate(result["steps"], 1):
-        how = {"tool": "calculator", "bare": "direct"}.get(s.get("strategy"), "code")
         status = "ok" if not s["issues"] else "flagged: " + "; ".join(s["issues"])
         if s["issues"] and i < len(result["steps"]):
             status += " -> escalated"
         if s is chosen and i < len(result["steps"]):
             status += "  [answer used: passed the examples and the most generated tests]"
-        print(f"step {i}  {short(s['model']):<22} {how:<10} {s['tokens']:>5} tok {s['seconds']:>6.1f} s   {status}")
+        if not result["checked"] and not s["issues"]:
+            status = "unchecked"
+        print(f"step {i}  {short(s['model']):<22} {how(s):<10} {s['tokens']:>5} tok {s['seconds']:>6.1f} s   {status}")
         if show_work:
             work = s.get("program") or s.get("code") or s["model_text"]
             print("        " + work.strip().replace("\n", "\n        "))
@@ -83,6 +57,8 @@ def report(result, show_work):
             print("        " + "\n        ".join(writer["tests"]))
     calls = len(result["steps"]) + bool(writer)
     print(f"total   {result['tokens']} tokens, {result['seconds']:.1f} s, {calls} model call{'s' if calls > 1 else ''}")
+    if result["pack"] == "general":
+        print(f"note    {result['unchecked_reason']}")
 
 
 def run_one(task, args):
@@ -114,7 +90,11 @@ def run_one(task, args):
 
 
 def main():
-    ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator")
+    if sys.argv[1:2] == ["serve"]:
+        from plm.server import main as serve
+        return serve(sys.argv[2:])
+
+    ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator ('plm serve' for the server)")
     ap.add_argument("task", nargs="*", help="the task; omit for interactive mode")
     ap.add_argument("--pack", choices=["auto", *PACKS], default="auto", help="domain pack (default: detect from the task)")
     ap.add_argument("--level", choices=["calm", "alert", "intensive"], help="force an adrenaline level instead of classifying")
