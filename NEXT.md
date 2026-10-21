@@ -1,6 +1,6 @@
 # NEXT
 
-_Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router) · plan: ROADMAP.md_
+_Updated: 2026-10-21 · branch: phase3-aerospace · plan: ROADMAP.md_
 
 ## Known bugs / weaknesses
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`
@@ -16,6 +16,18 @@ _Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router
       "What does a 10 amp fuse protect against?" (`evals/router/detect_cases.jsonl` g36) gets a forced numeric
       answer. Left unfixed on purpose: fitting the rule to a holdout miss would make the holdout meaningless.
       Resume: `.venv/bin/python evals/test_detect.py -v`; any fix needs fresh cases to judge it.
+- [ ] **Aerospace: routing to a small model doesn't pay, and intensive problems are hard.** The 4B is weaker
+      than on electrical (75% vs 90% on alert), so the pack sends everything to the 8B + calculator. Every
+      model missed the normal-shock, two-stage, Breguet and compressor-power problems. Hypothesis, chosen
+      after seeing the results: calm-only to the 4B (40/50 at 37%). Test it on fresh problems before using it.
+- [ ] **Unitless answers with a descriptive noun count as unit errors.** "15.58 rev" for a unitless count
+      (ae-i15, both 8B runs) fails the grader and the live check, though the number is right. Decide whether
+      to accept count nouns; `plm/numeric/answers.py:LITERAL_UNITS`.
+- [ ] **The shared number counter misses a number that ends a sentence** ("a pressure ratio of 10."), so a
+      problem can count one input short (ae-a13). Calm/alert confusions only so far; fixing it changes the
+      electrical classifier too, so re-run `evals/eval_levels.py` for every pack. `plm/numeric/levels.py:NUMBER`.
+- [ ] **Electrical/aerospace overlap is decided by counting domain terms**, tested on 3 cases only
+      (detect_cases a06, e06, e07). `plm/packs.py:detect`.
 - [ ] **Server: packs see only the last user message.** A follow-up like "now do it for 200 ohm" loses the
       earlier question and goes wherever the follow-up alone points. `plm/server.py:parse_request`.
 
@@ -29,9 +41,10 @@ _Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router
       loads). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
 - [ ] **Formula-first and generated-test policies in the simulations were added after their results were seen**
       (marked in `evals/simulate_routing.py`); the software routing policies were fixed in advance.
-- [ ] **Pack auto-detection** (`plm/packs.py:detect`) is verified on the 134 eval texts (all correct) and 50
-      cases labeled before the electrical rule (49 correct). Real traffic will differ; `logs/server.jsonl`
-      records every routing decision, so check it after real use.
+- [ ] **Pack auto-detection** (`plm/packs.py:detect`) is verified on the 184 eval texts (all correct) and 88
+      holdout cases labeled before the rules they test: 85/88 independently (gas-dynamics terms added for 5
+      eval-set misses also fixed 2 holdout cases, so the later 87/88 is not independent). Real traffic will
+      differ; `logs/server.jsonl` records every routing decision, so check it after real use.
 
 ## Tooling notes
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now
@@ -52,4 +65,4 @@ _Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router
 - No 0.6B is used as a tier: abliterated 24/50 electrical (direct), 7/45 software; standard qwen3:0.6b 17/50, 14/45.
 - `--thorough` is opt-in, not default (see above).
 - `gpt-oss:20b` (13 GB) has not been evaluated.
-- Aerospace and other domain packs: next.
+- Physics/mechanical and SQL packs: next (ROADMAP.md, phase 3).

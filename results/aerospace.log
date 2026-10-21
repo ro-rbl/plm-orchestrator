@@ -1,0 +1,248 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/50] ae-c01 correct        86 tok    3.7s
+[2/50] ae-c02 correct       103 tok    3.5s
+[3/50] ae-c03 correct        75 tok    2.6s
+[4/50] ae-c04 correct       136 tok    4.4s
+[5/50] ae-c05 correct        76 tok    2.6s
+[6/50] ae-c06 correct        59 tok    2.0s
+[7/50] ae-c07 correct        56 tok    1.9s
+[8/50] ae-c08 correct        91 tok    3.1s
+[9/50] ae-c09 correct       104 tok    4.4s
+[10/50] ae-c10 correct       142 tok    5.8s
+[11/50] ae-c11 correct       251 tok    8.1s
+[12/50] ae-c12 correct       141 tok    4.7s
+[13/50] ae-c13 correct       167 tok    5.6s
+[14/50] ae-c14 correct        94 tok    3.2s
+[15/50] ae-c15 correct       163 tok    5.6s
+[16/50] ae-a01 correct       315 tok   11.1s
+[17/50] ae-a02 correct       359 tok   13.5s
+[18/50] ae-a03 wrong_value   263 tok    9.4s
+[19/50] ae-a04 wrong_value   362 tok   13.6s
+[20/50] ae-a05 correct       306 tok   12.0s
+[21/50] ae-a06 correct       423 tok   14.8s
+[22/50] ae-a07 correct       151 tok    5.5s
+[23/50] ae-a08 correct       146 tok    5.3s
+[24/50] ae-a09 correct       215 tok    7.6s
+[25/50] ae-a10 correct       179 tok    6.5s
+[26/50] ae-a11 correct       210 tok    7.9s
+[27/50] ae-a12 correct       525 tok   19.7s
+[28/50] ae-a13 correct       205 tok    8.2s
+[29/50] ae-a14 correct       229 tok    9.4s
+[30/50] ae-a15 wrong_value   682 tok   29.9s
+[31/50] ae-a16 wrong_value   185 tok    8.7s
+[32/50] ae-a17 correct       265 tok   12.5s
+[33/50] ae-a18 wrong_value   371 tok   17.0s
+[34/50] ae-a19 correct       253 tok   11.4s
+[35/50] ae-a20 correct       119 tok    5.6s
+[36/50] ae-i01 wrong_value   448 tok   20.3s
+[37/50] ae-i02 wrong_value   735 tok   33.6s
+[38/50] ae-i03 wrong_value   330 tok   14.2s
+[39/50] ae-i04 wrong_value   448 tok   18.5s
+[40/50] ae-i05 wrong_value   567 tok   24.7s
+[41/50] ae-i06 correct       569 tok   24.6s
+[42/50] ae-i07 wrong_value   510 tok   22.5s
+[43/50] ae-i08 wrong_value   811 tok   35.5s
+[44/50] ae-i09 correct       426 tok   19.4s
+[45/50] ae-i10 wrong_value   435 tok   19.9s
+[46/50] ae-i11 correct       616 tok   28.4s
+[47/50] ae-i12 wrong_value   603 tok   30.3s
+[48/50] ae-i13 wrong_value   447 tok   22.6s
+[49/50] ae-i14 wrong_value   289 tok   14.7s
+[50/50] ae-i15 correct       337 tok   16.6s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       15      0     0         0     0  100%
+alert       20       15      5     0         0     0  75%
+intensive   15        4     11     0         0     0  27%
+ALL         50       34     16     0         0     0  68%
+
+level       avg tok  avg s  hit cap
+calm            116    4.1        0
+alert           288   11.5        0
+intensive       505   23.1        0
+ALL             302   12.7        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/50] ae-c01 correct        68 tok    3.7s
+[2/50] ae-c02 correct        73 tok    4.1s
+[3/50] ae-c03 correct        77 tok    5.0s
+[4/50] ae-c04 correct        76 tok    5.4s
+[5/50] ae-c05 correct       175 tok    9.5s
+[6/50] ae-c06 correct        53 tok    3.0s
+[7/50] ae-c07 correct        77 tok    4.7s
+[8/50] ae-c08 correct        85 tok    4.7s
+[9/50] ae-c09 correct        71 tok    4.4s
+[10/50] ae-c10 correct        97 tok    5.3s
+[11/50] ae-c11 correct       149 tok    7.5s
+[12/50] ae-c12 correct       138 tok    7.5s
+[13/50] ae-c13 correct        60 tok    3.4s
+[14/50] ae-c14 correct        66 tok    3.8s
+[15/50] ae-c15 correct        84 tok    4.3s
+[16/50] ae-a01 correct       125 tok    6.5s
+[17/50] ae-a02 wrong_value   136 tok    7.2s
+[18/50] ae-a03 correct       123 tok    6.0s
+[19/50] ae-a04 correct       148 tok    6.8s
+[20/50] ae-a05 correct       127 tok    6.2s
+[21/50] ae-a06 correct       199 tok   10.1s
+[22/50] ae-a07 correct        94 tok    5.1s
+[23/50] ae-a08 correct        78 tok    4.2s
+[24/50] ae-a09 wrong_value   103 tok    5.6s
+[25/50] ae-a10 correct        75 tok    4.4s
+[26/50] ae-a11 correct       104 tok    5.2s
+[27/50] ae-a12 correct       146 tok    8.3s
+[28/50] ae-a13 correct       104 tok    5.4s
+[29/50] ae-a14 wrong_value   104 tok    5.3s
+[30/50] ae-a15 wrong_value   137 tok    7.2s
+[31/50] ae-a16 correct       102 tok    5.5s
+[32/50] ae-a17 correct       128 tok    7.0s
+[33/50] ae-a18 wrong_value   437 tok   24.4s
+[34/50] ae-a19 correct       110 tok    7.4s
+[35/50] ae-a20 correct        59 tok    3.7s
+[36/50] ae-i01 wrong_value   202 tok   10.1s
+[37/50] ae-i02 wrong_value   334 tok   18.7s
+[38/50] ae-i03 wrong_value   175 tok   10.3s
+[39/50] ae-i04 correct       189 tok   10.3s
+[40/50] ae-i05 no_answer     590 tok   29.4s  [exit 1: OverflowError: (34, 'Result too large')]
+[41/50] ae-i06 wrong_value   276 tok   13.9s
+[42/50] ae-i07 wrong_value   142 tok    7.5s
+[43/50] ae-i08 wrong_value   246 tok   12.1s
+[44/50] ae-i09 wrong_value   202 tok   10.2s
+[45/50] ae-i10 wrong_value   181 tok    9.0s
+[46/50] ae-i11 wrong_value   407 tok   19.8s
+[47/50] ae-i12 wrong_value   204 tok   10.7s
+[48/50] ae-i13 wrong_value   250 tok   13.4s
+[49/50] ae-i14 wrong_value   134 tok    6.9s
+[50/50] ae-i15 correct       159 tok    8.0s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       15      0     0         0     0  100%
+alert       20       15      5     0         0     0  75%
+intensive   15        2     12     0         0     1  13%
+ALL         50       32     17     0         0     1  64%
+
+level       avg tok  avg s  hit cap
+calm             90    5.1        0
+alert           132    7.1        0
+intensive       246   12.7        0
+ALL             154    8.2        0
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b.jsonl
+[1/50] ae-c01 correct       102 tok   13.6s
+[2/50] ae-c02 correct       100 tok    9.9s
+[3/50] ae-c03 correct        74 tok    7.8s
+[4/50] ae-c04 correct       135 tok   12.5s
+[5/50] ae-c05 correct        79 tok    8.3s
+[6/50] ae-c06 correct        70 tok    6.7s
+[7/50] ae-c07 correct       176 tok   15.6s
+[8/50] ae-c08 correct        92 tok   12.8s
+[9/50] ae-c09 correct        91 tok  219.6s
+[10/50] ae-c10 correct       146 tok  110.4s
+[11/50] ae-c11 correct       183 tok 1059.2s
+[12/50] ae-c12 correct       128 tok    8.1s
+[13/50] ae-c13 correct       163 tok   11.1s
+[14/50] ae-c14 correct        98 tok    6.6s
+[15/50] ae-c15 correct       173 tok   11.0s
+[16/50] ae-a01 correct       327 tok   20.3s
+[17/50] ae-a02 correct       393 tok   23.3s
+[18/50] ae-a03 wrong_value   275 tok   16.6s
+[19/50] ae-a04 correct       349 tok   20.7s
+[20/50] ae-a05 correct       248 tok   15.1s
+[21/50] ae-a06 correct       353 tok   24.9s
+[22/50] ae-a07 correct       103 tok    8.1s
+[23/50] ae-a08 correct       147 tok   10.4s
+[24/50] ae-a09 correct       230 tok   16.5s
+[25/50] ae-a10 correct       162 tok   13.0s
+[26/50] ae-a11 correct       227 tok   17.0s
+[27/50] ae-a12 correct       447 tok   32.4s
+[28/50] ae-a13 correct       239 tok   17.7s
+[29/50] ae-a14 correct       234 tok   18.4s
+[30/50] ae-a15 wrong_value   293 tok   22.7s
+[31/50] ae-a16 correct       199 tok   16.6s
+[32/50] ae-a17 correct       305 tok   29.7s
+[33/50] ae-a18 wrong_value   350 tok   30.6s
+[34/50] ae-a19 correct       254 tok   26.0s
+[35/50] ae-a20 correct       117 tok   12.8s
+[36/50] ae-i01 no_answer    1024 tok  117.7s
+[37/50] ae-i02 wrong_value   761 tok   96.8s
+[38/50] ae-i03 wrong_value   340 tok   39.6s
+[39/50] ae-i04 wrong_value   487 tok   43.7s
+[40/50] ae-i05 wrong_value   740 tok   62.1s
+[41/50] ae-i06 wrong_value   768 tok   69.0s
+[42/50] ae-i07 wrong_value   586 tok   56.8s
+[43/50] ae-i08 correct       750 tok   86.5s
+[44/50] ae-i09 correct       435 tok   55.7s
+[45/50] ae-i10 wrong_value   455 tok   55.3s
+[46/50] ae-i11 correct       567 tok   72.3s
+[47/50] ae-i12 wrong_value   594 tok   81.8s
+[48/50] ae-i13 wrong_value   531 tok   77.1s
+[49/50] ae-i14 correct       482 tok   73.7s
+[50/50] ae-i15 unit_error    567 tok   91.5s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       15      0     0         0     0  100%
+alert       20       17      3     0         0     0  85%
+intensive   15        4      9     1         1     1  27%
+ALL         50       36     12     1         1     1  72%
+
+level       avg tok  avg s  hit cap
+calm            121  100.9        0
+alert           263   19.6        0
+intensive       606   72.0        1
+ALL             323   59.7        1
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__tool.jsonl
+[1/50] ae-c01 correct        52 tok   10.1s
+[2/50] ae-c02 correct        55 tok   10.7s
+[3/50] ae-c03 correct        64 tok   13.1s
+[4/50] ae-c04 correct        69 tok   14.4s
+[5/50] ae-c05 correct       122 tok   17.9s
+[6/50] ae-c06 correct        63 tok    8.8s
+[7/50] ae-c07 correct       146 tok   18.0s
+[8/50] ae-c08 correct        57 tok    7.5s
+[9/50] ae-c09 correct        54 tok    7.0s
+[10/50] ae-c10 correct        93 tok   11.6s
+[11/50] ae-c11 correct       146 tok   17.0s
+[12/50] ae-c12 wrong_value    91 tok   11.3s
+[13/50] ae-c13 correct        63 tok    8.0s
+[14/50] ae-c14 correct        54 tok    7.2s
+[15/50] ae-c15 correct        61 tok    7.9s
+[16/50] ae-a01 correct       137 tok   16.4s
+[17/50] ae-a02 correct       143 tok   17.3s
+[18/50] ae-a03 correct       120 tok   15.4s
+[19/50] ae-a04 correct       158 tok   19.5s
+[20/50] ae-a05 correct       133 tok   16.8s
+[21/50] ae-a06 correct       167 tok   20.8s
+[22/50] ae-a07 correct        93 tok   12.1s
+[23/50] ae-a08 correct        71 tok    9.8s
+[24/50] ae-a09 correct        79 tok   10.4s
+[25/50] ae-a10 correct        83 tok   10.8s
+[26/50] ae-a11 correct        91 tok   11.8s
+[27/50] ae-a12 correct       131 tok   16.1s
+[28/50] ae-a13 correct        97 tok   12.4s
+[29/50] ae-a14 correct       107 tok   13.7s
+[30/50] ae-a15 wrong_value   141 tok   17.4s
+[31/50] ae-a16 correct       100 tok   12.5s
+[32/50] ae-a17 correct       100 tok   12.5s
+[33/50] ae-a18 wrong_value   211 tok   25.0s
+[34/50] ae-a19 correct        90 tok   12.4s
+[35/50] ae-a20 correct        57 tok    8.0s
+[36/50] ae-i01 wrong_value   213 tok   25.8s
+[37/50] ae-i02 wrong_value   267 tok   32.8s
+[38/50] ae-i03 wrong_value   180 tok   23.0s
+[39/50] ae-i04 correct       138 tok   17.8s
+[40/50] ae-i05 wrong_value   212 tok   27.0s
+[41/50] ae-i06 no_answer     282 tok   35.6s  [blocked construct: eval(]
+[42/50] ae-i07 correct       169 tok   22.3s
+[43/50] ae-i08 correct       231 tok   33.4s
+[44/50] ae-i09 correct       299 tok   43.4s
+[45/50] ae-i10 correct       167 tok   23.6s
+[46/50] ae-i11 wrong_value   246 tok   36.4s
+[47/50] ae-i12 wrong_value   179 tok   27.0s
+[48/50] ae-i13 correct       188 tok   30.3s
+[49/50] ae-i14 correct       166 tok   23.7s
+[50/50] ae-i15 unit_error    144 tok   20.3s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       18      2     0         0     0  90%
+intensive   15        7      6     1         1     1  47%
+ALL         50       39      9     1         1     1  78%
+
+level       avg tok  avg s  hit cap
+calm             79   11.4        0
+alert           115   14.6        0
+intensive       205   28.2        0
+ALL             132   17.7        0

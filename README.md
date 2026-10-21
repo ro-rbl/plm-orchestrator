@@ -70,6 +70,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 | Pack | Routing | Check | Eval result |
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
+| aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 
@@ -78,7 +79,8 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 - `plm/packs.py`: the pack registry and the interface every pack provides.
 - `plm/numeric/`: shared by numeric packs: answer format and parser, calculator tool,
   unit/sanity checks, and the controller.
-- `plm/electrical/`: the electrical pack's level rules and tiers.
+- `plm/numeric/levels.py`: the level classifier every numeric pack shares; a pack adds only its chain cues.
+- `plm/electrical/`, `plm/aerospace/`: each numeric pack's level cues and tiers.
 - `plm/software/`: the software pack: sandbox, code prompts, level rules, controller,
   and model-written tests for `--thorough`.
 - `plm/general/`: the fallback for tasks no pack claims (the 8B, unchecked).
@@ -92,6 +94,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 
 ```bash
 .venv/bin/python evals/grade.py evals/electrical/problems.jsonl --self-test
+.venv/bin/python evals/grade.py evals/aerospace/problems.jsonl --self-test
 .venv/bin/python evals/test_checks.py
 .venv/bin/python -m plm.numeric.calc
 .venv/bin/python evals/test_controllers.py         # controllers, with Ollama replaced by scripted replies

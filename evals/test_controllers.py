@@ -16,6 +16,7 @@ import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
 import plm.software.controller as software  # noqa: E402
 import plm.software.testgen as testgen  # noqa: E402
+from plm.aerospace import controller as aerospace  # noqa: E402
 from plm.electrical import controller as electrical  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
 
@@ -63,6 +64,20 @@ def test_electrical():
     numeric.ask, calls = fake_ollama({small: [program("-5", "ohm")], large: [program("-5", "ohm")]})
     r = electrical.solve("What is the resistance of the network, in ohms? It has 2 ohm and 3 ohm in series.")
     expect("electrical untrusted when every step fails", not r["trusted"] and r["checked"] and len(r["steps"]) == 2, r)
+
+
+def test_aerospace():
+    large = aerospace.MODELS["large"]
+    q = "A rocket engine expels 250 kg/s of propellant at 2800 m/s. Ignoring pressure thrust, what is its thrust, in kilonewtons?"
+    numeric.ask, calls = fake_ollama({large: [program("250 * 2800 / 1000", "kN")]})
+    r = aerospace.solve(q)
+    expect("aerospace: one call to the large model, calculator", calls == [large] and r["steps"][0]["strategy"] == "tool"
+           and r["trusted"] and r["answer"]["value"] == 700 and r["pack"] == "aerospace", r)
+
+    numeric.ask, calls = fake_ollama({large: [program("-33.38", "km/s")]})
+    r = aerospace.solve("What total delta-v does the transfer take, in kilometers per second?", level="intensive")
+    expect("aerospace: a failed check is reported, not escalated", calls == [large] and not r["trusted"]
+           and any("positive" in i for i in r["steps"][0]["issues"]), r)
 
 
 def test_software():
@@ -133,6 +148,7 @@ def main():
     real = numeric.ask, software.ask, testgen.ask, general.chat
     try:
         test_electrical()
+        test_aerospace()
         test_software()
         test_general()
         test_registry()

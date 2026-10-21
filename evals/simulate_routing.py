@@ -91,14 +91,18 @@ F_AEROSPACE = {
 }
 POLICIES_AEROSPACE = [
     ("always 8B (bare)", same([("8B", None)])),
-    ("always 8B+tool", same([("8B+tool", None)])),
+    ("always 8B+tool (shipped)", same([("8B+tool", None)])),
     ("always 4B (bare)", same([("4B", None)])),
     ("always 4B+tool", same([("4B+tool", None)])),
     ("routed: 4B+tool | 8B+tool", tiers([("4B+tool", None)], [("8B+tool", None)])),
-    ("  + escalate on failed check (the default)", tiers([("4B+tool", None), ("8B+tool", None)],
+    ("  + escalate on failed check (first default)", tiers([("4B+tool", None), ("8B+tool", None)],
                                                          [("8B+tool", None), ("8B", None)])),
     ("  + escalate on disagree w/ 4B bare", tiers([("4B+tool", "4B"), ("8B+tool", None)],
                                                   [("8B+tool", None), ("8B", None)])),
+    # Added after the aerospace sweep was seen; hypotheses for fresh problems, not picks.
+    ("post-hoc: calm 4B+tool, rest 8B+tool", {"calm": [("4B+tool", None)], "alert": [("8B+tool", None)],
+                                              "intensive": [("8B+tool", None)]}),
+    ("post-hoc: always 8B+tool, failed check -> 8B", same([("8B+tool", None), ("8B", None)])),
 ]
 
 PACKS = {

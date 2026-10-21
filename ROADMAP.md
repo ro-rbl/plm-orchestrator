@@ -30,9 +30,12 @@ software: aerospace, physics/mechanical, SQL.
       (`evals/compat_openai.py --base-url ...`), including streaming and the `plm` field.
 
 ## 3. Packs
-- Aerospace, then physics/mechanical: numeric with units, so they reuse `plm/numeric/`
-  (add unit words to `plm/numeric/checks.py:UNIT_WORDS`). ~50 problems, a holdout,
-  routing policies fixed before the sweep.
+- [x] Aerospace: 50 problems + 24 holdout, chain cues on the shared numeric classifier, four-way
+      routing. Routing to the 4B lost accuracy here (37/50 vs 39/50), so the pack runs everything on
+      the 8B + calculator: 39/50 at 41% of always-8B compute. Hardest: intensive (8B+calc 47%).
+- [ ] Physics/mechanical: numeric with units, so it reuses `plm/numeric/` (add unit words to
+      `plm/numeric/checks.py:UNIT_WORDS`, chain cues in a new `levels.py`). ~50 problems, a
+      holdout, routing policies fixed before the sweep.
 - SQL: queries run against a small SQLite database; the check is that the query executes
   and matches any example results, like the software pack's examples.
 
