@@ -43,9 +43,13 @@ _Updated: 2026-10-20 · branch: phase2-router (worktree .worktrees/phase2-router
   with it, swap sits around 11 GB during sweeps.
 
 ## Deferred by choice
+- The abliterated 4B is no longer a default. Against its own original (same base, quantizer and quant) it
+  loses 9 electrical problems answering directly and 4 with the calculator, mostly intensive ones; software
+  is within noise. An earlier note here called abliterated models "fine as specialists": that came from
+  comparing them with qwen2.5:3b, a different family, and doesn't hold against the original Qwen3-4B.
 - Formula-first calculator prompt is not the electrical default: 48/50 at 86% compute vs 47/50 at 36%.
 - Agreement (second-opinion) checks are off in electrical: one extra correct answer for 31 points of compute.
-- The 0.6B is not used as a tier in either pack: 24/50 electrical, 7/45 software.
+- No 0.6B is used as a tier: abliterated 24/50 electrical (direct), 7/45 software; standard qwen3:0.6b 17/50, 14/45.
 - `--thorough` is opt-in, not default (see above).
 - `gpt-oss:20b` (13 GB) has not been evaluated.
 - Aerospace and other domain packs: next.

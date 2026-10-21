@@ -11,7 +11,7 @@ uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
 ```
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
-`PLM_CODER_MODEL`): `hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M`,
+`PLM_CODER_MODEL`): `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (the original Qwen3-4B),
 `qwen3:8b`, `qwen2.5-coder:14b`. The Ollama address comes from `OLLAMA_HOST`.
 
 ## Use
@@ -69,7 +69,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 
 | Pack | Routing | Check | Eval result |
 |---|---|---|---|
-| electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 47/50 at 36% of always-8B compute |
+| electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 

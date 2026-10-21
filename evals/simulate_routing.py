@@ -34,8 +34,12 @@ F = {
     "8B+tool": "electrical__qwen3_8b__tool.jsonl",
     "4B+formula": "electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M__formula.jsonl",
     "8B+formula": "electrical__qwen3_8b__formula.jsonl",
+    # The fair 4B comparators (results/run_4b_compare.sh).
+    "orig4B": "electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl",
+    "orig4B+tool": "electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl",
+    "inst4B+tool": "electrical__qwen3_4b-instruct-2507-q4_K_M__tool.jsonl",
 }
-PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8}
+PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8, "orig4B": 4, "inst4B": 4}
 
 
 def same(steps):
@@ -65,6 +69,14 @@ POLICIES = [
     ("routed: 4B+formula | 8B+formula", tiers([("4B+formula", None)], [("8B+formula", None)])),
     ("routed: 4B+tool vs 4B+formula -> 8B+formula", tiers([("4B+tool", "4B+formula"), ("8B+formula", None)],
                                                           [("8B+formula", None)])),
+    # Added after the 4B comparison sweep: the default policy's shape with each candidate small model
+    # (orig4B = original Qwen3-4B, inst4B = Qwen3-4B-Instruct-2507; "4B" above is the abliterated build).
+    ("routed: orig4B+tool | 8B+tool", tiers([("orig4B+tool", None), ("8B+tool", None)],
+                                            [("8B+tool", None), ("8B", None)])),
+    ("routed: inst4B+tool | 8B+tool", tiers([("inst4B+tool", None), ("8B+tool", None)],
+                                            [("8B+tool", None), ("8B", None)])),
+    ("always orig4B+tool", same([("orig4B+tool", None)])),
+    ("always orig4B (bare)", same([("orig4B", None)])),
 ]
 
 

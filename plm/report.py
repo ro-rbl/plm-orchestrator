@@ -4,7 +4,7 @@ import re
 
 
 def short(model):
-    # hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M -> Qwen3-4B-abliterated
+    # hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M -> Qwen3-4B; ...mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M -> Qwen3-4B-abliterated
     if "/" not in model:
         return model
     return re.sub(r"^[^_]*_|-GGUF.*$", "", model.rsplit("/", 1)[-1])

@@ -26,8 +26,11 @@ F = {
     "4B": "software__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl",
     "8B": "software__qwen3_8b.jsonl",
     "coder14B": "software__qwen2.5-coder_14b.jsonl",
+    # The fair 4B comparators (results/run_4b_compare.sh); "4B" above is the abliterated build.
+    "orig4B": "software__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl",
+    "inst4B": "software__qwen3_4b-instruct-2507-q4_K_M.jsonl",
 }
-PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8, "coder14B": 14}
+PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8, "coder14B": 14, "orig4B": 4, "inst4B": 4}
 GENCHECK = {  # test writer -> output of `evals/gen_tests.py check`
     "4B": "software_gencheck__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl",
     "8B": "software_gencheck__qwen3_8b.jsonl",
@@ -51,6 +54,11 @@ POLICIES = [
                                                  "alert": ["4B", "8B", "coder14B"], "intensive": ["8B", "coder14B"]}),
     ("unrouted cascade: 4B -> 8B -> coder14B", same(["4B", "8B", "coder14B"])),
     ("unrouted cascade from 0.6B", same(["0.6B", "4B", "8B", "coder14B"])),
+    # Added after the 4B comparison sweep: the default cascade with each candidate first step.
+    ("unrouted cascade: orig4B -> 8B -> coder14B", same(["orig4B", "8B", "coder14B"])),
+    ("unrouted cascade: inst4B -> 8B -> coder14B", same(["inst4B", "8B", "coder14B"])),
+    ("always orig4B", same(["orig4B"])),
+    ("always inst4B", same(["inst4B"])),
 ]
 
 

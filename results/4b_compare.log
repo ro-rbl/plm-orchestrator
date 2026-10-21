@@ -1,0 +1,350 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/50] ee-c01 correct       139 tok   12.4s
+[2/50] ee-c02 correct        70 tok    5.8s
+[3/50] ee-c03 correct       145 tok   11.5s
+[4/50] ee-c04 correct        74 tok    6.4s
+[5/50] ee-c05 correct       148 tok   17.3s
+[6/50] ee-c06 correct       165 tok   16.2s
+[7/50] ee-c07 correct       136 tok   10.7s
+[8/50] ee-c08 wrong_value   179 tok   13.5s
+[9/50] ee-c09 correct       151 tok   11.4s
+[10/50] ee-c10 correct       102 tok    7.9s
+[11/50] ee-c11 correct       104 tok    8.5s
+[12/50] ee-c12 correct        55 tok    4.3s
+[13/50] ee-c13 correct       119 tok    9.1s
+[14/50] ee-c14 correct       139 tok   10.4s
+[15/50] ee-c15 correct       101 tok    7.6s
+[16/50] ee-a01 correct       195 tok   15.8s
+[17/50] ee-a02 correct       331 tok   32.4s
+[18/50] ee-a03 correct       143 tok  106.6s
+[19/50] ee-a04 correct       334 tok   30.7s
+[20/50] ee-a05 correct       155 tok   15.5s
+[21/50] ee-a06 correct       233 tok   21.6s
+[22/50] ee-a07 correct       208 tok   17.5s
+[23/50] ee-a08 wrong_value   239 tok   21.7s
+[24/50] ee-a09 correct       205 tok   17.0s
+[25/50] ee-a10 correct       179 tok   16.2s
+[26/50] ee-a11 correct       166 tok   15.2s
+[27/50] ee-a12 correct       111 tok   11.1s
+[28/50] ee-a13 correct       114 tok   11.2s
+[29/50] ee-a14 correct       130 tok   12.5s
+[30/50] ee-a15 correct       115 tok   10.5s
+[31/50] ee-a16 correct       166 tok   15.6s
+[32/50] ee-a17 correct       153 tok   14.2s
+[33/50] ee-a18 correct       148 tok   14.3s
+[34/50] ee-a19 correct       128 tok   11.4s
+[35/50] ee-a20 correct       127 tok   11.9s
+[36/50] ee-i01 correct       363 tok   33.7s
+[37/50] ee-i02 wrong_value   367 tok  119.4s
+[38/50] ee-i03 correct       476 tok   41.2s
+[39/50] ee-i04 correct       828 tok   58.5s
+[40/50] ee-i05 correct       459 tok   26.4s
+[41/50] ee-i06 correct       252 tok   13.6s
+[42/50] ee-i07 correct       306 tok   16.8s
+[43/50] ee-i08 correct       269 tok   12.9s
+[44/50] ee-i09 correct       305 tok   16.2s
+[45/50] ee-i10 correct       338 tok   19.3s
+[46/50] ee-i11 correct       352 tok   19.2s
+[47/50] ee-i12 correct       223 tok   13.6s
+[48/50] ee-i13 correct       200 tok   10.4s
+[49/50] ee-i14 correct       331 tok   19.4s
+[50/50] ee-i15 correct       367 tok   22.4s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       19      1     0         0     0  95%
+intensive   15       14      1     0         0     0  93%
+ALL         50       47      3     0         0     0  94%
+
+level       avg tok  avg s  hit cap
+calm            122   10.2        0
+alert           179   21.1        0
+intensive       362   29.5        0
+ALL             217   20.4        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/50] ee-c01 correct        50 tok    3.3s
+[2/50] ee-c02 correct        74 tok    5.2s
+[3/50] ee-c03 correct        76 tok    4.8s
+[4/50] ee-c04 correct        71 tok    4.6s
+[5/50] ee-c05 correct       127 tok    7.3s
+[6/50] ee-c06 correct       104 tok    6.5s
+[7/50] ee-c07 correct        96 tok    6.3s
+[8/50] ee-c08 correct        90 tok    6.1s
+[9/50] ee-c09 correct        71 tok    5.1s
+[10/50] ee-c10 correct        64 tok    4.5s
+[11/50] ee-c11 correct        77 tok    5.3s
+[12/50] ee-c12 correct        66 tok    4.7s
+[13/50] ee-c13 correct        57 tok    4.4s
+[14/50] ee-c14 correct        98 tok    6.5s
+[15/50] ee-c15 correct       107 tok    7.4s
+[16/50] ee-a01 correct        91 tok    6.2s
+[17/50] ee-a02 correct       105 tok    6.8s
+[18/50] ee-a03 correct        61 tok    4.0s
+[19/50] ee-a04 correct       122 tok    8.6s
+[20/50] ee-a05 correct        90 tok    6.5s
+[21/50] ee-a06 correct       143 tok   10.1s
+[22/50] ee-a07 correct       128 tok    9.2s
+[23/50] ee-a08 correct       146 tok   10.5s
+[24/50] ee-a09 correct        80 tok    6.1s
+[25/50] ee-a10 correct       103 tok    7.7s
+[26/50] ee-a11 correct        98 tok    7.2s
+[27/50] ee-a12 correct        64 tok    5.0s
+[28/50] ee-a13 correct        67 tok    5.4s
+[29/50] ee-a14 correct        71 tok    5.8s
+[30/50] ee-a15 correct        80 tok    6.2s
+[31/50] ee-a16 correct        70 tok    5.3s
+[32/50] ee-a17 correct        65 tok    4.9s
+[33/50] ee-a18 correct        85 tok    6.5s
+[34/50] ee-a19 correct        61 tok    4.9s
+[35/50] ee-a20 correct       118 tok    8.4s
+[36/50] ee-i01 wrong_value   176 tok   12.7s
+[37/50] ee-i02 wrong_value   192 tok   14.2s
+[38/50] ee-i03 correct       142 tok   11.0s
+[39/50] ee-i04 correct       279 tok   20.6s
+[40/50] ee-i05 correct       166 tok   12.9s
+[41/50] ee-i06 correct       105 tok    9.7s
+[42/50] ee-i07 correct       162 tok   12.7s
+[43/50] ee-i08 correct       148 tok   11.7s
+[44/50] ee-i09 correct       118 tok    9.5s
+[45/50] ee-i10 correct       245 tok   18.9s
+[46/50] ee-i11 correct       224 tok   17.7s
+[47/50] ee-i12 wrong_value   126 tok    9.8s
+[48/50] ee-i13 correct        93 tok    8.0s
+[49/50] ee-i14 correct       153 tok   13.1s
+[50/50] ee-i15 correct       166 tok   13.3s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       15      0     0         0     0  100%
+alert       20       20      0     0         0     0  100%
+intensive   15       12      3     0         0     0  80%
+ALL         50       47      3     0         0     0  94%
+
+level       avg tok  avg s  hit cap
+calm             82    5.5        0
+alert            92    6.8        0
+intensive       166   13.1        0
+ALL             111    8.3        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/45] sw-c01 pass        41 tok    4.1s  4/4 hidden
+[2/45] sw-c02 pass        70 tok    6.4s  3/3 hidden
+[3/45] sw-c03 pass        72 tok    6.9s  5/5 hidden
+[4/45] sw-c04 pass        35 tok    3.4s  3/3 hidden
+[5/45] sw-c05 pass        33 tok    3.4s  3/3 hidden
+[6/45] sw-c06 pass        51 tok    4.6s  3/3 hidden
+[7/45] sw-c07 pass       103 tok    9.1s  4/4 hidden
+[8/45] sw-c08 pass        62 tok    5.7s  3/3 hidden
+[9/45] sw-c09 pass        28 tok    2.8s  3/3 hidden
+[10/45] sw-c10 pass        32 tok    3.2s  3/3 hidden
+[11/45] sw-c11 pass        59 tok    6.0s  3/3 hidden
+[12/45] sw-c12 fail        31 tok    3.1s  0/2 hidden
+[13/45] sw-c13 pass        82 tok    7.7s  4/4 hidden
+[14/45] sw-c14 fail        47 tok    5.1s  2/3 hidden
+[15/45] sw-c15 pass        29 tok    3.1s  2/2 hidden
+[16/45] sw-a01 pass       125 tok   11.1s  5/5 hidden
+[17/45] sw-a02 pass       103 tok    9.2s  4/4 hidden
+[18/45] sw-a03 pass       144 tok   13.2s  4/4 hidden
+[19/45] sw-a04 pass        60 tok    6.3s  5/5 hidden
+[20/45] sw-a05 pass        99 tok    9.2s  4/4 hidden
+[21/45] sw-a06 pass        95 tok    9.0s  3/3 hidden
+[22/45] sw-a07 pass       109 tok   10.0s  3/3 hidden
+[23/45] sw-a08 pass       207 tok   17.7s  9/9 hidden
+[24/45] sw-a09 pass       167 tok   16.2s  8/8 hidden
+[25/45] sw-a10 pass       164 tok   15.8s  3/3 hidden
+[26/45] sw-a11 pass       139 tok   12.5s  5/5 hidden
+[27/45] sw-a12 pass       106 tok   10.2s  4/4 hidden
+[28/45] sw-a13 pass        51 tok    5.4s  4/4 hidden
+[29/45] sw-a14 pass       145 tok   13.2s  4/4 hidden
+[30/45] sw-a15 fail        83 tok    8.0s  2/4 hidden
+[31/45] sw-i01 pass       173 tok   16.9s  4/4 hidden
+[32/45] sw-i02 fail       327 tok   28.8s  2/5 hidden
+[33/45] sw-i03 pass       258 tok   23.2s  5/5 hidden
+[34/45] sw-i04 fail       450 tok   39.7s  2/8 hidden
+[35/45] sw-i05 pass       210 tok   20.4s  5/5 hidden
+[36/45] sw-i06 pass        73 tok    7.4s  5/5 hidden
+[37/45] sw-i07 pass       164 tok   15.7s  4/4 hidden
+[38/45] sw-i08 pass       136 tok   14.1s  5/5 hidden
+[39/45] sw-i09 fail       247 tok   23.8s  1/4 hidden
+[40/45] sw-i10 fail       204 tok   19.6s  0/6 hidden
+[41/45] sw-i11 pass       287 tok   28.4s  4/4 hidden
+[42/45] sw-i12 fail       113 tok   12.6s  3/4 hidden
+[43/45] sw-i13 pass       228 tok   21.6s  4/4 hidden
+[44/45] sw-i14 pass       247 tok   24.6s  5/5 hidden
+[45/45] sw-i15 fail       256 tok   25.2s  2/4 hidden
+level        n     pass     fail    error  refused  no_code request_error   acc  avg tok  capped
+calm        15       13        2        0        0        0        0   87%       52       0
+alert       15       14        1        0        0        0        0   93%      120       0
+intensive   15        9        6        0        0        0        0   60%      225       0
+ALL         45       36        9        0        0        0        0   80%      132       0
+qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M.jsonl
+[1/50] ee-c01 correct       144 tok   16.0s
+[2/50] ee-c02 correct        92 tok    8.8s
+[3/50] ee-c03 correct       109 tok   10.5s
+[4/50] ee-c04 correct        81 tok    8.1s
+[5/50] ee-c05 correct       179 tok   16.8s
+[6/50] ee-c06 correct       447 tok   41.2s
+[7/50] ee-c07 correct       202 tok   18.2s
+[8/50] ee-c08 correct       252 tok   22.7s
+[9/50] ee-c09 correct        74 tok    7.1s
+[10/50] ee-c10 correct        81 tok    7.7s
+[11/50] ee-c11 correct       107 tok   10.1s
+[12/50] ee-c12 wrong_value    81 tok    7.6s
+[13/50] ee-c13 correct       117 tok   11.0s
+[14/50] ee-c14 correct        66 tok    6.4s
+[15/50] ee-c15 correct       110 tok   10.5s
+[16/50] ee-a01 correct       263 tok   25.0s
+[17/50] ee-a02 correct       316 tok  102.4s
+[18/50] ee-a03 correct       199 tok   17.9s
+[19/50] ee-a04 wrong_value   349 tok   30.8s
+[20/50] ee-a05 correct       159 tok   14.6s
+[21/50] ee-a06 correct       393 tok   35.8s
+[22/50] ee-a07 correct       668 tok   61.3s
+[23/50] ee-a08 correct       344 tok   32.0s
+[24/50] ee-a09 correct       184 tok   17.3s
+[25/50] ee-a10 correct       208 tok   19.6s
+[26/50] ee-a11 correct       179 tok   17.0s
+[27/50] ee-a12 correct       113 tok   12.5s
+[28/50] ee-a13 correct       117 tok   15.2s
+[29/50] ee-a14 correct       141 tok   17.4s
+[30/50] ee-a15 correct       162 tok   19.7s
+[31/50] ee-a16 correct       243 tok   27.2s
+[32/50] ee-a17 correct       195 tok   17.8s
+[33/50] ee-a18 correct       101 tok   10.2s
+[34/50] ee-a19 correct       100 tok   10.7s
+[35/50] ee-a20 correct       141 tok   13.4s
+[36/50] ee-i01 correct       672 tok   65.7s
+[37/50] ee-i02 no_answer    1024 tok   98.8s
+[38/50] ee-i03 correct       536 tok   50.3s
+[39/50] ee-i04 no_answer    1024 tok   83.9s
+[40/50] ee-i05 wrong_value   795 tok   59.8s
+[41/50] ee-i06 correct       373 tok   26.4s
+[42/50] ee-i07 correct       235 tok   17.1s
+[43/50] ee-i08 correct       302 tok   22.3s
+[44/50] ee-i09 correct       410 tok   30.5s
+[45/50] ee-i10 correct       679 tok   48.5s
+[46/50] ee-i11 correct       337 tok   25.0s
+[47/50] ee-i12 correct       307 tok   20.7s
+[48/50] ee-i13 correct       237 tok   16.5s
+[49/50] ee-i14 correct       284 tok   18.2s
+[50/50] ee-i15 correct       331 tok   20.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       19      1     0         0     0  95%
+intensive   15       12      1     0         0     2  80%
+ALL         50       45      3     0         0     2  90%
+
+level       avg tok  avg s  hit cap
+calm            143   13.5        0
+alert           229   25.9        0
+intensive       503   40.3        2
+ALL             285   26.5        2
+qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M__tool.jsonl
+[1/50] ee-c01 correct        64 tok    4.2s
+[2/50] ee-c02 correct        62 tok    4.5s
+[3/50] ee-c03 correct        78 tok    5.5s
+[4/50] ee-c04 correct        75 tok    5.5s
+[5/50] ee-c05 correct       174 tok   11.1s
+[6/50] ee-c06 correct       125 tok    8.7s
+[7/50] ee-c07 correct       134 tok    8.2s
+[8/50] ee-c08 correct       106 tok    6.6s
+[9/50] ee-c09 correct        66 tok    4.9s
+[10/50] ee-c10 correct        58 tok    4.0s
+[11/50] ee-c11 correct        96 tok    6.5s
+[12/50] ee-c12 wrong_value    91 tok    6.1s
+[13/50] ee-c13 correct        82 tok    7.0s
+[14/50] ee-c14 correct        83 tok    6.3s
+[15/50] ee-c15 correct       114 tok    7.3s
+[16/50] ee-a01 correct       121 tok    9.1s
+[17/50] ee-a02 correct       144 tok    9.8s
+[18/50] ee-a03 correct        70 tok    5.1s
+[19/50] ee-a04 correct       167 tok   11.5s
+[20/50] ee-a05 correct       152 tok   10.3s
+[21/50] ee-a06 correct       134 tok    8.9s
+[22/50] ee-a07 correct       175 tok   12.0s
+[23/50] ee-a08 correct       113 tok    7.7s
+[24/50] ee-a09 correct        97 tok    7.1s
+[25/50] ee-a10 correct       132 tok    9.5s
+[26/50] ee-a11 correct       145 tok   47.3s
+[27/50] ee-a12 correct        99 tok   27.5s
+[28/50] ee-a13 correct        63 tok    4.1s
+[29/50] ee-a14 correct       106 tok    7.0s
+[30/50] ee-a15 correct        88 tok    7.5s
+[31/50] ee-a16 correct       119 tok    7.7s
+[32/50] ee-a17 correct        70 tok    4.9s
+[33/50] ee-a18 correct        84 tok    5.5s
+[34/50] ee-a19 correct        95 tok    6.7s
+[35/50] ee-a20 correct       310 tok   19.9s
+[36/50] ee-i01 correct       694 tok   46.1s
+[37/50] ee-i02 wrong_value   717 tok   47.5s
+[38/50] ee-i03 correct       163 tok   11.7s
+[39/50] ee-i04 correct       263 tok   16.9s
+[40/50] ee-i05 no_answer     789 tok   51.9s
+[41/50] ee-i06 correct       118 tok    7.5s
+[42/50] ee-i07 correct       183 tok   11.5s
+[43/50] ee-i08 wrong_value   204 tok   13.3s
+[44/50] ee-i09 wrong_value   199 tok   13.7s
+[45/50] ee-i10 correct       375 tok   23.5s
+[46/50] ee-i11 no_answer     307 tok   19.8s  [exit 1: SyntaxError: '(' was never closed]
+[47/50] ee-i12 correct       151 tok   10.0s
+[48/50] ee-i13 correct       108 tok    7.4s
+[49/50] ee-i14 correct       101 tok    6.8s
+[50/50] ee-i15 correct       228 tok   15.2s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       20      0     0         0     0  100%
+intensive   15       10      3     0         0     2  67%
+ALL         50       44      4     0         0     2  88%
+
+level       avg tok  avg s  hit cap
+calm             94    6.4        0
+alert           124   11.5        0
+intensive       307   20.2        0
+ALL             170   12.6        0
+qwen3:4b-instruct-2507-q4_K_M: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__qwen3_4b-instruct-2507-q4_K_M.jsonl
+[1/45] sw-c01 pass        55 tok    4.2s  4/4 hidden
+[2/45] sw-c02 pass        59 tok    5.1s  3/3 hidden
+[3/45] sw-c03 pass        67 tok    5.3s  5/5 hidden
+[4/45] sw-c04 pass        49 tok    3.7s  3/3 hidden
+[5/45] sw-c05 pass        31 tok    2.7s  3/3 hidden
+[6/45] sw-c06 pass        46 tok    3.3s  3/3 hidden
+[7/45] sw-c07 pass       103 tok    7.4s  4/4 hidden
+[8/45] sw-c08 pass        74 tok    5.4s  3/3 hidden
+[9/45] sw-c09 pass        54 tok    4.3s  3/3 hidden
+[10/45] sw-c10 pass        33 tok    2.9s  3/3 hidden
+[11/45] sw-c11 pass        59 tok    4.6s  3/3 hidden
+[12/45] sw-c12 pass        73 tok    5.4s  2/2 hidden
+[13/45] sw-c13 pass        69 tok    6.5s  4/4 hidden
+[14/45] sw-c14 fail        68 tok    4.9s  2/3 hidden
+[15/45] sw-c15 pass        41 tok    2.9s  2/2 hidden
+[16/45] sw-a01 pass        88 tok    6.2s  5/5 hidden
+[17/45] sw-a02 pass       119 tok    8.2s  4/4 hidden
+[18/45] sw-a03 pass       189 tok   13.0s  4/4 hidden
+[19/45] sw-a04 pass        97 tok    7.3s  5/5 hidden
+[20/45] sw-a05 pass       162 tok   11.4s  4/4 hidden
+[21/45] sw-a06 pass       301 tok   20.0s  3/3 hidden
+[22/45] sw-a07 pass       113 tok   10.4s  3/3 hidden
+[23/45] sw-a08 pass       120 tok   11.1s  9/9 hidden
+[24/45] sw-a09 fail       436 tok   32.9s  6/8 hidden
+[25/45] sw-a10 pass       127 tok    8.4s  3/3 hidden
+[26/45] sw-a11 pass       132 tok    9.1s  5/5 hidden
+[27/45] sw-a12 pass        68 tok    4.9s  4/4 hidden
+[28/45] sw-a13 pass        51 tok    4.2s  4/4 hidden
+[29/45] sw-a14 pass       156 tok   10.8s  4/4 hidden
+[30/45] sw-a15 fail       149 tok   10.2s  0/4 hidden
+[31/45] sw-i01 pass       207 tok   14.4s  4/4 hidden
+[32/45] sw-i02 pass       184 tok   12.8s  5/5 hidden
+[33/45] sw-i03 pass       245 tok   15.5s  5/5 hidden
+[34/45] sw-i04 fail      1383 tok   88.9s  0/8 hidden
+[35/45] sw-i05 pass       269 tok   16.9s  5/5 hidden
+[36/45] sw-i06 pass       151 tok   10.3s  5/5 hidden
+[37/45] sw-i07 fail       149 tok   10.5s  3/4 hidden
+[38/45] sw-i08 pass       203 tok   12.1s  5/5 hidden
+[39/45] sw-i09 fail       263 tok   18.1s  1/4 hidden
+[40/45] sw-i10 fail       175 tok   11.1s  0/6 hidden
+[41/45] sw-i11 pass       159 tok   10.4s  4/4 hidden
+[42/45] sw-i12 pass       105 tok    7.2s  4/4 hidden
+[43/45] sw-i13 pass       242 tok   15.4s  4/4 hidden
+[44/45] sw-i14 fail       215 tok   14.6s  4/5 hidden
+[45/45] sw-i15 pass       277 tok   19.3s  4/4 hidden
+level        n     pass     fail    error  refused  no_code request_error   acc  avg tok  capped
+calm        15       14        1        0        0        0        0   93%       59       0
+alert       15       13        2        0        0        0        0   87%      154       0
+intensive   15       10        5        0        0        0        0   67%      282       0
+ALL         45       37        8        0        0        0        0   82%      165       0

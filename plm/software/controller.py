@@ -29,7 +29,7 @@ from plm.software.sandbox import run_tests
 from plm.software.testgen import failing_tests, generate_tests
 
 MODELS = {
-    "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M"),
+    "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),
     "large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b"),
     "coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b"),
 }

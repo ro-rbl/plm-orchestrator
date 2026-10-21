@@ -11,15 +11,22 @@ software: aerospace, physics/mechanical, SQL.
       `plm/numeric/`; electrical reduced to its level rules and tiers.
 - [x] Answers with nothing to check are reported as unchecked, not trusted.
 - [x] Offline controller tests (`evals/test_controllers.py`, Ollama replaced by scripted replies).
-- [ ] Standard `qwen3:4b` / `qwen3:0.6b` vs the abliterated builds on both packs, to pick public defaults.
+- [x] Standard vs abliterated builds, to pick public defaults. The small tier is now the original
+      Qwen3-4B (`hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M`, same quantizer and quant as the abliterated
+      build): electrical 47/50 alone with the calculator vs 43 abliterated, routed 48/50 at 35%; software
+      cascade 40/45 at 56%, same as before. Instruct-2507: 47/50 routed, 41/45 cascade at 70% (longer answers).
+      Ollama's `qwen3:4b` tag is Thinking-2507 and doesn't fit a cheap tier.
 
 ## 2. Router endpoint
-- `plm serve`: OpenAI-compatible `/v1/models` and `/v1/chat/completions` (with streaming),
-  one model id `plm-router`. The routing report travels in an extra response field.
-- A general fallback pack for prompts no pack claims (large model, reported as unchecked).
-- Port from config/env, or a free one printed at startup. Health check asserts on the body.
-- Log what share of real traffic each pack gets: if most prompts fall through to the
-  general pack, routing saves little and the packs to build next should follow the logs.
+- [x] `plm serve`: OpenAI-compatible `/v1/models` and `/v1/chat/completions` (with streaming),
+      model ids `plm-router` and `plm-router-thorough`; the routing report is an extra `plm` field.
+- [x] A general fallback pack for prompts no pack claims (large model, reported as unchecked), and
+      three-way routing (134/134 eval texts, 49/50 holdout cases).
+- [x] Port from `--port`/`PLM_PORT` or a free one printed at startup; `/health` asserts Ollama answers.
+- [x] Every request logged to `logs/server.jsonl`, to see what share of real traffic each pack gets:
+      if most prompts fall through to the general pack, routing saves little and the next packs
+      should follow the logs.
+- [ ] Live test with real models and the official `openai` client (offline tests pass).
 
 ## 3. Packs
 - Aerospace, then physics/mechanical: numeric with units, so they reuse `plm/numeric/`
