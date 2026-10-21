@@ -26,7 +26,8 @@ software: aerospace, physics/mechanical, SQL.
 - [x] Every request logged to `logs/server.jsonl`, to see what share of real traffic each pack gets:
       if most prompts fall through to the general pack, routing saves little and the next packs
       should follow the logs.
-- [ ] Live test with real models and the official `openai` client (offline tests pass).
+- [x] Live test with real models and the official `openai` client 3.35.1: all 11 checks pass
+      (`evals/compat_openai.py --base-url ...`), including streaming and the `plm` field.
 
 ## 3. Packs
 - Aerospace, then physics/mechanical: numeric with units, so they reuse `plm/numeric/`
