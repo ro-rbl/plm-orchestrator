@@ -14,12 +14,28 @@ def ollama_url():
     return (host if host.startswith("http") else "http://" + host).rstrip("/")
 
 
+_THINK_TEMPLATE = {}
+
+
+def template_uses_think(model, timeout=30):
+    """True if the model's chat template contains <think> tags (cached per model)."""
+    if model not in _THINK_TEMPLATE:
+        req = urllib.request.Request(ollama_url() + "/api/show", json.dumps({"model": model}).encode(),
+                                     {"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            _THINK_TEMPLATE[model] = "<think>" in json.load(resp).get("template", "")
+    return _THINK_TEMPLATE[model]
+
+
 def qwen3_no_think(model, think):
     # Qwen3 GGUFs pulled from Hugging Face ignore the API's think=false, and the
     # abliterated ones mostly ignore the "/no_think" soft switch too (prompt v2
     # sweep: 30/50 capped). Pre-filling an empty think block in raw mode is the
-    # only switch that held on every model tested.
-    return not think and "qwen3" in model.lower()
+    # only switch that held on every model tested. Qwen3 builds whose template has
+    # no think tags (Instruct-2507 never thinks) use their own template instead.
+    # Thinking-only builds (Thinking-2507) keep reasoning despite the prefill, so
+    # they don't suit a cheap tier at all.
+    return not think and "qwen3" in model.lower() and template_uses_think(model)
 
 
 def ask(model, prompt, think, num_predict, timeout):
