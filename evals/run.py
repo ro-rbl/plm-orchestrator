@@ -7,6 +7,8 @@ Strategies:
     bare     the model answers directly (baseline)
     tool     the model writes a Python program; plm/numeric/calc.py runs it and its output is graded
     formula  same, but the model first states the formula and converts the givens to SI units
+    units    the model computes with unit-carrying quantities; the harness converts the result
+             to the unit the question asks for (plm/numeric/calc.py run_units_program)
 
 Writes results/<set>__<model>.jsonl, one line per problem, flushed as it goes.
 Re-running the same command resumes: problems already in the file are skipped.
@@ -26,6 +28,7 @@ sys.path.insert(0, str(ROOT))
 
 import grade  # noqa: E402
 from plm.numeric import calc  # noqa: E402
+from plm.numeric.checks import requested_unit  # noqa: E402
 from plm.ollama import ask  # noqa: E402
 
 
@@ -34,6 +37,7 @@ STRATEGIES = {
     "bare": (grade.ANSWER_FORMAT, grade.PROMPT_VERSION),
     "tool": (calc.TOOL_FORMAT, calc.TOOL_PROMPT_VERSION),
     "formula": (calc.FORMULA_FORMAT, calc.FORMULA_PROMPT_VERSION),
+    "units": (calc.UNITS_FORMAT, calc.UNITS_PROMPT_VERSION),
 }
 
 
@@ -93,7 +97,12 @@ def main():
                     row["model_response"] = row["response"]
                     code = calc.extract_program(row["response"])
                     t = time.time()
-                    row["response"], row["program_error"] = calc.run_program(code) if code else ("", "no code block")
+                    if not code:
+                        row["response"], row["program_error"] = "", "no code block"
+                    elif args.strategy == "units":
+                        row["response"], row["program_error"] = calc.run_units_program(code, requested_unit(p["question"]))
+                    else:
+                        row["response"], row["program_error"] = calc.run_program(code)
                     row["program_s"] = time.time() - t
             except Exception as e:  # keep going; one bad request must not lose the run
                 row.update({"response": "", "error": f"{type(e).__name__}: {e}", "eval_tokens": 0,

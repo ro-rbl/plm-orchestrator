@@ -66,6 +66,26 @@ def test_electrical():
     expect("electrical untrusted when every step fails", not r["trusted"] and r["checked"] and len(r["steps"]) == 2, r)
 
 
+def test_units_strategy():
+    """The unit-aware calculator through the shared numeric controller (not a pack default yet)."""
+    plan = {"alert": {"num_predict": 256, "chain": [("small", "units"), ("large", "units")]}}
+    models = {"small": "s", "large": "l"}
+    q = "A 12 V battery drives 3 A through a heater. How much power does it use, in watts?"
+
+    def run(replies):
+        numeric.ask, calls = fake_ollama(replies)
+        return numeric.solve(q, pack="test", classify=lambda t: ("alert", "test"), levels=plan, models=models), calls
+
+    good = '```python\nANSWER = Q(12, "V") * Q(3, "A")\n```'
+    r, calls = run({"s": [good]})
+    expect("units: right dimensions -> trusted, converted to the asked unit", calls == ["s"] and r["trusted"]
+           and r["answer"] == {"value": 36, "unit": "W"} and r["steps"][0]["strategy"] == "units", r)
+    wrong = '```python\nANSWER = Q(12, "V") / Q(3, "A")\n```'   # ohms, not watts
+    r, calls = run({"s": [wrong], "l": [good]})
+    expect("units: wrong dimensions fail and escalate", calls == ["s", "l"] and r["trusted"]
+           and "DimensionalityError" in " ".join(r["steps"][0]["issues"]), r)
+
+
 def test_aerospace():
     large = aerospace.MODELS["large"]
     q = "A rocket engine expels 250 kg/s of propellant at 2800 m/s. Ignoring pressure thrust, what is its thrust, in kilonewtons?"
@@ -149,6 +169,7 @@ def main():
     try:
         test_electrical()
         test_aerospace()
+        test_units_strategy()
         test_software()
         test_general()
         test_registry()

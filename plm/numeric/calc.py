@@ -35,9 +35,42 @@ FORMULA_FORMAT = (
     "Use the unit the question asks for. For unitless answers, print only the number."
 )
 
+# Unit-aware calculator (ROADMAP 3b). The model writes every given value as Q(value, "unit") and
+# assigns the result to ANSWER; the harness converts ANSWER to the unit the *question* asks for.
+# A formula with the wrong dimensions then fails while computing or converting, instead of
+# printing a wrong number with the right final unit, and unit conversions can't be forgotten.
+UNITS_PROMPT_VERSION = 1
+UNITS_FORMAT = (
+    "Do not do the arithmetic yourself. Write one Python program in a ```python code block that computes "
+    "the answer with units. Write every given value with its unit as Q(value, \"unit\"), for example "
+    "v = Q(250, \"m/s\"), m = Q(1.2, \"t\") or R = Q(4.7, \"kohm\"), and compute with these quantities: "
+    "units convert automatically. sqrt, sin, cos, tan, log, exp and pi are already defined and accept "
+    "quantities (give angles as Q(30, \"degree\")). Do not import anything. Finish by assigning the result "
+    "to ANSWER, for example ANSWER = F, and do not print it: it is converted to the unit the question asks "
+    "for. For a unitless answer, assign a plain number."
+)
+UNITS_PRELUDE = """
+import math as _math
+import pint as _pint
+_ureg = _pint.UnitRegistry()
+Q = _ureg.Quantity
+pi = _math.pi
+def _plain(x, unit="dimensionless"):
+    return x.to(unit).magnitude if isinstance(x, Q) else x
+def sqrt(x): return x ** 0.5
+def sin(x): return _math.sin(_plain(x, "radian"))
+def cos(x): return _math.cos(_plain(x, "radian"))
+def tan(x): return _math.tan(_plain(x, "radian"))
+def log(x): return _math.log(_plain(x))
+def exp(x): return _math.exp(_plain(x))
+"""
+LITERAL_WANTS = ("", "count", "USD", "dB")  # plm.numeric.answers.LITERAL_UNITS keys: plain numbers to pint
+
 CODE_RE = re.compile(r"```(?:python|py)?\s*\n(.*?)```", re.DOTALL | re.IGNORECASE)
 ALLOWED_IMPORTS = {"math", "cmath"}
 BLOCKED = re.compile(r"__|\b(?:open|exec|eval|compile|input|globals|locals|getattr|setattr|breakpoint)\s*\(")
+# Unit programs share the process with the harness's pint setup, so its private names are off limits too.
+BLOCKED_UNITS = re.compile(BLOCKED.pattern + r"|(?<![\w.])_\w|\._")
 
 
 def extract_program(text):
@@ -45,7 +78,7 @@ def extract_program(text):
     return blocks[-1] if blocks else None
 
 
-def screen(code):
+def screen(code, blocked=BLOCKED):
     """Return a reason the program is refused, or None if it may run."""
     for line in code.splitlines():
         m = re.match(r"\s*(?:from\s+(\S+)\s+import|import\s+(.+))", line)
@@ -54,18 +87,14 @@ def screen(code):
             bad = [n for n in names if n.split(".")[0] not in ALLOWED_IMPORTS]
             if bad:
                 return f"import not allowed: {', '.join(bad)}"
-    hit = BLOCKED.search(code)
+    hit = blocked.search(code)
     return f"blocked construct: {hit.group().strip()}" if hit else None
 
 
-def run_program(code, timeout=10):
-    """Execute a screened program. Returns (stdout, error-or-None)."""
-    refused = screen(code)
-    if refused:
-        return "", refused
+def _execute(flags, source, timeout):
     with tempfile.TemporaryDirectory() as tmp:
         try:
-            p = subprocess.run([sys.executable, "-I", "-S", "-c", code], cwd=tmp, timeout=timeout,
+            p = subprocess.run([sys.executable, *flags, "-c", source], cwd=tmp, timeout=timeout,
                                capture_output=True, text=True)
         except subprocess.TimeoutExpired:
             return "", f"timed out after {timeout}s"
@@ -73,6 +102,46 @@ def run_program(code, timeout=10):
         last = (p.stderr.strip().splitlines() or ["?"])[-1]
         return p.stdout, f"exit {p.returncode}: {last[:200]}"
     return p.stdout, None
+
+
+def run_program(code, timeout=10):
+    """Execute a screened program. Returns (stdout, error-or-None)."""
+    refused = screen(code)
+    if refused:
+        return "", refused
+    return _execute(["-I", "-S"], code, timeout)
+
+
+def _units_epilogue(want):
+    """Convert the program's ANSWER to the asked unit and print the one ANSWER line the grader reads."""
+    return f"""
+_want = {want!r}
+if "ANSWER" not in globals():
+    raise SystemExit("the program never assigned ANSWER")
+_a = ANSWER
+if _want in ("", "count"):
+    print(f"ANSWER: {{_plain(_a):.6g}}")
+elif _want in ("USD", "dB"):
+    print(f"ANSWER: {{_plain(_a):.6g}} {{_want}}")
+elif _want is None:
+    print(f"ANSWER: {{_a.magnitude:.6g}} {{_a.units:~}}" if isinstance(_a, Q) else f"ANSWER: {{_a:.6g}}")
+elif isinstance(_a, Q):
+    print(f"ANSWER: {{_a.to(_want).magnitude:.6g}} {{_want}}")
+else:
+    raise SystemExit(f"ANSWER is a plain number, but the question asks for {{_want}}")
+"""
+
+
+def run_units_program(code, want, timeout=10):
+    """Execute a screened unit-aware program; want is plm.numeric.checks.requested_unit(question).
+
+    Returns (stdout, error-or-None) like run_program. Runs with -I but without -S,
+    so the installed pint is importable by the harness's prelude.
+    """
+    refused = screen(code, BLOCKED_UNITS)
+    if refused:
+        return "", refused
+    return _execute(["-I"], UNITS_PRELUDE + "\n" + code + "\n" + _units_epilogue(want), timeout)
 
 
 if __name__ == "__main__":
@@ -87,4 +156,22 @@ if __name__ == "__main__":
     assert "timed out" in run_program("while True: pass", timeout=1)[1]
     assert extract_program("no code here") is None
     assert extract_program("text\n```python\nprint(1)\n```\nmore\n```py\nprint(2)\n```") == "print(2)\n"
+
+    # Unit-aware programs.
+    def units(code, want):
+        return run_units_program(code, want)
+    assert units('v = Q(170, "V")\nANSWER = v / sqrt(2)', "V") == ("ANSWER: 120.208 V\n", None), units('v=1', "V")
+    assert units('ANSWER = Q(250, "m/s") / Q(0.6, "1/hour")', "km")[0] == "ANSWER: 1500 km\n"  # converts for you
+    assert units('ANSWER = Q(255, "m/s") / Q(340, "m/s")', "")[0] == "ANSWER: 0.75\n"
+    assert units('ANSWER = 1 / cos(Q(60, "degree"))', "")[0] == "ANSWER: 2\n"
+    assert units('ANSWER = Q(5, "km")', None)[0] == "ANSWER: 5 km\n"
+    assert units('ANSWER = Q(152.5, "dimensionless")', "USD")[0] == "ANSWER: 152.5 USD\n"
+    assert "DimensionalityError" in units('ANSWER = Q(3, "m") / Q(2, "s")', "kg")[1]        # wrong final dimension
+    assert "DimensionalityError" in units('x = Q(3, "m") + Q(2, "s")\nANSWER = x', "m")[1]   # wrong formula midway
+    assert "DimensionalityError" in units('ANSWER = log(Q(4, "m"))', "")[1]
+    assert "never assigned ANSWER" in units('x = Q(1, "m")', "m")[1]
+    assert "plain number" in units('ANSWER = 42', "m/s")[1]
+    assert "blocked" in units('ANSWER = _ureg', "m")[1] and "blocked" in units('ANSWER = Q._REGISTRY', "m")[1]
+    assert "not allowed" in units('import os\nANSWER = 1', "")[1]
+    assert units('for _ in range(2):\n    pass\nm_dot = Q(2, "kg/s")\nANSWER = m_dot', "kg/s")[0] == "ANSWER: 2 kg/s\n"
     print("calc self-test: ok")

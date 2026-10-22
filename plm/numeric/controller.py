@@ -18,14 +18,19 @@ from plm.ollama import ask
 
 
 def attempt(task, model, strategy, num_predict, timeout):
-    fmt = calc.TOOL_FORMAT if strategy == "tool" else ANSWER_FORMAT
+    fmt = {"tool": calc.TOOL_FORMAT, "units": calc.UNITS_FORMAT}.get(strategy, ANSWER_FORMAT)
     start = time.time()
     r = ask(model, f"{task}\n\n{fmt}", False, num_predict, timeout)
     step = {"model": model, "strategy": strategy, "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"],
             "model_text": r["response"], "capped": r["done_reason"] == "length"}
-    if strategy == "tool":
+    if strategy in ("tool", "units"):
         code = calc.extract_program(r["response"])
-        output, program_error = calc.run_program(code) if code else ("", "no code block")
+        if not code:
+            output, program_error = "", "no code block"
+        elif strategy == "units":
+            output, program_error = calc.run_units_program(code, requested_unit(task))
+        else:
+            output, program_error = calc.run_program(code)
         step["program"] = code
     else:
         output, program_error = r["response"], None

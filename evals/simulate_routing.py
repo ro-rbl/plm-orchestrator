@@ -11,7 +11,10 @@ Every call made is paid for. Levels come from the pack's classifier (what the re
 controller sees) or, with --labels, the hand labels. Compute is approximated as
 model params x generated tokens; it ignores prompt tokens and model load time.
 
-    .venv/bin/python evals/simulate_routing.py [--pack electrical|aerospace] [--labels]
+    .venv/bin/python evals/simulate_routing.py [--pack electrical|aerospace] [--labels] [--checks]
+
+--checks also prints, per strategy, how many wrong answers the checks catch.
+Policies whose result files don't exist yet print "(not run yet)".
 """
 
 import sys
@@ -39,6 +42,9 @@ F = {
     "orig4B": "electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl",
     "orig4B+tool": "electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl",
     "inst4B+tool": "electrical__qwen3_4b-instruct-2507-q4_K_M__tool.jsonl",
+    # Unit-aware calculator (results/run_units.sh).
+    "orig4B+units": "electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__units.jsonl",
+    "8B+units": "electrical__qwen3_8b__units.jsonl",
 }
 PARAMS = {"0.6B": 0.6, "4B": 4, "8B": 8, "orig4B": 4, "inst4B": 4}
 
@@ -78,6 +84,13 @@ POLICIES = [
                                             [("8B+tool", None), ("8B", None)])),
     ("always orig4B+tool", same([("orig4B+tool", None)])),
     ("always orig4B (bare)", same([("orig4B", None)])),
+    # UNITS: fixed before the unit-aware calculator sweep ran (see UNITS_RULE).
+    ("units: routed orig4B+units | 8B+units", tiers([("orig4B+units", None), ("8B+units", None)],
+                                                    [("8B+units", None), ("8B", None)])),
+    ("units: same, failed check -> plain calculator", tiers([("orig4B+units", None), ("orig4B+tool", None),
+                                                             ("8B+tool", None)],
+                                                            [("8B+units", None), ("8B+tool", None)])),
+    ("units: always 8B+units", same([("8B+units", None)])),
 ]
 
 # Aerospace: "4B" is the original Qwen3-4B, the default small tier (results/run_aerospace.sh).
@@ -88,6 +101,8 @@ F_AEROSPACE = {
     "4B+tool": f"aerospace__{SMALL}__tool.jsonl",
     "8B": "aerospace__qwen3_8b.jsonl",
     "8B+tool": "aerospace__qwen3_8b__tool.jsonl",
+    "4B+units": f"aerospace__{SMALL}__units.jsonl",
+    "8B+units": "aerospace__qwen3_8b__units.jsonl",
 }
 POLICIES_AEROSPACE = [
     ("always 8B (bare)", same([("8B", None)])),
@@ -103,7 +118,19 @@ POLICIES_AEROSPACE = [
     ("post-hoc: calm 4B+tool, rest 8B+tool", {"calm": [("4B+tool", None)], "alert": [("8B+tool", None)],
                                               "intensive": [("8B+tool", None)]}),
     ("post-hoc: always 8B+tool, failed check -> 8B", same([("8B+tool", None), ("8B", None)])),
+    # UNITS: fixed before the unit-aware calculator sweep ran (see UNITS_RULE).
+    ("units: always 8B+units", same([("8B+units", None)])),
+    ("units: 8B+units, failed check -> 8B+tool", same([("8B+units", None), ("8B+tool", None)])),
+    ("units: routed 4B+units | 8B+units, escalating", tiers([("4B+units", None), ("8B+units", None)],
+                                                            [("8B+units", None), ("8B+tool", None)])),
 ]
+
+# Adoption rule for the unit-aware calculator, fixed before its sweep: a pack switches to a
+# "units:" policy only if that policy is at least as accurate as the pack's shipped policy and
+# costs at most 10 points more compute (shipped: electrical 48/50 at 35%, aerospace 39/50 at
+# 41%). Secondary, reported either way: with --checks, the share of wrong answers the checks
+# catch, units vs plain calculator for the same model.
+UNITS_RULE = "units policy adopted iff accuracy >= shipped and compute <= shipped + 10 points"
 
 PACKS = {
     "electrical": ("evals/electrical/problems.jsonl", electrical_classify, F, POLICIES),
@@ -116,7 +143,8 @@ def main():
     problems_path, classify, F, policies = PACKS[pack]
     probs = grade.load_jsonl(ROOT / problems_path)
     n = len(probs)
-    R = {k: {r["id"]: r for r in grade.load_jsonl(RESULTS / v)} for k, v in F.items()}
+    R = {k: {r["id"]: r for r in grade.load_jsonl(RESULTS / v)} for k, v in F.items() if (RESULTS / v).exists()}
+    F = {k: v for k, v in F.items() if k in R}
     ok = {k: {p["id"]: grade.grade_one(p, R[k][p["id"]]["response"])["verdict"] == "correct" for p in probs} for k in F}
     cost = {k: {p["id"]: PARAMS[k.split("+")[0]] * R[k][p["id"]]["eval_tokens"] for p in probs} for k in F}
     out = {k: {p["id"]: R[k][p["id"]]["response"] for p in probs} for k in F}
@@ -145,6 +173,10 @@ def main():
     print(f"levels from: {src}\n")
     print(f"{'policy (calm+alert | intensive)':<44} {'score':>6} {'compute':>8} {'escalated':>10}")
     for name, pol in policies:
+        needed = {m for steps in pol.values() for step in steps for m in step if m}
+        if not needed <= R.keys():
+            print(f"{name:<44} {'(not run yet)':>16}")
+            continue
         score = spend = escalated = 0
         for p in probs:
             model, s, step = cascade(p, pol[levels[p["id"]]])
@@ -161,6 +193,15 @@ def main():
         score += ok[k][p["id"]]
         spend += cost[k][p["id"]]
     print(f"{'hindsight: cheapest correct answer':<44} {score:>3}/{n} {spend / base:>8.0%}")
+
+    if "--checks" in sys.argv:
+        print("\nhow many wrong answers the checks catch:")
+        print(f"   {'strategy':<14} {'wrong':>6} {'caught':>7} {'false alarms':>13}")
+        for k in F:
+            flagged = {p["id"]: bool(check(p["question"], out[k][p["id"]])) for p in probs}
+            wrong = [pid for pid in flagged if not ok[k][pid]]
+            false = sum(flagged[pid] and ok[k][pid] for pid in flagged)
+            print(f"   {k:<14} {len(wrong):>6} {sum(flagged[pid] for pid in wrong):>7} {false:>13}")
 
 
 if __name__ == "__main__":

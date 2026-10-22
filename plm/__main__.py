@@ -28,7 +28,7 @@ LOG = Path(os.environ.get("PLM_LOG", ROOT / "logs" / "runs.jsonl"))
 
 def how(step):
     if step.get("strategy"):
-        return {"tool": "calculator", "bare": "direct"}[step["strategy"]]
+        return {"tool": "calculator", "units": "units calc", "bare": "direct"}[step["strategy"]]
     return "code" if "code" in step else "chat"
 
 
