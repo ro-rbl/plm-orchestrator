@@ -1,0 +1,99 @@
+qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__tool.jsonl
+[1/15] ae-f01 wrong_value   220 tok   12.4s
+[2/15] ae-f02 wrong_value   209 tok   11.9s
+[3/15] ae-f03 wrong_value   187 tok   48.1s
+[4/15] ae-f04 correct       281 tok   17.5s
+[5/15] ae-f05 wrong_value   114 tok    7.6s
+[6/15] ae-f06 wrong_value   110 tok    7.2s
+[7/15] ae-f07 correct       153 tok    9.7s
+[8/15] ae-f08 correct       209 tok   12.8s
+[9/15] ae-f09 correct       130 tok    8.2s
+[10/15] ae-f10 wrong_value   276 tok   16.3s
+[11/15] ae-f11 no_answer     203 tok   12.4s  [exit 1: SyntaxError: '(' was never closed]
+[12/15] ae-f12 correct       185 tok   11.5s
+[13/15] ae-f13 no_answer     257 tok   15.7s  [exit 1: ValueError: math domain error]
+[14/15] ae-f14 wrong_value   222 tok   14.0s
+[15/15] ae-f15 correct       151 tok    9.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+intensive   15        6      7     0         0     2  40%
+ALL         15        6      7     0         0     2  40%
+
+level       avg tok  avg s  hit cap
+intensive       194   14.3        0
+ALL             194   14.3        0
+qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__decompose.jsonl
+[1/15] ae-f01 correct       386 tok   29.4s  5 calls
+[2/15] ae-f02 wrong_value   458 tok   33.0s  3 calls  [fallback: step 1 (semi-major axis): planned km, got A]
+[3/15] ae-f03 wrong_value   509 tok   39.7s  5 calls
+[4/15] ae-f04 wrong_value   517 tok   42.1s  7 calls
+[5/15] ae-f05 correct       434 tok   81.8s  7 calls
+[6/15] ae-f06 wrong_value   241 tok   21.7s  3 calls  [fallback: step 1 (Mach number): planned unitless, got 'A']
+[7/15] ae-f07 wrong_value   428 tok   39.3s  6 calls
+[8/15] ae-f08 correct       404 tok   46.1s  4 calls  [fallback: step 2 (load factor): planned unitless, got 'A']
+[9/15] ae-f09 correct       358 tok   37.6s  5 calls
+[10/15] ae-f10 wrong_value   464 tok   40.1s  3 calls  [fallback: step 1 (lift coefficient): planned unitless, got 'A']
+[11/15] ae-f11 no_answer     415 tok   36.3s  3 calls  [fallback: step 1 (exit pressure ratio): planned unitless, got 'A']
+[12/15] ae-f12 wrong_value   552 tok  110.5s  6 calls
+[13/15] ae-f13 wrong_value   818 tok   83.7s  7 calls
+[14/15] ae-f14 wrong_value   420 tok   43.9s  4 calls  [fallback: step 2 (mass ratio): planned unitless, got 'A']
+[15/15] ae-f15 correct       428 tok   50.5s  7 calls
+level        n  correct  wrong  unit  (num ok)  none  acc
+intensive   15        5      9     0         0     1  33%
+ALL         15        5      9     0         0     1  33%
+
+level       avg tok  avg s  hit cap
+intensive       455   49.0        0
+ALL             455   49.0        0
+qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__decompose.jsonl
+[1/15] ae-i01 wrong_value   692 tok   88.2s  6 calls
+[2/15] ae-i02 correct       811 tok  148.2s  7 calls
+[3/15] ae-i03 wrong_value   640 tok   68.8s  6 calls  [fallback: step 4 (calculate the fuel mass fraction): planned unitless, got 'A']
+[4/15] ae-i04 correct       327 tok   38.3s  3 calls  [fallback: step 1 (Mach number): planned unitless, got 'A']
+[5/15] ae-i05 wrong_value   855 tok  124.3s  7 calls
+[6/15] ae-i06 wrong_value   542 tok  148.8s  7 calls
+[7/15] ae-i07 correct       695 tok 3383.3s  7 calls  [fallback: step 5 (altitude): planned km, got A]
+[8/15] ae-i08 wrong_value   808 tok   57.5s  7 calls
+[9/15] ae-i09 wrong_value   418 tok   31.9s  7 calls
+[10/15] ae-i10 correct       413 tok  110.6s  5 calls
+[11/15] ae-i11 wrong_value   415 tok   33.7s  3 calls  [fallback: step 1 (best lift-to-drag ratio): planned unitless, got 'A']
+[12/15] ae-i12 correct       555 tok   49.1s  6 calls
+[13/15] ae-i13 wrong_value   509 tok   43.9s  6 calls
+[14/15] ae-i14 correct       338 tok   30.9s  4 calls  [fallback: step 2 (mass ratio): planned unitless, got 'A']
+[15/15] ae-i15 unit_error    628 tok   58.7s  7 calls  [fallback: step 5 (number of revolutions): planned unitless, got 'A']
+level        n  correct  wrong  unit  (num ok)  none  acc
+intensive   15        6      8     1         1     0  40%
+ALL         15        6      8     1         1     0  40%
+
+level       avg tok  avg s  hit cap
+intensive       576  294.4        0
+ALL             576  294.4        0
+
+fresh set: 15 intensive problems (evals/aerospace/fresh_intensive.jsonl)
+strategy    correct  gen tok/problem  prompt tok/problem  wrong flagged
+tool           6/15              194                 170         4/9
+decompose      5/15              455                1410         5/10
+decompose fell back to one program: {'step 1 (semi-major axis)': 1, 'step 1 (Mach number)': 1, 'step 2 (load factor)': 1, 'step 1 (lift coefficient)': 1, 'step 1 (exit pressure ratio)': 1, 'step 2 (mass ratio)': 1}
+  ae-f01: tool wrong_value, decompose correct
+  ae-f04: tool correct, decompose wrong_value
+  ae-f05: tool wrong_value, decompose correct
+  ae-f07: tool correct, decompose wrong_value
+  ae-f12: tool correct, decompose wrong_value
+  ae-f13: tool no_answer, decompose wrong_value
+classifier calls 11/15 intensive; on those: tool 3, decompose 1
+
+eval set: 15 intensive problems (evals/aerospace/problems.jsonl)
+strategy    correct  gen tok/problem  prompt tok/problem  wrong flagged
+tool           7/15              205                 170         3/8
+decompose      6/15              576                1863         1/9
+decompose fell back to one program: {'step 4 (calculate the fuel mass fraction)': 1, 'step 1 (Mach number)': 1, 'step 5 (altitude)': 1, 'step 1 (best lift-to-drag ratio)': 1, 'step 2 (mass ratio)': 1, 'step 5 (number of revolutions)': 1}
+  ae-i02: tool wrong_value, decompose correct
+  ae-i06: tool no_answer, decompose wrong_value
+  ae-i08: tool correct, decompose wrong_value
+  ae-i09: tool correct, decompose wrong_value
+  ae-i12: tool wrong_value, decompose correct
+  ae-i13: tool correct, decompose wrong_value
+
+rule: aerospace's intensive level switches to decompose iff, on the fresh set, decompose solves at least 3 more of 15 than 8B + calculator; on the eval set's 15 intensive problems it solves at least as many as 8B + calculator (7); and on the fresh set it costs at most 4x the calculator's generated tokens
+fresh gain -1 (need >= 3); eval set held: False; cost 2.4x (limit 4.0x)
+NOT ADOPTED
+sweep exit 0

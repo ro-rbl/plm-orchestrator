@@ -57,9 +57,14 @@ What could carry over, in order of value per effort; each policy fixed before it
       electrical, 39 -> 24/50 aerospace (4B: 47 -> 29, 32 -> 33). Best units policy: electrical 42/50 vs
       shipped 48, aerospace 38/50 vs 39, so neither pack switched. Untested idea: use a units program
       only as a second opinion that flags disagreement, never as the answer.
-- [ ] **Decompose, then solve, for intensive problems.** The large model lists the intermediate
-      quantities with units; each is computed and checked, then combined. Test on aerospace intensive
-      (8B + calculator: 47%); success = higher accuracy at a compute cost stated up front.
+- [x] **Decompose, then solve: built, measured, not adopted.** Strategy `decompose`
+      (`plm/numeric/decompose.py`): the 8B plans up to 6 steps with units, one calculator program per
+      step, each step's dimension checked, falling back to one program. Rule and cost bound (<= 4x
+      tokens) fixed before the sweep, primary set 15 fresh intensive problems written before the
+      strategy (`evals/score_decompose.py`). Fresh 5/15 vs 6/15 for 8B + calculator, eval set 6/15 vs
+      7/15, at 2.4x the tokens. Step prompt v1 had a flaw (its example unit "A" was copied in all 12
+      fallbacks), but finished decompositions were still 1 behind on each set. Plans also used wrong
+      formulas that the dimension check passes (absurd values, right units).
 - [ ] **CAD pack checked by a real CAD kernel.** The model writes CadQuery or build123d code; the check
       is that it builds a valid solid with the requested dimensions (bounding box, volume) -- the check
       SKY-001 lacks. Preflight first: install size and Apple Silicon wheels of the kernel (OpenCascade).

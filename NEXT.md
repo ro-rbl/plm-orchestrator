@@ -1,17 +1,20 @@
 # NEXT
 
-_Updated: 2026-10-22 · branch: main (separate-packs merged, fast-forward) · plan: ROADMAP.md_
+_Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 
 ## Start here (next session)
 - Merged on `main`: **separately installable packs**, all six steps of `docs/pack-packaging.md`. The code
   is now `packages/plm-core` (import `plm`) plus `plm-electrical`, `plm-aerospace`, `plm-software`
   (`plm_<name>`), found through the `plm.packs` entry point; `plm packs list|install|remove|doctor`.
   Behavior with all packs installed is unchanged (`evals/dump_decisions.py` identical: 272 texts,
-  1716 checks; routing simulations match the pre-split `main`). Next, in this order unless decided otherwise:
-  1. **Next SKY-001 idea**: decompose-then-solve for intensive problems (`ROADMAP.md` 3b). The units
-     result says: don't make the model carry more bookkeeping inside one program; split the work instead.
-  2. **Physics/mechanical pack**: `ROADMAP.md` section 3, now as a new `packages/plm-physics` (manifest,
+  1716 checks; routing simulations match the pre-split `main`).
+- Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
+  `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
+  7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
+  1. **Physics/mechanical pack**: `ROADMAP.md` section 3, as a new `packages/plm-physics` (manifest,
      claims, unit words; copy `packages/plm-aerospace` as the template).
+  2. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight the
+     OpenCascade wheels first), or a LoRA for the 4B on aerospace.
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -34,6 +37,20 @@ _Updated: 2026-10-22 · branch: main (separate-packs merged, fast-forward) · pl
 - [ ] **With a broken pack installed, `plm "<task>"` prints a Python traceback**, ending in a clear
       RuntimeError that names `plm packs remove <name>`. A one-line message would be friendlier:
       `packages/plm-core/src/plm/__main__.py` (catch around `from plm.packs import ...`) and the same in `server.py`.
+
+## Decompose-then-solve: loose ends
+- [ ] **Step prompt v1 shows the unit "A" in its example, and the 8B copied it** in all 12 fallbacks
+      (6 per set: unitless or km steps printed "A"), so 40% of problems never finished decomposing.
+      Kept as measured. A v2 (an example in the step's own unit) is a hypothesis: finished
+      decompositions were still 1 behind the calculator on each set, so expect no gain. Judging it needs
+      new problems, since `evals/aerospace/fresh_intensive.jsonl` has now been seen. Resume:
+      `packages/plm-core/src/plm/numeric/decompose.py:step_prompt`, then write fresh problems first.
+- [ ] **The step check is dimension-only.** Wrong plan formulas give absurd values with the right units
+      (preflight ae-i06: 3.3e9 MW), and given values restated as steps can come back wrong (ae-i02:
+      -10000 kg propellant) without being caught. `decompose.py:step_issue`.
+- [ ] **`evals/dump_decisions.py` now has 15 more CHECK lines**: it globs `results/**/aerospace__*.jsonl`,
+      which picks up `aerospace__qwen3_8b__decompose.jsonl`. Not a behavior change; save a new baseline
+      before the next refactor: `.venv/bin/python evals/dump_decisions.py > <scratch>/decisions.before`.
 
 ## Known bugs / weaknesses
 - [ ] **Units strategy as a second opinion (untested).** A units program catches 60-73% of wrong
@@ -76,7 +93,7 @@ _Updated: 2026-10-22 · branch: main (separate-packs merged, fast-forward) · pl
       `evals/electrical/build_problems.py`.
 - [ ] **Small samples.** 50 electrical problems, 45 code tasks; differences of 1-2 between policies are noise.
 - [ ] **Timing columns are unreliable.** The Mac was swapping hard during the sweeps (16 GB swap, 102 s model
-      loads). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
+      loads; 4.3 GB and 294 s/problem in the decompose sweep's last run). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
 - [ ] **Formula-first and generated-test policies in the simulations were added after their results were seen**
       (marked in `evals/simulate_routing.py`); the software routing policies were fixed in advance.
 - [ ] **Pack auto-detection** (each pack's `claims.py`, picked by `plm/pack.py:pick`) is verified on the 184 eval texts (all correct) and 88

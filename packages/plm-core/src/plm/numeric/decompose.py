@@ -16,6 +16,15 @@ Written after the unit-aware calculator result: models made more mistakes when
 one program had to carry more bookkeeping, so this splits the work across calls
 instead. The adoption rule and cost bound were fixed before the sweep: see
 evals/score_decompose.py (DECOMPOSE_RULE).
+
+Measured, not adopted (8B, aerospace intensive, results/decompose.log): fresh set 5/15
+vs 6/15 for one calculator program, eval set 6/15 vs 7/15, at 2.4-2.8x the generated
+tokens and 8-11x the prompt tokens. Known flaw in step prompt v1, kept as measured:
+the example line prints the unit "A", and in all 12 fallbacks (6 per set) the model
+copied it onto a step planned as unitless or km, so 40% of problems never finished
+their decomposition. Where it did finish it was still 1 behind the calculator on
+each set (4 vs 5, 3 vs 4), so the flaw doesn't hide a gain. A v2 needs problems
+nobody has seen: the fresh set's results have been looked at.
 """
 
 import math
