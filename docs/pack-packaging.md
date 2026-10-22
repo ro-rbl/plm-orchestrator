@@ -1,7 +1,8 @@
 # Design: separately installable packs
 
-_Status: proposed (2026-10-21). Not started. Implement on its own branch, in the
-order of "Migration", with each step's check passing before the next._
+_Status: in progress on branch `separate-packs`: steps 1-3 done (2026-10-22), each
+with its check passing. Implement in the order of "Migration", with each step's
+check passing before the next._
 
 ## Goal
 
@@ -46,7 +47,7 @@ becomes a public API with a version.
 Each pack exposes one object, registered under the entry-point group `plm.packs`:
 
 ```python
-# packages/plm-aerospace/src/plm_aerospace/__init__.py
+# packages/plm-aerospace/src/plm_aerospace/manifest.py
 PACK = Pack(
     name="aerospace",
     version="0.1.0",
@@ -63,8 +64,12 @@ PACK = Pack(
 ```toml
 # packages/plm-aerospace/pyproject.toml
 [project.entry-points."plm.packs"]
-aerospace = "plm_aerospace:PACK"
+aerospace = "plm_aerospace.manifest:PACK"
 ```
+
+The manifest is its own module, not the package `__init__.py`: a manifest imports
+the controller, and in `__init__` that would load the whole pack (and its Ollama
+client) whenever any submodule is imported, and break `python -m` self-tests.
 
 The core finds installed packs with
 `importlib.metadata.entry_points(group="plm.packs")`. The general pack is built
@@ -106,7 +111,7 @@ The server's `/health` and the CLI's `--pack` choices list installed packs.
 
 Before step 1, save the baseline: `.venv/bin/python evals/dump_decisions.py >
 /tmp/decisions.before` (every text's pack, requested unit and level, and the
-checks on every saved numeric answer: 272 texts, 1516 answers today).
+checks on every saved numeric answer: 272 texts, 1716 answers on 2026-10-22).
 
 1. **Manifest without moving files.** Add the `Pack` object and the claims API
    inside the current single package; build `PACKS` from local manifests.
@@ -128,6 +133,18 @@ checks on every saved numeric answer: 272 texts, 1516 answers today).
    aerospace and its model is present; `plm packs remove aerospace` -> back to
    general.
 6. **Docs:** install instructions per pack in the README.
+
+## Decided while implementing
+
+- **Software claims with `math.inf`.** It must keep winning outright whenever its
+  code-task pattern matches, however many electrical terms the text has; a
+  finite score would let a term count beat it. Two `inf` claims tie on priority.
+- **Core unit words** are the quantities any numeric pack may ask for: time,
+  length, area, mass, energy, power, money (15 words). Electrical and aerospace
+  declare the other 45. Chosen from which eval sets ask for each word; words
+  asked by both packs (joules, watts, hours) went to the core. Two packs may
+  declare the same word only with the same unit.
+- **The manifest is `<pack>/manifest.py`**, not `__init__.py` (see above).
 
 ## Decisions to make while implementing
 
