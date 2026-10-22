@@ -112,6 +112,7 @@ Elsewhere:
 .venv/bin/python evals/test_checks.py
 .venv/bin/python -m plm.numeric.calc
 .venv/bin/python evals/test_controllers.py         # controllers, with Ollama replaced by scripted replies
+.venv/bin/python evals/test_manage.py             # `plm packs`, with Ollama, pip and entry points faked
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor

@@ -7,17 +7,17 @@ present. Loading the packs here merges their unit words into plm.numeric.checks;
 A pack that is installed but fails to load is an error, not a silently missing pack.
 """
 
-from importlib.metadata import entry_points
-
 from plm.general.manifest import PACK as GENERAL
 from plm.numeric.checks import add_unit_words
-from plm.pack import pick
+from plm.pack import Pack, discover, pick
 
 
 def _installed():
     found = [GENERAL]
-    for ep in entry_points(group="plm.packs"):
-        pack = ep.load()
+    for ep, pack in discover():
+        if not isinstance(pack, Pack):
+            raise RuntimeError(f"pack {ep.name!r} ({ep.value}) failed to load: {pack!r}; "
+                               f"fix it, or uninstall it with `plm packs remove {ep.name}`")
         if pack.name in {p.name for p in found}:
             raise RuntimeError(f"two installed packs are named {pack.name!r} (entry point {ep.value})")
         found.append(pack)

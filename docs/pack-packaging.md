@@ -1,6 +1,6 @@
 # Design: separately installable packs
 
-_Status: in progress on branch `separate-packs`: steps 1-4 done (2026-10-22), each
+_Status: in progress on branch `separate-packs`: steps 1-5 done (2026-10-22), each
 with its check passing. Implement in the order of "Migration", with each step's
 check passing before the next._
 
@@ -156,6 +156,14 @@ checks on every saved numeric answer: 272 texts, 1716 answers on 2026-10-22).
   location is no place for logs. Run from the repo root, nothing moves.
 - **`requirements.txt` is gone**: the pint pin lives in `plm-core`'s `pyproject.toml`.
   A `plm` console script is installed with the core.
+- **Where `plm packs install` gets a pack** (no PyPI yet): `--source` (a directory
+  holding `plm-<name>/`, the pack's own directory, or any pip requirement such as
+  a git URL), else `PLM_PACKS_SOURCE`, else the `packages/` directory of the
+  checkout the core runs from. Directories install editable. It runs `uv pip`
+  when uv is on PATH, else `pip`, always into the running Python's environment.
+- **`plm packs` loads packs one by one** (`plm.pack.discover`), so a pack that
+  fails to load, which stops the router, can still be listed, diagnosed and removed.
+  `remove` keeps the pack's models in Ollama, since other packs may use them.
 
 ## Decisions still open
 
@@ -172,3 +180,7 @@ checks on every saved numeric answer: 272 texts, 1716 answers on 2026-10-22).
   `plm-core>=X,<Y` in each pack and test packs against the core in CI.
 - **Publishing to PyPI** needs an account and token: phase 5, tested live
   before use, like the other external dependencies.
+- **Dependency confusion:** `plm-core`, `plm-electrical`, `plm-aerospace` and
+  `plm-software` are unclaimed on PyPI (404, 2026-10-22). Installing a pack where
+  `plm-core` isn't installed lets pip/uv fetch whatever `plm-core` PyPI serves.
+  Claim the names when publishing, or install the core first (as `plm packs` does).

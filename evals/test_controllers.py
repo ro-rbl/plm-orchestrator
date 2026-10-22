@@ -20,6 +20,7 @@ import plm_software.testgen as testgen  # noqa: E402
 from plm_aerospace import controller as aerospace  # noqa: E402
 from plm_electrical import controller as electrical  # noqa: E402
 from plm.pack import Pack, pick  # noqa: E402
+import plm.pack as pack_module  # noqa: E402
 import plm.packs as packs  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
 
@@ -178,16 +179,16 @@ def test_registry():
     expect("detect general", detect("What's the capital of Australia?") == "general")
     expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "software", "general"}
            and list(PACKS)[-1] == "general", list(PACKS))
-    real_eps = packs.entry_points
+    real_eps = pack_module.entry_points
     try:
         dup = types.SimpleNamespace(load=lambda: PACKS["electrical"], value="fake:PACK")
-        packs.entry_points = lambda group: [dup, dup]
+        pack_module.entry_points = lambda group: [dup, dup]
         packs._installed()
         expect("two packs with one name are an error", False)
     except RuntimeError:
         pass
     finally:
-        packs.entry_points = real_eps
+        pack_module.entry_points = real_eps
 
 
 def main():

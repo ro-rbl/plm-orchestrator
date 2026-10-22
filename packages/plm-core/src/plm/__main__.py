@@ -7,6 +7,7 @@
     .venv/bin/python -m plm --pack software --level intensive --show-work "..."
     .venv/bin/python -m plm --thorough "$(cat task.txt)"   # software: add model-written tests (~4x compute)
     .venv/bin/python -m plm serve           # OpenAI-compatible server, see plm/server.py
+    .venv/bin/python -m plm packs list      # installed packs; also install / remove / doctor, see plm/manage.py
 
 The pack is picked from the task text unless --pack is given. Every run is
 appended to logs/runs.jsonl (override with PLM_LOG).
@@ -19,7 +20,6 @@ import sys
 import urllib.error
 from pathlib import Path
 
-from plm.packs import PACKS, detect
 from plm.report import answer_text, final_step, short
 
 # Relative to the working directory: the code may be installed anywhere.
@@ -62,6 +62,8 @@ def report(result, show_work):
 
 
 def run_one(task, args):
+    from plm.packs import PACKS, detect
+
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
@@ -93,8 +95,14 @@ def main():
     if sys.argv[1:2] == ["serve"]:
         from plm.server import main as serve
         return serve(sys.argv[2:])
+    if sys.argv[1:2] == ["packs"]:
+        # before importing plm.packs, which refuses to start with a broken pack installed
+        from plm.manage import main as packs
+        return packs(sys.argv[2:])
+    from plm.packs import PACKS
 
-    ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator ('plm serve' for the server)")
+    ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator "
+                                 "('plm serve' for the server, 'plm packs' to manage packs)")
     ap.add_argument("task", nargs="*", help="the task; omit for interactive mode")
     ap.add_argument("--pack", choices=["auto", *PACKS], default="auto", help="domain pack (default: detect from the task)")
     ap.add_argument("--level", choices=["calm", "alert", "intensive"], help="force an adrenaline level instead of classifying")

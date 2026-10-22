@@ -6,6 +6,7 @@ back to the general pack when no pack claims the task.
 """
 
 from dataclasses import dataclass, field
+from importlib.metadata import entry_points
 from typing import Callable, Optional
 
 
@@ -40,3 +41,15 @@ def evidence(term_re, text, symbols=None):
     """How many distinct domain terms (and unit symbols) the text uses: a claim score for packs."""
     n = len({m.lower() for m in term_re.findall(text)})
     return n + (len(symbols.findall(text)) if symbols else 0)
+
+
+def discover():
+    """(entry point, its Pack, or the exception loading it raised) for every installed pack.
+
+    Never raises for a broken pack, so `plm packs` can still list and remove it.
+    """
+    for ep in entry_points(group="plm.packs"):
+        try:
+            yield ep, ep.load()
+        except Exception as e:  # a pack is third-party code: any error means "failed to load"
+            yield ep, e

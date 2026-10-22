@@ -3,6 +3,7 @@
 ask() is one single-prompt completion at temperature 0, which the packs and
 evals use. chat() and chat_stream() take a whole conversation and the caller's
 sampling options, for the general pack. All of them turn thinking off.
+pulled(), pull() and load() are for `plm packs`.
 
 The Ollama address comes from OLLAMA_HOST (default 127.0.0.1:11434).
 """
@@ -145,3 +146,37 @@ def chat_stream(model, messages, num_predict, timeout, options=None):
                 yield "done", _record(endpoint, r, "".join(parts), start)
                 return
     raise RuntimeError("Ollama stream ended without a final message")
+
+
+def full_name(model):
+    """Model name as Ollama lists it: an untagged name means ':latest'."""
+    return model if ":" in model.rsplit("/", 1)[-1] else model + ":latest"
+
+
+def pulled(timeout=10):
+    """Names of every model Ollama has pulled; raises if Ollama is unreachable."""
+    with urllib.request.urlopen(ollama_url() + "/api/tags", timeout=timeout) as resp:
+        return {m["name"] for m in json.load(resp)["models"]}
+
+
+def _post(endpoint, body, timeout):
+    req = urllib.request.Request(ollama_url() + endpoint, json.dumps(body).encode(), {"Content-Type": "application/json"})
+    return urllib.request.urlopen(req, timeout=timeout)
+
+
+def pull(model, timeout=3600):
+    """Pull a model, yielding Ollama's progress messages; raises on an error message."""
+    with _post("/api/pull", {"model": model}, timeout) as resp:
+        for line in resp:
+            msg = json.loads(line)
+            if "error" in msg:
+                raise RuntimeError(msg["error"])
+            yield msg
+
+
+def load(model, timeout=600):
+    """Load a model into memory without generating; raises if it can't be loaded."""
+    with _post("/api/generate", {"model": model}, timeout) as resp:
+        r = json.load(resp)
+    if r.get("done_reason") != "load":
+        raise RuntimeError(f"unexpected reply: {r}")
