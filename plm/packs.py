@@ -1,13 +1,17 @@
 """Pack registry, used by the CLI and the server to find packs the same way.
 
-Each pack declares a `plm.pack.Pack` (its `PACK`), including its own claims();
+Each pack declares a `plm.pack.Pack` (its `PACK`) with its own claims() and unit
+words. Loading the packs here merges their unit words into plm.numeric.checks;
 `detect` asks every pack for its claim on a task and picks one with `plm.pack.pick`.
 """
 
 from plm import aerospace, electrical, general, software
+from plm.numeric.checks import add_unit_words
 from plm.pack import pick
 
 PACKS = {p.name: p for p in (electrical.PACK, aerospace.PACK, software.PACK, general.PACK)}
+for _pack in PACKS.values():
+    add_unit_words(_pack.unit_words)
 
 
 def detect(text):

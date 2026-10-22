@@ -8,6 +8,7 @@
 3. Known-bad outputs are caught.
 """
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -17,7 +18,8 @@ sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
 from plm.numeric.answers import LITERAL_UNITS, ureg  # noqa: E402
-from plm.numeric.checks import agree, check, requested_unit  # noqa: E402
+from plm.numeric.checks import add_unit_words, agree, check, requested_unit  # noqa: E402
+import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 
 
 def same_kind(a, b):
@@ -88,9 +90,23 @@ def main():
         if agree(by_id[pid]["question"], a, b) != expect:
             fails.append(f"{pid}: agree({a!r}, {b!r}) should be {expect}")
 
+    # The core alone knows only its own unit words; each pack's arrive when packs load.
+    core_only = [("What is the energy, in joules?", "J"), ("What is the voltage, in volts?", None),
+                 ("What is the thrust, in kilonewtons?", None)]
+    script = (f"import sys; sys.path.insert(0, {str(ROOT)!r}); from plm.numeric.checks import requested_unit; "
+              f"print([requested_unit(q) for q, _ in {core_only!r}])")
+    out = subprocess.run([sys.executable, "-c", script], capture_output=True, text=True).stdout.strip()
+    if out != repr([want for _, want in core_only]):
+        fails.append(f"core-only requested_unit -> {out!r}")
+    try:
+        add_unit_words({"volts": "kV"})
+        fails.append("add_unit_words accepted a word that already means another unit")
+    except ValueError:
+        pass
+
     for f in fails:
         print("FAIL", f)
-    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements)
+    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2
     print(f"checks tests: {total - len(fails)}/{total} passed")
     sys.exit(1 if fails else 0)
 

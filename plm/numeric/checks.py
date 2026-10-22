@@ -13,32 +13,35 @@ from plm.numeric.answers import LITERAL_UNITS, parse_answer, ureg
 
 # Unit words that appear in questions ("..., in microfarads?") -> unit string.
 # An explicit list rather than free parsing: pint would read "in a circuit" as years.
+# The core knows quantities any numeric pack may ask for; each pack adds its own
+# words (`Pack.unit_words`) when it loads, so the units of a pack that isn't
+# installed don't make its questions look checkable.
 UNIT_WORDS = {
-    "volts": "V", "millivolts": "mV", "kilovolts": "kV",
-    "amperes": "A", "amps": "A", "milliamperes": "mA",
-    "watts": "W", "milliwatts": "mW", "kilowatts": "kW",
-    "var": "V*A", "volt-amperes": "V*A",
-    "ohms": "ohm", "kilohms": "kohm", "ohm-meters": "ohm*m",
-    "hertz": "Hz", "kilohertz": "kHz",
-    "joules": "J", "watt-hours": "Wh", "kilowatt-hours": "kWh",
-    "coulombs": "C",
-    "seconds": "s", "milliseconds": "ms", "hours": "h",
-    "farads": "F", "microfarads": "uF", "nanofarads": "nF", "farads per meter": "F/m",
-    "henries": "H", "millihenries": "mH",
-    "siemens": "S", "millisiemens": "mS",
-    "decibels": "dB", "us dollars": "USD", "dollars": "USD",
-    # mechanics, flight and orbits
-    "newtons": "N", "kilonewtons": "kN", "meganewtons": "MN", "newton-seconds": "N*s",
-    "meters": "m", "kilometers": "km", "feet": "ft", "square meters": "m^2",
-    "meters per second": "m/s", "kilometers per second": "km/s", "kilometers per hour": "km/h", "knots": "kn",
-    "meters per second squared": "m/s^2",
-    "kilograms": "kg", "tonnes": "t", "kilograms per second": "kg/s", "kilograms per cubic meter": "kg/m^3",
-    "pascals": "Pa", "kilopascals": "kPa", "megapascals": "MPa",
-    "kelvin": "K", "minutes": "min", "days": "day",
-    "megawatts": "MW", "joules per kilogram": "J/kg", "kilojoules per kilogram": "kJ/kg",
+    "seconds": "s", "milliseconds": "ms", "minutes": "min", "hours": "h", "days": "day",
+    "meters": "m", "kilometers": "km", "square meters": "m^2", "kilograms": "kg",
+    "joules": "J", "watts": "W", "kilowatts": "kW", "megawatts": "MW",
+    "us dollars": "USD", "dollars": "USD",
 }
-_WORDS = "|".join(sorted(map(re.escape, UNIT_WORDS), key=len, reverse=True))
-UNIT_PHRASE = re.compile(rf"\b(?:in|how many) ({_WORDS})\b", re.IGNORECASE)
+
+
+def _unit_phrase():
+    words = "|".join(sorted(map(re.escape, UNIT_WORDS), key=len, reverse=True))
+    return re.compile(rf"\b(?:in|how many) ({words})\b", re.IGNORECASE)
+
+
+UNIT_PHRASE = _unit_phrase()
+
+
+def add_unit_words(words):
+    """Merge a pack's unit words into UNIT_WORDS. A word two packs map differently is an error."""
+    global UNIT_PHRASE
+    clash = {w: (UNIT_WORDS[w], u) for w, u in words.items() if UNIT_WORDS.get(w, u) != u}
+    if clash:
+        raise ValueError(f"unit words already mean something else: {clash}")
+    UNIT_WORDS.update(words)
+    UNIT_PHRASE = _unit_phrase()
+
+
 COUNT_PHRASE = re.compile(r"whole number|how many (?:turns|cells|resistors|batteries)", re.IGNORECASE)
 
 # Quantities that can't be zero or negative as an answer.
