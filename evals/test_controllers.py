@@ -7,6 +7,7 @@ without loading any model.
 """
 
 import sys
+import types
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -14,11 +15,12 @@ sys.path.insert(0, str(ROOT))
 
 import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
-import plm.software.controller as software  # noqa: E402
-import plm.software.testgen as testgen  # noqa: E402
-from plm.aerospace import controller as aerospace  # noqa: E402
-from plm.electrical import controller as electrical  # noqa: E402
+import plm_software.controller as software  # noqa: E402
+import plm_software.testgen as testgen  # noqa: E402
+from plm_aerospace import controller as aerospace  # noqa: E402
+from plm_electrical import controller as electrical  # noqa: E402
 from plm.pack import Pack, pick  # noqa: E402
+import plm.packs as packs  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
 
 FAILS = []
@@ -174,6 +176,18 @@ def test_registry():
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
     expect("detect general", detect("What's the capital of Australia?") == "general")
+    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "software", "general"}
+           and list(PACKS)[-1] == "general", list(PACKS))
+    real_eps = packs.entry_points
+    try:
+        dup = types.SimpleNamespace(load=lambda: PACKS["electrical"], value="fake:PACK")
+        packs.entry_points = lambda group: [dup, dup]
+        packs._installed()
+        expect("two packs with one name are an error", False)
+    except RuntimeError:
+        pass
+    finally:
+        packs.entry_points = real_eps
 
 
 def main():

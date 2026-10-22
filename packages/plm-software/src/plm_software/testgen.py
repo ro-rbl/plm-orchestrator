@@ -9,7 +9,7 @@ import ast
 import re
 
 from plm.ollama import ask
-from plm.software.codegen import CODE_RE
+from plm_software.codegen import CODE_RE
 
 TESTGEN_PROMPT_VERSION = 1
 N_TESTS = 8

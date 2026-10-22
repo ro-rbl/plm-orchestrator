@@ -1,6 +1,6 @@
 # Design: separately installable packs
 
-_Status: in progress on branch `separate-packs`: steps 1-3 done (2026-10-22), each
+_Status: in progress on branch `separate-packs`: steps 1-4 done (2026-10-22), each
 with its check passing. Implement in the order of "Migration", with each step's
 check passing before the next._
 
@@ -145,13 +145,20 @@ checks on every saved numeric answer: 272 texts, 1716 answers on 2026-10-22).
   asked by both packs (joules, watts, hours) went to the core. Two packs may
   declare the same word only with the same unit.
 - **The manifest is `<pack>/manifest.py`**, not `__init__.py` (see above).
+- **Flat import names** (`plm_electrical`, ...), not a namespace package.
+- **Eval sets stay in the repo**, not in the packages; `Pack.eval_set` is a repo path.
+- **A pack that is installed but fails to load is an error**, as is two packs with
+  one name: a pack silently missing from routing would look like a routing bug.
+- **Pack order** in `PACKS` (and so in `/health` and `--pack`) is priority, highest
+  first, general last; routing doesn't depend on it.
+- **Logs are relative to the working directory** (`logs/`, or `PLM_LOG_DIR` for the
+  server and `PLM_LOG` for the CLI): the code may be installed anywhere, so its own
+  location is no place for logs. Run from the repo root, nothing moves.
+- **`requirements.txt` is gone**: the pint pin lives in `plm-core`'s `pyproject.toml`.
+  A `plm` console script is installed with the core.
 
-## Decisions to make while implementing
+## Decisions still open
 
-- **Pack ids and import names:** `plm-electrical` / `plm_electrical` as above,
-  or a namespace package (`plm.packs.electrical`). The flat names are simpler.
-- **Where eval sets live:** shipped as package data (so `plm eval aerospace`
-  works anywhere) or only in the repo. Results stay in the repo either way.
 - **Claim calibration for third-party packs:** today's scores are term counts
   tuned for three packs. A fourth pack from someone else could out-claim them;
   priorities and a minimum score may need a rule.

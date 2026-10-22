@@ -20,7 +20,7 @@ Model name can be overridden with PLM_LARGE_MODEL.
 
 import os
 
-from plm.aerospace.levels import classify
+from plm_aerospace.levels import classify
 from plm.numeric import controller as numeric
 
 MODELS = {"large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b")}

@@ -1,7 +1,7 @@
 """The aerospace pack's manifest: what the router needs to know about it."""
 
-from plm.aerospace import controller
-from plm.aerospace.claims import claims
+from plm_aerospace import controller
+from plm_aerospace.claims import claims
 from plm.pack import Pack
 
 # Mechanics, flight and orbits. A physics pack will want many of these too; the

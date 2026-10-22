@@ -41,8 +41,8 @@ from pathlib import Path
 from plm import ollama, packs
 from plm.report import answer_text, final_step
 
-ROOT = Path(__file__).resolve().parent.parent
-LOG_DIR = ROOT / "logs"
+# Relative to the working directory: the code may be installed anywhere.
+LOG_DIR = Path(os.environ.get("PLM_LOG_DIR", "logs"))
 MODEL_IDS = {"plm-router": {}, "plm-router-thorough": {"thorough": True}}
 MAX_BODY = 10 * 1024 * 1024
 KEEPALIVE_S = 10

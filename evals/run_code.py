@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from plm.ollama import ask  # noqa: E402
-from plm.software.codegen import PROMPT_VERSION, build_prompt, extract_code  # noqa: E402
-from plm.software.sandbox import run_tests  # noqa: E402
+from plm_software.codegen import PROMPT_VERSION, build_prompt, extract_code  # noqa: E402
+from plm_software.sandbox import run_tests  # noqa: E402
 
 
 def load_jsonl(path):

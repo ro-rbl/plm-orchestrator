@@ -23,8 +23,8 @@ import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
 import plm.ollama as ollama  # noqa: E402
 import plm.server as server  # noqa: E402
-import plm.software.controller as software  # noqa: E402
-from plm.electrical import controller as electrical  # noqa: E402
+import plm_software.controller as software  # noqa: E402
+from plm_electrical import controller as electrical  # noqa: E402
 
 FAILS = []
 PROGRAM_22V = '```python\nprint(f"ANSWER: {220 * 0.1:.4g} V")\n```'
@@ -68,7 +68,7 @@ def install_fakes():
 
     Returns a function that puts the real calls back.
     """
-    import plm.software.testgen as testgen
+    import plm_software.testgen as testgen
     saved = (numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version, testgen.ask)
     small, large = electrical.MODELS["small"], electrical.MODELS["large"]
     numeric.ask = fake_ask({small: PROGRAM_22V, large: PROGRAM_22V})
@@ -196,7 +196,7 @@ def run(port, log_path):
     numeric.ask = fake_ask({small: PROGRAM_22V})
 
     testgen_calls = []
-    import plm.software.testgen as testgen
+    import plm_software.testgen as testgen
     testgen.ask = lambda model, prompt, think, n, timeout: (testgen_calls.append(model) or
                                                            reply("```python\ndouble(5) == 10\n```"))
     status, _, body = call(port, "POST", "/v1/chat/completions",
@@ -239,7 +239,7 @@ def run(port, log_path):
 
 def main():
     real = (numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version)
-    import plm.software.testgen as testgen
+    import plm_software.testgen as testgen
     real_testgen = testgen.ask
     with tempfile.TemporaryDirectory() as tmp:
         log_path = os.path.join(tmp, "server.jsonl")

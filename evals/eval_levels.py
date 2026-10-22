@@ -16,9 +16,9 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
-from plm.aerospace import levels as aerospace_levels  # noqa: E402
-from plm.electrical import levels as electrical_levels  # noqa: E402
-from plm.software import levels as software_levels  # noqa: E402
+from plm_aerospace import levels as aerospace_levels  # noqa: E402
+from plm_electrical import levels as electrical_levels  # noqa: E402
+from plm_software import levels as software_levels  # noqa: E402
 
 LEVELS = ("calm", "alert", "intensive")
 # pack -> (classifier, text field, main set, holdout)

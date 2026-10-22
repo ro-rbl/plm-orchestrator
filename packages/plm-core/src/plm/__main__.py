@@ -22,8 +22,8 @@ from pathlib import Path
 from plm.packs import PACKS, detect
 from plm.report import answer_text, final_step, short
 
-ROOT = Path(__file__).resolve().parent.parent
-LOG = Path(os.environ.get("PLM_LOG", ROOT / "logs" / "runs.jsonl"))
+# Relative to the working directory: the code may be installed anywhere.
+LOG = Path(os.environ.get("PLM_LOG", Path("logs") / "runs.jsonl"))
 
 
 def how(step):

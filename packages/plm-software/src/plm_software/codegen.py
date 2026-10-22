@@ -2,7 +2,7 @@
 
 import re
 
-from plm.software.sandbox import ALLOWED_IMPORTS
+from plm_software.sandbox import ALLOWED_IMPORTS
 
 # v1 said "including any imports" and listed typing; small models then wrote
 # "from typing import int", which crashes (13 of the 0.6B and 4B errors).

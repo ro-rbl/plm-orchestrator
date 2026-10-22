@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plm-core"
+version = "0.1.0"
+description = "Router, OpenAI-compatible server, CLI, numeric engine and the general pack; domain packs install separately"
+requires-python = ">=3.13"
+dependencies = ["pint>=0.26.1,<0.27"]
+
+[project.scripts]
+plm = "plm.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plm"]

@@ -23,10 +23,10 @@ import re
 import time
 
 from plm.ollama import ask
-from plm.software.codegen import build_prompt, extract_code
-from plm.software.levels import classify
-from plm.software.sandbox import run_tests
-from plm.software.testgen import failing_tests, generate_tests
+from plm_software.codegen import build_prompt, extract_code
+from plm_software.levels import classify
+from plm_software.sandbox import run_tests
+from plm_software.testgen import failing_tests, generate_tests
 
 MODELS = {
     "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),

@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from plm.software.levels import classify  # noqa: E402
+from plm_software.levels import classify  # noqa: E402
 from run_code import load_jsonl, verdict  # noqa: E402
 
 RESULTS = ROOT / "results"
@@ -76,7 +76,7 @@ def main():
     if "--labels" in sys.argv:
         src, levels = "hand labels", {t["id"]: t["level"] for t in tasks}
     else:
-        src, levels = "plm.software.levels classifier", {t["id"]: classify(t["prompt"])[0] for t in tasks}
+        src, levels = "plm_software.levels classifier", {t["id"]: classify(t["prompt"])[0] for t in tasks}
     base = sum(cost["coder14B"].values())
     n = len(tasks)
 

@@ -27,8 +27,8 @@ sys.path.insert(0, str(ROOT / "evals"))
 import grade  # noqa: E402
 from plm.numeric.checks import agree, check  # noqa: E402
 import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
-from plm.aerospace.levels import classify as aerospace_classify  # noqa: E402
-from plm.electrical.levels import classify as electrical_classify  # noqa: E402
+from plm_aerospace.levels import classify as aerospace_classify  # noqa: E402
+from plm_electrical.levels import classify as electrical_classify  # noqa: E402
 
 RESULTS = ROOT / "results"
 F = {

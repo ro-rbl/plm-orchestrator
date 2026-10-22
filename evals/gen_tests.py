@@ -20,8 +20,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from plm.software.sandbox import run_tests  # noqa: E402
-from plm.software.testgen import TESTGEN_PROMPT_VERSION, failing_tests, generate_tests, is_broken_test  # noqa: E402
+from plm_software.sandbox import run_tests  # noqa: E402
+from plm_software.testgen import TESTGEN_PROMPT_VERSION, failing_tests, generate_tests, is_broken_test  # noqa: E402
 from run_code import load_jsonl, verdict  # noqa: E402
 
 RESULTS = ROOT / "results"

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plm-electrical"
+version = "0.1.0"
+description = "plm pack: Electrical engineering calculations, checked by units and sanity rules"
+requires-python = ">=3.13"
+dependencies = ["plm-core>=0.1,<0.2"]
+
+[project.entry-points."plm.packs"]
+electrical = "plm_electrical.manifest:PACK"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plm_electrical"]

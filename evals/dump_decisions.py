@@ -18,11 +18,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from plm.aerospace.levels import classify as aerospace_classify  # noqa: E402
-from plm.electrical.levels import classify as electrical_classify  # noqa: E402
+from plm_aerospace.levels import classify as aerospace_classify  # noqa: E402
+from plm_electrical.levels import classify as electrical_classify  # noqa: E402
 from plm.numeric.checks import check, requested_unit  # noqa: E402
 from plm.packs import detect  # noqa: E402
-from plm.software.levels import classify as software_classify  # noqa: E402
+from plm_software.levels import classify as software_classify  # noqa: E402
 
 
 def load(path):

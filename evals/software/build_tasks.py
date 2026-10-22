@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from plm.software.sandbox import run_tests  # noqa: E402
+from plm_software.sandbox import run_tests  # noqa: E402
 
 TASKS = []
 

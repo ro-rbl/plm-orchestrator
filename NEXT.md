@@ -23,7 +23,7 @@ _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
       steps), so it costs no model calls to try. Watch compute: it doubles calls on every problem.
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`
       style in `evals/software/build_tasks.py` (sw-i01, sw-i13, sw-i15) led the 8B to write 7/8 malformed tests
-      for LRUCache; `plm/software/testgen.py:is_broken_test` hides them, it doesn't fix them. Changing the style
+      for LRUCache; `plm_software/testgen.py:is_broken_test` hides them, it doesn't fix them. Changing the style
       changes the prompts, so re-run `results/run_software.sh` and `results/run_testgen.sh` afterwards.
 - [ ] **Generated tests are wrong 9-17% of the time** (e.g. `two_sum([1, 3, 5, 7], 8) == [0, 2]`), which is why
       `--thorough` costs 228%. Ideas not yet tested: fewer tests, escalate only on 2+ failures, drop a test that
@@ -40,14 +40,14 @@ _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
       after seeing the results: calm-only to the 4B (40/50 at 37%). Test it on fresh problems before using it.
 - [ ] **Unitless answers with a descriptive noun count as unit errors.** "15.58 rev" for a unitless count
       (ae-i15, both 8B runs) fails the grader and the live check, though the number is right. Decide whether
-      to accept count nouns; `plm/numeric/answers.py:LITERAL_UNITS`.
+      to accept count nouns; `plm-core: plm/numeric/answers.py:LITERAL_UNITS`.
 - [ ] **The shared number counter misses a number that ends a sentence** ("a pressure ratio of 10."), so a
       problem can count one input short (ae-a13). Calm/alert confusions only so far; fixing it changes the
-      electrical classifier too, so re-run `evals/eval_levels.py` for every pack. `plm/numeric/levels.py:NUMBER`.
+      electrical classifier too, so re-run `evals/eval_levels.py` for every pack. `plm-core: plm/numeric/levels.py:NUMBER`.
 - [ ] **Electrical/aerospace overlap is decided by counting domain terms**, tested on 3 cases only
-      (detect_cases a06, e06, e07). `plm/packs.py:detect`.
+      (detect_cases a06, e06, e07). `plm_electrical/claims.py`, `plm_aerospace/claims.py`, priorities in each `manifest.py`.
 - [ ] **Server: packs see only the last user message.** A follow-up like "now do it for 200 ohm" loses the
-      earlier question and goes wherever the follow-up alone points. `plm/server.py:parse_request`.
+      earlier question and goes wherever the follow-up alone points. `plm-core: plm/server.py:parse_request`.
 
 ## Unverified
 - [ ] **Every problem, task, label and reference solution was written by Claude.** Holdouts guard against tuning
@@ -59,7 +59,7 @@ _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
       loads). Token counts are the cost measure. Before any timing run: `sysctl vm.swapusage` and `ollama ps`.
 - [ ] **Formula-first and generated-test policies in the simulations were added after their results were seen**
       (marked in `evals/simulate_routing.py`); the software routing policies were fixed in advance.
-- [ ] **Pack auto-detection** (`plm/packs.py:detect`) is verified on the 184 eval texts (all correct) and 88
+- [ ] **Pack auto-detection** (each pack's `claims.py`, picked by `plm/pack.py:pick`) is verified on the 184 eval texts (all correct) and 88
       holdout cases labeled before the rules they test: 85/88 independently (gas-dynamics terms added for 5
       eval-set misses also fixed 2 holdout cases, so the later 87/88 is not independent). Real traffic will
       differ; `logs/server.jsonl` records every routing decision, so check it after real use.

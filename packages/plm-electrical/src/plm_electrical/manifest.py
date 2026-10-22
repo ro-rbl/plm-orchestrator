@@ -1,7 +1,7 @@
 """The electrical pack's manifest: what the router needs to know about it."""
 
-from plm.electrical import controller
-from plm.electrical.claims import claims
+from plm_electrical import controller
+from plm_electrical.claims import claims
 from plm.pack import Pack
 
 UNIT_WORDS = {

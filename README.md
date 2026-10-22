@@ -7,8 +7,15 @@ model when the check fails. Models run in [Ollama](https://ollama.com).
 ## Setup
 
 ```bash
-uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
+uv venv --python 3.13 .venv
+uv pip install --python .venv/bin/python -e packages/plm-core \
+    -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software
 ```
+
+The core (`packages/plm-core`) works alone: with no packs installed, every task
+goes to the general pack. Each pack is its own package (`docs/pack-packaging.md`);
+install only the ones you want. A pack is code that runs on your machine, so
+install only packs you trust.
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 `PLM_CODER_MODEL`): `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (the original Qwen3-4B),
@@ -76,16 +83,22 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 
 ## Layout
 
-- `plm/packs.py`: the pack registry and the interface every pack provides.
-- `plm/numeric/`: shared by numeric packs: answer format and parser, calculator tool,
-  unit/sanity checks, and the controller.
-- `plm/numeric/levels.py`: the level classifier every numeric pack shares; a pack adds only its chain cues.
-- `docs/pack-packaging.md`: proposed design for installing each pack separately (not built yet).
-- `plm/electrical/`, `plm/aerospace/`: each numeric pack's level cues and tiers.
-- `plm/software/`: the software pack: sandbox, code prompts, level rules, controller,
-  and model-written tests for `--thorough`.
-- `plm/general/`: the fallback for tasks no pack claims (the 8B, unchecked).
-- `plm/server.py`: the OpenAI-compatible server; `plm/report.py`: answer text and caveats.
+Core, in `packages/plm-core/src/plm/`:
+- `pack.py`: what a pack declares (`Pack`) and how the router picks one from the packs' claims.
+- `packs.py`: the registry: the general pack plus every pack installed under the `plm.packs` entry point.
+- `numeric/`: shared by numeric packs: answer format and parser, calculator tool,
+  unit/sanity checks (with the unit words every numeric pack may use), and the controller.
+- `numeric/levels.py`: the level classifier every numeric pack shares; a pack adds only its chain cues.
+- `general/`: the fallback for tasks no pack claims (the 8B, unchecked).
+- `server.py`: the OpenAI-compatible server; `report.py`: answer text and caveats.
+
+Packs, each in `packages/plm-<name>/src/plm_<name>/` with a `manifest.py` (its `PACK`)
+and `claims.py` (which tasks it takes):
+- `plm_electrical`, `plm_aerospace`: each numeric pack's level cues, tiers and unit words.
+- `plm_software`: sandbox, code prompts, level rules, controller, and model-written tests for `--thorough`.
+
+Elsewhere:
+- `docs/pack-packaging.md`: the design for separately installable packs and its migration steps.
 - `evals/`: problem sets, graders, runners and offline routing simulations.
   `simulate_routing.py` and `simulate_code_routing.py` replay saved answers, so
   they need no model calls.
@@ -102,8 +115,8 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
-python evals/compat_openai.py --fake                # with the official `openai` client (needs openai + pint)
-.venv/bin/python -m plm.software.sandbox
-.venv/bin/python -m plm.software.testgen
+uv run --with openai --with pint python evals/compat_openai.py --fake   # with the official `openai` client
+.venv/bin/python -m plm_software.sandbox
+.venv/bin/python -m plm_software.testgen
 .venv/bin/python evals/software/build_tasks.py     # fails if any reference solution fails its tests
 ```
