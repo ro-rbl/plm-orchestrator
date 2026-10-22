@@ -1,19 +1,39 @@
 # NEXT
 
-_Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
+_Updated: 2026-10-22 · branch: main (separate-packs merged, fast-forward) · plan: ROADMAP.md_
 
 ## Start here (next session)
-- Merged on `main`: phase 3 aerospace, the packaging design, and the unit-aware calculator experiment
-  (built and measured; not adopted by either pack, see `ROADMAP.md` 3b). Next, in this order unless
-  decided otherwise:
-  1. **Separately installable packs**: `docs/pack-packaging.md` has the design and a six-step migration,
-     each step with its check. Start a branch, save the baseline with
-     `.venv/bin/python evals/dump_decisions.py > <scratch>/decisions.before`, then do step 1 and stop for review.
-  2. **Next SKY-001 idea**: decompose-then-solve for intensive problems (`ROADMAP.md` 3b). The units
+- Merged on `main`: **separately installable packs**, all six steps of `docs/pack-packaging.md`. The code
+  is now `packages/plm-core` (import `plm`) plus `plm-electrical`, `plm-aerospace`, `plm-software`
+  (`plm_<name>`), found through the `plm.packs` entry point; `plm packs list|install|remove|doctor`.
+  Behavior with all packs installed is unchanged (`evals/dump_decisions.py` identical: 272 texts,
+  1716 checks; routing simulations match the pre-split `main`). Next, in this order unless decided otherwise:
+  1. **Next SKY-001 idea**: decompose-then-solve for intensive problems (`ROADMAP.md` 3b). The units
      result says: don't make the model carry more bookkeeping inside one program; split the work instead.
-  3. **Physics/mechanical pack**: `ROADMAP.md` section 3.
-- Tooling note: `with-timeout` does not pass a heredoc through on stdin (the script silently ran
-  nothing). Write the script to a file and run that file under `with-timeout`.
+  2. **Physics/mechanical pack**: `ROADMAP.md` section 3, now as a new `packages/plm-physics` (manifest,
+     claims, unit words; copy `packages/plm-aerospace` as the template).
+- **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
+  root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
+  .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
+- Local branch `separate-packs` is merged and can go: `git branch -d separate-packs`.
+
+## Packaging: loose ends
+- [ ] **`plm packs install` has never downloaded a model for real.** The pull code ran live only on a model
+      already present (`qwen3:0.6b`: Ollama re-verified it). Resume, in a throwaway venv, with a small model
+      you don't have (~1.4 GB): `PLM_LARGE_MODEL=qwen3:1.7b <venv>/bin/plm packs install aerospace --source
+      packages`, check `plm packs list` shows it pulled, then `ollama rm qwen3:1.7b`.
+- [ ] **Installing a pack from a git URL or a wheel is untested.** Only local directories (editable) were
+      installed live; there's no remote yet. Once there is one: `plm packs install aerospace --source
+      "plm-aerospace @ git+https://<repo>#subdirectory=packages/plm-aerospace"` in a fresh venv.
+- [ ] **Package names are unclaimed on PyPI** (all four 404 on 2026-10-22): installing a pack where
+      `plm-core` isn't installed could fetch someone else's `plm-core`. Claim the names when publishing
+      (ROADMAP phase 5); `docs/pack-packaging.md` "Risks".
+- [ ] **Claim scores for third-party packs are uncalibrated.** Today's are term counts tuned for three
+      packs; a fourth could out-claim them. Open decision in `docs/pack-packaging.md`; decide before
+      accepting a pack written by someone else.
+- [ ] **With a broken pack installed, `plm "<task>"` prints a Python traceback**, ending in a clear
+      RuntimeError that names `plm packs remove <name>`. A one-line message would be friendlier:
+      `packages/plm-core/src/plm/__main__.py` (catch around `from plm.packs import ...`) and the same in `server.py`.
 
 ## Known bugs / weaknesses
 - [ ] **Units strategy as a second opinion (untested).** A units program catches 60-73% of wrong
@@ -65,6 +85,8 @@ _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
       differ; `logs/server.jsonl` records every routing decision, so check it after real use.
 
 ## Tooling notes
+- Logs (`logs/runs.jsonl`, `logs/server.jsonl`, the server's pid/port files) are relative to the working
+  directory since the split; run from the repo root to keep them in `logs/` here (`PLM_LOG_DIR`, `PLM_LOG`).
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now
   refused), and `with-timeout N python - <<EOF` runs an empty script. Pass `"$(cat file)"` as an argument, or
   write the script to a file.
@@ -84,3 +106,10 @@ _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
 - `--thorough` is opt-in, not default (see above).
 - `gpt-oss:20b` (13 GB) has not been evaluated.
 - Physics/mechanical and SQL packs: next (ROADMAP.md, phase 3).
+- **An absent pack's tasks go to whichever installed pack still claims them**, not always to general
+  (with aerospace not installed, ae-c12 and ae-a20, power in kW, go to electrical). By design of claims;
+  recorded in `docs/pack-packaging.md`.
+- **No lint configuration in the repo.** A ruff config outside the repo flags 86 style findings (74 on the
+  pre-split `main`); the 12 this work added are existing idioms (`# noqa: E402` after `sys.path` inserts)
+  or deliberate (`discover()` catches any exception from a pack; `subprocess.run` checked by return code).
+  `ruff check --select E9,F packages evals` is clean.
