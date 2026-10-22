@@ -39,15 +39,22 @@ FORMULA_FORMAT = (
 # assigns the result to ANSWER; the harness converts ANSWER to the unit the *question* asks for.
 # A formula with the wrong dimensions then fails while computing or converting, instead of
 # printing a wrong number with the right final unit, and unit conversions can't be forgotten.
-UNITS_PROMPT_VERSION = 1
+# v1 (3-problem preflight, before the sweep): the 8B imported Q from a made-up "quantities"
+# module every time and once looped listing units, so v2 shows a whole program with no import.
+UNITS_PROMPT_VERSION = 2
 UNITS_FORMAT = (
     "Do not do the arithmetic yourself. Write one Python program in a ```python code block that computes "
-    "the answer with units. Write every given value with its unit as Q(value, \"unit\"), for example "
-    "v = Q(250, \"m/s\"), m = Q(1.2, \"t\") or R = Q(4.7, \"kohm\"), and compute with these quantities: "
-    "units convert automatically. sqrt, sin, cos, tan, log, exp and pi are already defined and accept "
-    "quantities (give angles as Q(30, \"degree\")). Do not import anything. Finish by assigning the result "
-    "to ANSWER, for example ANSWER = F, and do not print it: it is converted to the unit the question asks "
-    "for. For a unitless answer, assign a plain number."
+    "the answer with units. Q, sqrt, sin, cos, tan, log, exp and pi are already defined, so the program "
+    "has no import lines. Write every given value with its unit as Q(value, \"unit\") and compute with "
+    "these quantities; units convert automatically, and angles are given as Q(30, \"degree\"). Finish by "
+    "assigning the result to ANSWER and do not print it: it is converted to the unit the question asks "
+    "for. For a unitless answer, assign a plain number. A complete program looks like this:\n"
+    "```python\n"
+    "v = Q(250, \"m/s\")\n"
+    "t = Q(3, \"min\")\n"
+    "d = v * t\n"
+    "ANSWER = d\n"
+    "```"
 )
 UNITS_PRELUDE = """
 import math as _math
@@ -112,6 +119,14 @@ def run_program(code, timeout=10):
     return _execute(["-I", "-S"], code, timeout)
 
 
+def _foreign_import(line):
+    m = re.match(r"\s*(?:from\s+(\S+)\s+import|import\s+(.+))", line)
+    if not m:
+        return False
+    names = [m.group(1)] if m.group(1) else [n.split(" as ")[0].strip() for n in m.group(2).split(",")]
+    return any(n.split(".")[0] not in ALLOWED_IMPORTS for n in names)
+
+
 def _units_epilogue(want):
     """Convert the program's ANSWER to the asked unit and print the one ANSWER line the grader reads."""
     return f"""
@@ -136,8 +151,11 @@ def run_units_program(code, want, timeout=10):
     """Execute a screened unit-aware program; want is plm.numeric.checks.requested_unit(question).
 
     Returns (stdout, error-or-None) like run_program. Runs with -I but without -S,
-    so the installed pint is importable by the harness's prelude.
+    so the installed pint is importable by the harness's prelude. Import lines for
+    anything but math are dropped first: models add them out of habit (a made-up
+    "quantities" module), and dropping a line can only remove capability.
     """
+    code = "\n".join(line for line in code.splitlines() if not _foreign_import(line))
     refused = screen(code, BLOCKED_UNITS)
     if refused:
         return "", refused
@@ -172,6 +190,9 @@ if __name__ == "__main__":
     assert "never assigned ANSWER" in units('x = Q(1, "m")', "m")[1]
     assert "plain number" in units('ANSWER = 42', "m/s")[1]
     assert "blocked" in units('ANSWER = _ureg', "m")[1] and "blocked" in units('ANSWER = Q._REGISTRY', "m")[1]
-    assert "not allowed" in units('import os\nANSWER = 1', "")[1]
+    assert units('import os\nANSWER = 1', "")[0] == "ANSWER: 1\n"  # foreign imports are dropped, not run
+    assert units('from quantities import Q, m, s\nANSWER = Q(3, "km") / Q(2, "min")', "m/s")[0] == "ANSWER: 25 m/s\n"
+    assert "NameError" in units('from quantities import km\nANSWER = 3 * km', "m")[1]  # needed a dropped name: fails
+    assert "blocked" in units('import os\nANSWER = __import__("os")', "")[1]
     assert units('for _ in range(2):\n    pass\nm_dot = Q(2, "kg/s")\nANSWER = m_dot', "kg/s")[0] == "ANSWER: 2 kg/s\n"
     print("calc self-test: ok")
