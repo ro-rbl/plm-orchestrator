@@ -3,7 +3,7 @@
 Answers are computed here, never hand-typed, and every constant a problem needs
 is stated in the problem (lookups excepted), so the key doesn't depend on which
 value of GM or R a model happens to remember. Run this to regenerate
-problems.jsonl:
+problems.jsonl (and fresh_intensive.jsonl, see FRESH_INTENSIVE):
 
     .venv/bin/python evals/aerospace/build_problems.py
 
@@ -151,20 +151,71 @@ PROBLEMS = [
      86400 / (2 * PI * math.sqrt((RE + 400e3) ** 3 / GM)), "", 0.01, "T = 2 pi sqrt(r^3/GM), n = 86400 / T"),
 ]
 
+# Fresh intensive problems for the decompose-then-solve experiment (ROADMAP 3b), written on
+# 2026-10-22 before that strategy or its prompt existed, so nothing about it was tuned on them.
+# Same rules as above: answers computed here, every constant stated. -> fresh_intensive.jsonl
+FRESH_INTENSIVE = [
+    ("ae-f01", "intensive", "orbits", f"A spacecraft makes a Hohmann transfer from a circular orbit 400 km above Earth to a circular orbit 20200 km above Earth. How long does the transfer take, in hours? {EARTH}",
+     PI * math.sqrt(((2 * RE + 400e3 + 20200e3) / 2) ** 3 / GM) / 3600, "h", 0.01,
+     "a = (r1 + r2)/2, t = pi sqrt(a^3/GM) (half the transfer period)"),
+    ("ae-f02", "intensive", "orbits", f"An elliptical orbit has a perigee altitude of 500 km and an apogee altitude of 2000 km. What is the speed at apogee, in kilometers per second? {EARTH}",
+     math.sqrt(GM * (2 / (RE + 2000e3) - 2 / (2 * RE + 500e3 + 2000e3))) / 1000, "km/s", 0.01,
+     "a = (rp + ra)/2, va = sqrt(GM (2/ra - 1/a))"),
+    ("ae-f03", "intensive", "orbits", f"A satellite in a circular orbit 800 km above Earth fires its engine retrograde once to lower its perigee to 200 km above Earth. What delta-v does that burn take, in meters per second? {EARTH}",
+     circ(RE + 800e3) - math.sqrt(GM * (2 / (RE + 800e3) - 2 / (2 * RE + 800e3 + 200e3))), "m/s", 0.01,
+     "v_circ at r = R + 800 km minus apogee speed of the 200 x 800 km ellipse"),
+    ("ae-f04", "intensive", "propulsion", "A rocket launched straight up has an initial mass of 50 t and burns 35 t of propellant at 250 kg/s with a specific impulse of 300 s. Taking g0 = 9.80665 m/s², including gravity losses at a constant 9.81 m/s² and ignoring drag, what is its speed at burnout, in meters per second?",
+     300 * G0 * math.log(50 / 15) - 9.81 * (35e3 / 250), "m/s", 0.01, "ve = Isp g0, t = 35000/250 = 140 s, v = ve ln(m0/mf) - g t"),
+    ("ae-f05", "intensive", "propulsion", "A jet engine takes in 80 kg/s of air and exhausts it at 600 m/s while the aircraft flies at 250 m/s. Ignoring the fuel's mass flow, what thrust power does the engine deliver, in megawatts?",
+     80 * (600 - 250) * 250 / 1e6, "MW", 0.01, "F = mdot (ve - v), P = F v"),
+    ("ae-f06", "intensive", "aerodynamics", "An aircraft flies at 650 m/s where the air temperature is 223 K. With a ratio of specific heats of 1.4 and R = 287 J/(kg·K), what is the stagnation temperature, in kelvin?",
+     223 * (1 + 0.2 * (650 / math.sqrt(1.4 * 287 * 223)) ** 2), "K", 0.01, "a = sqrt(g R T), M = v / a, T0 = T (1 + (g-1)/2 M^2)"),
+    ("ae-f07", "intensive", "aerodynamics", "An airliner flies at Mach 0.8 where the air temperature is 230 K and the density is 0.41 kg/m³. With a ratio of specific heats of 1.4 and R = 287 J/(kg·K), what is the dynamic pressure, in kilopascals?",
+     0.5 * 0.41 * (0.8 * math.sqrt(1.4 * 287 * 230)) ** 2 / 1000, "kPa", 0.01, "a = sqrt(g R T), v = M a, q = rho v^2 / 2"),
+    ("ae-f08", "intensive", "flight-mechanics", "An aircraft weighing 70 kN has a wing area of 30 square meters and a maximum lift coefficient of 1.6. What is its stall speed in a level turn at a bank angle of 45 degrees, where the air density is 1.225 kg/m³, in meters per second?",
+     math.sqrt(2 * 70e3 / math.cos(math.radians(45)) / (1.225 * 30 * 1.6)), "m/s", 0.01,
+     "n = 1/cos(bank), V = sqrt(2 n W / (rho S CLmax))"),
+    ("ae-f09", "intensive", "flight-mechanics", "An aircraft makes a level turn at 120 m/s with a bank angle of 30 degrees. Taking g = 9.81 m/s², how long does a full 360-degree turn take, in seconds?",
+     2 * PI * (120 ** 2 / (9.81 * math.tan(math.radians(30)))) / 120, "s", 0.01, "r = v^2 / (g tan(bank)), t = 2 pi r / v"),
+    ("ae-f10", "intensive", "flight-mechanics", "An aircraft weighing 50 kN with a wing area of 25 square meters flies at 80 m/s where the air density is 1.0 kg/m³. Its drag polar is CD = 0.025 + 0.05 CL² and its engines give 8 kN of thrust. What is its rate of climb, in meters per second?",
+     (lambda q: (8e3 - q * 25 * (0.025 + 0.05 * (50e3 / (q * 25)) ** 2)) * 80 / 50e3)(0.5 * 1.0 * 80 ** 2), "m/s", 0.01,
+     "q = rho v^2/2, CL = W/(q S), D = q S CD, RC = (T - D) v / W"),
+    ("ae-f11", "intensive", "propulsion", "A rocket nozzle expands gas from a chamber temperature of 3200 K to an exit pressure that is 2% of the chamber pressure. The gas has a ratio of specific heats of 1.25 and R = 330 J/(kg·K). Taking g0 = 9.80665 m/s² and ignoring pressure thrust, what is the specific impulse, in seconds?",
+     math.sqrt(2 * 1.25 / 0.25 * 330 * 3200 * (1 - 0.02 ** (0.25 / 1.25))) / G0, "s", 0.01,
+     "ve = sqrt(2g/(g-1) R T0 (1 - (pe/p0)^((g-1)/g))), Isp = ve / g0"),
+    ("ae-f12", "intensive", "propulsion", "A turbine takes 40 kg/s of gas at 1400 K and expands it through a pressure ratio of 4 with an isentropic efficiency of 90%. With a ratio of specific heats of 1.33 and cp = 1150 J/(kg·K), what power does it deliver, in megawatts?",
+     40 * 1150 * 0.9 * (1400 - 1400 * (1 / 4) ** (0.33 / 1.33)) / 1e6, "MW", 0.01,
+     "T2s = T1 (1/r)^((g-1)/g), dT = eta (T1 - T2s), P = mdot cp dT"),
+    ("ae-f13", "intensive", "orbits", f"A satellite is on an elliptical orbit with a perigee altitude of 400 km and an apogee altitude of 3000 km. How fast is it moving when it is 1000 km above Earth, in kilometers per second? {EARTH}",
+     math.sqrt(GM * (2 / (RE + 1000e3) - 2 / (2 * RE + 400e3 + 3000e3))) / 1000, "km/s", 0.01,
+     "a = (rp + ra)/2, v = sqrt(GM (2/r - 1/a)) at r = R + 1000 km"),
+    ("ae-f14", "intensive", "propulsion", "A single-stage rocket carries 30000 kg of propellant and has a dry mass of 3000 kg not counting its payload. Its engine has a specific impulse of 350 s. Taking g0 = 9.80665 m/s², what is the largest payload it can give 5000 m/s of ideal delta-v, in kilograms?",
+     30000 / (math.exp(5000 / (350 * G0)) - 1) - 3000, "kg", 0.01,
+     "R = exp(dv / (Isp g0)); (3000 + P + 30000) / (3000 + P) = R, so P = 30000/(R - 1) - 3000"),
+    ("ae-f15", "intensive", "aerodynamics", "A pitot-static tube on an aircraft in low-speed flight reads 3.2 kPa between total and static pressure, where the air density is 1.0 kg/m³. Treating the flow as incompressible, how long does the aircraft take to fly 50 km at that speed, in minutes?",
+     50e3 / math.sqrt(2 * 3.2e3 / 1.0) / 60, "min", 0.01, "v = sqrt(2 dp / rho), t = d / v"),
+]
 
-def main():
-    ids = [p[0] for p in PROBLEMS]
+
+def write(problems, name):
+    ids = [p[0] for p in problems]
     assert len(ids) == len(set(ids)), "duplicate problem id"
-    out = Path(__file__).with_name("problems.jsonl")
+    out = Path(__file__).with_name(name)
     with out.open("w") as f:
-        for pid, level, topic, question, answer, unit, tol, solution in PROBLEMS:
+        for pid, level, topic, question, answer, unit, tol, solution in problems:
             f.write(json.dumps({
                 "id": pid, "domain": "aerospace", "level": level, "topic": topic,
                 "question": question, "answer": answer, "unit": unit,
                 "rel_tol": tol, "solution": solution,
             }) + "\n")
-    counts = {lvl: sum(p[1] == lvl for p in PROBLEMS) for lvl in ("calm", "alert", "intensive")}
-    print(f"wrote {len(PROBLEMS)} problems to {out} {counts}")
+    counts = {lvl: sum(p[1] == lvl for p in problems) for lvl in ("calm", "alert", "intensive")}
+    print(f"wrote {len(problems)} problems to {out} {counts}")
+
+
+def main():
+    assert not {p[0] for p in PROBLEMS} & {p[0] for p in FRESH_INTENSIVE}, "id used in both sets"
+    write(PROBLEMS, "problems.jsonl")
+    write(FRESH_INTENSIVE, "fresh_intensive.jsonl")
 
 
 if __name__ == "__main__":
