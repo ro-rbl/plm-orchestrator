@@ -6,16 +6,55 @@ model when the check fails. Models run in [Ollama](https://ollama.com).
 
 ## Setup
 
+Needs Python 3.13, [uv](https://docs.astral.sh/uv/) (or pip) and a running
+Ollama. There's no PyPI release or public repo yet, so install from a checkout.
+
+**1. The core.** Router, server, CLI, the shared numeric engine and the general
+pack. On its own it works: every task goes to the general pack (`qwen3:8b`,
+answers unchecked).
+
 ```bash
 uv venv --python 3.13 .venv
+uv pip install --python .venv/bin/python -e packages/plm-core
+ollama pull qwen3:8b
+```
+
+**2. The packs you want.** Each domain pack is its own package. `plm packs install`
+installs it from this checkout's `packages/` and pulls any model it needs that
+Ollama doesn't have yet:
+
+```bash
+.venv/bin/plm packs install electrical
+.venv/bin/plm packs install aerospace
+.venv/bin/plm packs install software
+```
+
+| Pack | Package | Models it pulls (Ollama size) |
+|---|---|---|
+| electrical | `plm-electrical` | `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (2.5 GB), `qwen3:8b` (5.2 GB) |
+| aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
+| software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
+
+```bash
+.venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
+.venv/bin/plm packs doctor               # every pack loads and every model it needs loads in Ollama
+.venv/bin/plm packs remove aerospace     # its tasks go back to the general pack; models stay in Ollama
+.venv/bin/plm packs install physics --source <dir or pip requirement>   # a pack from elsewhere
+```
+
+`--source` takes a directory holding `plm-<name>/`, the pack's own directory, or
+any pip requirement, such as `"plm-x @ git+https://<repo>#subdirectory=packages/plm-x"`;
+`PLM_PACKS_SOURCE` sets a default. A pack is code that runs on your machine, and
+the software pack's sandbox doesn't change that: install only packs you trust.
+A pack that fails to load stops the router, with a message naming it;
+`plm packs remove <name>` still works then. How packs plug in: `docs/pack-packaging.md`.
+
+**Development:** everything editable in one go (what the tests below expect):
+
+```bash
 uv pip install --python .venv/bin/python -e packages/plm-core \
     -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software
 ```
-
-The core (`packages/plm-core`) works alone: with no packs installed, every task
-goes to the general pack. Each pack is its own package (`docs/pack-packaging.md`);
-install only the ones you want. A pack is code that runs on your machine, so
-install only packs you trust.
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 `PLM_CODER_MODEL`): `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (the original Qwen3-4B),
@@ -33,7 +72,8 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 Each answer comes with a report: the level, every model call, tokens, time,
 and why anything was escalated. An answer is marked unverified if it failed a
 check, and unchecked if the task gave nothing to check against (no unit asked
-for, no code examples). Runs are logged to `logs/runs.jsonl`. See `ROADMAP.md`
+for, no code examples). Runs are logged to `logs/runs.jsonl` under the
+working directory (`PLM_LOG` to change). See `ROADMAP.md`
 for what's next and `NEXT.md` for known open items.
 
 ## Use it as a model (OpenAI-compatible server)
@@ -56,23 +96,27 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
-- Electrical and coding tasks go to their packs and are released only after
-  they're checked, so a streamed answer arrives in one piece. Everything else
-  goes to the 8B, streams token by token, and is never checked.
+- Tasks an installed pack claims (electrical, aerospace, coding) go to that pack
+  and are released only after they're checked, so a streamed answer arrives in
+  one piece. Everything else goes to the 8B, streams token by token, and is never checked.
 - A pack answer ends with a caveat line when it failed a check or had nothing
   to check against. The routing report is the extra `plm` field (on the last
   chunk when streaming).
 - Packs see only the last user message and use their own token budgets; the general pack gets the whole
   conversation and the client's `temperature`, `top_p` and `max_tokens`.
-- Every request is logged to `logs/server.jsonl` (`PLM_SERVER_LOG=off` to disable):
+- Every request is logged to `logs/server.jsonl` under the working directory
+  (`PLM_LOG_DIR` to move `logs/`, `PLM_SERVER_LOG=off` to disable):
   which pack it went to shows how much traffic the packs actually cover.
 - Loopback only unless `--allow-remote`: there is no authentication, and the
   software pack runs model-written code. Not supported: tool calling, images.
-- `GET /health` answers 200 `{"status": "ok"}` only if Ollama answers. The
+- `GET /health` answers 200 `{"status": "ok"}` only if Ollama answers, and lists the installed packs. The
   server writes `logs/plm-serve.pid` and `logs/plm-serve.port`; stop it with
   `kill "$(cat logs/plm-serve.pid)"`.
 
 ## Domain packs
+
+Which tasks each pack takes is in its `claims.py`; when two claim one task, the
+stronger claim wins (more distinct domain terms), then the pack's priority.
 
 | Pack | Routing | Check | Eval result |
 |---|---|---|---|

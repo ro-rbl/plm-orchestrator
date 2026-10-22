@@ -40,9 +40,9 @@ software: aerospace, physics/mechanical, SQL.
   and matches any example results, like the software pack's examples.
 
 ## 3a. Separately installable packs
-- [ ] The core installs alone (everything goes to the general pack); each domain pack is its own
+- [x] The core installs alone (everything goes to the general pack); each domain pack is its own
       package found through the `plm.packs` entry point; `plm packs install <name>` installs a pack
-      and pulls its models. Design and step-by-step migration with checks: `docs/pack-packaging.md`.
+      and pulls its models. Built on branch `separate-packs`, every step checked: `docs/pack-packaging.md`.
 
 ## 3b. Ideas from SKY-001 (Skyfall AI's engineering model, research preview Oct 2026)
 SKY-001 breaks a design into assemblies and parts, plans each part as an ordered sequence of build

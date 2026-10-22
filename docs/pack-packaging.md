@@ -1,8 +1,8 @@
 # Design: separately installable packs
 
-_Status: in progress on branch `separate-packs`: steps 1-5 done (2026-10-22), each
-with its check passing. Implement in the order of "Migration", with each step's
-check passing before the next._
+_Status: done on branch `separate-packs` (2026-10-22): all six steps, each with its
+check passing. The sections below are the design as built; "Where things are
+coupled today" describes the code before the migration._
 
 ## Goal
 
@@ -145,6 +145,10 @@ checks on every saved numeric answer: 272 texts, 1716 answers on 2026-10-22).
   asked by both packs (joules, watts, hours) went to the core. Two packs may
   declare the same word only with the same unit.
 - **The manifest is `<pack>/manifest.py`**, not `__init__.py` (see above).
+- **An absent pack's tasks go to whichever installed pack still claims them**, not
+  always to general. Measured with electrical installed and aerospace not: 2 of
+  the 74 aerospace texts (ae-c12, ae-a20, power in kW) go to electrical, which
+  claims the `kW` symbol; with both installed, aerospace wins them on term count.
 - **Flat import names** (`plm_electrical`, ...), not a namespace package.
 - **Eval sets stay in the repo**, not in the packages; `Pack.eval_set` is a repo path.
 - **A pack that is installed but fails to load is an error**, as is two packs with
