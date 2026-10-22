@@ -58,6 +58,8 @@ def normalize_unit(unit):
     unit = re.sub(r"\bohms\b", "ohm", unit, flags=re.IGNORECASE)
     unit = re.sub(r"\s*\(?\brms\b\)?", "", unit, flags=re.IGNORECASE).strip().strip("*").strip()
     unit = re.sub(r"(?<=[A-Za-z])-(?=[A-Za-z])", "*", unit)  # ohm-meter, kilowatt-hours
+    if re.fullmatch(r"deg[CcFf]", unit):  # pint's Celsius and Fahrenheit, which the next rule would break
+        return "deg" + unit[3].upper()
     if re.fullmatch(r"[A-Za-z]{4,}", unit):  # spelled-out words only; keep mS vs MS
         unit = unit.lower()
     return unit
