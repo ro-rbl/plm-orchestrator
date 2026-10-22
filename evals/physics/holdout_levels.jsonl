@@ -1,0 +1,24 @@
+{"id": "pho-c1", "level": "calm", "question": "A cyclist covers 9 km in 30 minutes. What is the average speed, in kilometers per hour?"}
+{"id": "pho-c2", "level": "calm", "question": "What is the density of water at 4 °C, in kilograms per cubic meter?"}
+{"id": "pho-c3", "level": "calm", "question": "A 5 kg object accelerates at 4 m/s². What net force acts on it, in newtons?"}
+{"id": "pho-c4", "level": "calm", "question": "A 3 kg ball moves at 6 m/s. What is its momentum, in kilogram meters per second?"}
+{"id": "pho-c5", "level": "calm", "question": "A crane lifts a load using 45 kJ of work in 15 s. What is its power, in kilowatts?"}
+{"id": "pho-c6", "level": "calm", "question": "What is the speed of sound in air at 20 °C, in meters per second?"}
+{"id": "pho-c7", "level": "calm", "question": "A spring stretches 0.04 m under a 12 N load. What is its spring constant, in newtons per meter?"}
+{"id": "pho-c8", "level": "calm", "question": "A 0.25 square meter plate has 800 N pressing evenly on it. What is the pressure, in pascals?"}
+{"id": "pho-a1", "level": "alert", "question": "A train slows uniformly from 30 m/s to rest in 50 s. What is its deceleration, in meters per second squared, and how long is that in minutes? Give the deceleration."}
+{"id": "pho-a2", "level": "alert", "question": "An elevator of mass 800 kg accelerates upward at 1.5 m/s². Taking g = 9.81 m/s², what is the tension in its cable, in kilonewtons?"}
+{"id": "pho-a3", "level": "alert", "question": "A 0.8 kg ball is dropped from a height of 20 m. Taking g = 9.81 m/s², what is its kinetic energy just before it hits the ground, ignoring air resistance, in joules?"}
+{"id": "pho-a4", "level": "alert", "question": "A 1 m long pendulum swings on a planet where the gravitational acceleration is 3.7 m/s². What is its period, in seconds?"}
+{"id": "pho-a5", "level": "alert", "question": "A submarine sits 120 m below the surface of seawater with a density of 1025 kg/m³. Taking g = 9.81 m/s², what is the water's gauge pressure on it, in megapascals?"}
+{"id": "pho-a6", "level": "alert", "question": "A 1.5 kg aluminium pan with a specific heat of 900 J/(kg·K) is heated from 20 °C to 180 °C. How much heat does that take, in kilojoules?"}
+{"id": "pho-a7", "level": "alert", "question": "One mole of an ideal gas is at 101.3 kPa and 273 K. With R = 8.314 J/(mol·K), what volume does it occupy, in liters?"}
+{"id": "pho-a8", "level": "alert", "question": "A copper wire 1.5 m long with a cross-section of 0.000002 square meters carries a tensile load of 300 N. With a Young's modulus of 120 GPa, how much does it stretch, in millimeters?"}
+{"id": "pho-i1", "level": "intensive", "question": "A ball is thrown straight up at 15 m/s. Taking g = 9.81 m/s² and ignoring air resistance, how long is it in the air before it returns to the thrower's hand, in seconds, and how high does it go? Give the time."}
+{"id": "pho-i2", "level": "intensive", "question": "A 1000 kg car accelerates from rest to 27 m/s over 200 m against a constant 600 N of resistance. What constant driving force does the engine supply, in newtons?"}
+{"id": "pho-i3", "level": "intensive", "question": "A 0.05 kg bullet moving at 400 m/s embeds itself in a 4 kg block hanging from a string. Taking g = 9.81 m/s², how high does the block swing, in centimeters?"}
+{"id": "pho-i4", "level": "intensive", "question": "A hollow cylinder of mass 3 kg and radius 0.2 m rolls without slipping at 4 m/s. What is its total kinetic energy, in joules?"}
+{"id": "pho-i5", "level": "intensive", "question": "A 500 kg wooden raft with a density of 600 kg/m³ floats in fresh water with a density of 1000 kg/m³. What volume of the raft stays above the water line, in cubic meters?"}
+{"id": "pho-i6", "level": "intensive", "question": "A 2 kW kettle heats 1.5 kg of water from 15 °C to 100 °C. With a specific heat of 4186 J/(kg·K) and no losses, how long does it take, in minutes?"}
+{"id": "pho-i7", "level": "intensive", "question": "A gas expands at a constant pressure of 200 kPa from 0.01 to 0.03 cubic meters while 9 kJ of heat is added. How much does its internal energy change, in kilojoules?"}
+{"id": "pho-i8", "level": "intensive", "question": "A 4 m steel beam is clamped between two walls at 10 °C and warms to 40 °C. With a linear expansion coefficient of 12e-6 per kelvin and a Young's modulus of 200 GPa, what thermal stress builds up in it, in megapascals?"}

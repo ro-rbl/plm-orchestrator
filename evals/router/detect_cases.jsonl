@@ -10,7 +10,7 @@
 {"id": "g10", "pack": "general", "text": "What year did the Apollo 11 mission land on the Moon?"}
 {"id": "g11", "pack": "general", "text": "How many days are there in a leap year?"}
 {"id": "g12", "pack": "general", "text": "What is 15% of 80?"}
-{"id": "g13", "pack": "general", "text": "If a train travels 120 km in 1.5 hours, what is its average speed in km/h?"}
+{"id": "g13", "pack": "physics", "text": "If a train travels 120 km in 1.5 hours, what is its average speed in km/h?"}
 {"id": "g14", "pack": "general", "text": "Can you explain what a Python decorator is?"}
 {"id": "g15", "pack": "general", "text": "What does the error 'IndexError: list index out of range' mean?"}
 {"id": "g16", "pack": "general", "text": "Recommend a good book about the history of science."}
@@ -37,7 +37,7 @@
 {"id": "g37", "pack": "general", "text": "Explain the history of the electric guitar."}
 {"id": "g38", "pack": "general", "text": "What's a good name for a black cat?"}
 {"id": "g39", "pack": "general", "text": "Write a haiku about circuits."}
-{"id": "g40", "pack": "general", "text": "What is the speed of light in meters per second?"}
+{"id": "g40", "pack": "physics", "text": "What is the speed of light in meters per second?"}
 {"id": "e01", "pack": "electrical", "text": "A 12 V battery drives 3 A through a heater. How much power does the heater use, in watts?"}
 {"id": "e02", "pack": "electrical", "text": "What resistance gives 2 A from a 24 V source?"}
 {"id": "e03", "pack": "electrical", "text": "How many volts does a typical car battery have?"}
@@ -62,3 +62,23 @@
 {"id": "g46", "pack": "general", "text": "How many astronauts have walked on the Moon?"}
 {"id": "e06", "pack": "electrical", "text": "A satellite's solar array produces 2 kW at 28 V. What current does it supply, in amperes?"}
 {"id": "e07", "pack": "electrical", "text": "A spacecraft heater draws 3 A from a 28 V bus. How much power does it use, in watts?"}
+{"id": "p01", "pack": "physics", "text": "A 3 kg cart is pushed with a net force of 12 N. What is its acceleration, in meters per second squared?"}
+{"id": "p02", "pack": "physics", "text": "How much work does it take to push a box 8 m across the floor with a 150 N force, in joules?"}
+{"id": "p03", "pack": "physics", "text": "A diver is 15 m under the sea. What is the extra pressure from the water, in kilopascals, with seawater at 1025 kg/m³ and g = 9.81 m/s²?"}
+{"id": "p04", "pack": "physics", "text": "How much energy does it take to heat 4 kg of water from 10 °C to 60 °C with a specific heat of 4186 J/(kg·K)?"}
+{"id": "p05", "pack": "physics", "text": "A 900 kg car drives off at 20 m/s. What is its kinetic energy in kilojoules?"}
+{"id": "p06", "pack": "physics", "text": "A pendulum is 0.5 m long. What is its period on Earth, taking g = 9.81 m/s²?"}
+{"id": "p07", "pack": "physics", "text": "A 60 W motor lifts a 5 kg mass 3 m. How long does it take at full power, in seconds, taking g = 9.81 m/s²?"}
+{"id": "p08", "pack": "physics", "text": "A ball rolls off a 1.2 m high table at 3 m/s. How far from the table does it land, in meters?"}
+{"id": "p09", "pack": "physics", "text": "A steel wire with a cross-section of 1 mm² holds a 50 kg mass. What is the stress in the wire, in megapascals, with g = 9.81 m/s²?"}
+{"id": "p10", "pack": "physics", "text": "What torque does a 25 N force produce at the end of a 0.4 m lever, in newton-meters?"}
+{"id": "p11", "pack": "physics", "text": "A gear turning at 600 rpm drives a gear with twice as many teeth. How fast does the second gear turn, in revolutions per minute?"}
+{"id": "p12", "pack": "physics", "text": "A car brakes from 30 m/s to rest in 5 s. What is its average deceleration, in meters per second squared?"}
+{"id": "p13", "pack": "general", "text": "Explain Newton's third law with an everyday example."}
+{"id": "p14", "pack": "general", "text": "Why does ice float on water?"}
+{"id": "p15", "pack": "general", "text": "What is the difference between mass and weight?"}
+{"id": "p16", "pack": "general", "text": "Who discovered the law of universal gravitation?"}
+{"id": "p17", "pack": "general", "text": "Why do heavy and light objects fall at the same rate in a vacuum?"}
+{"id": "p18", "pack": "general", "text": "What did Galileo show about pendulums in 1602?"}
+{"id": "p19", "pack": "electrical", "text": "A 12 V motor draws 3 A. What electrical power does it use, in watts?"}
+{"id": "p20", "pack": "aerospace", "text": "A 70000 kg airliner climbs at 10 m/s. Taking g = 9.81 m/s², what excess power does that take, in megawatts?"}
