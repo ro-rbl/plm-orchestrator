@@ -27,9 +27,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import grade  # noqa: E402
+import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 from plm.numeric import calc  # noqa: E402
 from plm.numeric.checks import requested_unit  # noqa: E402
-import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 from plm.ollama import ask  # noqa: E402
 
 

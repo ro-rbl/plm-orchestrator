@@ -11,8 +11,9 @@ Model names can be overridden with PLM_SMALL_MODEL and PLM_LARGE_MODEL.
 
 import os
 
-from plm_electrical.levels import classify
 from plm.numeric import controller as numeric
+
+from plm_electrical.levels import classify
 
 MODELS = {
     "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),

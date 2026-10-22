@@ -17,9 +17,9 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import grade  # noqa: E402
+import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 from plm.numeric.answers import LITERAL_UNITS, ureg  # noqa: E402
 from plm.numeric.checks import add_unit_words, agree, check, requested_unit  # noqa: E402
-import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 
 
 def same_kind(a, b):

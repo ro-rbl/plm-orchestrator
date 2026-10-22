@@ -15,14 +15,14 @@ sys.path.insert(0, str(ROOT))
 
 import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
-import plm_software.controller as software  # noqa: E402
-import plm_software.testgen as testgen  # noqa: E402
-from plm_aerospace import controller as aerospace  # noqa: E402
-from plm_electrical import controller as electrical  # noqa: E402
-from plm.pack import Pack, pick  # noqa: E402
 import plm.pack as pack_module  # noqa: E402
 import plm.packs as packs  # noqa: E402
+import plm_software.controller as software  # noqa: E402
+import plm_software.testgen as testgen  # noqa: E402
+from plm.pack import Pack, pick  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
+from plm_aerospace import controller as aerospace  # noqa: E402
+from plm_electrical import controller as electrical  # noqa: E402
 
 FAILS = []
 

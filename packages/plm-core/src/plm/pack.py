@@ -5,9 +5,9 @@ it claims a task, takes the highest score, breaks ties by `priority`, and falls
 back to the general pack when no pack claims the task.
 """
 
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from importlib.metadata import entry_points
-from typing import Callable, Optional
 
 
 @dataclass(frozen=True)
@@ -26,8 +26,8 @@ class Pack:
     levels: dict           # adrenaline level -> plan (calm, alert, intensive)
     models: dict           # tier name -> Ollama model name
     unit_words: dict = field(default_factory=dict)  # numeric packs: extra unit vocabulary
-    eval_set: Optional[str] = None                  # the pack's eval problems, relative to the repo
-    solve_stream: Optional[Callable] = None         # like solve, yielding ("delta", text) then ("result", r)
+    eval_set: str | None = None                     # the pack's eval problems, relative to the repo
+    solve_stream: Callable | None = None            # like solve, yielding ("delta", text) then ("result", r)
 
 
 def pick(packs, text, fallback="general"):
