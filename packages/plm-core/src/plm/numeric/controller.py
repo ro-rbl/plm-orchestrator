@@ -11,13 +11,15 @@ None) the checks can't fail, so the answer is reported as unchecked instead.
 
 import time
 
-from plm.numeric import calc
+from plm.numeric import calc, decompose
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer
 from plm.numeric.checks import check, requested_unit
 from plm.ollama import ask
 
 
 def attempt(task, model, strategy, num_predict, timeout):
+    if strategy == "decompose":
+        return _decomposed(task, model, num_predict, timeout)
     fmt = {"tool": calc.TOOL_FORMAT, "units": calc.UNITS_FORMAT}.get(strategy, ANSWER_FORMAT)
     start = time.time()
     r = ask(model, f"{task}\n\n{fmt}", False, num_predict, timeout)
@@ -38,6 +40,16 @@ def attempt(task, model, strategy, num_predict, timeout):
     step["issues"] = ([program_error] if program_error else []) + check(task, output)
     step["seconds"] = time.time() - start
     return step
+
+
+def _decomposed(task, model, num_predict, timeout):
+    d = decompose.solve(task, model, num_predict, timeout)
+    last = d["calls"][-1]
+    return {"model": model, "strategy": "decompose", "tokens": d["tokens"], "prompt_tokens": d["prompt_tokens"],
+            "model_text": last["text"], "capped": any(c["capped"] for c in d["calls"]), "program": None,
+            "plan": d["plan"], "fallback": d["fallback"], "calls": d["calls"], "output": d["output"],
+            "issues": ([d["program_error"]] if d["program_error"] else []) + check(task, d["output"]),
+            "seconds": d["seconds"]}
 
 
 def solve(task, *, pack, classify, levels, models, level=None, timeout=300):

@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 import plm.general.controller as general  # noqa: E402
 import plm.numeric.controller as numeric  # noqa: E402
+import plm.numeric.decompose as decompose  # noqa: E402
 import plm.pack as pack_module  # noqa: E402
 import plm.packs as packs  # noqa: E402
 import plm_software.controller as software  # noqa: E402
@@ -102,6 +103,59 @@ def test_aerospace():
     r = aerospace.solve("What total delta-v does the transfer take, in kilometers per second?", level="intensive")
     expect("aerospace: a failed check is reported, not escalated", calls == [large] and not r["trusted"]
            and any("positive" in i for i in r["steps"][0]["issues"]), r)
+
+
+def test_decompose():
+    def program(value_expr, unit):  # these use math, which the shared helper never imports
+        return f'```python\nimport math\nprint(f"ANSWER: {{{value_expr}:.6g}} {unit}")\n```'
+
+    large = aerospace.MODELS["large"]
+    q = "A rocket has an exhaust velocity of 3000 m/s and a mass ratio of 2.5. What is its delta-v, in kilometers per second?"
+    plan = ("STEP: log of mass ratio | none | ln(2.5)\n"
+            "STEP: delta-v | km/s | exhaust velocity * log of mass ratio / 1000")
+    expect("plan parsed, none -> unitless", decompose.parse_plan(plan)
+           == [("log of mass ratio", "", "ln(2.5)"), ("delta-v", "km/s", "exhaust velocity * log of mass ratio / 1000")])
+    expect("plan tolerates numbering and bullets", len(decompose.parse_plan("- STEP 1: a | m | x\n2. STEP: b | s | y")) == 2)
+    for out, unit, ok in [("ANSWER: 0.916", "", True), ("ANSWER: 3 km", "m", True), ("ANSWER: 3 s", "m", False),
+                          ("ANSWER: 3", "m/s", False), ("ANSWER: 3 m", "furlongs-ish", True), ("nothing", "m", False),
+                          ("ANSWER: 3 m", "", False)]:
+        expect(f"step check {out!r} vs {unit!r}", (decompose.step_issue(out, unit) is None) == ok,
+               decompose.step_issue(out, unit))
+
+    prompts = []
+    real_ask = decompose.ask
+    try:
+        def scripted(replies):
+            def ask(model, prompt, think, num_predict, timeout):
+                prompts.append(prompt)
+                text = replies.pop(0)
+                return {"response": text, "eval_tokens": 10, "prompt_tokens": 100, "wall_s": 0.0, "done_reason": "stop"}
+            return ask
+
+        decompose.ask = scripted([plan, program("math.log(2.5)", ""), program("3000 * 0.916291 / 1000", "km/s")])
+        prompts.clear()
+        r = numeric.attempt(q, large, "decompose", 1024, 60)
+        expect("decompose: two steps, no fallback", r["fallback"] is None and len(r["calls"]) == 3
+               and r["output"].startswith("ANSWER: 2.7488") and not r["issues"] and r["tokens"] == 30
+               and r["prompt_tokens"] == 300, r)
+        expect("decompose: step 2 sees step 1's value", "log of mass ratio = 0.916291" in prompts[2]
+               and "Now compute step 2 only" in prompts[2], prompts[2])
+
+        decompose.ask = scripted([plan, program("3000", "s"), program("3000 * math.log(2.5) / 1000", "km/s")])
+        r = numeric.attempt(q, large, "decompose", 1024, 60)
+        expect("decompose: wrong step dimension falls back to one program", r["fallback"]
+               and "planned unitless" in r["fallback"] and r["calls"][-1]["kind"] == "fallback: tool"
+               and r["output"].startswith("ANSWER: 2.7488") and not r["issues"], r)
+
+        decompose.ask = scripted(["I'll just solve it.", program("3000 * math.log(2.5) / 1000", "km/s")])
+        r = numeric.attempt(q, large, "decompose", 1024, 60)
+        expect("decompose: no plan falls back", r["fallback"] == "no STEP lines in the plan" and len(r["calls"]) == 2, r)
+
+        decompose.ask = scripted(["\n".join(f"STEP: s{k} | m | x" for k in range(7)), program("1", "km/s")])
+        r = numeric.attempt(q, large, "decompose", 1024, 60)
+        expect("decompose: too many steps falls back", "more than 6" in (r["fallback"] or ""), r)
+    finally:
+        decompose.ask = real_ask
 
 
 def test_software():
@@ -197,6 +251,7 @@ def main():
         test_electrical()
         test_aerospace()
         test_units_strategy()
+        test_decompose()
         test_software()
         test_general()
         test_registry()

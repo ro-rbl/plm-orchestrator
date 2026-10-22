@@ -9,6 +9,11 @@ Strategies:
     formula  same, but the model first states the formula and converts the givens to SI units
     units    the model computes with unit-carrying quantities; the harness converts the result
              to the unit the question asks for (plm/numeric/calc.py run_units_program)
+    decompose  plan the steps, then one calculator program per step, each checked; falls back
+             to one tool program if the plan or a step fails (plm/numeric/decompose.py)
+
+--level runs only the problems at one level. A problem file other than problems.jsonl adds
+its name to the results file, e.g. results/aerospace_fresh_intensive__<model>__tool.jsonl.
 
 Writes results/<set>__<model>.jsonl, one line per problem, flushed as it goes.
 Re-running the same command resumes: problems already in the file are skipped.
@@ -28,7 +33,7 @@ sys.path.insert(0, str(ROOT))
 
 import grade  # noqa: E402
 import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
-from plm.numeric import calc  # noqa: E402
+from plm.numeric import calc, decompose  # noqa: E402
 from plm.numeric.checks import requested_unit  # noqa: E402
 from plm.ollama import ask  # noqa: E402
 
@@ -39,6 +44,7 @@ STRATEGIES = {
     "tool": (calc.TOOL_FORMAT, calc.TOOL_PROMPT_VERSION),
     "formula": (calc.FORMULA_FORMAT, calc.FORMULA_PROMPT_VERSION),
     "units": (calc.UNITS_FORMAT, calc.UNITS_PROMPT_VERSION),
+    "decompose": (decompose.PLAN_FORMAT, f"plan {decompose.PLAN_PROMPT_VERSION}, step {decompose.STEP_PROMPT_VERSION}"),
 }
 
 
@@ -71,11 +77,13 @@ def main():
     ap.add_argument("--think", action="store_true", help="allow Qwen3-style thinking")
     ap.add_argument("--num-predict", type=int, default=1024, help="max generated tokens per problem")
     ap.add_argument("--timeout", type=int, default=300, help="seconds per request")
+    ap.add_argument("--level", choices=["calm", "alert", "intensive"], help="only the problems at this level")
     ap.add_argument("--out")
     args = ap.parse_args()
 
-    problems = grade.load_jsonl(args.problems)
-    set_name = Path(args.problems).parent.name
+    problems = [p for p in grade.load_jsonl(args.problems) if not args.level or p["level"] == args.level]
+    path = Path(args.problems)
+    set_name = path.parent.name + ("" if path.stem == "problems" else "_" + path.stem)
     safe_model = re.sub(r"[^A-Za-z0-9._-]+", "_", args.model)
     out = Path(args.out) if args.out else ROOT / "results" / f"{set_name}__{safe_model}{'__think' if args.think else ''}{'' if args.strategy == 'bare' else '__' + args.strategy}.jsonl"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -91,6 +99,19 @@ def main():
                    "prompt_version": STRATEGIES[args.strategy][1],
                    "num_predict": args.num_predict}
             try:
+                if args.strategy == "decompose":
+                    d = decompose.solve(p["question"], args.model, args.num_predict, args.timeout)
+                    row.update({"response": d["output"], "program_error": d["program_error"],
+                                "fallback": d["fallback"], "plan": d["plan"], "calls": d["calls"],
+                                "eval_tokens": d["tokens"], "prompt_tokens": d["prompt_tokens"],
+                                "wall_s": d["seconds"], "done_reason": d["done_reason"]})
+                    f.write(json.dumps(row) + "\n")
+                    f.flush()
+                    verdict = grade.grade_one(p, row["response"])["verdict"]
+                    print(f"[{i}/{len(todo)}] {p['id']} {verdict:<11} {row['eval_tokens']:>5} tok "
+                          f"{row['wall_s']:>6.1f}s  {len(d['calls'])} calls"
+                          + (f"  [fallback: {d['fallback']}]" if d["fallback"] else ""), flush=True)
+                    continue
                 row.update(ask(args.model, build_prompt(p, args.strategy), args.think,
                                args.num_predict, args.timeout))
                 if args.strategy != "bare":
