@@ -43,10 +43,12 @@ def main():
              + load("evals/electrical/holdout_levels.jsonl", "question", "electrical")
              + load("evals/software/tasks.jsonl", "prompt", "software")
              + load("evals/software/holdout_levels.jsonl", "prompt", "software")
-             + load("evals/aerospace/problems.jsonl", "question", "aerospace"))
+             + load("evals/aerospace/problems.jsonl", "question", "aerospace")
+             + load("evals/physics/problems.jsonl", "question", "physics"))
     misses = score("eval-set texts (known while writing the rule)", known, verbose)
     holdout = (load("evals/router/detect_cases.jsonl", "text")
-               + load("evals/aerospace/holdout_levels.jsonl", "question", "aerospace"))
+               + load("evals/aerospace/holdout_levels.jsonl", "question", "aerospace")
+               + load("evals/physics/holdout_levels.jsonl", "question", "physics"))
     score("holdout cases (labels written before the rule they test)", holdout, verbose)
     sys.exit(1 if misses else 0)  # the eval texts must all route correctly; the holdout is reported
 

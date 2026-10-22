@@ -29,6 +29,7 @@ import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit wor
 from plm.numeric.checks import agree, check  # noqa: E402
 from plm_aerospace.levels import classify as aerospace_classify  # noqa: E402
 from plm_electrical.levels import classify as electrical_classify  # noqa: E402
+from plm_physics.levels import classify as physics_classify  # noqa: E402
 
 RESULTS = ROOT / "results"
 F = {
@@ -133,10 +134,43 @@ POLICIES_AEROSPACE = [
 # catch, units vs plain calculator for the same model.
 UNITS_RULE = "units policy adopted iff accuracy >= shipped and compute <= shipped + 10 points"
 
+# Physics: written with the pack, before its sweep (results/run_physics.sh) ran. The controller ships
+# "escalate on failed check" until the sweep; PHYSICS_RULE then picks among these policies, applied
+# below by pick_physics(), so the choice is mechanical. The rule is the one aerospace's switch followed
+# in effect (routed 37/50 was 2 behind always-8B+tool 39/50, so the 8B shipped), written down first.
+F_PHYSICS = {
+    "4B": f"physics__{SMALL}.jsonl",
+    "4B+tool": f"physics__{SMALL}__tool.jsonl",
+    "8B": "physics__qwen3_8b.jsonl",
+    "8B+tool": "physics__qwen3_8b__tool.jsonl",
+}
+POLICIES_PHYSICS = [
+    ("always 8B (bare)", same([("8B", None)])),
+    ("always 8B+tool", same([("8B+tool", None)])),
+    ("always 4B (bare)", same([("4B", None)])),
+    ("always 4B+tool", same([("4B+tool", None)])),
+    ("routed: 4B+tool | 8B+tool", tiers([("4B+tool", None)], [("8B+tool", None)])),
+    ("  + escalate on failed check (pre-sweep default)", tiers([("4B+tool", None), ("8B+tool", None)],
+                                                             [("8B+tool", None), ("8B", None)])),
+    ("  + escalate on disagree w/ 4B bare", tiers([("4B+tool", "4B"), ("8B+tool", None)],
+                                                  [("8B+tool", None), ("8B", None)])),
+]
+PHYSICS_RULE = ("ship the cheapest policy above whose score is within 1 problem of the best one's "
+                "(levels from the physics classifier; 1-2 problems on 50 are noise)")
+
 PACKS = {
     "electrical": ("evals/electrical/problems.jsonl", electrical_classify, F, POLICIES),
     "aerospace": ("evals/aerospace/problems.jsonl", aerospace_classify, F_AEROSPACE, POLICIES_AEROSPACE),
+    "physics": ("evals/physics/problems.jsonl", physics_classify, F_PHYSICS, POLICIES_PHYSICS),
 }
+
+
+def pick_physics(results):
+    """PHYSICS_RULE over [(policy name, score, compute)]; None until every policy has results."""
+    if len(results) < len(POLICIES_PHYSICS):
+        return None
+    best = max(score for _, score, _ in results)
+    return min((r for r in results if r[1] >= best - 1), key=lambda r: r[2])
 
 
 def main():
@@ -146,6 +180,8 @@ def main():
     n = len(probs)
     R = {k: {r["id"]: r for r in grade.load_jsonl(RESULTS / v)} for k, v in F.items() if (RESULTS / v).exists()}
     F = {k: v for k, v in F.items() if k in R}
+    if "8B" not in R:
+        sys.exit(f"no saved 8B answers for {pack} yet (the compute baseline); run its sweep in results/")
     ok = {k: {p["id"]: grade.grade_one(p, R[k][p["id"]]["response"])["verdict"] == "correct" for p in probs} for k in F}
     cost = {k: {p["id"]: PARAMS[k.split("+")[0]] * R[k][p["id"]]["eval_tokens"] for p in probs} for k in F}
     out = {k: {p["id"]: R[k][p["id"]]["response"] for p in probs} for k in F}
@@ -173,6 +209,7 @@ def main():
 
     print(f"levels from: {src}\n")
     print(f"{'policy (calm+alert | intensive)':<44} {'score':>6} {'compute':>8} {'escalated':>10}")
+    measured = []
     for name, pol in policies:
         needed = {m for steps in pol.values() for step in steps for m in step if m}
         if not needed <= R.keys():
@@ -185,6 +222,7 @@ def main():
             spend += s
             escalated += step > 0
         print(f"{name:<44} {score:>3}/{n} {spend / base:>8.0%} {escalated:>10}")
+        measured.append((name.strip(), score, spend / base))
 
     # Hindsight bound: cheapest saved answer that was correct (8B bare if none were).
     spend = score = 0
@@ -194,6 +232,10 @@ def main():
         score += ok[k][p["id"]]
         spend += cost[k][p["id"]]
     print(f"{'hindsight: cheapest correct answer':<44} {score:>3}/{n} {spend / base:>8.0%}")
+    if pack == "physics" and "--labels" not in sys.argv:
+        chosen = pick_physics(measured)
+        print(f"\nrule: {PHYSICS_RULE}")
+        print(f"-> {chosen[0]} ({chosen[1]}/{n} at {chosen[2]:.0%})" if chosen else "-> needs every policy's results")
 
     if "--checks" in sys.argv:
         print("\nhow many wrong answers the checks catch:")

@@ -30,8 +30,10 @@ def same_kind(a, b):
 
 def main():
     problems = (grade.load_jsonl(ROOT / "evals/electrical/problems.jsonl")
-                + grade.load_jsonl(ROOT / "evals/aerospace/problems.jsonl"))
-    holdout = grade.load_jsonl(ROOT / "evals/electrical/holdout_levels.jsonl")
+                + grade.load_jsonl(ROOT / "evals/aerospace/problems.jsonl")
+                + grade.load_jsonl(ROOT / "evals/physics/problems.jsonl"))
+    holdout = (grade.load_jsonl(ROOT / "evals/electrical/holdout_levels.jsonl")
+               + grade.load_jsonl(ROOT / "evals/physics/holdout_levels.jsonl"))
     fails = []
 
     for p in problems:
@@ -57,6 +59,10 @@ def main():
         ("ee-i15", "ANSWER: 152.53 kWh", "asked for USD"),
         ("ee-c01", "ANSWER: 120 <unit>", "'<unit>'"),  # pint half-parses it; either message is a catch
         ("ae-c02", "ANSWER: 11772 kg", "asked for N"),
+        ("ph-c02", "ANSWER: 3000 kg", "asked for N"),
+        ("ph-a13", "ANSWER: 23.56 L", "asked for L/s"),
+        ("ph-i11", "ANSWER: 46.25", "asked for degC"),
+        ("ph-i05", "ANSWER: -45.5 m", "must be positive"),
         ("ae-c10", "ANSWER: 700 kW", "asked for kN"),
         ("ae-i07", "ANSWER: 20239 km/s", "asked for km"),
         ("ae-a07", "ANSWER: -17.5 K", "must be positive"),

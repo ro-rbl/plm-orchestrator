@@ -22,6 +22,7 @@ from plm.numeric.checks import check, requested_unit  # noqa: E402
 from plm.packs import detect  # noqa: E402
 from plm_aerospace.levels import classify as aerospace_classify  # noqa: E402
 from plm_electrical.levels import classify as electrical_classify  # noqa: E402
+from plm_physics.levels import classify as physics_classify  # noqa: E402
 from plm_software.levels import classify as software_classify  # noqa: E402
 
 
@@ -36,6 +37,8 @@ def main():
         ("evals/electrical/holdout_levels.jsonl", "question", electrical_classify),
         ("evals/aerospace/problems.jsonl", "question", aerospace_classify),
         ("evals/aerospace/holdout_levels.jsonl", "question", aerospace_classify),
+        ("evals/physics/problems.jsonl", "question", physics_classify),
+        ("evals/physics/holdout_levels.jsonl", "question", physics_classify),
         ("evals/software/tasks.jsonl", "prompt", software_classify),
         ("evals/software/holdout_levels.jsonl", "prompt", software_classify),
         ("evals/router/detect_cases.jsonl", "text", None),
@@ -46,7 +49,7 @@ def main():
             level = classify(text) if classify else None
             print("TEXT", r["id"], detect(text), repr(requested_unit(text)), level)
 
-    for pack in ("electrical", "aerospace"):
+    for pack in ("electrical", "aerospace", "physics"):
         questions = {p["id"]: p["question"] for p in load(f"evals/{pack}/problems.jsonl")}
         for f in sorted(glob.glob(str(ROOT / "results" / "**" / f"{pack}__*.jsonl"), recursive=True)):
             name = Path(f).relative_to(ROOT)

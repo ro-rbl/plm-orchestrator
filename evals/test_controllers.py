@@ -24,6 +24,7 @@ from plm.pack import Pack, pick  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
 from plm_aerospace import controller as aerospace  # noqa: E402
 from plm_electrical import controller as electrical  # noqa: E402
+from plm_physics import controller as physics  # noqa: E402
 
 FAILS = []
 
@@ -103,6 +104,19 @@ def test_aerospace():
     r = aerospace.solve("What total delta-v does the transfer take, in kilometers per second?", level="intensive")
     expect("aerospace: a failed check is reported, not escalated", calls == [large] and not r["trusted"]
            and any("positive" in i for i in r["steps"][0]["issues"]), r)
+
+
+def test_physics():
+    small, large = physics.MODELS["small"], physics.MODELS["large"]
+    q = "A 1200 kg car accelerates at 2.5 m/s². What net force acts on it, in newtons?"
+    numeric.ask, calls = fake_ollama({small: [program("1200 * 2.5", "N")]})
+    r = physics.solve(q)
+    expect("physics: calm goes to the small model", calls == [small] and r["trusted"] and r["pack"] == "physics"
+           and r["answer"]["value"] == 3000, r)
+
+    numeric.ask, calls = fake_ollama({small: [program("1200 * 2.5", "kg")], large: [program("1200 * 2.5", "N")]})
+    r = physics.solve(q)
+    expect("physics: a failed check escalates to the large model", calls == [small, large] and r["trusted"], r)
 
 
 def test_decompose():
@@ -231,7 +245,7 @@ def test_registry():
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
     expect("detect general", detect("What's the capital of Australia?") == "general")
-    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "software", "general"}
+    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "physics", "software", "general"}
            and list(PACKS)[-1] == "general", list(PACKS))
     real_eps = pack_module.entry_points
     try:
@@ -252,6 +266,7 @@ def main():
         test_aerospace()
         test_units_strategy()
         test_decompose()
+        test_physics()
         test_software()
         test_general()
         test_registry()

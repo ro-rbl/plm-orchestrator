@@ -9,7 +9,9 @@ from plm.pack import evidence
 # after a number) and gives numbers or asks for a unit. Conceptual questions
 # ("Explain Ohm's law") have neither and go to the general pack.
 ELECTRICAL_TERM = re.compile(
-    r"\b(?:volts?|voltage|amps?|amperes?|amperage|current|ohms?|resist(?:or|ors|ance)|capacit(?:or|ors|ance)"
+    # "air resistance" (and wind, rolling) is mechanics, not a resistor
+    r"\b(?:volts?|voltage|amps?|amperes?|amperage|current|ohms?|(?<!air )(?<!wind )(?<!rolling )resist(?:or|ors|ance)"
+    r"|capacit(?:or|ors|ance)"
     r"|inductors?|inductance|watts?|kilowatts?|kWh|transformers?|circuits?|hertz|batter(?:y|ies)|LEDs?"
     r"|op-amps?|amplifiers?|impedance|reactance|three-phase|RMS|farads?|henr(?:y|ies)|siemens|coulombs?"
     r"|power factor|electricity|diodes?)\b",

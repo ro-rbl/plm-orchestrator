@@ -27,6 +27,7 @@ Ollama doesn't have yet:
 .venv/bin/plm packs install electrical
 .venv/bin/plm packs install aerospace
 .venv/bin/plm packs install software
+.venv/bin/plm packs install physics
 ```
 
 | Pack | Package | Models it pulls (Ollama size) |
@@ -34,12 +35,13 @@ Ollama doesn't have yet:
 | electrical | `plm-electrical` | `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (2.5 GB), `qwen3:8b` (5.2 GB) |
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
 | software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
+| physics | `plm-physics` | the 4B and 8B above |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
 .venv/bin/plm packs doctor               # every pack loads and every model it needs loads in Ollama
 .venv/bin/plm packs remove aerospace     # its tasks go back to the general pack; models stay in Ollama
-.venv/bin/plm packs install physics --source <dir or pip requirement>   # a pack from elsewhere
+.venv/bin/plm packs install sql --source <dir or pip requirement>       # a pack from elsewhere
 ```
 
 `--source` takes a directory holding `plm-<name>/`, the pack's own directory, or
@@ -53,7 +55,7 @@ A pack that fails to load stops the router, with a message naming it;
 
 ```bash
 uv pip install --python .venv/bin/python -e packages/plm-core \
-    -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software
+    -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software -e packages/plm-physics
 ```
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
@@ -96,7 +98,7 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
-- Tasks an installed pack claims (electrical, aerospace, coding) go to that pack
+- Tasks an installed pack claims (electrical, aerospace, physics, coding) go to that pack
   and are released only after they're checked, so a streamed answer arrives in
   one piece. Everything else goes to the 8B, streams token by token, and is never checked.
 - A pack answer ends with a caveat line when it failed a check or had nothing
@@ -122,6 +124,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
+| physics (mechanics, fluids, heat, materials) | pre-sweep default: 4B + calculator for calm/alert, escalating to the 8B; 8B + calculator for intensive | unit and sanity checks | sweep pending (`results/run_physics.sh`) |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 
@@ -138,7 +141,7 @@ Core, in `packages/plm-core/src/plm/`:
 
 Packs, each in `packages/plm-<name>/src/plm_<name>/` with a `manifest.py` (its `PACK`)
 and `claims.py` (which tasks it takes):
-- `plm_electrical`, `plm_aerospace`: each numeric pack's level cues, tiers and unit words.
+- `plm_electrical`, `plm_aerospace`, `plm_physics`: each numeric pack's level cues, tiers and unit words.
 - `plm_software`: sandbox, code prompts, level rules, controller, and model-written tests for `--thorough`.
 
 Elsewhere:
