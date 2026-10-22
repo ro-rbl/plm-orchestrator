@@ -76,7 +76,7 @@ def run_one(task, args):
         result = PACKS[pack].solve(task, level=args.level, timeout=args.timeout, **extra)
     except urllib.error.HTTPError as e:
         detail = e.read().decode(errors="replace")[:200]
-        sys.exit(f"Ollama error {e.code}: {detail}\nModels in use: {PACKS[pack].MODELS} "
+        sys.exit(f"Ollama error {e.code}: {detail}\nModels in use: {PACKS[pack].models} "
                  "(set PLM_SMALL_MODEL / PLM_LARGE_MODEL / PLM_CODER_MODEL)")
     except urllib.error.URLError as e:
         sys.exit(f"Can't reach Ollama ({e.reason}). Is it running? Address comes from OLLAMA_HOST.")

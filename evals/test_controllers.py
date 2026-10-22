@@ -18,6 +18,7 @@ import plm.software.controller as software  # noqa: E402
 import plm.software.testgen as testgen  # noqa: E402
 from plm.aerospace import controller as aerospace  # noqa: E402
 from plm.electrical import controller as electrical  # noqa: E402
+from plm.pack import Pack, pick  # noqa: E402
 from plm.packs import PACKS, detect  # noqa: E402
 
 FAILS = []
@@ -157,8 +158,19 @@ def test_general():
 
 def test_registry():
     for name, pack in PACKS.items():
-        expect(f"{name} provides the pack interface", all(hasattr(pack, a) for a in ("MODELS", "LEVELS", "solve")
-                                                          ) and set(pack.LEVELS) == {"calm", "alert", "intensive"})
+        expect(f"{name} manifest is named for its key", pack.name == name, pack.name)
+        expect(f"{name} provides the pack interface", callable(pack.solve) and callable(pack.claims)
+               and set(pack.levels) == {"calm", "alert", "intensive"} and pack.models, pack)
+    expect("general claims nothing", PACKS["general"].claims("What's the capital of Australia?") == 0)
+    expect("only general streams", [n for n, p in PACKS.items() if p.solve_stream] == ["general"])
+    # ties between equal claims go to the higher priority; no claim falls back to general
+    a = Pack("a", "0", claims=lambda t: 2, priority=1, solve=None, levels={}, models={})
+    b = Pack("b", "0", claims=lambda t: 2, priority=2, solve=None, levels={}, models={})
+    c = Pack("c", "0", claims=lambda t: 3, priority=0, solve=None, levels={}, models={})
+    none = Pack("none", "0", claims=lambda t: 0, priority=9, solve=None, levels={}, models={})
+    expect("pick: tie goes to priority", pick([a, b], "x") == "b")
+    expect("pick: higher claim beats priority", pick([a, b, c], "x") == "c")
+    expect("pick: no claim -> general", pick([none], "x") == "general" and pick([], "x") == "general")
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
     expect("detect general", detect("What's the capital of Australia?") == "general")

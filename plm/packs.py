@@ -1,26 +1,19 @@
 """Pack registry, used by the CLI and the server to find packs the same way.
 
-A pack is a module that provides:
-
-    MODELS   tier name -> Ollama model name
-    LEVELS   adrenaline level -> plan (calm, alert, intensive)
-    solve(task, level=None, timeout=..., **options) -> dict with at least
-             pack, task, level, reason, answer, checked, unchecked_reason,
-             trusted, steps, tokens, seconds
-
-`trusted` means the answer passed every check and there was something to check;
-`checked` is False when the task gave the pack nothing to verify against.
+Each pack is a `plm.pack.Pack` manifest; `detect` asks every pack for its claim
+on a task and picks one with `plm.pack.pick`. The vocabulary below is still
+shared here; it moves into each pack's own claims() next (docs/pack-packaging.md).
 """
 
+import math
 import re
 
 from plm.aerospace import controller as aerospace
 from plm.electrical import controller as electrical
 from plm.general import controller as general
 from plm.numeric.checks import requested_unit
+from plm.pack import Pack, pick
 from plm.software import controller as software
-
-PACKS = {"electrical": electrical, "aerospace": aerospace, "software": software, "general": general}
 
 SOFTWARE_TASK = re.compile(r"\b(?:write|implement|create|code)\b.{0,40}\b(?:function|class|method|program)\b|\bdef \w+\s*\(",
                            re.IGNORECASE | re.DOTALL)
@@ -57,21 +50,44 @@ def _evidence(term_re, text, symbols=None):
     return n + (len(symbols.findall(text)) if symbols else 0)
 
 
+def software_claims(text):
+    return math.inf if SOFTWARE_TASK.search(text) else 0
+
+
+def electrical_claims(text):
+    """Distinct electrical terms and unit symbols, when there are numbers or a unit is asked for."""
+    if ((ELECTRICAL_TERM.search(text) or UNIT_SYMBOL.search(text))
+            and (NUMBER.search(text) or requested_unit(text) is not None)):
+        return _evidence(ELECTRICAL_TERM, text, UNIT_SYMBOL)
+    return 0
+
+
+def aerospace_claims(text):
+    """Distinct aerospace terms, when there is a quantity or a unit is asked for.
+
+    When electrical claims the same text too, e.g. "an aircraft with 300 kW of excess
+    power" or "a satellite's 28 V bus", the domain with more distinct terms wins and
+    ties go to electrical (its priority is higher).
+    """
+    if AEROSPACE_TERM.search(text) and (QUANTITY.search(text) or requested_unit(text) is not None):
+        return _evidence(AEROSPACE_TERM, text)
+    return 0
+
+
+MANIFESTS = [
+    Pack(name="electrical", version="0.1.0", claims=electrical_claims, priority=60, solve=electrical.solve,
+         levels=electrical.LEVELS, models=electrical.MODELS, eval_set="evals/electrical/problems.jsonl"),
+    Pack(name="aerospace", version="0.1.0", claims=aerospace_claims, priority=50, solve=aerospace.solve,
+         levels=aerospace.LEVELS, models=aerospace.MODELS, eval_set="evals/aerospace/problems.jsonl"),
+    Pack(name="software", version="0.1.0", claims=software_claims, priority=100, solve=software.solve,
+         levels=software.LEVELS, models=software.MODELS, eval_set="evals/software/tasks.jsonl"),
+    # Built in and always present: claims nothing, answers whatever no other pack claims.
+    Pack(name="general", version="0.1.0", claims=lambda text: 0, priority=0, solve=general.solve,
+         levels=general.LEVELS, models=general.MODELS, solve_stream=general.solve_stream),
+]
+PACKS = {p.name: p for p in MANIFESTS}
+
+
 def detect(text):
-    """Pick a pack from the task text: software, electrical, aerospace, or general."""
-    if SOFTWARE_TASK.search(text):
-        return "software"
-    unit_asked = requested_unit(text) is not None
-    is_electrical = bool((ELECTRICAL_TERM.search(text) or UNIT_SYMBOL.search(text))
-                         and (NUMBER.search(text) or unit_asked))
-    is_aerospace = bool(AEROSPACE_TERM.search(text) and (QUANTITY.search(text) or unit_asked))
-    if is_electrical and is_aerospace:
-        # e.g. "an aircraft with 300 kW of excess power" or "a satellite's 28 V bus":
-        # the domain with more distinct terms wins, ties go to electrical.
-        aero, elec = _evidence(AEROSPACE_TERM, text), _evidence(ELECTRICAL_TERM, text, UNIT_SYMBOL)
-        return "aerospace" if aero > elec else "electrical"
-    if is_electrical:
-        return "electrical"
-    if is_aerospace:
-        return "aerospace"
-    return "general"
+    """Pick a pack from the task text: the strongest claim, else general."""
+    return pick(PACKS.values(), text)
