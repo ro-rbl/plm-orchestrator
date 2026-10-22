@@ -39,6 +39,8 @@ FORMULA_FORMAT = (
 # assigns the result to ANSWER; the harness converts ANSWER to the unit the *question* asks for.
 # A formula with the wrong dimensions then fails while computing or converting, instead of
 # printing a wrong number with the right final unit, and unit conversions can't be forgotten.
+# Measured, not adopted: catches far more wrong answers but makes the models wrong more often
+# (ROADMAP 3b has the numbers). Kept as the "units" strategy for experiments.
 # v1 (3-problem preflight, before the sweep): the 8B imported Q from a made-up "quantities"
 # module every time and once looped listing units, so v2 shows a whole program with no import.
 UNITS_PROMPT_VERSION = 2

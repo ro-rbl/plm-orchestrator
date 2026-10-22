@@ -3,13 +3,24 @@
 _Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
 
 ## Start here (next session)
-- Phase 3 aerospace is merged (`main`). Next, in this order unless decided otherwise:
+- Merged on `main`: phase 3 aerospace, the packaging design, and the unit-aware calculator experiment
+  (built and measured; not adopted by either pack, see `ROADMAP.md` 3b). Next, in this order unless
+  decided otherwise:
   1. **Separately installable packs**: `docs/pack-packaging.md` has the design and a six-step migration,
-     each step with its check. Start a branch, save the baseline with `evals/dump_decisions.py`, then step 1.
-  2. **SKY-001 ideas**, starting with the unit-aware calculator: `ROADMAP.md` section 3b.
+     each step with its check. Start a branch, save the baseline with
+     `.venv/bin/python evals/dump_decisions.py > <scratch>/decisions.before`, then do step 1 and stop for review.
+  2. **Next SKY-001 idea**: decompose-then-solve for intensive problems (`ROADMAP.md` 3b). The units
+     result says: don't make the model carry more bookkeeping inside one program; split the work instead.
   3. **Physics/mechanical pack**: `ROADMAP.md` section 3.
+- Tooling note: `with-timeout` does not pass a heredoc through on stdin (the script silently ran
+  nothing). Write the script to a file and run that file under `with-timeout`.
 
 ## Known bugs / weaknesses
+- [ ] **Units strategy as a second opinion (untested).** A units program catches 60-73% of wrong
+      answers but is wrong itself too often to be the answer. Hypothesis: run it beside the plain
+      calculator and escalate only when the two disagree. Policy must be fixed before measuring, and
+      replayed from saved results first: `evals/simulate_routing.py` supports verifiers (`(model, verifier)`
+      steps), so it costs no model calls to try. Watch compute: it doubles calls on every problem.
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`
       style in `evals/software/build_tasks.py` (sw-i01, sw-i13, sw-i15) led the 8B to write 7/8 malformed tests
       for LRUCache; `plm/software/testgen.py:is_broken_test` hides them, it doesn't fix them. Changing the style

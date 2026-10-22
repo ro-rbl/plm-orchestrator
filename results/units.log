@@ -1,0 +1,248 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__units.jsonl
+[1/50] ee-c01 no_answer      72 tok    6.4s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'volt / micronit ** 0.5' ([mass] * [length] ** 3 / [time] ** 3 / [current] / [luminosity] ** 0.5) to 'volt' ([mass] * [length] ** 2 / [time] ** 3 /]
+[2/50] ee-c02 correct        36 tok    2.2s
+[3/50] ee-c03 correct        58 tok    2.9s
+[4/50] ee-c04 correct        64 tok    3.3s
+[5/50] ee-c05 correct       139 tok    5.9s
+[6/50] ee-c06 correct        88 tok    3.8s
+[7/50] ee-c07 correct       113 tok    4.2s
+[8/50] ee-c08 correct        76 tok    3.0s
+[9/50] ee-c09 no_answer      35 tok    1.7s  [exit 1: TypeError: isinstance() arg 2 must be a type, a tuple of types, or a union]
+[10/50] ee-c10 correct        28 tok    1.5s
+[11/50] ee-c11 wrong_value    31 tok    1.6s
+[12/50] ee-c12 no_answer      45 tok    2.0s  [exit 1: TypeError: unsupported operand type(s) for -: 'ParserHelper' and 'ParserHelper']
+[13/50] ee-c13 wrong_value    95 tok    3.5s
+[14/50] ee-c14 wrong_value    89 tok    3.7s
+[15/50] ee-c15 correct        25 tok    1.8s
+[16/50] ee-a01 no_answer      93 tok    3.9s  [exit 1: pint.errors.UndefinedUnitError: 'kOhm' is not defined in the unit registry]
+[17/50] ee-a02 correct       105 tok    4.3s
+[18/50] ee-a03 no_answer     135 tok    6.0s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'kiloohm * ohm * microfarad * farad' ([time] ** 2) to 'second' ([time])]
+[19/50] ee-a04 no_answer     182 tok    6.6s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'second / kiloohm / ohm / microfarad / farad' (1 / [time]) to 'dimensionless' (dimensionless)]
+[20/50] ee-a05 wrong_value    99 tok    3.9s
+[21/50] ee-a06 no_answer     126 tok    4.9s  [exit 1: TypeError: unsupported operand type(s) for -: 'ParserHelper' and 'ParserHelper']
+[22/50] ee-a07 no_answer     127 tok    4.8s  [exit 1: pint.errors.DimensionalityError: Cannot convert from '1 / kiloohm / ohm / nanofarad / farad' (1 / [time] ** 2) to 'hertz' (1 / [time])]
+[23/50] ee-a08 correct        84 tok    3.5s
+[24/50] ee-a09 correct        80 tok    3.3s
+[25/50] ee-a10 correct        88 tok    3.7s
+[26/50] ee-a11 correct        88 tok    3.7s
+[27/50] ee-a12 correct        92 tok    3.7s
+[28/50] ee-a13 correct        69 tok    3.0s
+[29/50] ee-a14 correct        48 tok    2.3s
+[30/50] ee-a15 correct        42 tok    2.1s
+[31/50] ee-a16 correct        86 tok    3.4s
+[32/50] ee-a17 wrong_value    50 tok    2.4s
+[33/50] ee-a18 correct        81 tok    3.3s
+[34/50] ee-a19 correct        63 tok    2.8s
+[35/50] ee-a20 correct        48 tok    2.6s
+[36/50] ee-i01 wrong_value   141 tok    5.7s
+[37/50] ee-i02 correct       213 tok    8.0s
+[38/50] ee-i03 correct       135 tok    5.5s
+[39/50] ee-i04 no_answer     185 tok    7.2s  [exit 1: NameError: name 'acos' is not defined. Did you mean: 'cos'?]
+[40/50] ee-i05 wrong_value   201 tok    8.1s
+[41/50] ee-i06 correct        96 tok    4.7s
+[42/50] ee-i07 correct       144 tok    8.4s
+[43/50] ee-i08 correct       136 tok    8.9s
+[44/50] ee-i09 no_answer     147 tok    8.7s  [exit 1: NameError: name 'symbols' is not defined]
+[45/50] ee-i10 no_answer     190 tok    8.1s  [exit 1: NameError: name 'symbols' is not defined]
+[46/50] ee-i11 no_answer     204 tok    8.1s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'watt * hour * ampere_hour / milliampere_hour / volt' ([time] * [current]) to 'dimensionless' (dimensionless)]
+[47/50] ee-i12 correct       137 tok    6.7s
+[48/50] ee-i13 no_answer      67 tok    3.4s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'millihenry ** 0.5 / ohm ** 0.5 / microfarad ** 0.5' ([mass] ** 0.5 * [length] / [time] ** 1.5 / [current]) to 'dimensionless' (dimensionless)]
+[49/50] ee-i14 correct       205 tok   10.3s
+[50/50] ee-i15 no_answer     215 tok    9.1s  [exit 1: pint.errors.UndefinedUnitError: 'USD' is not defined in the unit registry]
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15        9      3     0         0     3  60%
+alert       20       13      2     0         0     5  65%
+intensive   15        7      2     0         0     6  47%
+ALL         50       29      7     0         0    14  58%
+
+level       avg tok  avg s  hit cap
+calm             66    3.2        0
+alert            89    3.7        0
+intensive       161    7.4        0
+ALL             104    4.7        0
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b__units.jsonl
+[1/50] ee-c01 no_answer      39 tok    3.9s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[2/50] ee-c02 correct        36 tok    4.2s
+[3/50] ee-c03 correct        40 tok    4.5s
+[4/50] ee-c04 correct        64 tok    6.0s
+[5/50] ee-c05 correct        30 tok    3.9s
+[6/50] ee-c06 correct        52 tok    5.7s
+[7/50] ee-c07 correct        47 tok    5.3s
+[8/50] ee-c08 correct        46 tok    5.8s
+[9/50] ee-c09 correct        37 tok    5.0s
+[10/50] ee-c10 correct        28 tok    4.3s
+[11/50] ee-c11 wrong_value    58 tok    6.7s
+[12/50] ee-c12 no_answer      30 tok    4.3s  [exit 1: TypeError: unsupported operand type(s) for -: 'ParserHelper' and 'ParserHelper']
+[13/50] ee-c13 wrong_value    33 tok    4.5s
+[14/50] ee-c14 correct        37 tok    4.7s
+[15/50] ee-c15 correct        31 tok    5.0s
+[16/50] ee-a01 correct        89 tok    7.6s
+[17/50] ee-a02 correct       108 tok    8.5s
+[18/50] ee-a03 correct        43 tok    4.2s
+[19/50] ee-a04 correct       103 tok    8.3s
+[20/50] ee-a05 correct        60 tok    5.3s
+[21/50] ee-a06 correct       120 tok    9.5s
+[22/50] ee-a07 no_answer      53 tok    5.1s  [exit 1: pint.errors.UndefinedUnitError: 'nanoFarad' is not defined in the unit registry]
+[23/50] ee-a08 correct        52 tok    5.0s
+[24/50] ee-a09 correct        77 tok    7.0s
+[25/50] ee-a10 correct        86 tok    7.5s
+[26/50] ee-a11 correct        86 tok    8.1s
+[27/50] ee-a12 no_answer      66 tok    6.4s  [exit 1: TypeError: isinstance() arg 2 must be a type, a tuple of types, or a union]
+[28/50] ee-a13 correct        47 tok    5.6s
+[29/50] ee-a14 correct        49 tok    5.2s
+[30/50] ee-a15 correct        41 tok    4.3s
+[31/50] ee-a16 correct        55 tok    5.6s
+[32/50] ee-a17 wrong_value    32 tok    4.6s
+[33/50] ee-a18 no_answer      40 tok    4.4s  [exit 1: ValueError: Unit expression cannot have a scaling factor.]
+[34/50] ee-a19 correct        37 tok    4.2s
+[35/50] ee-a20 correct        44 tok    4.4s
+[36/50] ee-i01 wrong_value   136 tok   10.7s
+[37/50] ee-i02 correct       287 tok   20.5s
+[38/50] ee-i03 correct       109 tok    9.0s
+[39/50] ee-i04 wrong_value   243 tok   15.5s
+[40/50] ee-i05 correct       149 tok   12.1s
+[41/50] ee-i06 no_answer      85 tok    7.2s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[42/50] ee-i07 correct       122 tok    9.8s
+[43/50] ee-i08 no_answer     156 tok   12.5s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[44/50] ee-i09 correct       161 tok   12.4s
+[45/50] ee-i10 wrong_value   253 tok   18.9s
+[46/50] ee-i11 no_answer     151 tok   11.8s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[47/50] ee-i12 correct        99 tok    8.5s
+[48/50] ee-i13 no_answer     115 tok    9.3s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'farad ** 0.5 / ohm ** 0.5 / microfarad' (1 / [time] ** 0.5) to 'dimensionless' (dimensionless)]
+[49/50] ee-i14 correct        93 tok    8.2s
+[50/50] ee-i15 no_answer     190 tok   14.5s  [exit 1: pint.errors.UndefinedUnitError: 'USD' is not defined in the unit registry]
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       11      2     0         0     2  73%
+alert       20       16      1     0         0     3  80%
+intensive   15        7      3     0         0     5  47%
+ALL         50       34      6     0         0    10  68%
+
+level       avg tok  avg s  hit cap
+calm             41    4.9        0
+alert            64    6.0        0
+intensive       157   12.1        0
+ALL              85    7.5        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__units.jsonl
+[1/50] ae-c01 correct        43 tok    3.3s
+[2/50] ae-c02 correct        53 tok    2.7s
+[3/50] ae-c03 no_answer     218 tok    8.6s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'knot * meter / second' ([length] ** 2 / [time] ** 2) to 'meter / second' ([length] / [time])]
+[4/50] ae-c04 correct       106 tok    4.7s
+[5/50] ae-c05 correct        44 tok    2.6s
+[6/50] ae-c06 correct        29 tok    1.8s
+[7/50] ae-c07 correct        45 tok    2.4s
+[8/50] ae-c08 correct        58 tok    2.8s
+[9/50] ae-c09 correct        42 tok    2.5s
+[10/50] ae-c10 correct        71 tok    3.3s
+[11/50] ae-c11 correct       181 tok    8.7s
+[12/50] ae-c12 correct        99 tok    4.5s
+[13/50] ae-c13 correct        58 tok    3.2s
+[14/50] ae-c14 no_answer      99 tok    4.7s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'micronit' ([luminosity] / [length] ** 2) to 'dimensionless' (dimensionless)]
+[15/50] ae-c15 correct        52 tok    2.8s
+[16/50] ae-a01 correct       116 tok    5.0s
+[17/50] ae-a02 correct       121 tok    5.6s
+[18/50] ae-a03 correct       130 tok    5.9s
+[19/50] ae-a04 correct       143 tok    6.4s
+[20/50] ae-a05 correct       103 tok    4.6s
+[21/50] ae-a06 correct       210 tok    8.7s
+[22/50] ae-a07 correct        87 tok    4.4s
+[23/50] ae-a08 correct        59 tok    3.0s
+[24/50] ae-a09 correct       146 tok    6.6s
+[25/50] ae-a10 wrong_value   123 tok    6.1s
+[26/50] ae-a11 wrong_value   114 tok    5.4s
+[27/50] ae-a12 correct       175 tok    7.3s
+[28/50] ae-a13 correct       108 tok    4.7s
+[29/50] ae-a14 correct       110 tok    5.0s
+[30/50] ae-a15 no_answer     408 tok   16.0s  [exit 1: pint.errors.UndefinedUnitError: 'Mach' is not defined in the unit registry]
+[31/50] ae-a16 correct       120 tok    5.5s
+[32/50] ae-a17 no_answer      79 tok    3.8s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter ** 1.5 / second / kilometer' ([length] ** 0.5 / [time]) to 'meter / second ** 2' ([length] / [time] ** 2)]
+[33/50] ae-a18 no_answer     241 tok    9.7s  [exit 1: NameError: name 'symbols' is not defined]
+[34/50] ae-a19 correct       110 tok    5.1s
+[35/50] ae-a20 correct        56 tok    3.0s
+[36/50] ae-i01 wrong_value   305 tok   13.3s
+[37/50] ae-i02 wrong_value   294 tok   12.8s
+[38/50] ae-i03 no_answer     312 tok   12.5s  [exit 1: pint.errors.UndefinedUnitError: 'per' is not defined in the unit registry]
+[39/50] ae-i04 wrong_value   185 tok    8.4s
+[40/50] ae-i05 wrong_value   298 tok   12.0s
+[41/50] ae-i06 correct       231 tok    9.6s
+[42/50] ae-i07 no_answer     186 tok    7.8s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter ** 0.5 * hour ** 0.333333 / second ** 0.333333' ([length] ** 0.5) to 'kilometer' ([length])]
+[43/50] ae-i08 correct       194 tok    8.3s
+[44/50] ae-i09 no_answer     283 tok   11.7s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter / second' ([length] / [time]) to 'meter * metric_ton / second ** 2' ([length] * [mass] / [time] ** 2)]
+[45/50] ae-i10 wrong_value   160 tok    6.9s
+[46/50] ae-i11 no_answer    1024 tok   46.0s  [no code block]
+[47/50] ae-i12 correct       239 tok   11.1s
+[48/50] ae-i13 correct       243 tok    9.9s
+[49/50] ae-i14 wrong_value   131 tok    5.8s
+[50/50] ae-i15 correct       182 tok    8.1s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       13      0     0         0     2  87%
+alert       20       15      2     0         0     3  75%
+intensive   15        5      6     0         0     4  33%
+ALL         50       33      8     0         0     9  66%
+
+level       avg tok  avg s  hit cap
+calm             80    3.9        0
+alert           138    6.1        0
+intensive       284   12.3        1
+ALL             164    7.3        1
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__units.jsonl
+[1/50] ae-c01 correct        46 tok    6.5s
+[2/50] ae-c02 correct        42 tok    4.6s
+[3/50] ae-c03 correct        22 tok    3.4s
+[4/50] ae-c04 correct        52 tok    5.0s
+[5/50] ae-c05 wrong_value   121 tok   10.2s
+[6/50] ae-c06 correct        29 tok    3.4s
+[7/50] ae-c07 correct       170 tok   13.2s
+[8/50] ae-c08 correct        43 tok    4.4s
+[9/50] ae-c09 correct        43 tok    4.6s
+[10/50] ae-c10 correct        93 tok    8.6s
+[11/50] ae-c11 wrong_value   110 tok    9.3s
+[12/50] ae-c12 correct        65 tok    6.6s
+[13/50] ae-c13 correct        52 tok    5.3s
+[14/50] ae-c14 correct        65 tok    7.9s
+[15/50] ae-c15 correct        52 tok    6.2s
+[16/50] ae-a01 correct       113 tok   11.4s
+[17/50] ae-a02 correct       118 tok   10.9s
+[18/50] ae-a03 no_answer     121 tok   13.2s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[19/50] ae-a04 no_answer     193 tok   16.6s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter * kilometer / second ** 2' ([length] ** 2 / [time] ** 2) to 'kilometer / second' ([length] / [time])]
+[20/50] ae-a05 correct        75 tok    7.0s
+[21/50] ae-a06 no_answer     124 tok   11.4s  [exit 1: AttributeError: Neither Quantity object nor its magnitude (1) has attribute 'ln']
+[22/50] ae-a07 correct        68 tok    7.0s
+[23/50] ae-a08 correct        61 tok    6.2s
+[24/50] ae-a09 no_answer      88 tok    8.0s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter ** 2 / second ** 2 / pascal' ([length] ** 3 / [mass]) to 'dimensionless' (dimensionless)]
+[25/50] ae-a10 no_answer      61 tok    5.7s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[26/50] ae-a11 correct        77 tok    7.0s
+[27/50] ae-a12 no_answer     150 tok   12.2s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[28/50] ae-a13 wrong_value    63 tok    6.0s
+[29/50] ae-a14 no_answer     126 tok   10.6s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter ** 2 / second ** 2' ([length] ** 2 / [time] ** 2) to 'meter / second' ([length] / [time])]
+[30/50] ae-a15 wrong_value   100 tok   12.2s
+[31/50] ae-a16 no_answer      86 tok    8.3s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[32/50] ae-a17 no_answer      74 tok    7.7s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'meter ** 3 / second ** 2 / kilometer' ([length] ** 2 / [time] ** 2) to 'meter / second ** 2' ([length] / [time] ** 2)]
+[33/50] ae-a18 wrong_value   190 tok   15.2s
+[34/50] ae-a19 wrong_value    81 tok    8.5s
+[35/50] ae-a20 no_answer      51 tok    5.8s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[36/50] ae-i01 wrong_value   256 tok   20.5s
+[37/50] ae-i02 no_answer    1024 tok   82.5s  [no code block]
+[38/50] ae-i03 no_answer     128 tok   11.8s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'newton * hour / kilogram' ([length] / [time]) to 'kilometer' ([length])]
+[39/50] ae-i04 no_answer     133 tok   12.3s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[40/50] ae-i05 no_answer     543 tok   45.3s  [exit 1: OverflowError: (34, 'Result too large')]
+[41/50] ae-i06 no_answer     257 tok   34.1s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'kilogram * meter ** 2 / second ** 3 / watt' (dimensionless) to 'megawatt' ([mass] * [length] ** 2 / [time] ** 3)]
+[42/50] ae-i07 correct       192 tok   24.5s
+[43/50] ae-i08 correct       173 tok   19.4s
+[44/50] ae-i09 no_answer     268 tok   29.0s  [exit 1: pint.errors.UndefinedUnitError: 'unitless' is not defined in the unit registry]
+[45/50] ae-i10 correct       144 tok   16.7s
+[46/50] ae-i11 wrong_value   230 tok   26.5s
+[47/50] ae-i12 no_answer     182 tok   25.0s  [exit 1: pint.errors.DimensionalityError: Cannot convert from 'joule / second / watt' (dimensionless) to 'megawatt' ([mass] * [length] ** 2 / [time] ** 3)]
+[48/50] ae-i13 no_answer     203 tok   24.6s  [exit 1: AttributeError: Neither Quantity object nor its magnitude (58011934.21627129) has attribute 'sqrt']
+[49/50] ae-i14 correct       152 tok   18.8s
+[50/50] ae-i15 correct       167 tok   20.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       13      2     0         0     0  87%
+alert       20        6      4     0         0    10  30%
+intensive   15        5      2     0         0     8  33%
+ALL         50       24      8     0         0    18  48%
+
+level       avg tok  avg s  hit cap
+calm             67    6.6        0
+alert           101    9.5        0
+intensive       270   27.5        1
+ALL             142   14.0        1

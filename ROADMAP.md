@@ -49,10 +49,14 @@ SKY-001 breaks a design into assemblies and parts, plans each part as an ordered
 steps, and is a small specialist rather than a generalist. Its numbers are self-reported on its own
 benchmark, and its build plans are visual, with no reported check that the geometry is buildable.
 What could carry over, in order of value per effort; each policy fixed before its results:
-- [ ] **Unit-aware calculator.** Calculator programs compute with `pint` quantities, so a formula with
-      the wrong dimensions fails while computing instead of yielding a wrong number with the right final
-      unit. Test on both numeric eval sets; success = the checks catch more of the wrong answers (today
-      2-3 of 11-18 on aerospace) with no loss of accuracy.
+- [x] **Unit-aware calculator: built, measured, not adopted.** Strategy `units` (`plm/numeric/calc.py`
+      `run_units_program`): the model writes `Q(value, "unit")` and the harness converts `ANSWER` to the
+      asked unit. Policies and rule fixed before the sweep (`results/run_units.sh`). Catch rate rose
+      (60-73% of wrong answers caught, vs 0-27% with the plain calculator), but the models wrote
+      wrong-dimension formulas and misspelt unit names on problems they otherwise solve: 8B 47 -> 34/50
+      electrical, 39 -> 24/50 aerospace (4B: 47 -> 29, 32 -> 33). Best units policy: electrical 42/50 vs
+      shipped 48, aerospace 38/50 vs 39, so neither pack switched. Untested idea: use a units program
+      only as a second opinion that flags disagreement, never as the answer.
 - [ ] **Decompose, then solve, for intensive problems.** The large model lists the intermediate
       quantities with units; each is computed and checked, then combined. Test on aerospace intensive
       (8B + calculator: 47%); success = higher accuracy at a compute cost stated up front.

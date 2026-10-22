@@ -80,6 +80,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 - `plm/numeric/`: shared by numeric packs: answer format and parser, calculator tool,
   unit/sanity checks, and the controller.
 - `plm/numeric/levels.py`: the level classifier every numeric pack shares; a pack adds only its chain cues.
+- `docs/pack-packaging.md`: proposed design for installing each pack separately (not built yet).
 - `plm/electrical/`, `plm/aerospace/`: each numeric pack's level cues and tiers.
 - `plm/software/`: the software pack: sandbox, code prompts, level rules, controller,
   and model-written tests for `--thorough`.
@@ -100,6 +101,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 .venv/bin/python evals/test_controllers.py         # controllers, with Ollama replaced by scripted replies
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
+.venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
 python evals/compat_openai.py --fake                # with the official `openai` client (needs openai + pint)
 .venv/bin/python -m plm.software.sandbox
 .venv/bin/python -m plm.software.testgen
