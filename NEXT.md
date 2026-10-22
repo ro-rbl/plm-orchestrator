@@ -1,6 +1,13 @@
 # NEXT
 
-_Updated: 2026-10-21 · branch: phase3-aerospace · plan: ROADMAP.md_
+_Updated: 2026-10-21 · branch: main · plan: ROADMAP.md_
+
+## Start here (next session)
+- Phase 3 aerospace is merged (`main`). Next, in this order unless decided otherwise:
+  1. **Separately installable packs**: `docs/pack-packaging.md` has the design and a six-step migration,
+     each step with its check. Start a branch, save the baseline with `evals/dump_decisions.py`, then step 1.
+  2. **SKY-001 ideas**, starting with the unit-aware calculator: `ROADMAP.md` section 3b.
+  3. **Physics/mechanical pack**: `ROADMAP.md` section 3.
 
 ## Known bugs / weaknesses
 - [ ] **Class-task examples are hard to imitate.** The `(lambda c: (c.put(1, 1), ..., c.get(1))[-1])(LRUCache(2))`

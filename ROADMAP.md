@@ -39,6 +39,32 @@ software: aerospace, physics/mechanical, SQL.
 - SQL: queries run against a small SQLite database; the check is that the query executes
   and matches any example results, like the software pack's examples.
 
+## 3a. Separately installable packs
+- [ ] The core installs alone (everything goes to the general pack); each domain pack is its own
+      package found through the `plm.packs` entry point; `plm packs install <name>` installs a pack
+      and pulls its models. Design and step-by-step migration with checks: `docs/pack-packaging.md`.
+
+## 3b. Ideas from SKY-001 (Skyfall AI's engineering model, research preview Oct 2026)
+SKY-001 breaks a design into assemblies and parts, plans each part as an ordered sequence of build
+steps, and is a small specialist rather than a generalist. Its numbers are self-reported on its own
+benchmark, and its build plans are visual, with no reported check that the geometry is buildable.
+What could carry over, in order of value per effort; each policy fixed before its results:
+- [ ] **Unit-aware calculator.** Calculator programs compute with `pint` quantities, so a formula with
+      the wrong dimensions fails while computing instead of yielding a wrong number with the right final
+      unit. Test on both numeric eval sets; success = the checks catch more of the wrong answers (today
+      2-3 of 11-18 on aerospace) with no loss of accuracy.
+- [ ] **Decompose, then solve, for intensive problems.** The large model lists the intermediate
+      quantities with units; each is computed and checked, then combined. Test on aerospace intensive
+      (8B + calculator: 47%); success = higher accuracy at a compute cost stated up front.
+- [ ] **CAD pack checked by a real CAD kernel.** The model writes CadQuery or build123d code; the check
+      is that it builds a valid solid with the requested dimensions (bounding box, volume) -- the check
+      SKY-001 lacks. Preflight first: install size and Apple Silicon wheels of the kernel (OpenCascade).
+- [ ] **Fine-tune the 4B for aerospace (LoRA, e.g. with MLX).** Train on generated problems from new
+      templates, never on the 50 eval or 24 holdout problems; success = the 4B closes the alert gap
+      (75% vs the 8B's 90%), which would let routing pay off in aerospace.
+- Benchmark lesson: SKY-001's claims are its own, on its own benchmark. Keep holdouts written first
+  and policies fixed before sweeps for anything published here.
+
 ## 4. Public benchmarks
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
 - SQL: Spider or BIRD. Physics: a public set, to be chosen. Optional numeric cross-check: GSM8K.
