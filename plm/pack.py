@@ -34,3 +34,9 @@ def pick(packs, text, fallback="general"):
     scored = [(p.claims(text), p.priority, p.name) for p in packs]
     score, _, name = max(scored, default=(0, 0, fallback))
     return name if score > 0 else fallback
+
+
+def evidence(term_re, text, symbols=None):
+    """How many distinct domain terms (and unit symbols) the text uses: a claim score for packs."""
+    n = len({m.lower() for m in term_re.findall(text)})
+    return n + (len(symbols.findall(text)) if symbols else 0)
