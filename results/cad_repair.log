@@ -1,0 +1,35 @@
+qwen2.5-coder:14b with repair: 20 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh3__qwen2.5-coder_14b__repair.jsonl
+[1/20] cad-h01 first correct     
+[2/20] cad-h02 first correct     
+[3/20] cad-h03 first no_part      repair no_part      still flagged
+[4/20] cad-h04 first correct     
+[5/20] cad-h05 first correct     
+[6/20] cad-h06 first wrong_volume repair wrong_volume still flagged
+[7/20] cad-h07 first wrong_volume repair wrong_volume still flagged
+[8/20] cad-h08 first no_part      repair no_part      still flagged
+[9/20] cad-h09 first invalid      repair invalid      still flagged
+[10/20] cad-h10 first wrong_volume
+[11/20] cad-h11 first correct     
+[12/20] cad-h12 first correct     
+[13/20] cad-h13 first no_part      repair no_part      still flagged
+[14/20] cad-h14 first wrong_volume
+[15/20] cad-h15 first correct     
+[16/20] cad-h16 first wrong_volume
+[17/20] cad-h17 first wrong_volume repair wrong_volume still flagged
+[18/20] cad-h18 first correct     
+[19/20] cad-h19 first wrong_volume repair wrong_volume still flagged
+[20/20] cad-h20 first wrong_volume repair wrong_volume still flagged
+  cad-h03: first no_part      repair no_part      dropped (still flagged)
+  cad-h06: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-h07: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-h08: first no_part      repair no_part      dropped (still flagged)
+  cad-h09: first invalid      repair invalid      dropped (still flagged)
+  cad-h13: first no_part      repair no_part      dropped (still flagged)
+  cad-h17: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-h19: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-h20: first wrong_volume repair wrong_volume dropped (still flagged)
+
+fresh3.jsonl: 20 parts; first answers right 8, final 8; repairs tried 9, kept 0; right answers lost 0; cost 1.56x
+rule: the CAD pack gives the coder one repair of a flagged part iff, on the fresh set, its final answers get more parts right than its first answers, no part its first answer had right ends wrong, and it costs at most 1.5x the first answers' generated tokens
+-> no repair
+exit 0

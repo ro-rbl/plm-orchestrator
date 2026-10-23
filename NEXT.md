@@ -1,6 +1,6 @@
 # NEXT
 
-_Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
+_Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
 
 ## Start here (next session)
 - Merged on `main`: **separately installable packs**, all six steps of `docs/pack-packaging.md`. The code
@@ -11,8 +11,9 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. **CAD pack: let the coder repair a flagged part** (the hole check v2 now flags them; see "CAD pack:
-     loose ends"), or the last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
+  1. The last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b; preflight first: MLX, the
+     4B's Hugging Face weights). The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
+     a hole check v2 are done: one adopted, one not).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -75,10 +76,12 @@ Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` i
       size check's 25, no false alarm (size had one), coder 7 of 11 to 3. It ships. Still unchecked:
       pockets, slots, chamfers, fillets, positions (a hole in the wrong place passes). The live halfway hole
       is now reported "unverified" instead of trusted.
-- [ ] **Idea: let the coder repair a flagged part.** The shipped policy has no model to escalate to, and the
-      coder repeats its mistake at temperature 0. Hypothesis: one retry with the check's message ("asked for
-      1 through hole of 10 mm, found 0") in the prompt. Needs a rule fixed first and parts nobody has seen
-      (cad-g* are now used); costs one more call on flagged parts only.
+- [x] **Repair retry: built, measured, not adopted.** One retry of a flagged part with its program and the
+      check's finding (`plm_cad/controller.py repair_prompt`, `repairs: 0`). Preflight on the seen set fixed
+      0 of 15 (v1: 8 repairs were the same program; v2, a mechanical fix, still 7). On cad-h*, written first
+      (`evals/score_cad_repair.py`): 0 of 9 repairs fixed, 1.56x tokens. At temperature 0 the coder can't
+      repair its CadQuery from this feedback. Untested next steps, if wanted: a different repairer (the 8B
+      with thinking on), or sampling instead of temperature 0, each judged on new parts.
 - [ ] **Grading tolerance was 1% for the first CAD sweep** and passed a blind hole 10 mm deep asked as 12 mm
       (0.5% of volume). It is 0.1% now; regraded, the sweep is coder 16/36 (was 17), 4B 9, 8B 6, and the
       shipped policy (always coder) doesn't change. Fresh parts, at 0.1%: coder 4/15, 4B 1/15, 8B 0/15.
