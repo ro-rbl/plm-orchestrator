@@ -82,3 +82,17 @@
 {"id": "p18", "pack": "general", "text": "What did Galileo show about pendulums in 1602?"}
 {"id": "p19", "pack": "electrical", "text": "A 12 V motor draws 3 A. What electrical power does it use, in watts?"}
 {"id": "p20", "pack": "aerospace", "text": "A 70000 kg airliner climbs at 10 m/s. Taking g = 9.81 m/s², what excess power does that take, in megawatts?"}
+{"id": "k01", "pack": "cad", "text": "Model a bracket: a 50 by 30 by 4 mm plate with two 5 mm mounting holes 40 mm apart."}
+{"id": "k02", "pack": "cad", "text": "Write CadQuery code for a 40 mm cube with a 10 mm hole through it."}
+{"id": "k03", "pack": "cad", "text": "Can you design a spacer, 16 mm OD, 8 mm ID and 10 mm long?"}
+{"id": "k04", "pack": "cad", "text": "Create a 3D model of a box 100 x 60 x 40 mm with 2 mm walls and no lid."}
+{"id": "k05", "pack": "cad", "text": "I need a CAD part: a hexagonal standoff 8 mm across flats and 25 mm long with an M3 clearance hole."}
+{"id": "k06", "pack": "cad", "text": "Build a solid model of a cylinder 30 mm in diameter and 45 mm tall with its top edge filleted at 3 mm."}
+{"id": "k07", "pack": "cad", "text": "Write a CadQuery program that makes a 60 mm long rod, 8 mm in diameter."}
+{"id": "k08", "pack": "cad", "text": "Make a STEP-ready model of a 20 mm sphere sitting on a 30 by 30 by 5 mm base."}
+{"id": "k09", "pack": "physics", "text": "A steel rod 10 mm in diameter and 2 m long carries 7 kN. How much does it stretch, in millimeters, with E = 200 GPa?"}
+{"id": "k10", "pack": "software", "text": "Write a function `box_volume(l, w, h)` that returns the volume of a box in cubic millimeters."}
+{"id": "k11", "pack": "general", "text": "What is the difference between CadQuery and OpenSCAD?"}
+{"id": "k12", "pack": "general", "text": "What does CAD stand for?"}
+{"id": "k13", "pack": "general", "text": "How thick should the walls of a 3D-printed enclosure be?"}
+{"id": "k14", "pack": "electrical", "text": "A PCB trace 0.5 mm wide carries 2 A. What is the current density in amperes per square millimeter if it is 0.035 mm thick?"}

@@ -1,0 +1,12 @@
+{"id": "cho-c1", "level": "calm", "task": "Model a cylinder 25 mm in diameter and 60 mm tall."}
+{"id": "cho-c2", "level": "calm", "task": "Make a CAD model of a 35 mm cube."}
+{"id": "cho-c3", "level": "calm", "task": "Design a flat rectangular plate 120 mm by 60 mm, 3 mm thick."}
+{"id": "cho-c4", "level": "calm", "task": "Create a 3D model of a ball 50 mm in diameter."}
+{"id": "cho-a1", "level": "alert", "task": "Model a washer: 24 mm outside diameter, 13 mm hole, 2.5 mm thick, with the outer edges chamfered 0.5 mm."}
+{"id": "cho-a2", "level": "alert", "task": "Design a 50 mm cube with a 20 mm diameter blind hole 15 mm deep in the middle of one face."}
+{"id": "cho-a3", "level": "alert", "task": "Make a CAD model of a block 70 by 30 by 15 mm with all its top edges filleted at 2 mm."}
+{"id": "cho-a4", "level": "alert", "task": "Model a cylinder 50 mm across and 10 mm thick with a 12 mm square hole through its center."}
+{"id": "cho-i1", "level": "intensive", "task": "Model a mounting plate 150 by 100 by 8 mm with a 40 mm center hole and eight 6 mm holes on an 80 mm bolt circle."}
+{"id": "cho-i2", "level": "intensive", "task": "Design a T-shaped bracket: a 80 x 40 x 6 mm base with a 6 mm thick, 40 mm wide rib standing in its middle, 50 mm tall overall."}
+{"id": "cho-i3", "level": "intensive", "task": "Create a CAD model of a hollow cylinder cup: 60 mm outer diameter, 70 mm tall, 2 mm walls, closed at the bottom, with a 5 mm lip flange around the top."}
+{"id": "cho-i4", "level": "intensive", "task": "Make a gear blank: a disc 90 mm in diameter and 12 mm thick with a 20 mm bore, a 6 mm keyway in the bore, and four 15 mm lightening holes on a 55 mm circle."}
