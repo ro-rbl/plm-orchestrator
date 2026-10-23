@@ -2,6 +2,8 @@
 
     .venv/bin/python evals/run_sql.py --model qwen3:8b     # writes results/sql__<model>.jsonl
     .venv/bin/python evals/run_sql.py --simulate           # policies over the saved runs, and SQL_RULE
+    .venv/bin/python evals/run_sql.py --model qwen3:8b --tasks evals/sql/fresh.jsonl   # results/sql_fresh__...
+    .venv/bin/python evals/run_sql.py --simulate --tasks evals/sql/fresh.jsonl         # and FRESH_RULE
 
 A query is correct when, run on the task's hidden database (evals/sql/build_tasks.py), it
 returns the reference query's result: the same number of columns, and the same rows as a
@@ -50,6 +52,11 @@ POLICIES_SQL = [
 ]
 SQL_RULE = ("ship the cheapest policy above whose score is within 1 task of the best one's "
             "(compute = model size x generated tokens, relative to always-coder)")
+SHIPPED = "cascade 4B -> coder"
+# Fixed after the sweep picked SHIPPED and before any model answered evals/sql/fresh.jsonl.
+FRESH_RULE = (f"the shipped policy ({SHIPPED}) is confirmed iff, on the fresh tasks with the classifier's levels, "
+              "it scores within 1 task of the best policy above and costs less than always-coder; otherwise "
+              "SQL_RULE's pick on the fresh set is the candidate to replace it, to be judged on further new tasks")
 
 
 def load(path):
@@ -71,7 +78,7 @@ def hidden_setup():
     for schema, tables in build_tasks.databases().items():
         inserts = [f"INSERT INTO {t} VALUES " + ", ".join("(" + ", ".join(map(literal, row)) + ")" for row in rows) + ";"
                    for t, rows in tables.items()]
-        out[schema] = build_tasks.SCHEMAS[schema] + "\n" + "\n".join(inserts)
+        out[schema] = {**build_tasks.SCHEMAS, **build_tasks.FRESH_SCHEMAS}[schema] + "\n" + "\n".join(inserts)
     return out
 
 
@@ -101,14 +108,15 @@ def grade(task, got, want):
     return "correct" if ok else "wrong_rows"
 
 
-def results_path(model):
-    return RESULTS / f"sql__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
+def results_path(model, tasks_file=TASKS):
+    stem = "" if Path(tasks_file).stem == "tasks" else "_" + Path(tasks_file).stem
+    return RESULTS / f"sql{stem}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
 
 
-def run(model, num_predict, timeout):
-    tasks = load(TASKS)
+def run(model, num_predict, timeout, tasks_file=TASKS):
+    tasks = load(tasks_file)
     setups = hidden_setup()
-    out = results_path(model)
+    out = results_path(model, tasks_file)
     done = {r["id"] for r in load(out)} if out.exists() else set()
     todo = [t for t in tasks if t["id"] not in done]
     print(f"{model}: {len(todo)} to run, {len(done)} already in {out}")
@@ -150,13 +158,14 @@ def summarize(tasks, rows):
               + ", ".join(f"{k} {v}" for k, v in sorted(c.items()) if k != "correct"))
 
 
-def simulate():
+def simulate(tasks_file=TASKS):
     from plm_sql.levels import classify
-    tasks = load(TASKS)
-    R = {k: {r["id"]: r for r in load(results_path(m))} for k, m in MODELS.items() if results_path(m).exists()}
+    tasks = load(tasks_file)
+    paths = {k: results_path(m, tasks_file) for k, m in MODELS.items()}
+    R = {k: {r["id"]: r for r in load(p)} for k, p in paths.items() if p.exists()}
     missing = [k for k in MODELS if k not in R or len(R[k]) < len(tasks)]
     if missing:
-        sys.exit(f"no complete SQL results for {', '.join(missing)} yet; run results/run_sql.sh")
+        sys.exit(f"no complete SQL results for {', '.join(missing)} on {Path(tasks_file).name} yet; run results/run_sql.sh")
     levels = {t["id"]: classify(t["prompt"])[0] for t in tasks}
     cost = {k: {tid: PARAMS[k] * r["eval_tokens"] for tid, r in R[k].items()} for k in R}
     base = sum(cost["coder"].values())
@@ -177,6 +186,11 @@ def simulate():
     best = max(s for _, s, _ in measured)
     chosen = min((m for m in measured if m[1] >= best - 1), key=lambda m: m[2])
     print(f"\nrule: {SQL_RULE}\n-> {chosen[0]} ({chosen[1]}/{len(tasks)} at {chosen[2]:.0%})")
+    if Path(tasks_file).stem == "fresh":
+        shipped = next(m for m in measured if m[0] == SHIPPED)
+        confirmed = shipped[1] >= best - 1 and shipped[2] < 1
+        print(f"\nrule: {FRESH_RULE}\nshipped {shipped[1]}/{len(tasks)} at {shipped[2]:.0%}, best {best}/{len(tasks)}")
+        print(f"-> CONFIRMED: keep {SHIPPED}" if confirmed else f"-> NOT CONFIRMED: candidate {chosen[0]}")
     print("\nkey-free check vs the key:")
     print(f"   {'model':<6} {'wrong':>6} {'caught':>7} {'false alarms':>13}")
     for k in R:
@@ -188,7 +202,7 @@ def simulate():
 
 def self_test():
     """The grader against known answers: each reference is correct, and broken copies of it are not."""
-    tasks, setups, fails, total = load(TASKS), hidden_setup(), [], 0
+    tasks, setups, fails, total = load(TASKS) + load(TASKS.with_name("fresh.jsonl")), hidden_setup(), [], 0
 
     def expect(t, query, want):
         nonlocal total
@@ -219,16 +233,17 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--simulate", action="store_true")
     ap.add_argument("--self-test", action="store_true", help="check the grader on the references, no model calls")
+    ap.add_argument("--tasks", default=TASKS, help="task file (default: the eval set)")
     ap.add_argument("--num-predict", type=int, default=1024, help="max generated tokens per task")
     ap.add_argument("--timeout", type=int, default=300, help="seconds per request")
     args = ap.parse_args()
     if args.self_test:
         return self_test()
     if args.simulate:
-        return simulate()
+        return simulate(args.tasks)
     if not args.model:
         sys.exit("--model or --simulate")
-    run(args.model, args.num_predict, args.timeout)
+    run(args.model, args.num_predict, args.timeout, args.tasks)
 
 
 if __name__ == "__main__":

@@ -348,46 +348,231 @@ HOLDOUT = [
 ]
 
 
+# ---------------- fresh set ----------------
+# Written on 2026-10-23 after the SQL sweep and before any model answered it, to confirm the shipped
+# policy (evals/run_sql.py FRESH_RULE): new schemas and data (own seed), and harder on purpose, since
+# the coder alone got 44/45 on the eval set. -> fresh.jsonl
+FRESH_SEED = 20261024
+FRESH_SCHEMAS = {
+    "clinic": """CREATE TABLE patients (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    birth_year INTEGER NOT NULL,
+    city TEXT NOT NULL
+);
+CREATE TABLE doctors (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    specialty TEXT NOT NULL CHECK (specialty IN ('cardiology', 'dermatology', 'pediatrics', 'neurology'))
+);
+CREATE TABLE appointments (
+    id INTEGER PRIMARY KEY,
+    patient_id INTEGER NOT NULL REFERENCES patients(id),
+    doctor_id INTEGER NOT NULL REFERENCES doctors(id),
+    day TEXT NOT NULL,  -- date, YYYY-MM-DD
+    status TEXT NOT NULL CHECK (status IN ('booked', 'done', 'missed')),
+    fee REAL NOT NULL  -- charged when the appointment is done
+);""",
+    "transit": """CREATE TABLE stations (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    line TEXT NOT NULL CHECK (line IN ('red', 'blue', 'green'))
+);
+CREATE TABLE cards (
+    id INTEGER PRIMARY KEY,
+    owner TEXT NOT NULL,
+    kind TEXT NOT NULL CHECK (kind IN ('adult', 'student', 'senior'))
+);
+CREATE TABLE trips (
+    id INTEGER PRIMARY KEY,
+    card_id INTEGER NOT NULL REFERENCES cards(id),
+    from_station INTEGER NOT NULL REFERENCES stations(id),
+    to_station INTEGER NOT NULL REFERENCES stations(id),
+    started TEXT NOT NULL,  -- YYYY-MM-DD HH:MM
+    fare REAL NOT NULL
+);""",
+    "warehouse": """CREATE TABLE suppliers (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    country TEXT NOT NULL
+);
+CREATE TABLE parts (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    supplier_id INTEGER NOT NULL REFERENCES suppliers(id),
+    unit_cost REAL NOT NULL
+);
+CREATE TABLE stock (
+    part_id INTEGER NOT NULL REFERENCES parts(id),
+    warehouse TEXT NOT NULL CHECK (warehouse IN ('north', 'south', 'east')),
+    qty INTEGER NOT NULL,
+    PRIMARY KEY (part_id, warehouse)
+);
+CREATE TABLE shipments (
+    id INTEGER PRIMARY KEY,
+    part_id INTEGER NOT NULL REFERENCES parts(id),
+    warehouse TEXT NOT NULL CHECK (warehouse IN ('north', 'south', 'east')),
+    shipped_on TEXT NOT NULL,  -- date, YYYY-MM-DD
+    qty INTEGER NOT NULL
+);""",
+}
+
+
+def clinic_rows(r):
+    patients = [(i, n, r.randint(1940, 2015), r.choice(["Leeds", "York", "Hull", "Bath"])) for i, n in enumerate(people(r, 30), 1)]
+    specialties = ["cardiology", "dermatology", "pediatrics", "neurology", "cardiology", "neurology"]
+    doctors = [(i, f"Dr. {n.split()[1]}", specialties[i - 1]) for i, n in enumerate(people(r, 6), 1)]
+    appointments = []
+    for aid in range(1, 151):
+        status = r.choices(["done", "missed", "booked"], [7, 2, 1])[0]
+        # patients 29-30 have no appointments
+        appointments.append((aid, r.randint(1, 28), r.randint(1, 6), date(r, 2023, 2024), status,
+                             float(r.choice([40, 55, 60, 75, 90, 120]))))
+    return {"patients": patients, "doctors": doctors, "appointments": appointments}
+
+
+def transit_rows(r):
+    names = ["Abbey", "Bridge", "Castle", "Dock", "Elm", "Forge", "Gate", "Harbor", "Inn", "Junction", "Keep", "Lantern"]
+    stations = [(i, n, ["red", "blue", "green"][(i - 1) % 3]) for i, n in enumerate(names, 1)]
+    cards = [(i, n, r.choice(["adult", "adult", "student", "senior"])) for i, n in enumerate(people(r, 20), 1)]
+    trips = []
+    for tid in range(1, 201):
+        a, b = r.sample(range(1, 11), 2)  # stations 11-12 are never used
+        started = f"2024-03-{r.randint(1, 10):02d} {r.randint(6, 22):02d}:{r.randint(0, 59):02d}"
+        trips.append((tid, r.randint(1, 20), a, b, started, round(r.uniform(1.2, 4.8), 2)))
+    return {"stations": stations, "cards": cards, "trips": trips}
+
+
+def warehouse_rows(r):
+    suppliers = [(1, "Acme", "Germany"), (2, "Borel", "France"), (3, "Cortez", "Spain"), (4, "Dahl", "Germany"),
+                 (5, "Ekberg", "Sweden"), (6, "Fiore", "Italy")]
+    names = ["bolt", "nut", "washer", "gear", "spring", "bearing", "valve", "hinge", "pulley", "clamp", "rivet",
+             "sprocket", "bracket", "piston", "gasket", "shaft"]
+    parts = [(i, n, r.randint(1, 5), round(r.uniform(0.5, 120), 2)) for i, n in enumerate(names, 1)]
+    stock = []
+    for pid in range(1, 17):
+        for w in r.sample(["north", "south", "east"], r.randint(1, 3)):
+            stock.append((pid, w, r.choice([0, r.randint(1, 900)])))
+    shipments = [(i, r.randint(1, 16), r.choice(["north", "south", "east"]), date(r, 2023, 2024), r.randint(5, 400))
+                 for i in range(1, 91)]
+    return {"suppliers": suppliers, "parts": parts, "stock": stock, "shipments": shipments}
+
+
+FRESH_ROWS = {"clinic": clinic_rows, "transit": transit_rows, "warehouse": warehouse_rows}
+
+FRESH = [
+    # ---------------- calm ----------------
+    ("sqf-c01", "calm", "clinic", "List the names of the doctors whose specialty is cardiology.",
+     "SELECT name FROM doctors WHERE specialty = 'cardiology'", False),
+    ("sqf-c02", "calm", "clinic", "How many appointments were missed?",
+     "SELECT COUNT(*) FROM appointments WHERE status = 'missed'", False),
+    ("sqf-c03", "calm", "transit", "List the names of the stations on the blue line, in alphabetical order.",
+     "SELECT name FROM stations WHERE line = 'blue' ORDER BY name", True),
+    ("sqf-c04", "calm", "transit", "What is the highest fare paid for any trip?",
+     "SELECT MAX(fare) FROM trips", False),
+    ("sqf-c05", "calm", "warehouse", "List the names of the parts that cost more than 50 per unit.",
+     "SELECT name FROM parts WHERE unit_cost > 50", False),
+    ("sqf-c06", "calm", "warehouse", "How many suppliers are based in Germany?",
+     "SELECT COUNT(*) FROM suppliers WHERE country = 'Germany'", False),
+    # ---------------- alert ----------------
+    ("sqf-a01", "alert", "clinic", "How many appointments has each doctor had, whatever their status? Return the doctor's name and the count.",
+     "SELECT d.name, COUNT(*) FROM appointments a JOIN doctors d ON d.id = a.doctor_id GROUP BY d.id", False),
+    ("sqf-a02", "alert", "clinic", "What is the total fee from done appointments for each specialty? Return the specialty and the total.",
+     "SELECT d.specialty, SUM(a.fee) FROM appointments a JOIN doctors d ON d.id = a.doctor_id WHERE a.status = 'done' "
+     "GROUP BY d.specialty", False),
+    ("sqf-a03", "alert", "transit", "How many trips were taken with each kind of card? Return the card kind and the number of trips.",
+     "SELECT c.kind, COUNT(*) FROM trips t JOIN cards c ON c.id = t.card_id GROUP BY c.kind", False),
+    ("sqf-a04", "alert", "transit", "List the names of the stations where at least one trip started, each name once.",
+     "SELECT DISTINCT s.name FROM trips t JOIN stations s ON s.id = t.from_station", False),
+    ("sqf-a05", "alert", "transit", "What was the average fare on each day? Return the date (YYYY-MM-DD) and the average fare, in date order.",
+     "SELECT substr(started, 1, 10) AS d, AVG(fare) FROM trips GROUP BY d ORDER BY d", True),
+    ("sqf-a06", "alert", "warehouse", "What is the total quantity in stock in each warehouse? Return the warehouse and the total.",
+     "SELECT warehouse, SUM(qty) FROM stock GROUP BY warehouse", False),
+    ("sqf-a07", "alert", "warehouse", "List every part's name together with the name of its supplier.",
+     "SELECT p.name, s.name FROM parts p JOIN suppliers s ON s.id = p.supplier_id", False),
+    ("sqf-a08", "alert", "warehouse", "What is the value of the stock (quantity times unit cost) in each warehouse? Return the warehouse and the value rounded to 2 decimals.",
+     "SELECT st.warehouse, ROUND(SUM(st.qty * p.unit_cost), 2) FROM stock st JOIN parts p ON p.id = st.part_id "
+     "GROUP BY st.warehouse", False),
+    # ---------------- intensive ----------------
+    ("sqf-i01", "intensive", "clinic", "List the names of the patients who have had at least one appointment and have never missed one.",
+     "SELECT p.name FROM patients p WHERE EXISTS (SELECT 1 FROM appointments a WHERE a.patient_id = p.id) "
+     "AND NOT EXISTS (SELECT 1 FROM appointments a WHERE a.patient_id = p.id AND a.status = 'missed')", False),
+    ("sqf-i02", "intensive", "clinic", "For each patient with more than one done appointment, how many days passed between their first and their last done appointment? Return the patient's name and the number of days.",
+     "SELECT p.name, julianday(MAX(a.day)) - julianday(MIN(a.day)) FROM appointments a JOIN patients p ON p.id = a.patient_id "
+     "WHERE a.status = 'done' GROUP BY p.id HAVING COUNT(*) > 1", False),
+    ("sqf-i03", "intensive", "clinic", "Which doctor has the highest share of missed appointments among all their appointments? Return the doctor's name and that share as a fraction between 0 and 1.",
+     "SELECT d.name, AVG(a.status = 'missed') AS share FROM appointments a JOIN doctors d ON d.id = a.doctor_id "
+     "GROUP BY d.id ORDER BY share DESC LIMIT 1", False),
+    ("sqf-i04", "intensive", "clinic", "For the patient with id 3, list each appointment's day in date order, with the number of days since that patient's previous appointment (NULL for the first).",
+     "SELECT day, julianday(day) - julianday(LAG(day) OVER (ORDER BY day)) FROM appointments WHERE patient_id = 3 ORDER BY day", True),
+    ("sqf-i05", "intensive", "transit", "List each trip's id together with the names of its start station and its end station.",
+     "SELECT t.id, a.name, b.name FROM trips t JOIN stations a ON a.id = t.from_station JOIN stations b ON b.id = t.to_station", False),
+    ("sqf-i06", "intensive", "transit", "Which start and end station pairs were travelled more than twice? Return the start station's name, the end station's name and the number of trips.",
+     "SELECT a.name, b.name, COUNT(*) FROM trips t JOIN stations a ON a.id = t.from_station JOIN stations b ON b.id = t.to_station "
+     "GROUP BY t.from_station, t.to_station HAVING COUNT(*) > 2", False),
+    ("sqf-i07", "intensive", "transit", "For card 7, list each trip's start time and the running total of its fares up to and including that trip, in time order.",
+     "SELECT started, SUM(fare) OVER (ORDER BY started) FROM trips WHERE card_id = 7 ORDER BY started", True),
+    ("sqf-i08", "intensive", "warehouse", "List the names of the suppliers that have no part in stock anywhere, counting only stock rows with a quantity above 0.",
+     "SELECT s.name FROM suppliers s WHERE NOT EXISTS (SELECT 1 FROM parts p JOIN stock st ON st.part_id = p.id "
+     "WHERE p.supplier_id = s.id AND st.qty > 0)", False),
+    ("sqf-i09", "intensive", "warehouse", "For each warehouse, which part has the largest quantity in stock there? Return the warehouse and the part's name.",
+     "SELECT st.warehouse, p.name FROM stock st JOIN parts p ON p.id = st.part_id "
+     "WHERE st.qty = (SELECT MAX(qty) FROM stock x WHERE x.warehouse = st.warehouse)", False),
+    ("sqf-i10", "intensive", "warehouse", "Which parts were shipped in a larger total quantity during 2024 than they now have in stock across all warehouses? Return the part's name, the quantity shipped in 2024 and the quantity in stock.",
+     "WITH shipped AS (SELECT part_id, SUM(qty) AS q FROM shipments WHERE shipped_on LIKE '2024-%' GROUP BY part_id), "
+     "held AS (SELECT part_id, SUM(qty) AS q FROM stock GROUP BY part_id) "
+     "SELECT p.name, s.q, h.q FROM shipped s JOIN held h ON h.part_id = s.part_id JOIN parts p ON p.id = s.part_id WHERE s.q > h.q", False),
+]
+
+
 def build(schema, rows):
     db = sqlite3.connect(":memory:")
-    db.executescript(SCHEMAS[schema])
+    db.executescript({**SCHEMAS, **FRESH_SCHEMAS}[schema])
     for table, data in rows.items():
         db.executemany(f"INSERT INTO {table} VALUES ({','.join('?' * len(data[0]))})", data)
     return db
 
 
 def databases():
-    """schema name -> (rows by table); fixed by SEED."""
-    r = random.Random(SEED)
-    return {name: ROWS[name](r) for name in SCHEMAS}
+    """schema name -> (rows by table), for the eval set's schemas then the fresh set's; fixed by the seeds."""
+    r, fresh = random.Random(SEED), random.Random(FRESH_SEED)
+    return {name: ROWS[name](r) for name in SCHEMAS} | {name: FRESH_ROWS[name](fresh) for name in FRESH_SCHEMAS}
 
 
-def main():
-    data = databases()
+def write_set(tasks, data, name):
+    """Check every reference on the data (forward and reversed), then write the tasks to `name`."""
     forward = {s: build(s, rows) for s, rows in data.items()}
     reverse = {s: build(s, {t: list(reversed(v)) for t, v in rows.items()}) for s, rows in data.items()}
-    ids = [t[0] for t in TASKS]
-    assert len(ids) == len(set(ids)), "duplicate task id"
+    schemas = {**SCHEMAS, **FRESH_SCHEMAS}
     out = []
-    for n, (tid, level, schema, question, ref, ordered) in enumerate(TASKS):
+    for n, (tid, level, schema, question, ref, ordered) in enumerate(tasks):
         a = forward[schema].execute(ref).fetchall()
         b = reverse[schema].execute(ref).fetchall()
         if not a:
             raise SystemExit(f"refusing: {tid} returns no rows")
         if (a if ordered else sorted(a, key=repr)) != (b if ordered else sorted(b, key=repr)):
             raise SystemExit(f"refusing: {tid} depends on row order (a tie or an unfixed order)")
-        prompt = f"{SCHEMAS[schema]}\n\n{LEADS[n % len(LEADS)].format(q=question)}"
+        prompt = f"{schemas[schema]}\n\n{LEADS[n % len(LEADS)].format(q=question)}"
         out.append({"id": tid, "level": level, "schema": schema, "question": question, "prompt": prompt,
                     "reference": ref, "ordered": ordered, "rows": len(a)})
-    with (OUT / "tasks.jsonl").open("w") as f:
+    with (OUT / name).open("w") as f:
         for t in out:
             f.write(json.dumps(t) + "\n")
+    counts = {lv: sum(t["level"] == lv for t in out) for lv in ("calm", "alert", "intensive")}
+    print(f"wrote {len(out)} tasks {counts} to {name}; rows per reference: "
+          + ", ".join(f"{t['id'][4:]}={t['rows']}" for t in out))
+
+
+def main():
+    ids = [t[0] for t in TASKS + FRESH]
+    assert len(ids) == len(set(ids)), "duplicate task id"
+    data = databases()
+    write_set(TASKS, data, "tasks.jsonl")
+    write_set(FRESH, data, "fresh.jsonl")
     with (OUT / "holdout_levels.jsonl").open("w") as f:
         for hid, level, q in HOLDOUT:
             f.write(json.dumps({"id": hid, "level": level, "prompt": f"{LIBRARY}\n\nWrite a SQL query: {q}"}) + "\n")
-    counts = {lv: sum(t["level"] == lv for t in out) for lv in ("calm", "alert", "intensive")}
-    print(f"wrote {len(out)} tasks {counts} and {len(HOLDOUT)} holdout texts; rows per reference: "
-          + ", ".join(f"{t['id'][4:]}={t['rows']}" for t in out))
+    print(f"wrote {len(HOLDOUT)} holdout texts")
 
 
 if __name__ == "__main__":
