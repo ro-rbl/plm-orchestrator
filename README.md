@@ -131,7 +131,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
 | cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
-| sql (SQLite queries) | 4B first, the coder 14B when the query doesn't run | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | 45/45 at 45% of always-coder compute (coder alone 44/45) |
+| sql (SQLite queries) | 4B first, the coder 14B when the query doesn't run | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | 45/45 at 45% of always-coder compute (coder alone 44/45); not confirmed on 24 harder fresh tasks: 18/24 vs 22/24 for the 8B |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 

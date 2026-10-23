@@ -1,0 +1,114 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/24] sqf-c01 correct          16 tok    3.7s
+[2/24] sqf-c02 correct          24 tok    0.9s
+[3/24] sqf-c03 correct          19 tok    1.1s
+[4/24] sqf-c04 correct          18 tok    0.7s
+[5/24] sqf-c05 correct          19 tok    1.2s
+[6/24] sqf-c06 correct          22 tok    0.8s
+[7/24] sqf-a01 correct          35 tok    1.3s
+[8/24] sqf-a02 correct          46 tok    1.6s
+[9/24] sqf-a03 correct          34 tok    1.3s
+[10/24] sqf-a04 correct          23 tok    0.9s
+[11/24] sqf-a05 correct          45 tok    1.6s
+[12/24] sqf-a06 correct          22 tok    0.9s
+[13/24] sqf-a07 correct          26 tok    1.0s
+[14/24] sqf-a08 correct          40 tok    1.4s
+[15/24] sqf-i01 wrong_rows       33 tok    1.3s
+[16/24] sqf-i02 correct         160 tok    5.1s
+[17/24] sqf-i03 correct          67 tok    2.2s
+[18/24] sqf-i04 error           182 tok    5.6s  [doesn't run on the schema: OperationalError: near "AS": syntax error]
+[19/24] sqf-i05 wrong_rows       34 tok    1.3s
+[20/24] sqf-i06 correct          81 tok    2.7s
+[21/24] sqf-i07 correct          48 tok    1.8s
+[22/24] sqf-i08 wrong_rows       62 tok    2.1s
+[23/24] sqf-i09 wrong_rows       57 tok    1.9s
+[24/24] sqf-i10 wrong_rows      104 tok    3.4s
+
+level        n  correct  other verdicts
+calm         6        6  
+alert        8        8  
+intensive   10        4  error 1, wrong_rows 5
+ALL         24       18  error 1, wrong_rows 5
+qwen3:8b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh__qwen3_8b.jsonl
+[1/24] sqf-c01 correct          16 tok    3.0s
+[2/24] sqf-c02 correct          19 tok    1.3s
+[3/24] sqf-c03 correct          21 tok    2.2s
+[4/24] sqf-c04 correct          17 tok    1.2s
+[5/24] sqf-c05 correct          20 tok    2.3s
+[6/24] sqf-c06 correct          18 tok    1.2s
+[7/24] sqf-a01 correct          38 tok    2.5s
+[8/24] sqf-a02 correct          59 tok    3.6s
+[9/24] sqf-a03 correct          30 tok    2.1s
+[10/24] sqf-a04 correct          22 tok    1.6s
+[11/24] sqf-a05 correct          55 tok    3.3s
+[12/24] sqf-a06 correct          22 tok    1.6s
+[13/24] sqf-a07 correct          26 tok    1.8s
+[14/24] sqf-a08 correct          53 tok    3.2s
+[15/24] sqf-i01 wrong_rows       34 tok    2.2s
+[16/24] sqf-i02 correct         100 tok    5.7s
+[17/24] sqf-i03 correct          84 tok    4.9s
+[18/24] sqf-i04 correct         151 tok    9.0s
+[19/24] sqf-i05 correct          52 tok    3.4s
+[20/24] sqf-i06 correct          97 tok    5.7s
+[21/24] sqf-i07 correct          80 tok    4.9s
+[22/24] sqf-i08 correct          65 tok    4.2s
+[23/24] sqf-i09 correct          71 tok    4.4s
+[24/24] sqf-i10 wrong_rows      175 tok   10.3s
+
+level        n  correct  other verdicts
+calm         6        6  
+alert        8        8  
+intensive   10        8  wrong_rows 2
+ALL         24       22  wrong_rows 2
+qwen2.5-coder:14b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh__qwen2.5-coder_14b.jsonl
+[1/24] sqf-c01 correct          16 tok   10.4s
+[2/24] sqf-c02 correct          23 tok    2.6s
+[3/24] sqf-c03 correct          20 tok    4.3s
+[4/24] sqf-c04 correct          13 tok    1.9s
+[5/24] sqf-c05 correct          17 tok    4.5s
+[6/24] sqf-c06 correct          16 tok    2.1s
+[7/24] sqf-a01 correct          37 tok    4.4s
+[8/24] sqf-a02 correct          48 tok    5.6s
+[9/24] sqf-a03 correct          36 tok    4.7s
+[10/24] sqf-a04 correct          25 tok    3.5s
+[11/24] sqf-a05 correct          43 tok    5.2s
+[12/24] sqf-a06 correct          22 tok    3.3s
+[13/24] sqf-a07 correct          26 tok    3.5s
+[14/24] sqf-a08 correct          57 tok    6.5s
+[15/24] sqf-i01 wrong_rows       47 tok    5.7s
+[16/24] sqf-i02 correct         122 tok   12.8s
+[17/24] sqf-i03 correct         135 tok   14.3s
+[18/24] sqf-i04 wrong_rows      112 tok   11.9s
+[19/24] sqf-i05 wrong_rows       64 tok    7.6s
+[20/24] sqf-i06 correct          92 tok   10.2s
+[21/24] sqf-i07 correct          36 tok    4.7s
+[22/24] sqf-i08 correct          34 tok    4.6s
+[23/24] sqf-i09 error            53 tok    6.5s  [doesn't run on the schema: OperationalError: no such column: part_name]
+[24/24] sqf-i10 correct         138 tok   15.4s
+
+level        n  correct  other verdicts
+calm         6        6  
+alert        8        8  
+intensive   10        6  error 1, wrong_rows 3
+ALL         24       20  error 1, wrong_rows 3
+policy (levels from plm_sql.levels)               score  compute  escalated
+always 4B                                         18/24      28%          0
+always 8B                                         22/24      61%          0
+always coder                                      20/24     100%          0
+cascade 4B -> 8B -> coder (pre-sweep default)     19/24      35%          1
+cascade 4B -> coder                               18/24      37%          1
+cascade 8B -> coder                               22/24      61%          0
+routed: cascade | intensive 8B -> coder           21/24      40%          0
+
+rule: ship the cheapest policy above whose score is within 1 task of the best one's (compute = model size x generated tokens, relative to always-coder)
+-> routed: cascade | intensive 8B -> coder (21/24 at 40%)
+
+rule: the shipped policy (cascade 4B -> coder) is confirmed iff, on the fresh tasks with the classifier's levels, it scores within 1 task of the best policy above and costs less than always-coder; otherwise SQL_RULE's pick on the fresh set is the candidate to replace it, to be judged on further new tasks
+shipped 18/24 at 37%, best 22/24
+-> NOT CONFIRMED: candidate routed: cascade | intensive 8B -> coder
+
+key-free check vs the key:
+   model   wrong  caught  false alarms
+   4B          6       1             0
+   8B          2       0             0
+   coder       4       1             0

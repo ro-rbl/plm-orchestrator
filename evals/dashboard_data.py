@@ -165,6 +165,14 @@ def main():
                         "n": sum(t[0] for t in tally), "cost_ratio": None,
                         "note": f"disagreements {r[1]} to {r[2]}, sign test p = {r[3]}; better on aerospace only"})
 
+    text = run("evals/run_sql.py", "--simulate", "--tasks", "evals/sql/fresh.jsonl")
+    s = re.search(r"shipped (\d+)/(\d+) at (\d+)%, best (\d+)/\d+", text)
+    experiments.append({"id": "sql-fresh", "date": "2026-10-23", "experiment": "SQL policy on fresh tasks",
+                        "verdict": verdict(text, "-> CONFIRMED", "-> NOT CONFIRMED"),
+                        "metric": "fresh tasks right (best policy vs shipped)", "before": int(s[4]), "after": int(s[1]),
+                        "n": int(s[2]), "cost_ratio": None,
+                        "note": "shipped 4B -> coder; best: always 8B / 8B -> coder at 61%; misses run but return wrong rows"})
+
     text = run("evals/test_detect.py")
     routing = [{"set": label, "right": int(m[1]), "total": int(m[2])}
                for label, m in (("eval-set texts", re.search(r"eval-set texts.*?(\d+)/(\d+)", text)),

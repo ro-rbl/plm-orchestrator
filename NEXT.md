@@ -72,10 +72,15 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
 `packages/plm-sql`; eval set `evals/sql/build_tasks.py` (45 tasks, 3 seeded databases, 24 level holdouts, 12
 routing cases), sweep `results/run_sql.sh`, log `results/sql.log`. Ships 4B first, the coder when the query
 doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
-- [ ] **No fresh set yet.** 45/45 is on the set the rule picked the policy from; the runner-up was 44/45.
-      Write new tasks (new schemas) first, then `evals/run_sql.py` against them, to confirm the pick.
-- [ ] **The set is near its ceiling** (coder alone 44/45, 4B 40), so it separates models less than the
-      numeric sets do. Harder tasks, or Spider/BIRD (`ROADMAP.md` 4), would test the routing properly.
+- [ ] **The shipped policy was NOT confirmed on fresh tasks** (`evals/sql/fresh.jsonl`, 24 harder tasks on
+      three new databases, FRESH_RULE committed first; log `results/sql_fresh.log`): 4B -> coder 18/24 at 37%;
+      always 8B 22/24 at 61%, 8B -> coder 22/24, always coder 20/24, routed (intensive 8B -> coder) 21/24 at
+      40%. All misses were intensive and almost all ran and returned wrong rows (check caught 2 of 12), so
+      the cascade rarely escalates. Per FRESH_RULE the routed policy is the candidate: write a second fresh
+      set first, fix its rule, then judge it (`evals/run_sql.py --tasks <new> --simulate`). The coder was
+      worse than the 8B on these (20 vs 22): the "coder for SQL" assumption doesn't hold on hard queries.
+- [ ] **The eval set is near its ceiling** (coder alone 44/45, 4B 40); the fresh set is harder (20/24) and
+      reversed the ranking. Spider/BIRD (`ROADMAP.md` 4) would test the routing properly.
 - [ ] **The check can't see a query that runs but answers something else.** 2 of the 8B's 3 misses ran
       (`SELECT COUNT(*) AS count` with no FROM; order ids from order_items); live, the 4B answered "average
       fare per km" with `AVG(fare) / AVG(km)`, which runs, and was trusted. Ideas, each to judge on new

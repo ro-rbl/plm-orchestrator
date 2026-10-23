@@ -22,6 +22,12 @@ then the coder when the query doesn't run. The set is near its ceiling (the code
 alone misses 1), so it separates the models less than the numeric sets do.
 Budgets are 3.8-5.6x the longest answer at each level (34, 55 and 134 tokens).
 
+Not confirmed on 24 fresh, harder tasks (evals/sql/fresh.jsonl, FRESH_RULE fixed first): this
+policy 18/24 at 37%, always 8B and 8B -> coder 22/24 at 61%, always coder 20/24. There the misses
+ran and returned wrong rows (the check caught 2 of 12 wrong queries), so escalating on it rarely
+fires. SQL_RULE's pick there, calm and alert as now but intensive 8B -> coder (21/24 at 40%), is
+the candidate to replace this; it needs another fresh set before it ships.
+
 Model names can be overridden with PLM_SMALL_MODEL and PLM_CODER_MODEL.
 """
 

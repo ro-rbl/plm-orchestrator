@@ -44,7 +44,9 @@ software: aerospace, physics/mechanical, SQL.
       the pack's check is that it runs on the task's own schema in a read-only sandbox. Policies and rule
       (cheapest within 1 task of the best) fixed before the sweep: 4B first, the coder 14B when the query
       doesn't run, 45/45 at 45% of always-coder compute (coder alone 44/45, 8B 42, 4B 40). Every wrong 4B
-      query failed to run, so the check caught all of them; the set is near its ceiling.
+      query failed to run, so the check caught all of them; the set is near its ceiling. Not confirmed on 24
+      harder fresh tasks: 18/24 vs 22/24 for always-8B, misses that run and return wrong rows; candidate
+      (intensive to 8B -> coder, 21/24 at 40%) needs another fresh set.
 
 ## 3a. Separately installable packs
 - [x] The core installs alone (everything goes to the general pack); each domain pack is its own
