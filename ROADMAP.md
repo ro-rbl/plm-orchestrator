@@ -33,9 +33,12 @@ software: aerospace, physics/mechanical, SQL.
 - [x] Aerospace: 50 problems + 24 holdout, chain cues on the shared numeric classifier, four-way
       routing. Routing to the 4B lost accuracy here (37/50 vs 39/50), so the pack runs everything on
       the 8B + calculator: 39/50 at 41% of always-8B compute. Hardest: intensive (8B+calc 47%).
-- [ ] Physics/mechanical: numeric with units, so it reuses the core's `plm.numeric` (a new
-      `packages/plm-physics` with its unit words in its manifest, chain cues in its `levels.py`). ~50 problems, a
-      holdout, routing policies fixed before the sweep.
+- [x] Physics/mechanical: `packages/plm-physics`, 50 problems + 24 holdout, chain cues on the shared
+      classifier, five-way routing (generic quantity words claim but don't score, so physics yields to
+      the specialists). Policies and the pick rule (cheapest within 1 problem of the best) fixed before
+      the sweep: everything to the 8B answering directly, 49/50 at 100% of always-8B compute. The
+      calculator lost accuracy here (8B 43/50): all 7 misses printed base-unit values under the asked
+      prefixed unit, which the unit checks can't see.
 - SQL: queries run against a small SQLite database; the check is that the query executes
   and matches any example results, like the software pack's examples.
 

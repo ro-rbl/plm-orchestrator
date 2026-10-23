@@ -1,0 +1,296 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/50] ph-c01 correct       105 tok    6.4s
+[2/50] ph-c02 correct        96 tok    3.5s
+[3/50] ph-c03 correct       160 tok    5.5s
+[4/50] ph-c04 correct        93 tok    3.3s
+[5/50] ph-c05 correct       124 tok    4.2s
+[6/50] ph-c06 correct       100 tok    3.6s
+[7/50] ph-c07 correct       135 tok    4.7s
+[8/50] ph-c08 correct       133 tok    4.7s
+[9/50] ph-c09 correct        97 tok    3.6s
+[10/50] ph-c10 correct       107 tok    3.8s
+[11/50] ph-c11 correct       137 tok    4.7s
+[12/50] ph-c12 correct        42 tok    1.6s
+[13/50] ph-c13 correct        69 tok    2.5s
+[14/50] ph-c14 correct       111 tok    4.3s
+[15/50] ph-c15 unit_error    164 tok    5.7s
+[16/50] ph-a01 correct       157 tok    5.5s
+[17/50] ph-a02 correct       157 tok    5.5s
+[18/50] ph-a03 correct       144 tok    5.1s
+[19/50] ph-a04 correct       164 tok    5.8s
+[20/50] ph-a05 correct       139 tok    5.0s
+[21/50] ph-a06 correct       201 tok    7.0s
+[22/50] ph-a07 correct       168 tok    5.9s
+[23/50] ph-a08 correct       162 tok    6.1s
+[24/50] ph-a09 correct       153 tok    5.6s
+[25/50] ph-a10 correct       210 tok    7.6s
+[26/50] ph-a11 correct       168 tok    6.4s
+[27/50] ph-a12 correct       162 tok    6.3s
+[28/50] ph-a13 correct       296 tok   10.8s
+[29/50] ph-a14 correct       186 tok    7.0s
+[30/50] ph-a15 correct       184 tok    6.8s
+[31/50] ph-a16 correct       198 tok    7.2s
+[32/50] ph-a17 wrong_value   218 tok    7.9s
+[33/50] ph-a18 correct       208 tok    7.6s
+[34/50] ph-a19 correct       221 tok    8.1s
+[35/50] ph-a20 correct       135 tok    4.9s
+[36/50] ph-i01 correct       234 tok    8.2s
+[37/50] ph-i02 correct       232 tok    8.1s
+[38/50] ph-i03 correct       553 tok   20.0s
+[39/50] ph-i04 correct       467 tok   17.0s
+[40/50] ph-i05 correct       252 tok    9.3s
+[41/50] ph-i06 correct       302 tok   54.9s
+[42/50] ph-i07 wrong_value   364 tok   13.4s
+[43/50] ph-i08 correct       426 tok   17.7s
+[44/50] ph-i09 correct       548 tok   22.2s
+[45/50] ph-i10 correct       303 tok   12.1s
+[46/50] ph-i11 correct       302 tok   12.2s
+[47/50] ph-i12 correct       379 tok   14.3s
+[48/50] ph-i13 correct       412 tok   16.0s
+[49/50] ph-i14 correct       298 tok   12.1s
+[50/50] ph-i15 correct       451 tok   17.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       19      1     0         0     0  95%
+intensive   15       14      1     0         0     0  93%
+ALL         50       47      2     1         1     0  94%
+
+level       avg tok  avg s  hit cap
+calm            112    4.1        0
+alert           182    6.6        0
+intensive       368   17.0        0
+ALL             217    9.0        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/50] ph-c01 correct        69 tok    3.0s
+[2/50] ph-c02 correct        90 tok    3.7s
+[3/50] ph-c03 correct        52 tok    2.4s
+[4/50] ph-c04 correct        67 tok    2.9s
+[5/50] ph-c05 correct        65 tok    2.8s
+[6/50] ph-c06 correct        81 tok    3.5s
+[7/50] ph-c07 correct        72 tok    3.1s
+[8/50] ph-c08 correct       148 tok    6.0s
+[9/50] ph-c09 correct        82 tok    3.4s
+[10/50] ph-c10 unit_error     74 tok    3.2s
+[11/50] ph-c11 correct        72 tok    3.2s
+[12/50] ph-c12 correct        48 tok    2.3s
+[13/50] ph-c13 correct        71 tok    3.0s
+[14/50] ph-c14 correct        69 tok    3.3s
+[15/50] ph-c15 correct        66 tok    3.0s
+[16/50] ph-a01 correct        84 tok    3.8s
+[17/50] ph-a02 correct        45 tok    2.5s
+[18/50] ph-a03 correct        87 tok    4.0s
+[19/50] ph-a04 correct        99 tok    4.3s
+[20/50] ph-a05 correct       112 tok    6.5s
+[21/50] ph-a06 wrong_value   112 tok    4.8s
+[22/50] ph-a07 correct       104 tok    4.4s
+[23/50] ph-a08 correct        88 tok    3.7s
+[24/50] ph-a09 correct        83 tok    3.5s
+[25/50] ph-a10 correct        99 tok    4.2s
+[26/50] ph-a11 correct       113 tok    4.7s
+[27/50] ph-a12 correct       111 tok    4.7s
+[28/50] ph-a13 correct       137 tok    5.4s
+[29/50] ph-a14 correct        95 tok    4.1s
+[30/50] ph-a15 correct       107 tok    4.5s
+[31/50] ph-a16 wrong_value   101 tok    4.4s
+[32/50] ph-a17 correct       105 tok    4.8s
+[33/50] ph-a18 correct       160 tok    6.9s
+[34/50] ph-a19 correct       142 tok    6.5s
+[35/50] ph-a20 correct       147 tok    6.1s
+[36/50] ph-i01 correct       114 tok    4.8s
+[37/50] ph-i02 correct        94 tok    4.3s
+[38/50] ph-i03 correct       172 tok    7.4s
+[39/50] ph-i04 correct       243 tok    9.7s
+[40/50] ph-i05 correct       143 tok    6.1s
+[41/50] ph-i06 correct       119 tok    5.6s
+[42/50] ph-i07 wrong_value   158 tok    6.8s
+[43/50] ph-i08 correct       192 tok    8.0s
+[44/50] ph-i09 wrong_value   271 tok   10.8s
+[45/50] ph-i10 correct       149 tok    6.2s
+[46/50] ph-i11 correct       158 tok    6.4s
+[47/50] ph-i12 correct       163 tok    7.1s
+[48/50] ph-i13 correct       214 tok    9.2s
+[49/50] ph-i14 correct       227 tok    9.5s
+[50/50] ph-i15 correct       204 tok    8.3s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       18      2     0         0     0  90%
+intensive   15       13      2     0         0     0  87%
+ALL         50       45      4     1         1     0  90%
+
+level       avg tok  avg s  hit cap
+calm             75    3.3        0
+alert           107    4.7        0
+intensive       175    7.4        0
+ALL             118    5.1        0
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
+[1/50] ph-c01 correct        98 tok   11.2s
+[2/50] ph-c02 correct       101 tok    7.7s
+[3/50] ph-c03 correct       165 tok   12.0s
+[4/50] ph-c04 correct       102 tok    7.7s
+[5/50] ph-c05 correct        40 tok    3.3s
+[6/50] ph-c06 correct        98 tok    8.1s
+[7/50] ph-c07 correct       118 tok    8.9s
+[8/50] ph-c08 correct       132 tok   10.0s
+[9/50] ph-c09 correct       100 tok    8.0s
+[10/50] ph-c10 correct        95 tok    8.6s
+[11/50] ph-c11 correct       132 tok   11.0s
+[12/50] ph-c12 correct        54 tok    5.0s
+[13/50] ph-c13 correct        72 tok    5.6s
+[14/50] ph-c14 correct       111 tok    8.8s
+[15/50] ph-c15 unit_error    252 tok   19.6s
+[16/50] ph-a01 correct       165 tok   13.5s
+[17/50] ph-a02 correct       171 tok   13.1s
+[18/50] ph-a03 correct       158 tok   12.7s
+[19/50] ph-a04 correct       169 tok   13.3s
+[20/50] ph-a05 correct       152 tok   11.4s
+[21/50] ph-a06 correct       251 tok   18.5s
+[22/50] ph-a07 correct       193 tok   61.6s
+[23/50] ph-a08 correct       148 tok   11.3s
+[24/50] ph-a09 correct       147 tok   11.3s
+[25/50] ph-a10 correct       204 tok   16.5s
+[26/50] ph-a11 correct       179 tok   14.6s
+[27/50] ph-a12 correct       212 tok   17.0s
+[28/50] ph-a13 correct       347 tok   27.1s
+[29/50] ph-a14 correct       197 tok   15.6s
+[30/50] ph-a15 correct       194 tok   14.5s
+[31/50] ph-a16 correct       198 tok   14.9s
+[32/50] ph-a17 correct       215 tok   16.0s
+[33/50] ph-a18 correct       242 tok   17.9s
+[34/50] ph-a19 correct       232 tok   17.3s
+[35/50] ph-a20 correct       120 tok    9.4s
+[36/50] ph-i01 correct       247 tok   18.6s
+[37/50] ph-i02 correct       284 tok   20.7s
+[38/50] ph-i03 correct       411 tok   44.1s
+[39/50] ph-i04 correct       428 tok  127.4s
+[40/50] ph-i05 correct       291 tok   42.1s
+[41/50] ph-i06 correct       235 tok   31.6s
+[42/50] ph-i07 correct       423 tok   59.6s
+=== resumed Thu Oct 22 21:07:25 CDT 2026
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       19      1     0         0     0  95%
+intensive   15       14      1     0         0     0  93%
+ALL         50       47      2     1         1     0  94%
+
+level       avg tok  avg s  hit cap
+calm            112    4.1        0
+alert           182    6.6        0
+intensive       368   17.0        0
+ALL             217    9.0        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       18      2     0         0     0  90%
+intensive   15       13      2     0         0     0  87%
+ALL         50       45      4     1         1     0  90%
+
+level       avg tok  avg s  hit cap
+calm             75    3.3        0
+alert           107    4.7        0
+intensive       175    7.4        0
+ALL             118    5.1        0
+qwen3:8b: 8 to run, 42 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
+[1/8] ph-i08 correct       553 tok   34.0s
+[2/8] ph-i09 correct       589 tok   33.7s
+[3/8] ph-i10 correct       342 tok   19.9s
+[4/8] ph-i11 correct       288 tok   17.2s
+[5/8] ph-i12 correct       352 tok   21.2s
+[6/8] ph-i13 correct       363 tok   21.5s
+[7/8] ph-i14 correct       332 tok   21.2s
+[8/8] ph-i15 correct       409 tok   26.4s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       20      0     0         0     0  100%
+intensive   15       15      0     0         0     0  100%
+ALL         50       49      0     1         1     0  98%
+
+level       avg tok  avg s  hit cap
+calm            111    9.0        0
+alert           195   17.4        0
+intensive       370   35.9        0
+ALL             222   20.4        0
+qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b__tool.jsonl
+[1/50] ph-c01 correct        38 tok    3.1s
+[2/50] ph-c02 correct        63 tok    4.7s
+[3/50] ph-c03 correct        54 tok    4.4s
+[4/50] ph-c04 correct        49 tok    4.3s
+[5/50] ph-c05 correct        41 tok    3.5s
+[6/50] ph-c06 correct        53 tok    4.3s
+[7/50] ph-c07 correct        49 tok    4.2s
+[8/50] ph-c08 wrong_value    71 tok    5.5s
+[9/50] ph-c09 correct        67 tok    5.0s
+[10/50] ph-c10 correct        45 tok    3.6s
+[11/50] ph-c11 correct        49 tok    4.3s
+[12/50] ph-c12 correct        50 tok    4.1s
+[13/50] ph-c13 correct        56 tok    4.7s
+[14/50] ph-c14 correct        53 tok    4.1s
+[15/50] ph-c15 correct        53 tok    3.9s
+[16/50] ph-a01 correct        99 tok    7.1s
+[17/50] ph-a02 correct        48 tok    4.7s
+[18/50] ph-a03 correct        65 tok    5.7s
+[19/50] ph-a04 correct        81 tok    6.8s
+[20/50] ph-a05 correct        60 tok    4.5s
+[21/50] ph-a06 correct       110 tok    8.4s
+[22/50] ph-a07 correct        79 tok   51.1s
+[23/50] ph-a08 correct        60 tok    5.0s
+[24/50] ph-a09 correct        49 tok    3.9s
+[25/50] ph-a10 correct        62 tok    5.1s
+[26/50] ph-a11 correct        90 tok    7.6s
+[27/50] ph-a12 correct        88 tok    7.0s
+[28/50] ph-a13 correct       138 tok   10.9s
+[29/50] ph-a14 correct        60 tok    6.7s
+[30/50] ph-a15 wrong_value    53 tok    4.7s
+[31/50] ph-a16 wrong_value    64 tok    5.2s
+[32/50] ph-a17 correct       100 tok    8.0s
+[33/50] ph-a18 correct       185 tok   12.7s
+[34/50] ph-a19 correct       119 tok    8.5s
+[35/50] ph-a20 correct       191 tok   13.3s
+[36/50] ph-i01 correct        75 tok    5.7s
+[37/50] ph-i02 correct       112 tok    8.1s
+[38/50] ph-i03 correct       168 tok   13.2s
+[39/50] ph-i04 wrong_value   182 tok   13.6s
+[40/50] ph-i05 correct        76 tok    6.1s
+[41/50] ph-i06 correct        90 tok    7.1s
+[42/50] ph-i07 correct       156 tok   11.6s
+[43/50] ph-i08 correct        84 tok    7.7s
+[44/50] ph-i09 wrong_value   204 tok   18.1s
+[45/50] ph-i10 correct       163 tok   14.5s
+[46/50] ph-i11 correct       300 tok   26.7s
+[47/50] ph-i12 wrong_value    75 tok    7.0s
+[48/50] ph-i13 wrong_value   212 tok   18.7s
+[49/50] ph-i14 correct       217 tok   20.3s
+[50/50] ph-i15 correct       184 tok   15.6s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       18      2     0         0     0  90%
+intensive   15       11      4     0         0     0  73%
+ALL         50       43      7     0         0     0  86%
+
+level       avg tok  avg s  hit cap
+calm             53    4.2        0
+alert            90    9.4        0
+intensive       153   12.9        0
+ALL              98    8.9        0
+levels from: plm.physics.levels classifier
+
+policy (calm+alert | intensive)               score  compute  escalated
+always 8B (bare)                              49/50     100%          0
+always 8B+tool                                43/50      44%          0
+always 4B (bare)                              47/50      49%          0
+always 4B+tool                                45/50      26%          0
+routed: 4B+tool | 8B+tool                     43/50      35%          0
+  + escalate on failed check (pre-sweep default)  44/50      36%          1
+  + escalate on disagree w/ 4B bare           45/50      62%          5
+hindsight: cheapest correct answer            50/50      29%
+
+rule: ship the cheapest policy above whose score is within 1 problem of the best one's (levels from the physics classifier; 1-2 problems on 50 are noise)
+-> always 8B (bare) (49/50 at 100%)
+
+how many wrong answers the checks catch:
+   strategy        wrong  caught  false alarms
+   4B                  3       1             0
+   4B+tool             5       2             0
+   8B                  1       1             0
+   8B+tool             7       0             0
+sweep exit 0

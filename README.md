@@ -35,7 +35,7 @@ Ollama doesn't have yet:
 | electrical | `plm-electrical` | `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (2.5 GB), `qwen3:8b` (5.2 GB) |
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
 | software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
-| physics | `plm-physics` | the 4B and 8B above |
+| physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
@@ -124,7 +124,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
-| physics (mechanics, fluids, heat, materials) | pre-sweep default: 4B + calculator for calm/alert, escalating to the 8B; 8B + calculator for intensive | unit and sanity checks | sweep pending (`results/run_physics.sh`) |
+| physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 

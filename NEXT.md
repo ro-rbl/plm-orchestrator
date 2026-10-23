@@ -11,14 +11,14 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. **Physics/mechanical pack**: `ROADMAP.md` section 3, as a new `packages/plm-physics` (manifest,
-     claims, unit words; copy `packages/plm-aerospace` as the template).
-  2. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight the
+  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight the
      OpenCascade wheels first), or a LoRA for the 4B on aerospace.
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
 - Local branch `separate-packs` is merged and can go: `git branch -d separate-packs`.
+- Then the **physics pack** was built and swept (`ROADMAP.md` 3): everything to the 8B answering directly,
+  49/50. Next after the SKY-001 ideas: the SQL pack (`ROADMAP.md` 3).
 
 ## Packaging: loose ends
 - [ ] **`plm packs install` has never downloaded a model for real.** The pull code ran live only on a model
@@ -48,9 +48,27 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - [ ] **The step check is dimension-only.** Wrong plan formulas give absurd values with the right units
       (preflight ae-i06: 3.3e9 MW), and given values restated as steps can come back wrong (ae-i02:
       -10000 kg propellant) without being caught. `decompose.py:step_issue`.
-- [ ] **`evals/dump_decisions.py` now has 15 more CHECK lines**: it globs `results/**/aerospace__*.jsonl`,
-      which picks up `aerospace__qwen3_8b__decompose.jsonl`. Not a behavior change; save a new baseline
-      before the next refactor: `.venv/bin/python evals/dump_decisions.py > <scratch>/decisions.before`.
+## Physics: loose ends
+- [ ] **The calculator forgets prefix conversions on physics.** All 7 of the 8B's calculator misses (and 3 of
+      the 4B's 5) computed in base units and printed the asked prefixed unit ("5e+04 MPa" for 50 MPa, "678 MJ"
+      for 0.678 MJ); the unit checks pass them (same dimension). Why physics and not electrical: its questions
+      ask for kPa/kJ/MJ more. A magnitude check can't know the right size; a prompt fix ("convert to the asked
+      unit before printing") changes `calc.TOOL_FORMAT` for every pack, so it needs every pack's sweep re-run.
+      `results/physics.log`, `packages/plm-core/src/plm/numeric/calc.py:TOOL_FORMAT`.
+- [ ] **Unit spellings the grader rejects:** "286.48 rev/min" (the 8B's only direct miss, ph-c15) and "15.0 Nm"
+      (4B + calculator, ph-c10) are right numbers graded as unit errors, like "15.58 rev" above. Decide with that
+      item; `plm-core: plm/numeric/answers.py:normalize_unit`. Accepting them wouldn't change the pick (8B direct
+      would be 50/50).
+- [ ] **Physics holdout routing misses, left unfixed on purpose:** pho-c6 ("speed of sound ... at 20 °C") and
+      pho-a4 (pendulum with "gravitational acceleration") go to aerospace, pho-i2 ("600 N of resistance") to
+      electrical, pho-i3 (bullet into a hanging block) to general. Fixing them needs fresh cases to judge.
+      Resume: `.venv/bin/python evals/test_detect.py -v`.
+- [ ] **Physics problems often end a sentence with a number**, which the shared counter misses (the known
+      `NUMBER` bug below): 7 of the 50 alert problems classify as calm. Harmless under the shipped policy
+      (every level goes to the 8B), but fixing the counter changes every pack's levels.
+- [ ] **The dump baseline changed** with physics (its texts and saved answers are added; g13/g40 and the new
+      routing cases moved) and with the decompose results (15 more CHECK lines from `aerospace__*__decompose`). Save a new one before the next refactor:
+      `.venv/bin/python evals/dump_decisions.py > <scratch>/decisions.before`.
 
 ## Known bugs / weaknesses
 - [ ] **Units strategy as a second opinion (untested).** A units program catches 60-73% of wrong
@@ -122,7 +140,7 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - No 0.6B is used as a tier: abliterated 24/50 electrical (direct), 7/45 software; standard qwen3:0.6b 17/50, 14/45.
 - `--thorough` is opt-in, not default (see above).
 - `gpt-oss:20b` (13 GB) has not been evaluated.
-- Physics/mechanical and SQL packs: next (ROADMAP.md, phase 3).
+- SQL pack: next (ROADMAP.md, phase 3).
 - **An absent pack's tasks go to whichever installed pack still claims them**, not always to general
   (with aerospace not installed, ae-c12 and ae-a20, power in kW, go to electrical). By design of claims;
   recorded in `docs/pack-packaging.md`.
