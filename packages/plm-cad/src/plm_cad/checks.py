@@ -14,11 +14,14 @@ must be in the part as a concave cylinder of that diameter, as many times as
 asked; a through hole must span the part along its axis (coaxial faces together,
 so a counterbored through hole counts), and a blind hole must be as deep as asked.
 
-The pack ships the size-only check (variant "size"). The hole check was judged on fresh
-parts (evals/score_cad_check.py) and not adopted: it caught 38 of 40 wrong parts to
-size-only's 27, but it flagged a correct L-bracket, whose base-plate hole is "through"
-the plate though not the whole part. Both checks also flag a correct three-section
-shaft (its length is the sum of three stated sizes; only pairs are summed).
+The pack ships variant "v2". Each variant was judged on parts written before it
+(evals/score_cad_check.py, rule fixed first):
+- "holes-v1" on cad-f*: not adopted. It caught 38 of 40 wrong parts to size-only's
+  27, but flagged a correct L-bracket (a "through" hole spanned the part, not just
+  its plate), and both flagged a correct three-section shaft (only pairs summed)
+- "v2" on cad-g*: adopted. A through hole is one no disk caps, and sizes may sum
+  three stated sizes: 32 of 38 wrong parts caught to size-only's 25, no false alarm
+  on any correct part or reference (size-only had one)
 """
 
 import itertools
@@ -86,7 +89,7 @@ def task_sizes(task, terms=2):
     return sorted(set(nums) | sums | halves | flats)
 
 
-# The variants measured so far; "size" ships.
+# The variants measured so far; "v2" ships.
 VARIANTS = {
     "size": {"holes": None, "terms": 2},
     "holes-v1": {"holes": "v1", "terms": 2},   # judged on cad-f*: not adopted
@@ -94,7 +97,7 @@ VARIANTS = {
 }
 
 
-def check(task, measured, error, variant="size"):
+def check(task, measured, error, variant="v2"):
     """Issues with a built part ([] = nothing caught), for one of VARIANTS."""
     v = VARIANTS[variant]
     if error:

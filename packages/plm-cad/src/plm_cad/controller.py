@@ -2,8 +2,9 @@
 
 The answer is the program, plus what the kernel measured. A program is trusted
 when it builds exactly one valid solid whose overall size matches dimensions in
-the task (plm_cad.checks). That check can't see inside a part: a wrong hole in a
-right-sized block passes.
+the task and which has every hole the task asks for by diameter, through or as
+deep as asked (plm_cad.checks). Other features (pockets, slots, chamfers) aren't
+checked, so a wrong pocket in a right-sized block still passes.
 
 The policy fixed before the CAD sweep was the software pack's cascade (4B -> 8B
 -> coder 14B, escalating on a failed check). CAD_RULE in evals/run_cad.py, also

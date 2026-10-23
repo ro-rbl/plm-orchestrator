@@ -11,8 +11,8 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. **CAD pack: a v2 hole check** (a tested v1 wasn't adopted; see "CAD pack: loose ends"), or the last
-     SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
+  1. **CAD pack: let the coder repair a flagged part** (the hole check v2 now flags them; see "CAD pack:
+     loose ends"), or the last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -69,16 +69,16 @@ Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` i
 `plm-cad` pack. Done since: the pack is built (`ROADMAP.md` 3b).
 
 ## CAD pack: loose ends
-- [ ] **The CAD check can't see inside a part, so wrong parts come back trusted.** A hole check was built
-      and judged on fresh parts (`evals/score_cad_check.py`, rule committed first) and **not adopted**: over
-      the three models' 45 fresh programs it caught 38 of 40 wrong parts to the size-only check's 27, but it
-      flagged a correct L-bracket (cad-f14): its base-plate hole goes through the plate, not the whole part,
-      and "through" was defined as spanning the part. It ships as `check(..., holes=True)`, off. A v2 to test:
-      "through" = the hole spans the solid material along its axis at that spot (cast a ray, or compare with
-      the part's thickness under the hole), judged on new parts written first, since cad-f* are now seen.
-- [ ] **The shipped size check flags a correct three-section shaft** (cad-f11, and the coder's correct
-      answer to it): its 100 mm length is the sum of three stated sizes, and only pairs are summed. Summing
-      any subset (or allowing sums along one axis) is the fix; same judging caveat. `plm_cad/checks.py`.
+- [ ] **The CAD check now sees holes, but not other features.** v1 of a hole check wasn't adopted (it flagged
+      a correct L-bracket); v2, judged on a second fresh set written before it (`evals/cad/fresh2.jsonl`,
+      `evals/score_cad_check.py --set fresh2.jsonl --variant v2`), was: 32 of 38 wrong parts caught to the
+      size check's 25, no false alarm (size had one), coder 7 of 11 to 3. It ships. Still unchecked:
+      pockets, slots, chamfers, fillets, positions (a hole in the wrong place passes). The live halfway hole
+      is now reported "unverified" instead of trusted.
+- [ ] **Idea: let the coder repair a flagged part.** The shipped policy has no model to escalate to, and the
+      coder repeats its mistake at temperature 0. Hypothesis: one retry with the check's message ("asked for
+      1 through hole of 10 mm, found 0") in the prompt. Needs a rule fixed first and parts nobody has seen
+      (cad-g* are now used); costs one more call on flagged parts only.
 - [ ] **Grading tolerance was 1% for the first CAD sweep** and passed a blind hole 10 mm deep asked as 12 mm
       (0.5% of volume). It is 0.1% now; regraded, the sweep is coder 16/36 (was 17), 4B 9, 8B 6, and the
       shipped policy (always coder) doesn't change. Fresh parts, at 0.1%: coder 4/15, 4B 1/15, 8B 0/15.

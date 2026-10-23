@@ -1,0 +1,78 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/15] cad-g01 correct         30 tok    3.3s
+[2/15] cad-g02 correct        117 tok    3.8s
+[3/15] cad-g03 no_part         96 tok    3.1s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
+[4/15] cad-g04 no_part       1024 tok   30.9s  [TypeError: 'int' object is not subscriptable]
+[5/15] cad-g05 no_part        182 tok    5.6s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
+[6/15] cad-g06 no_part         47 tok    1.6s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[7/15] cad-g07 no_part         64 tok    2.2s  [AttributeError: 'Workplane' object has no attribute 'holes'. Did you mean: 'hole'?]
+[8/15] cad-g08 wrong_volume   198 tok    6.0s
+[9/15] cad-g09 no_part        394 tok   13.0s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shapes.Solid'> to vector.]
+[10/15] cad-g10 no_part        162 tok    5.4s  [TypeError: Workplane.chamfer() takes from 2 to 3 positional arguments but 4 were given]
+[11/15] cad-g11 no_part        245 tok    8.9s  [TypeError: Workplane.cut() missing 1 required positional argument: 'toCut']
+[12/15] cad-g12 no_part        124 tok    4.8s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
+[13/15] cad-g13 wrong_volume    29 tok    1.3s
+[14/15] cad-g14 no_part        320 tok   13.3s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[15/15] cad-g15 invalid        150 tok    6.6s  [2 solids, expected one part]
+
+level        n  correct  other verdicts
+calm         2        1  wrong_volume 1
+alert        6        1  invalid 1, no_part 3, wrong_volume 1
+intensive    7        0  no_part 7
+ALL         15        2  invalid 1, no_part 10, wrong_volume 2
+qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen3_8b.jsonl
+[1/15] cad-g01 correct         37 tok    7.1s
+[2/15] cad-g02 wrong_volume    47 tok    5.1s
+[3/15] cad-g03 no_part         86 tok    7.8s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[4/15] cad-g04 invalid        271 tok   23.0s  [2 solids, expected one part; overall size 63 mm matches no dimension in the task]
+[5/15] cad-g05 no_part         86 tok    7.3s  [AttributeError: 'Workplane' object has no attribute 'thenShift']
+[6/15] cad-g06 no_part        109 tok    8.8s  [ValueError: No pending wires present]
+[7/15] cad-g07 no_part       1024 tok   78.2s  [no code block]
+[8/15] cad-g08 no_part         58 tok    5.3s  [AttributeError: 'Workplane' object has no attribute 'rectangularPocket']
+[9/15] cad-g09 wrong_size     211 tok   16.4s  [overall size 110 mm matches no dimension in the task]
+[10/15] cad-g10 no_part         61 tok   48.3s  [TypeError: Workplane.chamfer() takes from 2 to 3 positional arguments but 5 were given]
+[11/15] cad-g11 wrong_volume   166 tok   12.8s
+[12/15] cad-g12 no_part        180 tok   14.3s  [ValueError: No pending wires present]
+[13/15] cad-g13 no_part        100 tok    8.0s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[14/15] cad-g14 wrong_size     189 tok   15.1s  [overall size 14.5 mm matches no dimension in the task]
+[15/15] cad-g15 wrong_volume    50 tok    4.4s
+
+level        n  correct  other verdicts
+calm         2        1  no_part 1
+alert        6        0  no_part 4, wrong_volume 2
+intensive    7        0  invalid 1, no_part 3, wrong_size 2, wrong_volume 1
+ALL         15        1  invalid 1, no_part 8, wrong_size 2, wrong_volume 3
+qwen2.5-coder:14b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen2.5-coder_14b.jsonl
+[1/15] cad-g01 correct         66 tok   15.4s
+[2/15] cad-g02 wrong_volume   109 tok   15.7s
+[3/15] cad-g03 wrong_volume    87 tok   13.2s
+[4/15] cad-g04 wrong_volume   150 tok   22.2s
+[5/15] cad-g05 correct        116 tok   17.2s  [overall size 85 mm matches no dimension in the task]
+[6/15] cad-g06 correct         94 tok   13.5s
+[7/15] cad-g07 no_part        173 tok   24.6s  [AttributeError: 'int' object has no attribute 'filter']
+[8/15] cad-g08 wrong_volume   122 tok   17.6s
+[9/15] cad-g09 wrong_volume   132 tok   20.8s
+[10/15] cad-g10 correct         69 tok   10.2s
+[11/15] cad-g11 wrong_volume   150 tok   21.8s
+[12/15] cad-g12 wrong_size      87 tok   13.6s  [overall size 80 mm matches no dimension in the task; overall size 80 mm matches no dimensi]
+[13/15] cad-g13 wrong_size      64 tok   57.6s  [overall size 51.05 mm matches no dimension in the task; overall size 51.05 mm matches no d]
+[14/15] cad-g14 wrong_volume   219 tok   32.4s
+[15/15] cad-g15 wrong_volume    87 tok   13.6s
+
+level        n  correct  other verdicts
+calm         2        1  wrong_size 1
+alert        6        2  wrong_volume 4
+intensive    7        1  no_part 1, wrong_size 1, wrong_volume 4
+ALL         15        4  no_part 1, wrong_size 2, wrong_volume 8
+candidate check: v2, judged on fresh2.jsonl
+fresh references it flags: 0 []
+
+model     correct  wrong  caught: size-only  candidate  false alarms
+4B           2/15     13                 11         11      0 / 0
+8B           1/15     14                 11         14      0 / 0
+coder        4/15     11                  3          7      1 / 0
+
+all models: wrong 38, caught size-only 25, candidate 32; false alarms size-only 1, candidate 0
+rule: the candidate check replaces the size-only one iff, over every model's programs for the fresh parts, it raises no alarm on a part graded correct, none on any fresh reference, and catches more wrong parts than the size-only check
+-> ADOPT the v2 check
+exit 0
