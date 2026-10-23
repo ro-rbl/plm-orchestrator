@@ -525,9 +525,210 @@ FRESH = [
 ]
 
 
+# ---------------- second fresh set ----------------
+# Written on 2026-10-23 after the first fresh set failed to confirm the shipped policy, and before any
+# model answered it, to judge that set's candidate (evals/run_sql.py FRESH2_RULE). New schemas and
+# data (own seed), as hard as the first fresh set. -> fresh2.jsonl
+FRESH2_SEED = 20261025
+FRESH2_SCHEMAS = {
+    "airline": """CREATE TABLE airports (
+    code TEXT PRIMARY KEY,
+    city TEXT NOT NULL,
+    country TEXT NOT NULL
+);
+CREATE TABLE flights (
+    id INTEGER PRIMARY KEY,
+    flight_no TEXT NOT NULL UNIQUE,
+    origin TEXT NOT NULL REFERENCES airports(code),
+    dest TEXT NOT NULL REFERENCES airports(code),
+    departs TEXT NOT NULL,  -- YYYY-MM-DD HH:MM
+    seats INTEGER NOT NULL
+);
+CREATE TABLE passengers (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    loyalty TEXT NOT NULL CHECK (loyalty IN ('none', 'silver', 'gold'))
+);
+CREATE TABLE bookings (
+    id INTEGER PRIMARY KEY,
+    flight_id INTEGER NOT NULL REFERENCES flights(id),
+    passenger_id INTEGER NOT NULL REFERENCES passengers(id),
+    price REAL NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('confirmed', 'cancelled'))
+);""",
+    "streaming": """CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    country TEXT NOT NULL,
+    plan TEXT NOT NULL CHECK (plan IN ('basic', 'premium'))
+);
+CREATE TABLE shows (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    genre TEXT NOT NULL CHECK (genre IN ('drama', 'comedy', 'documentary'))
+);
+CREATE TABLE episodes (
+    id INTEGER PRIMARY KEY,
+    show_id INTEGER NOT NULL REFERENCES shows(id),
+    season INTEGER NOT NULL,
+    number INTEGER NOT NULL,
+    minutes INTEGER NOT NULL  -- running time
+);
+CREATE TABLE views (
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    episode_id INTEGER NOT NULL REFERENCES episodes(id),
+    watched_on TEXT NOT NULL,  -- date, YYYY-MM-DD
+    minutes_watched INTEGER NOT NULL
+);""",
+    "bank": """CREATE TABLE customers (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    city TEXT NOT NULL
+);
+CREATE TABLE accounts (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL REFERENCES customers(id),
+    kind TEXT NOT NULL CHECK (kind IN ('checking', 'savings')),
+    opened TEXT NOT NULL  -- date, YYYY-MM-DD
+);
+CREATE TABLE transactions (
+    id INTEGER PRIMARY KEY,
+    account_id INTEGER NOT NULL REFERENCES accounts(id),
+    posted TEXT NOT NULL,  -- date, YYYY-MM-DD
+    amount REAL NOT NULL  -- positive: deposit; negative: withdrawal
+);""",
+}
+
+
+def airline_rows(r):
+    airports = [("CDG", "Paris", "France"), ("NCE", "Nice", "France"), ("LYS", "Lyon", "France"),
+                ("FRA", "Frankfurt", "Germany"), ("MUC", "Munich", "Germany"), ("MAD", "Madrid", "Spain"),
+                ("LIS", "Lisbon", "Portugal"), ("DUB", "Dublin", "Ireland")]
+    codes = [a[0] for a in airports]
+    flights = []
+    for fid in range(1, 25):
+        o, d = r.sample(codes, 2)
+        flights.append((fid, f"PL{100 + fid * 7}", o, d, f"2024-0{r.randint(4, 6)}-{r.randint(1, 28):02d} "
+                        f"{r.randint(5, 22):02d}:{r.choice(['00', '15', '30', '45'])}", r.choice([12, 16, 150, 180, 200, 220])))
+    passengers = [(i, n, r.choice(["none", "none", "silver", "gold"])) for i, n in enumerate(people(r, 40), 1)]
+    bookings = [(i, r.randint(1, 24), r.randint(1, 40), round(r.uniform(39, 420), 2),
+                 r.choices(["confirmed", "cancelled"], [5, 1])[0]) for i in range(1, 421)]
+    for fid in (3, 9):  # two small flights overbooked, so "overbooked" has rows
+        flights[fid - 1] = flights[fid - 1][:5] + (12,)
+        for _ in range(14):
+            bookings.append((len(bookings) + 1, fid, r.randint(1, 40), round(r.uniform(39, 420), 2), "confirmed"))
+    return {"airports": airports, "flights": flights, "passengers": passengers, "bookings": bookings}
+
+
+def streaming_rows(r):
+    users = [(i, n, r.choice(["UK", "US", "Canada", "India"]), r.choice(["basic", "premium"])) for i, n in enumerate(people(r, 30), 1)]
+    titles = [("Harbor Lights", "drama"), ("Low Tide", "drama"), ("Crown Street", "drama"), ("Office Hours", "comedy"),
+              ("Two Left Feet", "comedy"), ("Deep Blue", "documentary"), ("Night Sky", "documentary"), ("Salt Roads", "documentary")]
+    shows = [(i, ti, g) for i, (ti, g) in enumerate(titles, 1)]
+    episodes, eid = [], 0
+    for sid in range(1, 9):
+        for season in range(1, r.randint(1, 3) + 1):
+            for number in range(1, r.randint(3, 6) + 1):
+                eid += 1
+                episodes.append((eid, sid, season, number, r.choice([22, 25, 30, 45, 50, 55])))
+    watchable = [e for e in episodes if e[1] != 8]  # Salt Roads is never watched
+    views = []
+    for _ in range(260):
+        e = r.choice(watchable)
+        views.append((r.randint(1, 30), e[0], date(r, 2024, 2024), r.randint(5, e[4])))
+    comedy = [e for e in episodes if e[1] in (4, 5)]
+    for uid in (3, 11, 19):  # a few users watch both comedies, so "every comedy show" has rows
+        for sid in (4, 5):
+            e = next(x for x in comedy if x[1] == sid)
+            views.append((uid, e[0], date(r, 2024, 2024), e[4]))
+    return {"users": users, "shows": shows, "episodes": episodes, "views": views}
+
+
+def bank_rows(r):
+    customers = [(i, n, r.choice(["Oslo", "Bergen", "Tromso"])) for i, n in enumerate(people(r, 18), 1)]
+    accounts, aid = [], 0
+    for cid in range(1, 19):
+        for _ in range(r.randint(1, 3)):
+            aid += 1
+            accounts.append((aid, cid, r.choice(["checking", "savings"]), date(r, 2019, 2023)))
+    transactions, tid = [], 0
+    for a in accounts:
+        days = sorted(r.sample(range(1, 366), r.randint(4, 12)))  # distinct days, so date order is total
+        for d in days:
+            tid += 1
+            month, day = divmod(d - 1, 28)
+            amount = round(r.uniform(20, 900), 2) if r.random() < 0.55 else -round(r.uniform(20, 1200), 2)
+            transactions.append((tid, a[0], f"2024-{min(month + 1, 12):02d}-{day + 1:02d}", amount))
+    return {"customers": customers, "accounts": accounts, "transactions": transactions}
+
+
+FRESH2_ROWS = {"airline": airline_rows, "streaming": streaming_rows, "bank": bank_rows}
+
+FRESH2 = [
+    # ---------------- calm ----------------
+    ("sq2-c01", "calm", "airline", "List the codes of the airports in France.",
+     "SELECT code FROM airports WHERE country = 'France'", False),
+    ("sq2-c02", "calm", "airline", "How many flights have more than 180 seats?",
+     "SELECT COUNT(*) FROM flights WHERE seats > 180", False),
+    ("sq2-c03", "calm", "streaming", "List the titles of the documentary shows, in alphabetical order.",
+     "SELECT title FROM shows WHERE genre = 'documentary' ORDER BY title", True),
+    ("sq2-c04", "calm", "streaming", "What is the total running time of all episodes, in minutes?",
+     "SELECT SUM(minutes) FROM episodes", False),
+    ("sq2-c05", "calm", "bank", "How many savings accounts were opened in 2022?",
+     "SELECT COUNT(*) FROM accounts WHERE kind = 'savings' AND opened LIKE '2022-%'", False),
+    ("sq2-c06", "calm", "bank", "What is the largest single withdrawal? Return it as a positive amount.",
+     "SELECT -MIN(amount) FROM transactions", False),
+    # ---------------- alert ----------------
+    ("sq2-a01", "alert", "airline", "How many confirmed bookings does each flight have? Return the flight number and the count, for flights with at least one confirmed booking.",
+     "SELECT f.flight_no, COUNT(*) FROM bookings b JOIN flights f ON f.id = b.flight_id WHERE b.status = 'confirmed' GROUP BY f.id", False),
+    ("sq2-a02", "alert", "airline", "List the names of the passengers who have a cancelled booking, each name once.",
+     "SELECT DISTINCT p.name FROM passengers p JOIN bookings b ON b.passenger_id = p.id WHERE b.status = 'cancelled'", False),
+    ("sq2-a03", "alert", "airline", "What is the average price of confirmed bookings for each loyalty level? Return the loyalty level and the average price.",
+     "SELECT p.loyalty, AVG(b.price) FROM bookings b JOIN passengers p ON p.id = b.passenger_id WHERE b.status = 'confirmed' GROUP BY p.loyalty", False),
+    ("sq2-a04", "alert", "streaming", "How many episodes does each show have? Return the show's title and the number of episodes.",
+     "SELECT s.title, COUNT(*) FROM episodes e JOIN shows s ON s.id = e.show_id GROUP BY s.id", False),
+    ("sq2-a05", "alert", "streaming", "How many minutes did the users in each country watch in total? Return the country and the total minutes watched.",
+     "SELECT u.country, SUM(v.minutes_watched) FROM views v JOIN users u ON u.id = v.user_id GROUP BY u.country", False),
+    ("sq2-a06", "alert", "bank", "How many accounts does each customer have? Return the customer's name and the count.",
+     "SELECT c.name, COUNT(*) FROM accounts a JOIN customers c ON c.id = a.customer_id GROUP BY c.id", False),
+    ("sq2-a07", "alert", "bank", "What is the balance of each account, summing all its transactions? Return the account id and the balance rounded to 2 decimals.",
+     "SELECT account_id, ROUND(SUM(amount), 2) FROM transactions GROUP BY account_id", False),
+    ("sq2-a08", "alert", "bank", "How much was deposited in each month of 2024? Return the month as YYYY-MM and the total deposits rounded to 2 decimals, in month order.",
+     "SELECT substr(posted, 1, 7) AS m, ROUND(SUM(amount), 2) FROM transactions WHERE amount > 0 AND posted LIKE '2024-%' GROUP BY m ORDER BY m", True),
+    # ---------------- intensive ----------------
+    ("sq2-i01", "intensive", "airline", "Which flights are overbooked, with more confirmed bookings than seats? Return the flight number, the number of seats and the number of confirmed bookings.",
+     "SELECT f.flight_no, f.seats, COUNT(*) FROM flights f JOIN bookings b ON b.flight_id = f.id WHERE b.status = 'confirmed' "
+     "GROUP BY f.id HAVING COUNT(*) > f.seats", False),
+    ("sq2-i02", "intensive", "airline", "Which routes, as origin and destination airport codes, have more than one flight? Return the origin, the destination and the number of flights.",
+     "SELECT origin, dest, COUNT(*) FROM flights GROUP BY origin, dest HAVING COUNT(*) > 1", False),
+    ("sq2-i03", "intensive", "airline", "List the names of the passengers with confirmed bookings on flights from at least six different origin airports.",
+     "SELECT p.name FROM passengers p JOIN bookings b ON b.passenger_id = p.id JOIN flights f ON f.id = b.flight_id "
+     "WHERE b.status = 'confirmed' GROUP BY p.id HAVING COUNT(DISTINCT f.origin) >= 6", False),
+    ("sq2-i04", "intensive", "airline", "For each passenger with a confirmed booking, what is their most expensive confirmed booking? Return the passenger's name, the flight number and the price.",
+     "SELECT p.name, f.flight_no, b.price FROM bookings b JOIN passengers p ON p.id = b.passenger_id JOIN flights f ON f.id = b.flight_id "
+     "WHERE b.status = 'confirmed' AND b.price = (SELECT MAX(price) FROM bookings x WHERE x.passenger_id = b.passenger_id AND x.status = 'confirmed')", False),
+    ("sq2-i05", "intensive", "streaming", "Which users have watched at least one episode of every comedy show? Return their names.",
+     "SELECT u.name FROM users u WHERE NOT EXISTS (SELECT 1 FROM shows s WHERE s.genre = 'comedy' AND NOT EXISTS ("
+     "SELECT 1 FROM views v JOIN episodes e ON e.id = v.episode_id WHERE v.user_id = u.id AND e.show_id = s.id))", False),
+    ("sq2-i06", "intensive", "streaming", "For each show that has been watched, what share of its views were by premium users? Return the title and the share as a fraction between 0 and 1.",
+     "SELECT s.title, AVG(u.plan = 'premium') FROM views v JOIN users u ON u.id = v.user_id JOIN episodes e ON e.id = v.episode_id "
+     "JOIN shows s ON s.id = e.show_id GROUP BY s.id", False),
+    ("sq2-i07", "intensive", "streaming", "List the titles of the shows that no user has watched.",
+     "SELECT title FROM shows WHERE id NOT IN (SELECT e.show_id FROM views v JOIN episodes e ON e.id = v.episode_id)", False),
+    ("sq2-i08", "intensive", "bank", "For account 4, list each transaction's date and amount with the account's balance after it, in date order, starting from a balance of 0.",
+     "SELECT posted, amount, SUM(amount) OVER (ORDER BY posted) FROM transactions WHERE account_id = 4 ORDER BY posted", True),
+    ("sq2-i09", "intensive", "bank", "Which customers have a negative total balance across all their accounts? Return the customer's name and that total rounded to 2 decimals.",
+     "SELECT c.name, ROUND(SUM(t.amount), 2) FROM customers c JOIN accounts a ON a.customer_id = c.id JOIN transactions t ON t.account_id = a.id "
+     "GROUP BY c.id HAVING SUM(t.amount) < 0", False),
+    ("sq2-i10", "intensive", "bank", "For each customer with more than one account, how many days passed between the opening of their first account and their most recent one? Return the customer's name and the number of days.",
+     "SELECT c.name, julianday(MAX(a.opened)) - julianday(MIN(a.opened)) FROM accounts a JOIN customers c ON c.id = a.customer_id "
+     "GROUP BY c.id HAVING COUNT(*) > 1", False),
+]
+
+
 def build(schema, rows):
     db = sqlite3.connect(":memory:")
-    db.executescript({**SCHEMAS, **FRESH_SCHEMAS}[schema])
+    db.executescript({**SCHEMAS, **FRESH_SCHEMAS, **FRESH2_SCHEMAS}[schema])
     for table, data in rows.items():
         db.executemany(f"INSERT INTO {table} VALUES ({','.join('?' * len(data[0]))})", data)
     return db
@@ -535,15 +736,16 @@ def build(schema, rows):
 
 def databases():
     """schema name -> (rows by table), for the eval set's schemas then the fresh set's; fixed by the seeds."""
-    r, fresh = random.Random(SEED), random.Random(FRESH_SEED)
-    return {name: ROWS[name](r) for name in SCHEMAS} | {name: FRESH_ROWS[name](fresh) for name in FRESH_SCHEMAS}
+    r, fresh, fresh2 = random.Random(SEED), random.Random(FRESH_SEED), random.Random(FRESH2_SEED)
+    return ({name: ROWS[name](r) for name in SCHEMAS} | {name: FRESH_ROWS[name](fresh) for name in FRESH_SCHEMAS}
+            | {name: FRESH2_ROWS[name](fresh2) for name in FRESH2_SCHEMAS})
 
 
 def write_set(tasks, data, name):
     """Check every reference on the data (forward and reversed), then write the tasks to `name`."""
     forward = {s: build(s, rows) for s, rows in data.items()}
     reverse = {s: build(s, {t: list(reversed(v)) for t, v in rows.items()}) for s, rows in data.items()}
-    schemas = {**SCHEMAS, **FRESH_SCHEMAS}
+    schemas = {**SCHEMAS, **FRESH_SCHEMAS, **FRESH2_SCHEMAS}
     out = []
     for n, (tid, level, schema, question, ref, ordered) in enumerate(tasks):
         a = forward[schema].execute(ref).fetchall()
@@ -564,11 +766,12 @@ def write_set(tasks, data, name):
 
 
 def main():
-    ids = [t[0] for t in TASKS + FRESH]
+    ids = [t[0] for t in TASKS + FRESH + FRESH2]
     assert len(ids) == len(set(ids)), "duplicate task id"
     data = databases()
     write_set(TASKS, data, "tasks.jsonl")
     write_set(FRESH, data, "fresh.jsonl")
+    write_set(FRESH2, data, "fresh2.jsonl")
     with (OUT / "holdout_levels.jsonl").open("w") as f:
         for hid, level, q in HOLDOUT:
             f.write(json.dumps({"id": hid, "level": level, "prompt": f"{LIBRARY}\n\nWrite a SQL query: {q}"}) + "\n")

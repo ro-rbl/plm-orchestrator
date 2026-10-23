@@ -4,6 +4,7 @@
     .venv/bin/python evals/run_sql.py --simulate           # policies over the saved runs, and SQL_RULE
     .venv/bin/python evals/run_sql.py --model qwen3:8b --tasks evals/sql/fresh.jsonl   # results/sql_fresh__...
     .venv/bin/python evals/run_sql.py --simulate --tasks evals/sql/fresh.jsonl         # and FRESH_RULE
+    .venv/bin/python evals/run_sql.py --simulate --tasks evals/sql/fresh2.jsonl        # and FRESH2_RULE
 
 A query is correct when, run on the task's hidden database (evals/sql/build_tasks.py), it
 returns the reference query's result: the same number of columns, and the same rows as a
@@ -57,6 +58,11 @@ SHIPPED = "cascade 4B -> coder"
 FRESH_RULE = (f"the shipped policy ({SHIPPED}) is confirmed iff, on the fresh tasks with the classifier's levels, "
               "it scores within 1 task of the best policy above and costs less than always-coder; otherwise "
               "SQL_RULE's pick on the fresh set is the candidate to replace it, to be judged on further new tasks")
+# Fixed after FRESH_RULE gave this candidate and before any model answered evals/sql/fresh2.jsonl.
+CANDIDATE = "routed: cascade | intensive 8B -> coder"
+FRESH2_RULE = (f"the candidate ({CANDIDATE}) replaces the shipped policy iff, on the second fresh set with the "
+               "classifier's levels, it scores within 1 task of the best policy above and costs less than always-coder; "
+               "otherwise ship SQL_RULE's pick over both fresh sets pooled (48 tasks)")
 
 
 def load(path):
@@ -78,7 +84,8 @@ def hidden_setup():
     for schema, tables in build_tasks.databases().items():
         inserts = [f"INSERT INTO {t} VALUES " + ", ".join("(" + ", ".join(map(literal, row)) + ")" for row in rows) + ";"
                    for t, rows in tables.items()]
-        out[schema] = {**build_tasks.SCHEMAS, **build_tasks.FRESH_SCHEMAS}[schema] + "\n" + "\n".join(inserts)
+        out[schema] = ({**build_tasks.SCHEMAS, **build_tasks.FRESH_SCHEMAS, **build_tasks.FRESH2_SCHEMAS}[schema]
+                       + "\n" + "\n".join(inserts))
     return out
 
 
@@ -158,19 +165,24 @@ def summarize(tasks, rows):
               + ", ".join(f"{k} {v}" for k, v in sorted(c.items()) if k != "correct"))
 
 
-def simulate(tasks_file=TASKS):
-    from plm_sql.levels import classify
+def saved(tasks_file):
+    """(tasks, results by model key) for a task file, exiting if any model hasn't answered every task."""
     tasks = load(tasks_file)
     paths = {k: results_path(m, tasks_file) for k, m in MODELS.items()}
     R = {k: {r["id"]: r for r in load(p)} for k, p in paths.items() if p.exists()}
     missing = [k for k in MODELS if k not in R or len(R[k]) < len(tasks)]
     if missing:
         sys.exit(f"no complete SQL results for {', '.join(missing)} on {Path(tasks_file).name} yet; run results/run_sql.sh")
+    return tasks, R
+
+
+def policy_totals(tasks, R):
+    """name -> (score, spend, always-coder spend, escalated) for every policy in POLICIES_SQL."""
+    from plm_sql.levels import classify
     levels = {t["id"]: classify(t["prompt"])[0] for t in tasks}
     cost = {k: {tid: PARAMS[k] * r["eval_tokens"] for tid, r in R[k].items()} for k in R}
-    base = sum(cost["coder"].values())
-    print(f"{'policy (levels from plm_sql.levels)':<48} {'score':>6} {'compute':>8} {'escalated':>10}")
-    measured = []
+    base = sum(cost["coder"][t["id"]] for t in tasks)
+    out = {}
     for name, pol in POLICIES_SQL:
         score = spend = escalated = 0
         for t in tasks:
@@ -181,16 +193,43 @@ def simulate(tasks_file=TASKS):
                     break
             score += R[k][t["id"]]["verdict"] == "correct"
             escalated += i > 0
+        out[name] = (score, spend, base, escalated)
+    return out
+
+
+def pick(measured):
+    """SQL_RULE over [(name, score, compute)]."""
+    best = max(s for _, s, _ in measured)
+    return min((m for m in measured if m[1] >= best - 1), key=lambda m: m[2]), best
+
+
+def simulate(tasks_file=TASKS):
+    tasks, R = saved(tasks_file)
+    totals = policy_totals(tasks, R)
+    print(f"{'policy (levels from plm_sql.levels)':<48} {'score':>6} {'compute':>8} {'escalated':>10}")
+    measured = []
+    for name, (score, spend, base, escalated) in totals.items():
         measured.append((name, score, spend / base))
         print(f"{name:<48} {score:>3}/{len(tasks)} {spend / base:>8.0%} {escalated:>10}")
-    best = max(s for _, s, _ in measured)
-    chosen = min((m for m in measured if m[1] >= best - 1), key=lambda m: m[2])
+    chosen, best = pick(measured)
     print(f"\nrule: {SQL_RULE}\n-> {chosen[0]} ({chosen[1]}/{len(tasks)} at {chosen[2]:.0%})")
     if Path(tasks_file).stem == "fresh":
         shipped = next(m for m in measured if m[0] == SHIPPED)
         confirmed = shipped[1] >= best - 1 and shipped[2] < 1
         print(f"\nrule: {FRESH_RULE}\nshipped {shipped[1]}/{len(tasks)} at {shipped[2]:.0%}, best {best}/{len(tasks)}")
         print(f"-> CONFIRMED: keep {SHIPPED}" if confirmed else f"-> NOT CONFIRMED: candidate {chosen[0]}")
+    if Path(tasks_file).stem == "fresh2":
+        cand = next(m for m in measured if m[0] == CANDIDATE)
+        print(f"\nrule: {FRESH2_RULE}\ncandidate {cand[1]}/{len(tasks)} at {cand[2]:.0%}, best {best}/{len(tasks)}")
+        if cand[1] >= best - 1 and cand[2] < 1:
+            print(f"-> ADOPT: {CANDIDATE}")
+        else:
+            first, R1 = saved(Path(tasks_file).with_name("fresh.jsonl"))
+            t1 = policy_totals(first, R1)
+            pooled = [(n, totals[n][0] + t1[n][0], (totals[n][1] + t1[n][1]) / (totals[n][2] + t1[n][2])) for n in totals]
+            choice, top = pick(pooled)
+            print(f"candidate fails; pooled over fresh + fresh2 ({len(tasks) + len(first)} tasks), best {top}")
+            print(f"-> ADOPT: {choice[0]} ({choice[1]}/{len(tasks) + len(first)} at {choice[2]:.0%}, pooled)")
     print("\nkey-free check vs the key:")
     print(f"   {'model':<6} {'wrong':>6} {'caught':>7} {'false alarms':>13}")
     for k in R:
@@ -202,7 +241,7 @@ def simulate(tasks_file=TASKS):
 
 def self_test():
     """The grader against known answers: each reference is correct, and broken copies of it are not."""
-    tasks, setups, fails, total = load(TASKS) + load(TASKS.with_name("fresh.jsonl")), hidden_setup(), [], 0
+    tasks, setups, fails, total = load(TASKS) + load(TASKS.with_name("fresh.jsonl")) + load(TASKS.with_name("fresh2.jsonl")), hidden_setup(), [], 0
 
     def expect(t, query, want):
         nonlocal total
