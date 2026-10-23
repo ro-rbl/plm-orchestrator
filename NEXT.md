@@ -60,10 +60,12 @@ Live on this Mac (arm64, Python 3.13, throwaway uv venvs in the session scratchp
 | Import time per check process | GREEN | 1.6-2.4 s warm; the first run after install took 55 s (one-time library load) |
 | The 8B writes CadQuery | GREEN for the check, 1/2 parts | plate with hole: exact bbox and volume; tube: invalid workplane name -> ValueError, which a check catches |
 | build123d (`cadquery-ocp-novtk`, no VTK) | GREEN | build123d 0.13.0 on OCP 8.0.1: venv 586 MB, no VTK; same box valid, bbox and volume exact; warm import 1.28 s (26 s first run) |
-| The 8B writes build123d | UNKNOWN | not tried; it may know CadQuery's API better (older, more examples) |
+| The 8B writes build123d | RED so far, 0/2 parts | API misuse: `extrude(5)` without `amount=`, lowercase `cylinder`; same parts as the CadQuery probe |
 
-Verdict: **GO.** build123d is half the size of CadQuery and proven; which one the pack uses depends on which
-API the 8B writes better (CadQuery 1/2 parts so far). Ship the kernel only as a dependency of an optional
+Verdict: **GO.** Both kernels build and measure solids exactly. Trade-off: build123d is half the size
+(586 MB vs 1.3 GB), but the 8B wrote CadQuery 1/2 and build123d 0/2 (2 parts: far too few to decide).
+Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` if that combination works
+(untested). Ship the kernel only as a dependency of an optional
 `plm-cad` pack. Next: give the 8B the same parts in build123d (the probe script's pattern: ask, run under
 `python -I` with the bbox/volume epilogue), then write the CAD eval set (parts with computed bbox and volume)
 before any pack code.
