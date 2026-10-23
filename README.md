@@ -28,6 +28,7 @@ Ollama doesn't have yet:
 .venv/bin/plm packs install aerospace
 .venv/bin/plm packs install software
 .venv/bin/plm packs install physics
+.venv/bin/plm packs install cad
 ```
 
 | Pack | Package | Models it pulls (Ollama size) |
@@ -36,6 +37,7 @@ Ollama doesn't have yet:
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
 | software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
 | physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
+| cad | `plm-cad` | the 4B, 8B and coder 14B above; also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
@@ -55,7 +57,8 @@ A pack that fails to load stops the router, with a message naming it;
 
 ```bash
 uv pip install --python .venv/bin/python -e packages/plm-core \
-    -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software -e packages/plm-physics
+    -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software -e packages/plm-physics \
+    -e packages/plm-cad
 ```
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
@@ -98,7 +101,7 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
-- Tasks an installed pack claims (electrical, aerospace, physics, coding) go to that pack
+- Tasks an installed pack claims (electrical, aerospace, physics, coding, CAD) go to that pack
   and are released only after they're checked, so a streamed answer arrives in
   one piece. Everything else goes to the 8B, streams token by token, and is never checked.
 - A pack answer ends with a caveat line when it failed a check or had nothing
@@ -125,6 +128,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
+| cad (parts in millimeters) | pre-sweep default: cascade 4B -> 8B -> coder 14B | the part must build as one valid solid whose overall size matches the task | sweep pending (`results/run_cad.sh`) |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 
@@ -143,6 +147,8 @@ Packs, each in `packages/plm-<name>/src/plm_<name>/` with a `manifest.py` (its `
 and `claims.py` (which tasks it takes):
 - `plm_electrical`, `plm_aerospace`, `plm_physics`: each numeric pack's level cues, tiers and unit words.
 - `plm_software`: sandbox, code prompts, level rules, controller, and model-written tests for `--thorough`.
+- `plm_cad`: a part described in words becomes a CadQuery program; `kernel.py` builds it in an isolated
+  process and measures it, `checks.py` checks its size against the task without an answer key.
 
 Elsewhere:
 - `docs/pack-packaging.md`: the design for separately installable packs and its migration steps.
@@ -162,6 +168,7 @@ Elsewhere:
 .venv/bin/python evals/test_manage.py             # `plm packs`, with Ollama, pip and entry points faked
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
+.venv/bin/python evals/cad/build_problems.py --verify .venv/bin/python   # every CAD reference builds to its key
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
 uv run --with openai --with pint python evals/compat_openai.py --fake   # with the official `openai` client
 .venv/bin/python -m plm_software.sandbox

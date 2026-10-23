@@ -25,6 +25,7 @@ from plm.packs import PACKS, detect  # noqa: E402
 from plm_aerospace import controller as aerospace  # noqa: E402
 from plm_electrical import controller as electrical  # noqa: E402
 from plm_physics import controller as physics  # noqa: E402
+import plm_cad.controller as cad  # noqa: E402
 
 FAILS = []
 
@@ -118,6 +119,22 @@ def test_physics():
     r = physics.solve(q)
     expect("physics: a failed check is reported, not escalated", calls == [large] and not r["trusted"]
            and any("asked for N" in i for i in r["steps"][0]["issues"]), r)
+
+
+def test_cad():
+    small, large = cad.MODELS["small"], cad.MODELS["large"]
+    q = "Model a cube with 25 mm sides."
+    good = "```python\nimport cadquery as cq\nresult = cq.Workplane('XY').box(25, 25, 25)\n```"
+    cad.ask, calls = fake_ollama({small: [good]})
+    r = cad.solve(q)
+    expect("cad: a part that builds to the asked size is trusted", calls == [small] and r["trusted"] and r["pack"] == "cad"
+           and r["answer"]["measured"]["bbox"] == [25.0, 25.0, 25.0] and round(r["answer"]["measured"]["volume"]) == 15625, r)
+
+    wrong = "```python\nimport cadquery as cq\nresult = cq.Workplane('XY').box(25, 25, 50)\n```"
+    cad.ask, calls = fake_ollama({small: [wrong], large: [good]})
+    r = cad.solve(q)
+    expect("cad: a wrong size escalates", calls == [small, large] and r["trusted"]
+           and "matches no dimension" in r["steps"][0]["issues"][0], r)
 
 
 def test_decompose():
@@ -246,7 +263,7 @@ def test_registry():
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
     expect("detect general", detect("What's the capital of Australia?") == "general")
-    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "physics", "software", "general"}
+    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "physics", "software", "cad", "general"}
            and list(PACKS)[-1] == "general", list(PACKS))
     real_eps = pack_module.entry_points
     try:
@@ -261,18 +278,19 @@ def test_registry():
 
 
 def main():
-    real = numeric.ask, software.ask, testgen.ask, general.chat
+    real = numeric.ask, software.ask, testgen.ask, general.chat, cad.ask
     try:
         test_electrical()
         test_aerospace()
         test_units_strategy()
         test_decompose()
         test_physics()
+        test_cad()
         test_software()
         test_general()
         test_registry()
     finally:
-        numeric.ask, software.ask, testgen.ask, general.chat = real
+        numeric.ask, software.ask, testgen.ask, general.chat, cad.ask = real
     for f in FAILS:
         print("FAIL", f)
     print(f"controller tests: {'all passed' if not FAILS else f'{len(FAILS)} failed'}")

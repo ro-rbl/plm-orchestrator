@@ -19,6 +19,7 @@ Levels:
 
 import json
 import math
+import os
 import subprocess
 import sys
 import tempfile
@@ -150,7 +151,8 @@ def verify(python):
     bad = 0
     for r in records():
         with tempfile.TemporaryDirectory() as d:
-            p = subprocess.run([python, "-I", "-c", "import cadquery as cq\n" + r["reference"] + MEASURE],
+            source = "import cadquery as cq\n" + r["reference"] + MEASURE
+            p = subprocess.run([os.path.abspath(python), "-I", "-c", source],
                                capture_output=True, text=True, timeout=120, cwd=d)
         if p.returncode:
             print("FAIL", r["id"], p.stderr.strip().splitlines()[-1]); bad += 1; continue

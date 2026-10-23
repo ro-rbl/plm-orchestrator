@@ -26,13 +26,18 @@ def caveat(result):
 
 
 def answer_body(result):
-    """The answer alone: a value with its unit, a code block, or the reply text."""
+    """The answer alone: a code block (with what was measured, if anything), the reply text, or a value."""
     ans = result["answer"]
     if ans is None:
         return "No answer. Last model output:\n" + result["steps"][-1]["model_text"].strip()
-    if result["pack"] == "software":
-        return "```python\n" + ans["code"].strip() + "\n```"
-    if result["pack"] == "general":
+    if "code" in ans:
+        body = "```python\n" + ans["code"].strip() + "\n```"
+        m = ans.get("measured")
+        if m:
+            body += (f"\n\nBuilt: {' x '.join(f'{e:.4g}' for e in m['bbox'])} mm overall, "
+                     f"volume {m['volume']:.6g} mm³")
+        return body
+    if "text" in ans:
         return ans["text"].strip()
     return f"{ans['value']:.6g} {ans['unit']}".rstrip()
 

@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 from plm.numeric.checks import check, requested_unit  # noqa: E402
 from plm.packs import detect  # noqa: E402
 from plm_aerospace.levels import classify as aerospace_classify  # noqa: E402
+from plm_cad.levels import classify as cad_classify  # noqa: E402
 from plm_electrical.levels import classify as electrical_classify  # noqa: E402
 from plm_physics.levels import classify as physics_classify  # noqa: E402
 from plm_software.levels import classify as software_classify  # noqa: E402
@@ -39,6 +40,8 @@ def main():
         ("evals/aerospace/holdout_levels.jsonl", "question", aerospace_classify),
         ("evals/physics/problems.jsonl", "question", physics_classify),
         ("evals/physics/holdout_levels.jsonl", "question", physics_classify),
+        ("evals/cad/problems.jsonl", "task", cad_classify),
+        ("evals/cad/holdout_levels.jsonl", "task", cad_classify),
         ("evals/software/tasks.jsonl", "prompt", software_classify),
         ("evals/software/holdout_levels.jsonl", "prompt", software_classify),
         ("evals/router/detect_cases.jsonl", "text", None),
