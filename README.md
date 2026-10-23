@@ -37,7 +37,7 @@ Ollama doesn't have yet:
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
 | software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
 | physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
-| cad | `plm-cad` | the 4B, 8B and coder 14B above; also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
+| cad | `plm-cad` | `qwen2.5-coder:14b` (9.0 GB); also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
@@ -128,7 +128,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
-| cad (parts in millimeters) | pre-sweep default: cascade 4B -> 8B -> coder 14B | the part must build as one valid solid whose overall size matches the task | sweep pending (`results/run_cad.sh`) |
+| cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 

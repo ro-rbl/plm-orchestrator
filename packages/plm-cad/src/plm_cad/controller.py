@@ -2,13 +2,26 @@
 
 The answer is the program, plus what the kernel measured. A program is trusted
 when it builds exactly one valid solid whose overall size matches dimensions in
-the task (plm_cad.checks); a check that fails moves the task to the next model.
-The policy was fixed before the CAD sweep, in the software pack's shape (both
-answer with code): a cheap-first cascade 4B -> 8B -> coder 14B for every level.
-evals/run_cad.py --simulate has the alternatives and the rule (CAD_RULE) that
-picks among them after the sweep.
+the task (plm_cad.checks). That check can't see inside a part: a wrong hole in a
+right-sized block passes.
 
-Model names can be overridden with PLM_SMALL_MODEL, PLM_LARGE_MODEL and PLM_CODER_MODEL.
+The policy fixed before the CAD sweep was the software pack's cascade (4B -> 8B
+-> coder 14B, escalating on a failed check). CAD_RULE in evals/run_cad.py, also
+fixed before the sweep, picks the cheapest policy within 1 problem of the best;
+on the 36-part eval only one was:
+
+    always coder 14B                          17/36 at 100% of always-coder compute
+    cascade 8B -> coder                       16/36 at 134%
+    cascade 4B -> 8B -> coder (pre-sweep)     15/36 at 112%
+    always 4B                                 10/36 at 38%
+    always 8B                                  7/36 at 63%
+
+The small models mostly misuse CadQuery's API (19 of the 8B's 36 programs don't
+build), and escalating costs more than asking the coder first. So every level
+goes to the coder alone; a failed check is reported, not escalated. Budgets are
+>2.5x the coder's longest answer at each level (94, 128, 261 tokens).
+
+Model name can be overridden with PLM_CODER_MODEL.
 """
 
 import os
@@ -20,16 +33,11 @@ from plm_cad import kernel
 from plm_cad.checks import check
 from plm_cad.levels import classify
 
-MODELS = {
-    "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),
-    "large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b"),
-    "coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b"),
-}
-CASCADE = ["small", "large", "coder"]
+MODELS = {"coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b")}
 LEVELS = {
-    "calm": {"num_predict": 768, "chain": CASCADE},
-    "alert": {"num_predict": 1024, "chain": CASCADE},
-    "intensive": {"num_predict": 1536, "chain": CASCADE},
+    "calm": {"num_predict": 384, "chain": ["coder"]},
+    "alert": {"num_predict": 512, "chain": ["coder"]},
+    "intensive": {"num_predict": 768, "chain": ["coder"]},
 }
 
 PROMPT_VERSION = 1

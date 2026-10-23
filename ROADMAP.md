@@ -68,9 +68,12 @@ What could carry over, in order of value per effort; each policy fixed before it
       7/15, at 2.4x the tokens. Step prompt v1 had a flaw (its example unit "A" was copied in all 12
       fallbacks), but finished decompositions were still 1 behind on each set. Plans also used wrong
       formulas that the dimension check passes (absurd values, right units).
-- [ ] **CAD pack checked by a real CAD kernel.** The model writes CadQuery or build123d code; the check
-      is that it builds a valid solid with the requested dimensions (bounding box, volume) -- the check
-      SKY-001 lacks. Preflight first: install size and Apple Silicon wheels of the kernel (OpenCascade).
+- [x] **CAD pack checked by a real CAD kernel: built.** `packages/plm-cad`: the coder 14B writes
+      CadQuery, the kernel builds it in an isolated process and measures it. 36 parts with formula keys
+      and kernel-verified references; policies and rule fixed before the sweep: always the coder, 17/36
+      parts exactly right (4B 10, 8B 7: mostly API misuse). The key-free check (one valid solid, overall
+      size from the task) never flagged a right part but catches only 7 of the coder's 19 wrong ones:
+      it can't see features inside a right-sized part (a "through" hole cut halfway passes).
 - [ ] **Fine-tune the 4B for aerospace (LoRA, e.g. with MLX).** Train on generated problems from new
       templates, never on the 50 eval or 24 holdout problems; success = the 4B closes the alert gap
       (75% vs the 8B's 90%), which would let routing pay off in aerospace.

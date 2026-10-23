@@ -11,8 +11,8 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight done, GO:
-     see "CAD pack: preflight" below), or a LoRA for the 4B on aerospace.
+  1. **CAD pack: make its check see features** (see "CAD pack: loose ends"), or the last SKY-001 idea:
+     a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -66,9 +66,24 @@ Verdict: **GO.** Both kernels build and measure solids exactly. Trade-off: build
 (586 MB vs 1.3 GB), but the 8B wrote CadQuery 1/2 and build123d 0/2 (2 parts: far too few to decide).
 Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` if that combination works
 (untested). Ship the kernel only as a dependency of an optional
-`plm-cad` pack. Next: give the 8B the same parts in build123d (the probe script's pattern: ask, run under
-`python -I` with the bbox/volume epilogue), then write the CAD eval set (parts with computed bbox and volume)
-before any pack code.
+`plm-cad` pack. Done since: the pack is built (`ROADMAP.md` 3b).
+
+## CAD pack: loose ends
+- [ ] **The CAD check can't see inside a part, so wrong parts come back trusted.** It caught 7 of the
+      coder's 19 wrong parts (4B 16/26, 8B 23/29; no false alarms in 108). Live, both the 4B and the coder
+      cut a 30 mm cube's "through" hole wrong and passed: the coder extruded the hole from z = 0 on a
+      centered box, so it went only halfway (volume 25821.9 vs 24643.8 mm3). Ideas, untested: check
+      features the task names against the solid's topology (a through hole is a cylindrical face spanning
+      the part; count holes of each stated diameter), or ask for a volume estimate and compare. Measure on
+      the saved runs first: `evals/run_cad.py --simulate` reads `issues`, so recompute them from `code`.
+- [ ] **CAD scores are low and the set is small:** 17/36 at best, on 36 parts written by Claude. Wrong
+      volume is the coder's commonest miss (10), then wrong size (5). The prompt (`plm_cad/controller.py
+      CAD_FORMAT`) gives no CadQuery hints; a v2 with centering and hole idioms is a hypothesis to test on
+      new parts, since these 36 have been seen.
+- [ ] **The CAD pack's install is 1.3 GB** (CadQuery imports VTK at load, so the VTK-free OCP build can't
+      be used). build123d is half the size but the 8B wrote it 0/2 in the preflight; the coder wasn't tried.
+- [ ] **CAD routing needs a request verb**, so a bare description ("A 30 mm cube with a hole") goes to
+      general; only request-phrased holdout cases were routed (12/12 plus 8/8). `plm_cad/claims.py`.
 
 ## Physics: loose ends
 - [ ] **The calculator forgets prefix conversions on physics.** All 7 of the 8B's calculator misses (and 3 of

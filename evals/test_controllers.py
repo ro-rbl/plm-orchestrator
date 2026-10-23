@@ -122,18 +122,18 @@ def test_physics():
 
 
 def test_cad():
-    small, large = cad.MODELS["small"], cad.MODELS["large"]
+    coder = cad.MODELS["coder"]
     q = "Model a cube with 25 mm sides."
     good = "```python\nimport cadquery as cq\nresult = cq.Workplane('XY').box(25, 25, 25)\n```"
-    cad.ask, calls = fake_ollama({small: [good]})
+    cad.ask, calls = fake_ollama({coder: [good]})
     r = cad.solve(q)
-    expect("cad: a part that builds to the asked size is trusted", calls == [small] and r["trusted"] and r["pack"] == "cad"
+    expect("cad: a part that builds to the asked size is trusted", calls == [coder] and r["trusted"] and r["pack"] == "cad"
            and r["answer"]["measured"]["bbox"] == [25.0, 25.0, 25.0] and round(r["answer"]["measured"]["volume"]) == 15625, r)
 
     wrong = "```python\nimport cadquery as cq\nresult = cq.Workplane('XY').box(25, 25, 50)\n```"
-    cad.ask, calls = fake_ollama({small: [wrong], large: [good]})
+    cad.ask, calls = fake_ollama({coder: [wrong]})
     r = cad.solve(q)
-    expect("cad: a wrong size escalates", calls == [small, large] and r["trusted"]
+    expect("cad: a wrong size is reported, not escalated", calls == [coder] and not r["trusted"]
            and "matches no dimension" in r["steps"][0]["issues"][0], r)
 
 
