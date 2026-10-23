@@ -186,6 +186,55 @@ FRESH = [
 ]
 
 
+# A second fresh set, written on 2026-10-23 after the first (cad-f*) had been used to judge a hole
+# check, and before that check's v2. -> fresh2.jsonl
+FRESH2 = [
+    ("cad-g01", "calm", "A rectangular block 70 mm long, 45 mm wide and 15 mm tall.",
+     (70, 45, 15), 70 * 45 * 15, "result = cq.Workplane('XY').box(70, 45, 15)"),
+    ("cad-g02", "alert", "A plate 120 mm by 40 mm and 8 mm thick with a 12 mm diameter through hole at its center.",
+     (120, 40, 8), 120 * 40 * 8 - PI * 6 ** 2 * 8, "result = cq.Workplane('XY').box(120, 40, 8).faces('>Z').workplane().hole(12)"),
+    ("cad-g03", "alert", "A cylinder 36 mm in diameter and 45 mm tall with a blind hole 14 mm in diameter and 25 mm deep at the center of its top face.",
+     (36, 36, 45), PI * 18 ** 2 * 45 - PI * 7 ** 2 * 25,
+     "result = cq.Workplane('XY').circle(18).extrude(45).faces('>Z').workplane().hole(14, 25)"),
+    ("cad-g04", "intensive", "An L-bracket: a base plate 70 mm by 40 mm and 5 mm thick, with an upright plate 40 mm wide and 5 mm thick standing flush on one 40 mm end of the base, 45 mm tall overall, and two 6 mm diameter through holes in the base, 30 mm apart, centered across its width, 40 mm from the upright's outer face.",
+     (70, 40, 45), 70 * 40 * 5 + 5 * 40 * 40 - 2 * PI * 3 ** 2 * 5,
+     "result = (cq.Workplane('XY').box(70, 40, 5, centered=False).union(cq.Workplane('XY').box(5, 40, 45, centered=False))"
+     ".cut(cq.Workplane('XY').pushPoints([(40, 5), (40, 35)]).circle(3).extrude(5)))"),
+    ("cad-g05", "intensive", "A stepped shaft with three coaxial sections: 30 mm in diameter and 20 mm long, then 22 mm in diameter and 40 mm long, then 16 mm in diameter and 25 mm long.",
+     (30, 30, 85), PI * (15 ** 2 * 20 + 11 ** 2 * 40 + 8 ** 2 * 25),
+     "result = (cq.Workplane('XY').circle(15).extrude(20).faces('>Z').workplane().circle(11).extrude(40)"
+     ".faces('>Z').workplane().circle(8).extrude(25))"),
+    ("cad-g06", "alert", "A tube 80 mm long with an outer diameter of 26 mm and an inner diameter of 20 mm.",
+     (26, 26, 80), PI * (13 ** 2 - 10 ** 2) * 80, "result = cq.Workplane('XY').circle(13).circle(10).extrude(80)"),
+    ("cad-g07", "intensive", "A flange: a disc 100 mm in diameter and 12 mm thick with a 40 mm central hole and eight 9 mm bolt holes evenly spaced on a 75 mm diameter bolt circle.",
+     (100, 100, 12), PI * (50 ** 2 - 20 ** 2) * 12 - 8 * PI * 4.5 ** 2 * 12,
+     "result = cq.Workplane('XY').circle(50).circle(20).extrude(12).faces('>Z').workplane().polarArray(37.5, 0, 360, 8).hole(9)"),
+    ("cad-g08", "alert", "A block 60 mm by 60 mm and 25 mm tall with a rectangular pocket 40 mm by 20 mm and 8 mm deep centered in its top face.",
+     (60, 60, 25), 60 * 60 * 25 - 40 * 20 * 8,
+     "result = cq.Workplane('XY').box(60, 60, 25).faces('>Z').workplane().rect(40, 20).cutBlind(-8)"),
+    ("cad-g09", "intensive", "A T-bracket: a base plate 90 mm by 40 mm and 6 mm thick with a rib 6 mm thick and 40 mm wide standing across the middle of its length, 50 mm tall overall, and a 8 mm diameter through hole in the base 25 mm from each end, centered across its width.",
+     (90, 40, 50), 90 * 40 * 6 + 6 * 40 * 44 - 2 * PI * 4 ** 2 * 6,
+     "result = (cq.Workplane('XY').box(90, 40, 6, centered=False).union(cq.Workplane('XY').box(6, 40, 50, centered=False).translate((42, 0, 0)))"
+     ".cut(cq.Workplane('XY').pushPoints([(25, 20), (65, 20)]).circle(4).extrude(6)))"),
+    ("cad-g10", "alert", "A 50 mm cube with its four vertical edges chamfered by 6 mm.",
+     (50, 50, 50), 50 ** 3 - 4 * (6 * 6 / 2) * 50, "result = cq.Workplane('XY').box(50, 50, 50).edges('|Z').chamfer(6)"),
+    ("cad-g11", "intensive", "A plate 80 mm by 80 mm and 6 mm thick with nine 5 mm diameter through holes in a centered 3 by 3 grid spaced 20 mm apart.",
+     (80, 80, 6), 80 * 80 * 6 - 9 * PI * 2.5 ** 2 * 6,
+     "result = cq.Workplane('XY').box(80, 80, 6).faces('>Z').workplane().rarray(20, 20, 3, 3).hole(5)"),
+    ("cad-g12", "intensive", "A cylinder 40 mm in diameter and 30 mm tall with a counterbored hole on its axis: a 10 mm through hole with a counterbore 18 mm in diameter and 8 mm deep.",
+     (40, 40, 30), PI * 20 ** 2 * 30 - PI * 5 ** 2 * 22 - PI * 9 ** 2 * 8,
+     "result = cq.Workplane('XY').circle(20).extrude(30).faces('>Z').workplane().cboreHole(10, 18, 8)"),
+    ("cad-g13", "calm", "A solid cone with a base 50 mm in diameter and a height of 30 mm.",
+     (50, 50, 30), PI * 25 ** 2 * 30 / 3, "result = cq.Workplane('XY').add(cq.Solid.makeCone(25, 0, 30))"),
+    ("cad-g14", "intensive", "An open-topped box 80 mm by 60 mm and 35 mm tall outside, with walls and floor 3 mm thick and a 10 mm diameter drain hole through the center of the floor.",
+     (80, 60, 35), 80 * 60 * 35 - 74 * 54 * 32 - PI * 5 ** 2 * 3,
+     "result = (cq.Workplane('XY').box(80, 60, 35).faces('>Z').shell(-3)"
+     ".cut(cq.Workplane('XY').circle(5).extrude(3).translate((0, 0, -17.5))))"),
+    ("cad-g15", "alert", "A square bar 25 mm by 25 mm and 100 mm long with a 10 mm diameter hole straight through its middle, perpendicular to its length.",
+     (25, 25, 100), 25 * 25 * 100 - PI * 5 ** 2 * 25, "result = cq.Workplane('XY').box(25, 25, 100).faces('>X').workplane().hole(10)"),
+]
+
+
 MEASURE = """
 import json as _json
 _shape = result.val() if hasattr(result, "val") else result
@@ -221,12 +270,12 @@ def verify(python, problems=PROBLEMS):
 
 
 def main():
-    ids = [p[0] for p in PROBLEMS + FRESH]
+    ids = [p[0] for p in PROBLEMS + FRESH + FRESH2]
     assert len(ids) == len(set(ids)), "duplicate problem id"
     if "--verify" in sys.argv:
         python = sys.argv[sys.argv.index("--verify") + 1]
-        sys.exit(1 if verify(python) + verify(python, FRESH) else 0)
-    for problems, name in ((PROBLEMS, "problems.jsonl"), (FRESH, "fresh.jsonl")):
+        sys.exit(1 if verify(python) + verify(python, FRESH) + verify(python, FRESH2) else 0)
+    for problems, name in ((PROBLEMS, "problems.jsonl"), (FRESH, "fresh.jsonl"), (FRESH2, "fresh2.jsonl")):
         out = Path(__file__).with_name(name)
         with out.open("w") as f:
             for r in records(problems):
