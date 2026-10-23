@@ -28,6 +28,11 @@ from pathlib import Path
 PI = math.pi
 HEX_AREA = 3 * math.sqrt(3) / 8 * 20 ** 2  # regular hexagon 20 mm across corners
 
+# Grading tolerance on each bounding-box extent and the volume. Keys and correctly built parts agree to
+# ~1e-6. It was 1% for the first sweep, which passed a 10 mm-deep blind hole asked as 12 mm deep in a
+# 40 mm block (volume off 0.5%), so it is 0.1% from 2026-10-23, before the fresh parts were run.
+REL_TOL = 0.001
+
 # (id, level, task, bbox (any order), volume, reference program)
 PROBLEMS = [
     # ---------------- calm ----------------
@@ -193,7 +198,7 @@ print(_json.dumps({"valid": _shape.isValid(), "solids": len(_shape.Solids()),
 def records(problems=PROBLEMS):
     for pid, level, task, bbox, volume, ref in problems:
         yield {"id": pid, "domain": "cad", "level": level, "task": task, "bbox": sorted(bbox), "volume": volume,
-               "rel_tol": 0.01, "reference": ref}
+               "rel_tol": REL_TOL, "reference": ref}
 
 
 def verify(python, problems=PROBLEMS):

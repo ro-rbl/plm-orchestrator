@@ -1,6 +1,7 @@
 """Run one model over the CAD eval set, build every part with the kernel, and grade it; or simulate routing.
 
     .venv/bin/python evals/run_cad.py --model qwen3:8b       # writes results/cad__<model>.jsonl
+    .venv/bin/python evals/run_cad.py --model qwen3:8b --problems evals/cad/fresh.jsonl   # results/cad_fresh__...
     .venv/bin/python evals/run_cad.py --simulate             # policies over the saved runs, and CAD_RULE
 
 A part is correct when it is one valid solid whose bounding box (extents sorted, so
@@ -65,13 +66,14 @@ def grade(problem, measured):
     return "correct"
 
 
-def results_path(model):
-    return RESULTS / f"cad__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
+def results_path(model, problems_file=PROBLEMS):
+    stem = "" if Path(problems_file).stem == "problems" else "_" + Path(problems_file).stem
+    return RESULTS / f"cad{stem}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
 
 
-def run(model, num_predict, timeout):
-    problems = load(PROBLEMS)
-    out = results_path(model)
+def run(model, num_predict, timeout, problems_file=PROBLEMS):
+    problems = load(problems_file)
+    out = results_path(model, problems_file)
     done = {r["id"] for r in load(out)} if out.exists() else set()
     todo = [p for p in problems if p["id"] not in done]
     print(f"{model}: {len(todo)} to run, {len(done)} already in {out}")
@@ -121,6 +123,10 @@ def simulate():
     if missing:
         sys.exit(f"no complete CAD results for {', '.join(missing)} yet; run results/run_cad.sh")
     levels = {p["id"]: classify(p["task"])[0] for p in problems}
+    # grade from the saved measurements with the current keys, so a tolerance change regrades old runs
+    for k in R:
+        for p in problems:
+            R[k][p["id"]]["verdict"] = grade(p, R[k][p["id"]]["measured"])
     cost = {k: {pid: PARAMS[k] * r["eval_tokens"] for pid, r in R[k].items()} for k in R}
     base = sum(cost["coder"].values())
     print(f"{'policy (levels from plm_cad.levels)':<48} {'score':>6} {'compute':>8} {'escalated':>10}")
@@ -153,6 +159,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model")
     ap.add_argument("--simulate", action="store_true")
+    ap.add_argument("--problems", default=PROBLEMS, help="problem file (default: the eval set)")
     ap.add_argument("--num-predict", type=int, default=1024, help="max generated tokens per problem")
     ap.add_argument("--timeout", type=int, default=300, help="seconds per request")
     args = ap.parse_args()
@@ -160,7 +167,7 @@ def main():
         return simulate()
     if not args.model:
         sys.exit("--model or --simulate")
-    run(args.model, args.num_predict, args.timeout)
+    run(args.model, args.num_predict, args.timeout, args.problems)
 
 
 if __name__ == "__main__":

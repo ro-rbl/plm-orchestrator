@@ -34,8 +34,61 @@ if isinstance(_shape, _cq.Workplane) or not isinstance(_shape, _cq.Shape):
 if len(_found.vals()) > 1 if isinstance(_found, _cq.Workplane) else False:
     _shape = _cq.Compound.makeCompound(_found.vals())
 _bb = _shape.BoundingBox()
+# Holes: concave cylindrical faces, merged when the kernel splits one hole into several faces.
+from OCP.BRepAdaptor import BRepAdaptor_Surface as _Surface
+from OCP.BRepTools import BRepTools as _BRepTools
+from OCP.GeomAbs import GeomAbs_Cylinder as _CYLINDER
+from OCP.gp import gp_Pnt as _Pnt, gp_Vec as _Vec
+from OCP.TopAbs import TopAbs_REVERSED as _REVERSED
+_holes = {}
+for _f in _shape.Faces():
+    _a = _Surface(_f.wrapped)
+    if _a.GetType() != _CYLINDER:
+        continue
+    _cyl = _a.Cylinder()
+    _r, _ax = _cyl.Radius(), _cyl.Axis()
+    _d, _o = _ax.Direction(), _ax.Location()
+    _dv = _cq.Vector(_d.X(), _d.Y(), _d.Z())
+    _ov = _cq.Vector(_o.X(), _o.Y(), _o.Z())
+    # a point on the face and the solid's outward normal there, from the middle of its parameters
+    _u0, _u1, _v0, _v1 = _BRepTools.UVBounds_s(_f.wrapped)
+    _pt, _du, _dvv = _Pnt(), _Vec(), _Vec()
+    _a.D1((_u0 + _u1) / 2, (_v0 + _v1) / 2, _pt, _du, _dvv)
+    _n = _du.Crossed(_dvv)
+    if _f.wrapped.Orientation() == _REVERSED:
+        _n.Reverse()
+    _pv = _cq.Vector(_pt.X(), _pt.Y(), _pt.Z())
+    _radial = (_pv - _ov) - _dv * (_pv - _ov).dot(_dv)
+    if _cq.Vector(_n.X(), _n.Y(), _n.Z()).dot(_radial) >= 0:
+        continue  # an outside surface (normal points away from the axis), not a hole
+    _ts = [(_v.toTuple()[0] - _ov.x) * _dv.x + (_v.toTuple()[1] - _ov.y) * _dv.y + (_v.toTuple()[2] - _ov.z) * _dv.z
+           for _v in _f.Vertices()]
+    if not _ts:
+        continue
+    # the axis line's point nearest the origin keys a hole, with its radius and direction
+    _p0 = _ov - _dv * _ov.dot(_dv)
+    _key = (round(_r, 3), tuple(round(abs(x), 3) for x in (_dv.x, _dv.y, _dv.z)), tuple(round(x, 2) for x in (_p0.x, _p0.y, _p0.z)))
+    _lo, _hi = _holes.get(_key, (min(_ts), max(_ts)))
+    _holes[_key] = (min(_lo, min(_ts)), max(_hi, max(_ts)))
+_holes_out = []
+for (_r, _dir, _p), (_lo, _hi) in _holes.items():
+    _span = None  # the part's extent along the hole's axis, when the axis is along x, y or z
+    for _i, _ext in enumerate((_bb.xlen, _bb.ylen, _bb.zlen)):
+        if abs(_dir[_i] - 1) < 1e-3:
+            _span = _ext
+    # all hole faces on this axis together (a counterbored hole is two coaxial cylinders)
+    _iv = sorted(v for k, v in _holes.items() if k[1:] == (_dir, _p))
+    _clo, _chi = _iv[0]
+    for _a0, _a1 in _iv[1:]:
+        if _a0 <= _chi + 1e-6:
+            _chi = max(_chi, _a1)
+    _tol = 1e-3 * max(_span or 1, 1)
+    _holes_out.append({"diameter": 2 * _r, "depth": _hi - _lo,
+                       "through": _span is not None and abs((_hi - _lo) - _span) <= _tol,
+                       "axis_through": _span is not None and abs((_chi - _clo) - _span) <= _tol})
 print("PLM_CAD " + _json.dumps({"valid": _shape.isValid(), "solids": len(_shape.Solids()),
-                                "bbox": sorted([_bb.xlen, _bb.ylen, _bb.zlen]), "volume": _shape.Volume()}))
+                                "bbox": sorted([_bb.xlen, _bb.ylen, _bb.zlen]), "volume": _shape.Volume(),
+                                "holes": _holes_out}))
 """
 
 
