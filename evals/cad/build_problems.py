@@ -8,7 +8,7 @@ the key, so a slip in a formula or a reference can't go unnoticed.
 
 Written on 2026-10-22 before the CAD pack's claims, levels or policies existed.
 
-    .venv/bin/python evals/cad/build_problems.py                      # write problems.jsonl
+    .venv/bin/python evals/cad/build_problems.py                      # write problems.jsonl and fresh.jsonl
     .venv/bin/python evals/cad/build_problems.py --verify <python>    # build every reference with <python>,
                                                                       # which must have cadquery
 Levels:
@@ -131,6 +131,56 @@ PROBLEMS = [
      ".faces('>Z').workplane().rect(50, 50, forConstruction=True).vertices().hole(6))"),
 ]
 
+# Fresh parts for judging a better key-free check, written on 2026-10-23 before that check was
+# designed; the 36 above have been seen (their saved runs tune the check). -> fresh.jsonl
+FRESH = [
+    ("cad-f01", "alert", "A plate 90 mm by 50 mm and 6 mm thick with two 8 mm diameter through holes, 60 mm apart, centered on the plate.",
+     (90, 50, 6), 90 * 50 * 6 - 2 * PI * 4 ** 2 * 6,
+     "result = cq.Workplane('XY').box(90, 50, 6).faces('>Z').workplane().rarray(60, 1, 2, 1).hole(8)"),
+    ("cad-f02", "alert", "A cylinder 50 mm in diameter and 20 mm tall with a 16 mm diameter through hole on its axis.",
+     (50, 50, 20), PI * (25 ** 2 - 8 ** 2) * 20, "result = cq.Workplane('XY').circle(25).circle(8).extrude(20)"),
+    ("cad-f03", "alert", "A block 60 mm by 30 mm and 30 mm tall with a blind hole 12 mm in diameter and 18 mm deep at the center of its top face.",
+     (60, 30, 30), 60 * 30 * 30 - PI * 6 ** 2 * 18,
+     "result = cq.Workplane('XY').box(60, 30, 30).faces('>Z').workplane().hole(12, 18)"),
+    ("cad-f04", "alert", "A 40 mm cube with a 20 mm diameter hole straight through the centers of two opposite faces.",
+     (40, 40, 40), 40 ** 3 - PI * 10 ** 2 * 40, "result = cq.Workplane('XY').box(40, 40, 40).faces('>Z').workplane().hole(20)"),
+    ("cad-f05", "intensive", "A disc 120 mm in diameter and 8 mm thick with four 10 mm diameter through holes evenly spaced on a 90 mm diameter circle.",
+     (120, 120, 8), PI * 60 ** 2 * 8 - 4 * PI * 5 ** 2 * 8,
+     "result = cq.Workplane('XY').circle(60).extrude(8).faces('>Z').workplane().polarArray(45, 0, 360, 4).hole(10)"),
+    ("cad-f06", "intensive", "A bar 80 mm long, 20 mm wide and 20 mm tall with three 6 mm diameter vertical through holes along its length, 25 mm apart and centered on the bar.",
+     (80, 20, 20), 80 * 20 * 20 - 3 * PI * 3 ** 2 * 20,
+     "result = cq.Workplane('XY').box(80, 20, 20).faces('>Z').workplane().rarray(25, 1, 3, 1).hole(6)"),
+    ("cad-f07", "calm", "A tube 60 mm long with an outer diameter of 40 mm and an inner diameter of 30 mm.",
+     (40, 40, 60), PI * (20 ** 2 - 15 ** 2) * 60, "result = cq.Workplane('XY').circle(20).circle(15).extrude(60)"),
+    ("cad-f08", "alert", "A block 50 mm by 40 mm and 25 mm tall with its four vertical edges rounded to a 4 mm radius.",
+     (50, 40, 25), 50 * 40 * 25 - 4 * (1 - PI / 4) * 4 ** 2 * 25,
+     "result = cq.Workplane('XY').box(50, 40, 25).edges('|Z').fillet(4)"),
+    ("cad-f09", "intensive", "An open-topped box 70 mm by 50 mm and 40 mm tall outside, with walls and floor 2.5 mm thick.",
+     (70, 50, 40), 70 * 50 * 40 - 65 * 45 * 37.5, "result = cq.Workplane('XY').box(70, 50, 40).faces('>Z').shell(-2.5)"),
+    ("cad-f10", "intensive", "A plate 100 mm by 100 mm and 10 mm thick with a 40 mm square through cutout at its center and four 8 mm diameter through holes, each centered 10 mm from the two nearest edges.",
+     (100, 100, 10), 100 * 100 * 10 - 40 * 40 * 10 - 4 * PI * 4 ** 2 * 10,
+     "result = (cq.Workplane('XY').box(100, 100, 10).faces('>Z').workplane().rect(40, 40).cutThruAll()"
+     ".faces('>Z').workplane().rect(80, 80, forConstruction=True).vertices().hole(8))"),
+    ("cad-f11", "intensive", "A stepped shaft with three coaxial sections: 40 mm in diameter and 30 mm long, then 25 mm in diameter and 50 mm long, then 15 mm in diameter and 20 mm long.",
+     (40, 40, 100), PI * (20 ** 2 * 30 + 12.5 ** 2 * 50 + 7.5 ** 2 * 20),
+     "result = (cq.Workplane('XY').circle(20).extrude(30).faces('>Z').workplane().circle(12.5).extrude(50)"
+     ".faces('>Z').workplane().circle(7.5).extrude(20))"),
+    ("cad-f12", "intensive", "A block 50 mm by 50 mm and 20 mm tall with a counterbored hole at the center of its top face: a 6 mm through hole with a counterbore 11 mm in diameter and 5 mm deep.",
+     (50, 50, 20), 50 * 50 * 20 - PI * 3 ** 2 * 15 - PI * 5.5 ** 2 * 5,
+     "result = cq.Workplane('XY').box(50, 50, 20).faces('>Z').workplane().cboreHole(6, 11, 5)"),
+    ("cad-f13", "alert", "A cylinder 30 mm in diameter and 50 mm tall with a blind hole 10 mm in diameter and 20 mm deep in the center of one end.",
+     (30, 30, 50), PI * 15 ** 2 * 50 - PI * 5 ** 2 * 20,
+     "result = cq.Workplane('XY').circle(15).extrude(50).faces('>Z').workplane().hole(10, 20)"),
+    ("cad-f14", "intensive", "An L-bracket: a base plate 80 mm by 50 mm and 6 mm thick, with an upright plate 50 mm wide and 6 mm thick standing flush on one 50 mm end of the base, 60 mm tall overall, and a 10 mm diameter through hole at the center of the base.",
+     (80, 50, 60), 80 * 50 * 6 + 6 * 50 * 54 - PI * 5 ** 2 * 6,
+     "result = (cq.Workplane('XY').box(80, 50, 6, centered=False).union(cq.Workplane('XY').box(6, 50, 60, centered=False))"
+     ".cut(cq.Workplane('XY').center(40, 25).circle(5).extrude(6)))"),
+    ("cad-f15", "intensive", "A regular hexagonal prism 30 mm across corners and 20 mm tall with a 10 mm diameter through hole on its axis.",
+     (30, 30 * math.sqrt(3) / 2, 20), 3 * math.sqrt(3) / 8 * 30 ** 2 * 20 - PI * 5 ** 2 * 20,
+     "result = cq.Workplane('XY').polygon(6, 30).circle(5).extrude(20)"),
+]
+
+
 MEASURE = """
 import json as _json
 _shape = result.val() if hasattr(result, "val") else result
@@ -140,16 +190,16 @@ print(_json.dumps({"valid": _shape.isValid(), "solids": len(_shape.Solids()),
 """
 
 
-def records():
-    for pid, level, task, bbox, volume, ref in PROBLEMS:
+def records(problems=PROBLEMS):
+    for pid, level, task, bbox, volume, ref in problems:
         yield {"id": pid, "domain": "cad", "level": level, "task": task, "bbox": sorted(bbox), "volume": volume,
                "rel_tol": 0.01, "reference": ref}
 
 
-def verify(python):
+def verify(python, problems=PROBLEMS):
     """Build every reference with the kernel; it must be one valid solid matching the key."""
     bad = 0
-    for r in records():
+    for r in records(problems):
         with tempfile.TemporaryDirectory() as d:
             source = "import cadquery as cq\n" + r["reference"] + MEASURE
             p = subprocess.run([os.path.abspath(python), "-I", "-c", source],
@@ -161,21 +211,23 @@ def verify(python):
               and all(math.isclose(a, b, rel_tol=1e-6) for a, b in zip(m["bbox"], r["bbox"])))
         if not ok:
             print("FAIL", r["id"], m, "key", r["bbox"], r["volume"]); bad += 1
-    print(f"verify: {len(PROBLEMS) - bad}/{len(PROBLEMS)} references match their keys")
+    print(f"verify: {len(problems) - bad}/{len(problems)} references match their keys")
     return bad
 
 
 def main():
-    ids = [p[0] for p in PROBLEMS]
+    ids = [p[0] for p in PROBLEMS + FRESH]
     assert len(ids) == len(set(ids)), "duplicate problem id"
     if "--verify" in sys.argv:
-        sys.exit(1 if verify(sys.argv[sys.argv.index("--verify") + 1]) else 0)
-    out = Path(__file__).with_name("problems.jsonl")
-    with out.open("w") as f:
-        for r in records():
-            f.write(json.dumps(r) + "\n")
-    counts = {lvl: sum(p[1] == lvl for p in PROBLEMS) for lvl in ("calm", "alert", "intensive")}
-    print(f"wrote {len(PROBLEMS)} problems to {out} {counts}")
+        python = sys.argv[sys.argv.index("--verify") + 1]
+        sys.exit(1 if verify(python) + verify(python, FRESH) else 0)
+    for problems, name in ((PROBLEMS, "problems.jsonl"), (FRESH, "fresh.jsonl")):
+        out = Path(__file__).with_name(name)
+        with out.open("w") as f:
+            for r in records(problems):
+                f.write(json.dumps(r) + "\n")
+        counts = {lvl: sum(p[1] == lvl for p in problems) for lvl in ("calm", "alert", "intensive")}
+        print(f"wrote {len(problems)} problems to {out} {counts}")
 
 
 if __name__ == "__main__":
