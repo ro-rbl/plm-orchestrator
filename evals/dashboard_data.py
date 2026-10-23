@@ -28,14 +28,17 @@ SHIPPED = {
     "physics": "always 8B (bare)",
     "software": "unrouted cascade: orig4B -> 8B -> coder14B",
     "cad": "always coder",
+    "sql": "cascade 4B -> coder",
 }
 PRE_SWEEP = {
     "aerospace": "+ escalate on failed check (first default)",
     "physics": "+ escalate on failed check (pre-sweep default)",
     "cad": "cascade 4B -> 8B -> coder (pre-sweep default)",
+    "sql": "cascade 4B -> 8B -> coder (pre-sweep default)",
 }
 BASELINE = {"electrical": "always 8B", "aerospace": "always 8B", "physics": "always 8B",
-            "software": "always coder 14B", "cad": "always coder 14B"}
+            "software": "always coder 14B", "cad": "always coder 14B",
+            "sql": "always coder 14B"}
 POLICY_ROW = re.compile(r"^(?P<name>\S.*?|\s+\+.*?)\s{2,}(?P<score>\d+)/(?P<n>\d+)\s+(?P<pct>\d+)%(?:\s+(?P<esc>\d+))?\s*$")
 CHECK_ROW = re.compile(r"^\s+(?P<who>\S+)\s+(?P<wrong>\d+)\s+(?P<caught>\d+)\s+(?P<false>\d+)\s*$")
 
@@ -97,6 +100,9 @@ def main():
     policies += parse_policies("cad", text)
     # the eval-set CAD runs carry the size check of the first sweep; the shipped hole check is judged in experiments
     checks += [dict(r, answers=f"{r['answers']}, size check") for r in parse_checks("cad", text, "key-free check vs the key")]
+    text = run("evals/run_sql.py", "--simulate")
+    policies += parse_policies("sql", text)
+    checks += parse_checks("sql", text, "key-free check vs the key")
 
     # Experiments: each has a rule committed before its results; the scorer prints its verdict.
     units = {r["pack"]: r for r in policies if r["policy"].startswith("units:")}

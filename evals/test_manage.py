@@ -50,11 +50,11 @@ def test_source():
            == ["-e", str(packages / "plm-software")])
     expect("source: the pack's own directory", manage._source("software", str(packages / "plm-software"))
            == ["-e", str(packages / "plm-software")])
-    req = "plm-sql @ git+https://example.invalid/repo#subdirectory=packages/plm-sql"
-    expect("source: a pip requirement passes through", manage._source("sql", req) == [req])
-    code, _ = run(manage._source, "sql", None)
+    req = "plm-chemistry @ git+https://example.invalid/repo#subdirectory=packages/plm-chemistry"
+    expect("source: a pip requirement passes through", manage._source("chemistry", req) == [req])
+    code, _ = run(manage._source, "chemistry", None)
     expect("source: unknown pack with no source is an error", isinstance(code, str) and "--source" in code, code)
-    code, _ = run(manage._source, "sql", str(ROOT / "evals"))
+    code, _ = run(manage._source, "chemistry", str(ROOT / "evals"))
     expect("source: a directory without the pack is an error", isinstance(code, str) and "pyproject" in code, code)
 
 

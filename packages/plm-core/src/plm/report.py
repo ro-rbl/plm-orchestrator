@@ -31,7 +31,7 @@ def answer_body(result):
     if ans is None:
         return "No answer. Last model output:\n" + result["steps"][-1]["model_text"].strip()
     if "code" in ans:
-        body = "```python\n" + ans["code"].strip() + "\n```"
+        body = f"```{ans.get('language', 'python')}\n" + ans["code"].strip() + "\n```"
         m = ans.get("measured")
         if m:
             body += (f"\n\nBuilt: {' x '.join(f'{e:.4g}' for e in m['bbox'])} mm overall, "

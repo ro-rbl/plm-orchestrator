@@ -96,3 +96,15 @@
 {"id": "k12", "pack": "general", "text": "What does CAD stand for?"}
 {"id": "k13", "pack": "general", "text": "How thick should the walls of a 3D-printed enclosure be?"}
 {"id": "k14", "pack": "electrical", "text": "A PCB trace 0.5 mm wide carries 2 A. What is the current density in amperes per square millimeter if it is 0.035 mm thick?"}
+{"id": "q01", "pack": "sql", "text": "Write a SQL query that returns the 10 most recent rows from an orders table with columns id, customer_id and created_at."}
+{"id": "q02", "pack": "sql", "text": "CREATE TABLE users (id INTEGER PRIMARY KEY, email TEXT, signup_date TEXT);\nCREATE TABLE logins (user_id INTEGER, at TEXT);\n\nHow many users never logged in after signing up?"}
+{"id": "q03", "pack": "sql", "text": "I have a table sales(region, month, amount). Give me a query for each region's total amount in 2024."}
+{"id": "q04", "pack": "sql", "text": "How do I select the second highest salary from an employees table in SQL?"}
+{"id": "q05", "pack": "sql", "text": "Write a SELECT statement listing products whose price is above the average price, from products(id, name, price)."}
+{"id": "q06", "pack": "sql", "text": "CREATE TABLE readings (sensor TEXT, ts TEXT, volts REAL);\n\nWrite a SQLite query for the average voltage per sensor over the last 7 days."}
+{"id": "q07", "pack": "general", "text": "What is the difference between an INNER JOIN and a LEFT JOIN?"}
+{"id": "q08", "pack": "general", "text": "What is SQL injection, and how do I prevent it?"}
+{"id": "q09", "pack": "software", "text": "Write a Python function `count_rows(db_path: str, table: str) -> int` that opens a SQLite database and returns the number of rows in the table."}
+{"id": "q10", "pack": "general", "text": "Should I use PostgreSQL or MySQL for a small web app?"}
+{"id": "q11", "pack": "electrical", "text": "A database server draws 450 W from a 120 V outlet. What current does it draw, in amperes?"}
+{"id": "q12", "pack": "sql", "text": "Using a table employees(id, name, manager_id), write a recursive query that lists everyone under manager 7."}

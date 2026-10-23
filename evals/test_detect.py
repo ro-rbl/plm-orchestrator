@@ -44,14 +44,16 @@ def main():
              + load("evals/software/tasks.jsonl", "prompt", "software")
              + load("evals/software/holdout_levels.jsonl", "prompt", "software")
              + load("evals/aerospace/problems.jsonl", "question", "aerospace")
-             + load("evals/physics/problems.jsonl", "question", "physics"))
+             + load("evals/physics/problems.jsonl", "question", "physics")
+             + load("evals/sql/tasks.jsonl", "prompt", "sql"))
     misses = score("eval-set texts (known while writing the rule)", known, verbose)
     holdout = (load("evals/router/detect_cases.jsonl", "text")
                + load("evals/aerospace/holdout_levels.jsonl", "question", "aerospace")
                + load("evals/physics/holdout_levels.jsonl", "question", "physics")
                # CAD's eval set is part descriptions sent straight to the CAD prompt, not requests,
                # so only its request-phrased holdout is routed
-               + load("evals/cad/holdout_levels.jsonl", "task", "cad"))
+               + load("evals/cad/holdout_levels.jsonl", "task", "cad")
+               + load("evals/sql/holdout_levels.jsonl", "prompt", "sql"))
     score("holdout cases (labels written before the rule they test)", holdout, verbose)
     sys.exit(1 if misses else 0)  # the eval texts must all route correctly; the holdout is reported
 

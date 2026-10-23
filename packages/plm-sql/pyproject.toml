@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plm-sql"
+version = "0.1.0"
+description = "plm pack: SQLite queries, checked by running them on the schema given with the task"
+requires-python = ">=3.13"
+# The checker is the standard library's sqlite3: no other dependency.
+dependencies = ["plm-core>=0.1,<0.2"]
+
+[project.entry-points."plm.packs"]
+sql = "plm_sql.manifest:PACK"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plm_sql"]

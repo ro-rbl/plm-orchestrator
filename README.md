@@ -29,6 +29,7 @@ Ollama doesn't have yet:
 .venv/bin/plm packs install software
 .venv/bin/plm packs install physics
 .venv/bin/plm packs install cad
+.venv/bin/plm packs install sql
 ```
 
 | Pack | Package | Models it pulls (Ollama size) |
@@ -38,12 +39,13 @@ Ollama doesn't have yet:
 | software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
 | physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
 | cad | `plm-cad` | `qwen2.5-coder:14b` (9.0 GB); also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
+| sql | `plm-sql` | the 4B above and `qwen2.5-coder:14b`; the checker is Python's built-in SQLite |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
 .venv/bin/plm packs doctor               # every pack loads and every model it needs loads in Ollama
 .venv/bin/plm packs remove aerospace     # its tasks go back to the general pack; models stay in Ollama
-.venv/bin/plm packs install sql --source <dir or pip requirement>       # a pack from elsewhere
+.venv/bin/plm packs install chemistry --source <dir or pip requirement>       # a pack from elsewhere
 ```
 
 `--source` takes a directory holding `plm-<name>/`, the pack's own directory, or
@@ -58,7 +60,7 @@ A pack that fails to load stops the router, with a message naming it;
 ```bash
 uv pip install --python .venv/bin/python -e packages/plm-core \
     -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software -e packages/plm-physics \
-    -e packages/plm-cad
+    -e packages/plm-cad -e packages/plm-sql
 ```
 
 Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
@@ -101,7 +103,7 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
-- Tasks an installed pack claims (electrical, aerospace, physics, coding, CAD) go to that pack
+- Tasks an installed pack claims (electrical, aerospace, physics, coding, CAD, SQL) go to that pack
   and are released only after they're checked, so a streamed answer arrives in
   one piece. Everything else goes to the 8B, streams token by token, and is never checked.
 - A pack answer ends with a caveat line when it failed a check or had nothing
@@ -129,6 +131,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
 | cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
+| sql (SQLite queries) | 4B first, the coder 14B when the query doesn't run | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | 45/45 at 45% of always-coder compute (coder alone 44/45) |
 | software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
 | software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
 
@@ -149,6 +152,8 @@ and `claims.py` (which tasks it takes):
 - `plm_software`: sandbox, code prompts, level rules, controller, and model-written tests for `--thorough`.
 - `plm_cad`: a part described in words becomes a CadQuery program; `kernel.py` builds it in an isolated
   process and measures it, `checks.py` checks its size against the task without an answer key.
+- `plm_sql`: a question about tables becomes a SQLite query; `sandbox.py` runs it on the task's schema in a
+  throwaway read-only database in an isolated process.
 
 Elsewhere:
 - `docs/pack-packaging.md`: the design for separately installable packs and its migration steps.
@@ -174,4 +179,6 @@ uv run --with openai --with pint python evals/compat_openai.py --fake   # with t
 .venv/bin/python -m plm_software.sandbox
 .venv/bin/python -m plm_software.testgen
 .venv/bin/python evals/software/build_tasks.py     # fails if any reference solution fails its tests
+.venv/bin/python evals/sql/build_tasks.py          # fails if a reference query is empty or depends on row order
+.venv/bin/python evals/run_sql.py --self-test      # the SQL grader on the references and broken copies of them
 ```
