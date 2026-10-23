@@ -235,6 +235,63 @@ FRESH2 = [
 ]
 
 
+# A third fresh set, written on 2026-10-23 before a repair retry existed, to judge it. -> fresh3.jsonl
+FRESH3 = [
+    ("cad-h01", "calm", "A square plate 60 mm by 60 mm and 3 mm thick.", (60, 60, 3), 60 * 60 * 3,
+     "result = cq.Workplane('XY').box(60, 60, 3)"),
+    ("cad-h02", "calm", "A solid cylinder 18 mm in diameter and 70 mm tall.", (18, 18, 70), PI * 9 ** 2 * 70,
+     "result = cq.Workplane('XY').circle(9).extrude(70)"),
+    ("cad-h03", "alert", "A plate 50 mm by 50 mm and 10 mm thick with a 16 mm diameter through hole at its center.",
+     (50, 50, 10), 50 * 50 * 10 - PI * 8 ** 2 * 10, "result = cq.Workplane('XY').box(50, 50, 10).faces('>Z').workplane().hole(16)"),
+    ("cad-h04", "alert", "A block 30 mm by 30 mm and 40 mm tall with a blind hole 8 mm in diameter and 15 mm deep at the center of its top face.",
+     (30, 30, 40), 30 * 30 * 40 - PI * 4 ** 2 * 15, "result = cq.Workplane('XY').box(30, 30, 40).faces('>Z').workplane().hole(8, 15)"),
+    ("cad-h05", "alert", "A tube 40 mm long with an outer diameter of 32 mm and an inner diameter of 24 mm.",
+     (32, 32, 40), PI * (16 ** 2 - 12 ** 2) * 40, "result = cq.Workplane('XY').circle(16).circle(12).extrude(40)"),
+    ("cad-h06", "alert", "A 24 mm cube with a 10 mm diameter hole straight through the centers of two opposite faces.",
+     (24, 24, 24), 24 ** 3 - PI * 5 ** 2 * 24, "result = cq.Workplane('XY').box(24, 24, 24).faces('>Z').workplane().hole(10)"),
+    ("cad-h07", "intensive", "A plate 80 mm by 50 mm and 4 mm thick with four 5 mm diameter through holes, each centered 8 mm from the two nearest edges.",
+     (80, 50, 4), 80 * 50 * 4 - 4 * PI * 2.5 ** 2 * 4,
+     "result = cq.Workplane('XY').box(80, 50, 4).faces('>Z').workplane().rect(64, 34, forConstruction=True).vertices().hole(5)"),
+    ("cad-h08", "intensive", "A flange: a disc 70 mm in diameter and 8 mm thick with a 25 mm central hole and four 7 mm bolt holes evenly spaced on a 50 mm diameter bolt circle.",
+     (70, 70, 8), PI * (35 ** 2 - 12.5 ** 2) * 8 - 4 * PI * 3.5 ** 2 * 8,
+     "result = cq.Workplane('XY').circle(35).circle(12.5).extrude(8).faces('>Z').workplane().polarArray(25, 0, 360, 4).hole(7)"),
+    ("cad-h09", "intensive", "A cylinder 50 mm in diameter and 25 mm tall with a 12 mm diameter through hole on its axis and four 6 mm diameter through holes evenly spaced on a 34 mm diameter circle.",
+     (50, 50, 25), PI * 25 ** 2 * 25 - PI * 6 ** 2 * 25 - 4 * PI * 3 ** 2 * 25,
+     "result = cq.Workplane('XY').circle(25).circle(6).extrude(25).faces('>Z').workplane().polarArray(17, 0, 360, 4).hole(6)"),
+    ("cad-h10", "alert", "A block 70 mm by 40 mm and 20 mm tall with a rectangular pocket 50 mm by 20 mm and 6 mm deep centered in its top face.",
+     (70, 40, 20), 70 * 40 * 20 - 50 * 20 * 6, "result = cq.Workplane('XY').box(70, 40, 20).faces('>Z').workplane().rect(50, 20).cutBlind(-6)"),
+    ("cad-h11", "intensive", "A stepped shaft: a 24 mm diameter section 35 mm long followed on the same axis by a 16 mm diameter section 45 mm long, with a 6 mm diameter through hole along the whole axis.",
+     (24, 24, 80), PI * (12 ** 2 - 3 ** 2) * 35 + PI * (8 ** 2 - 3 ** 2) * 45,
+     "result = (cq.Workplane('XY').circle(12).extrude(35).faces('>Z').workplane().circle(8).extrude(45)"
+     ".faces('>Z').workplane().hole(6))"),
+    ("cad-h12", "intensive", "An open-topped box 50 mm by 50 mm and 30 mm tall outside, with walls and floor 2 mm thick.",
+     (50, 50, 30), 50 * 50 * 30 - 46 * 46 * 28, "result = cq.Workplane('XY').box(50, 50, 30).faces('>Z').shell(-2)"),
+    ("cad-h13", "intensive", "A block 50 mm by 30 mm and 25 mm tall with a counterbored hole at the center of its top face: a 5 mm through hole with a counterbore 9 mm in diameter and 4 mm deep.",
+     (50, 30, 25), 50 * 30 * 25 - PI * 2.5 ** 2 * 21 - PI * 4.5 ** 2 * 4,
+     "result = cq.Workplane('XY').box(50, 30, 25).faces('>Z').workplane().cboreHole(5, 9, 4)"),
+    ("cad-h14", "intensive", "An L-bracket: a base plate 50 mm by 30 mm and 4 mm thick, with an upright plate 30 mm wide and 4 mm thick standing flush on one 30 mm end of the base, 40 mm tall overall, and a 6 mm diameter through hole at the center of the base.",
+     (50, 30, 40), 50 * 30 * 4 + 4 * 30 * 36 - PI * 3 ** 2 * 4,
+     "result = (cq.Workplane('XY').box(50, 30, 4, centered=False).union(cq.Workplane('XY').box(4, 30, 40, centered=False))"
+     ".cut(cq.Workplane('XY').center(25, 15).circle(3).extrude(4)))"),
+    ("cad-h15", "alert", "A block 45 mm by 45 mm and 15 mm tall with its four vertical edges chamfered by 4 mm.",
+     (45, 45, 15), 45 * 45 * 15 - 4 * (4 * 4 / 2) * 15, "result = cq.Workplane('XY').box(45, 45, 15).edges('|Z').chamfer(4)"),
+    ("cad-h16", "alert", "A plate 90 mm by 30 mm and 6 mm thick with a straight through slot centered in it, 40 mm long overall and 8 mm wide, with rounded ends.",
+     (90, 30, 6), 90 * 30 * 6 - (32 * 8 + PI * 4 ** 2) * 6,
+     "result = cq.Workplane('XY').box(90, 30, 6).faces('>Z').workplane().slot2D(40, 8).cutThruAll()"),
+    ("cad-h17", "intensive", "A plate 100 mm by 40 mm and 5 mm thick with five 6 mm diameter through holes in a row along its center line, 18 mm apart, centered on the plate.",
+     (100, 40, 5), 100 * 40 * 5 - 5 * PI * 3 ** 2 * 5,
+     "result = cq.Workplane('XY').box(100, 40, 5).faces('>Z').workplane().rarray(18, 1, 5, 1).hole(6)"),
+    ("cad-h18", "calm", "A disc 64 mm in diameter and 6 mm thick.", (64, 64, 6), PI * 32 ** 2 * 6,
+     "result = cq.Workplane('XY').circle(32).extrude(6)"),
+    ("cad-h19", "alert", "A cylinder 44 mm in diameter and 20 mm tall with a blind hole 20 mm in diameter and 12 mm deep at the center of its top face.",
+     (44, 44, 20), PI * 22 ** 2 * 20 - PI * 10 ** 2 * 12,
+     "result = cq.Workplane('XY').circle(22).extrude(20).faces('>Z').workplane().hole(20, 12)"),
+    ("cad-h20", "intensive", "A square bar 16 mm by 16 mm and 120 mm long with two 6 mm diameter holes straight through it, perpendicular to its length, each 20 mm from one end.",
+     (16, 16, 120), 16 * 16 * 120 - 2 * PI * 3 ** 2 * 16,
+     "result = cq.Workplane('XY').box(16, 16, 120).faces('>X').workplane().pushPoints([(0, -40), (0, 40)]).hole(6)"),
+]
+
+
 MEASURE = """
 import json as _json
 _shape = result.val() if hasattr(result, "val") else result
@@ -270,12 +327,12 @@ def verify(python, problems=PROBLEMS):
 
 
 def main():
-    ids = [p[0] for p in PROBLEMS + FRESH + FRESH2]
+    ids = [p[0] for p in PROBLEMS + FRESH + FRESH2 + FRESH3]
     assert len(ids) == len(set(ids)), "duplicate problem id"
     if "--verify" in sys.argv:
         python = sys.argv[sys.argv.index("--verify") + 1]
-        sys.exit(1 if verify(python) + verify(python, FRESH) + verify(python, FRESH2) else 0)
-    for problems, name in ((PROBLEMS, "problems.jsonl"), (FRESH, "fresh.jsonl"), (FRESH2, "fresh2.jsonl")):
+        sys.exit(1 if sum(verify(python, ps) for ps in (PROBLEMS, FRESH, FRESH2, FRESH3)) else 0)
+    for problems, name in ((PROBLEMS, "problems.jsonl"), (FRESH, "fresh.jsonl"), (FRESH2, "fresh2.jsonl"), (FRESH3, "fresh3.jsonl")):
         out = Path(__file__).with_name(name)
         with out.open("w") as f:
             for r in records(problems):
