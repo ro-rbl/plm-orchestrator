@@ -197,6 +197,62 @@ FRESH_INTENSIVE = [
 ]
 
 
+# Judge set for the 4B LoRA experiment (ROADMAP 3b), written on 2026-10-23 before any training
+# template existed. Training data comes from templates of the eval set's problem families (above),
+# so the eval set can't judge the tuned model; this set does. -> fresh_lora.jsonl
+LORA_JUDGE = [
+    # calm
+    ("ae-l-c01", "calm", "aerodynamics", "An aircraft flies at 680 m/s where the speed of sound is 340 m/s. What is its Mach number (unitless)?", 2.0, "", 0.01, "M = v / a"),
+    ("ae-l-c02", "calm", "aerodynamics", "Air with a density of 0.6 kg/m³ flows at 200 m/s. What is its dynamic pressure, in kilopascals?", 0.5 * 0.6 * 200 ** 2 / 1000, "kPa", 0.01, "q = rho v^2 / 2"),
+    ("ae-l-c03", "calm", "propulsion", "A rocket engine expels 80 kg/s of propellant at 2500 m/s. Ignoring pressure thrust, what is its thrust, in kilonewtons?", 80 * 2500 / 1000, "kN", 0.01, "F = mdot ve"),
+    ("ae-l-c04", "calm", "propulsion", "A rocket engine has a specific impulse of 320 s. Taking g0 = 9.80665 m/s², what is its exhaust velocity, in meters per second?", 320 * G0, "m/s", 0.01, "ve = Isp g0"),
+    ("ae-l-c05", "calm", "flight-mechanics", "An aircraft weighing 120000 N has a wing area of 60 square meters. What is its wing loading, in pascals?", 120000 / 60, "Pa", 0.01, "W / S"),
+    ("ae-l-c06", "calm", "units", "An aircraft cruises at 300 knots, where 1 knot is 0.5144 m/s. What is its speed, in meters per second?", 300 * 0.5144, "m/s", 0.01, "v = knots x 0.5144"),
+    ("ae-l-c07", "calm", "aerodynamics", "A wing produces 50 kN of lift and 4 kN of drag. What is its lift-to-drag ratio (unitless)?", 50 / 4, "", 0.01, "L / D"),
+    ("ae-l-c08", "calm", "flight-mechanics", "An aircraft makes a level turn at a bank angle of 60 degrees. What is its load factor (unitless)?", 1 / math.cos(math.radians(60)), "", 0.01, "n = 1 / cos(bank)"),
+    ("ae-l-c09", "calm", "propulsion", "A launch vehicle has 900 kN of thrust and weighs 600 kN. What is its thrust-to-weight ratio (unitless)?", 900 / 600, "", 0.01, "T / W"),
+    ("ae-l-c10", "calm", "atmosphere", "What is the air density at sea level in the International Standard Atmosphere, in kilograms per cubic meter?", 1.225, "kg/m^3", 0.01, "ISA sea level"),
+    ("ae-l-c11", "calm", "flight-mechanics", "A glider covers 18 km horizontally while descending from an altitude of 1500 m in still air. What is its glide ratio (unitless)?", 18000 / 1500, "", 0.01, "L/D = distance / height"),
+    ("ae-l-c12", "calm", "orbits", "A satellite is in a circular orbit of radius 7000 km. What is its orbital speed, in kilometers per second? Use GM = 3.986e14 m³/s².", math.sqrt(GM / 7000e3) / 1000, "km/s", 0.01, "v = sqrt(GM / r)"),
+    # alert
+    ("ae-l-a01", "alert", "aerodynamics", "A wing of 16 square meters flies at 70 m/s in air of density 1.1 kg/m³ with a lift coefficient of 1.2. What lift does it produce, in kilonewtons?", 0.5 * 1.1 * 70 ** 2 * 16 * 1.2 / 1000, "kN", 0.01, "L = rho v^2 S CL / 2"),
+    ("ae-l-a02", "alert", "aerodynamics", "An airliner with a wing area of 120 square meters flies at 230 m/s where the air density is 0.4 kg/m³. With a drag coefficient of 0.03, what is its drag, in kilonewtons?", 0.5 * 0.4 * 230 ** 2 * 120 * 0.03 / 1000, "kN", 0.01, "D = rho v^2 S CD / 2"),
+    ("ae-l-a03", "alert", "aerodynamics", "What is the speed of sound in air at 250 K, with a ratio of specific heats of 1.4 and R = 287 J/(kg·K), in meters per second?", math.sqrt(1.4 * 287 * 250), "m/s", 0.01, "a = sqrt(g R T)"),
+    ("ae-l-a04", "alert", "propulsion", "A rocket with a specific impulse of 300 s burns from an initial mass of 50 t to a final mass of 20 t. Taking g0 = 9.80665 m/s², what is its ideal delta-v, in meters per second?", 300 * G0 * math.log(50 / 20), "m/s", 0.01, "dv = Isp g0 ln(m0 / mf)"),
+    ("ae-l-a05", "alert", "flight-mechanics", "A light aircraft weighing 9000 N has a wing area of 14 square meters and a maximum lift coefficient of 1.5. What is its stall speed at sea level, where the air density is 1.225 kg/m³, in meters per second?", math.sqrt(2 * 9000 / (1.225 * 14 * 1.5)), "m/s", 0.01, "V = sqrt(2 W / (rho S CLmax))"),
+    ("ae-l-a06", "alert", "aerodynamics", "A wing with a chord of 1.5 m flies at 50 m/s in air of density 1.225 kg/m³ and viscosity 1.8e-5 Pa·s. What is its Reynolds number (unitless)?", 1.225 * 50 * 1.5 / 1.8e-5, "", 0.01, "Re = rho v c / mu"),
+    ("ae-l-a07", "alert", "flight-mechanics", "An aircraft makes a level turn at 100 m/s with a bank angle of 30 degrees. Taking g = 9.81 m/s², what is its turn radius, in meters?", 100 ** 2 / (9.81 * math.tan(math.radians(30))), "m", 0.01, "r = v^2 / (g tan(bank))"),
+    ("ae-l-a08", "alert", "flight-mechanics", "An aircraft has 20 kN of drag at 540 km/h. What power is needed to overcome drag, in megawatts?", 20e3 * 540 / 3.6 / 1e6, "MW", 0.01, "P = D v, v = 150 m/s"),
+    ("ae-l-a09", "alert", "orbits", f"What is the escape velocity from 500 km above Earth's surface, in kilometers per second? {EARTH}", math.sqrt(2 * GM / (RE + 500e3)) / 1000, "km/s", 0.01, "v = sqrt(2 GM / r), r = R + h"),
+    ("ae-l-a10", "alert", "orbits", "A satellite is in a circular orbit of radius 8000 km. What is its orbital period, in minutes? Use GM = 3.986e14 m³/s².", 2 * PI * math.sqrt((8000e3) ** 3 / GM) / 60, "min", 0.01, "T = 2 pi sqrt(r^3 / GM)"),
+    ("ae-l-a11", "alert", "propulsion", "A rocket engine expels 150 kg/s at 2800 m/s. Its nozzle exit area is 0.8 square meters, the exit pressure is 70 kPa and the ambient pressure is 40 kPa. What is its total thrust, in kilonewtons?", (150 * 2800 + (70e3 - 40e3) * 0.8) / 1000, "kN", 0.01, "F = mdot ve + (pe - pa) Ae"),
+    ("ae-l-a12", "alert", "propulsion", "An engine produces 500 kN of thrust with a specific impulse of 280 s. Taking g0 = 9.80665 m/s², what is its propellant mass flow, in kilograms per second?", 500e3 / (280 * G0), "kg/s", 0.01, "mdot = F / (Isp g0)"),
+    ("ae-l-a13", "alert", "flight-mechanics", "An aircraft weighing 64 kN flies at 120 m/s with 30 kN of thrust and 22 kN of drag. What is its rate of climb, in meters per second?", (30e3 - 22e3) * 120 / 64e3, "m/s", 0.01, "RC = (T - D) v / W"),
+    ("ae-l-a14", "alert", "atmosphere", "In the standard atmosphere's troposphere the temperature is 288.15 K at sea level and falls by 6.5 K per kilometer. What is the temperature at an altitude of 8 km, in kelvin?", 288.15 - 6.5 * 8, "K", 0.01, "T = T0 - lapse h"),
+    # intensive
+    ("ae-l-i01", "intensive", "orbits", f"What total delta-v does a Hohmann transfer take from a circular orbit 400 km above Earth to a circular orbit 1000 km above Earth, in kilometers per second? {EARTH}",
+     hohmann(RE + 400e3, RE + 1000e3) / 1000, "km/s", 0.01, "two burns on the transfer ellipse"),
+    ("ae-l-i02", "intensive", "aerodynamics", "An aircraft flies at 500 m/s where the air temperature is 230 K and the pressure is 30 kPa. With a ratio of specific heats of 1.4 and R = 287 J/(kg·K), what is the stagnation pressure, in kilopascals?",
+     30 * (1 + 0.2 * (500 / math.sqrt(1.4 * 287 * 230)) ** 2) ** 3.5, "kPa", 0.01, "a, M, p0 = p (1 + (g-1)/2 M^2)^(g/(g-1))"),
+    ("ae-l-i03", "intensive", "propulsion", "A two-stage rocket has a liftoff mass of 80 t. Stage 1 burns 50 t of propellant at a specific impulse of 270 s, then drops its 5 t of dry mass. Stage 2 then starts at 25 t and burns 18 t of propellant at a specific impulse of 330 s. Taking g0 = 9.80665 m/s², what is the total ideal delta-v, in meters per second?",
+     270 * G0 * math.log(80 / 30) + 330 * G0 * math.log(25 / 7), "m/s", 0.01, "stage 1: 80 -> 30 t; stage 2: 25 -> 7 t"),
+    ("ae-l-i04", "intensive", "flight-mechanics", "A jet cruises at 230 m/s with a lift-to-drag ratio of 16 and a thrust-specific fuel consumption of 0.55 per hour. Its weight falls from 1.25 to 1.0 times its final weight during the cruise. Using the Breguet range equation, how far does it fly, in kilometers?",
+     230 / (0.55 / 3600) * 16 * math.log(1.25) / 1000, "km", 0.01, "R = (V / c)(L/D) ln(Wi / Wf), c in 1/s"),
+    ("ae-l-i05", "intensive", "flight-mechanics", "An aircraft weighing 400 kN with a wing area of 250 square meters flies level at 220 m/s where the air density is 0.5 kg/m³. Its drag polar is CD = 0.022 + 0.05 CL². What power is needed to overcome drag, in megawatts?",
+     (lambda q: q * 250 * (0.022 + 0.05 * (400e3 / (q * 250)) ** 2) * 220 / 1e6)(0.5 * 0.5 * 220 ** 2), "MW", 0.01, "CL = W/(qS), CD, D = q S CD, P = D V"),
+    ("ae-l-i06", "intensive", "propulsion", "A rocket launched straight up has an initial mass of 60 t and burns 40 t of propellant at 300 kg/s with an exhaust velocity of 2900 m/s. Including gravity losses at a constant 9.81 m/s² and ignoring drag, what is its speed at burnout, in meters per second?",
+     2900 * math.log(60 / 20) - 9.81 * (40e3 / 300), "m/s", 0.01, "t = 40000/300 s, v = ve ln(m0/mf) - g t"),
+    ("ae-l-i07", "intensive", "orbits", f"A satellite in a circular orbit takes 6 hours per revolution. What is its altitude above Earth's surface, in kilometers? {EARTH}",
+     ((GM * (6 * 3600) ** 2 / (4 * PI ** 2)) ** (1 / 3) - RE) / 1000, "km", 0.01, "r = (GM T^2 / 4 pi^2)^(1/3), h = r - R"),
+    ("ae-l-i08", "intensive", "propulsion", "A rocket nozzle expands gas from a chamber temperature of 3300 K to an exit pressure that is 1.5% of the chamber pressure. The gas has a ratio of specific heats of 1.22 and R = 360 J/(kg·K), and the mass flow is 60 kg/s. Ignoring pressure thrust, what thrust does it produce, in kilonewtons?",
+     60 * math.sqrt(2 * 1.22 / 0.22 * 360 * 3300 * (1 - 0.015 ** (0.22 / 1.22))) / 1000, "kN", 0.01, "ve from isentropic expansion, F = mdot ve"),
+    ("ae-l-i09", "intensive", "flight-mechanics", "A glider has the drag polar CD = 0.03 + 0.05 CL². Flying at its best lift-to-drag ratio in still air, how far can it glide from an altitude of 2000 m, in kilometers?",
+     2000 / (2 * math.sqrt(0.05 * 0.03)) / 1000, "km", 0.01, "(L/D)max = 1 / (2 sqrt(K CD0)), d = (L/D)max h"),
+    ("ae-l-i10", "intensive", "orbits", f"A satellite in a circular orbit 800 km above Earth's surface changes its inclination by 8 degrees in a single burn. What delta-v does that take, in kilometers per second? {EARTH}",
+     2 * circ(RE + 800e3) * math.sin(math.radians(4)) / 1000, "km/s", 0.01, "v = sqrt(GM/r), dv = 2 v sin(di/2)"),
+]
+
+
 def write(problems, name):
     ids = [p[0] for p in problems]
     assert len(ids) == len(set(ids)), "duplicate problem id"
@@ -213,9 +269,11 @@ def write(problems, name):
 
 
 def main():
-    assert not {p[0] for p in PROBLEMS} & {p[0] for p in FRESH_INTENSIVE}, "id used in both sets"
+    ids = [p[0] for p in PROBLEMS + FRESH_INTENSIVE + LORA_JUDGE]
+    assert len(ids) == len(set(ids)), "id used twice"
     write(PROBLEMS, "problems.jsonl")
     write(FRESH_INTENSIVE, "fresh_intensive.jsonl")
+    write(LORA_JUDGE, "fresh_lora.jsonl")
 
 
 if __name__ == "__main__":
