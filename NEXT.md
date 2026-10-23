@@ -11,8 +11,9 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. The last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b; preflight first: MLX, the
-     4B's Hugging Face weights). The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
+  1. The last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b). Preflight done, GO via
+     fuse -> GGUF -> Ollama: see "Aerospace LoRA for the 4B: preflight" below. Restart Ollama first to
+     prune about 16 GB of blobs the preflight left. The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
      a hole check v2 are done: one adopted, one not).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
@@ -49,6 +50,25 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
 - [ ] **The step check is dimension-only.** Wrong plan formulas give absurd values with the right units
       (preflight ae-i06: 3.3e9 MW), and given values restated as steps can come back wrong (ae-i02:
       -10000 kg propellant) without being caught. `decompose.py:step_issue`.
+## Aerospace LoRA for the 4B: preflight (2026-10-23, no training code yet)
+Live on this Mac (24 GB, arm64), throwaway venv in the session scratchpad:
+
+| Dependency | Result | Evidence |
+|---|---|---|
+| MLX LoRA tooling | GREEN | `mlx-lm` 0.32.2 on the GPU; `mlx-community/Qwen3-4B-4bit` (base `Qwen/Qwen3-4B`, the shipped 4B's original) loads and answers in 2.7 s |
+| Download | GREEN, slow | 2.8 GB in 53 min tonight (one stall at 20 min, resumed) |
+| LoRA training | GREEN | 10 iterations, rank 8, 4 layers, on 8 template examples (not eval or holdout): adapter saved, loads, generates |
+| Adapter straight into Ollama (`ADAPTER`) | RED | Ollama 0.33: "no Modelfile or safetensors files found", three tries; MLX names weights `lora_a/lora_b`, not PEFT's |
+| Fused safetensors into Ollama | RED | `ollama create` from the fused, dequantized model: "unsupported architecture Qwen3ForCausalLM" |
+| Fused -> llama.cpp GGUF -> Ollama | GREEN | `mlx_lm fuse --dequantize`, then `convert_hf_to_gguf.py` (needed `extra_special_tokens` dropped from the fused tokenizer config: mlx-lm writes a list, the converter's transformers wants a dict), then `ollama create -q q4_K_M`: 2.5 GB, stops cleanly, chat template embedded, `plm.ollama.chat` works |
+
+Verdict: **GO** via fuse -> GGUF. Not proven: that the tokenizer edit is harmless beyond short answers (13
+special tokens dropped from one config), training time for a real run, and that LoRA helps at all.
+Cleanup owed: about **16 GB of unreferenced Ollama blobs** from the failed imports (created 04:44-04:50
+on 2026-10-23); Ollama prunes them when its server restarts. Next: a template generator for aerospace
+problems (new templates, never the 50 eval or 24 holdout problems), a rule fixed first (does the tuned
+4B close the alert gap: 75% vs the 8B's 90%), and a fresh aerospace set to judge it.
+
 ## CAD pack: preflight (2026-10-22, no CAD code yet)
 Live on this Mac (arm64, Python 3.13, throwaway uv venvs in the session scratchpad):
 
