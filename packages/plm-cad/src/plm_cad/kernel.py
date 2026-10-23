@@ -83,7 +83,19 @@ for (_r, _dir, _p), (_lo, _hi) in _holes.items():
         if _a0 <= _chi + 1e-6:
             _chi = max(_chi, _a1)
     _tol = 1e-3 * max(_span or 1, 1)
-    _holes_out.append({"diameter": 2 * _r, "depth": _hi - _lo,
+    # capped: a flat disk of the hole's radius on its axis closes it (a blind hole's bottom); an open
+    # hole has none, so it goes through whatever material it is in
+    _axv = _cq.Vector(*_dir)
+    _p0v = _cq.Vector(*_p)
+    _capped = False
+    for _g in _shape.Faces():
+        if _g.geomType() != "PLANE" or abs(_g.Area() - 3.141592653589793 * _r ** 2) > 0.01 * _g.Area():
+            continue
+        _gc = _g.Center() - _p0v
+        if (_gc - _axv * _gc.dot(_axv)).Length < 1e-3 * max(_r, 1) and abs(abs(_g.normalAt(_g.Center()).dot(_axv)) - 1) < 1e-6:
+            _capped = True
+            break
+    _holes_out.append({"diameter": 2 * _r, "depth": _hi - _lo, "open": not _capped,
                        "through": _span is not None and abs((_hi - _lo) - _span) <= _tol,
                        "axis_through": _span is not None and abs((_chi - _clo) - _span) <= _tol})
 print("PLM_CAD " + _json.dumps({"valid": _shape.isValid(), "solids": len(_shape.Solids()),

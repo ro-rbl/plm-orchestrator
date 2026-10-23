@@ -7,20 +7,21 @@ sum of two different ones (a stepped shaft is as long as its sections together),
 or a hexagon's width across flats. Twice a stated size is deliberately not in the
 list: that is the radius-for-diameter mistake (circle(20) for a 20 mm diameter).
 
-With holes=True, holes are checked too, since a wrong hole leaves the outside size right: every
+Variants with holes check them too, since a wrong hole leaves the outside size right: every
 hole the task asks for by diameter ("four 6 mm through holes", "a blind hole 10 mm
 in diameter and 12 mm deep", a tube's "inner diameter of 14 mm", a counterbore)
 must be in the part as a concave cylinder of that diameter, as many times as
 asked; a through hole must span the part along its axis (coaxial faces together,
 so a counterbored through hole counts), and a blind hole must be as deep as asked.
 
-The pack ships the size-only check (holes=False). The hole check was judged on fresh
+The pack ships the size-only check (variant "size"). The hole check was judged on fresh
 parts (evals/score_cad_check.py) and not adopted: it caught 38 of 40 wrong parts to
 size-only's 27, but it flagged a correct L-bracket, whose base-plate hole is "through"
 the plate though not the whole part. Both checks also flag a correct three-section
 shaft (its length is the sum of three stated sizes; only pairs are summed).
 """
 
+import itertools
 import math
 import re
 
@@ -62,12 +63,13 @@ def hole_specs(task):
     return specs
 
 
-def hole_issues(task, holes):
+def hole_issues(task, holes, version="v1"):
+    """v1: a through hole spans the whole part along its axis; v2: it is open (no disk caps it)."""
     issues = []
     for d, count, kind, depth in hole_specs(task):
         same = [h for h in holes if math.isclose(h["diameter"], d, rel_tol=HOLE_TOL)]
         if kind == "through":
-            same = [h for h in same if h["axis_through"]]
+            same = [h for h in same if (h["axis_through"] if version == "v1" else h["open"])]
         elif kind == "blind":
             same = [h for h in same if math.isclose(h["depth"], depth, rel_tol=HOLE_TOL)]
         if len(same) < count:
@@ -76,16 +78,25 @@ def hole_issues(task, holes):
     return issues
 
 
-def task_sizes(task):
+def task_sizes(task, terms=2):
     nums = sorted({float(n) for n in DIMENSION.findall(task) if float(n) > 0})
-    sums = {a + b for i, a in enumerate(nums) for b in nums[i + 1:]}
+    sums = {sum(c) for k in range(2, terms + 1) for c in itertools.combinations(nums, k)}
     halves = {n / 2 for n in nums}
     flats = {n * math.sqrt(3) / 2 for n in nums}
     return sorted(set(nums) | sums | halves | flats)
 
 
-def check(task, measured, error, holes=False):
-    """Issues with a built part ([] = nothing caught). holes=True adds the hole check (not adopted; see above)."""
+# The variants measured so far; "size" ships.
+VARIANTS = {
+    "size": {"holes": None, "terms": 2},
+    "holes-v1": {"holes": "v1", "terms": 2},   # judged on cad-f*: not adopted
+    "v2": {"holes": "v2", "terms": 3},         # through = open hole; sizes may sum three stated sizes
+}
+
+
+def check(task, measured, error, variant="size"):
+    """Issues with a built part ([] = nothing caught), for one of VARIANTS."""
+    v = VARIANTS[variant]
     if error:
         return [error]
     issues = []
@@ -95,9 +106,9 @@ def check(task, measured, error, holes=False):
         issues.append(f"{measured['solids']} solids, expected one part")
     if measured["volume"] <= 0:
         issues.append("no volume")
-    sizes = task_sizes(task)
+    sizes = task_sizes(task, v["terms"])
     if sizes:
         for extent in measured["bbox"]:
             if not any(math.isclose(extent, s, rel_tol=REL_TOL) for s in sizes):
                 issues.append(f"overall size {extent:.4g} mm matches no dimension in the task")
-    return issues + (hole_issues(task, measured.get("holes", [])) if holes else [])
+    return issues + (hole_issues(task, measured.get("holes", []), v["holes"]) if v["holes"] else [])
