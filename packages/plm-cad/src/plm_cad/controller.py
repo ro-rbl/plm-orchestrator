@@ -35,10 +35,12 @@ from plm_cad.checks import check
 from plm_cad.levels import classify
 
 MODELS = {"coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b")}
+# "repairs": how many times a model gets its flagged part back, with what the check found, before
+# the chain moves on. 0 until a repair retry is judged (evals/score_cad_repair.py).
 LEVELS = {
-    "calm": {"num_predict": 384, "chain": ["coder"]},
-    "alert": {"num_predict": 512, "chain": ["coder"]},
-    "intensive": {"num_predict": 768, "chain": ["coder"]},
+    "calm": {"num_predict": 384, "chain": ["coder"], "repairs": 0},
+    "alert": {"num_predict": 512, "chain": ["coder"], "repairs": 0},
+    "intensive": {"num_predict": 768, "chain": ["coder"], "repairs": 0},
 }
 
 PROMPT_VERSION = 1
@@ -49,9 +51,20 @@ CAD_FORMAT = (
 )
 
 
-def attempt(task, model, num_predict, timeout):
+REPAIR_PROMPT_VERSION = 1
+
+
+def repair_prompt(task, step):
+    """The task again, the flagged program, and what building and checking it found."""
+    shown = f"```python\n{step['code'].strip()}\n```" if step["code"] else step["model_text"].strip()[:2000]
+    return (f"{task}\n\nThis answer was written for that part:\n{shown}\n\n"
+            f"Building and checking it found: {'; '.join(step['issues'])}.\n"
+            f"Fix it so the part is exactly as described. {CAD_FORMAT}")
+
+
+def attempt(task, model, num_predict, timeout, prompt=None):
     start = time.time()
-    r = ask(model, f"{task}\n\n{CAD_FORMAT}", False, num_predict, timeout)
+    r = ask(model, prompt or f"{task}\n\n{CAD_FORMAT}", False, num_predict, timeout)
     code = kernel.extract_program(r["response"])
     measured, error = kernel.build(code) if code else (None, "no code block")
     return {"model": model, "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"],
@@ -68,11 +81,20 @@ def solve(task, level=None, timeout=300):
         level, reason = classify(task)
     plan = LEVELS[level]
     steps = []
+    final = None
     for model_key in plan["chain"]:
         steps.append(attempt(task, MODELS[model_key], plan["num_predict"], timeout))
+        for _ in range(plan.get("repairs", 0)):
+            if not steps[-1]["issues"]:
+                break
+            fixed = attempt(task, MODELS[model_key], plan["num_predict"], timeout, repair_prompt(task, steps[-1]))
+            fixed["repair"] = True
+            steps.append(fixed)
         if not steps[-1]["issues"]:
+            final = steps[-1]
             break
-    final = steps[-1]
+    # a repair that is still flagged doesn't replace the answer it tried to fix
+    final = final or [s for s in steps if not s.get("repair")][-1]
     return {
         "pack": "cad",
         "task": task,
@@ -82,6 +104,7 @@ def solve(task, level=None, timeout=300):
         "checked": True,
         "unchecked_reason": None,
         "trusted": not final["issues"],
+        "final_step": steps.index(final) + 1,
         "steps": steps,
         "tokens": sum(s["tokens"] for s in steps),
         "seconds": time.time() - start,

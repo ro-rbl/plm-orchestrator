@@ -3,6 +3,8 @@
     .venv/bin/python evals/run_cad.py --model qwen3:8b       # writes results/cad__<model>.jsonl
     .venv/bin/python evals/run_cad.py --model qwen3:8b --problems evals/cad/fresh.jsonl   # results/cad_fresh__...
     .venv/bin/python evals/run_cad.py --simulate             # policies over the saved runs, and CAD_RULE
+    .venv/bin/python evals/run_cad.py --model qwen2.5-coder:14b --repair --problems ...   # first answer, then
+                                                             # one repair of a flagged part (results ...__repair)
 
 A part is correct when it is one valid solid whose bounding box (extents sorted, so
 orientation is free) and volume are within the problem's tolerance of the key.
@@ -66,9 +68,44 @@ def grade(problem, measured):
     return "correct"
 
 
-def results_path(model, problems_file=PROBLEMS):
+def results_path(model, problems_file=PROBLEMS, repair=False):
     stem = "" if Path(problems_file).stem == "problems" else "_" + Path(problems_file).stem
-    return RESULTS / f"cad{stem}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
+    return RESULTS / f"cad{stem}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}{'__repair' if repair else ''}.jsonl"
+
+
+def run_repair(model, num_predict, timeout, problems_file):
+    """First answer, then one repair if the check flags it; both kept, graded against the key."""
+    from plm_cad import controller
+    problems = load(problems_file)
+    out = results_path(model, problems_file, repair=True)
+    done = {r["id"] for r in load(out)} if out.exists() else set()
+    todo = [p for p in problems if p["id"] not in done]
+    print(f"{model} with repair: {len(todo)} to run, {len(done)} already in {out}")
+
+    def keep(step, p):
+        return {k: step[k] for k in ("code", "measured", "issues", "tokens", "prompt_tokens", "seconds", "model_text")} | {
+            "verdict": grade(p, step["measured"])}
+
+    with out.open("a") as f:
+        for i, p in enumerate(todo, 1):
+            row = {"id": p["id"], "level": p["level"], "model": model, "prompt_version": controller.PROMPT_VERSION,
+                   "repair_prompt_version": controller.REPAIR_PROMPT_VERSION, "num_predict": num_predict}
+            try:
+                first = controller.attempt(p["task"], model, num_predict, timeout)
+                row["first"] = keep(first, p)
+                row["repair"] = None
+                if first["issues"]:
+                    fixed = controller.attempt(p["task"], model, num_predict, timeout,
+                                               controller.repair_prompt(p["task"], first))
+                    row["repair"] = keep(fixed, p)
+            except Exception as e:  # keep going; one bad request must not lose the run
+                row["error"] = f"{type(e).__name__}: {e}"
+            f.write(json.dumps(row) + "\n")
+            f.flush()
+            rep = row.get("repair")
+            print(f"[{i}/{len(todo)}] {p['id']} first {row.get('first', {}).get('verdict', 'error'):<12}"
+                  + (f" repair {rep['verdict']:<12} {'passes check' if not rep['issues'] else 'still flagged'}"
+                     if rep else ""), flush=True)
 
 
 def run(model, num_predict, timeout, problems_file=PROBLEMS):
@@ -159,6 +196,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model")
     ap.add_argument("--simulate", action="store_true")
+    ap.add_argument("--repair", action="store_true", help="also one repair of a flagged first answer")
     ap.add_argument("--problems", default=PROBLEMS, help="problem file (default: the eval set)")
     ap.add_argument("--num-predict", type=int, default=1024, help="max generated tokens per problem")
     ap.add_argument("--timeout", type=int, default=300, help="seconds per request")
@@ -167,6 +205,8 @@ def main():
         return simulate()
     if not args.model:
         sys.exit("--model or --simulate")
+    if args.repair:
+        return run_repair(args.model, args.num_predict, args.timeout, args.problems)
     run(args.model, args.num_predict, args.timeout, args.problems)
 
 

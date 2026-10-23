@@ -136,6 +136,23 @@ def test_cad():
     expect("cad: a wrong size is reported, not escalated", calls == [coder] and not r["trusted"]
            and "matches no dimension" in r["steps"][0]["issues"][0], r)
 
+    real_levels = cad.LEVELS
+    try:
+        cad.LEVELS = {lv: dict(plan, repairs=1) for lv, plan in real_levels.items()}
+        cad.ask, calls = fake_ollama({coder: [wrong, good]})
+        r = cad.solve(q)
+        expect("cad repair: a fixed part replaces the flagged one", calls == [coder, coder] and r["trusted"]
+               and r["final_step"] == 2 and r["steps"][1]["repair"], r)
+        cad.ask, calls = fake_ollama({coder: [wrong, wrong]})
+        r = cad.solve(q)
+        expect("cad repair: a still-flagged repair keeps the first answer", calls == [coder, coder]
+               and not r["trusted"] and r["final_step"] == 1, r)
+        cad.ask, calls = fake_ollama({coder: [good]})
+        r = cad.solve(q)
+        expect("cad repair: a passing part isn't retried", calls == [coder] and r["trusted"], r)
+    finally:
+        cad.LEVELS = real_levels
+
 
 def test_decompose():
     def program(value_expr, unit):  # these use math, which the shared helper never imports
