@@ -129,19 +129,59 @@ PROBLEMS = [
 ]
 
 
-def main():
-    ids = [p[0] for p in PROBLEMS]
+# Fresh set for the Q8_0 small-tier test (evals/score_quant.py), written on 2026-10-23 before the
+# Q8_0 4B answered anything; shared with the aerospace and physics fresh_quant sets. -> fresh_quant.jsonl
+FRESH_QUANT = [
+    # calm
+    ("ee-q-c01", "calm", "ohms-law", "A 9 V battery drives 0.15 A through a lamp. What is the lamp's resistance, in ohms?",
+     9 / 0.15, "ohm", 0.01, "R = V / I"),
+    ("ee-q-c02", "calm", "ac", "What is the period of a 400 Hz signal, in milliseconds?",
+     1 / 400 * 1000, "ms", 0.01, "T = 1 / f"),
+    ("ee-q-c03", "calm", "energy", "A 2 kW heater runs for 3 hours. How much energy does it use, in kilowatt-hours?",
+     2 * 3, "kWh", 0.01, "E = P t"),
+    ("ee-q-c04", "calm", "power", "A 24 V supply delivers 3.5 A to a load. How much power does the load draw, in watts?",
+     24 * 3.5, "W", 0.01, "P = V I"),
+    # alert
+    ("ee-q-a01", "alert", "ac-power", "A 230 V RMS supply feeds a load drawing 4 A at a power factor of 0.8. What real power does it draw, in watts?",
+     230 * 4 * 0.8, "W", 0.01, "P = V I pf"),
+    ("ee-q-a02", "alert", "dividers", "A voltage divider has R1 = 4.7 kilohm on top and R2 = 2.2 kilohm on the bottom, fed from 15 V. What is the output voltage across R2, in volts?",
+     15 * 2.2 / (4.7 + 2.2), "V", 0.01, "Vout = Vin R2 / (R1 + R2)"),
+    ("ee-q-a03", "alert", "resonance", "What is the resonant frequency of an LC circuit with a 2 millihenry inductor and a 50 nanofarad capacitor, in kilohertz?",
+     1 / (2 * PI * math.sqrt(2e-3 * 50e-9)) / 1000, "kHz", 0.01, "f = 1 / (2 pi sqrt(L C))"),
+    ("ee-q-a04", "alert", "resistivity", "A copper wire 50 m long has a cross-section of 1.5 square millimeters. With a resistivity of 1.68e-8 ohm·m, what is its resistance, in ohms?",
+     1.68e-8 * 50 / 1.5e-6, "ohm", 0.01, "R = rho L / A, A = 1.5e-6 m^2"),
+    # intensive
+    ("ee-q-i01", "intensive", "resistor-networks", "A 10 ohm resistor is in series with a parallel pair of 30 ohm and 60 ohm resistors, all across a 24 V source. What current flows through the 30 ohm resistor, in amperes?",
+     (24 * 20 / 30) / 30, "A", 0.01, "Rpar = 20, I = 0.8 A, Vpar = 16 V, I30 = 16 / 30"),
+    ("ee-q-i02", "intensive", "impedance", "A series RL circuit has R = 30 ohm and L = 0.1 henry on a 120 V RMS, 60 Hz supply. What RMS current flows, in amperes?",
+     120 / math.hypot(30, 2 * PI * 60 * 0.1), "A", 0.01, "XL = 2 pi f L, Z = sqrt(R^2 + XL^2), I = V / Z"),
+    ("ee-q-i03", "intensive", "transformers", "An ideal transformer steps 240 V down to 12 V, and its secondary feeds a 6 ohm load. What current does the primary draw, in amperes?",
+     (12 / 6) * 12 / 240, "A", 0.01, "Is = 12 / 6 = 2 A, Ip = Is Vs / Vp"),
+    ("ee-q-i04", "intensive", "batteries", "A 12 V, 100 Ah battery powers a 60 W load through an inverter with 90% efficiency. Using only 80% of the battery's capacity, how many hours does it run?",
+     12 * 100 * 0.8 / (60 / 0.9), "h", 0.01, "usable 960 Wh, draw 60 / 0.9 W, t = E / P"),
+]
+
+
+def write(problems, name):
+    ids = [p[0] for p in problems]
     assert len(ids) == len(set(ids)), "duplicate problem id"
-    out = Path(__file__).with_name("problems.jsonl")
+    out = Path(__file__).with_name(name)
     with out.open("w") as f:
-        for pid, level, topic, question, answer, unit, tol, solution in PROBLEMS:
+        for pid, level, topic, question, answer, unit, tol, solution in problems:
             f.write(json.dumps({
                 "id": pid, "domain": "electrical", "level": level, "topic": topic,
                 "question": question, "answer": answer, "unit": unit,
                 "rel_tol": tol, "solution": solution,
             }) + "\n")
-    counts = {lvl: sum(p[1] == lvl for p in PROBLEMS) for lvl in ("calm", "alert", "intensive")}
-    print(f"wrote {len(PROBLEMS)} problems to {out} {counts}")
+    counts = {lvl: sum(p[1] == lvl for p in problems) for lvl in ("calm", "alert", "intensive")}
+    print(f"wrote {len(problems)} problems to {out} {counts}")
+
+
+def main():
+    ids = [p[0] for p in PROBLEMS + FRESH_QUANT]
+    assert len(ids) == len(set(ids)), "id used twice"
+    write(PROBLEMS, "problems.jsonl")
+    write(FRESH_QUANT, "fresh_quant.jsonl")
 
 
 if __name__ == "__main__":

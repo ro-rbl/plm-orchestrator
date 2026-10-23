@@ -136,19 +136,59 @@ PROBLEMS = [
 ]
 
 
-def main():
-    ids = [p[0] for p in PROBLEMS]
+# Fresh set for the Q8_0 small-tier test (evals/score_quant.py), written on 2026-10-23 before the
+# Q8_0 4B answered anything; shared with the electrical and aerospace fresh_quant sets. -> fresh_quant.jsonl
+FRESH_QUANT = [
+    # calm
+    ("ph-q-c01", "calm", "kinematics", f"A ball is dropped from rest and falls for 3 s. {GT}, how fast is it moving, in meters per second?",
+     G * 3, "m/s", 0.01, "v = g t"),
+    ("ph-q-c02", "calm", "pressure", "A 600 N force acts evenly on an area of 0.03 square meters. What pressure does it exert, in pascals?",
+     600 / 0.03, "Pa", 0.01, "p = F / A"),
+    ("ph-q-c03", "calm", "springs", "A spring with a stiffness of 400 N/m is compressed by 0.05 m. What force does it push back with, in newtons?",
+     400 * 0.05, "N", 0.01, "F = k x"),
+    ("ph-q-c04", "calm", "density", "A 2.7 kg block has a volume of 0.001 cubic meters. What is its density, in kilograms per cubic meter?",
+     2.7 / 0.001, "kg/m^3", 0.01, "rho = m / V"),
+    # alert
+    ("ph-q-a01", "alert", "energy", f"A 2 kg block slides from rest down a frictionless ramp that drops 1.5 m in height. {GT}, what is its speed at the bottom, in meters per second?",
+     math.sqrt(2 * G * 1.5), "m/s", 0.01, "v = sqrt(2 g h); mass and ramp length don't matter"),
+    ("ph-q-a02", "alert", "heat", "How much heat raises 3 kg of aluminum from 20 °C to 80 °C, with a specific heat of 900 J/(kg·K), in kilojoules?",
+     3 * 900 * 60 / 1000, "kJ", 0.01, "Q = m c dT"),
+    ("ph-q-a03", "alert", "oscillations", "A 0.5 kg mass on a spring with a stiffness of 200 N/m oscillates freely. What is its period, in seconds?",
+     2 * PI * math.sqrt(0.5 / 200), "s", 0.01, "T = 2 pi sqrt(m / k)"),
+    ("ph-q-a04", "alert", "materials", "A steel rod 2 m long warms by 50 K. With a coefficient of linear expansion of 1.2e-5 per kelvin, how much longer does it get, in millimeters?",
+     2 * 1.2e-5 * 50 * 1000, "mm", 0.01, "dL = alpha L dT"),
+    # intensive
+    ("ph-q-i01", "intensive", "projectiles", f"A projectile is launched at 30 m/s at 40 degrees above level ground. {GT} and ignoring air drag, how far does it travel horizontally before landing, in meters?",
+     30 ** 2 * math.sin(math.radians(80)) / G, "m", 0.01, "R = v^2 sin(2 theta) / g"),
+    ("ph-q-i02", "intensive", "dynamics", "A 1500 kg car moving at 20 m/s brakes steadily to a stop over 40 m. What is the average braking force, in kilonewtons?",
+     1500 * (20 ** 2 / (2 * 40)) / 1000, "kN", 0.01, "a = v^2 / (2 d) = 5 m/s^2, F = m a"),
+    ("ph-q-i03", "intensive", "momentum", "A 3 kg cart moving at 4 m/s collides with a 1 kg cart at rest, and they stick together. How much kinetic energy is lost in the collision, in joules?",
+     0.5 * 3 * 4 ** 2 - 0.5 * 4 * 3 ** 2, "J", 0.01, "v = 12 / 4 = 3 m/s, KE 24 J -> 18 J"),
+    ("ph-q-i04", "intensive", "fluids", f"A pump lifts 500 liters of water per minute through a height of 12 m with an efficiency of 70%. {GT} and a water density of 1000 kg/m³, what input power does it need, in kilowatts?",
+     500 / 60 * G * 12 / 0.7 / 1000, "kW", 0.01, "mdot = 8.33 kg/s, Pout = mdot g h, Pin = Pout / 0.7"),
+]
+
+
+def write(problems, name):
+    ids = [p[0] for p in problems]
     assert len(ids) == len(set(ids)), "duplicate problem id"
-    out = Path(__file__).with_name("problems.jsonl")
+    out = Path(__file__).with_name(name)
     with out.open("w") as f:
-        for pid, level, topic, question, answer, unit, tol, solution in PROBLEMS:
+        for pid, level, topic, question, answer, unit, tol, solution in problems:
             f.write(json.dumps({
                 "id": pid, "domain": "physics", "level": level, "topic": topic,
                 "question": question, "answer": answer, "unit": unit,
                 "rel_tol": tol, "solution": solution,
             }) + "\n")
-    counts = {lvl: sum(p[1] == lvl for p in PROBLEMS) for lvl in ("calm", "alert", "intensive")}
-    print(f"wrote {len(PROBLEMS)} problems to {out} {counts}")
+    counts = {lvl: sum(p[1] == lvl for p in problems) for lvl in ("calm", "alert", "intensive")}
+    print(f"wrote {len(problems)} problems to {out} {counts}")
+
+
+def main():
+    ids = [p[0] for p in PROBLEMS + FRESH_QUANT]
+    assert len(ids) == len(set(ids)), "id used twice"
+    write(PROBLEMS, "problems.jsonl")
+    write(FRESH_QUANT, "fresh_quant.jsonl")
 
 
 if __name__ == "__main__":

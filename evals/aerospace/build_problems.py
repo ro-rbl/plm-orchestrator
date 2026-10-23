@@ -253,6 +253,39 @@ LORA_JUDGE = [
 ]
 
 
+# Fresh set for the Q8_0 small-tier test (evals/score_quant.py), written on 2026-10-23 before the
+# Q8_0 4B answered anything; shared with the electrical and physics fresh_quant sets. -> fresh_quant.jsonl
+FRESH_QUANT = [
+    # calm
+    ("ae-q-c01", "calm", "flight-mechanics", "An aircraft climbs from 2000 m to 5000 m in 10 minutes. What is its average rate of climb, in meters per second?",
+     3000 / 600, "m/s", 0.01, "RC = dh / dt"),
+    ("ae-q-c02", "calm", "propulsion", "A rocket engine with a thrust of 1.2 MN burns propellant at 400 kg/s. Ignoring pressure thrust, what is its effective exhaust velocity, in meters per second?",
+     1.2e6 / 400, "m/s", 0.01, "ve = F / mdot"),
+    ("ae-q-c03", "calm", "aerodynamics", "An aircraft flies at Mach 0.8 where the speed of sound is 300 m/s. What is its airspeed, in meters per second?",
+     0.8 * 300, "m/s", 0.01, "v = M a"),
+    ("ae-q-c04", "calm", "aerodynamics", "A sailplane wing has a span of 18 m and a mean chord of 0.9 m. What is its aspect ratio (unitless)?",
+     18 / 0.9, "", 0.01, "AR = b / c for a rectangular wing"),
+    # alert
+    ("ae-q-a01", "alert", "aerodynamics", "An aircraft flies at 250 m/s where the air density is 0.41 kg/m³. What dynamic pressure does it experience, in kilopascals?",
+     0.5 * 0.41 * 250 ** 2 / 1000, "kPa", 0.01, "q = rho v^2 / 2, in kPa"),
+    ("ae-q-a02", "alert", "flight-mechanics", "An aircraft with a mass of 5000 kg and a wing area of 25 square meters flies level at 90 m/s in air of density 1.0 kg/m³. Taking g = 9.81 m/s², what lift coefficient does it need (unitless)?",
+     2 * 5000 * 9.81 / (1.0 * 90 ** 2 * 25), "", 0.01, "CL = 2 m g / (rho v^2 S)"),
+    ("ae-q-a03", "alert", "orbits", f"A satellite is in a circular orbit 600 km above Earth's surface. What is its orbital period, in minutes? {EARTH}",
+     2 * PI * math.sqrt((RE + 600e3) ** 3 / GM) / 60, "min", 0.01, "r = R + h, T = 2 pi sqrt(r^3 / GM)"),
+    ("ae-q-a04", "alert", "propulsion", "A spacecraft with a dry mass of 2000 kg carries 1500 kg of propellant for an engine with a specific impulse of 310 s. Taking g0 = 9.80665 m/s², what is its ideal delta-v, in meters per second?",
+     310 * G0 * math.log(3500 / 2000), "m/s", 0.01, "dv = Isp g0 ln((dry + prop) / dry)"),
+    # intensive
+    ("ae-q-i01", "intensive", "orbits", f"A spacecraft in a circular orbit 300 km above Earth fires its engine once to enter an elliptical orbit with its perigee there and its apogee 2000 km above Earth. What delta-v does that burn take, in meters per second? {EARTH}",
+     (lambda r1, r2: math.sqrt(GM * (2 / r1 - 2 / (r1 + r2))) - circ(r1))(RE + 300e3, RE + 2000e3), "m/s", 0.01, "a = (r1 + r2) / 2, vp from vis-viva, dv = vp - v_circ"),
+    ("ae-q-i02", "intensive", "aerodynamics", "An aircraft flies at 270 m/s where the air temperature is 220 K. With a ratio of specific heats of 1.4 and R = 287 J/(kg·K), what is the ratio of stagnation temperature to static temperature (unitless)?",
+     1 + 0.2 * (270 / math.sqrt(1.4 * 287 * 220)) ** 2, "", 0.01, "a = sqrt(g R T), M = v / a, T0/T = 1 + (g-1)/2 M^2"),
+    ("ae-q-i03", "intensive", "flight-mechanics", "An aircraft weighing 50 kN has a wing area of 30 square meters and the drag polar CD = 0.025 + 0.045 CL². At sea level, where the air density is 1.225 kg/m³, at what speed is its lift-to-drag ratio highest, in meters per second?",
+     math.sqrt(2 * 50e3 / (1.225 * 30 * math.sqrt(0.025 / 0.045))), "m/s", 0.01, "CL* = sqrt(CD0 / K), V = sqrt(2 W / (rho S CL*))"),
+    ("ae-q-i04", "intensive", "propulsion", "A jet engine takes in 80 kg/s of air at a flight speed of 220 m/s and exhausts it at 600 m/s. Ignoring fuel mass and pressure thrust, what thrust power does it deliver to the aircraft, in megawatts?",
+     80 * (600 - 220) * 220 / 1e6, "MW", 0.01, "F = mdot (ve - v0) = 30.4 kN, P = F v0"),
+]
+
+
 def write(problems, name):
     ids = [p[0] for p in problems]
     assert len(ids) == len(set(ids)), "duplicate problem id"
@@ -269,11 +302,12 @@ def write(problems, name):
 
 
 def main():
-    ids = [p[0] for p in PROBLEMS + FRESH_INTENSIVE + LORA_JUDGE]
+    ids = [p[0] for p in PROBLEMS + FRESH_INTENSIVE + LORA_JUDGE + FRESH_QUANT]
     assert len(ids) == len(set(ids)), "id used twice"
     write(PROBLEMS, "problems.jsonl")
     write(FRESH_INTENSIVE, "fresh_intensive.jsonl")
     write(LORA_JUDGE, "fresh_lora.jsonl")
+    write(FRESH_QUANT, "fresh_quant.jsonl")
 
 
 if __name__ == "__main__":
