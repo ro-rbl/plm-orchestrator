@@ -43,7 +43,7 @@ Ollama doesn't have yet:
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
 .venv/bin/plm packs doctor               # every pack loads and every model it needs loads in Ollama
 .venv/bin/plm packs remove aerospace     # its tasks go back to the general pack; models stay in Ollama
-.venv/bin/plm packs install sql --source <dir or pip requirement>       # a pack from elsewhere
+.venv/bin/plm packs install chemistry --source <dir or pip requirement>       # a pack from elsewhere
 ```
 
 `--source` takes a directory holding `plm-<name>/`, the pack's own directory, or

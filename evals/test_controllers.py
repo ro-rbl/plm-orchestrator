@@ -26,6 +26,9 @@ from plm_aerospace import controller as aerospace  # noqa: E402
 from plm_electrical import controller as electrical  # noqa: E402
 from plm_physics import controller as physics  # noqa: E402
 import plm_cad.controller as cad  # noqa: E402
+import plm_sql.controller as sql  # noqa: E402
+from plm.report import answer_body  # noqa: E402
+from plm_sql.sandbox import run_query  # noqa: E402
 
 FAILS = []
 
@@ -154,6 +157,45 @@ def test_cad():
         cad.LEVELS = real_levels
 
 
+def test_sql():
+    small, large, coder = sql.MODELS["small"], sql.MODELS["large"], sql.MODELS["coder"]
+    schema = ("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, kind TEXT);\n"
+              "INSERT INTO pets VALUES (1, 'Rex', 'dog'), (2, 'Tom', 'cat');")
+    task = f"{schema}\n\nWrite a SQL query: list the names of the dogs."
+    good = "```sql\nSELECT name FROM pets WHERE kind = 'dog';\n```"
+    bad = "```sql\nSELECT pet_name FROM pets WHERE kind = 'dog'\n```"
+    sql.ask, calls = fake_ollama({small: [good]})
+    r = sql.solve(task)
+    expect("sql: a query that runs on the schema is trusted", calls == [small] and r["trusted"] and r["pack"] == "sql"
+           and r["answer"]["code"] == "SELECT name FROM pets WHERE kind = 'dog'" and r["steps"][0]["ran"]["n_rows"] == 1, r)
+    expect("sql: the answer renders as a sql block", answer_body(r).startswith("```sql\nSELECT name"), answer_body(r))
+    sql.ask, calls = fake_ollama({small: [bad], large: [good]})
+    r = sql.solve(task)
+    expect("sql: a query that doesn't run escalates", calls == [small, large] and r["trusted"] and r["final_step"] == 2
+           and "no such column" in r["steps"][0]["issues"][0], r)
+    sql.ask, calls = fake_ollama({small: [bad], large: ["I can't see the data."], coder: [bad]})
+    r = sql.solve(task)
+    expect("sql: nothing runs -> flagged after the whole cascade", calls == [small, large, coder] and not r["trusted"]
+           and r["checked"] and r["steps"][1]["issues"] == ["no SQL query in the reply"], r)
+    sql.ask, calls = fake_ollama({small: [good]})
+    r = sql.solve("Write a SQL query that lists the dogs from a table pets(id, name, kind).")
+    expect("sql: no schema -> unchecked, not escalated", calls == [small] and not r["checked"] and not r["trusted"]
+           and "CREATE TABLE" in r["unchecked_reason"], r)
+    sql.ask, calls = fake_ollama({small: ["```sql\nDELETE FROM pets\n```"], large: [good]})
+    r = sql.solve(task)
+    expect("sql: a write is refused and escalated", calls == [small, large] and "refused" in r["steps"][0]["issues"][0], r)
+    two = run_query("CREATE TABLE t (a);", "SELECT * FROM t; ATTACH 'x' AS y")
+    expect("sql: a second statement is refused", "one statement" in (two["error"] or ""), two)
+    ext = run_query("CREATE TABLE t (a);", "SELECT load_extension('x')")
+    expect("sql: extension loading is refused", "not authorized" in (ext["error"] or ""), ext)
+    slow = run_query("CREATE TABLE t (a);", "WITH RECURSIVE r(n) AS (SELECT 1 UNION ALL SELECT n + 1 FROM r) SELECT COUNT(*) FROM r",
+                     seconds=0.5)
+    expect("sql: a runaway query is stopped", "longer than" in (slow["error"] or ""), slow)
+    expect("detect: a Python function on SQLite stays software",
+           detect("Write a Python function `count(db: str) -> int` that runs a SQL query on a SQLite table.") == "software")
+    expect("detect: a question about SQL with no query asked goes to general", detect("What is SQL injection?") == "general")
+
+
 def test_decompose():
     def program(value_expr, unit):  # these use math, which the shared helper never imports
         return f'```python\nimport math\nprint(f"ANSWER: {{{value_expr}:.6g}} {unit}")\n```'
@@ -280,7 +322,7 @@ def test_registry():
     expect("detect electrical", detect("What is the voltage across it, in volts?") == "electrical")
     expect("detect software", detect("Write a function `f(x)` that ...") == "software")
     expect("detect general", detect("What's the capital of Australia?") == "general")
-    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "physics", "software", "cad", "general"}
+    expect("installed packs found by entry point", set(PACKS) == {"electrical", "aerospace", "physics", "software", "cad", "sql", "general"}
            and list(PACKS)[-1] == "general", list(PACKS))
     real_eps = pack_module.entry_points
     try:
@@ -295,7 +337,7 @@ def test_registry():
 
 
 def main():
-    real = numeric.ask, software.ask, testgen.ask, general.chat, cad.ask
+    real = numeric.ask, software.ask, testgen.ask, general.chat, cad.ask, sql.ask
     try:
         test_electrical()
         test_aerospace()
@@ -303,11 +345,12 @@ def main():
         test_decompose()
         test_physics()
         test_cad()
+        test_sql()
         test_software()
         test_general()
         test_registry()
     finally:
-        numeric.ask, software.ask, testgen.ask, general.chat, cad.ask = real
+        numeric.ask, software.ask, testgen.ask, general.chat, cad.ask, sql.ask = real
     for f in FAILS:
         print("FAIL", f)
     print(f"controller tests: {'all passed' if not FAILS else f'{len(FAILS)} failed'}")

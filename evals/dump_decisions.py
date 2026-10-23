@@ -25,6 +25,7 @@ from plm_cad.levels import classify as cad_classify  # noqa: E402
 from plm_electrical.levels import classify as electrical_classify  # noqa: E402
 from plm_physics.levels import classify as physics_classify  # noqa: E402
 from plm_software.levels import classify as software_classify  # noqa: E402
+from plm_sql.levels import classify as sql_classify  # noqa: E402
 
 
 def load(path):
@@ -44,6 +45,8 @@ def main():
         ("evals/cad/holdout_levels.jsonl", "task", cad_classify),
         ("evals/software/tasks.jsonl", "prompt", software_classify),
         ("evals/software/holdout_levels.jsonl", "prompt", software_classify),
+        ("evals/sql/tasks.jsonl", "prompt", sql_classify),
+        ("evals/sql/holdout_levels.jsonl", "prompt", sql_classify),
         ("evals/router/detect_cases.jsonl", "text", None),
     ]
     for path, field, classify in sets:
