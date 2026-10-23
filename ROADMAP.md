@@ -73,7 +73,9 @@ What could carry over, in order of value per effort; each policy fixed before it
       and kernel-verified references; policies and rule fixed before the sweep: always the coder, 17/36
       parts exactly right (4B 10, 8B 7: mostly API misuse). The key-free check (one valid solid, overall
       size from the task) never flagged a right part but catches only 7 of the coder's 19 wrong ones:
-      it can't see features inside a right-sized part (a "through" hole cut halfway passes).
+      it can't see features inside a right-sized part (a "through" hole cut halfway passes). A hole check
+      judged on 15 fresh parts caught 38/40 wrong parts (size-only 27) but flagged a correct bracket, so
+      it wasn't adopted (rule fixed first). Scores above are regraded at 0.1% (coder 16/36).
 - [ ] **Fine-tune the 4B for aerospace (LoRA, e.g. with MLX).** Train on generated problems from new
       templates, never on the 50 eval or 24 holdout problems; success = the 4B closes the alert gap
       (75% vs the 8B's 90%), which would let routing pay off in aerospace.

@@ -1,0 +1,77 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/15] cad-f01 wrong_volume   232 tok    9.9s  [asked for 2 through holes of 8 mm, found 0]
+[2/15] cad-f02 invalid        109 tok    3.5s  [2 solids, expected one part; overall size 40 mm matches no dimension in the task; overall ]
+[3/15] cad-f03 wrong_volume   147 tok    4.6s  [asked for 1 18 mm deep hole of 12 mm, found 0]
+[4/15] cad-f04 invalid        124 tok    3.8s  [2 solids, expected one part; asked for 1 through hole of 20 mm, found 0]
+[5/15] cad-f05 wrong_volume   193 tok    6.0s
+[6/15] cad-f06 no_part        174 tok    5.4s  [AttributeError: 'Workplane' object has no attribute 'thruHole']
+[7/15] cad-f07 no_part         74 tok    2.4s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[8/15] cad-f08 no_part        114 tok    3.7s  [AttributeError: 'Workplane' object has no attribute 'round']
+[9/15] cad-f09 correct        181 tok    5.6s
+[10/15] cad-f10 wrong_volume   553 tok   16.8s  [asked for 4 through holes of 8 mm, found 0]
+[11/15] cad-f11 no_part        216 tok    6.6s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'depth']
+[12/15] cad-f12 wrong_size     216 tok    6.6s  [overall size 21 mm matches no dimension in the task; asked for 1 through hole of 6 mm, fou]
+[13/15] cad-f13 no_part        102 tok    3.3s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
+[14/15] cad-f14 no_part        248 tok    7.6s  [AttributeError: 'Workplane' object has no attribute 'thru']
+[15/15] cad-f15 no_part        196 tok    6.1s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+
+level        n  correct  other verdicts
+calm         1        0  no_part 1
+alert        6        0  invalid 2, no_part 2, wrong_volume 2
+intensive    8        1  no_part 4, wrong_size 1, wrong_volume 2
+ALL         15        1  invalid 2, no_part 7, wrong_size 1, wrong_volume 4
+qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh__qwen3_8b.jsonl
+[1/15] cad-f01 no_part        105 tok   10.7s  [ValueError: No pending wires present]
+[2/15] cad-f02 wrong_size      72 tok    4.3s  [overall size 12 mm matches no dimension in the task; overall size 100 mm matches no dimens]
+[3/15] cad-f03 wrong_volume    48 tok    3.2s  [asked for 1 18 mm deep hole of 12 mm, found 0]
+[4/15] cad-f04 wrong_volume    49 tok    3.1s  [asked for 1 through hole of 20 mm, found 0]
+[5/15] cad-f05 no_part        164 tok    9.5s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 were given]
+[6/15] cad-f06 no_part        181 tok   10.4s  [ValueError: No pending wires present]
+[7/15] cad-f07 no_part         82 tok    5.0s  [ValueError: No pending wires present]
+[8/15] cad-f08 no_part         53 tok    3.5s  [ValueError: No pending wires present]
+[9/15] cad-f09 no_part        175 tok   10.6s  [AttributeError: 'Workplane' object has no attribute 'rectangularWalls']
+[10/15] cad-f10 wrong_volume   243 tok   14.9s  [asked for 4 through holes of 8 mm, found 1]
+[11/15] cad-f11 no_part         86 tok    5.8s  [AttributeError: 'Workplane' object has no attribute 'thenShift']
+[12/15] cad-f12 no_part        141 tok    9.1s  [ValueError: No pending wires present]
+[13/15] cad-f13 no_part         87 tok    5.9s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[14/15] cad-f14 wrong_size     199 tok   13.1s  [overall size 95 mm matches no dimension in the task; asked for 1 through hole of 10 mm, fo]
+[15/15] cad-f15 no_part         91 tok    6.2s  [AttributeError: 'Workplane' object has no attribute 'hexagonal']
+
+level        n  correct  other verdicts
+calm         1        0  no_part 1
+alert        6        0  no_part 3, wrong_size 1, wrong_volume 2
+intensive    8        0  no_part 6, wrong_size 1, wrong_volume 1
+ALL         15        0  no_part 10, wrong_size 2, wrong_volume 3
+qwen2.5-coder:14b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh__qwen2.5-coder_14b.jsonl
+[1/15] cad-f01 no_part        146 tok   24.0s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[2/15] cad-f02 wrong_volume   108 tok   11.4s  [asked for 1 through hole of 16 mm, found 0]
+[3/15] cad-f03 wrong_volume   111 tok   12.4s  [asked for 1 18 mm deep hole of 12 mm, found 0]
+[4/15] cad-f04 wrong_volume    88 tok    9.9s  [asked for 1 through hole of 20 mm, found 0]
+[5/15] cad-f05 no_part        104 tok   12.2s  [AttributeError: 'int' object has no attribute 'filter']
+[6/15] cad-f06 wrong_volume   116 tok   13.8s  [asked for 3 through holes of 6 mm, found 1]
+[7/15] cad-f07 correct         94 tok   54.7s
+[8/15] cad-f08 correct         58 tok    7.4s
+[9/15] cad-f09 wrong_volume   153 tok   19.1s
+[10/15] cad-f10 no_part        206 tok   26.2s  [ValueError: Null TopoDS_Shape object]
+[11/15] cad-f11 correct        116 tok   15.1s  [overall size 100 mm matches no dimension in the task]
+[12/15] cad-f12 no_part        156 tok   19.8s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[13/15] cad-f13 correct         91 tok   12.0s
+[14/15] cad-f14 wrong_volume   127 tok   16.5s  [asked for 1 through hole of 10 mm, found 0]
+[15/15] cad-f15 wrong_size     116 tok   14.4s  [overall size 12.99 mm matches no dimension in the task]
+
+level        n  correct  other verdicts
+calm         1        1  
+alert        6        2  no_part 1, wrong_volume 3
+intensive    8        1  no_part 3, wrong_size 1, wrong_volume 3
+ALL         15        4  no_part 4, wrong_size 1, wrong_volume 6
+fresh references flagged by the feature-aware check: 2 ['cad-f11', 'cad-f14']
+
+model     correct  wrong  caught: size-only  feature-aware  false alarms
+4B           1/15     14                 10             13      0 / 0
+8B           0/15     15                 12             15      0 / 0
+coder        4/15     11                  5             10      1 / 1
+
+all models: wrong 40, caught size-only 27, feature-aware 38; false alarms size-only 1, feature-aware 1
+rule: the feature-aware check replaces the size-only one iff, over every model's programs for the fresh parts, it raises no alarm on a part graded correct, none on any fresh reference, and catches more wrong parts than the size-only check
+-> keep the size-only check
+exit 0

@@ -7,12 +7,18 @@ sum of two different ones (a stepped shaft is as long as its sections together),
 or a hexagon's width across flats. Twice a stated size is deliberately not in the
 list: that is the radius-for-diameter mistake (circle(20) for a 20 mm diameter).
 
-Holes are checked too, since a wrong hole leaves the outside size right: every
+With holes=True, holes are checked too, since a wrong hole leaves the outside size right: every
 hole the task asks for by diameter ("four 6 mm through holes", "a blind hole 10 mm
 in diameter and 12 mm deep", a tube's "inner diameter of 14 mm", a counterbore)
 must be in the part as a concave cylinder of that diameter, as many times as
 asked; a through hole must span the part along its axis (coaxial faces together,
 so a counterbored through hole counts), and a blind hole must be as deep as asked.
+
+The pack ships the size-only check (holes=False). The hole check was judged on fresh
+parts (evals/score_cad_check.py) and not adopted: it caught 38 of 40 wrong parts to
+size-only's 27, but it flagged a correct L-bracket, whose base-plate hole is "through"
+the plate though not the whole part. Both checks also flag a correct three-section
+shaft (its length is the sum of three stated sizes; only pairs are summed).
 """
 
 import math
@@ -78,8 +84,8 @@ def task_sizes(task):
     return sorted(set(nums) | sums | halves | flats)
 
 
-def check(task, measured, error, holes=True):
-    """Issues with a built part ([] = nothing caught). holes=False is the size-only check of the first sweep."""
+def check(task, measured, error, holes=False):
+    """Issues with a built part ([] = nothing caught). holes=True adds the hole check (not adopted; see above)."""
     if error:
         return [error]
     issues = []

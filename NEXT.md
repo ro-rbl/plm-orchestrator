@@ -11,8 +11,8 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. **CAD pack: make its check see features** (see "CAD pack: loose ends"), or the last SKY-001 idea:
-     a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
+  1. **CAD pack: a v2 hole check** (a tested v1 wasn't adopted; see "CAD pack: loose ends"), or the last
+     SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -69,13 +69,19 @@ Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` i
 `plm-cad` pack. Done since: the pack is built (`ROADMAP.md` 3b).
 
 ## CAD pack: loose ends
-- [ ] **The CAD check can't see inside a part, so wrong parts come back trusted.** It caught 7 of the
-      coder's 19 wrong parts (4B 16/26, 8B 23/29; no false alarms in 108). Live, both the 4B and the coder
-      cut a 30 mm cube's "through" hole wrong and passed: the coder extruded the hole from z = 0 on a
-      centered box, so it went only halfway (volume 25821.9 vs 24643.8 mm3). Ideas, untested: check
-      features the task names against the solid's topology (a through hole is a cylindrical face spanning
-      the part; count holes of each stated diameter), or ask for a volume estimate and compare. Measure on
-      the saved runs first: `evals/run_cad.py --simulate` reads `issues`, so recompute them from `code`.
+- [ ] **The CAD check can't see inside a part, so wrong parts come back trusted.** A hole check was built
+      and judged on fresh parts (`evals/score_cad_check.py`, rule committed first) and **not adopted**: over
+      the three models' 45 fresh programs it caught 38 of 40 wrong parts to the size-only check's 27, but it
+      flagged a correct L-bracket (cad-f14): its base-plate hole goes through the plate, not the whole part,
+      and "through" was defined as spanning the part. It ships as `check(..., holes=True)`, off. A v2 to test:
+      "through" = the hole spans the solid material along its axis at that spot (cast a ray, or compare with
+      the part's thickness under the hole), judged on new parts written first, since cad-f* are now seen.
+- [ ] **The shipped size check flags a correct three-section shaft** (cad-f11, and the coder's correct
+      answer to it): its 100 mm length is the sum of three stated sizes, and only pairs are summed. Summing
+      any subset (or allowing sums along one axis) is the fix; same judging caveat. `plm_cad/checks.py`.
+- [ ] **Grading tolerance was 1% for the first CAD sweep** and passed a blind hole 10 mm deep asked as 12 mm
+      (0.5% of volume). It is 0.1% now; regraded, the sweep is coder 16/36 (was 17), 4B 9, 8B 6, and the
+      shipped policy (always coder) doesn't change. Fresh parts, at 0.1%: coder 4/15, 4B 1/15, 8B 0/15.
 - [ ] **CAD scores are low and the set is small:** 17/36 at best, on 36 parts written by Claude. Wrong
       volume is the coder's commonest miss (10), then wrong size (5). The prompt (`plm_cad/controller.py
       CAD_FORMAT`) gives no CadQuery hints; a v2 with centering and hole idioms is a hypothesis to test on

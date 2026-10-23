@@ -29,7 +29,7 @@ CHECK_RULE = ("the feature-aware check replaces the size-only one iff, over ever
 
 def main():
     problems = {p["id"]: p for p in run_cad.load(FRESH)}
-    ref_alarms = [p["id"] for p in problems.values() if check(p["task"], *kernel.build(p["reference"]))]
+    ref_alarms = [p["id"] for p in problems.values() if check(p["task"], *kernel.build(p["reference"]), holes=True)]
     print(f"fresh references flagged by the feature-aware check: {len(ref_alarms)} {ref_alarms}")
     totals = {"wrong": 0, "size": 0, "features": 0, "size_false": 0, "features_false": 0}
     print(f"\n{'model':<8} {'correct':>8} {'wrong':>6} {'caught: size-only':>18} {'feature-aware':>14} {'false alarms':>13}")
@@ -43,7 +43,7 @@ def main():
             right = run_cad.grade(p, r["measured"]) == "correct"
             error = r["error"] if r["measured"] is None else None
             size = bool(check(p["task"], r["measured"], error, holes=False))
-            feat = bool(check(p["task"], r["measured"], error))
+            feat = bool(check(p["task"], r["measured"], error, holes=True))
             c["correct"] += right
             c["wrong"] += not right
             c["size"] += size and not right
