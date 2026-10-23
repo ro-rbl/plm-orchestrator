@@ -1,0 +1,115 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/24] sq2-c01 correct          15 tok    3.7s
+[2/24] sq2-c02 correct          24 tok    1.0s
+[3/24] sq2-c03 correct          20 tok    1.3s
+[4/24] sq2-c04 correct          19 tok    0.8s
+[5/24] sq2-c05 correct          64 tok    2.4s
+[6/24] sq2-c06 wrong_rows       25 tok    1.0s
+[7/24] sq2-a01 correct          47 tok    1.6s
+[8/24] sq2-a02 correct          31 tok    1.2s
+[9/24] sq2-a03 error            28 tok    1.1s  [doesn't run on the schema: OperationalError: no such column: loyalty]
+[10/24] sq2-a04 correct          36 tok    1.3s
+[11/24] sq2-a05 correct          34 tok    1.3s
+[12/24] sq2-a06 correct          37 tok    1.3s
+[13/24] sq2-a07 correct          44 tok    1.6s
+[14/24] sq2-a08 correct          66 tok    2.3s
+[15/24] sq2-i01 correct          65 tok    2.2s
+[16/24] sq2-i02 correct          34 tok    1.3s
+[17/24] sq2-i03 wrong_rows       65 tok    2.1s
+[18/24] sq2-i04 wrong_rows       65 tok    2.1s
+[19/24] sq2-i05 wrong_rows       56 tok    1.9s
+[20/24] sq2-i06 correct          78 tok    2.5s
+[21/24] sq2-i07 correct          70 tok    2.3s
+[22/24] sq2-i08 error           124 tok    3.8s  [doesn't run on the schema: OperationalError: ORDER BY clause should come after UNION ALL n]
+[23/24] sq2-i09 wrong_columns    52 tok    1.8s
+[24/24] sq2-i10 wrong_rows      175 tok    5.3s
+
+level        n  correct  other verdicts
+calm         6        5  wrong_rows 1
+alert        8        7  error 1
+intensive   10        4  error 1, wrong_columns 1, wrong_rows 4
+ALL         24       16  error 2, wrong_columns 1, wrong_rows 5
+qwen3:8b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen3_8b.jsonl
+[1/24] sq2-c01 correct          17 tok    6.4s
+[2/24] sq2-c02 correct          22 tok    1.6s
+[3/24] sq2-c03 correct          22 tok    2.4s
+[4/24] sq2-c04 correct          19 tok    1.4s
+[5/24] sq2-c05 correct          31 tok    2.5s
+[6/24] sq2-c06 wrong_rows       26 tok    1.8s
+[7/24] sq2-a01 correct          72 tok    4.2s
+[8/24] sq2-a02 correct          33 tok    2.2s
+[9/24] sq2-a03 correct          39 tok    2.5s
+[10/24] sq2-a04 correct          37 tok    2.5s
+[11/24] sq2-a05 correct          34 tok    2.3s
+[12/24] sq2-a06 correct          37 tok    2.4s
+[13/24] sq2-a07 correct          36 tok    2.3s
+[14/24] sq2-a08 correct          89 tok    5.1s
+[15/24] sq2-i01 correct          77 tok    4.5s
+[16/24] sq2-i02 correct          34 tok    2.4s
+[17/24] sq2-i03 wrong_rows       64 tok    4.0s
+[18/24] sq2-i04 correct          88 tok    5.4s
+[19/24] sq2-i05 correct          85 tok    5.3s
+[20/24] sq2-i06 wrong_rows      107 tok    6.5s
+[21/24] sq2-i07 correct          57 tok    3.8s
+[22/24] sq2-i08 correct          84 tok    5.2s
+[23/24] sq2-i09 correct          76 tok    4.7s
+[24/24] sq2-i10 wrong_rows      148 tok    8.8s
+
+level        n  correct  other verdicts
+calm         6        5  wrong_rows 1
+alert        8        8  
+intensive   10        7  wrong_rows 3
+ALL         24       20  wrong_rows 4
+qwen2.5-coder:14b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen2.5-coder_14b.jsonl
+[1/24] sq2-c01 correct          15 tok   10.3s
+[2/24] sq2-c02 correct          18 tok   44.2s
+[3/24] sq2-c03 correct          21 tok    4.6s
+[4/24] sq2-c04 correct          17 tok    2.2s
+[5/24] sq2-c05 correct          33 tok    5.7s
+[6/24] sq2-c06 wrong_rows       25 tok    3.9s
+[7/24] sq2-a01 correct          59 tok    7.2s
+[8/24] sq2-a02 correct          33 tok    4.5s
+[9/24] sq2-a03 correct          61 tok    7.5s
+[10/24] sq2-a04 correct          38 tok    5.2s
+[11/24] sq2-a05 correct          41 tok    5.4s
+[12/24] sq2-a06 correct          40 tok    5.4s
+[13/24] sq2-a07 correct          36 tok    5.0s
+[14/24] sq2-a08 correct          74 tok    9.1s
+[15/24] sq2-i01 correct          63 tok    7.9s
+[16/24] sq2-i02 correct          34 tok    4.7s
+[17/24] sq2-i03 correct          62 tok    8.0s
+[18/24] sq2-i04 correct          61 tok    8.3s
+[19/24] sq2-i05 correct         118 tok   13.9s
+[20/24] sq2-i06 correct         131 tok   15.1s
+[21/24] sq2-i07 correct          29 tok    3.8s
+[22/24] sq2-i08 wrong_rows       98 tok   11.8s
+[23/24] sq2-i09 correct          61 tok    7.7s
+[24/24] sq2-i10 correct         151 tok   17.4s
+
+level        n  correct  other verdicts
+calm         6        5  wrong_rows 1
+alert        8        8  
+intensive   10        9  wrong_rows 1
+ALL         24       22  wrong_rows 2
+policy (levels from plm_sql.levels)               score  compute  escalated
+always 4B                                         16/24      28%          0
+always 8B                                         20/24      58%          0
+always coder                                      22/24     100%          0
+cascade 4B -> 8B -> coder (pre-sweep default)     18/24      33%          2
+cascade 4B -> coder                               17/24      40%          2
+cascade 8B -> coder                               20/24      58%          0
+routed: cascade | intensive 8B -> coder           18/24      33%          2
+
+rule: ship the cheapest policy above whose score is within 1 task of the best one's (compute = model size x generated tokens, relative to always-coder)
+-> always coder (22/24 at 100%)
+
+rule: the candidate (routed: cascade | intensive 8B -> coder) replaces the shipped policy iff, on the second fresh set with the classifier's levels, it scores within 1 task of the best policy above and costs less than always-coder; otherwise ship SQL_RULE's pick over both fresh sets pooled (48 tasks)
+candidate 18/24 at 33%, best 22/24
+candidate fails; pooled over fresh + fresh2 (48 tasks), best 42
+-> ADOPT: always 8B (42/48 at 60%, pooled)
+
+key-free check vs the key:
+   model   wrong  caught  false alarms
+   4B          8       2             0
+   8B          4       0             0
+   coder       2       0             0

@@ -28,7 +28,7 @@ SHIPPED = {
     "physics": "always 8B (bare)",
     "software": "unrouted cascade: orig4B -> 8B -> coder14B",
     "cad": "always coder",
-    "sql": "cascade 4B -> coder",
+    "sql": "always 8B",
 }
 PRE_SWEEP = {
     "aerospace": "+ escalate on failed check (first default)",
@@ -172,6 +172,14 @@ def main():
                         "metric": "fresh tasks right (best policy vs shipped)", "before": int(s[4]), "after": int(s[1]),
                         "n": int(s[2]), "cost_ratio": None,
                         "note": "shipped 4B -> coder; best: always 8B / 8B -> coder at 61%; misses run but return wrong rows"})
+
+    text = run("evals/run_sql.py", "--simulate", "--tasks", "evals/sql/fresh2.jsonl")
+    s = re.search(r"candidate (\d+)/(\d+) at (\d+)%, best (\d+)/\d+", text)
+    experiments.append({"id": "sql-fresh2", "date": "2026-10-23", "experiment": "SQL candidate on a second fresh set",
+                        "verdict": "adopted" if "-> ADOPT: routed" in text else "not adopted",
+                        "metric": "fresh tasks right (best policy vs candidate)", "before": int(s[4]), "after": int(s[1]),
+                        "n": int(s[2]), "cost_ratio": None,
+                        "note": "candidate intensive 8B -> coder; the rule then shipped always 8B (42/48 pooled at 60%)"})
 
     text = run("evals/test_detect.py")
     routing = [{"set": label, "right": int(m[1]), "total": int(m[2])}

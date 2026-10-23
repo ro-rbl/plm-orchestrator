@@ -6,29 +6,25 @@ syntax errors, misspelt tables and columns, and non-SQLite dialect. It can't see
 query that runs but answers a different question; with no schema in the task
 there is nothing to run, and the answer is reported unchecked.
 
-The policies and the rule that picks among them (SQL_RULE in evals/run_sql.py: the
-cheapest within 1 task of the best) were fixed before the sweep. On the 45-task eval:
+Policies and rules were fixed before each run (evals/run_sql.py). On the 45-task eval set,
+SQL_RULE picked 4B -> coder 14B (45/45 at 45% of always-coder compute; always 8B 42/45), but
+that set was near its ceiling. On 24 harder fresh tasks the pick wasn't confirmed (FRESH_RULE:
+18/24 vs 22/24 for the 8B), and that set's candidate, intensive 8B -> coder, failed on a second
+fresh set (FRESH2_RULE: 18/24 vs 22/24 for the coder). FRESH2_RULE then ships SQL_RULE's pick
+over both fresh sets pooled, 48 tasks no policy was chosen on:
 
-    cascade 4B -> coder 14B                   45/45 at 45% of always-coder compute
-    cascade 4B -> 8B -> coder (pre-sweep)     44/45 at 46%
-    always coder 14B                          44/45 at 100%
-    always 8B                                 42/45 at 59%
-    always 4B                                 40/45 at 29%
+    always 8B                                 42/48 at 60% of always-coder compute
+    always coder 14B                          42/48 at 100%
+    cascade 8B -> coder                       42/48 at 60%
+    4B -> 8B -> coder                         37/48 at 34%
+    4B -> coder (shipped before)              35/48 at 39%
 
-All 5 of the 4B's wrong queries failed to run (misnamed or ambiguous columns), so the
-check caught every one and the coder fixed it; the 8B's misses mostly ran and
-returned the wrong rows, which the check can't see. So every level is 4B first,
-then the coder when the query doesn't run. The set is near its ceiling (the coder
-alone misses 1), so it separates the models less than the numeric sets do.
-Budgets are 3.8-5.6x the longest answer at each level (34, 55 and 134 tokens).
+On hard queries the misses run and return wrong rows (the check caught 4 of 26 wrong fresh
+queries), so a cheap first model that escalates on the check rarely gets escalated. So every
+level goes to the 8B alone; a query that doesn't run is reported, not escalated. Budgets are
+2.9-5.6x the 8B's longest answer at each level over all three sets (34, 175 and 151 tokens).
 
-Not confirmed on 24 fresh, harder tasks (evals/sql/fresh.jsonl, FRESH_RULE fixed first): this
-policy 18/24 at 37%, always 8B and 8B -> coder 22/24 at 61%, always coder 20/24. There the misses
-ran and returned wrong rows (the check caught 2 of 12 wrong queries), so escalating on it rarely
-fires. SQL_RULE's pick there, calm and alert as now but intensive 8B -> coder (21/24 at 40%), is
-the candidate to replace this; it needs another fresh set before it ships.
-
-Model names can be overridden with PLM_SMALL_MODEL and PLM_CODER_MODEL.
+Model name can be overridden with PLM_LARGE_MODEL.
 """
 
 import os
@@ -40,15 +36,11 @@ from plm_sql.levels import classify
 from plm_sql.sandbox import run_query
 from plm_sql.sqlgen import build_prompt, extract_sql, split_task
 
-MODELS = {
-    "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),
-    "coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b"),
-}
-CHAIN = ["small", "coder"]
+MODELS = {"large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b")}
 LEVELS = {
-    "calm": {"num_predict": 192, "chain": CHAIN},
-    "alert": {"num_predict": 256, "chain": CHAIN},
-    "intensive": {"num_predict": 512, "chain": CHAIN},
+    "calm": {"num_predict": 192, "chain": ["large"]},
+    "alert": {"num_predict": 512, "chain": ["large"]},
+    "intensive": {"num_predict": 512, "chain": ["large"]},
 }
 
 

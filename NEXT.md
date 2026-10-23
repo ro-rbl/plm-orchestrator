@@ -72,24 +72,27 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
 `packages/plm-sql`; eval set `evals/sql/build_tasks.py` (45 tasks, 3 seeded databases, 24 level holdouts, 12
 routing cases), sweep `results/run_sql.sh`, log `results/sql.log`. Ships 4B first, the coder when the query
 doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
-- [ ] **The shipped policy was NOT confirmed on fresh tasks** (`evals/sql/fresh.jsonl`, 24 harder tasks on
-      three new databases, FRESH_RULE committed first; log `results/sql_fresh.log`): 4B -> coder 18/24 at 37%;
-      always 8B 22/24 at 61%, 8B -> coder 22/24, always coder 20/24, routed (intensive 8B -> coder) 21/24 at
-      40%. All misses were intensive and almost all ran and returned wrong rows (check caught 2 of 12), so
-      the cascade rarely escalates. Per FRESH_RULE the routed policy is the candidate: write a second fresh
-      set first, fix its rule, then judge it (`evals/run_sql.py --tasks <new> --simulate`). The coder was
-      worse than the 8B on these (20 vs 22): the "coder for SQL" assumption doesn't hold on hard queries.
+- [x] **Policy settled on two fresh sets: everything to the 8B.** The eval-set pick (4B -> coder, 45/45) was
+      not confirmed on `evals/sql/fresh.jsonl` (FRESH_RULE: 18/24 vs 22/24); that set's candidate (intensive
+      8B -> coder) failed on `evals/sql/fresh2.jsonl` (FRESH2_RULE: 18/24 vs 22/24 for the coder), so the rule
+      shipped SQL_RULE's pick over both pooled: always 8B, 42/48 at 60% (coder 42/48 at 100%). Logs
+      `results/sql_fresh.log`, `results/sql_fresh2.log`. Each rule was committed before its set ran.
+- [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second
+      by a rule fixed first, but pooled with the first). A third fresh set, or Spider/BIRD, would test it.
+- [ ] **Which model is best flipped between the fresh sets** (8B 22 vs coder 20, then coder 22 vs 8B 20): on
+      24 tasks, 2 tasks is noise. The pooled tie (42 each) went to the 8B on compute alone.
 - [ ] **The eval set is near its ceiling** (coder alone 44/45, 4B 40); the fresh set is harder (20/24) and
       reversed the ranking. Spider/BIRD (`ROADMAP.md` 4) would test the routing properly.
 - [ ] **The check can't see a query that runs but answers something else.** 2 of the 8B's 3 misses ran
       (`SELECT COUNT(*) AS count` with no FROM; order ids from order_items); live, the 4B answered "average
       fare per km" with `AVG(fare) / AVG(km)`, which runs, and was trusted. Ideas, each to judge on new
       tasks: flag a query that names none of the schema's tables, or one returning no rows on given sample rows.
+      On the fresh sets the check caught 4 of 26 wrong queries: this is now the pack's main weakness.
 - [ ] **A schema written in prose is unchecked** ("a table sales(region, month, amount)", routing case q03):
       only CREATE TABLE statements are run. Building a table from such a signature is untested.
-- [ ] **Level misses on the eval set** (left as measured): sql-c15 ("haven't declared a major") reads as
-      intensive; sql-i02 and sql-i06 read as alert. Harmless while every level uses the same chain (only
-      budgets differ). `plm_sql/levels.py`; holdout 24/24.
+- [ ] **Level misses** (left as measured): eval 42/45, holdout 24/24, but fresh 19/24 and fresh2 14/24, so the
+      cues don't carry to new schemas well. Harmless while every level uses the 8B (only budgets differ).
+      `plm_sql/levels.py`.
 
 ## Q8_0 small tier: measured, not adopted (2026-10-23)
 bartowski's Qwen3-4B Q8_0 against the shipped Q4_K_M (same GGUF repo, same template), with the calculator,

@@ -158,32 +158,42 @@ def test_cad():
 
 
 def test_sql():
-    small, coder = sql.MODELS["small"], sql.MODELS["coder"]
+    large = sql.MODELS["large"]
     schema = ("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, kind TEXT);\n"
               "INSERT INTO pets VALUES (1, 'Rex', 'dog'), (2, 'Tom', 'cat');")
     task = f"{schema}\n\nWrite a SQL query: list the names of the dogs."
     good = "```sql\nSELECT name FROM pets WHERE kind = 'dog';\n```"
     bad = "```sql\nSELECT pet_name FROM pets WHERE kind = 'dog'\n```"
-    sql.ask, calls = fake_ollama({small: [good]})
+    sql.ask, calls = fake_ollama({large: [good]})
     r = sql.solve(task)
-    expect("sql: a query that runs on the schema is trusted", calls == [small] and r["trusted"] and r["pack"] == "sql"
+    expect("sql: a query that runs on the schema is trusted", calls == [large] and r["trusted"] and r["pack"] == "sql"
            and r["answer"]["code"] == "SELECT name FROM pets WHERE kind = 'dog'" and r["steps"][0]["ran"]["n_rows"] == 1, r)
     expect("sql: the answer renders as a sql block", answer_body(r).startswith("```sql\nSELECT name"), answer_body(r))
-    sql.ask, calls = fake_ollama({small: [bad], coder: [good]})
+    sql.ask, calls = fake_ollama({large: [bad]})
     r = sql.solve(task)
-    expect("sql: a query that doesn't run escalates to the coder", calls == [small, coder] and r["trusted"] and r["final_step"] == 2
+    expect("sql: a query that doesn't run is reported, not escalated", calls == [large] and not r["trusted"] and r["checked"]
            and "no such column" in r["steps"][0]["issues"][0], r)
-    sql.ask, calls = fake_ollama({small: [bad], coder: ["I can't see the data."]})
+    sql.ask, calls = fake_ollama({large: ["I can't see the data."]})
     r = sql.solve(task)
-    expect("sql: nothing runs -> flagged after the whole chain", calls == [small, coder] and not r["trusted"]
-           and r["checked"] and r["steps"][1]["issues"] == ["no SQL query in the reply"], r)
-    sql.ask, calls = fake_ollama({small: [good]})
+    expect("sql: no query in the reply -> no answer, flagged", r["answer"] is None and not r["trusted"]
+           and r["steps"][0]["issues"] == ["no SQL query in the reply"], r)
+    sql.ask, calls = fake_ollama({large: [good]})
     r = sql.solve("Write a SQL query that lists the dogs from a table pets(id, name, kind).")
-    expect("sql: no schema -> unchecked, not escalated", calls == [small] and not r["checked"] and not r["trusted"]
+    expect("sql: no schema -> unchecked", calls == [large] and not r["checked"] and not r["trusted"]
            and "CREATE TABLE" in r["unchecked_reason"], r)
-    sql.ask, calls = fake_ollama({small: ["```sql\nDELETE FROM pets\n```"], coder: [good]})
+    sql.ask, calls = fake_ollama({large: ["```sql\nDELETE FROM pets\n```"]})
     r = sql.solve(task)
-    expect("sql: a write is refused and escalated", calls == [small, coder] and "refused" in r["steps"][0]["issues"][0], r)
+    expect("sql: a write is refused", "refused" in r["steps"][0]["issues"][0] and not r["trusted"], r)
+    real_levels, real_models = sql.LEVELS, sql.MODELS
+    try:  # a two-model chain escalates on a failed check (the mechanism the sweep's cascades measured)
+        sql.MODELS = {"large": large, "coder": "coder-model"}
+        sql.LEVELS = {lv: dict(plan, chain=["large", "coder"]) for lv, plan in real_levels.items()}
+        sql.ask, calls = fake_ollama({large: [bad], "coder-model": [good]})
+        r = sql.solve(task)
+        expect("sql: in a chain, a query that doesn't run escalates", calls == [large, "coder-model"] and r["trusted"]
+               and r["final_step"] == 2, r)
+    finally:
+        sql.LEVELS, sql.MODELS = real_levels, real_models
     two = run_query("CREATE TABLE t (a);", "SELECT * FROM t; ATTACH 'x' AS y")
     expect("sql: a second statement is refused", "one statement" in (two["error"] or ""), two)
     ext = run_query("CREATE TABLE t (a);", "SELECT load_extension('x')")
