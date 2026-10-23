@@ -25,11 +25,14 @@ def out(**kw):
     print("\n" + json.dumps(kw))
     sys.exit(0)
 
-db = sqlite3.connect(":memory:")
-try:
-    db.executescript(p["setup"])
-except sqlite3.Error as e:
-    out(setup_error=f"{type(e).__name__}: {e}"[:300])
+if p.get("db_path"):  # an existing database file, opened read-only
+    db = sqlite3.connect(f"file:{p['db_path']}?mode=ro", uri=True)
+else:
+    db = sqlite3.connect(":memory:")
+    try:
+        db.executescript(p["setup"])
+    except sqlite3.Error as e:
+        out(setup_error=f"{type(e).__name__}: {e}"[:300])
 db.execute("PRAGMA query_only = ON")
 READS = {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_READ, sqlite3.SQLITE_FUNCTION, getattr(sqlite3, "SQLITE_RECURSIVE", 33)}
 db.set_authorizer(lambda action, *args: sqlite3.SQLITE_OK if action in READS else sqlite3.SQLITE_DENY)
@@ -47,12 +50,16 @@ out(columns=columns, rows=[list(r) for r in rows[:p["max_rows"]]], n_rows=len(ro
 READ_ONLY = re.compile(r"^\s*(?:--[^\n]*\n\s*)*(?:select|with|values)\b", re.IGNORECASE)
 
 
-def run_query(setup, query, seconds=5.0):
-    """{"error": str|None, "columns": [...], "rows": [[...]], "n_rows": int}; setup errors are reported as such."""
+def run_query(setup, query, seconds=5.0, db_path=None):
+    """{"error": str|None, "columns": [...], "rows": [[...]], "n_rows": int}; setup errors are reported as such.
+
+    With db_path, the query runs on that database file (opened read-only) instead of on `setup`.
+    """
     result = {"error": None, "setup_error": None, "columns": [], "rows": [], "n_rows": 0}
     if not READ_ONLY.match(query or ""):
         return result | {"error": "refused: not a single read-only query (SELECT or WITH)"}
-    payload = json.dumps({"setup": setup, "query": query, "seconds": seconds, "max_rows": MAX_ROWS})
+    payload = json.dumps({"setup": setup, "query": query, "seconds": seconds, "max_rows": MAX_ROWS,
+                          "db_path": str(db_path) if db_path else None})
     with tempfile.TemporaryDirectory() as cwd:
         try:
             proc = subprocess.run([sys.executable, "-I", "-S", "-c", HARNESS], input=payload, capture_output=True,
