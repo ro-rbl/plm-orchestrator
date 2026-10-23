@@ -11,8 +11,8 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight the
-     OpenCascade wheels first), or a LoRA for the 4B on aerospace.
+  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight done, GO with
+     fallbacks: see "CAD pack: preflight" below), or a LoRA for the 4B on aerospace.
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -48,6 +48,24 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - [ ] **The step check is dimension-only.** Wrong plan formulas give absurd values with the right units
       (preflight ae-i06: 3.3e9 MW), and given values restated as steps can come back wrong (ae-i02:
       -10000 kg propellant) without being caught. `decompose.py:step_issue`.
+## CAD pack: preflight (2026-10-22, no CAD code yet)
+Live on this Mac (arm64, Python 3.13, throwaway uv venvs in the session scratchpad):
+
+| Dependency | Result | Evidence |
+|---|---|---|
+| CadQuery wheels for arm64 / cp313 | GREEN | `cadquery-ocp` 7.9.3.1.1 prebuilt, no source build; install 463 s on plane wifi |
+| Install size | GREEN, heavy | venv 1.3 GB, of which VTK (rendering, not needed to check) 598 MB, OCP 225 MB |
+| Kernel builds and measures a solid | GREEN | 40x30x10 box with an 8 mm hole: valid, bbox exact, volume 11497.345 = hand value |
+| Runs isolated (`python -I`, empty cwd) | GREEN | as above; needs `-I` without `-S` (site-packages), like the units calculator |
+| Import time per check process | GREEN | 1.6-2.4 s warm; the first run after install took 55 s (one-time library load) |
+| The 8B writes CadQuery | GREEN for the check, 1/2 parts | plate with hole: exact bbox and volume; tube: invalid workplane name -> ValueError, which a check catches |
+| build123d (`cadquery-ocp-novtk`, no VTK) | UNKNOWN | install still running when the session ended; may avoid the 598 MB VTK |
+
+Verdict: **GO WITH FALLBACKS** (size: try build123d / `cadquery-ocp-novtk` first; ship the kernel as an
+optional dependency of a `plm-cad` pack only). Resume: `uv venv --python 3.13 <dir>/v && uv pip install
+--python <dir>/v/bin/python build123d`, then rerun the box probe and the 8B probe against it. Next step
+after that: write the CAD eval set (parts with computed bbox/volume) before any pack code.
+
 ## Physics: loose ends
 - [ ] **The calculator forgets prefix conversions on physics.** All 7 of the 8B's calculator misses (and 3 of
       the 4B's 5) computed in base units and printed the asked prefixed unit ("5e+04 MPa" for 50 MPa, "678 MJ"
