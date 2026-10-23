@@ -77,7 +77,14 @@ def hole_issues(task, holes, version="v1"):
             same = [h for h in same if math.isclose(h["depth"], depth, rel_tol=HOLE_TOL)]
         if len(same) < count:
             what = "through " if kind == "through" else f"{depth:g} mm deep " if kind == "blind" else ""
-            issues.append(f"asked for {count} {what}hole{'s' if count > 1 else ''} of {d:g} mm, found {len(same)}")
+            issue = f"asked for {count} {what}hole{'s' if count > 1 else ''} of {d:g} mm, found {len(same)}"
+            near = [h for h in holes if math.isclose(h["diameter"], d, rel_tol=HOLE_TOL)]
+            if near and kind != "any":  # say what is there, so a repair knows what to change
+                issue += " (the part has " + ", ".join(
+                    f"a {d:g} mm hole {h['depth']:.3g} mm deep, "
+                    + ("open at both ends" if h.get("open", h.get("axis_through")) else "closed at the bottom")
+                    for h in near) + ")"
+            issues.append(issue)
     return issues
 
 

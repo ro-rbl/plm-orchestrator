@@ -51,7 +51,10 @@ CAD_FORMAT = (
 )
 
 
-REPAIR_PROMPT_VERSION = 1
+# v1 (preflight on the seen eval set): 8 of 15 repairs returned the first program unchanged, and the
+# check said "found 0" holes where a wrong one was there; v2 asks for a changed program, and the
+# check says what it found (a 10 mm hole 2.5 mm deep, closed at the bottom).
+REPAIR_PROMPT_VERSION = 2
 
 
 def repair_prompt(task, step):
@@ -59,7 +62,8 @@ def repair_prompt(task, step):
     shown = f"```python\n{step['code'].strip()}\n```" if step["code"] else step["model_text"].strip()[:2000]
     return (f"{task}\n\nThis answer was written for that part:\n{shown}\n\n"
             f"Building and checking it found: {'; '.join(step['issues'])}.\n"
-            f"Fix it so the part is exactly as described. {CAD_FORMAT}")
+            f"That program is wrong: do not repeat it. Write a corrected program so the part is exactly "
+            f"as described. {CAD_FORMAT}")
 
 
 def attempt(task, model, num_predict, timeout, prompt=None):

@@ -1,0 +1,55 @@
+qwen2.5-coder:14b with repair: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad__qwen2.5-coder_14b__repair.jsonl
+[1/36] cad-c01 first correct     
+[2/36] cad-c02 first correct     
+[3/36] cad-c03 first correct     
+[4/36] cad-c04 first correct     
+[5/36] cad-c05 first correct     
+[6/36] cad-c06 first correct     
+[7/36] cad-c07 first correct     
+[8/36] cad-c08 first wrong_size  
+[9/36] cad-c09 first wrong_size   repair wrong_size   still flagged
+[10/36] cad-c10 first correct     
+[11/36] cad-c11 first correct     
+[12/36] cad-c12 first correct     
+[13/36] cad-a01 first wrong_volume repair wrong_volume still flagged
+[14/36] cad-a02 first wrong_volume repair wrong_volume still flagged
+[15/36] cad-a03 first wrong_volume repair wrong_volume still flagged
+[16/36] cad-a04 first wrong_volume
+[17/36] cad-a05 first wrong_volume
+[18/36] cad-a06 first no_part      repair wrong_volume still flagged
+[19/36] cad-a07 first correct     
+[20/36] cad-a08 first wrong_volume repair wrong_volume still flagged
+[21/36] cad-a09 first correct     
+[22/36] cad-a10 first correct     
+[23/36] cad-a11 first no_part      repair wrong_size   still flagged
+[24/36] cad-a12 first wrong_volume repair wrong_volume still flagged
+[25/36] cad-i01 first wrong_volume repair wrong_volume still flagged
+[26/36] cad-i02 first no_part      repair no_part      still flagged
+[27/36] cad-i03 first correct     
+[28/36] cad-i04 first correct     
+[29/36] cad-i05 first correct     
+[30/36] cad-i06 first wrong_volume repair wrong_volume still flagged
+[31/36] cad-i07 first no_part      repair no_part      still flagged
+[32/36] cad-i08 first wrong_size   repair wrong_size   passes check
+[33/36] cad-i09 first wrong_volume
+[34/36] cad-i10 first wrong_size  
+[35/36] cad-i11 first wrong_size   repair wrong_size   still flagged
+[36/36] cad-i12 first wrong_volume repair wrong_volume still flagged
+exit 0
+  cad-c09: first wrong_size   repair wrong_size   dropped (still flagged)
+  cad-a01: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-a02: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-a03: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-a06: first no_part      repair wrong_volume dropped (still flagged)
+  cad-a08: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-a11: first no_part      repair wrong_size   dropped (still flagged)
+  cad-a12: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-i01: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-i02: first no_part      repair no_part      dropped (still flagged)
+  cad-i06: first wrong_volume repair wrong_volume dropped (still flagged)
+  cad-i07: first no_part      repair no_part      dropped (still flagged)
+  cad-i08: first wrong_size   repair wrong_size   kept
+  cad-i11: first wrong_size   repair wrong_size   dropped (still flagged)
+  cad-i12: first wrong_volume repair wrong_volume dropped (still flagged)
+
+problems.jsonl: 36 parts; first answers right 16, final 16; repairs tried 15, kept 1; right answers lost 0; cost 1.56x
