@@ -11,8 +11,8 @@ _Updated: 2026-10-22 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight done, GO with
-     fallbacks: see "CAD pack: preflight" below), or a LoRA for the 4B on aerospace.
+  1. Remaining SKY-001 ideas (`ROADMAP.md` 3b): CAD pack checked by a real kernel (preflight done, GO:
+     see "CAD pack: preflight" below), or a LoRA for the 4B on aerospace.
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -59,12 +59,14 @@ Live on this Mac (arm64, Python 3.13, throwaway uv venvs in the session scratchp
 | Runs isolated (`python -I`, empty cwd) | GREEN | as above; needs `-I` without `-S` (site-packages), like the units calculator |
 | Import time per check process | GREEN | 1.6-2.4 s warm; the first run after install took 55 s (one-time library load) |
 | The 8B writes CadQuery | GREEN for the check, 1/2 parts | plate with hole: exact bbox and volume; tube: invalid workplane name -> ValueError, which a check catches |
-| build123d (`cadquery-ocp-novtk`, no VTK) | UNKNOWN | install still running when the session ended; may avoid the 598 MB VTK |
+| build123d (`cadquery-ocp-novtk`, no VTK) | GREEN | build123d 0.13.0 on OCP 8.0.1: venv 586 MB, no VTK; same box valid, bbox and volume exact; warm import 1.28 s (26 s first run) |
+| The 8B writes build123d | UNKNOWN | not tried; it may know CadQuery's API better (older, more examples) |
 
-Verdict: **GO WITH FALLBACKS** (size: try build123d / `cadquery-ocp-novtk` first; ship the kernel as an
-optional dependency of a `plm-cad` pack only). Resume: `uv venv --python 3.13 <dir>/v && uv pip install
---python <dir>/v/bin/python build123d`, then rerun the box probe and the 8B probe against it. Next step
-after that: write the CAD eval set (parts with computed bbox/volume) before any pack code.
+Verdict: **GO.** build123d is half the size of CadQuery and proven; which one the pack uses depends on which
+API the 8B writes better (CadQuery 1/2 parts so far). Ship the kernel only as a dependency of an optional
+`plm-cad` pack. Next: give the 8B the same parts in build123d (the probe script's pattern: ask, run under
+`python -I` with the bbox/volume epilogue), then write the CAD eval set (parts with computed bbox and volume)
+before any pack code.
 
 ## Physics: loose ends
 - [ ] **The calculator forgets prefix conversions on physics.** All 7 of the 8B's calculator misses (and 3 of
