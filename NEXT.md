@@ -12,9 +12,10 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
   1. All SKY-001 ideas are measured (`ROADMAP.md` 3b). Open hypotheses, each needing a fresh set: a LoRA v2
-     (held-out templates, early stop), the tuned 4B for aerospace intensive, a Q8_0 small tier (see
-     "Aerospace LoRA" below). Or the SQL pack (`ROADMAP.md` 3). **Restart Ollama to prune ~25 GB of unreferenced blobs** (the preflight's 16 GB, plus 4.3 GB per Q8_0 import: the route leaves a copy behind too); disk was down to 18 GB free. The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
-     a hole check v2 are done: one adopted, one not).
+     (held-out templates, early stop), the tuned 4B for aerospace intensive (see "Aerospace LoRA" below).
+     A Q8_0 small tier was tested and not adopted ("Q8_0 small tier" below). Or the SQL pack (`ROADMAP.md`
+     3). The unreferenced Ollama blobs were pruned on 2026-10-23 (Ollama restarted). The CAD pack's open
+     items are in "CAD pack: loose ends" (repair retry and a hole check v2 are done: one adopted, one not).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
@@ -61,12 +62,25 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       Judge on new problems (ae-l-* are seen).
 - [ ] **Post-hoc hypothesis: send aerospace intensive problems to the tuned 4B** (9/11 vs the 8B's 5/11 on
       ae-l-*). Chosen after seeing results; needs a new fresh set and a rule fixed first.
-- [ ] **The same-route control beat the shipped 4B** (26 vs 22; intensive 3 vs 0): likely Q8_0 vs the
-      shipped Q4_K_M. Hypothesis: a Q8_0 small tier helps the numeric packs; costs memory, not compute as
-      measured here. Test on a fresh set.
+- [x] **The same-route control beat the shipped 4B** (26 vs 22). Tested as a Q8_0 small tier: not adopted
+      (below), so the control's edge wasn't the quantization in general.
 - [ ] **Two models left in Ollama**: `plm-qwen3-4b-aero-lora` and `plm-qwen3-4b-control` (Q8_0, about
       4.3 GB each), kept for the hypotheses above; `ollama rm` them when done. The scratch work folder
       holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
+
+## Q8_0 small tier: measured, not adopted (2026-10-23)
+bartowski's Qwen3-4B Q8_0 against the shipped Q4_K_M (same GGUF repo, same template), with the calculator,
+on the electrical, aerospace and physics eval sets plus 36 fresh problems (`evals/<pack>/fresh_quant.jsonl`,
+written first). Rule `evals/score_quant.py` QUANT_RULE, run `results/run_quant.sh`, log `results/quant.log`.
+Q8_0 vs Q4_K_M: electrical 42+10 vs 47+10, aerospace 37+10 vs 32+6, physics 44+11 vs 45+11 (eval + fresh).
+Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose ends:
+- [ ] **Q8_0 is better on aerospace only** (+9 over 62 problems), worse on electrical, where 4 of its 5 losses
+      are prefix/scale slips ("0.0001592 Hz" for 5033 Hz, "0.0133 hours" for 13.3 h). Post-hoc; and even on
+      aerospace, routing calm + alert to it scored 46/62, the same as the shipped 8B + calculator, at 42% vs
+      40% compute, so it would not ship there either.
+- [ ] **`hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0` is left in Ollama** (4.3 GB, imported from the GGUF after
+      `ollama pull` stalled at "pulling manifest" on hotel wifi; SHA-256 matched Hugging Face's). `ollama rm`
+      it unless the aerospace idea above gets a fresh set.
 
 ## Aerospace LoRA for the 4B: preflight (2026-10-23)
 Live on this Mac (24 GB, arm64), throwaway venv in the session scratchpad:

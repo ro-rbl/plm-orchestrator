@@ -149,6 +149,16 @@ def main():
                         "n": int(r[2]), "cost_ratio": int(r[3]) / 100,
                         "note": "tuned 4B: calm 7/12 (control 11), intensive 9/11 (8B 5); val loss 0 by step 200"})
 
+    text = run("evals/score_quant.py")
+    r = re.search(r"disagreements: Q8_0 right only (\d+), Q4_K_M right only (\d+); one-sided sign test p = ([\d.]+)", text)
+    tally = [tuple(map(int, m)) for m in re.findall(r"^\S+\s+\S+\s+(\d+)\s+(\d+)\s+(\d+)\s*$", text, re.M)]
+    experiments.append({"id": "q8-small-tier", "date": "2026-10-23", "experiment": "Q8_0 small tier (4B)",
+                        "verdict": verdict(text, "-> ADOPT: the Q8_0", "-> NOT ADOPTED"),
+                        "metric": "problems right with the calculator (Q4_K_M vs Q8_0)",
+                        "before": sum(t[1] for t in tally), "after": sum(t[2] for t in tally),
+                        "n": sum(t[0] for t in tally), "cost_ratio": None,
+                        "note": f"disagreements {r[1]} to {r[2]}, sign test p = {r[3]}; better on aerospace only"})
+
     text = run("evals/test_detect.py")
     routing = [{"set": label, "right": int(m[1]), "total": int(m[2])}
                for label, m in (("eval-set texts", re.search(r"eval-set texts.*?(\d+)/(\d+)", text)),

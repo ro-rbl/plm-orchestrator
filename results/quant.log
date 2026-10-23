@@ -1,0 +1,384 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/50] ee-c01 correct        61 tok    2.8s
+[2/50] ee-c02 correct        74 tok    3.5s
+[3/50] ee-c03 correct        76 tok    3.7s
+[4/50] ee-c04 correct        75 tok    3.8s
+[5/50] ee-c05 correct        80 tok    3.9s
+[6/50] ee-c06 correct       104 tok    4.9s
+[7/50] ee-c07 correct        98 tok    4.6s
+[8/50] ee-c08 correct        98 tok    4.7s
+[9/50] ee-c09 correct        75 tok    3.6s
+[10/50] ee-c10 correct        58 tok    2.9s
+[11/50] ee-c11 correct        57 tok    2.8s
+[12/50] ee-c12 correct        66 tok    3.2s
+[13/50] ee-c13 correct        59 tok    2.9s
+[14/50] ee-c14 correct        90 tok    4.3s
+[15/50] ee-c15 correct       123 tok    5.8s
+[16/50] ee-a01 correct        91 tok    4.4s
+[17/50] ee-a02 correct       105 tok    5.0s
+[18/50] ee-a03 correct       104 tok    4.9s
+[19/50] ee-a04 correct       108 tok    5.2s
+[20/50] ee-a05 correct        95 tok    4.6s
+[21/50] ee-a06 correct       128 tok    6.1s
+[22/50] ee-a07 correct       115 tok    5.5s
+[23/50] ee-a08 wrong_value    95 tok    4.7s
+[24/50] ee-a09 correct        89 tok    4.4s
+[25/50] ee-a10 correct       100 tok    4.9s
+[26/50] ee-a11 correct        94 tok    4.6s
+[27/50] ee-a12 wrong_value    89 tok    4.4s
+[28/50] ee-a13 correct        67 tok    3.5s
+[29/50] ee-a14 correct        71 tok    3.7s
+[30/50] ee-a15 correct        80 tok    4.1s
+[31/50] ee-a16 correct        71 tok    3.7s
+[32/50] ee-a17 correct        71 tok    3.9s
+[33/50] ee-a18 correct        86 tok    4.8s
+[34/50] ee-a19 correct        73 tok    4.1s
+[35/50] ee-a20 correct        83 tok    4.1s
+[36/50] ee-i01 wrong_value   178 tok    8.7s
+[37/50] ee-i02 wrong_value   186 tok    9.0s
+[38/50] ee-i03 correct       156 tok    7.5s
+[39/50] ee-i04 correct       255 tok   12.2s
+[40/50] ee-i05 correct       154 tok    7.7s
+[41/50] ee-i06 wrong_value    85 tok    4.4s
+[42/50] ee-i07 correct       163 tok    8.0s
+[43/50] ee-i08 wrong_value   139 tok    6.9s
+[44/50] ee-i09 correct       131 tok    6.5s
+[45/50] ee-i10 correct       180 tok    8.7s
+[46/50] ee-i11 correct       259 tok   12.3s
+[47/50] ee-i12 wrong_value   155 tok    7.7s
+[48/50] ee-i13 wrong_value   123 tok    6.3s
+[49/50] ee-i14 correct       172 tok    8.5s
+[50/50] ee-i15 correct       182 tok    9.4s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       15      0     0         0     0  100%
+alert       20       18      2     0         0     0  90%
+intensive   15        9      6     0         0     0  60%
+ALL         50       42      8     0         0     0  84%
+
+level       avg tok  avg s  hit cap
+calm             80    3.8        0
+alert            91    4.5        0
+intensive       168    8.3        0
+ALL             111    5.4        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/50] ae-c01 correct        71 tok    3.6s
+[2/50] ae-c02 correct        80 tok    4.1s
+[3/50] ae-c03 correct        86 tok    4.5s
+[4/50] ae-c04 correct        76 tok    4.2s
+[5/50] ae-c05 correct       173 tok    8.7s
+[6/50] ae-c06 correct       103 tok    5.2s
+[7/50] ae-c07 correct       148 tok    7.4s
+[8/50] ae-c08 correct        86 tok    4.5s
+[9/50] ae-c09 correct        51 tok    3.0s
+[10/50] ae-c10 correct        85 tok    4.6s
+[11/50] ae-c11 correct       151 tok    7.6s
+[12/50] ae-c12 wrong_value   115 tok    6.0s
+[13/50] ae-c13 correct        60 tok    3.3s
+[14/50] ae-c14 correct        74 tok    3.9s
+[15/50] ae-c15 correct        84 tok    4.4s
+[16/50] ae-a01 correct       130 tok    6.8s
+[17/50] ae-a02 correct       162 tok    8.4s
+[18/50] ae-a03 correct       125 tok    6.5s
+[19/50] ae-a04 correct       146 tok    7.6s
+[20/50] ae-a05 correct       112 tok    6.0s
+[21/50] ae-a06 correct       179 tok    9.2s
+[22/50] ae-a07 correct        99 tok    5.5s
+[23/50] ae-a08 correct        87 tok    4.8s
+[24/50] ae-a09 wrong_value   100 tok    5.5s
+[25/50] ae-a10 correct       127 tok    6.7s
+[26/50] ae-a11 correct       102 tok    5.6s
+[27/50] ae-a12 correct       133 tok    7.0s
+[28/50] ae-a13 correct        99 tok    5.4s
+[29/50] ae-a14 correct       104 tok    5.6s
+[30/50] ae-a15 wrong_value   104 tok    5.7s
+[31/50] ae-a16 correct        95 tok    5.3s
+[32/50] ae-a17 correct       131 tok    7.1s
+[33/50] ae-a18 wrong_value   155 tok    8.0s
+[34/50] ae-a19 correct       110 tok    6.2s
+[35/50] ae-a20 correct        62 tok    3.7s
+[36/50] ae-i01 wrong_value   293 tok   14.9s
+[37/50] ae-i02 wrong_value   290 tok   14.9s
+[38/50] ae-i03 correct       189 tok   10.4s
+[39/50] ae-i04 correct       183 tok    9.8s
+[40/50] ae-i05 wrong_value   257 tok   13.3s
+[41/50] ae-i06 correct       274 tok   14.0s
+[42/50] ae-i07 wrong_value   171 tok    8.8s
+[43/50] ae-i08 correct       264 tok   14.0s
+[44/50] ae-i09 correct       200 tok   10.5s
+[45/50] ae-i10 wrong_value   174 tok    9.3s
+[46/50] ae-i11 wrong_value   646 tok   32.1s
+[47/50] ae-i12 wrong_value   192 tok   10.3s
+[48/50] ae-i13 wrong_value   280 tok   14.5s
+[49/50] ae-i14 wrong_value   140 tok    7.6s
+[50/50] ae-i15 correct       151 tok    8.0s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      1     0         0     0  93%
+alert       20       17      3     0         0     0  85%
+intensive   15        6      9     0         0     0  40%
+ALL         50       37     13     0         0     0  74%
+
+level       avg tok  avg s  hit cap
+calm             96    5.0        0
+alert           118    6.3        0
+intensive       247   12.8        0
+ALL             150    7.9        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/50] ph-c01 correct        72 tok    4.0s
+[2/50] ph-c02 correct        93 tok    5.2s
+[3/50] ph-c03 correct        61 tok    3.5s
+[4/50] ph-c04 correct        77 tok    4.3s
+[5/50] ph-c05 correct        73 tok    4.1s
+[6/50] ph-c06 correct        84 tok    5.1s
+[7/50] ph-c07 correct        62 tok    3.8s
+[8/50] ph-c08 correct       149 tok    8.1s
+[9/50] ph-c09 correct        83 tok    4.6s
+[10/50] ph-c10 unit_error     73 tok    4.1s
+[11/50] ph-c11 correct        72 tok    4.1s
+[12/50] ph-c12 correct        48 tok    2.9s
+[13/50] ph-c13 correct        74 tok    4.1s
+[14/50] ph-c14 correct        70 tok    4.0s
+[15/50] ph-c15 correct        93 tok    5.2s
+[16/50] ph-a01 correct        89 tok    6.0s
+[17/50] ph-a02 correct        45 tok    3.2s
+[18/50] ph-a03 correct        93 tok    6.2s
+[19/50] ph-a04 correct       102 tok    5.7s
+[20/50] ph-a05 correct        96 tok    5.5s
+[21/50] ph-a06 wrong_value   112 tok    6.3s
+[22/50] ph-a07 correct       109 tok    6.3s
+[23/50] ph-a08 correct        89 tok    4.9s
+[24/50] ph-a09 correct        84 tok    4.6s
+[25/50] ph-a10 correct        80 tok    4.7s
+[26/50] ph-a11 correct       113 tok    6.3s
+[27/50] ph-a12 correct       102 tok    5.7s
+[28/50] ph-a13 correct       136 tok    7.2s
+[29/50] ph-a14 correct        95 tok    5.4s
+[30/50] ph-a15 correct       122 tok    6.8s
+[31/50] ph-a16 wrong_value   101 tok    5.7s
+[32/50] ph-a17 correct       105 tok    5.9s
+[33/50] ph-a18 correct       147 tok    8.2s
+[34/50] ph-a19 correct       140 tok    7.7s
+[35/50] ph-a20 correct       144 tok    8.0s
+[36/50] ph-i01 correct       120 tok    6.7s
+[37/50] ph-i02 correct        93 tok    5.3s
+[38/50] ph-i03 wrong_value   204 tok   10.9s
+[39/50] ph-i04 correct       217 tok   11.4s
+[40/50] ph-i05 correct       141 tok    7.8s
+[41/50] ph-i06 correct       129 tok    7.2s
+[42/50] ph-i07 correct       185 tok    9.9s
+[43/50] ph-i08 correct       207 tok   10.9s
+[44/50] ph-i09 wrong_value   239 tok   12.8s
+[45/50] ph-i10 correct       150 tok    8.1s
+[46/50] ph-i11 correct       239 tok   12.6s
+[47/50] ph-i12 correct       187 tok   10.0s
+[48/50] ph-i13 correct       202 tok   10.9s
+[49/50] ph-i14 correct       197 tok   10.6s
+[50/50] ph-i15 wrong_value   179 tok    9.7s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm        15       14      0     1         1     0  93%
+alert       20       18      2     0         0     0  90%
+intensive   15       12      3     0         0     0  80%
+ALL         50       44      5     1         1     0  88%
+
+level       avg tok  avg s  hit cap
+calm             79    4.5        0
+alert           105    6.0        0
+intensive       179    9.7        0
+ALL             120    6.6        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        2      2     0         0     0  50%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm             69    2.4        0
+alert           120    4.0        0
+intensive       140    4.5        0
+ALL             109    3.6        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/12] ee-q-c01 correct        80 tok    4.4s
+[2/12] ee-q-c02 correct        68 tok    3.8s
+[3/12] ee-q-c03 correct        69 tok    4.1s
+[4/12] ee-q-c04 correct        72 tok    4.4s
+[5/12] ee-q-a01 correct        88 tok    5.0s
+[6/12] ee-q-a02 correct       105 tok    6.1s
+[7/12] ee-q-a03 correct       172 tok    9.4s
+[8/12] ee-q-a04 correct       132 tok    7.2s
+[9/12] ee-q-i01 wrong_value   156 tok    8.4s
+[10/12] ee-q-i02 correct       114 tok    6.3s
+[11/12] ee-q-i03 correct       119 tok    6.5s
+[12/12] ee-q-i04 wrong_value   137 tok    7.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        2      2     0         0     0  50%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm             72    4.2        0
+alert           124    6.9        0
+intensive       132    7.3        0
+ALL             109    6.1        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        2      2     0         0     0  50%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm             44    3.2        0
+alert            80    5.2        0
+intensive       129    8.1        0
+ALL              84    5.5        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        2      1     1         1     0  50%
+intensive    4        4      0     0         0     0  100%
+ALL         12       10      1     1         1     0  83%
+
+level       avg tok  avg s  hit cap
+calm            112    6.8        0
+alert           227   14.8        0
+intensive       290   20.8        0
+ALL             210   14.1        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        3      1     0         0     0  75%
+alert        4        2      2     0         0     0  50%
+intensive    4        1      3     0         0     0  25%
+ALL         12        6      6     0         0     0  50%
+
+level       avg tok  avg s  hit cap
+calm             84    3.7        0
+alert           152    6.1        0
+intensive       267   20.9        0
+ALL             168   10.2        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/12] ae-q-c01 correct       101 tok    5.6s
+[2/12] ae-q-c02 correct        98 tok    5.6s
+[3/12] ae-q-c03 correct        62 tok    3.5s
+[4/12] ae-q-c04 wrong_value    53 tok    3.2s
+[5/12] ae-q-a01 correct       109 tok    6.2s
+[6/12] ae-q-a02 correct       199 tok   10.7s
+[7/12] ae-q-a03 correct       151 tok    8.3s
+[8/12] ae-q-a04 correct       126 tok    7.0s
+[9/12] ae-q-i01 correct       231 tok   12.4s
+[10/12] ae-q-i02 correct       144 tok    8.0s
+[11/12] ae-q-i03 correct       393 tok   20.5s
+[12/12] ae-q-i04 wrong_value   124 tok    6.9s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        3      1     0         0     0  75%
+alert        4        4      0     0         0     0  100%
+intensive    4        3      1     0         0     0  75%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm             78    4.5        0
+alert           146    8.0        0
+intensive       223   12.0        0
+ALL             149    8.2        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        3      1     0         0     0  75%
+alert        4        3      1     0         0     0  75%
+intensive    4        1      3     0         0     0  25%
+ALL         12        7      5     0         0     0  58%
+
+level       avg tok  avg s  hit cap
+calm             74    6.4        0
+alert           114    9.2        0
+intensive       210   16.9        0
+ALL             133   10.8        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        3      1     0         0     0  75%
+intensive    4        3      1     0         0     0  75%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm            153   11.7        0
+alert           335   25.4        0
+intensive       631   59.2        0
+ALL             373   32.1        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        3      1     0         0     0  75%
+ALL         12       11      1     0         0     0  92%
+
+level       avg tok  avg s  hit cap
+calm             67    3.4        0
+alert           107    4.7        0
+intensive       165    7.0        0
+ALL             113    5.0        0
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q8_0__tool.jsonl
+[1/12] ph-q-c01 correct        39 tok    2.4s
+[2/12] ph-q-c02 correct        84 tok    4.5s
+[3/12] ph-q-c03 correct        81 tok    4.6s
+[4/12] ph-q-c04 correct        69 tok    4.0s
+[5/12] ph-q-a01 correct        98 tok    5.8s
+[6/12] ph-q-a02 correct       119 tok    6.8s
+[7/12] ph-q-a03 correct        75 tok    4.3s
+[8/12] ph-q-a04 correct       103 tok    6.0s
+[9/12] ph-q-i01 correct       118 tok    6.8s
+[10/12] ph-q-i02 wrong_value   163 tok    9.3s
+[11/12] ph-q-i03 correct       202 tok   11.0s
+[12/12] ph-q-i04 correct       203 tok   11.0s
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        3      1     0         0     0  75%
+ALL         12       11      1     0         0     0  92%
+
+level       avg tok  avg s  hit cap
+calm             68    3.9        0
+alert            99    5.7        0
+intensive       172    9.5        0
+ALL             113    6.4        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b__tool.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        2      2     0         0     0  50%
+ALL         12       10      2     0         0     0  83%
+
+level       avg tok  avg s  hit cap
+calm             50    4.6        0
+alert            74    6.6        0
+intensive       147   22.4        0
+ALL              90   11.2        0
+qwen3:8b: 0 to run, 12 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b.jsonl
+level        n  correct  wrong  unit  (num ok)  none  acc
+calm         4        4      0     0         0     0  100%
+alert        4        4      0     0         0     0  100%
+intensive    4        3      1     0         0     0  75%
+ALL         12       11      1     0         0     0  92%
+
+level       avg tok  avg s  hit cap
+calm            109    8.9        0
+alert           208   16.4        0
+intensive       334   25.8        0
+ALL             217   17.0        0
+pack        set            n  Q4_K_M  Q8_0   with the calculator
+electrical  problems      50      47    42
+electrical  fresh_quant   12      10    10
+aerospace   problems      50      32    37
+aerospace   fresh_quant   12       6    10
+physics     problems      50      45    44
+physics     fresh_quant   12      11    11
+
+disagreements: Q8_0 right only 11, Q4_K_M right only 8; one-sided sign test p = 0.324; worst pack Q8_0 - Q4_K_M: -5
+
+pack          n        shipped      Q8_0 routed   (compute vs always-8B bare)
+electrical   62   59 at  34%       56 at  34%   fails part (2)
+aerospace    62   46 at  40%       46 at  42%   fails part (2)
+physics      62   60 at 100%       54 at  36%   fails part (2)
+
+rule: (1) the Q8_0 4B is better iff, with the calculator, on the 186 problems (three eval sets and the fresh set) it wins more of the problems the two 4Bs disagree on than chance allows (one-sided sign test, p < 0.05), and on no pack (eval + fresh) does it score more than 2 below the Q4_K_M 4B; (2) only then, per pack, the routed policy with the Q8_0 4B (calm + alert: Q8_0 4B + calculator, escalating to the 8B + calculator on a failed check; intensive: 8B + calculator, then 8B) replaces the shipped policy iff, on that pack's eval and fresh problems together, it scores at least the shipped score minus 1 at lower compute; for electrical, whose shipped policy already routes to the Q4_K_M 4B, at least the shipped score at no more than 10 points more compute
+(1) Q8_0 better: no
+-> NOT ADOPTED: keep the shipped policies (part 1 failed)

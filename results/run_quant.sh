@@ -5,6 +5,8 @@
 cd "$(dirname "$0")/.."
 Q4=hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M
 Q8=hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q8_0
+# A missing model would be saved as error rows, which resuming then skips: refuse instead.
+ollama list | grep -q "Qwen_Qwen3-4B-GGUF:Q8_0" || { echo "pull $Q8 first"; exit 1; }
 for p in electrical aerospace physics; do
   with-timeout 3600 .venv/bin/python evals/run.py evals/$p/problems.jsonl --model $Q8 --strategy tool
 done
