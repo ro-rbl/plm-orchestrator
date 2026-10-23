@@ -11,9 +11,9 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
 - Then **decompose-then-solve** was built and measured, and **not adopted** (`ROADMAP.md` 3b; rule in
   `evals/score_decompose.py`, run log `results/decompose.log`): 5/15 vs 6/15 on fresh problems, 6/15 vs
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
-  1. The last SKY-001 idea: a LoRA for the 4B on aerospace (`ROADMAP.md` 3b). Preflight done, GO via
-     fuse -> GGUF -> Ollama: see "Aerospace LoRA for the 4B: preflight" below. Restart Ollama first to
-     prune about 16 GB of blobs the preflight left. The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
+  1. All SKY-001 ideas are measured (`ROADMAP.md` 3b). Open hypotheses, each needing a fresh set: a LoRA v2
+     (held-out templates, early stop), the tuned 4B for aerospace intensive, a Q8_0 small tier (see
+     "Aerospace LoRA" below). Or the SQL pack (`ROADMAP.md` 3). **Restart Ollama to prune ~25 GB of unreferenced blobs** (the preflight's 16 GB, plus 4.3 GB per Q8_0 import: the route leaves a copy behind too); disk was down to 18 GB free. The CAD pack's open items are in "CAD pack: loose ends" (repair retry and
      a hole check v2 are done: one adopted, one not).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
@@ -50,7 +50,25 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
 - [ ] **The step check is dimension-only.** Wrong plan formulas give absurd values with the right units
       (preflight ae-i06: 3.3e9 MW), and given values restated as steps can come back wrong (ae-i02:
       -10000 kg propellant) without being caught. `decompose.py:step_issue`.
-## Aerospace LoRA for the 4B: preflight (2026-10-23, no training code yet)
+## Aerospace LoRA for the 4B: measured, not adopted (2026-10-23)
+Pipeline `evals/aerospace/lora_pipeline.sh` (data, train, export, judge), rule `evals/score_lora.py`, log
+`results/lora.log`. On 36 fresh problems with the calculator: shipped 4B 22, control 26, tuned 28, 8B 28;
+routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27). Loose ends:
+- [ ] **The LoRA overfit its templates.** Validation loss was 0.000 from step 200 of 600, since the
+      validation split came from the same templates; calm answers broke the way the templates taught
+      (Pa printed as kPa, a unitless ratio labeled kN, a lookup "computed" as 287.1). Next try: hold out
+      whole templates for validation, stop at the best held-out loss, add lookup and conversion examples.
+      Judge on new problems (ae-l-* are seen).
+- [ ] **Post-hoc hypothesis: send aerospace intensive problems to the tuned 4B** (9/11 vs the 8B's 5/11 on
+      ae-l-*). Chosen after seeing results; needs a new fresh set and a rule fixed first.
+- [ ] **The same-route control beat the shipped 4B** (26 vs 22; intensive 3 vs 0): likely Q8_0 vs the
+      shipped Q4_K_M. Hypothesis: a Q8_0 small tier helps the numeric packs; costs memory, not compute as
+      measured here. Test on a fresh set.
+- [ ] **Two models left in Ollama**: `plm-qwen3-4b-aero-lora` and `plm-qwen3-4b-control` (Q8_0, about
+      4.3 GB each), kept for the hypotheses above; `ollama rm` them when done. The scratch work folder
+      holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
+
+## Aerospace LoRA for the 4B: preflight (2026-10-23)
 Live on this Mac (24 GB, arm64), throwaway venv in the session scratchpad:
 
 | Dependency | Result | Evidence |

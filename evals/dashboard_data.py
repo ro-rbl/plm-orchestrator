@@ -141,6 +141,14 @@ def main():
                         "before": int(r[1]), "after": int(r[2]), "n": int(n[1]), "cost_ratio": float(r[5]),
                         "note": f"{r[3]} repairs tried, {r[4]} kept"})
 
+    text = run("evals/score_lora.py")
+    r = re.search(r"routed \(tuned 4B.*?\): (\d+)/(\d+) at (\d+)% of always-8B compute; always 8B: (\d+)/\d+", text)
+    experiments.append({"id": "aero-lora", "date": "2026-10-23", "experiment": "Aerospace 4B LoRA",
+                        "verdict": verdict(text, "-> ADOPT: route", "-> NOT ADOPTED"),
+                        "metric": "fresh problems right (routed vs always-8B)", "before": int(r[4]), "after": int(r[1]),
+                        "n": int(r[2]), "cost_ratio": int(r[3]) / 100,
+                        "note": "tuned 4B: calm 7/12 (control 11), intensive 9/11 (8B 5); val loss 0 by step 200"})
+
     text = run("evals/test_detect.py")
     routing = [{"set": label, "right": int(m[1]), "total": int(m[2])}
                for label, m in (("eval-set texts", re.search(r"eval-set texts.*?(\d+)/(\d+)", text)),

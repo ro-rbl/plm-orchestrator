@@ -79,9 +79,12 @@ What could carry over, in order of value per effort; each policy fixed before it
       fresh set, was: 32/38 caught to 25, no false alarms. Scores above are regraded at 0.1% (coder 16/36).
       A repair retry (the coder sees its flagged program and the check's finding) fixed 0 of 9 flagged parts
       on 20 fresh parts at 1.56x tokens: not adopted.
-- [ ] **Fine-tune the 4B for aerospace (LoRA, e.g. with MLX).** Train on generated problems from new
-      templates, never on the 50 eval or 24 holdout problems; success = the 4B closes the alert gap
-      (75% vs the 8B's 90%), which would let routing pay off in aerospace.
+- [x] **Fine-tune the 4B for aerospace (LoRA with MLX): built, measured, not adopted.** 734 generated
+      problems with calculator-program answers from 32 templates of the eval set's families; judged on
+      36 fresh problems written first (`evals/score_lora.py`). Tuned 4B 28/36 = the 8B's 28, but calm fell
+      to 7/12 (control 11/12: unit labels and lookups copied wrong from the templates), so routing calm and
+      alert to it scored 25/36 at 69% compute: rule failed. It beat the 8B on intensive (9/11 vs 5/11), a
+      post-hoc hypothesis. A control through the same Q8_0 route beat the shipped Q4_K_M 4B, 26 vs 22.
 - Benchmark lesson: SKY-001's claims are its own, on its own benchmark. Keep holdouts written first
   and policies fixed before sweeps for anything published here.
 
