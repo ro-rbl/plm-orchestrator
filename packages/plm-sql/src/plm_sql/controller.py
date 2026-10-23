@@ -6,11 +6,23 @@ syntax errors, misspelt tables and columns, and non-SQLite dialect. It can't see
 query that runs but answers a different question; with no schema in the task
 there is nothing to run, and the answer is reported unchecked.
 
-Until the SQL sweep picks one (evals/run_sql.py, rule SQL_RULE, fixed before the
-sweep), every level uses the software pack's cascade: 4B -> 8B -> coder 14B,
-escalating when the query doesn't run.
+The policies and the rule that picks among them (SQL_RULE in evals/run_sql.py: the
+cheapest within 1 task of the best) were fixed before the sweep. On the 45-task eval:
 
-Model names can be overridden with PLM_SMALL_MODEL, PLM_LARGE_MODEL and PLM_CODER_MODEL.
+    cascade 4B -> coder 14B                   45/45 at 45% of always-coder compute
+    cascade 4B -> 8B -> coder (pre-sweep)     44/45 at 46%
+    always coder 14B                          44/45 at 100%
+    always 8B                                 42/45 at 59%
+    always 4B                                 40/45 at 29%
+
+All 5 of the 4B's wrong queries failed to run (misnamed or ambiguous columns), so the
+check caught every one and the coder fixed it; the 8B's misses mostly ran and
+returned the wrong rows, which the check can't see. So every level is 4B first,
+then the coder when the query doesn't run. The set is near its ceiling (the coder
+alone misses 1), so it separates the models less than the numeric sets do.
+Budgets are 3.8-5.6x the longest answer at each level (34, 55 and 134 tokens).
+
+Model names can be overridden with PLM_SMALL_MODEL and PLM_CODER_MODEL.
 """
 
 import os
@@ -24,15 +36,13 @@ from plm_sql.sqlgen import build_prompt, extract_sql, split_task
 
 MODELS = {
     "small": os.environ.get("PLM_SMALL_MODEL", "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M"),
-    "large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b"),
     "coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b"),
 }
-# Pre-sweep: answers in the preflight were 30-76 tokens.
-CASCADE = ["small", "large", "coder"]
+CHAIN = ["small", "coder"]
 LEVELS = {
-    "calm": {"num_predict": 512, "chain": CASCADE},
-    "alert": {"num_predict": 512, "chain": CASCADE},
-    "intensive": {"num_predict": 768, "chain": CASCADE},
+    "calm": {"num_predict": 192, "chain": CHAIN},
+    "alert": {"num_predict": 256, "chain": CHAIN},
+    "intensive": {"num_predict": 512, "chain": CHAIN},
 }
 
 

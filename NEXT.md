@@ -13,15 +13,15 @@ _Updated: 2026-10-23 · branch: main · plan: ROADMAP.md_
   7/15 on the eval set's intensive ones, at 2.4x the tokens. Next, unless decided otherwise:
   1. All SKY-001 ideas are measured (`ROADMAP.md` 3b). Open hypotheses, each needing a fresh set: a LoRA v2
      (held-out templates, early stop), the tuned 4B for aerospace intensive (see "Aerospace LoRA" below).
-     A Q8_0 small tier was tested and not adopted ("Q8_0 small tier" below). Or the SQL pack (`ROADMAP.md`
-     3). The unreferenced Ollama blobs were pruned on 2026-10-23 (Ollama restarted). The CAD pack's open
+     A Q8_0 small tier was tested and not adopted ("Q8_0 small tier" below). The SQL pack is built (below).
+     The unreferenced Ollama blobs were pruned on 2026-10-23 (Ollama restarted). The CAD pack's open
      items are in "CAD pack: loose ends" (repair retry and a hole check v2 are done: one adopted, one not).
 - **An existing `.venv` from before the split has no `plm` any more** (it was on `sys.path` from the repo
   root, which no longer has `plm/`; `requirements.txt` is gone). Reinstall: `uv pip install --python
   .venv/bin/python -e packages/plm-core -e packages/plm-electrical -e packages/plm-aerospace -e packages/plm-software`.
 - Local branch `separate-packs` is merged and can go: `git branch -d separate-packs`.
 - Then the **physics pack** was built and swept (`ROADMAP.md` 3): everything to the 8B answering directly,
-  49/50. Next after the SKY-001 ideas: the SQL pack (`ROADMAP.md` 3).
+  49/50. The SQL pack followed (see "SQL pack: built").
 
 ## Packaging: loose ends
 - [ ] **`plm packs install` has never downloaded a model for real.** The pull code ran live only on a model
@@ -67,6 +67,24 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
 - [ ] **Two models left in Ollama**: `plm-qwen3-4b-aero-lora` and `plm-qwen3-4b-control` (Q8_0, about
       4.3 GB each), kept for the hypotheses above; `ollama rm` them when done. The scratch work folder
       holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
+
+## SQL pack: built (2026-10-23)
+`packages/plm-sql`; eval set `evals/sql/build_tasks.py` (45 tasks, 3 seeded databases, 24 level holdouts, 12
+routing cases), sweep `results/run_sql.sh`, log `results/sql.log`. Ships 4B first, the coder when the query
+doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
+- [ ] **No fresh set yet.** 45/45 is on the set the rule picked the policy from; the runner-up was 44/45.
+      Write new tasks (new schemas) first, then `evals/run_sql.py` against them, to confirm the pick.
+- [ ] **The set is near its ceiling** (coder alone 44/45, 4B 40), so it separates models less than the
+      numeric sets do. Harder tasks, or Spider/BIRD (`ROADMAP.md` 4), would test the routing properly.
+- [ ] **The check can't see a query that runs but answers something else.** 2 of the 8B's 3 misses ran
+      (`SELECT COUNT(*) AS count` with no FROM; order ids from order_items); live, the 4B answered "average
+      fare per km" with `AVG(fare) / AVG(km)`, which runs, and was trusted. Ideas, each to judge on new
+      tasks: flag a query that names none of the schema's tables, or one returning no rows on given sample rows.
+- [ ] **A schema written in prose is unchecked** ("a table sales(region, month, amount)", routing case q03):
+      only CREATE TABLE statements are run. Building a table from such a signature is untested.
+- [ ] **Level misses on the eval set** (left as measured): sql-c15 ("haven't declared a major") reads as
+      intensive; sql-i02 and sql-i06 read as alert. Harmless while every level uses the same chain (only
+      budgets differ). `plm_sql/levels.py`; holdout 24/24.
 
 ## Q8_0 small tier: measured, not adopted (2026-10-23)
 bartowski's Qwen3-4B Q8_0 against the shipped Q4_K_M (same GGUF repo, same template), with the calculator,
@@ -238,7 +256,6 @@ Options: CadQuery with the full install, or `cadquery` on `cadquery-ocp-novtk` i
 - No 0.6B is used as a tier: abliterated 24/50 electrical (direct), 7/45 software; standard qwen3:0.6b 17/50, 14/45.
 - `--thorough` is opt-in, not default (see above).
 - `gpt-oss:20b` (13 GB) has not been evaluated.
-- SQL pack: next (ROADMAP.md, phase 3).
 - **An absent pack's tasks go to whichever installed pack still claims them**, not always to general
   (with aerospace not installed, ae-c12 and ae-a20, power in kW, go to electrical). By design of claims;
   recorded in `docs/pack-packaging.md`.

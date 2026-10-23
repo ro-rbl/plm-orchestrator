@@ -39,8 +39,12 @@ software: aerospace, physics/mechanical, SQL.
       the sweep: everything to the 8B answering directly, 49/50 at 100% of always-8B compute. The
       calculator lost accuracy here (8B 43/50): all 7 misses printed base-unit values under the asked
       prefixed unit, which the unit checks can't see.
-- SQL: queries run against a small SQLite database; the check is that the query executes
-  and matches any example results, like the software pack's examples.
+- [x] SQL: `packages/plm-sql`, 45 tasks on three seeded SQLite databases + 24 level holdouts + 12 routing
+      cases, all written before the pack. A query is graded on hidden data against a reference query's rows;
+      the pack's check is that it runs on the task's own schema in a read-only sandbox. Policies and rule
+      (cheapest within 1 task of the best) fixed before the sweep: 4B first, the coder 14B when the query
+      doesn't run, 45/45 at 45% of always-coder compute (coder alone 44/45, 8B 42, 4B 40). Every wrong 4B
+      query failed to run, so the check caught all of them; the set is near its ceiling.
 
 ## 3a. Separately installable packs
 - [x] The core installs alone (everything goes to the general pack); each domain pack is its own

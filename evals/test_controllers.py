@@ -158,7 +158,7 @@ def test_cad():
 
 
 def test_sql():
-    small, large, coder = sql.MODELS["small"], sql.MODELS["large"], sql.MODELS["coder"]
+    small, coder = sql.MODELS["small"], sql.MODELS["coder"]
     schema = ("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, kind TEXT);\n"
               "INSERT INTO pets VALUES (1, 'Rex', 'dog'), (2, 'Tom', 'cat');")
     task = f"{schema}\n\nWrite a SQL query: list the names of the dogs."
@@ -169,21 +169,21 @@ def test_sql():
     expect("sql: a query that runs on the schema is trusted", calls == [small] and r["trusted"] and r["pack"] == "sql"
            and r["answer"]["code"] == "SELECT name FROM pets WHERE kind = 'dog'" and r["steps"][0]["ran"]["n_rows"] == 1, r)
     expect("sql: the answer renders as a sql block", answer_body(r).startswith("```sql\nSELECT name"), answer_body(r))
-    sql.ask, calls = fake_ollama({small: [bad], large: [good]})
+    sql.ask, calls = fake_ollama({small: [bad], coder: [good]})
     r = sql.solve(task)
-    expect("sql: a query that doesn't run escalates", calls == [small, large] and r["trusted"] and r["final_step"] == 2
+    expect("sql: a query that doesn't run escalates to the coder", calls == [small, coder] and r["trusted"] and r["final_step"] == 2
            and "no such column" in r["steps"][0]["issues"][0], r)
-    sql.ask, calls = fake_ollama({small: [bad], large: ["I can't see the data."], coder: [bad]})
+    sql.ask, calls = fake_ollama({small: [bad], coder: ["I can't see the data."]})
     r = sql.solve(task)
-    expect("sql: nothing runs -> flagged after the whole cascade", calls == [small, large, coder] and not r["trusted"]
+    expect("sql: nothing runs -> flagged after the whole chain", calls == [small, coder] and not r["trusted"]
            and r["checked"] and r["steps"][1]["issues"] == ["no SQL query in the reply"], r)
     sql.ask, calls = fake_ollama({small: [good]})
     r = sql.solve("Write a SQL query that lists the dogs from a table pets(id, name, kind).")
     expect("sql: no schema -> unchecked, not escalated", calls == [small] and not r["checked"] and not r["trusted"]
            and "CREATE TABLE" in r["unchecked_reason"], r)
-    sql.ask, calls = fake_ollama({small: ["```sql\nDELETE FROM pets\n```"], large: [good]})
+    sql.ask, calls = fake_ollama({small: ["```sql\nDELETE FROM pets\n```"], coder: [good]})
     r = sql.solve(task)
-    expect("sql: a write is refused and escalated", calls == [small, large] and "refused" in r["steps"][0]["issues"][0], r)
+    expect("sql: a write is refused and escalated", calls == [small, coder] and "refused" in r["steps"][0]["issues"][0], r)
     two = run_query("CREATE TABLE t (a);", "SELECT * FROM t; ATTACH 'x' AS y")
     expect("sql: a second statement is refused", "one statement" in (two["error"] or ""), two)
     ext = run_query("CREATE TABLE t (a);", "SELECT load_extension('x')")
