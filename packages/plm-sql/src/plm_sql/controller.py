@@ -6,25 +6,23 @@ syntax errors, misspelt tables and columns, and non-SQLite dialect. It can't see
 query that runs but answers a different question; with no schema in the task
 there is nothing to run, and the answer is reported unchecked.
 
-Policies and rules were fixed before each run (evals/run_sql.py). On the 45-task eval set,
-SQL_RULE picked 4B -> coder 14B (45/45 at 45% of always-coder compute; always 8B 42/45), but
-that set was near its ceiling. On 24 harder fresh tasks the pick wasn't confirmed (FRESH_RULE:
-18/24 vs 22/24 for the 8B), and that set's candidate, intensive 8B -> coder, failed on a second
-fresh set (FRESH2_RULE: 18/24 vs 22/24 for the coder). FRESH2_RULE then ships SQL_RULE's pick
-over both fresh sets pooled, 48 tasks no policy was chosen on:
+Policies and rules were fixed before each run (evals/run_sql.py, evals/bench_sql.py). Our own
+sets (45 eval tasks, then 48 harder fresh ones) settled on always 8B, with the coder tied (42/48).
+The public benchmarks, written by others and larger, disagreed:
 
-    always 8B                                 42/48 at 60% of always-coder compute
-    always coder 14B                          42/48 at 100%
-    cascade 8B -> coder                       42/48 at 60%
-    4B -> 8B -> coder                         37/48 at 34%
-    4B -> coder (shipped before)              35/48 at 39%
+                          Spider (299 dev)      BIRD mini-dev (496)    compute vs always-coder
+    always coder 14B      228 (76%, 72-81%)     254 (51%, 47-56%)      100%
+    cascade 8B -> coder   209 (70%)             207 (42%)              70-80%
+    always 8B             201 (67%, 62-73%)     172 (35%, 30-39%)      55-66%
 
-On hard queries the misses run and return wrong rows (the check caught 4 of 26 wrong fresh
-queries), so a cheap first model that escalates on the check rarely gets escalated. So every
-level goes to the 8B alone; a query that doesn't run is reported, not escalated. Budgets are
-2.9-5.6x the 8B's longest answer at each level over all three sets (34, 175 and 151 tokens).
+BENCH_RULE capped extra compute at +10 points, so it kept always 8B; the coder beats it on both
+benchmarks with paired 95% intervals well above 0 (+15 to +40, +62 to +105). On 2026-10-24 the user
+chose accuracy over compute for SQL: every level goes to the coder alone, about 1.5-1.8x the 8B's
+compute. A query that doesn't run is reported, not escalated (the check caught 38 of 242 of the
+coder's wrong BIRD queries). Budgets are 2.9-3.7x the coder's longest answer at each level over
+every set and benchmark (268, 321 and 210 tokens; none hit a cap).
 
-Model name can be overridden with PLM_LARGE_MODEL.
+Model name can be overridden with PLM_CODER_MODEL.
 """
 
 import os
@@ -36,11 +34,11 @@ from plm_sql.levels import classify
 from plm_sql.sandbox import run_query
 from plm_sql.sqlgen import build_prompt, extract_sql, split_task
 
-MODELS = {"large": os.environ.get("PLM_LARGE_MODEL", "qwen3:8b")}
+MODELS = {"coder": os.environ.get("PLM_CODER_MODEL", "qwen2.5-coder:14b")}
 LEVELS = {
-    "calm": {"num_predict": 192, "chain": ["large"]},
-    "alert": {"num_predict": 512, "chain": ["large"]},
-    "intensive": {"num_predict": 512, "chain": ["large"]},
+    "calm": {"num_predict": 768, "chain": ["coder"]},
+    "alert": {"num_predict": 1024, "chain": ["coder"]},
+    "intensive": {"num_predict": 768, "chain": ["coder"]},
 }
 
 

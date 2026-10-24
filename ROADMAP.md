@@ -48,6 +48,8 @@ software: aerospace, physics/mechanical, SQL.
       harder fresh tasks (18/24 vs 22/24 for always-8B: misses that run and return wrong rows); that set's
       candidate (intensive to 8B -> coder) failed on a second fresh set (18/24 vs 22/24), so the rule fixed
       for it shipped its pooled pick: everything to the 8B, 42/48 at 60% (coder alone 42/48 at 100%).
+      Public benchmarks then favored the coder clearly (Spider 76% vs 67%, BIRD 51% vs 35%); the compute-capped
+      rule kept the 8B, and the user chose accuracy: the pack ships the coder alone (2026-10-24).
 
 ## 3a. Separately installable packs
 - [x] The core installs alone (everything goes to the general pack); each domain pack is its own
@@ -96,6 +98,8 @@ What could carry over, in order of value per effort; each policy fixed before it
   and policies fixed before sweeps for anything published here.
 
 ## 4. Public benchmarks
+- [x] SQL: Spider dev (300 sampled) and BIRD mini-dev (496), `evals/bench_sql.py`, rules fixed before each:
+      coder 76% / 51%, 8B 67% / 35%, 4B 66% / 31% (bootstrap 95% CIs in `results/bench_*`).
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
 - SQL: Spider or BIRD. Physics: a public set, to be chosen. Optional numeric cross-check: GSM8K.
 - Hundreds of items per domain with bootstrap confidence intervals; pinned model digests,

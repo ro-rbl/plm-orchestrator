@@ -28,7 +28,7 @@ SHIPPED = {
     "physics": "always 8B (bare)",
     "software": "unrouted cascade: orig4B -> 8B -> coder14B",
     "cad": "always coder",
-    "sql": "always 8B",
+    "sql": "always coder",
 }
 PRE_SWEEP = {
     "aerospace": "+ escalate on failed check (first default)",

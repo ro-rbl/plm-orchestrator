@@ -158,7 +158,7 @@ def test_cad():
 
 
 def test_sql():
-    large = sql.MODELS["large"]
+    large = sql.MODELS["coder"]  # the one model the pack ships with
     schema = ("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, kind TEXT);\n"
               "INSERT INTO pets VALUES (1, 'Rex', 'dog'), (2, 'Tom', 'cat');")
     task = f"{schema}\n\nWrite a SQL query: list the names of the dogs."
@@ -186,8 +186,8 @@ def test_sql():
     expect("sql: a write is refused", "refused" in r["steps"][0]["issues"][0] and not r["trusted"], r)
     real_levels, real_models = sql.LEVELS, sql.MODELS
     try:  # a two-model chain escalates on a failed check (the mechanism the sweep's cascades measured)
-        sql.MODELS = {"large": large, "coder": "coder-model"}
-        sql.LEVELS = {lv: dict(plan, chain=["large", "coder"]) for lv, plan in real_levels.items()}
+        sql.MODELS = {"coder": large, "second": "coder-model"}
+        sql.LEVELS = {lv: dict(plan, chain=["coder", "second"]) for lv, plan in real_levels.items()}
         sql.ask, calls = fake_ollama({large: [bad], "coder-model": [good]})
         r = sql.solve(task)
         expect("sql: in a chain, a query that doesn't run escalates", calls == [large, "coder-model"] and r["trusted"]

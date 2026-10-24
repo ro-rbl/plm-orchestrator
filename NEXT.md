@@ -77,6 +77,11 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       8B -> coder) failed on `evals/sql/fresh2.jsonl` (FRESH2_RULE: 18/24 vs 22/24 for the coder), so the rule
       shipped SQL_RULE's pick over both pooled: always 8B, 42/48 at 60% (coder 42/48 at 100%). Logs
       `results/sql_fresh.log`, `results/sql_fresh2.log`. Each rule was committed before its set ran.
+- [x] **SQL now ships the coder alone (user's choice, 2026-10-24).** Public benchmarks (`evals/bench_sql.py`,
+      `results/bench_spider.log`, `results/bench_bird_verdict.log`): coder Spider 76% / BIRD 51%, 8B 67% / 35%.
+      The compute-capped BENCH_RULE/BIRD_RULE kept the 8B; the user chose accuracy at 1.5-1.8x compute.
+- [ ] **Phase 4 next: HumanEval+ and MBPP+ for the software pack** (`evalplus/humanevalplus`,
+      `evalplus/mbppplus` on Hugging Face, both reachable 2026-10-23). Then a physics benchmark (to be chosen).
 - [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second
       by a rule fixed first, but pooled with the first). A third fresh set, or Spider/BIRD, would test it.
 - [ ] **Which model is best flipped between the fresh sets** (8B 22 vs coder 20, then coder 22 vs 8B 20): on
