@@ -1,0 +1,1504 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/500] bird-1471 correct          61 tok    5.3s
+[2/500] bird-1472 wrong_columns    44 tok    1.8s
+[3/500] bird-1473 correct          63 tok    2.4s
+[4/500] bird-1476 wrong_rows      105 tok    3.7s
+[5/500] bird-1479 error            78 tok    2.7s  [doesn't run on the schema: OperationalError: no such column: Price]
+[6/500] bird-1480 wrong_columns   103 tok    3.8s
+[7/500] bird-1481 error           333 tok   11.2s  [doesn't run on the schema: OperationalError: no such column: Segment]
+[8/500] bird-1482 error           235 tok    7.9s  [doesn't run on the schema: OperationalError: no such column: yc.AvgConsumption]
+[9/500] bird-1483 correct          48 tok    2.0s
+[10/500] bird-1484 wrong_rows       56 tok    2.3s
+[11/500] bird-1486 wrong_rows       85 tok    3.0s
+[12/500] bird-1490 correct          75 tok    2.8s
+[13/500] bird-1493 correct          60 tok    2.3s
+[14/500] bird-1498 wrong_rows       32 tok    1.5s
+[15/500] bird-1500 error            61 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: yearmonth.ProductID]
+[16/500] bird-1501 correct          67 tok    2.6s
+[17/500] bird-1505 wrong_rows       88 tok    3.3s
+[18/500] bird-1506 wrong_rows       58 tok    2.2s
+[19/500] bird-1507 wrong_rows       46 tok    2.1s
+[20/500] bird-1509 wrong_rows       64 tok    2.8s
+[21/500] bird-1514 wrong_rows       65 tok    2.6s
+[22/500] bird-1515 correct          58 tok    2.5s
+[23/500] bird-1521 correct          95 tok    3.9s
+[24/500] bird-1524 wrong_rows       64 tok    2.7s
+[25/500] bird-1525 wrong_rows       85 tok    3.4s
+[26/500] bird-1526 wrong_rows      181 tok   52.0s
+[27/500] bird-1528 wrong_rows      121 tok    5.1s
+[28/500] bird-1529 wrong_rows      124 tok    5.6s
+[29/500] bird-1531 wrong_rows       87 tok    3.7s
+[30/500] bird-1533 wrong_columns    94 tok    4.1s
+[31/500] bird-1312 correct          39 tok    4.1s
+[32/500] bird-1317 correct          59 tok    2.7s
+[33/500] bird-1322 wrong_rows       62 tok    3.2s
+[34/500] bird-1323 wrong_rows       23 tok    1.4s
+[35/500] bird-1331 correct          38 tok    1.8s
+[36/500] bird-1334 wrong_columns    53 tok    2.3s
+[37/500] bird-1338 wrong_columns   108 tok    4.7s
+[38/500] bird-1339 correct          66 tok    3.2s
+[39/500] bird-1340 correct          90 tok    4.2s
+[40/500] bird-1344 correct          34 tok    2.0s
+[41/500] bird-1346 correct          27 tok    1.5s
+[42/500] bird-1350 error            68 tok    3.0s  [doesn't run on the schema: OperationalError: no such column: budget.link_to_budg]
+[43/500] bird-1351 correct          41 tok    2.0s
+[44/500] bird-1352 correct          46 tok    2.1s
+[45/500] bird-1356 correct          29 tok    1.5s
+[46/500] bird-1357 correct          51 tok    2.3s
+[47/500] bird-1359 wrong_rows       72 tok    3.6s
+[48/500] bird-1361 correct          26 tok    1.7s
+[49/500] bird-1362 wrong_rows       26 tok    1.6s
+[50/500] bird-1368 correct          41 tok    1.8s
+[51/500] bird-1371 correct          45 tok    2.0s
+[52/500] bird-1375 correct          43 tok    2.1s
+[53/500] bird-1376 wrong_columns    49 tok    2.2s
+[54/500] bird-1378 wrong_rows       26 tok    1.4s
+[55/500] bird-1380 correct          30 tok    1.4s
+[56/500] bird-1381 wrong_columns    53 tok    2.4s
+[57/500] bird-1387 error            58 tok    2.8s  [doesn't run on the schema: OperationalError: no such column: budget.link_to_memb]
+[58/500] bird-1389 error            37 tok    1.8s  [doesn't run on the schema: OperationalError: no such column: expense.link_to_eve]
+[59/500] bird-1390 error            50 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: event_name]
+[60/500] bird-1392 wrong_columns    59 tok    2.7s
+[61/500] bird-1394 correct          39 tok    1.9s
+[62/500] bird-1398 wrong_columns    56 tok    2.5s
+[63/500] bird-1399 wrong_columns    80 tok    3.3s
+[64/500] bird-1401 correct          63 tok    2.7s
+[65/500] bird-1403 correct          39 tok    2.0s
+[66/500] bird-1404 error            71 tok    2.9s  [doesn't run on the schema: OperationalError: no such column: expense.type]
+[67/500] bird-1405 wrong_rows       53 tok    2.5s
+[68/500] bird-1409 correct          33 tok    1.6s
+[69/500] bird-1410 error            81 tok    3.3s  [doesn't run on the schema: OperationalError: no such column: expense.link_to_eve]
+[70/500] bird-1411 correct          45 tok    2.1s
+[71/500] bird-1422 wrong_rows       21 tok    1.3s
+[72/500] bird-1426 correct          36 tok    1.7s
+[73/500] bird-1427 wrong_rows       54 tok    2.7s
+[74/500] bird-1432 correct          68 tok    3.2s
+[75/500] bird-1435 wrong_rows       55 tok    2.7s
+[76/500] bird-1457 wrong_rows       46 tok    2.2s
+[77/500] bird-1460 wrong_columns    53 tok    2.4s
+[78/500] bird-1464 wrong_rows       47 tok    2.2s
+[79/500] bird-1149 correct          77 tok    5.9s
+[80/500] bird-1150 error            60 tok    3.1s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[81/500] bird-1152 correct          50 tok    2.5s
+[82/500] bird-1153 correct          33 tok    1.6s
+[83/500] bird-1155 wrong_rows       41 tok    1.9s
+[84/500] bird-1156 error            58 tok    2.5s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[85/500] bird-1157 correct          41 tok    2.0s
+[86/500] bird-1162 error            39 tok    2.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[87/500] bird-1164 correct          76 tok    3.4s
+[88/500] bird-1166 error            43 tok    2.1s  [doesn't run on the schema: OperationalError: ambiguous column name: Diagnosis]
+[89/500] bird-1168 error            82 tok    3.6s  [doesn't run on the schema: OperationalError: no such column: Date]
+[90/500] bird-1169 wrong_rows       89 tok    4.5s
+[91/500] bird-1171 error            62 tok    3.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[92/500] bird-1175 error            85 tok    4.3s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[93/500] bird-1179 error            83 tok    4.1s  [doesn't run on the schema: OperationalError: no such column: Examination.Date]
+[94/500] bird-1185 wrong_rows      117 tok    6.4s
+[95/500] bird-1187 wrong_rows       76 tok    3.9s
+[96/500] bird-1189 correct          60 tok    3.3s
+[97/500] bird-1192 wrong_columns    83 tok    4.3s
+[98/500] bird-1195 correct          63 tok    3.5s
+[99/500] bird-1198 correct          30 tok    1.5s
+[100/500] bird-1201 error            60 tok    2.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[101/500] bird-1205 error            65 tok    2.9s  [doesn't run on the schema: OperationalError: no such column: SEX]
+[102/500] bird-1208 wrong_rows       39 tok    2.0s
+[103/500] bird-1209 wrong_columns    61 tok    2.7s
+[104/500] bird-1220 wrong_rows       39 tok    1.8s
+[105/500] bird-1225 wrong_rows       74 tok    3.2s
+[106/500] bird-1227 error            73 tok    3.5s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[107/500] bird-1229 error            58 tok    3.6s  [doesn't run on the schema: OperationalError: no such function: year]
+[108/500] bird-1231 error            68 tok    4.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[109/500] bird-1232 error            68 tok    3.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[110/500] bird-1235 error            62 tok    2.7s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[111/500] bird-1238 correct          67 tok    3.1s
+[112/500] bird-1239 error           125 tok    5.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[113/500] bird-1241 wrong_rows       80 tok    3.7s
+[114/500] bird-1242 error           103 tok    4.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[115/500] bird-1243 error            95 tok    4.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[116/500] bird-1247 wrong_rows       81 tok    3.7s
+[117/500] bird-1251 wrong_rows       40 tok    1.9s
+[118/500] bird-1252 wrong_rows       82 tok    3.5s
+[119/500] bird-1254 error            93 tok    4.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[120/500] bird-1255 wrong_columns    84 tok    3.7s
+[121/500] bird-1256 wrong_rows       30 tok    1.6s
+[122/500] bird-1257 error            40 tok    2.0s  [doesn't run on the schema: OperationalError: no such column: CRE]
+[123/500] bird-1265 wrong_rows       49 tok    2.5s
+[124/500] bird-1267 wrong_rows       46 tok    2.3s
+[125/500] bird-1270 error            61 tok    2.7s  [doesn't run on the schema: OperationalError: no such column: p.Symptoms]
+[126/500] bird-1275 wrong_rows      111 tok    4.9s
+[127/500] bird-1281 wrong_rows       53 tok    2.6s
+[128/500] bird-1302 correct          65 tok    3.0s
+[129/500] bird-1025 correct          65 tok   12.0s
+[130/500] bird-1028 error            85 tok    4.2s  [doesn't run on the schema: OperationalError: no such column: League.name]
+[131/500] bird-1029 error            63 tok    3.2s  [doesn't run on the schema: OperationalError: no such column: t.buildUpPlaySpeed]
+[132/500] bird-1030 wrong_rows       74 tok    3.9s
+[133/500] bird-1031 wrong_columns    85 tok    4.4s
+[134/500] bird-1032 wrong_rows       43 tok    2.4s
+[135/500] bird-1035 wrong_rows       36 tok    2.0s
+[136/500] bird-1036 error            89 tok    4.5s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[137/500] bird-1037 error            69 tok    3.5s  [doesn't run on the schema: OperationalError: no such column: birthday]
+[138/500] bird-1039 wrong_rows       57 tok    2.9s
+[139/500] bird-1040 wrong_columns    90 tok    4.6s
+[140/500] bird-1042 correct          63 tok    3.4s
+[141/500] bird-1044 wrong_columns    35 tok    2.1s
+[142/500] bird-1048 correct          55 tok    2.8s
+[143/500] bird-1057 correct          51 tok    2.8s
+[144/500] bird-1058 error            66 tok    3.3s  [doesn't run on the schema: OperationalError: misuse of aggregate function AVG()]
+[145/500] bird-1068 error           385 tok   17.3s
+[146/500] bird-1076 error           144 tok    6.1s  [doesn't run on the schema: OperationalError: no such column: ball_control]
+[147/500] bird-1078 correct         155 tok    6.8s
+[148/500] bird-1079 wrong_columns    23 tok    1.3s
+[149/500] bird-1080 correct          32 tok    1.8s
+[150/500] bird-1084 correct          65 tok    3.2s
+[151/500] bird-1088 wrong_rows       47 tok    2.5s
+[152/500] bird-1091 correct          64 tok    3.0s
+[153/500] bird-1092 wrong_rows       61 tok    2.7s
+[154/500] bird-1094 error            96 tok    4.6s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[155/500] bird-1096 error            38 tok    1.9s  [doesn't run on the schema: OperationalError: no such column: T1.player_name]
+[156/500] bird-1098 error            41 tok    2.1s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[157/500] bird-1102 correct          68 tok    3.4s
+[158/500] bird-1103 error            40 tok    2.2s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[159/500] bird-1105 error            44 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[160/500] bird-1107 error            30 tok    1.6s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[161/500] bird-1110 correct          81 tok    3.8s
+[162/500] bird-1113 error            56 tok    3.1s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[163/500] bird-1114 error            72 tok    3.9s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[164/500] bird-1115 error           126 tok    6.1s  [doesn't run on the schema: OperationalError: no such column: player_name]
+[165/500] bird-1116 correct          21 tok    1.4s
+[166/500] bird-1122 correct          39 tok    1.9s
+[167/500] bird-1124 wrong_rows       40 tok    2.1s
+[168/500] bird-1130 wrong_rows       45 tok    2.3s
+[169/500] bird-1133 correct          31 tok    2.0s
+[170/500] bird-1134 correct          37 tok    2.1s
+[171/500] bird-1135 wrong_columns    41 tok    2.3s
+[172/500] bird-1136 correct          39 tok    2.3s
+[173/500] bird-1139 error            60 tok    3.4s  [doesn't run on the schema: OperationalError: no such column: League.name]
+[174/500] bird-1141 error            32 tok    2.1s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[175/500] bird-1144 wrong_columns    44 tok    2.3s
+[176/500] bird-1145 wrong_columns    63 tok    3.3s
+[177/500] bird-1146 wrong_columns    64 tok    3.3s
+[178/500] bird-1147 correct          42 tok    2.2s
+[179/500] bird-1148 correct          69 tok    3.8s
+[180/500] bird-0846 error            41 tok    7.5s  [doesn't run on the schema: OperationalError: no such column: driverRef]
+[181/500] bird-0847 error            54 tok    3.2s  [doesn't run on the schema: OperationalError: no such column: results.q2]
+[182/500] bird-0850 error            31 tok    2.1s  [doesn't run on the schema: OperationalError: ambiguous column name: name]
+[183/500] bird-0854 correct          38 tok    2.3s
+[184/500] bird-0857 wrong_rows       21 tok    1.6s
+[185/500] bird-0859 correct          68 tok    3.5s
+[186/500] bird-0861 error            48 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: driver.number]
+[187/500] bird-0862 correct          55 tok    2.8s
+[188/500] bird-0865 wrong_columns    73 tok    3.5s
+[189/500] bird-0866 wrong_columns    43 tok    2.7s
+[190/500] bird-0868 wrong_columns    39 tok    2.8s
+[191/500] bird-0869 correct          59 tok    3.6s
+[192/500] bird-0872 correct          62 tok    3.6s
+[193/500] bird-0875 correct          34 tok    1.8s
+[194/500] bird-0877 wrong_columns    48 tok    3.0s
+[195/500] bird-0879 correct          40 tok    2.1s
+[196/500] bird-0880 correct         149 tok    6.9s
+[197/500] bird-0881 error            56 tok    2.7s  [doesn't run on the schema: OperationalError: no such column: date]
+[198/500] bird-0884 error            17 tok    1.2s  [doesn't run on the schema: OperationalError: misuse of aggregate function MIN()]
+[199/500] bird-0892 wrong_columns    50 tok    2.3s
+[200/500] bird-0894 error            74 tok    3.5s  [doesn't run on the schema: OperationalError: near "milliseconds": syntax error]
+[201/500] bird-0895 error            74 tok    3.6s  [doesn't run on the schema: OperationalError: near "milliseconds": syntax error]
+[202/500] bird-0896 error            69 tok    3.3s  [doesn't run on the schema: OperationalError: no such column: results.year]
+[203/500] bird-0897 wrong_columns    99 tok    4.7s
+[204/500] bird-0898 error            52 tok    2.5s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[205/500] bird-0901 error            62 tok    2.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[206/500] bird-0902 wrong_columns    75 tok    3.9s
+[207/500] bird-0904 wrong_rows       80 tok    3.8s
+[208/500] bird-0906 wrong_rows       64 tok    3.1s
+[209/500] bird-0909 correct          69 tok    3.5s
+[210/500] bird-0910 correct          19 tok    1.5s
+[211/500] bird-0912 correct          20 tok    1.2s
+[212/500] bird-0915 error            47 tok    2.1s  [doesn't run on the schema: OperationalError: no such column: country]
+[213/500] bird-0928 error            66 tok    3.1s  [doesn't run on the schema: OperationalError: no such column: results.driverRef]
+[214/500] bird-0930 wrong_columns    73 tok    3.4s
+[215/500] bird-0931 correct          47 tok    2.4s
+[216/500] bird-0933 wrong_rows       62 tok    3.0s
+[217/500] bird-0937 wrong_rows       53 tok    2.5s
+[218/500] bird-0940 wrong_rows       70 tok    3.5s
+[219/500] bird-0944 wrong_rows      196 tok    8.9s
+[220/500] bird-0945 correct          27 tok    1.6s
+[221/500] bird-0948 wrong_rows       38 tok    1.9s
+[222/500] bird-0950 wrong_rows       58 tok    2.7s
+[223/500] bird-0951 error            75 tok    3.6s  [doesn't run on the schema: OperationalError: ambiguous column name: raceId]
+[224/500] bird-0954 correct         103 tok    4.8s
+[225/500] bird-0955 error            65 tok    3.2s  [doesn't run on the schema: OperationalError: no such column: year]
+[226/500] bird-0959 wrong_rows       86 tok    4.0s
+[227/500] bird-0960 correct          49 tok    2.6s
+[228/500] bird-0962 error           130 tok    6.1s  [doesn't run on the schema: OperationalError: no such column: r.laps]
+[229/500] bird-0963 wrong_rows       73 tok    3.3s
+[230/500] bird-0964 correct          15 tok    1.1s
+[231/500] bird-0967 error            82 tok    3.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[232/500] bird-0971 wrong_rows       27 tok    1.5s
+[233/500] bird-0972 error            67 tok    3.0s  [doesn't run on the schema: OperationalError: near "FROM": syntax error]
+[234/500] bird-0977 correct          43 tok    2.3s
+[235/500] bird-0978 wrong_rows       22 tok    1.3s
+[236/500] bird-0981 wrong_columns   141 tok    6.2s
+[237/500] bird-0988 wrong_rows       99 tok    4.3s
+[238/500] bird-0989 wrong_columns    84 tok    3.8s
+[239/500] bird-0990 error            78 tok    3.5s  [doesn't run on the schema: OperationalError: no such column: races.location]
+[240/500] bird-0717 correct          50 tok    4.2s
+[241/500] bird-0994 wrong_rows      107 tok    5.1s
+[242/500] bird-1001 wrong_columns   101 tok    4.6s
+[243/500] bird-1002 error            90 tok    4.1s  [doesn't run on the schema: OperationalError: no such column: c.nationality]
+[244/500] bird-1003 wrong_rows       46 tok    2.3s
+[245/500] bird-1011 wrong_columns    84 tok    3.8s
+[246/500] bird-1014 wrong_columns    84 tok    3.6s
+[247/500] bird-0719 correct          74 tok    3.1s
+[248/500] bird-0723 correct          68 tok    3.0s
+[249/500] bird-0724 correct          64 tok    2.9s
+[250/500] bird-0726 wrong_columns    40 tok    1.9s
+[251/500] bird-0728 wrong_rows       66 tok    2.8s
+[252/500] bird-0730 wrong_rows       70 tok    3.0s
+[253/500] bird-0732 wrong_columns    70 tok    3.0s
+[254/500] bird-0733 correct          52 tok    2.4s
+[255/500] bird-0736 wrong_columns    62 tok    2.7s
+[256/500] bird-0737 correct          34 tok    1.6s
+[257/500] bird-0738 wrong_columns    59 tok    2.6s
+[258/500] bird-0739 wrong_rows       70 tok    3.2s
+[259/500] bird-0740 correct          75 tok    3.2s
+[260/500] bird-0743 wrong_rows      100 tok    4.3s
+[261/500] bird-0744 correct          77 tok    3.3s
+[262/500] bird-0745 error            18 tok    1.2s  [doesn't run on the schema: OperationalError: no such column: publisher_id]
+[263/500] bird-0747 correct          25 tok    1.3s
+[264/500] bird-0750 correct          37 tok    1.7s
+[265/500] bird-0751 correct          60 tok    2.6s
+[266/500] bird-0753 wrong_rows       38 tok    2.0s
+[267/500] bird-0758 error            52 tok    2.4s  [doesn't run on the schema: OperationalError: no such column: colour.color]
+[268/500] bird-0760 correct          55 tok    2.8s
+[269/500] bird-0761 correct          49 tok    2.4s
+[270/500] bird-0764 correct          35 tok    1.7s
+[271/500] bird-0765 correct          38 tok    1.7s
+[272/500] bird-0766 wrong_rows       56 tok    2.4s
+[273/500] bird-0769 wrong_columns    89 tok    3.8s
+[274/500] bird-0772 correct          61 tok    2.8s
+[275/500] bird-0773 correct          55 tok    2.5s
+[276/500] bird-0775 error            90 tok    3.8s  [doesn't run on the schema: OperationalError: near "END": syntax error]
+[277/500] bird-0779 correct          38 tok    2.1s
+[278/500] bird-0781 correct          32 tok    1.9s
+[279/500] bird-0782 error            45 tok    2.4s  [doesn't run on the schema: OperationalError: ambiguous column name: colour.colou]
+[280/500] bird-0785 correct          29 tok    1.7s
+[281/500] bird-0786 correct          61 tok    3.0s
+[282/500] bird-0788 correct          79 tok    3.5s
+[283/500] bird-0790 correct          48 tok    2.4s
+[284/500] bird-0791 wrong_rows       20 tok    1.1s
+[285/500] bird-0792 correct          48 tok    2.1s
+[286/500] bird-0794 wrong_columns    61 tok    2.6s
+[287/500] bird-0796 error            49 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: ha.attribute_name]
+[288/500] bird-0797 correct          62 tok    3.5s
+[289/500] bird-0798 correct          40 tok    2.3s
+[290/500] bird-0800 correct          43 tok    2.4s
+[291/500] bird-0801 wrong_rows       49 tok    2.4s
+[292/500] bird-0806 correct          36 tok    1.7s
+[293/500] bird-0819 correct          66 tok    3.0s
+[294/500] bird-0822 correct          49 tok    2.2s
+[295/500] bird-0824 correct          56 tok    2.4s
+[296/500] bird-0825 correct          57 tok    2.5s
+[297/500] bird-0829 error            55 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: publisher_name]
+[298/500] bird-0531 wrong_columns    34 tok    5.6s
+[299/500] bird-0532 error            24 tok    1.2s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[300/500] bird-0533 wrong_rows       31 tok    1.7s
+[301/500] bird-0539 wrong_rows       24 tok    1.3s
+[302/500] bird-0537 correct          38 tok    1.7s
+[303/500] bird-0544 wrong_rows       29 tok    1.6s
+[304/500] bird-0547 correct          38 tok    1.9s
+[305/500] bird-0549 correct          33 tok    1.7s
+[306/500] bird-0555 correct          37 tok    1.9s
+[307/500] bird-0557 correct          59 tok    2.6s
+[308/500] bird-0563 wrong_rows       63 tok    3.2s
+[309/500] bird-0565 wrong_rows       92 tok    4.3s
+[310/500] bird-0567 correct          40 tok    2.0s
+[311/500] bird-0568 wrong_rows       20 tok    1.1s
+[312/500] bird-0571 wrong_rows       47 tok    2.3s
+[313/500] bird-0572 correct          33 tok    1.8s
+[314/500] bird-0573 correct          20 tok    1.2s
+[315/500] bird-0576 wrong_columns    24 tok    1.2s
+[316/500] bird-0578 correct          43 tok    2.1s
+[317/500] bird-0581 wrong_rows       27 tok    1.4s
+[318/500] bird-0584 wrong_columns    63 tok    3.3s
+[319/500] bird-0586 error            41 tok    1.9s  [doesn't run on the schema: OperationalError: no such column: DisplayName]
+[320/500] bird-0587 wrong_columns    79 tok    3.8s
+[321/500] bird-0592 wrong_rows       52 tok    2.5s
+[322/500] bird-0595 error            49 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: UserId]
+[323/500] bird-0598 wrong_rows       79 tok    4.1s
+[324/500] bird-0604 error            93 tok    4.4s  [doesn't run on the schema: OperationalError: no such column: UserId]
+[325/500] bird-0629 error            55 tok    2.5s  [doesn't run on the schema: OperationalError: no such function: DIVIDE]
+[326/500] bird-0633 correct          42 tok    2.1s
+[327/500] bird-0634 error            36 tok    1.8s  [doesn't run on the schema: OperationalError: misuse of aggregate function SUM()]
+[328/500] bird-0637 wrong_rows       60 tok    2.7s
+[329/500] bird-0639 error            48 tok    2.0s  [doesn't run on the schema: OperationalError: no such column: TagName]
+[330/500] bird-0640 wrong_rows       50 tok    2.4s
+[331/500] bird-0665 error            54 tok    2.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[332/500] bird-0669 correct          38 tok    1.9s
+[333/500] bird-0671 error            29 tok    1.5s  [doesn't run on the schema: OperationalError: no such column: Name]
+[334/500] bird-0672 wrong_rows       55 tok    2.4s
+[335/500] bird-0678 correct          49 tok    2.3s
+[336/500] bird-0682 error            43 tok    2.2s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[337/500] bird-0683 error            75 tok    3.4s  [doesn't run on the schema: OperationalError: no such column: CreationDate]
+[338/500] bird-0685 wrong_rows       37 tok    2.0s
+[339/500] bird-0687 error            41 tok    1.8s
+[340/500] bird-0694 wrong_rows       87 tok    3.2s
+[341/500] bird-0701 gold_error       90 tok    3.5s  [doesn't run on the schema: OperationalError: no such column: Reputation]
+[342/500] bird-0704 correct          23 tok    1.0s
+[343/500] bird-0705 correct          37 tok    1.5s
+[344/500] bird-0707 correct          49 tok    2.1s
+[345/500] bird-0710 wrong_rows       43 tok    1.7s
+[346/500] bird-0716 error            63 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: UpVotes]
+[347/500] bird-0340 wrong_columns    61 tok    5.9s
+[348/500] bird-0341 wrong_columns   371 tok   12.3s
+[349/500] bird-0344 wrong_columns    75 tok    2.9s
+[350/500] bird-0345 wrong_columns    59 tok    2.4s
+[351/500] bird-0346 wrong_rows       56 tok    2.3s
+[352/500] bird-0347 wrong_rows       62 tok    2.5s
+[353/500] bird-0349 wrong_rows       52 tok    2.2s
+[354/500] bird-0352 correct          48 tok    1.9s
+[355/500] bird-0356 correct          19 tok    1.0s
+[356/500] bird-0358 wrong_rows       20 tok    1.0s
+[357/500] bird-0366 wrong_rows       27 tok    1.2s
+[358/500] bird-0368 correct          38 tok    1.7s
+[359/500] bird-0371 correct          86 tok    3.5s
+[360/500] bird-0377 wrong_rows       33 tok    1.5s
+[361/500] bird-0379 correct          16 tok    0.9s
+[362/500] bird-0383 error            27 tok    1.3s  [doesn't run on the schema: OperationalError: no such column: status]
+[363/500] bird-0391 wrong_columns    57 tok    2.3s
+[364/500] bird-0397 correct          45 tok    2.1s
+[365/500] bird-0402 error            91 tok    3.8s  [doesn't run on the schema: OperationalError: no such column: isStorylight]
+[366/500] bird-0405 wrong_rows       50 tok    2.2s
+[367/500] bird-0407 wrong_rows      100 tok    4.1s
+[368/500] bird-0408 wrong_rows       34 tok    1.7s
+[369/500] bird-0409 error            43 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: legalities.format]
+[370/500] bird-0412 wrong_rows       59 tok    3.6s
+[371/500] bird-0414 wrong_rows       38 tok    2.1s
+[372/500] bird-0415 wrong_rows       67 tok    3.6s
+[373/500] bird-0416 wrong_rows       95 tok    4.3s
+[374/500] bird-0422 correct          23 tok    1.3s
+[375/500] bird-0424 correct          45 tok    2.2s
+[376/500] bird-0427 correct          30 tok    1.7s
+[377/500] bird-0440 wrong_rows       28 tok    1.5s
+[378/500] bird-0459 wrong_rows       68 tok    3.8s
+[379/500] bird-0462 wrong_rows       49 tok    3.3s
+[380/500] bird-0465 wrong_rows       76 tok    4.2s
+[381/500] bird-0466 correct          61 tok    2.9s
+[382/500] bird-0468 correct          48 tok    2.6s
+[383/500] bird-0469 wrong_columns    61 tok    3.0s
+[384/500] bird-0472 correct          55 tok    2.8s
+[385/500] bird-0473 wrong_columns    75 tok    3.8s
+[386/500] bird-0474 wrong_rows       52 tok    2.7s
+[387/500] bird-0477 wrong_rows       36 tok    2.0s
+[388/500] bird-0479 wrong_rows       43 tok    2.3s
+[389/500] bird-0480 wrong_rows       30 tok    1.8s
+[390/500] bird-0483 error            81 tok    3.7s  [doesn't run on the schema: OperationalError: no such column: rulings.language]
+[391/500] bird-0484 error            56 tok    3.0s  [doesn't run on the schema: OperationalError: ambiguous column name: name]
+[392/500] bird-0486 wrong_rows       54 tok    2.7s
+[393/500] bird-0487 wrong_rows       61 tok    3.1s
+[394/500] bird-0518 wrong_rows       50 tok    2.6s
+[395/500] bird-0522 wrong_rows       39 tok    1.7s
+[396/500] bird-0528 wrong_rows       56 tok    2.5s
+[397/500] bird-0529 error            26 tok    1.5s  [doesn't run on the schema: OperationalError: no such column: language]
+[398/500] bird-0530 wrong_rows       53 tok    2.3s
+[399/500] bird-0195 wrong_columns    31 tok    2.6s
+[400/500] bird-0197 wrong_rows       74 tok    2.7s
+[401/500] bird-0198 error            61 tok    2.6s  [doesn't run on the schema: OperationalError: no such column: connected.molecule_]
+[402/500] bird-0200 wrong_columns    79 tok    3.0s
+[403/500] bird-0201 wrong_rows       83 tok    3.1s
+[404/500] bird-0206 wrong_rows       41 tok    1.5s
+[405/500] bird-0207 wrong_rows       44 tok    1.7s
+[406/500] bird-0208 error            35 tok    1.5s  [doesn't run on the schema: OperationalError: no such column: label]
+[407/500] bird-0212 correct          47 tok    1.8s
+[408/500] bird-0213 correct          79 tok    3.2s
+[409/500] bird-0215 error            78 tok    2.9s  [doesn't run on the schema: OperationalError: no such column: c.molecule_id]
+[410/500] bird-0218 wrong_rows       63 tok    2.5s
+[411/500] bird-0219 wrong_rows       57 tok    2.2s
+[412/500] bird-0220 correct         101 tok    3.5s
+[413/500] bird-0226 correct          55 tok    2.3s
+[414/500] bird-0227 correct          65 tok    2.4s
+[415/500] bird-0228 correct          55 tok    2.1s
+[416/500] bird-0230 wrong_rows       62 tok    2.3s
+[417/500] bird-0231 error            73 tok    2.9s  [doesn't run on the schema: OperationalError: misuse of aggregate function COUNT(]
+[418/500] bird-0232 wrong_rows       68 tok    2.7s
+[419/500] bird-0234 error            54 tok    2.2s  [doesn't run on the schema: OperationalError: no such column: molecule_id]
+[420/500] bird-0236 correct          48 tok    1.9s
+[421/500] bird-0239 wrong_rows       38 tok    1.6s
+[422/500] bird-0240 wrong_rows       21 tok    1.1s
+[423/500] bird-0242 wrong_rows      223 tok    7.9s
+[424/500] bird-0243 correct          75 tok    2.9s
+[425/500] bird-0244 error           104 tok    4.0s  [doesn't run on the schema: OperationalError: ambiguous column name: bond_id]
+[426/500] bird-0245 correct          81 tok    3.3s
+[427/500] bird-0247 wrong_rows       24 tok    1.3s
+[428/500] bird-0248 correct          97 tok    4.2s
+[429/500] bird-0249 wrong_rows       42 tok    2.0s
+[430/500] bird-0253 wrong_columns    53 tok    2.3s
+[431/500] bird-0255 error            81 tok    3.3s  [doesn't run on the schema: OperationalError: unrecognized token: ":"]
+[432/500] bird-0260 correct          78 tok    3.2s
+[433/500] bird-0263 wrong_rows       63 tok    2.8s
+[434/500] bird-0268 wrong_columns    65 tok    2.8s
+[435/500] bird-0273 wrong_rows       75 tok    3.4s
+[436/500] bird-0281 error           164 tok    6.6s  [doesn't run on the schema: OperationalError: ambiguous column name: atom_id]
+[437/500] bird-0282 correct          75 tok    3.3s
+[438/500] bird-0327 wrong_rows       51 tok    2.3s
+[439/500] bird-0005 correct          56 tok    7.2s
+[440/500] bird-0011 correct          43 tok    2.5s
+[441/500] bird-0012 wrong_rows       74 tok    3.6s
+[442/500] bird-0017 error           111 tok    4.9s  [doesn't run on the schema: OperationalError: no such column: s.CDSCode]
+[443/500] bird-0023 error           103 tok    4.7s  [doesn't run on the schema: OperationalError: no such column: frpm.School]
+[444/500] bird-0024 error           104 tok    5.4s  [doesn't run on the schema: OperationalError: near "(": syntax error]
+[445/500] bird-0025 wrong_columns    74 tok    3.5s
+[446/500] bird-0026 error           101 tok    5.3s  [doesn't run on the schema: OperationalError: near "AS": syntax error]
+[447/500] bird-0027 error           113 tok    5.4s  [doesn't run on the schema: OperationalError: no such column: s.School]
+[448/500] bird-0028 wrong_rows      132 tok    6.6s
+[449/500] bird-0031 wrong_rows       47 tok    2.8s
+[450/500] bird-0032 wrong_columns   125 tok    7.6s
+[451/500] bird-0037 wrong_rows       70 tok    3.9s
+[452/500] bird-0036 wrong_columns    82 tok    4.4s
+[453/500] bird-0039 correct          81 tok    3.7s
+[454/500] bird-0040 wrong_rows      105 tok    4.9s
+[455/500] bird-0041 wrong_columns   145 tok    7.9s
+[456/500] bird-0045 correct          75 tok    3.6s
+[457/500] bird-0046 error            79 tok    3.6s  [doesn't run on the schema: OperationalError: near "(": syntax error]
+[458/500] bird-0047 wrong_rows       74 tok    3.4s
+[459/500] bird-0048 wrong_rows       64 tok    2.9s
+[460/500] bird-0050 wrong_rows       44 tok    2.2s
+[461/500] bird-0062 error            97 tok    4.5s  [doesn't run on the schema: OperationalError: near "School": syntax error]
+[462/500] bird-0072 error           104 tok    4.6s  [doesn't run on the schema: OperationalError: near "5": syntax error]
+[463/500] bird-0077 error           108 tok    5.0s  [doesn't run on the schema: OperationalError: near "Count": syntax error]
+[464/500] bird-0079 wrong_rows       52 tok    2.6s
+[465/500] bird-0082 wrong_columns    49 tok    2.4s
+[466/500] bird-0083 wrong_columns   100 tok    4.6s
+[467/500] bird-0085 wrong_rows       72 tok    3.9s
+[468/500] bird-0087 wrong_columns    95 tok    4.4s
+[469/500] bird-0089 wrong_rows       81 tok    6.4s
+[470/500] bird-0092 correct          65 tok    3.2s
+[471/500] bird-0093 wrong_rows       62 tok    2.7s
+[472/500] bird-0094 error           150 tok    6.4s  [doesn't run on the schema: OperationalError: no such column: A11]
+[473/500] bird-0095 error            53 tok    2.4s  [doesn't run on the schema: OperationalError: ambiguous column name: account_id]
+[474/500] bird-0098 wrong_columns    80 tok    3.4s
+[475/500] bird-0099 wrong_columns    82 tok    3.5s
+[476/500] bird-0100 error            75 tok    3.2s  [doesn't run on the schema: OperationalError: no such column: disp.district_id]
+[477/500] bird-0112 wrong_rows       51 tok    2.4s
+[478/500] bird-0115 wrong_rows       68 tok    3.1s
+[479/500] bird-0116 error           145 tok    6.3s  [doesn't run on the schema: OperationalError: no such column: account.account_id]
+[480/500] bird-0117 correct          46 tok    2.2s
+[481/500] bird-0118 correct          53 tok    2.5s
+[482/500] bird-0125 wrong_columns   103 tok    4.8s
+[483/500] bird-0128 wrong_rows       66 tok    2.3s
+[484/500] bird-0136 correct          96 tok    4.1s
+[485/500] bird-0137 error            31 tok    1.6s  [doesn't run on the schema: OperationalError: no such column: district_id]
+[486/500] bird-0138 wrong_rows       52 tok    2.4s
+[487/500] bird-0129 wrong_columns   111 tok    4.7s
+[488/500] bird-0137 error            31 tok    1.5s  [doesn't run on the schema: OperationalError: no such column: district_id]
+[489/500] bird-0138 wrong_rows       52 tok    2.3s
+[490/500] bird-0145 wrong_rows      121 tok    5.1s
+[491/500] bird-0149 error            57 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: district_id]
+[492/500] bird-0152 wrong_rows       84 tok    3.9s
+[493/500] bird-0159 wrong_columns    52 tok    2.3s
+[494/500] bird-0168 correct          67 tok    3.2s
+[495/500] bird-0169 error           161 tok    6.7s  [doesn't run on the schema: OperationalError: near "FROM": syntax error]
+[496/500] bird-0173 error            44 tok    2.0s  [doesn't run on the schema: OperationalError: no such column: frequency]
+[497/500] bird-0186 wrong_rows       65 tok    3.0s
+[498/500] bird-0189 error           107 tok    4.8s  [doesn't run on the schema: OperationalError: no such column: d.A11]
+[499/500] bird-0192 wrong_rows       61 tok    2.8s
+[500/500] bird-0194 wrong_rows       74 tok    2.5s
+qwen3:8b on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen3_8b.jsonl
+[1/500] bird-1471 correct          50 tok    6.3s
+[2/500] bird-1472 wrong_columns    44 tok    3.9s
+[3/500] bird-1473 correct          67 tok    5.6s
+[4/500] bird-1476 error           144 tok   11.5s  [doesn't run on the schema: OperationalError: near "PIVOT": syntax error]
+[5/500] bird-1479 wrong_columns    65 tok    5.2s
+[6/500] bird-1480 wrong_columns   141 tok   11.3s
+[7/500] bird-1481 error           269 tok   20.8s  [doesn't run on the schema: OperationalError: near "PIVOT": syntax error]
+[8/500] bird-1482 error           196 tok   14.9s  [doesn't run on the schema: OperationalError: near "ASC": syntax error]
+[9/500] bird-1483 correct          48 tok    4.7s
+[10/500] bird-1484 wrong_rows       60 tok    6.7s
+[11/500] bird-1486 error            87 tok    7.0s  [doesn't run on the schema: OperationalError: ambiguous column name: CustomerID]
+[12/500] bird-1490 error            79 tok    6.4s  [doesn't run on the schema: OperationalError: ambiguous column name: CustomerID]
+[13/500] bird-1493 correct          88 tok    7.8s
+[14/500] bird-1498 wrong_columns   113 tok    9.0s
+[15/500] bird-1500 error            44 tok    3.8s  [doesn't run on the schema: OperationalError: no such column: p.CustomerID]
+[16/500] bird-1501 correct          66 tok    5.7s
+[17/500] bird-1505 wrong_rows       67 tok    5.3s
+[18/500] bird-1506 correct          54 tok    4.3s
+[19/500] bird-1507 correct          42 tok    3.5s
+[20/500] bird-1509 correct          58 tok    5.1s
+[21/500] bird-1514 correct          59 tok   47.8s
+[22/500] bird-1515 wrong_rows       96 tok    7.5s
+[23/500] bird-1521 correct          85 tok    7.4s
+[24/500] bird-1524 error            71 tok    5.9s  [doesn't run on the schema: OperationalError: no such column: customers.Country]
+[25/500] bird-1525 wrong_rows      105 tok    8.2s
+[26/500] bird-1526 wrong_rows      213 tok   16.2s
+[27/500] bird-1528 wrong_rows       95 tok    7.2s
+[28/500] bird-1529 wrong_rows       75 tok    6.1s
+[29/500] bird-1531 wrong_rows       80 tok    6.3s
+[30/500] bird-1533 wrong_columns    87 tok    7.0s
+[31/500] bird-1312 wrong_columns    50 tok    7.7s
+[32/500] bird-1317 wrong_rows       73 tok    6.2s
+[33/500] bird-1322 wrong_rows       57 tok    4.8s
+[34/500] bird-1323 correct          55 tok    4.5s
+[35/500] bird-1331 correct          40 tok    3.4s
+[36/500] bird-1334 wrong_rows       37 tok    3.3s
+[37/500] bird-1338 wrong_columns    73 tok    6.1s
+[38/500] bird-1339 correct          75 tok    6.4s
+[39/500] bird-1340 error           133 tok   10.5s  [doesn't run on the schema: OperationalError: no such column: event_date]
+[40/500] bird-1344 correct          34 tok    3.2s
+[41/500] bird-1346 correct          27 tok    2.6s
+[42/500] bird-1350 wrong_rows       68 tok    5.7s
+[43/500] bird-1351 wrong_columns    52 tok    4.2s
+[44/500] bird-1352 correct          53 tok    4.3s
+[45/500] bird-1356 wrong_columns    24 tok    2.5s
+[46/500] bird-1357 error            36 tok    3.0s  [doesn't run on the schema: OperationalError: no such column: first_name]
+[47/500] bird-1359 error           110 tok    9.0s  [doesn't run on the schema: OperationalError: no such function: DIVIDE]
+[48/500] bird-1361 correct          26 tok    2.4s
+[49/500] bird-1362 wrong_rows       32 tok    2.8s
+[50/500] bird-1368 correct          41 tok    3.4s
+[51/500] bird-1371 correct          45 tok    3.9s
+[52/500] bird-1375 correct          43 tok    3.6s
+[53/500] bird-1376 wrong_columns    92 tok    7.2s
+[54/500] bird-1378 correct          19 tok    2.1s
+[55/500] bird-1380 correct          27 tok    2.5s
+[56/500] bird-1381 correct          60 tok    5.2s
+[57/500] bird-1387 wrong_rows       87 tok    7.0s
+[58/500] bird-1389 error            36 tok    3.0s  [doesn't run on the schema: OperationalError: no such column: link_to_event]
+[59/500] bird-1390 error            67 tok    8.3s  [doesn't run on the schema: OperationalError: no such column: e.event_name]
+[60/500] bird-1392 wrong_columns    61 tok    6.9s
+[61/500] bird-1394 correct          39 tok    3.4s
+[62/500] bird-1398 correct          42 tok    3.6s
+[63/500] bird-1399 error            98 tok    7.8s  [doesn't run on the schema: OperationalError: near "Soccer": syntax error]
+[64/500] bird-1401 correct          59 tok    5.3s
+[65/500] bird-1403 wrong_rows       52 tok    4.2s
+[66/500] bird-1404 wrong_rows       75 tok    6.0s
+[67/500] bird-1405 wrong_rows       62 tok    5.3s
+[68/500] bird-1409 correct          33 tok    2.8s
+[69/500] bird-1410 wrong_columns    94 tok    7.4s
+[70/500] bird-1411 correct          46 tok    3.8s
+[71/500] bird-1422 wrong_columns    24 tok    2.6s
+[72/500] bird-1426 correct          41 tok    3.4s
+[73/500] bird-1427 wrong_columns    54 tok    4.7s
+[74/500] bird-1432 correct          83 tok    6.7s
+[75/500] bird-1435 wrong_rows       53 tok    4.9s
+[76/500] bird-1457 wrong_columns    68 tok   49.6s
+[77/500] bird-1460 wrong_columns    76 tok    6.2s
+[78/500] bird-1464 wrong_rows       44 tok    4.1s
+[79/500] bird-1149 wrong_columns   129 tok   15.2s
+[80/500] bird-1150 correct          69 tok    6.1s
+[81/500] bird-1152 correct          54 tok    4.9s
+[82/500] bird-1153 correct          33 tok    2.9s
+[83/500] bird-1155 wrong_rows       39 tok    3.4s
+[84/500] bird-1156 error            59 tok    5.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[85/500] bird-1157 error            30 tok    2.7s  [doesn't run on the schema: OperationalError: no such column: Patient.Thrombosis]
+[86/500] bird-1162 error            35 tok    3.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[87/500] bird-1164 correct          64 tok    5.5s
+[88/500] bird-1166 error            54 tok    4.4s  [doesn't run on the schema: OperationalError: ambiguous column name: Diagnosis]
+[89/500] bird-1168 error            78 tok    6.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[90/500] bird-1169 wrong_rows       82 tok    7.0s
+[91/500] bird-1171 wrong_rows       85 tok    7.0s
+[92/500] bird-1175 error            58 tok    5.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[93/500] bird-1179 wrong_columns    72 tok    6.6s
+[94/500] bird-1185 wrong_rows      132 tok   11.5s
+[95/500] bird-1187 correct          70 tok    6.6s
+[96/500] bird-1189 correct          62 tok    5.8s
+[97/500] bird-1192 correct          60 tok    5.4s
+[98/500] bird-1195 correct          60 tok    5.1s
+[99/500] bird-1198 correct          26 tok    2.5s
+[100/500] bird-1201 error            69 tok    5.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[101/500] bird-1205 wrong_columns    98 tok    7.9s
+[102/500] bird-1208 correct          39 tok    3.5s
+[103/500] bird-1209 wrong_columns    59 tok    5.3s
+[104/500] bird-1220 wrong_rows       37 tok    3.1s
+[105/500] bird-1225 wrong_rows       65 tok    5.5s
+[106/500] bird-1227 error            72 tok    6.1s  [doesn't run on the schema: OperationalError: ambiguous column name: ID]
+[107/500] bird-1229 error            60 tok    5.7s  [doesn't run on the schema: OperationalError: near "FROM": syntax error]
+[108/500] bird-1231 error            66 tok    6.8s  [doesn't run on the schema: OperationalError: no such function: year]
+[109/500] bird-1232 error            79 tok    6.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[110/500] bird-1235 error            65 tok    5.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[111/500] bird-1238 error            71 tok    7.0s  [doesn't run on the schema: OperationalError: no such column: Examination.HGB]
+[112/500] bird-1239 wrong_rows       75 tok    7.0s
+[113/500] bird-1241 wrong_rows       55 tok    5.5s
+[114/500] bird-1242 error            72 tok    6.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[115/500] bird-1243 error           105 tok    8.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[116/500] bird-1247 wrong_rows       77 tok    6.8s
+[117/500] bird-1251 wrong_rows       37 tok    3.2s
+[118/500] bird-1252 correct          63 tok    5.6s
+[119/500] bird-1254 error            63 tok    5.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[120/500] bird-1255 error            53 tok    4.5s  [doesn't run on the schema: OperationalError: misuse of aggregate function COUNT(]
+[121/500] bird-1256 error            24 tok    2.4s  [doesn't run on the schema: OperationalError: no such column: CRP]
+[122/500] bird-1257 error            58 tok    4.9s  [doesn't run on the schema: OperationalError: near "FROM": syntax error]
+[123/500] bird-1265 wrong_rows       43 tok    4.0s
+[124/500] bird-1267 wrong_rows       66 tok    5.7s
+[125/500] bird-1270 error            56 tok    4.8s  [doesn't run on the schema: OperationalError: no such column: Examination.SC170]
+[126/500] bird-1275 wrong_rows       66 tok    5.6s
+[127/500] bird-1281 correct          49 tok    4.3s
+[128/500] bird-1302 error            39 tok   48.5s  [doesn't run on the schema: OperationalError: no such column: KCT]
+[129/500] bird-1025 correct          63 tok   21.2s
+[130/500] bird-1028 correct          99 tok    8.3s
+[131/500] bird-1029 wrong_columns    67 tok    6.0s
+[132/500] bird-1030 correct          61 tok    5.6s
+[133/500] bird-1031 wrong_columns   115 tok   11.1s
+[134/500] bird-1032 error            32 tok    3.4s  [doesn't run on the schema: OperationalError: no such column: name]
+[135/500] bird-1035 wrong_rows       36 tok    4.8s
+[136/500] bird-1036 error            84 tok    9.7s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[137/500] bird-1037 error            68 tok    8.2s  [doesn't run on the schema: OperationalError: no such column: preferred_foot]
+[138/500] bird-1039 wrong_rows       76 tok    8.2s
+[139/500] bird-1040 error            56 tok    5.5s
+[140/500] bird-1042 correct          58 tok    5.0s
+[141/500] bird-1044 correct          33 tok    3.3s
+[142/500] bird-1048 wrong_rows       54 tok    4.4s
+[143/500] bird-1057 correct          58 tok    5.4s
+[144/500] bird-1058 error            87 tok    7.8s  [doesn't run on the schema: OperationalError: misuse of aggregate function AVG()]
+[145/500] bird-1068 wrong_rows       83 tok    6.9s
+[146/500] bird-1076 wrong_rows      141 tok   12.2s
+[147/500] bird-1078 correct          63 tok    5.1s
+[148/500] bird-1079 wrong_columns    26 tok    2.3s
+[149/500] bird-1080 correct          29 tok    3.0s
+[150/500] bird-1084 error            39 tok    4.1s  [doesn't run on the schema: OperationalError: no such column: defensive_work_rate]
+[151/500] bird-1088 wrong_rows       47 tok    4.6s
+[152/500] bird-1091 correct          62 tok    5.8s
+[153/500] bird-1092 wrong_rows       58 tok    5.4s
+[154/500] bird-1094 wrong_rows      134 tok   11.6s
+[155/500] bird-1096 wrong_rows       53 tok    4.8s
+[156/500] bird-1098 correct          78 tok    7.1s
+[157/500] bird-1102 wrong_rows       60 tok    6.2s
+[158/500] bird-1103 wrong_columns    73 tok    6.8s
+[159/500] bird-1105 wrong_rows       73 tok    6.8s
+[160/500] bird-1107 wrong_rows       46 tok    4.3s
+[161/500] bird-1110 error            51 tok    5.2s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[162/500] bird-1113 error            52 tok    5.5s  [doesn't run on the schema: OperationalError: no such column: team_long_name]
+[163/500] bird-1114 wrong_rows       88 tok    8.6s
+[164/500] bird-1115 error           187 tok   16.7s  [doesn't run on the schema: OperationalError: near ")": syntax error]
+[165/500] bird-1116 correct          21 tok    2.5s
+[166/500] bird-1122 correct          42 tok    4.3s
+[167/500] bird-1124 correct          41 tok   66.0s
+[168/500] bird-1130 correct          48 tok    4.5s
+[169/500] bird-1133 correct          30 tok    3.2s
+[170/500] bird-1134 wrong_rows       73 tok    6.8s
+[171/500] bird-1135 wrong_rows       31 tok    3.4s
+[172/500] bird-1136 correct          39 tok    4.1s
+[173/500] bird-1139 correct          60 tok    6.3s
+[174/500] bird-1141 wrong_rows       54 tok    4.9s
+[175/500] bird-1144 wrong_columns    43 tok    4.1s
+[176/500] bird-1145 wrong_columns    77 tok    7.0s
+[177/500] bird-1146 correct          42 tok    4.1s
+[178/500] bird-1147 correct          39 tok    3.6s
+[179/500] bird-1148 correct          78 tok    7.2s
+[180/500] bird-0846 error            41 tok   14.1s  [doesn't run on the schema: OperationalError: no such column: driverRef]
+[181/500] bird-0847 wrong_rows       53 tok    5.2s
+[182/500] bird-0850 wrong_rows       32 tok    3.0s
+[183/500] bird-0854 wrong_rows       39 tok    3.8s
+[184/500] bird-0857 correct          44 tok    4.2s
+[185/500] bird-0859 correct          54 tok    5.0s
+[186/500] bird-0861 wrong_rows       35 tok    4.1s
+[187/500] bird-0862 correct          55 tok    6.0s
+[188/500] bird-0865 wrong_columns    55 tok    5.6s
+[189/500] bird-0866 wrong_columns    47 tok    4.5s
+[190/500] bird-0868 wrong_rows       37 tok    3.4s
+[191/500] bird-0869 correct          46 tok    4.5s
+[192/500] bird-0872 wrong_rows       49 tok    5.6s
+[193/500] bird-0875 wrong_rows       29 tok    2.8s
+[194/500] bird-0877 wrong_columns    55 tok    5.0s
+[195/500] bird-0879 correct          40 tok    3.7s
+[196/500] bird-0880 error           207 tok   17.5s  [doesn't run on the schema: OperationalError: no such column: fastest_lap_speed_8]
+[197/500] bird-0881 correct          70 tok    6.4s
+[198/500] bird-0884 wrong_rows       22 tok    2.4s
+[199/500] bird-0892 wrong_rows       49 tok    4.5s
+[200/500] bird-0894 wrong_columns    69 tok    6.2s
+[201/500] bird-0895 wrong_rows       75 tok    6.9s
+[202/500] bird-0896 error            87 tok    7.8s  [doesn't run on the schema: OperationalError: no such column: races.year]
+[203/500] bird-0897 wrong_columns    66 tok    6.1s
+[204/500] bird-0898 error            41 tok    3.9s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[205/500] bird-0901 error            56 tok    5.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[206/500] bird-0902 wrong_rows       60 tok    5.6s
+[207/500] bird-0904 wrong_rows       69 tok    6.3s
+[208/500] bird-0906 wrong_rows      147 tok   12.2s
+[209/500] bird-0909 correct          63 tok    5.9s
+[210/500] bird-0910 correct          19 tok    2.1s
+[211/500] bird-0912 correct          22 tok    2.1s
+[212/500] bird-0915 error            20 tok    2.2s  [doesn't run on the schema: OperationalError: no such column: country]
+[213/500] bird-0928 error            62 tok    5.3s  [doesn't run on the schema: OperationalError: no such column: results.year]
+[214/500] bird-0930 error            59 tok    5.3s  [doesn't run on the schema: OperationalError: near "JOIN": syntax error]
+[215/500] bird-0931 wrong_rows       45 tok    4.1s
+[216/500] bird-0933 error            48 tok    4.5s  [doesn't run on the schema: OperationalError: no such column: races.name]
+[217/500] bird-0937 error            55 tok    4.8s  [doesn't run on the schema: OperationalError: ambiguous column name: time]
+[218/500] bird-0940 correct          72 tok    6.3s
+[219/500] bird-0944 wrong_rows      244 tok   70.9s
+[220/500] bird-0945 wrong_rows       27 tok    2.6s
+[221/500] bird-0948 wrong_rows       38 tok    3.4s
+[222/500] bird-0950 wrong_rows       44 tok    3.9s
+[223/500] bird-0951 wrong_rows       66 tok    6.1s
+[224/500] bird-0954 error           107 tok    9.3s  [doesn't run on the schema: OperationalError: ambiguous column name: time]
+[225/500] bird-0955 error           270 tok   21.0s  [doesn't run on the schema: OperationalError: ambiguous column name: year]
+[226/500] bird-0959 wrong_rows       84 tok    7.2s
+[227/500] bird-0960 correct          57 tok    6.1s
+[228/500] bird-0962 error           112 tok   11.0s  [doesn't run on the schema: OperationalError: ambiguous column name: driverId]
+[229/500] bird-0963 wrong_rows       53 tok    4.9s
+[230/500] bird-0964 correct          17 tok    2.0s
+[231/500] bird-0967 wrong_columns    96 tok    8.1s
+[232/500] bird-0971 correct          27 tok    2.8s
+[233/500] bird-0972 error            59 tok    5.3s  [doesn't run on the schema: OperationalError: no such function: year]
+[234/500] bird-0977 correct          44 tok    4.0s
+[235/500] bird-0978 wrong_columns    29 tok    2.8s
+[236/500] bird-0981 wrong_columns    97 tok    8.0s
+[237/500] bird-0988 wrong_rows      127 tok   10.6s
+[238/500] bird-0989 wrong_columns    87 tok    7.0s
+[239/500] bird-0990 error            62 tok    5.9s  [doesn't run on the schema: OperationalError: no such column: q.constructorRef]
+[240/500] bird-0717 correct          48 tok    7.6s
+[241/500] bird-0994 wrong_columns   136 tok   11.0s
+[242/500] bird-1001 correct          87 tok    7.2s
+[243/500] bird-1002 wrong_columns    93 tok    7.6s
+[244/500] bird-1003 wrong_rows       45 tok    3.8s
+[245/500] bird-1011 wrong_columns    51 tok    4.7s
+[246/500] bird-1014 wrong_columns    69 tok    5.6s
+[247/500] bird-0719 correct          62 tok    5.0s
+[248/500] bird-0723 correct          70 tok    6.0s
+[249/500] bird-0724 correct          67 tok    6.0s
+[250/500] bird-0726 wrong_columns    44 tok    3.7s
+[251/500] bird-0728 wrong_columns    75 tok    6.1s
+[252/500] bird-0730 correct          69 tok    5.5s
+[253/500] bird-0732 correct          65 tok    5.2s
+[254/500] bird-0733 correct          52 tok    4.2s
+[255/500] bird-0736 wrong_columns    69 tok    5.6s
+[256/500] bird-0737 correct          34 tok    2.7s
+[257/500] bird-0738 correct          61 tok    5.1s
+[258/500] bird-0739 correct          49 tok    4.0s
+[259/500] bird-0740 correct          75 tok    6.1s
+[260/500] bird-0743 wrong_rows       85 tok    7.4s
+[261/500] bird-0744 correct          43 tok    4.0s
+[262/500] bird-0745 error            20 tok    2.3s  [doesn't run on the schema: OperationalError: no such column: publisher_id]
+[263/500] bird-0747 correct          25 tok    2.3s
+[264/500] bird-0750 correct          35 tok    3.1s
+[265/500] bird-0751 correct          60 tok    4.9s
+[266/500] bird-0753 wrong_rows       35 tok   47.9s
+[267/500] bird-0758 wrong_rows       51 tok    4.8s
+[268/500] bird-0760 correct          76 tok    7.1s
+[269/500] bird-0761 correct          56 tok    4.9s
+[270/500] bird-0764 correct          36 tok    3.1s
+[271/500] bird-0765 correct          39 tok    3.4s
+[272/500] bird-0766 wrong_rows       56 tok    4.8s
+[273/500] bird-0769 wrong_rows       78 tok    6.4s
+[274/500] bird-0772 wrong_rows      128 tok   11.6s
+[275/500] bird-0773 correct          94 tok    8.7s
+[276/500] bird-0775 wrong_rows       86 tok    7.5s
+[277/500] bird-0779 correct          42 tok    4.2s
+[278/500] bird-0781 correct          33 tok    3.4s
+[279/500] bird-0782 correct          63 tok    5.5s
+[280/500] bird-0785 correct          31 tok    2.7s
+[281/500] bird-0786 correct          78 tok    6.3s
+[282/500] bird-0788 correct          85 tok    7.1s
+[283/500] bird-0790 correct          62 tok    5.5s
+[284/500] bird-0791 wrong_rows       20 tok    2.1s
+[285/500] bird-0792 correct          49 tok    4.0s
+[286/500] bird-0794 correct          57 tok    4.7s
+[287/500] bird-0796 correct          52 tok    4.7s
+[288/500] bird-0797 correct          63 tok    5.6s
+[289/500] bird-0798 error            30 tok    3.1s  [doesn't run on the schema: OperationalError: no such column: publisher_name]
+[290/500] bird-0800 correct          67 tok    5.9s
+[291/500] bird-0801 wrong_columns    70 tok    5.9s
+[292/500] bird-0806 correct          36 tok    3.1s
+[293/500] bird-0819 wrong_columns    76 tok    6.7s
+[294/500] bird-0822 correct          55 tok    4.5s
+[295/500] bird-0824 correct          56 tok    4.6s
+[296/500] bird-0825 correct          57 tok    4.7s
+[297/500] bird-0829 correct          65 tok    5.6s
+[298/500] bird-0531 wrong_columns    44 tok   10.5s
+[299/500] bird-0532 correct          26 tok    2.9s
+[300/500] bird-0533 wrong_rows       31 tok    3.1s
+[301/500] bird-0539 error            23 tok    2.4s  [doesn't run on the schema: OperationalError: no such column: DisplayName]
+[302/500] bird-0537 correct          39 tok    3.1s
+[303/500] bird-0544 correct          40 tok    3.8s
+[304/500] bird-0547 correct          43 tok    4.0s
+[305/500] bird-0549 correct          33 tok    3.1s
+[306/500] bird-0555 correct          37 tok    3.2s
+[307/500] bird-0557 correct          61 tok    5.3s
+[308/500] bird-0563 wrong_rows       63 tok    6.0s
+[309/500] bird-0565 error            74 tok    6.7s  [doesn't run on the schema: OperationalError: no such column: ClosedDate]
+[310/500] bird-0567 correct          40 tok    3.3s
+[311/500] bird-0568 correct          34 tok    3.0s
+[312/500] bird-0571 wrong_rows       65 tok    5.9s
+[313/500] bird-0572 correct          33 tok    3.2s
+[314/500] bird-0573 correct          18 tok    2.1s
+[315/500] bird-0576 wrong_rows       22 tok    2.2s
+[316/500] bird-0578 correct          43 tok    4.0s
+[317/500] bird-0581 wrong_rows       26 tok    2.6s
+[318/500] bird-0584 wrong_rows       44 tok    3.8s
+[319/500] bird-0586 error            36 tok    2.9s  [doesn't run on the schema: OperationalError: no such column: DisplayName]
+[320/500] bird-0587 wrong_rows       61 tok    5.4s
+[321/500] bird-0592 wrong_rows       24 tok    2.3s
+[322/500] bird-0595 wrong_rows       61 tok    5.0s
+[323/500] bird-0598 correct          90 tok    7.9s
+[324/500] bird-0604 error            72 tok    6.2s  [doesn't run on the schema: OperationalError: no such column: UserId]
+[325/500] bird-0629 error            59 tok    5.1s  [doesn't run on the schema: OperationalError: no such function: DIVIDE]
+[326/500] bird-0633 wrong_rows       29 tok    2.8s
+[327/500] bird-0634 wrong_rows       95 tok    7.9s
+[328/500] bird-0637 wrong_rows       43 tok   54.9s
+[329/500] bird-0639 wrong_rows       70 tok    6.1s
+[330/500] bird-0640 wrong_rows       63 tok    5.7s
+[331/500] bird-0665 error            75 tok    6.4s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[332/500] bird-0669 correct          39 tok    3.4s
+[333/500] bird-0671 correct          44 tok    3.9s
+[334/500] bird-0672 wrong_rows       44 tok    3.9s
+[335/500] bird-0678 correct          49 tok    4.2s
+[336/500] bird-0682 wrong_rows       47 tok    4.3s
+[337/500] bird-0683 error            68 tok    6.0s  [doesn't run on the schema: OperationalError: no such column: posts.CreationDate]
+[338/500] bird-0685 wrong_rows       48 tok    4.3s
+[339/500] bird-0687 error            41 tok    3.5s
+[340/500] bird-0694 wrong_rows       57 tok    4.4s
+[341/500] bird-0701 gold_error       74 tok    5.7s
+[342/500] bird-0704 correct          25 tok    1.9s
+[343/500] bird-0705 correct          39 tok    2.8s
+[344/500] bird-0707 correct          49 tok    3.7s
+[345/500] bird-0710 error            43 tok    3.2s
+[346/500] bird-0716 wrong_rows       69 tok    4.4s
+[347/500] bird-0340 wrong_columns    44 tok    9.2s
+[348/500] bird-0341 wrong_columns    72 tok    4.6s
+[349/500] bird-0344 wrong_columns    63 tok    4.5s
+[350/500] bird-0345 wrong_rows       54 tok    3.9s
+[351/500] bird-0346 correct          55 tok    3.9s
+[352/500] bird-0347 wrong_rows       56 tok    4.1s
+[353/500] bird-0349 wrong_rows       47 tok    3.6s
+[354/500] bird-0352 correct          53 tok    3.7s
+[355/500] bird-0356 wrong_rows       11 tok    1.4s
+[356/500] bird-0358 wrong_rows       20 tok    1.8s
+[357/500] bird-0366 wrong_rows       31 tok    2.4s
+[358/500] bird-0368 correct          41 tok    3.1s
+[359/500] bird-0371 correct          69 tok    5.4s
+[360/500] bird-0377 wrong_rows       33 tok    2.7s
+[361/500] bird-0379 correct          18 tok    1.9s
+[362/500] bird-0383 correct          41 tok    3.2s
+[363/500] bird-0391 wrong_columns    55 tok    4.6s
+[364/500] bird-0397 correct          46 tok    4.0s
+[365/500] bird-0402 wrong_columns    64 tok    6.1s
+[366/500] bird-0405 wrong_rows       50 tok    4.3s
+[367/500] bird-0407 wrong_rows       31 tok    3.1s
+[368/500] bird-0408 wrong_rows       33 tok    3.2s
+[369/500] bird-0409 error            54 tok    5.3s  [doesn't run on the schema: OperationalError: no such column: rulings.text]
+[370/500] bird-0412 wrong_rows       66 tok    6.2s
+[371/500] bird-0414 correct          39 tok    3.6s
+[372/500] bird-0415 wrong_rows       77 tok    7.3s
+[373/500] bird-0416 error            61 tok    7.0s  [doesn't run on the schema: OperationalError: no such column: language]
+[374/500] bird-0422 correct          25 tok   55.6s
+[375/500] bird-0424 correct          47 tok    4.8s
+[376/500] bird-0427 wrong_rows       75 tok    7.4s
+[377/500] bird-0440 wrong_rows       36 tok    3.2s
+[378/500] bird-0459 wrong_columns    49 tok    4.8s
+[379/500] bird-0462 wrong_rows       63 tok    5.7s
+[380/500] bird-0465 wrong_rows       60 tok    5.3s
+[381/500] bird-0466 correct          49 tok    5.3s
+[382/500] bird-0468 wrong_rows       30 tok    3.6s
+[383/500] bird-0469 wrong_rows       45 tok    4.3s
+[384/500] bird-0472 correct          56 tok    5.2s
+[385/500] bird-0473 error            33 tok    3.2s  [doesn't run on the schema: OperationalError: no such column: isForeignOnly]
+[386/500] bird-0474 wrong_rows       59 tok    5.3s
+[387/500] bird-0477 wrong_rows       35 tok    3.3s
+[388/500] bird-0479 wrong_rows       42 tok    4.0s
+[389/500] bird-0480 correct          45 tok    4.5s
+[390/500] bird-0483 wrong_rows       53 tok    4.9s
+[391/500] bird-0484 error            38 tok    3.5s  [doesn't run on the schema: OperationalError: no such column: language]
+[392/500] bird-0486 wrong_rows       50 tok    4.6s
+[393/500] bird-0487 wrong_rows       65 tok    6.0s
+[394/500] bird-0518 wrong_rows       45 tok    4.1s
+[395/500] bird-0522 error            45 tok    3.4s  [doesn't run on the schema: OperationalError: no such column: name]
+[396/500] bird-0528 wrong_rows       57 tok    4.8s
+[397/500] bird-0529 error            46 tok    3.7s  [doesn't run on the schema: OperationalError: no such column: name]
+[398/500] bird-0530 wrong_rows       48 tok    4.0s
+[399/500] bird-0195 wrong_columns    31 tok    4.5s
+[400/500] bird-0197 wrong_rows       73 tok    5.1s
+[401/500] bird-0198 error           125 tok    8.6s  [doesn't run on the schema: OperationalError: no such column: c.molecule_id]
+[402/500] bird-0200 error           117 tok    8.0s  [doesn't run on the schema: OperationalError: no such column: c1.molecule_id]
+[403/500] bird-0201 error           105 tok    7.3s  [doesn't run on the schema: OperationalError: ambiguous column name: atom_id]
+[404/500] bird-0206 correct          42 tok    3.2s
+[405/500] bird-0207 wrong_rows       48 tok    3.7s
+[406/500] bird-0208 error            29 tok    2.5s  [doesn't run on the schema: OperationalError: no such column: label]
+[407/500] bird-0212 error            43 tok    3.3s  [doesn't run on the schema: OperationalError: misuse of aggregate function COUNT(]
+[408/500] bird-0213 error            68 tok    5.8s  [doesn't run on the schema: OperationalError: no such column: bond_type]
+[409/500] bird-0215 wrong_rows       85 tok    6.8s
+[410/500] bird-0218 wrong_rows       75 tok    5.9s
+[411/500] bird-0219 wrong_rows       78 tok    6.2s
+[412/500] bird-0220 correct          30 tok    2.7s
+[413/500] bird-0226 correct          61 tok    5.5s
+[414/500] bird-0227 correct          46 tok    3.7s
+[415/500] bird-0228 correct          61 tok    5.2s
+[416/500] bird-0230 wrong_rows       51 tok    4.2s
+[417/500] bird-0231 error            77 tok    6.8s  [doesn't run on the schema: OperationalError: misuse of aggregate function COUNT(]
+[418/500] bird-0232 error            70 tok    6.7s  [doesn't run on the schema: OperationalError: no such column: c.molecule_id]
+[419/500] bird-0234 wrong_rows       83 tok    6.8s
+[420/500] bird-0236 correct          52 tok    4.4s
+[421/500] bird-0239 wrong_rows       42 tok    4.1s
+[422/500] bird-0240 correct          66 tok    5.4s
+[423/500] bird-0242 correct          72 tok    6.2s
+[424/500] bird-0243 correct          93 tok    7.2s
+[425/500] bird-0244 wrong_rows       58 tok    4.7s
+[426/500] bird-0245 error            46 tok   48.2s  [doesn't run on the schema: OperationalError: ambiguous column name: atom_id]
+[427/500] bird-0247 wrong_rows       24 tok    2.5s
+[428/500] bird-0248 wrong_columns    61 tok    4.8s
+[429/500] bird-0249 correct          57 tok    4.7s
+[430/500] bird-0253 correct          48 tok    4.0s
+[431/500] bird-0255 correct         126 tok   10.0s
+[432/500] bird-0260 correct          88 tok    6.8s
+[433/500] bird-0263 wrong_rows       84 tok    6.9s
+[434/500] bird-0268 correct          58 tok    4.8s
+[435/500] bird-0273 wrong_rows       71 tok    6.0s
+[436/500] bird-0281 wrong_columns    79 tok    6.6s
+[437/500] bird-0282 wrong_columns    86 tok    7.0s
+[438/500] bird-0327 wrong_rows       47 tok    3.9s
+[439/500] bird-0005 correct          47 tok   11.5s
+[440/500] bird-0011 error            39 tok    3.7s  [doesn't run on the schema: OperationalError: near "5": syntax error]
+[441/500] bird-0012 correct         122 tok   10.1s
+[442/500] bird-0017 error            83 tok    6.8s  [doesn't run on the schema: OperationalError: no such column: s.CharterNum]
+[443/500] bird-0023 error            97 tok    8.0s  [doesn't run on the schema: OperationalError: no such column: frpm.Street]
+[444/500] bird-0024 wrong_columns   116 tok    9.5s
+[445/500] bird-0025 wrong_rows       69 tok    5.9s
+[446/500] bird-0026 wrong_rows      113 tok    8.9s
+[447/500] bird-0027 wrong_rows       96 tok    7.9s
+[448/500] bird-0028 wrong_rows      164 tok   13.6s
+[449/500] bird-0031 wrong_columns    55 tok    5.4s
+[450/500] bird-0032 wrong_columns    92 tok    8.1s
+[451/500] bird-0037 wrong_rows       78 tok    6.8s
+[452/500] bird-0036 wrong_columns   105 tok    9.0s
+[453/500] bird-0039 wrong_rows       80 tok    7.0s
+[454/500] bird-0040 wrong_rows       58 tok    4.9s
+[455/500] bird-0041 wrong_columns    91 tok    7.8s
+[456/500] bird-0045 error            65 tok    6.6s  [doesn't run on the schema: OperationalError: no such column: s.SchoolCode]
+[457/500] bird-0046 error           121 tok   10.7s  [doesn't run on the schema: OperationalError: near "(": syntax error]
+[458/500] bird-0047 correct          78 tok    7.3s
+[459/500] bird-0048 wrong_columns    84 tok    6.9s
+[460/500] bird-0050 correct          66 tok    5.5s
+[461/500] bird-0062 error           106 tok    9.0s  [doesn't run on the schema: OperationalError: near "(": syntax error]
+[462/500] bird-0072 wrong_rows      101 tok    8.4s
+[463/500] bird-0077 wrong_rows       90 tok    8.0s
+[464/500] bird-0079 correct          61 tok    5.3s
+[465/500] bird-0082 error            56 tok    5.0s  [doesn't run on the schema: OperationalError: no such column: Longitude]
+[466/500] bird-0083 error            91 tok    8.0s  [doesn't run on the schema: OperationalError: near "Grade": syntax error]
+[467/500] bird-0085 wrong_rows       96 tok    8.1s
+[468/500] bird-0087 wrong_columns    98 tok   57.8s
+[469/500] bird-0089 error           101 tok   13.1s  [doesn't run on the schema: OperationalError: no such column: card.account_id]
+[470/500] bird-0092 wrong_rows       82 tok    6.8s
+[471/500] bird-0093 wrong_rows       58 tok    4.8s
+[472/500] bird-0094 correct          81 tok    7.0s
+[473/500] bird-0095 error            66 tok    5.8s  [doesn't run on the schema: OperationalError: no such column: A11]
+[474/500] bird-0098 wrong_columns    57 tok    5.0s
+[475/500] bird-0099 wrong_columns    74 tok    6.6s
+[476/500] bird-0100 correct          92 tok    7.7s
+[477/500] bird-0112 correct          80 tok    6.7s
+[478/500] bird-0115 wrong_rows       72 tok    6.2s
+[479/500] bird-0116 wrong_rows      151 tok   12.2s
+[480/500] bird-0117 correct          51 tok    4.7s
+[481/500] bird-0118 correct          61 tok    5.5s
+[482/500] bird-0125 error           132 tok   11.4s  [doesn't run on the schema: OperationalError: no such column: disp.district_id]
+[483/500] bird-0128 wrong_rows      107 tok    8.4s
+[484/500] bird-0136 wrong_rows      110 tok    9.0s
+[485/500] bird-0137 wrong_rows       35 tok    3.0s
+[486/500] bird-0138 correct          52 tok    4.7s
+[487/500] bird-0129 error           154 tok   12.3s  [doesn't run on the schema: OperationalError: no such column: d.A2]
+[488/500] bird-0137 wrong_rows       35 tok    3.1s
+[489/500] bird-0138 correct          52 tok    4.8s
+[490/500] bird-0145 wrong_rows      110 tok   10.7s
+[491/500] bird-0149 error            51 tok    5.2s  [doesn't run on the schema: OperationalError: no such column: type]
+[492/500] bird-0152 wrong_rows       76 tok    6.8s
+[493/500] bird-0159 wrong_columns    73 tok    6.0s
+[494/500] bird-0168 correct         102 tok    8.2s
+[495/500] bird-0169 error           182 tok   14.1s  [doesn't run on the schema: OperationalError: near "FROM": syntax error]
+[496/500] bird-0173 wrong_rows       67 tok    5.6s
+[497/500] bird-0186 wrong_rows       86 tok    7.3s
+[498/500] bird-0189 error            28 tok    2.8s  [doesn't run on the schema: OperationalError: no such column: account_id]
+[499/500] bird-0192 error            91 tok    8.3s  [doesn't run on the schema: OperationalError: no such column: l.type]
+[500/500] bird-0194 error            92 tok    7.6s  [doesn't run on the schema: OperationalError: no such column: card.account_id]
+qwen2.5-coder:14b on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen2.5-coder_14b.jsonl
+[1/500] bird-1471 correct          54 tok   17.0s
+[2/500] bird-1472 wrong_rows       51 tok    8.1s
+[3/500] bird-1473 correct          68 tok   10.0s
+[4/500] bird-1476 correct         118 tok   17.5s
+[5/500] bird-1479 correct          64 tok   64.3s
+[6/500] bird-1480 wrong_columns    66 tok   10.1s
+[7/500] bird-1481 error           321 tok   49.5s  [doesn't run on the schema: OperationalError: no such column: Segment]
+[8/500] bird-1482 wrong_rows      268 tok   37.8s
+[9/500] bird-1483 correct          42 tok    8.6s
+[10/500] bird-1484 wrong_rows       54 tok    9.6s
+[11/500] bird-1486 wrong_rows       98 tok   14.8s
+[12/500] bird-1490 wrong_rows      193 tok   27.2s
+[13/500] bird-1493 correct          60 tok    9.8s
+[14/500] bird-1498 wrong_rows       31 tok    5.2s
+[15/500] bird-1500 wrong_rows       49 tok    7.8s
+[16/500] bird-1501 wrong_rows       57 tok    8.7s
+[17/500] bird-1505 wrong_rows       61 tok    8.4s
+[18/500] bird-1506 correct          68 tok    9.3s
+[19/500] bird-1507 correct          53 tok    7.1s
+[20/500] bird-1509 correct          71 tok   10.4s
+[21/500] bird-1514 wrong_rows       69 tok    9.9s
+[22/500] bird-1515 correct          70 tok   10.0s
+[23/500] bird-1521 correct          99 tok   14.5s
+[24/500] bird-1524 wrong_rows       71 tok   10.2s
+[25/500] bird-1525 correct          88 tok   12.3s
+[26/500] bird-1526 wrong_rows      198 tok   86.7s
+[27/500] bird-1528 wrong_rows      103 tok   15.4s
+[28/500] bird-1529 wrong_rows       62 tok   10.4s
+[29/500] bird-1531 wrong_rows      129 tok   22.4s
+[30/500] bird-1533 correct          76 tok   13.0s
+[31/500] bird-1312 correct          51 tok   20.3s
+[32/500] bird-1317 correct          60 tok   10.1s
+[33/500] bird-1322 wrong_rows       67 tok   14.7s
+[34/500] bird-1323 correct          56 tok   12.1s
+[35/500] bird-1331 correct          38 tok    7.3s
+[36/500] bird-1334 wrong_rows       47 tok    8.6s
+[37/500] bird-1338 wrong_columns    73 tok   13.9s
+[38/500] bird-1339 correct          86 tok   15.2s
+[39/500] bird-1340 correct          75 tok   12.5s
+[40/500] bird-1344 correct          32 tok    6.2s
+[41/500] bird-1346 correct          25 tok    5.3s
+[42/500] bird-1350 wrong_rows       69 tok   14.3s
+[43/500] bird-1351 correct          53 tok   11.5s
+[44/500] bird-1352 correct          42 tok   11.6s
+[45/500] bird-1356 correct          39 tok    9.0s
+[46/500] bird-1357 error            34 tok    8.7s  [doesn't run on the schema: OperationalError: no such column: first_name]
+[47/500] bird-1359 correct         106 tok   18.6s
+[48/500] bird-1361 correct          25 tok   75.4s
+[49/500] bird-1362 correct          28 tok    7.4s
+[50/500] bird-1368 correct          51 tok   11.6s
+[51/500] bird-1371 correct          35 tok    8.1s
+[52/500] bird-1375 correct          56 tok   11.7s
+[53/500] bird-1376 correct          41 tok    9.0s
+[54/500] bird-1378 correct          18 tok    4.9s
+[55/500] bird-1380 correct          24 tok    5.4s
+[56/500] bird-1381 correct          60 tok   13.0s
+[57/500] bird-1387 error            70 tok   14.1s  [doesn't run on the schema: OperationalError: no such column: T2.link_to_member]
+[58/500] bird-1389 error            39 tok    6.9s  [doesn't run on the schema: OperationalError: no such column: link_to_event]
+[59/500] bird-1390 error            80 tok   13.0s  [doesn't run on the schema: OperationalError: no such column: T1.link_to_event]
+[60/500] bird-1392 correct          55 tok   10.1s
+[61/500] bird-1394 correct          33 tok    7.2s
+[62/500] bird-1398 correct          57 tok    9.8s
+[63/500] bird-1399 wrong_rows       85 tok   13.3s
+[64/500] bird-1401 correct          60 tok   10.3s
+[65/500] bird-1403 wrong_rows       46 tok    8.0s
+[66/500] bird-1404 wrong_rows       75 tok   12.0s
+[67/500] bird-1405 correct          51 tok    9.2s
+[68/500] bird-1409 correct          33 tok    6.0s
+[69/500] bird-1410 correct          80 tok   12.3s
+[70/500] bird-1411 correct          42 tok    7.0s
+[71/500] bird-1422 correct          48 tok    7.7s
+[72/500] bird-1426 correct          55 tok    8.4s
+[73/500] bird-1427 wrong_columns    51 tok    8.4s
+[74/500] bird-1432 correct          88 tok   13.0s
+[75/500] bird-1435 wrong_rows       57 tok    9.5s
+[76/500] bird-1457 wrong_rows       58 tok    9.1s
+[77/500] bird-1460 correct          61 tok    9.7s
+[78/500] bird-1464 wrong_rows       61 tok   63.9s
+[79/500] bird-1149 wrong_columns   136 tok   27.8s
+[80/500] bird-1150 correct          57 tok    9.2s
+[81/500] bird-1152 correct          59 tok    9.4s
+[82/500] bird-1153 correct          50 tok    7.6s
+[83/500] bird-1155 correct          53 tok    7.8s
+[84/500] bird-1156 correct          60 tok    8.7s
+[85/500] bird-1157 correct          32 tok    5.3s
+[86/500] bird-1162 correct          42 tok    7.2s
+[87/500] bird-1164 error            59 tok    9.0s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[88/500] bird-1166 wrong_rows       49 tok    7.3s
+[89/500] bird-1168 wrong_columns    75 tok   12.8s
+[90/500] bird-1169 correct         103 tok   17.5s
+[91/500] bird-1171 wrong_rows       68 tok   11.1s
+[92/500] bird-1175 wrong_rows       92 tok   14.0s
+[93/500] bird-1179 wrong_columns    83 tok   13.7s
+[94/500] bird-1185 error           161 tok   24.9s  [doesn't run on the schema: OperationalError: no such column: T2.Date]
+[95/500] bird-1187 correct          83 tok   13.4s
+[96/500] bird-1189 wrong_rows       56 tok    9.5s
+[97/500] bird-1192 wrong_columns    83 tok   12.5s
+[98/500] bird-1195 correct          49 tok    9.6s
+[99/500] bird-1198 correct          24 tok    4.2s
+[100/500] bird-1201 correct          62 tok   11.0s
+[101/500] bird-1205 error            51 tok    9.7s  [doesn't run on the schema: OperationalError: no such column: SEX]
+[102/500] bird-1208 correct          41 tok    7.6s
+[103/500] bird-1209 correct          51 tok    8.6s
+[104/500] bird-1220 correct          51 tok   67.0s
+[105/500] bird-1225 error            57 tok    9.1s  [doesn't run on the schema: OperationalError: ambiguous column name: ID]
+[106/500] bird-1227 error            55 tok    9.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[107/500] bird-1229 correct          60 tok   10.8s
+[108/500] bird-1231 correct          85 tok   14.7s
+[109/500] bird-1232 wrong_rows      102 tok   15.2s
+[110/500] bird-1235 wrong_columns    62 tok   11.2s
+[111/500] bird-1238 correct          60 tok   11.2s
+[112/500] bird-1239 correct          66 tok   10.5s
+[113/500] bird-1241 wrong_rows       55 tok    9.9s
+[114/500] bird-1242 wrong_columns   108 tok   16.4s
+[115/500] bird-1243 wrong_rows      126 tok   18.9s
+[116/500] bird-1247 wrong_rows       77 tok   12.2s
+[117/500] bird-1251 wrong_rows       50 tok    7.8s
+[118/500] bird-1252 wrong_rows       84 tok   12.4s
+[119/500] bird-1254 wrong_rows       76 tok   11.8s
+[120/500] bird-1255 correct          72 tok   13.2s
+[121/500] bird-1256 wrong_rows       37 tok    6.8s
+[122/500] bird-1257 error            56 tok    9.5s  [doesn't run on the schema: OperationalError: no such column: YEAR]
+[123/500] bird-1265 wrong_rows       56 tok    9.4s
+[124/500] bird-1267 error            29 tok    5.5s  [doesn't run on the schema: OperationalError: no such column: SM]
+[125/500] bird-1270 correct          83 tok   12.9s
+[126/500] bird-1275 wrong_rows       70 tok   11.4s
+[127/500] bird-1281 wrong_rows       45 tok    7.9s
+[128/500] bird-1302 error            38 tok    6.9s  [doesn't run on the schema: OperationalError: no such column: CPK]
+[129/500] bird-1025 correct          66 tok   46.4s
+[130/500] bird-1028 wrong_rows      210 tok  125.0s
+[131/500] bird-1029 wrong_rows       28 tok    5.7s
+[132/500] bird-1030 correct          68 tok   12.9s
+[133/500] bird-1031 wrong_rows      108 tok   18.9s
+[134/500] bird-1032 wrong_rows       48 tok   10.8s
+[135/500] bird-1035 wrong_rows       36 tok    7.3s
+[136/500] bird-1036 wrong_rows      130 tok   23.0s
+[137/500] bird-1037 error            90 tok   16.3s  [doesn't run on the schema: OperationalError: ambiguous column name: player_fifa_]
+[138/500] bird-1039 correct          50 tok    8.9s
+[139/500] bird-1040 wrong_rows       61 tok   11.2s
+[140/500] bird-1042 correct          62 tok   11.9s
+[141/500] bird-1044 correct          34 tok    6.7s
+[142/500] bird-1048 correct          57 tok   10.3s
+[143/500] bird-1057 correct          49 tok    9.6s
+[144/500] bird-1058 wrong_columns   117 tok   19.5s
+[145/500] bird-1068 wrong_rows       78 tok   14.6s
+[146/500] bird-1076 wrong_rows      155 tok   26.0s
+[147/500] bird-1078 wrong_columns    40 tok    7.4s
+[148/500] bird-1079 correct          18 tok   82.2s
+[149/500] bird-1080 correct          29 tok    5.7s
+[150/500] bird-1084 correct          59 tok   10.0s
+[151/500] bird-1088 wrong_rows       47 tok    8.1s
+[152/500] bird-1091 correct          58 tok    9.9s
+[153/500] bird-1092 wrong_rows       56 tok   10.4s
+[154/500] bird-1094 wrong_rows      147 tok   22.0s
+[155/500] bird-1096 correct          53 tok    8.4s
+[156/500] bird-1098 correct          60 tok    9.3s
+[157/500] bird-1102 correct          66 tok   11.2s
+[158/500] bird-1103 correct          58 tok    9.7s
+[159/500] bird-1105 correct          71 tok   11.4s
+[160/500] bird-1107 wrong_rows       58 tok    9.0s
+[161/500] bird-1110 wrong_rows       93 tok   14.7s
+[162/500] bird-1113 wrong_rows       95 tok   15.3s
+[163/500] bird-1114 correct          95 tok   16.0s
+[164/500] bird-1115 error           153 tok   22.8s  [doesn't run on the schema: OperationalError: no such column: ld.overall_rating]
+[165/500] bird-1116 correct          18 tok    3.6s
+[166/500] bird-1122 correct          33 tok    5.8s
+[167/500] bird-1124 correct          41 tok    7.0s
+[168/500] bird-1130 wrong_rows       52 tok    8.2s
+[169/500] bird-1133 wrong_rows       34 tok    6.5s
+[170/500] bird-1134 correct          38 tok    7.1s
+[171/500] bird-1135 wrong_rows       31 tok    5.8s
+[172/500] bird-1136 correct          37 tok    6.4s
+[173/500] bird-1139 correct          56 tok   10.8s
+[174/500] bird-1141 wrong_rows       48 tok    7.5s
+[175/500] bird-1144 wrong_columns    43 tok   84.9s
+[176/500] bird-1145 correct          58 tok    9.9s
+[177/500] bird-1146 correct          52 tok    7.8s
+[178/500] bird-1147 correct          33 tok    5.6s
+[179/500] bird-1148 error            68 tok   10.8s  [doesn't run on the schema: OperationalError: ambiguous column name: id]
+[180/500] bird-0846 error            30 tok   23.3s  [doesn't run on the schema: OperationalError: no such column: driverRef]
+[181/500] bird-0847 correct          46 tok    7.2s
+[182/500] bird-0850 wrong_rows       40 tok    6.5s
+[183/500] bird-0854 wrong_rows       49 tok    7.5s
+[184/500] bird-0857 wrong_rows       52 tok    8.0s
+[185/500] bird-0859 correct          51 tok    8.2s
+[186/500] bird-0861 wrong_rows       30 tok    5.5s
+[187/500] bird-0862 correct          50 tok    8.2s
+[188/500] bird-0865 correct          55 tok    8.6s
+[189/500] bird-0866 wrong_columns    57 tok    9.1s
+[190/500] bird-0868 wrong_rows       52 tok    8.1s
+[191/500] bird-0869 correct          55 tok    8.8s
+[192/500] bird-0872 correct          45 tok    7.8s
+[193/500] bird-0875 correct          40 tok    6.4s
+[194/500] bird-0877 wrong_columns    58 tok    9.7s
+[195/500] bird-0879 correct          48 tok    7.3s
+[196/500] bird-0880 correct         145 tok   21.5s
+[197/500] bird-0881 error            82 tok   11.9s  [doesn't run on the schema: OperationalError: ambiguous column name: time]
+[198/500] bird-0884 wrong_rows       20 tok    3.7s
+[199/500] bird-0892 wrong_rows       35 tok    5.7s
+[200/500] bird-0894 wrong_columns    73 tok   10.4s
+[201/500] bird-0895 wrong_rows      115 tok   16.0s
+[202/500] bird-0896 error           106 tok   15.1s  [doesn't run on the schema: OperationalError: no such column: T3.position]
+[203/500] bird-0897 correct          79 tok   76.1s
+[204/500] bird-0898 correct          59 tok    9.2s
+[205/500] bird-0901 error            54 tok    8.2s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[206/500] bird-0902 wrong_rows       62 tok    9.9s
+[207/500] bird-0904 wrong_rows       70 tok   10.7s
+[208/500] bird-0906 wrong_rows       74 tok   11.6s
+[209/500] bird-0909 correct          81 tok   13.0s
+[210/500] bird-0910 correct          19 tok    3.8s
+[211/500] bird-0912 correct          20 tok    3.8s
+[212/500] bird-0915 wrong_rows       31 tok    5.2s
+[213/500] bird-0928 error            67 tok    9.8s  [doesn't run on the schema: OperationalError: no such column: T2.driverRef]
+[214/500] bird-0930 wrong_rows       61 tok    9.1s
+[215/500] bird-0931 correct          63 tok    9.5s
+[216/500] bird-0933 correct         103 tok   14.4s
+[217/500] bird-0937 wrong_rows       63 tok    9.2s
+[218/500] bird-0940 correct          56 tok    8.9s
+[219/500] bird-0944 wrong_rows      308 tok   40.9s
+[220/500] bird-0945 wrong_rows       25 tok    4.2s
+[221/500] bird-0948 correct          37 tok    6.1s
+[222/500] bird-0950 correct          51 tok    8.5s
+[223/500] bird-0951 correct          60 tok    8.7s
+[224/500] bird-0954 correct         125 tok   18.4s
+[225/500] bird-0955 wrong_rows      139 tok   20.1s
+[226/500] bird-0959 correct          44 tok    8.0s
+[227/500] bird-0960 correct          63 tok    9.6s
+[228/500] bird-0962 correct         146 tok   21.6s
+[229/500] bird-0963 wrong_rows       55 tok   71.8s
+[230/500] bird-0964 correct          15 tok    2.8s
+[231/500] bird-0967 correct          74 tok   10.5s
+[232/500] bird-0971 correct          24 tok    4.3s
+[233/500] bird-0972 correct          58 tok   10.1s
+[234/500] bird-0977 correct          40 tok    6.8s
+[235/500] bird-0978 wrong_rows       22 tok    4.0s
+[236/500] bird-0981 wrong_columns    73 tok   11.2s
+[237/500] bird-0988 wrong_rows      199 tok   27.9s
+[238/500] bird-0989 wrong_columns    89 tok   13.4s
+[239/500] bird-0990 correct          89 tok   13.7s
+[240/500] bird-0717 correct          48 tok   13.8s
+[241/500] bird-0994 wrong_rows      135 tok   18.5s
+[242/500] bird-1001 correct          98 tok   13.8s
+[243/500] bird-1002 wrong_columns    98 tok   13.6s
+[244/500] bird-1003 correct          61 tok    8.8s
+[245/500] bird-1011 wrong_columns    61 tok    9.5s
+[246/500] bird-1014 wrong_columns    81 tok   12.0s
+[247/500] bird-0719 correct          56 tok    8.3s
+[248/500] bird-0723 correct          71 tok   10.4s
+[249/500] bird-0724 correct          63 tok    9.5s
+[250/500] bird-0726 wrong_columns    51 tok    7.5s
+[251/500] bird-0728 wrong_columns    64 tok    9.0s
+[252/500] bird-0730 correct          68 tok    9.6s
+[253/500] bird-0732 correct          67 tok    9.4s
+[254/500] bird-0733 correct          53 tok    7.7s
+[255/500] bird-0736 correct          64 tok   60.8s
+[256/500] bird-0737 correct          42 tok    6.2s
+[257/500] bird-0738 correct          56 tok    8.4s
+[258/500] bird-0739 correct          62 tok    9.7s
+[259/500] bird-0740 correct          72 tok   10.2s
+[260/500] bird-0743 error           125 tok   17.8s  [doesn't run on the schema: OperationalError: no such column: T2.publisher_name]
+[261/500] bird-0744 correct          86 tok   13.8s
+[262/500] bird-0745 correct          17 tok    3.2s
+[263/500] bird-0747 correct          18 tok    3.7s
+[264/500] bird-0750 correct          45 tok    7.0s
+[265/500] bird-0751 correct          61 tok    8.7s
+[266/500] bird-0753 correct          43 tok    7.0s
+[267/500] bird-0758 wrong_rows       71 tok   10.7s
+[268/500] bird-0760 correct          89 tok   13.5s
+[269/500] bird-0761 correct         113 tok   15.8s
+[270/500] bird-0764 correct          28 tok    4.6s
+[271/500] bird-0765 correct          36 tok    5.4s
+[272/500] bird-0766 error            81 tok   12.1s  [doesn't run on the schema: OperationalError: no such column: superhero_attribute]
+[273/500] bird-0769 correct         100 tok   15.2s
+[274/500] bird-0772 wrong_rows      138 tok   19.2s
+[275/500] bird-0773 correct          65 tok    9.6s
+[276/500] bird-0775 correct          97 tok   13.7s
+[277/500] bird-0779 correct          50 tok    7.3s
+[278/500] bird-0781 correct          29 tok    4.9s
+[279/500] bird-0782 correct          45 tok    6.9s
+[280/500] bird-0785 correct          43 tok    6.6s
+[281/500] bird-0786 correct          92 tok   12.5s
+[282/500] bird-0788 correct         102 tok   14.5s
+[283/500] bird-0790 correct          48 tok    7.7s
+[284/500] bird-0791 wrong_rows       17 tok    3.4s
+[285/500] bird-0792 correct          45 tok   59.8s
+[286/500] bird-0794 correct          72 tok   10.0s
+[287/500] bird-0796 correct          54 tok    8.4s
+[288/500] bird-0797 correct          71 tok   11.3s
+[289/500] bird-0798 correct          55 tok    8.7s
+[290/500] bird-0800 correct          77 tok   12.8s
+[291/500] bird-0801 correct          86 tok   12.6s
+[292/500] bird-0806 correct          48 tok    7.3s
+[293/500] bird-0819 correct         101 tok   14.8s
+[294/500] bird-0822 correct          48 tok    7.2s
+[295/500] bird-0824 correct          71 tok    9.9s
+[296/500] bird-0825 correct          57 tok    8.2s
+[297/500] bird-0829 correct          86 tok   13.3s
+[298/500] bird-0531 wrong_columns    44 tok   20.8s
+[299/500] bird-0532 correct          26 tok    4.4s
+[300/500] bird-0533 wrong_rows       30 tok    5.1s
+[301/500] bird-0539 correct          30 tok    5.0s
+[302/500] bird-0537 wrong_rows       22 tok    3.8s
+[303/500] bird-0544 correct          52 tok    8.3s
+[304/500] bird-0547 correct          39 tok    6.2s
+[305/500] bird-0549 correct          44 tok    7.0s
+[306/500] bird-0555 correct          32 tok    5.4s
+[307/500] bird-0557 correct          74 tok   12.7s
+[308/500] bird-0563 correct          64 tok   10.9s
+[309/500] bird-0565 wrong_rows       95 tok   14.9s
+[310/500] bird-0567 wrong_rows       23 tok    4.0s
+[311/500] bird-0568 correct          39 tok    6.3s
+[312/500] bird-0571 wrong_rows       54 tok    9.2s
+[313/500] bird-0572 correct          31 tok    6.9s
+[314/500] bird-0573 correct          16 tok    3.4s
+[315/500] bird-0576 wrong_rows       20 tok    4.0s
+[316/500] bird-0578 correct          45 tok    7.7s
+[317/500] bird-0581 correct          33 tok    5.3s
+[318/500] bird-0584 wrong_columns    43 tok    7.2s
+[319/500] bird-0586 wrong_columns    52 tok   67.0s
+[320/500] bird-0587 wrong_rows       87 tok   13.2s
+[321/500] bird-0592 wrong_rows       29 tok    4.2s
+[322/500] bird-0595 wrong_rows       74 tok   11.1s
+[323/500] bird-0598 correct         153 tok   23.1s
+[324/500] bird-0604 wrong_rows       65 tok   10.7s
+[325/500] bird-0629 correct          66 tok   11.4s
+[326/500] bird-0633 wrong_rows       30 tok    5.2s
+[327/500] bird-0634 wrong_columns    58 tok    9.7s
+[328/500] bird-0637 wrong_rows       53 tok    7.9s
+[329/500] bird-0639 error           108 tok   17.1s  [doesn't run on the schema: OperationalError: no such table: postTags]
+[330/500] bird-0640 wrong_rows       63 tok    9.1s
+[331/500] bird-0665 error            67 tok   12.8s  [doesn't run on the schema: OperationalError: ambiguous column name: Id]
+[332/500] bird-0669 error            31 tok    5.7s  [doesn't run on the schema: OperationalError: ambiguous column name: CreationDate]
+[333/500] bird-0671 correct          54 tok    9.3s
+[334/500] bird-0672 wrong_rows       46 tok    7.5s
+[335/500] bird-0678 correct          43 tok    6.7s
+[336/500] bird-0682 error            42 tok    7.9s  [doesn't run on the schema: OperationalError: no such column: CreationDate]
+[337/500] bird-0683 error            73 tok   13.6s  [doesn't run on the schema: OperationalError: no such function: YEAR]
+[338/500] bird-0685 wrong_rows       39 tok    8.1s
+[339/500] bird-0687 correct          29 tok    4.7s
+[340/500] bird-0694 wrong_rows       47 tok   11.1s
+[341/500] bird-0701 gold_error      154 tok   25.8s
+[342/500] bird-0704 correct          23 tok    3.5s
+[343/500] bird-0705 correct          39 tok   81.9s
+[344/500] bird-0707 correct          49 tok   10.9s
+[345/500] bird-0710 wrong_rows       38 tok    7.5s
+[346/500] bird-0716 correct          77 tok   14.3s
+[347/500] bird-0340 wrong_rows       30 tok   24.8s
+[348/500] bird-0341 wrong_columns    35 tok    6.8s
+[349/500] bird-0344 wrong_rows       60 tok   12.8s
+[350/500] bird-0345 wrong_rows       55 tok   12.6s
+[351/500] bird-0346 correct          70 tok   18.3s
+[352/500] bird-0347 wrong_rows       52 tok   11.4s
+[353/500] bird-0349 wrong_rows       62 tok   11.2s
+[354/500] bird-0352 correct          46 tok   11.2s
+[355/500] bird-0356 correct          15 tok    3.2s
+[356/500] bird-0358 wrong_rows       20 tok    4.8s
+[357/500] bird-0366 wrong_rows       45 tok   10.7s
+[358/500] bird-0368 correct          44 tok    8.8s
+[359/500] bird-0371 correct          77 tok   15.3s
+[360/500] bird-0377 correct          28 tok    6.9s
+[361/500] bird-0379 correct          16 tok    4.0s
+[362/500] bird-0383 wrong_rows       41 tok    8.9s
+[363/500] bird-0391 correct          58 tok   11.7s
+[364/500] bird-0397 correct          49 tok   10.0s
+[365/500] bird-0402 wrong_columns   109 tok   19.7s
+[366/500] bird-0405 wrong_rows       42 tok    8.2s
+[367/500] bird-0407 wrong_rows       67 tok   14.1s
+[368/500] bird-0408 wrong_rows       32 tok   82.0s
+[369/500] bird-0409 correct          66 tok   12.6s
+[370/500] bird-0412 wrong_rows       66 tok   13.1s
+[371/500] bird-0414 correct          55 tok   11.5s
+[372/500] bird-0415 wrong_rows       84 tok   20.7s
+[373/500] bird-0416 correct          76 tok   19.3s
+[374/500] bird-0422 correct          23 tok    7.4s
+[375/500] bird-0424 correct          49 tok   12.7s
+[376/500] bird-0427 error            55 tok   12.8s  [doesn't run on the schema: OperationalError: no such column: T1.setCode]
+[377/500] bird-0440 wrong_rows       20 tok    6.5s
+[378/500] bird-0459 correct          67 tok   13.7s
+[379/500] bird-0462 wrong_rows       55 tok   11.5s
+[380/500] bird-0465 wrong_rows       55 tok   11.4s
+[381/500] bird-0466 correct          48 tok   10.5s
+[382/500] bird-0468 correct          39 tok    8.7s
+[383/500] bird-0469 wrong_rows       52 tok   11.0s
+[384/500] bird-0472 correct          51 tok   10.5s
+[385/500] bird-0473 wrong_rows       47 tok   12.2s
+[386/500] bird-0474 correct          46 tok   13.9s
+[387/500] bird-0477 wrong_rows       49 tok   16.7s
+[388/500] bird-0479 correct          67 tok   16.0s
+[389/500] bird-0480 wrong_rows       28 tok    9.0s
+[390/500] bird-0483 wrong_rows       65 tok   91.0s
+[391/500] bird-0484 error            64 tok   11.5s  [doesn't run on the schema: OperationalError: no such column: T1.setName]
+[392/500] bird-0486 correct          74 tok   14.3s
+[393/500] bird-0487 wrong_rows       63 tok   13.0s
+[394/500] bird-0518 gold_error       73 tok   14.0s
+[395/500] bird-0522 wrong_rows       56 tok   10.9s
+[396/500] bird-0528 correct          58 tok   12.1s
+[397/500] bird-0529 wrong_rows       81 tok   16.6s
+[398/500] bird-0530 wrong_rows       60 tok   13.3s
+[399/500] bird-0195 correct          30 tok   13.6s
+[400/500] bird-0197 wrong_rows       81 tok   15.9s
+[401/500] bird-0198 wrong_rows       83 tok   19.3s
+[402/500] bird-0200 correct          44 tok    9.1s
+[403/500] bird-0201 wrong_rows       96 tok   16.5s
+[404/500] bird-0206 correct          51 tok    9.1s
+[405/500] bird-0207 wrong_rows       62 tok   10.1s
+[406/500] bird-0208 correct          46 tok    8.0s
+[407/500] bird-0212 correct          44 tok    7.7s
+[408/500] bird-0213 correct          85 tok   14.1s
+[409/500] bird-0215 wrong_columns    65 tok   63.8s
+[410/500] bird-0218 error           122 tok   17.5s  [doesn't run on the schema: OperationalError: no such column: fluorine_in_carcino]
+[411/500] bird-0219 wrong_rows       85 tok   12.8s
+[412/500] bird-0220 wrong_rows       31 tok    5.2s
+[413/500] bird-0226 correct          54 tok    8.7s
+[414/500] bird-0227 correct          43 tok    7.0s
+[415/500] bird-0228 correct          60 tok    9.5s
+[416/500] bird-0230 wrong_rows       51 tok    7.7s
+[417/500] bird-0231 error           117 tok   16.7s  [doesn't run on the schema: OperationalError: no such column: m.carcinogenic]
+[418/500] bird-0232 correct          67 tok   10.0s
+[419/500] bird-0234 wrong_rows       67 tok   10.1s
+[420/500] bird-0236 correct          48 tok    7.2s
+[421/500] bird-0239 correct          28 tok    4.7s
+[422/500] bird-0240 wrong_rows       19 tok    3.6s
+[423/500] bird-0242 wrong_rows       50 tok    7.9s
+[424/500] bird-0243 correct          74 tok   10.3s
+[425/500] bird-0244 wrong_rows      153 tok   20.3s
+[426/500] bird-0245 correct          67 tok    9.5s
+[427/500] bird-0247 wrong_rows       23 tok    3.8s
+[428/500] bird-0248 wrong_columns    22 tok    4.0s
+[429/500] bird-0249 correct          51 tok    7.8s
+[430/500] bird-0253 correct          62 tok    8.4s
+[431/500] bird-0255 correct          77 tok   11.2s
+[432/500] bird-0260 wrong_rows       74 tok   10.4s
+[433/500] bird-0263 wrong_rows      101 tok   14.1s
+[434/500] bird-0268 wrong_rows       35 tok    5.5s
+[435/500] bird-0273 correct          85 tok   12.1s
+[436/500] bird-0281 wrong_rows       48 tok    8.0s
+[437/500] bird-0282 correct          75 tok   10.8s
+[438/500] bird-0327 correct          49 tok    7.3s
+[439/500] bird-0005 correct          46 tok   21.1s
+[440/500] bird-0011 correct          43 tok   67.1s
+[441/500] bird-0012 wrong_rows       74 tok   11.7s
+[442/500] bird-0017 error            53 tok    8.8s  [doesn't run on the schema: OperationalError: no such column: CharterNum]
+[443/500] bird-0023 wrong_columns    90 tok   17.3s
+[444/500] bird-0024 wrong_rows       75 tok   14.7s
+[445/500] bird-0025 wrong_rows       84 tok   14.1s
+[446/500] bird-0026 wrong_rows      103 tok   14.8s
+[447/500] bird-0027 wrong_rows       72 tok   10.5s
+[448/500] bird-0028 wrong_rows      123 tok   18.0s
+[449/500] bird-0031 correct          48 tok    7.9s
+[450/500] bird-0032 wrong_columns    64 tok   10.3s
+[451/500] bird-0037 correct          77 tok   11.4s
+[452/500] bird-0036 correct          91 tok   13.1s
+[453/500] bird-0039 correct          74 tok   11.0s
+[454/500] bird-0040 wrong_rows       62 tok    8.9s
+[455/500] bird-0041 correct         111 tok   15.1s
+[456/500] bird-0045 correct          72 tok   10.5s
+[457/500] bird-0046 error            48 tok    7.4s  [doesn't run on the schema: OperationalError: no such function: Enrollment]
+[458/500] bird-0047 correct          55 tok    8.5s
+[459/500] bird-0048 wrong_rows       64 tok    9.4s
+[460/500] bird-0050 error            27 tok    4.5s  [doesn't run on the schema: OperationalError: no such column: AvgScrMath]
+[461/500] bird-0062 correct          85 tok   13.0s
+[462/500] bird-0072 wrong_rows       94 tok   13.6s
+[463/500] bird-0077 wrong_rows      114 tok   16.7s
+[464/500] bird-0079 correct          48 tok    7.5s
+[465/500] bird-0082 wrong_rows       28 tok   66.4s
+[466/500] bird-0083 error           131 tok   19.0s  [doesn't run on the schema: OperationalError: no such column: NSLP Provision Stat]
+[467/500] bird-0085 wrong_rows       66 tok   10.4s
+[468/500] bird-0087 wrong_columns    84 tok   14.2s
+[469/500] bird-0089 wrong_rows      104 tok   30.4s
+[470/500] bird-0092 error            50 tok    8.6s  [doesn't run on the schema: OperationalError: no such column: A11]
+[471/500] bird-0093 wrong_rows       73 tok   11.6s
+[472/500] bird-0094 wrong_rows      199 tok   32.4s
+[473/500] bird-0095 error           167 tok   31.3s  [doesn't run on the schema: OperationalError: no such column: d.avg_salary]
+[474/500] bird-0098 wrong_rows       67 tok   13.9s
+[475/500] bird-0099 correct          60 tok   12.9s
+[476/500] bird-0100 correct          98 tok   21.1s
+[477/500] bird-0112 correct          62 tok   10.2s
+[478/500] bird-0115 wrong_rows      148 tok   25.7s
+[479/500] bird-0116 wrong_rows      222 tok   32.8s
+[480/500] bird-0117 correct          45 tok    7.7s
+[481/500] bird-0118 correct          61 tok   75.0s
+[482/500] bird-0125 wrong_columns   104 tok   14.8s
+[483/500] bird-0128 correct          71 tok   10.0s
+[484/500] bird-0136 wrong_rows       86 tok   12.1s
+[485/500] bird-0137 wrong_rows       21 tok    3.6s
+[486/500] bird-0138 correct          73 tok   12.4s
+[487/500] bird-0129 wrong_columns   113 tok   23.3s
+[488/500] bird-0137 wrong_rows       21 tok    3.8s
+[489/500] bird-0138 correct          73 tok   11.9s
+[490/500] bird-0145 wrong_rows      124 tok   19.6s
+[491/500] bird-0149 wrong_rows       78 tok   12.3s
+[492/500] bird-0152 correct          70 tok   11.6s
+[493/500] bird-0159 wrong_columns    50 tok    8.2s
+[494/500] bird-0168 correct         149 tok   22.3s
+[495/500] bird-0169 wrong_rows      241 tok   35.6s
+[496/500] bird-0173 wrong_rows       51 tok    8.1s
+[497/500] bird-0186 wrong_rows      110 tok   16.2s
+[498/500] bird-0189 wrong_rows      207 tok   28.0s
+[499/500] bird-0192 wrong_rows       25 tok    4.8s
+[500/500] bird-0194 wrong_rows       75 tok   10.8s
+no complete bird results for 4B (498/500); run results/run_bench_sql.sh

@@ -18,7 +18,8 @@ numbers to 1 part in 10^4. That is stricter than Spider's official evaluation, w
 column order, so absolute scores read lower than published ones; the policies are compared on
 the same grade.
 
-Spider: a fixed sample of 300 of the 1034 dev questions (SAMPLE_SEED); BIRD: all 500 mini-dev.
+Spider: a fixed sample of 300 of the 1034 dev questions (SAMPLE_SEED); BIRD: all 500 mini-dev
+(498 distinct: two are listed twice).
 Sample, policies (evals/run_sql.py POLICIES_SQL) and BENCH_RULE fixed on 2026-10-23 before any
 model answered either benchmark.
 """
@@ -70,8 +71,11 @@ def tasks(bench):
     else:
         base = DATA / "bird/minidev/MINIDEV"
         dev = json.load(open(base / "mini_dev_sqlite.json"))
+        # mini_dev_sqlite.json lists questions 137 and 138 twice, identically: each is counted once
+        firsts = {d["question_id"]: d for d in reversed(dev)}
         items = [(f"bird-{d['question_id']:04d}", d["db_id"],
-                  d["question"] + (f" Hint: {d['evidence']}" if d.get("evidence") else ""), d["SQL"]) for d in dev]
+                  d["question"] + (f" Hint: {d['evidence']}" if d.get("evidence") else ""), d["SQL"])
+                 for d in sorted(firsts.values(), key=dev.index)]
         db_path = lambda db: base / "dev_databases" / db / f"{db}.sqlite"  # noqa: E731
     if not base.exists():
         sys.exit(f"{base} is missing: download and unzip the benchmark into .benchmarks/ (see this file's docstring)")

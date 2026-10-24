@@ -1,0 +1,21 @@
+bird: 496 tasks (2 dropped: the gold query errors here)
+
+policy                                              score        95% CI  compute     vs shipped, 95% CI
+always 4B                                         155/496   27%-35%        28%              -36 to +2
+always 8B                                         172/496   30%-39%        55%                       
+always coder                                      254/496   47%-56%       100%            +62 to +105
+cascade 4B -> 8B -> coder (pre-sweep default)     184/496   33%-41%        59%              -7 to +31
+cascade 4B -> coder                               192/496   34%-43%        58%              +0 to +41
+cascade 8B -> coder                               207/496   37%-46%        80%             +24 to +47
+routed: cascade | intensive 8B -> coder           185/496   33%-41%        59%              -6 to +32
+
+rule: the benchmark supports the shipped SQL policy (always 8B) unless another policy in POLICIES_SQL beats it with a paired bootstrap 95% interval of the score difference entirely above 0, at no more than its compute + 10 points; the cheapest such policy is then the candidate, to be judged on the other benchmark
+-> SUPPORTS: always 8B
+
+rule: Spider's candidate (cascade 8B -> coder) replaces always 8B iff on BIRD it also beats it with a paired bootstrap 95% interval of the score difference entirely above 0, at no more than its compute + 10 points
+-> KEEP: always 8B
+
+key-free check vs the key:
+   4B     wrong  341  caught  118  false alarms   0
+   8B     wrong  324  caught   98  false alarms   0
+   coder  wrong  242  caught   38  false alarms   0
