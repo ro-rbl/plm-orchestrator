@@ -37,7 +37,7 @@ Ollama doesn't have yet:
 | electrical | `plm-electrical` | `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (2.5 GB), `qwen3:8b` (5.2 GB) |
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
 | software | `plm-software` | `qwen2.5-coder:14b` (9.0 GB); `--thorough` also uses `qwen3:8b` to write tests |
-| physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
+| physics | `plm-physics` | the 4B and `qwen3:8b` (as electrical) |
 | cad | `plm-cad` | `qwen2.5-coder:14b` (9.0 GB); also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
 | sql | `plm-sql` | `qwen2.5-coder:14b` (9.0 GB); the checker is Python's built-in SQLite |
 
@@ -129,7 +129,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
-| physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
+| physics (mechanics, fluids, heat, materials) | level picks the model: 4B + calculator, escalating to 8B + calculator (as electrical) | unit and sanity checks | SciBench physics 69/144 (48%) vs 52 for the old 8B-direct policy, at 48% of its compute; own set 44/50 |
 | cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
 | sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%) | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
 | software | everything to the coder 14B (the cheap-first cascade lost on public benchmarks) | code must pass the task's examples | HumanEval+ 85%, MBPP+ 72% (540 tasks pooled: 76% vs the old cascade's 72%) |

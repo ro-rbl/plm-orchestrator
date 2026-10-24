@@ -84,7 +84,16 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       adopted the coder alone, 410/540 vs the cascade's 387 (+6 to +40). Shipped 2026-10-24.
 - [ ] **`--thorough` wasn't re-measured with the coder alone** (it was 42/45 at 228% with the old cascade).
       Resume: a thorough column in `evals/bench_code.py`, judged on new tasks.
-- [ ] **Phase 4 next: a physics benchmark** (to be chosen), then numeric cross-checks (GSM8K, optional), and
+- [x] **SciBench physics** (`evals/bench_physics.py`, `results/bench_physics.log`): PHYS_RULE adopted 4B+calc
+      escalating to 8B+calc, 69/144 vs 52 for the old 8B-direct policy, at 48% of its compute. On our own
+      50-problem set this policy scored 44/50 vs 49/50: the public set wins (larger, written by others).
+- [ ] **SciBench physics mostly doesn't route to physics: 30 of 144** (97 to general, 12 aerospace, 5
+      electrical). It writes quantities in LaTeX (`$8.4 \mathrm{~km}$`), which the claim rules and unit words
+      don't read. Fix: normalize LaTeX before claims/levels/checks, judged on new held-out cases written first.
+      Resume: `.venv/bin/python -c "import sys; sys.path.insert(0,'evals'); import bench_physics as b; ..."`.
+- [ ] **Mac DNS (mDNSResponder) stopped resolving on 2026-10-24** while direct DNS worked; downloads used
+      pinned addresses. Fix (needs the password): `sudo killall -HUP mDNSResponder`.
+- [ ] **Phase 4 next: then numeric cross-checks (GSM8K, optional), and
       the headline table (always-small, always-large, router, hindsight per domain) for publishing.
 - [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second
       by a rule fixed first, but pooled with the first). A third fresh set, or Spider/BIRD, would test it.

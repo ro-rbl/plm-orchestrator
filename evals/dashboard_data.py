@@ -25,7 +25,7 @@ PY = str(ROOT / ".venv/bin/python")
 SHIPPED = {
     "electrical": "routed: orig4B+tool | 8B+tool",
     "aerospace": "always 8B+tool (shipped)",
-    "physics": "always 8B (bare)",
+    "physics": "+ escalate on failed check (pre-sweep default)",
     "software": "always coder14B",
     "cad": "always coder",
     "sql": "always coder",

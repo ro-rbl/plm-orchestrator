@@ -111,17 +111,17 @@ def test_aerospace():
 
 
 def test_physics():
-    large = physics.MODELS["large"]
+    small, large = physics.MODELS["small"], physics.MODELS["large"]
     q = "A 1200 kg car accelerates at 2.5 m/s². What net force acts on it, in newtons?"
-    numeric.ask, calls = fake_ollama({large: ["F = m a = 3000 N\nANSWER: 3000 N"]})
-    r = physics.solve(q)
-    expect("physics: one direct call to the large model", calls == [large] and r["steps"][0]["strategy"] == "bare"
+    numeric.ask, calls = fake_ollama({small: [program("1200 * 2.5", "N")]})
+    r = physics.solve(q, level="calm")
+    expect("physics: calm goes to the 4B with the calculator", calls == [small] and r["steps"][0]["strategy"] == "tool"
            and r["trusted"] and r["pack"] == "physics" and r["answer"]["value"] == 3000, r)
 
-    numeric.ask, calls = fake_ollama({large: ["ANSWER: 3000 kg"]})
-    r = physics.solve(q)
-    expect("physics: a failed check is reported, not escalated", calls == [large] and not r["trusted"]
-           and any("asked for N" in i for i in r["steps"][0]["issues"]), r)
+    numeric.ask, calls = fake_ollama({small: [program("1200 * 2.5", "kg")], large: [program("1200 * 2.5", "N")]})
+    r = physics.solve(q, level="calm")
+    expect("physics: a failed check escalates to the 8B with the calculator", calls == [small, large]
+           and r["trusted"] and any("asked for N" in i for i in r["steps"][0]["issues"]), r)
 
 
 def test_cad():

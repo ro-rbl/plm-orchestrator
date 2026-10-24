@@ -103,6 +103,9 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] Code: HumanEval+ (163) and MBPP+ (377), `evals/bench_code.py`, CODE_RULE (accuracy first) fixed before:
       coder alone 410/540 (76%) vs the shipped cascade 387 (72%), +6 to +40 paired 95%: the software pack now
       ships the coder alone. The examples check caught 14 of 112 wrong HumanEval answers (no parseable examples).
+- [x] Physics: SciBench's physics problems (Halliday + classical mechanics, 144), `evals/bench_physics.py`, PHYS_RULE
+      (accuracy first) fixed before: 4B+calc escalating to 8B+calc 69/144 vs the shipped 8B direct 52 (+4 to +30)
+      at 48% of its compute: the physics pack switched. Only 30 of the 144 route to physics (LaTeX quantities).
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
 - SQL: Spider or BIRD. Physics: a public set, to be chosen. Optional numeric cross-check: GSM8K.
 - Hundreds of items per domain with bootstrap confidence intervals; pinned model digests,

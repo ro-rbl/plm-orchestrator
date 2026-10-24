@@ -1,0 +1,599 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/144] sb-class-Problem 3.40 wrong      894 tok   30.3s  [no ANSWER line]
+[2/144] sb-class-Problem 6.14 wrong     1485 tok   45.2s  [asked for a unitless number, got 'π']
+[3/144] sb-class-Problem 2.6 wrong      491 tok   14.9s
+[4/144] sb-class-Problem 3.44 wrong      780 tok   23.7s
+[5/144] sb-class-Problem 8.28 wrong      291 tok    9.0s
+[6/144] sb-class-Problem 9.60 correct    787 tok   24.9s
+[7/144] sb-class-Problem 8.42 wrong      765 tok   23.8s
+[8/144] sb-class-Problem 2.4 wrong      330 tok   10.5s
+[9/144] sb-class-Problem 9.22 correct    681 tok   21.4s
+[10/144] sb-class-Problem 2.30 wrong      410 tok   13.1s
+[11/144] sb-class-Problem 9.42 correct    545 tok   17.1s
+[12/144] sb-class-Problem 2.18 wrong      397 tok   12.7s
+[13/144] sb-class-Problem 2.26 correct    273 tok    9.3s
+[14/144] sb-class-Problem 8.24 wrong      449 tok   14.8s
+[15/144] sb-class-Problem 3.6 correct    352 tok   11.9s
+[16/144] sb-class-Problem 8.38 wrong     1198 tok   38.8s
+[17/144] sb-class-Problem 2.54 correct    366 tok   11.9s
+[18/144] sb-class-Problem 1.40 correct    474 tok   15.4s  [m answer must be positive, got -2.0]
+[19/144] sb-class-Problem 10.22 wrong      675 tok   22.2s
+[20/144] sb-class-Problem 3.2 wrong      283 tok    9.6s
+[21/144] sb-class-Problem 4.14 wrong     1536 tok   53.5s  [no ANSWER line]
+[22/144] sb-class-Problem 2.20 wrong      511 tok   18.2s
+[23/144] sb-class-Problem 8.30 wrong      408 tok   14.1s
+[24/144] sb-class-Problem 1.38 wrong      634 tok   22.0s  [no ANSWER line]
+[25/144] sb-class-Problem 2.24 wrong      683 tok   23.9s  [no ANSWER line]
+[26/144] sb-class-Problem 8.12 correct    643 tok   22.9s
+[27/144] sb-class-Problem 10.18 wrong      483 tok   17.3s
+[28/144] sb-class-Problem 8.46 wrong      729 tok   25.5s
+[29/144] sb-class-Problem 9.62 wrong      627 tok   22.6s
+[30/144] sb-class-Problem 9.36 wrong     1469 tok   52.8s  [no ANSWER line]
+[31/144] sb-class-Problem 9.12 wrong      468 tok   17.1s
+[32/144] sb-class-9.22 B. wrong     1536 tok   58.0s  [no ANSWER line]
+[33/144] sb-class-9.42 B. correct    533 tok   19.0s
+[34/144] sb-class-13.6 wrong      689 tok   25.2s
+[35/144] sb-class-2.6 B. wrong      317 tok   11.9s
+[36/144] sb-class-14.30 correct    256 tok    9.4s
+[37/144] sb-class-9.64 C. wrong     1154 tok   42.3s  [no ANSWER line]
+[38/144] sb-class-10.20 correct    820 tok   30.6s
+[39/144] sb-class-14.32 correct    361 tok   13.2s
+[40/144] sb-class-2.24 B. wrong      671 tok   25.1s
+[41/144] sb-class-9.54 correct    415 tok   15.1s
+[42/144] sb-class-1.10 B. wrong      738 tok   27.5s
+[43/144] sb-class-8.24 (b) correct    127 tok    5.2s
+[44/144] sb-class-9.66 B. wrong     1037 tok   38.6s  [no ANSWER line]
+[45/144] sb-class-9.22 A. wrong      505 tok   19.5s
+[46/144] sb-class-9.64 B. wrong     1536 tok   58.1s  [no ANSWER line]
+[47/144] sb-class-9.64 D. wrong     1032 tok   38.9s
+[48/144] sb-class-14.12 correct    475 tok   18.5s
+[49/144] sb-class-9.34 B. correct    596 tok   22.1s
+[50/144] sb-class-10.20 B. correct    628 tok   23.1s
+[51/144] sb-class-14.20 correct    414 tok   15.3s
+[52/144] sb-class-9.66 A. wrong      447 tok   17.7s
+[53/144] sb-class-9.64 A. wrong      684 tok   25.3s
+[54/144] sb-class-2.18 B. wrong      650 tok   24.1s
+[55/144] sb-class-10.12 correct    896 tok   34.3s
+[56/144] sb-class-2.54 B. wrong     1536 tok   62.3s  [no ANSWER line]
+[57/144] sb-class-2.2 correct    115 tok    4.6s
+[58/144] sb-class-8.4 wrong      470 tok   18.3s
+[59/144] sb-class-2.6 correct    312 tok   12.3s
+[60/144] sb-class-8.5 wrong      560 tok   21.1s
+[61/144] sb-class-5.5 wrong      359 tok   13.3s
+[62/144] sb-class-7.10 correct    629 tok   23.8s
+[63/144] sb-class-9.12 wrong      365 tok   14.2s
+[64/144] sb-fund-3.01 wrong      687 tok   27.0s
+[65/144] sb-fund-4.06 wrong      580 tok   23.2s
+[66/144] sb-fund-1.01 wrong      426 tok   16.3s
+[67/144] sb-fund-2.01 correct     98 tok    4.2s
+[68/144] sb-fund-1.02 correct    417 tok   16.8s
+[69/144] sb-fund-3.05 correct    426 tok   15.9s
+[70/144] sb-fund-7.03 correct    340 tok   13.2s
+[71/144] sb-fund-7.08 correct    600 tok   24.0s  [asked for m, got 'J']
+[72/144] sb-fund-Question 21.75 wrong      512 tok   21.0s
+[73/144] sb-fund-Question 21.19 correct   1031 tok   39.3s
+[74/144] sb-fund-Question 22.11 wrong      835 tok   31.8s
+[75/144] sb-fund-Question 23.53 wrong      548 tok   20.8s
+[76/144] sb-fund-Question 23.45 wrong      761 tok   29.4s
+[77/144] sb-fund-Question 22.51 wrong     1536 tok   59.9s  [no ANSWER line]
+[78/144] sb-fund-Question 21.69 correct    487 tok   18.9s
+[79/144] sb-fund-Question 22.73 correct   1315 tok   52.5s
+[80/144] sb-fund-Question 22.69 correct    594 tok   23.1s
+[81/144] sb-fund-Question 22.59 wrong      408 tok   16.0s
+[82/144] sb-fund-Question 21.57 wrong      655 tok   25.9s
+[83/144] sb-fund-Question 21.3 correct    380 tok   14.5s
+[84/144] sb-fund-Question 21.61 wrong     1490 tok   58.8s  [no ANSWER line]
+[85/144] sb-fund-Question 22.77 correct    996 tok   39.2s
+[86/144] sb-fund-Question 22.43 wrong      263 tok   10.4s
+[87/144] sb-fund-Question 22.3 wrong      397 tok   15.6s
+[88/144] sb-fund-Question 21.21 wrong      614 tok   24.2s  [asked for m, got 'C']
+[89/144] sb-fund-Question 23.41 wrong      553 tok   21.9s
+[90/144] sb-fund-Question 23.37 wrong      558 tok   22.1s
+[91/144] sb-fund-Question 21.49 wrong      587 tok   23.4s
+[92/144] sb-fund-Question 21.73 wrong      377 tok   14.6s
+[93/144] sb-fund-Question 22.35 correct    580 tok   23.0s
+[94/144] sb-fund-Question 21.55 correct    402 tok   16.3s
+[95/144] sb-fund-Question 21.71 wrong      851 tok   33.6s  [no ANSWER line]
+[96/144] sb-fund-Question 21.5 correct    351 tok   14.1s
+[97/144] sb-fund-Question 22.5 correct    385 tok   15.5s
+[98/144] sb-fund-Question 22.39 wrong      566 tok   23.3s
+[99/144] sb-fund-Question 21.15 correct    630 tok   25.3s
+[100/144] sb-fund-Question 22.45 wrong      506 tok   20.1s
+[101/144] sb-fund-Question 21.31 correct    379 tok   15.1s
+[102/144] sb-fund-Question 22.81 correct    211 tok    8.8s
+[103/144] sb-fund-Question 21.9 wrong     1508 tok   62.6s  [no ANSWER line]
+[104/144] sb-fund-Question 22.55 wrong      379 tok   15.4s
+[105/144] sb-fund-Question 21.63 wrong     1163 tok   47.9s
+[106/144] sb-fund-Question 21.67 wrong      579 tok   23.5s
+[107/144] sb-fund-Question 23.21 wrong      339 tok   14.3s
+[108/144] sb-fund-Question 21.47 correct    715 tok   28.9s
+[109/144] sb-fund-Question 23.13 wrong      679 tok   27.9s
+[110/144] sb-fund-Question 21.53 wrong      239 tok   10.3s
+[111/144] sb-fund-Question 22.57 wrong      196 tok    8.3s
+[112/144] sb-fund-Question 21.41 wrong      589 tok   24.5s
+[113/144] sb-fund-Question 21.65 wrong      975 tok   45.6s
+[114/144] sb-fund-Question 22.49 wrong      260 tok   12.0s
+[115/144] sb-fund-Question 23.31 wrong      649 tok   27.1s
+[116/144] sb-fund-Question 23.7 wrong      308 tok   12.7s
+[117/144] sb-fund-Question 23.23 wrong      617 tok   25.0s
+[118/144] sb-fund-Question 22.63 wrong      447 tok   18.0s
+[119/144] sb-fund-Question 21.25 wrong      175 tok    7.3s
+[120/144] sb-fund-Question 23.47 wrong      476 tok   19.6s
+[121/144] sb-fund-Question 23.19 wrong      267 tok   11.7s
+[122/144] sb-fund-Question 22.71 wrong      564 tok   23.0s
+[123/144] sb-fund-Question 21.33 wrong      529 tok   21.4s
+[124/144] sb-fund-Question 22.41 correct    166 tok    7.1s
+[125/144] sb-fund-Question 22.83 wrong      280 tok   12.0s
+[126/144] sb-fund-Question 21.59 wrong      309 tok   12.4s
+[127/144] sb-fund-Question 23.17 correct    276 tok   11.6s
+[128/144] sb-fund-Question 21.27 wrong      390 tok   19.8s
+[129/144] sb-fund-Question 21.45 correct    506 tok   24.8s
+[130/144] sb-fund-Question 22.67 correct   1020 tok   43.5s
+[131/144] sb-fund-Question 23.27 wrong      672 tok   28.5s
+[132/144] sb-fund-Question 22.47 wrong      251 tok   11.0s
+[133/144] sb-fund-Question 23.25 correct    457 tok   19.8s
+[134/144] sb-fund-Question 21.51 wrong      411 tok   17.8s  [unreadable unit 'electrons']
+[135/144] sb-fund-8.04 correct    540 tok   23.9s
+[136/144] sb-fund-13.05 wrong      372 tok   15.7s
+[137/144] sb-fund-10.11 wrong     1536 tok   70.1s  [no ANSWER line]
+[138/144] sb-fund-8.05 wrong      485 tok   22.7s
+[139/144] sb-fund-10.04 correct    305 tok   13.6s
+[140/144] sb-fund-14.01 correct    252 tok   11.1s
+[141/144] sb-fund-13.02 wrong      580 tok   26.8s
+[142/144] sb-fund-9.03 wrong      413 tok   16.9s  [no ANSWER line]
+[143/144] sb-fund-13.03 wrong     1180 tok   48.6s
+[144/144] sb-fund-8.03 correct    258 tok   10.8s
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/144] sb-class-Problem 3.40 wrong      396 tok   17.2s  [no ANSWER line]
+[2/144] sb-class-Problem 6.14 wrong      485 tok   19.8s
+[3/144] sb-class-Problem 2.6 wrong      285 tok   11.9s
+[4/144] sb-class-Problem 3.44 wrong     1024 tok   42.3s  [no ANSWER line]
+[5/144] sb-class-Problem 8.28 correct    139 tok    6.4s
+[6/144] sb-class-Problem 9.60 wrong      271 tok   11.4s
+[7/144] sb-class-Problem 8.42 wrong      395 tok   16.6s
+[8/144] sb-class-Problem 2.4 wrong      183 tok    8.3s
+[9/144] sb-class-Problem 9.22 correct     98 tok    4.7s
+[10/144] sb-class-Problem 2.30 wrong      280 tok   11.6s
+[11/144] sb-class-Problem 9.42 correct    172 tok    7.5s
+[12/144] sb-class-Problem 2.18 wrong      429 tok   17.4s
+[13/144] sb-class-Problem 2.26 correct    118 tok    5.4s
+[14/144] sb-class-Problem 8.24 wrong      277 tok   12.3s
+[15/144] sb-class-Problem 3.6 wrong      140 tok    6.2s
+[16/144] sb-class-Problem 8.38 correct    192 tok    8.0s
+[17/144] sb-class-Problem 2.54 correct    103 tok    4.7s
+[18/144] sb-class-Problem 1.40 wrong      247 tok   10.2s  [no ANSWER line]
+[19/144] sb-class-Problem 10.22 wrong      266 tok   11.1s
+[20/144] sb-class-Problem 3.2 wrong      229 tok    9.9s
+[21/144] sb-class-Problem 4.14 wrong      177 tok    8.0s
+[22/144] sb-class-Problem 2.20 wrong      188 tok    8.5s
+[23/144] sb-class-Problem 8.30 wrong      200 tok    8.3s
+[24/144] sb-class-Problem 1.38 wrong      540 tok   22.0s
+[25/144] sb-class-Problem 2.24 wrong      225 tok    9.9s
+[26/144] sb-class-Problem 8.12 correct    234 tok   10.6s
+[27/144] sb-class-Problem 10.18 wrong      260 tok   11.2s
+[28/144] sb-class-Problem 8.46 wrong      259 tok   10.5s
+[29/144] sb-class-Problem 9.62 wrong      209 tok    8.7s
+[30/144] sb-class-Problem 9.36 wrong      504 tok   20.9s  [no ANSWER line]
+[31/144] sb-class-Problem 9.12 wrong      319 tok   14.5s
+[32/144] sb-class-9.22 B. wrong      101 tok    6.0s
+[33/144] sb-class-9.42 B. wrong      285 tok   13.3s
+[34/144] sb-class-13.6 wrong      330 tok   13.9s
+[35/144] sb-class-2.6 B. wrong      122 tok    6.5s
+[36/144] sb-class-14.30 correct    183 tok    8.6s
+[37/144] sb-class-9.64 C. wrong      483 tok   21.0s
+[38/144] sb-class-10.20 correct    290 tok   12.5s
+[39/144] sb-class-14.32 correct    168 tok    7.1s
+[40/144] sb-class-2.24 B. correct    237 tok    9.9s
+[41/144] sb-class-9.54 correct    147 tok    6.5s
+[42/144] sb-class-1.10 B. correct    315 tok   13.6s
+[43/144] sb-class-8.24 (b) correct    102 tok    4.7s
+[44/144] sb-class-9.66 B. correct    430 tok   18.0s
+[45/144] sb-class-9.22 A. wrong      170 tok    7.4s
+[46/144] sb-class-9.64 B. wrong      427 tok   18.1s
+[47/144] sb-class-9.64 D. wrong      331 tok   14.6s
+[48/144] sb-class-14.12 correct    257 tok   10.8s
+[49/144] sb-class-9.34 B. correct    164 tok    7.2s
+[50/144] sb-class-10.20 B. correct    212 tok    8.7s
+[51/144] sb-class-14.20 correct    201 tok    8.6s
+[52/144] sb-class-9.66 A. wrong      313 tok   13.7s
+[53/144] sb-class-9.64 A. wrong     1024 tok   42.6s  [no ANSWER line]
+[54/144] sb-class-2.18 B. wrong      801 tok   34.8s
+[55/144] sb-class-10.12 wrong      188 tok    8.7s
+[56/144] sb-class-2.54 B. wrong      475 tok   20.9s
+[57/144] sb-class-2.2 correct     75 tok    3.6s
+[58/144] sb-class-8.4 correct    532 tok   22.7s
+[59/144] sb-class-2.6 correct    127 tok    5.9s
+[60/144] sb-class-8.5 wrong      277 tok   11.3s
+[61/144] sb-class-5.5 wrong      244 tok    9.8s
+[62/144] sb-class-7.10 correct    136 tok    5.8s
+[63/144] sb-class-9.12 wrong      206 tok    9.3s
+[64/144] sb-fund-3.01 wrong      320 tok   14.7s  [no ANSWER line]
+[65/144] sb-fund-4.06 wrong      197 tok    8.4s
+[66/144] sb-fund-1.01 wrong      189 tok    8.0s
+[67/144] sb-fund-2.01 correct    133 tok    5.6s
+[68/144] sb-fund-1.02 correct    207 tok    8.5s
+[69/144] sb-fund-3.05 correct    179 tok    7.6s
+[70/144] sb-fund-7.03 correct    183 tok    7.8s
+[71/144] sb-fund-7.08 correct    324 tok   13.6s  [asked for m, got 'J']
+[72/144] sb-fund-Question 21.75 wrong      228 tok    9.7s
+[73/144] sb-fund-Question 21.19 wrong     1024 tok   42.6s  [no ANSWER line]
+[74/144] sb-fund-Question 22.11 correct    452 tok   19.6s
+[75/144] sb-fund-Question 23.53 correct    379 tok   16.0s
+[76/144] sb-fund-Question 23.45 correct    257 tok   11.0s
+[77/144] sb-fund-Question 22.51 wrong      406 tok   17.8s
+[78/144] sb-fund-Question 21.69 wrong      240 tok   10.8s
+[79/144] sb-fund-Question 22.73 wrong     1024 tok   43.4s  [no ANSWER line]
+[80/144] sb-fund-Question 22.69 correct    266 tok   12.0s
+[81/144] sb-fund-Question 22.59 wrong      155 tok    7.0s
+[82/144] sb-fund-Question 21.57 wrong      281 tok   11.9s
+[83/144] sb-fund-Question 21.3 correct    178 tok    7.7s
+[84/144] sb-fund-Question 21.61 wrong      586 tok   24.6s
+[85/144] sb-fund-Question 22.77 wrong      479 tok   20.1s
+[86/144] sb-fund-Question 22.43 correct    167 tok    7.3s
+[87/144] sb-fund-Question 22.3 wrong      233 tok    9.9s
+[88/144] sb-fund-Question 21.21 wrong      311 tok   13.6s  [unreadable unit '10^-8C']
+[89/144] sb-fund-Question 23.41 wrong      211 tok    9.3s
+[90/144] sb-fund-Question 23.37 wrong      238 tok   10.6s
+[91/144] sb-fund-Question 21.49 correct    215 tok    9.5s
+[92/144] sb-fund-Question 21.73 wrong      232 tok   10.1s
+[93/144] sb-fund-Question 22.35 correct    292 tok   12.4s
+[94/144] sb-fund-Question 21.55 correct     59 tok    3.0s
+[95/144] sb-fund-Question 21.71 wrong      345 tok   15.3s
+[96/144] sb-fund-Question 21.5 wrong      151 tok    7.0s
+[97/144] sb-fund-Question 22.5 correct    170 tok    7.4s
+[98/144] sb-fund-Question 22.39 wrong      226 tok    9.8s
+[99/144] sb-fund-Question 21.15 correct    308 tok   13.3s
+[100/144] sb-fund-Question 22.45 correct    301 tok   13.0s
+[101/144] sb-fund-Question 21.31 correct    187 tok    8.5s
+[102/144] sb-fund-Question 22.81 wrong       91 tok    4.2s
+[103/144] sb-fund-Question 21.9 wrong      671 tok   28.0s  [no ANSWER line]
+[104/144] sb-fund-Question 22.55 wrong      141 tok    6.5s
+[105/144] sb-fund-Question 21.63 correct    307 tok   14.4s
+[106/144] sb-fund-Question 21.67 wrong      516 tok   25.3s  [no ANSWER line]
+[107/144] sb-fund-Question 23.21 wrong      103 tok    5.4s
+[108/144] sb-fund-Question 21.47 correct    381 tok   17.4s
+[109/144] sb-fund-Question 23.13 wrong      198 tok    9.7s
+[110/144] sb-fund-Question 21.53 correct    134 tok    6.4s
+[111/144] sb-fund-Question 22.57 correct    180 tok    8.2s
+[112/144] sb-fund-Question 21.41 correct    323 tok   13.5s
+[113/144] sb-fund-Question 21.65 correct    335 tok   14.6s
+[114/144] sb-fund-Question 22.49 correct    117 tok    5.5s
+[115/144] sb-fund-Question 23.31 wrong      282 tok   12.5s
+[116/144] sb-fund-Question 23.7 correct    202 tok    8.7s
+[117/144] sb-fund-Question 23.23 correct    265 tok   11.1s
+[118/144] sb-fund-Question 22.63 wrong      209 tok    9.3s
+[119/144] sb-fund-Question 21.25 correct    100 tok    4.4s
+[120/144] sb-fund-Question 23.47 wrong      166 tok    7.2s
+[121/144] sb-fund-Question 23.19 correct    139 tok    6.1s
+[122/144] sb-fund-Question 22.71 wrong      148 tok    6.6s
+[123/144] sb-fund-Question 21.33 correct    319 tok   13.4s
+[124/144] sb-fund-Question 22.41 correct    109 tok    4.9s
+[125/144] sb-fund-Question 22.83 correct    167 tok    7.1s
+[126/144] sb-fund-Question 21.59 wrong      187 tok    8.0s  [unreadable unit '10^13C']
+[127/144] sb-fund-Question 23.17 correct    107 tok    4.8s
+[128/144] sb-fund-Question 21.27 correct    194 tok    8.3s
+[129/144] sb-fund-Question 21.45 correct    181 tok    8.1s
+[130/144] sb-fund-Question 22.67 wrong      234 tok   11.1s
+[131/144] sb-fund-Question 23.27 wrong      334 tok   15.5s
+[132/144] sb-fund-Question 22.47 wrong      171 tok    8.3s
+[133/144] sb-fund-Question 23.25 correct    173 tok    7.7s
+[134/144] sb-fund-Question 21.51 wrong      234 tok   11.0s  [unreadable unit '10^10 electrons']
+[135/144] sb-fund-8.04 wrong      185 tok    9.6s
+[136/144] sb-fund-13.05 wrong      208 tok    9.5s  [no ANSWER line]
+[137/144] sb-fund-10.11 wrong     1024 tok   45.6s  [no ANSWER line]
+[138/144] sb-fund-8.05 correct    214 tok    9.8s
+[139/144] sb-fund-10.04 correct    160 tok    7.2s
+[140/144] sb-fund-14.01 wrong      275 tok   12.9s
+[141/144] sb-fund-13.02 wrong     1024 tok   50.5s  [no ANSWER line]
+[142/144] sb-fund-9.03 wrong      404 tok   20.5s
+[143/144] sb-fund-13.03 correct    355 tok   15.6s
+[144/144] sb-fund-8.03 correct     92 tok    4.6s
+qwen3:8b bare on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b.jsonl
+[1/144] sb-class-Problem 3.40 wrong     1185 tok  101.4s
+[2/144] sb-class-Problem 6.14 wrong      811 tok   67.8s  [asked for a unitless number, got '$ \\sqrt   $  (unitless)']
+[3/144] sb-class-Problem 2.6 correct    442 tok   35.7s
+[4/144] sb-class-Problem 3.44 correct    558 tok   43.6s
+[5/144] sb-class-Problem 8.28 wrong      242 tok   19.0s
+[6/144] sb-class-Problem 9.60 correct    728 tok   55.9s
+[7/144] sb-class-Problem 8.42 wrong      856 tok  109.0s
+[8/144] sb-class-Problem 2.4 wrong      316 tok   25.0s
+[9/144] sb-class-Problem 9.22 wrong      892 tok   70.9s
+[10/144] sb-class-Problem 2.30 correct    886 tok   71.8s
+[11/144] sb-class-Problem 9.42 correct    466 tok   39.6s
+[12/144] sb-class-Problem 2.18 wrong      497 tok   40.9s
+[13/144] sb-class-Problem 2.26 correct    250 tok   70.5s
+[14/144] sb-class-Problem 8.24 wrong      805 tok   63.2s
+[15/144] sb-class-Problem 3.6 correct    349 tok   27.6s
+[16/144] sb-class-Problem 8.38 wrong      932 tok   72.1s
+[17/144] sb-class-Problem 2.54 correct    257 tok   21.6s
+[18/144] sb-class-Problem 1.40 wrong      410 tok   33.2s  [no ANSWER line]
+[19/144] sb-class-Problem 10.22 wrong      444 tok   37.0s
+[20/144] sb-class-Problem 3.2 wrong      345 tok   27.2s
+[21/144] sb-class-Problem 4.14 wrong     1536 tok  170.6s  [no ANSWER line]
+[22/144] sb-class-Problem 2.20 wrong      508 tok   40.9s
+[23/144] sb-class-Problem 8.30 wrong      366 tok   29.4s
+[24/144] sb-class-Problem 1.38 wrong     1217 tok  101.1s  [no ANSWER line]
+[25/144] sb-class-Problem 2.24 correct    869 tok   71.7s
+[26/144] sb-class-Problem 8.12 correct    656 tok   99.2s
+[27/144] sb-class-Problem 10.18 wrong      683 tok   53.6s
+[28/144] sb-class-Problem 8.46 wrong      742 tok   57.9s  [no ANSWER line]
+[29/144] sb-class-Problem 9.62 wrong      547 tok   44.1s
+[30/144] sb-class-Problem 9.36 wrong     1536 tok  121.0s  [no ANSWER line]
+[31/144] sb-class-Problem 9.12 wrong      720 tok  104.0s
+[32/144] sb-class-9.22 B. wrong      610 tok   50.1s
+[33/144] sb-class-9.42 B. correct    453 tok   35.9s
+[34/144] sb-class-13.6 wrong      834 tok   66.3s
+[35/144] sb-class-2.6 B. wrong      546 tok   46.5s
+[36/144] sb-class-14.30 correct    349 tok   29.7s
+[37/144] sb-class-9.64 C. wrong      954 tok   79.6s
+[38/144] sb-class-10.20 wrong      555 tok   93.3s  [no ANSWER line]
+[39/144] sb-class-14.32 correct    290 tok   22.7s
+[40/144] sb-class-2.24 B. correct    497 tok   38.9s
+[41/144] sb-class-9.54 correct    396 tok   32.3s
+[42/144] sb-class-1.10 B. correct    763 tok   62.7s
+[43/144] sb-class-8.24 (b) wrong      716 tok   58.4s
+[44/144] sb-class-9.66 B. wrong      250 tok   21.0s
+[45/144] sb-class-9.22 A. wrong     1010 tok   81.1s
+[46/144] sb-class-9.64 B. wrong     1261 tok  147.3s  [no ANSWER line]
+[47/144] sb-class-9.64 D. wrong     1092 tok   88.5s
+[48/144] sb-class-14.12 correct    489 tok   39.8s
+[49/144] sb-class-9.34 B. wrong      623 tok   50.5s
+[50/144] sb-class-10.20 B. correct    688 tok   54.3s
+[51/144] sb-class-14.20 correct    424 tok   82.8s
+[52/144] sb-class-9.66 A. wrong      542 tok   43.0s
+[53/144] sb-class-9.64 A. wrong      508 tok   40.1s
+[54/144] sb-class-2.18 B. wrong      840 tok   65.6s
+[55/144] sb-class-10.12 wrong     1072 tok   83.5s  [unreadable unit 'seconds of arc']
+[56/144] sb-class-2.54 B. wrong     1536 tok  121.2s  [no ANSWER line]
+[57/144] sb-class-2.2 correct    141 tok   44.1s
+[58/144] sb-class-8.4 wrong      587 tok   45.1s
+[59/144] sb-class-2.6 correct    353 tok   28.3s
+[60/144] sb-class-8.5 wrong      406 tok   31.4s
+[61/144] sb-class-5.5 wrong      295 tok   23.4s
+[62/144] sb-class-7.10 correct    580 tok   45.6s
+[63/144] sb-class-9.12 wrong      450 tok   36.0s
+[64/144] sb-fund-3.01 wrong      661 tok   51.9s
+[65/144] sb-fund-4.06 wrong      564 tok   45.0s
+[66/144] sb-fund-1.01 wrong     1536 tok  161.4s
+[67/144] sb-fund-2.01 correct     92 tok    8.4s
+[68/144] sb-fund-1.02 correct    710 tok   56.5s
+[69/144] sb-fund-3.05 correct    381 tok   29.9s
+[70/144] sb-fund-7.03 correct    327 tok   26.1s
+[71/144] sb-fund-7.08 correct    421 tok   34.8s  [asked for m, got 'J']
+[72/144] sb-fund-Question 21.75 wrong      659 tok   50.9s
+[73/144] sb-fund-Question 21.19 correct    563 tok   87.8s
+[74/144] sb-fund-Question 22.11 wrong      814 tok   63.5s
+[75/144] sb-fund-Question 23.53 correct    687 tok   53.6s
+[76/144] sb-fund-Question 23.45 wrong      763 tok   60.1s
+[77/144] sb-fund-Question 22.51 wrong      821 tok   65.0s
+[78/144] sb-fund-Question 21.69 wrong      543 tok   43.1s
+[79/144] sb-fund-Question 22.73 correct   1103 tok  129.1s
+[80/144] sb-fund-Question 22.69 correct    532 tok   41.6s
+[81/144] sb-fund-Question 22.59 wrong      421 tok   33.5s
+[82/144] sb-fund-Question 21.57 wrong      866 tok   67.3s
+[83/144] sb-fund-Question 21.3 correct    386 tok   30.5s
+[84/144] sb-fund-Question 21.61 correct   1196 tok   95.2s
+[85/144] sb-fund-Question 22.77 wrong      895 tok  112.5s  [no ANSWER line]
+[86/144] sb-fund-Question 22.43 wrong      303 tok   24.1s
+[87/144] sb-fund-Question 22.3 wrong      412 tok   32.9s
+[88/144] sb-fund-Question 21.21 wrong      709 tok   56.1s  [asked for m, got 'C']
+[89/144] sb-fund-Question 23.41 wrong      632 tok   51.6s
+[90/144] sb-fund-Question 23.37 wrong      566 tok   44.8s
+[91/144] sb-fund-Question 21.49 correct    406 tok   32.2s
+[92/144] sb-fund-Question 21.73 wrong      453 tok   77.8s
+[93/144] sb-fund-Question 22.35 correct    582 tok   44.9s
+[94/144] sb-fund-Question 21.55 correct    262 tok   21.2s
+[95/144] sb-fund-Question 21.71 correct    306 tok   24.9s
+[96/144] sb-fund-Question 21.5 correct    373 tok   29.6s
+[97/144] sb-fund-Question 22.5 correct    361 tok   28.5s
+[98/144] sb-fund-Question 22.39 wrong      515 tok   40.4s
+[99/144] sb-fund-Question 21.15 correct    650 tok   54.0s
+[100/144] sb-fund-Question 22.45 wrong      452 tok   37.6s
+[101/144] sb-fund-Question 21.31 wrong      356 tok   76.2s
+[102/144] sb-fund-Question 22.81 correct    276 tok   23.3s
+[103/144] sb-fund-Question 21.9 wrong     1536 tok  127.8s  [no ANSWER line]
+[104/144] sb-fund-Question 22.55 wrong      395 tok   34.1s
+[105/144] sb-fund-Question 21.63 wrong     1211 tok   99.9s
+[106/144] sb-fund-Question 21.67 wrong      663 tok   99.1s
+[107/144] sb-fund-Question 23.21 wrong      151 tok   17.0s
+[108/144] sb-fund-Question 21.47 wrong     1114 tok   95.3s  [no ANSWER line]
+[109/144] sb-fund-Question 23.13 wrong      539 tok   44.9s
+[110/144] sb-fund-Question 21.53 wrong      226 tok   19.6s
+[111/144] sb-fund-Question 22.57 wrong      216 tok   19.0s
+[112/144] sb-fund-Question 21.41 wrong      575 tok   45.9s
+[113/144] sb-fund-Question 21.65 wrong      942 tok   75.1s
+[114/144] sb-fund-Question 22.49 wrong      276 tok   65.1s
+[115/144] sb-fund-Question 23.31 wrong      605 tok   48.3s
+[116/144] sb-fund-Question 23.7 wrong      326 tok   26.7s
+[117/144] sb-fund-Question 23.23 correct    604 tok   47.8s
+[118/144] sb-fund-Question 22.63 wrong      462 tok   36.6s  [no ANSWER line]
+[119/144] sb-fund-Question 21.25 wrong      217 tok   18.0s
+[120/144] sb-fund-Question 23.47 correct    417 tok   33.5s
+[121/144] sb-fund-Question 23.19 wrong      348 tok   28.0s
+[122/144] sb-fund-Question 22.71 wrong      445 tok   35.6s
+[123/144] sb-fund-Question 21.33 wrong      499 tok   40.1s
+[124/144] sb-fund-Question 22.41 correct    158 tok   58.3s
+[125/144] sb-fund-Question 22.83 wrong      347 tok   28.2s
+[126/144] sb-fund-Question 21.59 wrong      263 tok   21.2s  [C answer must be positive, got -13200000000000.0]
+[127/144] sb-fund-Question 23.17 correct    279 tok   22.5s
+[128/144] sb-fund-Question 21.27 wrong      576 tok   46.2s
+[129/144] sb-fund-Question 21.45 correct    436 tok   37.6s
+[130/144] sb-fund-Question 22.67 correct    640 tok   51.8s
+[131/144] sb-fund-Question 23.27 wrong      680 tok   55.1s
+[132/144] sb-fund-Question 22.47 wrong      323 tok   26.4s
+[133/144] sb-fund-Question 23.25 correct    536 tok   86.8s
+[134/144] sb-fund-Question 21.51 wrong      373 tok   30.5s  [unreadable unit 'electrons']
+[135/144] sb-fund-8.04 correct    453 tok   37.0s
+[136/144] sb-fund-13.05 correct    599 tok   46.9s
+[137/144] sb-fund-10.11 wrong     1536 tok  121.9s  [no ANSWER line]
+[138/144] sb-fund-8.05 wrong      331 tok   27.4s
+[139/144] sb-fund-10.04 correct    312 tok   67.8s
+[140/144] sb-fund-14.01 wrong      229 tok   18.5s
+[141/144] sb-fund-13.02 wrong      681 tok   54.7s
+[142/144] sb-fund-9.03 wrong      207 tok   17.4s  [no ANSWER line]
+[143/144] sb-fund-13.03 wrong     1286 tok   99.5s
+[144/144] sb-fund-8.03 correct    264 tok   21.6s
+qwen3:8b tool on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b__tool.jsonl
+[1/144] sb-class-Problem 3.40 wrong      612 tok   49.6s
+[2/144] sb-class-Problem 6.14 wrong      464 tok   37.1s
+[3/144] sb-class-Problem 2.6 wrong      179 tok   58.1s
+[4/144] sb-class-Problem 3.44 wrong      523 tok   40.2s  [no ANSWER line]
+[5/144] sb-class-Problem 8.28 correct    133 tok   10.8s
+[6/144] sb-class-Problem 9.60 wrong      124 tok   10.9s
+[7/144] sb-class-Problem 8.42 correct    320 tok   25.4s
+[8/144] sb-class-Problem 2.4 wrong      173 tok   14.5s
+[9/144] sb-class-Problem 9.22 correct    102 tok    9.3s
+[10/144] sb-class-Problem 2.30 correct    274 tok   21.8s
+[11/144] sb-class-Problem 9.42 correct    178 tok   14.7s
+[12/144] sb-class-Problem 2.18 wrong      130 tok   11.1s
+[13/144] sb-class-Problem 2.26 correct    113 tok   10.1s
+[14/144] sb-class-Problem 8.24 wrong      223 tok   18.3s
+[15/144] sb-class-Problem 3.6 correct     95 tok    8.6s
+[16/144] sb-class-Problem 8.38 correct    202 tok   16.3s
+[17/144] sb-class-Problem 2.54 wrong       73 tok    6.8s
+[18/144] sb-class-Problem 1.40 wrong      251 tok   20.1s
+[19/144] sb-class-Problem 10.22 wrong      246 tok   19.7s
+[20/144] sb-class-Problem 3.2 wrong      207 tok   16.7s
+[21/144] sb-class-Problem 4.14 correct    135 tok   11.8s
+[22/144] sb-class-Problem 2.20 wrong     1024 tok  122.7s  [no ANSWER line]
+[23/144] sb-class-Problem 8.30 wrong      188 tok   15.1s
+[24/144] sb-class-Problem 1.38 correct    398 tok   32.2s
+[25/144] sb-class-Problem 2.24 wrong      246 tok   20.1s
+[26/144] sb-class-Problem 8.12 wrong      124 tok   11.2s
+[27/144] sb-class-Problem 10.18 wrong      361 tok   30.1s
+[28/144] sb-class-Problem 8.46 wrong      350 tok   27.5s
+[29/144] sb-class-Problem 9.62 wrong      163 tok   14.0s
+[30/144] sb-class-Problem 9.36 wrong      975 tok   75.5s
+[31/144] sb-class-Problem 9.12 wrong      406 tok   77.4s
+[32/144] sb-class-9.22 B. correct    161 tok   15.0s
+[33/144] sb-class-9.42 B. wrong      144 tok   11.7s
+[34/144] sb-class-13.6 wrong     1024 tok   79.7s  [no ANSWER line]
+[35/144] sb-class-2.6 B. wrong      137 tok   12.1s
+[36/144] sb-class-14.30 correct    103 tok    9.2s
+[37/144] sb-class-9.64 C. wrong      665 tok   52.8s  [no ANSWER line]
+[38/144] sb-class-10.20 correct    255 tok   21.1s
+[39/144] sb-class-14.32 correct    166 tok   14.7s
+[40/144] sb-class-2.24 B. correct    204 tok   17.0s
+[41/144] sb-class-9.54 correct    165 tok   13.1s
+[42/144] sb-class-1.10 B. correct    286 tok   22.5s
+[43/144] sb-class-8.24 (b) wrong      304 tok   67.1s
+[44/144] sb-class-9.66 B. wrong      239 tok   20.1s
+[45/144] sb-class-9.22 A. wrong      159 tok   13.1s
+[46/144] sb-class-9.64 B. wrong      517 tok   40.6s
+[47/144] sb-class-9.64 D. wrong      713 tok   55.9s
+[48/144] sb-class-14.12 correct    147 tok   12.2s
+[49/144] sb-class-9.34 B. wrong      182 tok   14.9s
+[50/144] sb-class-10.20 B. correct    210 tok   16.6s
+[51/144] sb-class-14.20 correct    149 tok   12.1s
+[52/144] sb-class-9.66 A. wrong      237 tok   18.4s
+[53/144] sb-class-9.64 A. wrong      389 tok   30.3s
+[54/144] sb-class-2.18 B. wrong      423 tok   32.5s  [no ANSWER line]
+[55/144] sb-class-10.12 wrong      177 tok   54.9s  [asked for s, got 'arcsec']
+[56/144] sb-class-2.54 B. wrong      357 tok   28.0s
+[57/144] sb-class-2.2 correct     40 tok    3.9s
+[58/144] sb-class-8.4 correct    274 tok   23.1s
+[59/144] sb-class-2.6 correct    107 tok    9.5s
+[60/144] sb-class-8.5 wrong      255 tok   20.7s
+[61/144] sb-class-5.5 wrong      185 tok   14.5s
+[62/144] sb-class-7.10 correct    280 tok   22.0s
+[63/144] sb-class-9.12 wrong      142 tok   12.6s
+[64/144] sb-fund-3.01 correct    402 tok   33.0s
+[65/144] sb-fund-4.06 wrong      154 tok   14.3s
+[66/144] sb-fund-1.01 wrong      126 tok   10.4s
+[67/144] sb-fund-2.01 correct    128 tok   11.0s
+[68/144] sb-fund-1.02 correct    183 tok   16.4s
+[69/144] sb-fund-3.05 correct    163 tok   13.3s
+[70/144] sb-fund-7.03 correct    136 tok   11.9s
+[71/144] sb-fund-7.08 correct    294 tok   25.2s  [asked for m, got 'J']
+[72/144] sb-fund-Question 21.75 wrong      207 tok   16.8s
+[73/144] sb-fund-Question 21.19 correct    542 tok   84.7s
+[74/144] sb-fund-Question 22.11 wrong      555 tok   43.2s  [no ANSWER line]
+[75/144] sb-fund-Question 23.53 correct    212 tok   17.1s
+[76/144] sb-fund-Question 23.45 correct    228 tok   18.5s
+[77/144] sb-fund-Question 22.51 wrong      478 tok   37.8s
+[78/144] sb-fund-Question 21.69 wrong      192 tok   16.3s
+[79/144] sb-fund-Question 22.73 wrong     1024 tok   78.4s  [no ANSWER line]
+[80/144] sb-fund-Question 22.69 correct    185 tok   15.0s
+[81/144] sb-fund-Question 22.59 wrong      179 tok   15.2s  [no ANSWER line]
+[82/144] sb-fund-Question 21.57 wrong      294 tok   23.4s  [no ANSWER line]
+[83/144] sb-fund-Question 21.3 correct    153 tok   56.4s
+[84/144] sb-fund-Question 21.61 wrong      363 tok   29.2s
+[85/144] sb-fund-Question 22.77 wrong      462 tok   36.0s
+[86/144] sb-fund-Question 22.43 wrong      140 tok   12.8s
+[87/144] sb-fund-Question 22.3 correct    231 tok   20.4s
+[88/144] sb-fund-Question 21.21 wrong      258 tok   21.7s  [unreadable unit '10^-8 C']
+[89/144] sb-fund-Question 23.41 wrong      198 tok   16.6s
+[90/144] sb-fund-Question 23.37 correct    297 tok   25.7s
+[91/144] sb-fund-Question 21.49 wrong      169 tok   16.1s
+[92/144] sb-fund-Question 21.73 correct    241 tok   21.2s
+[93/144] sb-fund-Question 22.35 correct    278 tok   22.2s
+[94/144] sb-fund-Question 21.55 correct    136 tok   11.4s
+[95/144] sb-fund-Question 21.71 wrong     1024 tok   81.1s  [no ANSWER line]
+[96/144] sb-fund-Question 21.5 wrong      162 tok   59.4s
+[97/144] sb-fund-Question 22.5 correct    163 tok   13.6s
+[98/144] sb-fund-Question 22.39 wrong      226 tok   18.5s
+[99/144] sb-fund-Question 21.15 wrong      223 tok   18.4s
+[100/144] sb-fund-Question 22.45 wrong      186 tok   17.2s  [no ANSWER line]
+[101/144] sb-fund-Question 21.31 correct    174 tok   14.6s
+[102/144] sb-fund-Question 22.81 wrong       72 tok    6.8s
+[103/144] sb-fund-Question 21.9 wrong      560 tok   43.5s  [no ANSWER line]
+[104/144] sb-fund-Question 22.55 correct    212 tok   17.4s
+[105/144] sb-fund-Question 21.63 wrong      275 tok   23.2s
+[106/144] sb-fund-Question 21.67 wrong      637 tok   50.9s
+[107/144] sb-fund-Question 23.21 correct     84 tok    8.9s
+[108/144] sb-fund-Question 21.47 correct    345 tok   28.4s
+[109/144] sb-fund-Question 23.13 correct    259 tok   22.0s
+[110/144] sb-fund-Question 21.53 correct    164 tok   14.7s
+[111/144] sb-fund-Question 22.57 wrong      172 tok   60.1s  [no ANSWER line]
+[112/144] sb-fund-Question 21.41 correct    245 tok   20.3s
+[113/144] sb-fund-Question 21.65 correct    295 tok   24.7s
+[114/144] sb-fund-Question 22.49 wrong      163 tok   14.0s
+[115/144] sb-fund-Question 23.31 correct    167 tok   15.4s
+[116/144] sb-fund-Question 23.7 correct    143 tok   13.0s
+[117/144] sb-fund-Question 23.23 correct    220 tok   19.4s
+[118/144] sb-fund-Question 22.63 wrong      196 tok   17.7s  [no ANSWER line]
+[119/144] sb-fund-Question 21.25 correct    136 tok   12.6s
+[120/144] sb-fund-Question 23.47 correct    200 tok   19.4s
+[121/144] sb-fund-Question 23.19 wrong       89 tok    8.8s
+[122/144] sb-fund-Question 22.71 wrong     1024 tok   82.1s  [no ANSWER line]
+[123/144] sb-fund-Question 21.33 correct    364 tok   29.3s
+[124/144] sb-fund-Question 22.41 correct     98 tok    9.3s
+[125/144] sb-fund-Question 22.83 wrong      179 tok   62.4s  [no ANSWER line]
+[126/144] sb-fund-Question 21.59 wrong      171 tok   14.3s  [unreadable unit '10^13C']
+[127/144] sb-fund-Question 23.17 correct     82 tok    8.7s
+[128/144] sb-fund-Question 21.27 correct    206 tok   17.9s
+[129/144] sb-fund-Question 21.45 correct    242 tok   21.1s
+[130/144] sb-fund-Question 22.67 wrong      156 tok   13.8s
+[131/144] sb-fund-Question 23.27 wrong      146 tok   13.3s
+[132/144] sb-fund-Question 22.47 correct    158 tok   14.4s
+[133/144] sb-fund-Question 23.25 correct    193 tok   16.5s
+[134/144] sb-fund-Question 21.51 correct    235 tok   20.4s  [unreadable unit '10^10 electrons']
+[135/144] sb-fund-8.04 correct    198 tok   17.4s
+[136/144] sb-fund-13.05 correct    221 tok   18.6s
+[137/144] sb-fund-10.11 wrong      420 tok   35.1s
+[138/144] sb-fund-8.05 correct    160 tok   15.4s
+[139/144] sb-fund-10.04 correct    151 tok   14.4s
+[140/144] sb-fund-14.01 wrong      161 tok   15.1s
+[141/144] sb-fund-13.02 wrong      263 tok   22.8s
+[142/144] sb-fund-9.03 wrong      488 tok   42.9s
+[143/144] sb-fund-13.03 correct    354 tok   82.0s
+[144/144] sb-fund-8.03 correct    112 tok   11.1s
+SciBench physics (144 problems: fund 81, class 63)
+
+policy                                              score       95% CI  compute   vs shipped, 95% CI
+always 8B (bare)                                  52/144    28%-44%       100%                     
+always 8B+tool                                    68/144    39%-56%        45%            +3 to +29
+always 4B (bare)                                  50/144    27%-43%        50%            -12 to +8
+always 4B+tool                                    63/144    36%-52%        24%            -2 to +24
+routed: 4B+tool | 8B+tool                         67/144    38%-54%        36%            +2 to +28
++ escalate on failed check (pre-sweep default)    69/144    40%-56%        48%            +4 to +30
++ escalate on disagree w/ 4B bare                 69/144    40%-56%        48%            +4 to +30
+
+rule: the policy with the most problems right replaces the physics pack's shipped one (always 8B, bare) iff a paired bootstrap 95% interval of its score minus the shipped one's lies entirely above 0 (accuracy first, compute reported); ties for the most right go to the cheaper policy
+-> ADOPT: + escalate on failed check (pre-sweep default)
+
+key-free check vs the key:
+   4B       wrong   94  caught   19  false alarms   2
+   4B+tool  wrong   81  caught   16  false alarms   1
+   8B       wrong   92  caught   19  false alarms   1
+   8B+tool  wrong   76  caught   19  false alarms   2
