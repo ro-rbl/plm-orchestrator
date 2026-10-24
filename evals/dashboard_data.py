@@ -26,7 +26,7 @@ SHIPPED = {
     "electrical": "routed: orig4B+tool | 8B+tool",
     "aerospace": "always 8B+tool (shipped)",
     "physics": "always 8B (bare)",
-    "software": "unrouted cascade: orig4B -> 8B -> coder14B",
+    "software": "always coder14B",
     "cad": "always coder",
     "sql": "always coder",
 }

@@ -100,6 +100,9 @@ What could carry over, in order of value per effort; each policy fixed before it
 ## 4. Public benchmarks
 - [x] SQL: Spider dev (300 sampled) and BIRD mini-dev (496), `evals/bench_sql.py`, rules fixed before each:
       coder 76% / 51%, 8B 67% / 35%, 4B 66% / 31% (bootstrap 95% CIs in `results/bench_*`).
+- [x] Code: HumanEval+ (163) and MBPP+ (377), `evals/bench_code.py`, CODE_RULE (accuracy first) fixed before:
+      coder alone 410/540 (76%) vs the shipped cascade 387 (72%), +6 to +40 paired 95%: the software pack now
+      ships the coder alone. The examples check caught 14 of 112 wrong HumanEval answers (no parseable examples).
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
 - SQL: Spider or BIRD. Physics: a public set, to be chosen. Optional numeric cross-check: GSM8K.
 - Hundreds of items per domain with bootstrap confidence intervals; pinned model digests,

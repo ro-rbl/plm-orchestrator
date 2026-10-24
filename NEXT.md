@@ -80,8 +80,12 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
 - [x] **SQL now ships the coder alone (user's choice, 2026-10-24).** Public benchmarks (`evals/bench_sql.py`,
       `results/bench_spider.log`, `results/bench_bird_verdict.log`): coder Spider 76% / BIRD 51%, 8B 67% / 35%.
       The compute-capped BENCH_RULE/BIRD_RULE kept the 8B; the user chose accuracy at 1.5-1.8x compute.
-- [ ] **Phase 4 next: HumanEval+ and MBPP+ for the software pack** (`evalplus/humanevalplus`,
-      `evalplus/mbppplus` on Hugging Face, both reachable 2026-10-23). Then a physics benchmark (to be chosen).
+- [x] **HumanEval+ and MBPP+ for the software pack** (`evals/bench_code.py`, `results/bench_code.log`): CODE_RULE
+      adopted the coder alone, 410/540 vs the cascade's 387 (+6 to +40). Shipped 2026-10-24.
+- [ ] **`--thorough` wasn't re-measured with the coder alone** (it was 42/45 at 228% with the old cascade).
+      Resume: a thorough column in `evals/bench_code.py`, judged on new tasks.
+- [ ] **Phase 4 next: a physics benchmark** (to be chosen), then numeric cross-checks (GSM8K, optional), and
+      the headline table (always-small, always-large, router, hindsight per domain) for publishing.
 - [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second
       by a rule fixed first, but pooled with the first). A third fresh set, or Spider/BIRD, would test it.
 - [ ] **Which model is best flipped between the fresh sets** (8B 22 vs coder 20, then coder 22 vs 8B 20): on

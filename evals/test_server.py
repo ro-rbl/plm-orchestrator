@@ -72,7 +72,7 @@ def install_fakes():
     saved = (numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version, testgen.ask)
     small, large = electrical.MODELS["small"], electrical.MODELS["large"]
     numeric.ask = fake_ask({small: PROGRAM_22V, large: PROGRAM_22V})
-    software.ask = fake_ask({software.MODELS["small"]: DOUBLE})
+    software.ask = fake_ask({software.MODELS["coder"]: DOUBLE})
     general.chat, general.chat_stream = fake_chat([]), fake_chat_stream
     ollama.version = lambda timeout=5: "0.0-fake"
     testgen.ask = lambda *a: reply("```python\ndouble(5) == 10\n```")
@@ -113,7 +113,7 @@ def chat_body(text, **kw):
 def run(port, log_path):
     small, large = electrical.MODELS["small"], electrical.MODELS["large"]
     numeric.ask = fake_ask({small: PROGRAM_22V, large: PROGRAM_22V})
-    software.ask = fake_ask({software.MODELS["small"]: DOUBLE})
+    software.ask = fake_ask({software.MODELS["coder"]: DOUBLE})
     seen = []
     general.chat = fake_chat(seen)
     general.chat_stream = fake_chat_stream

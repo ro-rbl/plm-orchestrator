@@ -1,12 +1,23 @@
 """Software-pack controller: pick a level, have a specialist write the code, check it, escalate.
 
 The check runs the code in the sandbox: it must load, define the requested
-function or class, and pass every example given in the task. In the eval
-sweep it caught 49 of 63 wrong answers with 1 false alarm, so every level uses
-the same cheap-first cascade (4B -> 8B -> coder): 40/45 at 56% of the compute of
-always using the coder (39/45). Routing by level on top of that made it worse
-(39/45 at 83%), so the level only sets the token budget. See
-evals/simulate_code_routing.py.
+function or class, and pass every example given in the task.
+
+Until 2026-10-24 every level used a cheap-first cascade (4B -> 8B -> coder),
+picked on our 45-task eval: 40/45 at 56% of always-coder compute (coder alone
+39/45). The public benchmarks (evals/bench_code.py, CODE_RULE fixed before
+them, accuracy first as the user chose) disagreed: HumanEval+ and MBPP+ pooled,
+540 tasks:
+
+    always coder 14B                       410/540 (76%) at 100% of always-coder compute
+    cascade 4B -> 8B -> coder (old)        387/540 (72%) at 64%
+    cascade 8B -> coder                    394/540 (73%) at 77%
+    always 8B                              353/540 (65%) at 55%
+
+The coder beats the cascade by +6 to +40 tasks (paired 95%). The cascade lost
+because the examples check rarely sees a wrong HumanEval answer (its docstrings
+show no parseable examples: 14 of 112 wrong answers caught). So every level goes
+to the coder; the level only sets the token budget.
 
 thorough=True adds tests written by the large model from the task alone
 (plm/software/testgen.py). In the eval that reached 42/45 but cost 228% of
@@ -37,12 +48,12 @@ MODELS = {
 TEST_WRITER = "large"
 
 # Per level: token budget and the escalation chain of model keys. Budgets are
-# >2.5x the longest passing answer at that level in the eval sweep.
-CASCADE = ["small", "large", "coder"]
+# >2.5x the longest passing answer at that level in the eval sweep; the coder hit none on the benchmarks.
+CHAIN = ["coder"]
 LEVELS = {
-    "calm": {"num_predict": 512, "chain": CASCADE},
-    "alert": {"num_predict": 1024, "chain": CASCADE},
-    "intensive": {"num_predict": 1536, "chain": CASCADE},
+    "calm": {"num_predict": 512, "chain": CHAIN},
+    "alert": {"num_predict": 1024, "chain": CHAIN},
+    "intensive": {"num_predict": 1536, "chain": CHAIN},
 }
 
 ENTRY_RE = re.compile(r"`(\w+)\s*\(|\bdef\s+(\w+)\s*\(|`?\bclass\s+`?(\w+)")

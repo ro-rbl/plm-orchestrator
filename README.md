@@ -36,7 +36,7 @@ Ollama doesn't have yet:
 |---|---|---|
 | electrical | `plm-electrical` | `hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M` (2.5 GB), `qwen3:8b` (5.2 GB) |
 | aerospace | `plm-aerospace` | `qwen3:8b` (5.2 GB) |
-| software | `plm-software` | the 4B and 8B above, `qwen2.5-coder:14b` (9.0 GB) |
+| software | `plm-software` | `qwen2.5-coder:14b` (9.0 GB); `--thorough` also uses `qwen3:8b` to write tests |
 | physics | `plm-physics` | `qwen3:8b` (5.2 GB) |
 | cad | `plm-cad` | `qwen2.5-coder:14b` (9.0 GB); also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
 | sql | `plm-sql` | `qwen2.5-coder:14b` (9.0 GB); the checker is Python's built-in SQLite |
@@ -132,8 +132,8 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | physics (mechanics, fluids, heat, materials) | everything to the 8B answering directly (the calculator lost accuracy here) | unit and sanity checks | 49/50 at 100% of always-8B compute |
 | cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
 | sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%) | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
-| software | cheap-first cascade 4B -> 8B -> coder 14B | code must pass the task's examples | 40/45 at 56% of always-coder compute |
-| software `--thorough` | same cascade | examples + 8 tests written by the 8B from the task alone | 42/45 at 228%: about 1 in 8 generated tests is wrong, which forces extra escalations |
+| software | everything to the coder 14B (the cheap-first cascade lost on public benchmarks) | code must pass the task's examples | HumanEval+ 85%, MBPP+ 72% (540 tasks pooled: 76% vs the old cascade's 72%) |
+| software `--thorough` | the coder, checked harder | examples + 8 tests written by the 8B from the task alone | measured with the old cascade (42/45 at 228%); not re-measured with the coder alone |
 
 ## Layout
 

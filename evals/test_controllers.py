@@ -266,31 +266,43 @@ def test_software():
     good = "```python\ndef double(x):\n    return 2 * x\n```"
     bad = "```python\ndef double(x):\n    return x + 2\n```"
 
-    software.ask, calls = fake_ollama({small: [bad], large: [good]})
+    software.ask, calls = fake_ollama({coder: [good]})
     r = software.solve(task)
-    expect("software escalates on failed example", calls == [small, large] and r["trusted"] and r["checked"], r)
+    expect("software: the coder answers alone and is checked", calls == [coder] and r["trusted"] and r["checked"], r)
+    software.ask, calls = fake_ollama({coder: [bad]})
+    r = software.solve(task)
+    expect("software: a failed example is reported, not escalated", calls == [coder] and not r["trusted"], r)
 
-    software.ask, calls = fake_ollama({small: [good]})
+    software.ask, calls = fake_ollama({coder: [good]})
     r = software.solve("Write a function `double(x: int) -> int` that returns twice x.")
-    expect("software unchecked without examples", not r["checked"] and not r["trusted"] and calls == [small]
+    expect("software unchecked without examples", not r["checked"] and not r["trusted"] and calls == [coder]
            and "only loading" in r["unchecked_reason"], r)
 
-    # --thorough: generated tests include a wrong one that every candidate fails; the tie goes
-    # to the later model, as in evals/simulate_code_routing.py.
-    tests = "```python\ndouble(5) == 10\ndouble(-1) == -2\ndouble(3) == 7\n```"
-    software.ask, calls = fake_ollama({small: [good], large: [good], coder: [good]})
-    testgen.ask, writer_calls = fake_ollama({large: [tests]})
-    r = software.solve(task, thorough=True)
-    expect("thorough runs the whole cascade on a wrong generated test", calls == [small, large, coder], calls)
-    expect("thorough writes tests once", writer_calls == [large], writer_calls)
-    expect("thorough tie goes to the later model", r["final_step"] == 3 and not r["trusted"] and r["checked"], r)
-    expect("thorough counts the writer's tokens", r["tokens"] == sum(s["tokens"] for s in r["steps"]) + r["test_writer"]["tokens"], r)
+    real_levels = software.LEVELS
+    try:  # the cascade mechanics, as the benchmarks measured them
+        software.LEVELS = {lv: dict(plan, chain=["small", "large", "coder"]) for lv, plan in real_levels.items()}
+        software.ask, calls = fake_ollama({small: [bad], large: [good]})
+        r = software.solve(task)
+        expect("software escalates on failed example", calls == [small, large] and r["trusted"] and r["checked"], r)
 
-    software.ask, calls = fake_ollama({small: [bad], large: [good]})
-    testgen.ask, writer_calls = fake_ollama({large: ["```python\ndouble(5) == 10\n```"]})
-    r = software.solve(task, thorough=True)
-    expect("thorough skips test writing until code passes the examples", calls == [small, large]
-           and writer_calls == [large] and r["trusted"], (calls, writer_calls, r["trusted"]))
+        # --thorough: generated tests include a wrong one that every candidate fails; the tie goes
+        # to the later model, as in evals/simulate_code_routing.py.
+        tests = "```python\ndouble(5) == 10\ndouble(-1) == -2\ndouble(3) == 7\n```"
+        software.ask, calls = fake_ollama({small: [good], large: [good], coder: [good]})
+        testgen.ask, writer_calls = fake_ollama({large: [tests]})
+        r = software.solve(task, thorough=True)
+        expect("thorough runs the whole cascade on a wrong generated test", calls == [small, large, coder], calls)
+        expect("thorough writes tests once", writer_calls == [large], writer_calls)
+        expect("thorough tie goes to the later model", r["final_step"] == 3 and not r["trusted"] and r["checked"], r)
+        expect("thorough counts the writer's tokens", r["tokens"] == sum(s["tokens"] for s in r["steps"]) + r["test_writer"]["tokens"], r)
+
+        software.ask, calls = fake_ollama({small: [bad], large: [good]})
+        testgen.ask, writer_calls = fake_ollama({large: ["```python\ndouble(5) == 10\n```"]})
+        r = software.solve(task, thorough=True)
+        expect("thorough skips test writing until code passes the examples", calls == [small, large]
+               and writer_calls == [large] and r["trusted"], (calls, writer_calls, r["trusted"]))
+    finally:
+        software.LEVELS = real_levels
 
 
 def test_general():

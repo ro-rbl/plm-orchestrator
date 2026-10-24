@@ -1,0 +1,1664 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/164] HumanEval-0 pass       112 tok    6.8s
+[2/164] HumanEval-1 pass       127 tok    4.5s
+[3/164] HumanEval-2 pass        35 tok    1.6s
+[4/164] HumanEval-3 pass        54 tok    2.2s
+[5/164] HumanEval-4 pass       139 tok    4.8s
+[6/164] HumanEval-5 pass        87 tok    3.0s
+[7/164] HumanEval-6 fail       101 tok    3.6s
+[8/164] HumanEval-7 pass        57 tok    2.1s
+[9/164] HumanEval-8 pass       108 tok    3.7s
+[10/164] HumanEval-9 pass        93 tok    3.3s
+[11/164] HumanEval-10 fail       144 tok    5.0s
+[12/164] HumanEval-11 pass       115 tok    3.9s
+[13/164] HumanEval-12 pass        68 tok    2.6s
+[14/164] HumanEval-13 pass        40 tok    1.6s
+[15/164] HumanEval-14 pass        59 tok    2.2s
+[16/164] HumanEval-15 pass        32 tok    1.4s
+[17/164] HumanEval-16 pass        24 tok    1.1s
+[18/164] HumanEval-17 fail       197 tok    6.5s
+[19/164] HumanEval-18 pass        83 tok    2.9s
+[20/164] HumanEval-19 fail       258 tok    8.2s
+[21/164] HumanEval-20 pass       190 tok    6.3s
+[22/164] HumanEval-21 pass        59 tok    2.4s
+[23/164] HumanEval-22 fail        52 tok    2.0s
+[24/164] HumanEval-23 pass        27 tok    1.3s
+[25/164] HumanEval-24 pass        71 tok    2.8s
+[26/164] HumanEval-25 pass       202 tok    7.2s
+[27/164] HumanEval-26 fail        58 tok    2.6s
+[28/164] HumanEval-27 pass        37 tok    1.8s
+[29/164] HumanEval-28 pass        38 tok    1.7s
+[30/164] HumanEval-29 pass        40 tok    1.8s
+[31/164] HumanEval-30 pass        26 tok    1.3s
+[32/164] HumanEval-31 pass       103 tok    3.7s
+[33/164] HumanEval-32 error     1536 tok   55.4s  [SyntaxError: invalid syntax (<solution>, line 1)]
+[34/164] HumanEval-33 pass       192 tok    7.3s
+[35/164] HumanEval-34 pass        27 tok    1.5s
+[36/164] HumanEval-35 pass        26 tok    1.2s
+[37/164] HumanEval-36 pass        63 tok    2.5s
+[38/164] HumanEval-37 pass       163 tok    5.9s
+[39/164] HumanEval-38 pass       256 tok    9.8s
+[40/164] HumanEval-39 fail       252 tok    8.9s
+[41/164] HumanEval-40 pass       108 tok    4.2s
+[42/164] HumanEval-41 fail        89 tok    4.1s
+[43/164] HumanEval-42 pass        24 tok    1.4s
+[44/164] HumanEval-43 pass        43 tok    2.1s
+[45/164] HumanEval-44 pass        95 tok    3.6s
+[46/164] HumanEval-45 pass        38 tok    1.9s
+[47/164] HumanEval-46 pass       153 tok    6.2s
+[48/164] HumanEval-47 pass        31 tok    1.7s
+[49/164] HumanEval-48 pass        24 tok    1.4s
+[50/164] HumanEval-49 pass        45 tok    2.1s
+[51/164] HumanEval-50 pass       123 tok    4.8s
+[52/164] HumanEval-51 error       47 tok    2.3s
+[53/164] HumanEval-52 pass        39 tok    2.1s
+[54/164] HumanEval-53 pass        33 tok    1.9s
+[55/164] HumanEval-54 fail        32 tok    2.1s
+[56/164] HumanEval-55 pass        85 tok    4.3s
+[57/164] HumanEval-56 pass        72 tok    3.5s
+[58/164] HumanEval-57 fail        87 tok    4.0s
+[59/164] HumanEval-58 pass        60 tok    2.7s
+[60/164] HumanEval-59 fail       151 tok    5.7s
+[61/164] HumanEval-60 pass        54 tok    2.5s
+[62/164] HumanEval-61 pass        69 tok    2.8s
+[63/164] HumanEval-62 pass        45 tok    2.3s
+[64/164] HumanEval-63 pass       132 tok    5.2s
+[65/164] HumanEval-64 fail        88 tok    3.9s
+[66/164] HumanEval-65 pass        55 tok    2.5s
+[67/164] HumanEval-66 pass        42 tok    2.4s
+[68/164] HumanEval-67 pass        78 tok    3.8s
+[69/164] HumanEval-68 pass       208 tok    9.7s
+[70/164] HumanEval-69 pass        57 tok    4.0s
+[71/164] HumanEval-70 pass        94 tok    5.3s
+[72/164] HumanEval-71 pass       236 tok   10.5s
+[73/164] HumanEval-72 pass        75 tok    4.2s
+[74/164] HumanEval-73 pass       141 tok    6.0s
+[75/164] HumanEval-74 pass        72 tok    3.7s
+[76/164] HumanEval-75 fail       126 tok    5.4s
+[77/164] HumanEval-76 fail        98 tok    5.4s
+[78/164] HumanEval-77 fail        99 tok    4.4s
+[79/164] HumanEval-78 pass        91 tok    4.9s
+[80/164] HumanEval-79 pass        66 tok    3.4s
+[81/164] HumanEval-80 pass        86 tok    4.3s
+[82/164] HumanEval-81 fail       286 tok   12.4s
+[83/164] HumanEval-82 pass        78 tok    3.5s
+[84/164] HumanEval-83 fail       168 tok    6.8s
+[85/164] HumanEval-84 pass        50 tok    3.0s
+[86/164] HumanEval-85 pass        72 tok    3.1s
+[87/164] HumanEval-86 fail        48 tok    3.1s
+[88/164] HumanEval-87 pass       143 tok    8.3s
+[89/164] HumanEval-88 pass       160 tok    8.0s
+[90/164] HumanEval-89 fail       106 tok    5.4s
+[91/164] HumanEval-90 fail       100 tok    4.8s
+[92/164] HumanEval-91 fail       119 tok    5.9s  [failed: is_bored("The sky is blue. The sun is shining. I love this wea]
+[93/164] HumanEval-92 pass       111 tok    5.6s
+[94/164] HumanEval-93 pass       136 tok    6.2s  [failed: encode('This is a message')]
+[95/164] HumanEval-94 pass       126 tok    7.0s
+[96/164] HumanEval-95 pass        79 tok    4.2s
+[97/164] HumanEval-96 fail       180 tok    9.0s
+[98/164] HumanEval-97 fail        42 tok    2.8s
+[99/164] HumanEval-98 pass        76 tok    3.5s
+[100/164] HumanEval-99 fail        81 tok    4.3s
+[101/164] HumanEval-100 pass       164 tok    7.3s
+[102/164] HumanEval-101 fail        63 tok    3.3s
+[103/164] HumanEval-102 pass       118 tok    5.6s
+[104/164] HumanEval-103 pass        74 tok    3.8s
+[105/164] HumanEval-104 pass        75 tok    3.6s
+[106/164] HumanEval-105 pass       140 tok    7.0s
+[107/164] HumanEval-106 pass        92 tok    4.4s
+[108/164] HumanEval-107 pass       151 tok    7.3s
+[109/164] HumanEval-108 fail       157 tok    7.1s
+[110/164] HumanEval-109 pass        79 tok    4.7s
+[111/164] HumanEval-110 pass       229 tok   10.3s
+[112/164] HumanEval-111 pass       157 tok    8.8s
+[113/164] HumanEval-112 pass        74 tok    3.9s
+[114/164] HumanEval-113 fail        81 tok    4.6s
+[115/164] HumanEval-114 pass        84 tok    4.4s
+[116/164] HumanEval-115 fail       143 tok    7.5s
+[117/164] HumanEval-116 pass        71 tok    3.8s  [failed: sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]; failed: sort_a]
+[118/164] HumanEval-117 fail        92 tok    4.8s
+[119/164] HumanEval-118 error      203 tok    9.1s  [SyntaxError: invalid syntax (<solution>, line 18)]
+[120/164] HumanEval-119 pass       175 tok    8.0s
+[121/164] HumanEval-120 pass       174 tok    8.2s
+[122/164] HumanEval-121 fail        94 tok    4.7s
+[123/164] HumanEval-122 pass        75 tok    4.0s
+[124/164] HumanEval-123 pass       107 tok    5.8s
+[125/164] HumanEval-124 fail       325 tok   17.6s
+[126/164] HumanEval-125 fail       110 tok    6.9s
+[127/164] HumanEval-126 fail        57 tok    4.7s
+[128/164] HumanEval-127 pass       233 tok   14.1s
+[129/164] HumanEval-128 pass       171 tok    9.8s
+[130/164] HumanEval-129 fail       752 tok   42.2s
+[131/164] HumanEval-130 pass       199 tok   11.0s
+[132/164] HumanEval-131 fail        56 tok    2.5s
+[133/164] HumanEval-132 fail       108 tok    6.0s
+[134/164] HumanEval-133 pass        54 tok    3.2s
+[135/164] HumanEval-134 pass       117 tok    5.8s
+[136/164] HumanEval-135 fail        43 tok    2.7s
+[137/164] HumanEval-136 pass        84 tok    4.3s
+[138/164] HumanEval-137 pass       148 tok    7.2s
+[139/164] HumanEval-138 pass       188 tok    8.5s
+[140/164] HumanEval-139 pass        70 tok    3.6s
+[141/164] HumanEval-140 fail       203 tok    8.6s
+[142/164] HumanEval-141 fail       196 tok    9.5s
+[143/164] HumanEval-142 fail        69 tok    4.0s
+[144/164] HumanEval-143 pass       147 tok    7.3s
+[145/164] HumanEval-144 pass        92 tok    4.8s
+[146/164] HumanEval-145 fail       129 tok    6.4s  [failed: order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+[147/164] HumanEval-146 pass        81 tok    4.2s
+[148/164] HumanEval-147 pass       385 tok   18.1s
+[149/164] HumanEval-148 pass       152 tok   10.2s
+[150/164] HumanEval-149 pass        69 tok    4.1s
+[151/164] HumanEval-150 pass        78 tok    4.1s
+[152/164] HumanEval-151 pass        93 tok    5.1s
+[153/164] HumanEval-152 pass        29 tok    3.0s
+[154/164] HumanEval-153 fail       130 tok    7.3s
+[155/164] HumanEval-154 fail       105 tok    5.3s
+[156/164] HumanEval-155 pass       108 tok    5.3s
+[157/164] HumanEval-156 pass       155 tok    7.3s
+[158/164] HumanEval-157 pass       117 tok    6.0s
+[159/164] HumanEval-158 pass       117 tok    6.1s
+[160/164] HumanEval-159 fail       139 tok    7.5s
+[161/164] HumanEval-160 pass       126 tok    8.4s  [refused: blocked construct: eval(]
+[162/164] HumanEval-161 pass       109 tok    7.4s
+[163/164] HumanEval-162 pass        66 tok    4.8s  [refused: import not allowed: hashlib]
+[164/164] HumanEval-163 fail       145 tok    9.4s
+qwen3:8b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen3_8b.jsonl
+[1/164] HumanEval-0 pass        77 tok   11.7s
+[2/164] HumanEval-1 pass       111 tok   11.9s
+[3/164] HumanEval-2 error       23 tok    3.3s
+[4/164] HumanEval-3 pass        54 tok    6.7s
+[5/164] HumanEval-4 pass        47 tok    5.5s
+[6/164] HumanEval-5 pass        65 tok    6.6s
+[7/164] HumanEval-6 fail       107 tok   10.1s
+[8/164] HumanEval-7 pass        41 tok   47.8s
+[9/164] HumanEval-8 pass        61 tok    6.5s
+[10/164] HumanEval-9 pass        63 tok    6.4s
+[11/164] HumanEval-10 pass       192 tok   16.0s
+[12/164] HumanEval-11 pass        88 tok    8.1s
+[13/164] HumanEval-12 pass        68 tok    7.0s
+[14/164] HumanEval-13 pass        41 tok    4.1s
+[15/164] HumanEval-14 pass        43 tok    4.4s
+[16/164] HumanEval-15 pass        29 tok    3.4s
+[17/164] HumanEval-16 pass        24 tok    2.6s
+[18/164] HumanEval-17 fail       163 tok   14.0s
+[19/164] HumanEval-18 pass        77 tok    6.9s
+[20/164] HumanEval-19 pass       239 tok   20.2s
+[21/164] HumanEval-20 pass        98 tok    9.6s
+[22/164] HumanEval-21 pass       100 tok    8.8s
+[23/164] HumanEval-22 fail        39 tok    3.8s
+[24/164] HumanEval-23 pass        27 tok    3.0s
+[25/164] HumanEval-24 pass        50 tok    5.0s
+[26/164] HumanEval-25 pass       136 tok   11.8s
+[27/164] HumanEval-26 pass        75 tok    6.8s
+[28/164] HumanEval-27 pass        21 tok    2.7s
+[29/164] HumanEval-28 pass        38 tok    3.6s
+[30/164] HumanEval-29 pass        40 tok    4.1s
+[31/164] HumanEval-30 pass        26 tok    3.2s
+[32/164] HumanEval-31 pass       104 tok    8.8s
+[33/164] HumanEval-32 error      280 tok   23.1s
+[34/164] HumanEval-33 pass       159 tok   13.8s
+[35/164] HumanEval-34 pass        77 tok    7.0s
+[36/164] HumanEval-35 pass        64 tok    5.6s
+[37/164] HumanEval-36 pass        60 tok    5.7s
+[38/164] HumanEval-37 pass        86 tok    7.7s
+[39/164] HumanEval-38 pass       260 tok   21.5s
+[40/164] HumanEval-39 pass       146 tok   12.5s
+[41/164] HumanEval-40 fail        76 tok    6.7s
+[42/164] HumanEval-41 pass        19 tok    3.5s
+[43/164] HumanEval-42 pass        24 tok    2.6s
+[44/164] HumanEval-43 pass        48 tok    4.9s
+[45/164] HumanEval-44 pass        65 tok   48.9s
+[46/164] HumanEval-45 pass        41 tok    4.0s
+[47/164] HumanEval-46 pass       114 tok   10.8s
+[48/164] HumanEval-47 pass        31 tok    3.3s
+[49/164] HumanEval-48 pass        21 tok    2.8s
+[50/164] HumanEval-49 fail        61 tok    5.6s
+[51/164] HumanEval-50 pass       123 tok   10.1s
+[52/164] HumanEval-51 pass        30 tok    3.3s
+[53/164] HumanEval-52 pass        39 tok    5.3s
+[54/164] HumanEval-53 pass        41 tok    4.8s
+[55/164] HumanEval-54 fail        34 tok    3.7s
+[56/164] HumanEval-55 pass        82 tok    7.4s
+[57/164] HumanEval-56 pass        69 tok    6.3s
+[58/164] HumanEval-57 pass        71 tok    6.9s
+[59/164] HumanEval-58 fail        45 tok    4.4s
+[60/164] HumanEval-59 pass       139 tok   11.7s
+[61/164] HumanEval-60 pass        27 tok    3.1s
+[62/164] HumanEval-61 pass        69 tok    6.5s
+[63/164] HumanEval-62 pass        29 tok    3.5s
+[64/164] HumanEval-63 pass        91 tok    8.7s
+[65/164] HumanEval-64 fail        82 tok    8.0s
+[66/164] HumanEval-65 fail        57 tok    5.5s
+[67/164] HumanEval-66 pass        38 tok    4.5s
+[68/164] HumanEval-67 error       68 tok    8.0s
+[69/164] HumanEval-68 pass       109 tok   11.6s
+[70/164] HumanEval-69 fail        43 tok    5.4s
+[71/164] HumanEval-70 pass        94 tok    9.1s
+[72/164] HumanEval-71 pass        91 tok    8.7s
+[73/164] HumanEval-72 pass        78 tok    8.7s
+[74/164] HumanEval-73 pass        56 tok    6.3s
+[75/164] HumanEval-74 pass        89 tok    9.1s
+[76/164] HumanEval-75 pass       132 tok   11.4s
+[77/164] HumanEval-76 fail        61 tok    6.7s
+[78/164] HumanEval-77 pass        58 tok    7.0s
+[79/164] HumanEval-78 pass        49 tok    7.6s
+[80/164] HumanEval-79 pass        31 tok    4.2s
+[81/164] HumanEval-80 pass        77 tok    7.7s
+[82/164] HumanEval-81 fail       184 tok   16.9s
+[83/164] HumanEval-82 pass        64 tok    6.5s
+[84/164] HumanEval-83 fail       101 tok    8.9s
+[85/164] HumanEval-84 pass        33 tok    4.4s
+[86/164] HumanEval-85 pass        51 tok    5.3s
+[87/164] HumanEval-86 pass        62 tok    6.7s
+[88/164] HumanEval-87 pass        81 tok   53.4s
+[89/164] HumanEval-88 pass        70 tok    8.8s
+[90/164] HumanEval-89 pass       119 tok   11.5s
+[91/164] HumanEval-90 pass        53 tok    6.3s
+[92/164] HumanEval-91 fail        57 tok    6.2s  [failed: is_bored("The sky is blue. The sun is shining. I love this wea]
+[93/164] HumanEval-92 pass        60 tok    6.7s
+[94/164] HumanEval-93 fail       141 tok   12.6s  [failed: encode('This is a message')]
+[95/164] HumanEval-94 pass       132 tok   14.0s
+[96/164] HumanEval-95 pass       107 tok   10.6s
+[97/164] HumanEval-96 fail       101 tok   10.1s
+[98/164] HumanEval-97 fail        28 tok    3.8s
+[99/164] HumanEval-98 pass        68 tok    6.9s
+[100/164] HumanEval-99 fail        67 tok    7.3s
+[101/164] HumanEval-100 pass        48 tok    5.5s
+[102/164] HumanEval-101 fail        25 tok    3.7s
+[103/164] HumanEval-102 pass        77 tok    7.5s
+[104/164] HumanEval-103 fail        70 tok    7.6s
+[105/164] HumanEval-104 pass        74 tok    7.1s
+[106/164] HumanEval-105 pass       149 tok   14.6s
+[107/164] HumanEval-106 pass        69 tok    7.1s
+[108/164] HumanEval-107 pass        93 tok    9.7s
+[109/164] HumanEval-108 fail       116 tok   12.0s
+[110/164] HumanEval-109 pass        72 tok    8.8s
+[111/164] HumanEval-110 pass       150 tok   14.2s
+[112/164] HumanEval-111 pass        69 tok    7.5s
+[113/164] HumanEval-112 pass        73 tok    8.2s
+[114/164] HumanEval-113 fail        78 tok    8.2s
+[115/164] HumanEval-114 pass        61 tok    6.3s
+[116/164] HumanEval-115 fail        55 tok    8.0s
+[117/164] HumanEval-116 pass        43 tok    5.2s  [failed: sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]; failed: sort_a]
+[118/164] HumanEval-117 fail        91 tok    9.7s
+[119/164] HumanEval-118 fail       138 tok   13.0s
+[120/164] HumanEval-119 pass       169 tok   15.8s
+[121/164] HumanEval-120 fail        98 tok   11.8s
+[122/164] HumanEval-121 pass        53 tok   50.5s
+[123/164] HumanEval-122 pass        52 tok    6.1s
+[124/164] HumanEval-123 pass        82 tok    9.2s
+[125/164] HumanEval-124 fail       276 tok   24.8s
+[126/164] HumanEval-125 pass        92 tok    9.2s
+[127/164] HumanEval-126 fail        86 tok    9.6s
+[128/164] HumanEval-127 pass       198 tok   18.7s
+[129/164] HumanEval-128 pass        96 tok    9.4s
+[130/164] HumanEval-129 pass       328 tok   30.4s
+[131/164] HumanEval-130 error     1536 tok  131.5s  [SyntaxError: invalid syntax (<solution>, line 1)]
+[132/164] HumanEval-131 pass        66 tok    7.4s
+[133/164] HumanEval-132 fail        66 tok    8.0s
+[134/164] HumanEval-133 pass        45 tok    5.7s
+[135/164] HumanEval-134 fail        64 tok    7.3s
+[136/164] HumanEval-135 fail        43 tok    5.2s
+[137/164] HumanEval-136 pass        91 tok    9.4s
+[138/164] HumanEval-137 pass       124 tok   55.6s
+[139/164] HumanEval-138 pass        28 tok    3.5s
+[140/164] HumanEval-139 pass        45 tok    5.1s
+[141/164] HumanEval-140 fail        56 tok    5.4s
+[142/164] HumanEval-141 fail       191 tok   17.8s
+[143/164] HumanEval-142 fail        66 tok    7.7s
+[144/164] HumanEval-143 pass        92 tok    9.3s
+[145/164] HumanEval-144 pass        83 tok    8.7s
+[146/164] HumanEval-145 fail        52 tok    5.9s  [failed: order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+[147/164] HumanEval-146 pass        98 tok   10.7s
+[148/164] HumanEval-147 pass       104 tok   11.3s
+[149/164] HumanEval-148 pass       137 tok   13.4s
+[150/164] HumanEval-149 pass        70 tok    7.8s
+[151/164] HumanEval-150 pass        64 tok    6.6s
+[152/164] HumanEval-151 pass        56 tok    6.6s
+[153/164] HumanEval-152 pass        36 tok    5.4s
+[154/164] HumanEval-153 pass       142 tok   14.9s
+[155/164] HumanEval-154 fail        59 tok    6.6s
+[156/164] HumanEval-155 pass        66 tok    6.7s
+[157/164] HumanEval-156 pass       148 tok   13.6s
+[158/164] HumanEval-157 pass       111 tok   10.8s
+[159/164] HumanEval-158 pass        78 tok    9.6s
+[160/164] HumanEval-159 pass        98 tok   13.1s
+[161/164] HumanEval-160 fail       110 tok   11.5s
+[162/164] HumanEval-161 pass        80 tok    8.2s
+[163/164] HumanEval-162 pass        66 tok    6.9s  [refused: import not allowed: hashlib]
+[164/164] HumanEval-163 fail        64 tok    6.9s
+qwen2.5-coder:14b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen2.5-coder_14b.jsonl
+[1/164] HumanEval-0 pass       104 tok   23.2s
+[2/164] HumanEval-1 error      106 tok   17.6s  [NameError: name 'List' is not defined]
+[3/164] HumanEval-2 pass        96 tok   16.3s
+[4/164] HumanEval-3 pass        54 tok   59.9s
+[5/164] HumanEval-4 pass        53 tok   10.3s
+[6/164] HumanEval-5 pass        95 tok   17.0s
+[7/164] HumanEval-6 error      109 tok   18.2s  [NameError: name 'List' is not defined]
+[8/164] HumanEval-7 pass        57 tok   10.6s
+[9/164] HumanEval-8 pass       130 tok   21.3s
+[10/164] HumanEval-9 error       76 tok   13.1s  [NameError: name 'List' is not defined]
+[11/164] HumanEval-10 pass       201 tok   31.8s
+[12/164] HumanEval-11 pass       159 tok   26.5s
+[13/164] HumanEval-12 pass        40 tok    8.0s
+[14/164] HumanEval-13 pass        54 tok   10.4s
+[15/164] HumanEval-14 pass        59 tok   10.6s
+[16/164] HumanEval-15 pass        29 tok    6.5s
+[17/164] HumanEval-16 pass        24 tok    5.2s
+[18/164] HumanEval-17 error      115 tok   20.1s  [NameError: name 'List' is not defined]
+[19/164] HumanEval-18 pass        85 tok   14.3s
+[20/164] HumanEval-19 pass       164 tok   25.8s
+[21/164] HumanEval-20 pass       135 tok   22.5s
+[22/164] HumanEval-21 pass        87 tok   16.5s
+[23/164] HumanEval-22 fail        52 tok   64.8s
+[24/164] HumanEval-23 pass        27 tok    5.5s
+[25/164] HumanEval-24 pass        66 tok   11.9s
+[26/164] HumanEval-25 pass       236 tok   37.6s
+[27/164] HumanEval-26 pass       114 tok   19.3s
+[28/164] HumanEval-27 pass        36 tok    9.5s
+[29/164] HumanEval-28 pass        38 tok    8.7s
+[30/164] HumanEval-29 pass        59 tok   11.6s
+[31/164] HumanEval-30 pass        36 tok    8.7s
+[32/164] HumanEval-31 pass       118 tok   20.4s
+[33/164] HumanEval-32 error      314 tok   51.3s
+[34/164] HumanEval-33 pass       162 tok   27.6s
+[35/164] HumanEval-34 pass        27 tok    6.2s
+[36/164] HumanEval-35 pass        40 tok    7.6s
+[37/164] HumanEval-36 pass        63 tok   12.4s
+[38/164] HumanEval-37 pass       125 tok   22.0s
+[39/164] HumanEval-38 pass       135 tok   25.0s  [failed: callable(encode_cyclic)]
+[40/164] HumanEval-39 pass       215 tok   84.0s
+[41/164] HumanEval-40 pass       129 tok   22.8s
+[42/164] HumanEval-41 pass       155 tok   27.0s
+[43/164] HumanEval-42 pass        24 tok    5.7s
+[44/164] HumanEval-43 pass        43 tok    8.8s
+[45/164] HumanEval-44 pass       117 tok   19.3s
+[46/164] HumanEval-45 pass        38 tok    7.3s
+[47/164] HumanEval-46 pass       154 tok   25.8s
+[48/164] HumanEval-47 pass        97 tok   15.8s
+[49/164] HumanEval-48 fail        57 tok   10.0s
+[50/164] HumanEval-49 pass        29 tok    6.4s
+[51/164] HumanEval-50 pass        64 tok   12.0s  [failed: callable(encode_shift)]
+[52/164] HumanEval-51 pass        37 tok    7.6s
+[53/164] HumanEval-52 pass        30 tok    6.5s
+[54/164] HumanEval-53 pass        33 tok    6.6s
+[55/164] HumanEval-54 pass        32 tok    6.9s
+[56/164] HumanEval-55 pass        80 tok   13.3s
+[57/164] HumanEval-56 pass        72 tok   12.4s
+[58/164] HumanEval-57 pass        52 tok    9.3s
+[59/164] HumanEval-58 pass        52 tok    9.6s
+[60/164] HumanEval-59 pass       247 tok   37.8s
+[61/164] HumanEval-60 pass        30 tok   57.9s
+[62/164] HumanEval-61 pass        72 tok   12.4s
+[63/164] HumanEval-62 pass        27 tok    6.7s
+[64/164] HumanEval-63 pass       138 tok   23.3s
+[65/164] HumanEval-64 pass        58 tok   11.8s
+[66/164] HumanEval-65 pass        64 tok   11.6s
+[67/164] HumanEval-66 pass        25 tok    7.0s
+[68/164] HumanEval-67 pass        83 tok   17.2s
+[69/164] HumanEval-68 pass        85 tok   18.7s
+[70/164] HumanEval-69 pass       117 tok   20.9s
+[71/164] HumanEval-70 pass        52 tok   11.3s
+[72/164] HumanEval-71 pass       131 tok   23.1s
+[73/164] HumanEval-72 pass        29 tok    9.4s
+[74/164] HumanEval-73 pass        68 tok   14.1s
+[75/164] HumanEval-74 fail        72 tok   15.4s
+[76/164] HumanEval-75 pass       188 tok   30.7s
+[77/164] HumanEval-76 fail        58 tok   12.9s
+[78/164] HumanEval-77 pass        48 tok   10.5s
+[79/164] HumanEval-78 pass        80 tok   19.6s
+[80/164] HumanEval-79 pass        62 tok   13.2s
+[81/164] HumanEval-80 pass        77 tok   65.9s
+[82/164] HumanEval-81 fail       256 tok   44.0s
+[83/164] HumanEval-82 pass       116 tok   20.8s
+[84/164] HumanEval-83 pass       141 tok   23.8s
+[85/164] HumanEval-84 pass        59 tok   12.2s
+[86/164] HumanEval-85 pass        39 tok    8.4s
+[87/164] HumanEval-86 pass        40 tok    9.5s
+[88/164] HumanEval-87 pass        90 tok   18.7s
+[89/164] HumanEval-88 pass        71 tok   15.7s
+[90/164] HumanEval-89 fail       107 tok   19.0s
+[91/164] HumanEval-90 pass        60 tok   12.1s
+[92/164] HumanEval-91 fail        51 tok   11.0s  [failed: is_bored("The sky is blue. The sun is shining. I love this wea]
+[93/164] HumanEval-92 pass        84 tok   17.1s
+[94/164] HumanEval-93 fail       187 tok   31.7s  [failed: encode('This is a message')]
+[95/164] HumanEval-94 pass       229 tok   40.9s
+[96/164] HumanEval-95 pass        71 tok   65.5s
+[97/164] HumanEval-96 error       91 tok   17.7s
+[98/164] HumanEval-97 pass       148 tok   25.6s
+[99/164] HumanEval-98 pass        56 tok   11.2s
+[100/164] HumanEval-99 pass        46 tok   10.9s
+[101/164] HumanEval-100 pass        72 tok   14.8s
+[102/164] HumanEval-101 pass        68 tok   13.8s
+[103/164] HumanEval-102 pass        60 tok   11.7s
+[104/164] HumanEval-103 pass        59 tok   12.7s
+[105/164] HumanEval-104 pass        62 tok   11.5s
+[106/164] HumanEval-105 pass       194 tok   35.0s
+[107/164] HumanEval-106 pass       110 tok   20.3s
+[108/164] HumanEval-107 pass       101 tok   20.4s
+[109/164] HumanEval-108 pass        83 tok   15.7s
+[110/164] HumanEval-109 pass        77 tok   18.3s
+[111/164] HumanEval-110 fail       109 tok   20.5s
+[112/164] HumanEval-111 pass       148 tok   25.7s
+[113/164] HumanEval-112 pass        96 tok   69.2s
+[114/164] HumanEval-113 pass        83 tok   16.9s
+[115/164] HumanEval-114 pass        61 tok   12.0s
+[116/164] HumanEval-115 error       52 tok   14.4s
+[117/164] HumanEval-116 pass        29 tok    8.4s  [failed: sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]; failed: sort_a]
+[118/164] HumanEval-117 pass        79 tok   16.4s
+[119/164] HumanEval-118 pass        96 tok   18.1s
+[120/164] HumanEval-119 pass       108 tok   20.7s
+[121/164] HumanEval-120 pass        50 tok   12.4s
+[122/164] HumanEval-121 pass        38 tok    8.6s
+[123/164] HumanEval-122 pass        36 tok    9.7s
+[124/164] HumanEval-123 pass       111 tok   22.4s
+[125/164] HumanEval-124 fail       301 tok   50.6s
+[126/164] HumanEval-125 pass        67 tok   13.9s
+[127/164] HumanEval-126 pass       104 tok   20.8s
+[128/164] HumanEval-127 fail       227 tok   39.6s
+[129/164] HumanEval-128 pass        98 tok   72.7s
+[130/164] HumanEval-129 pass       242 tok   44.3s
+[131/164] HumanEval-130 error      219 tok   38.8s
+[132/164] HumanEval-131 pass        75 tok   14.2s
+[133/164] HumanEval-132 fail        82 tok   16.5s
+[134/164] HumanEval-133 pass        29 tok    8.5s
+[135/164] HumanEval-134 fail       111 tok   20.2s
+[136/164] HumanEval-135 pass        50 tok   10.8s
+[137/164] HumanEval-136 pass        91 tok   17.8s
+[138/164] HumanEval-137 pass       109 tok   19.9s
+[139/164] HumanEval-138 pass       133 tok   22.4s
+[140/164] HumanEval-139 pass       122 tok   22.0s
+[141/164] HumanEval-140 pass        61 tok   11.4s
+[142/164] HumanEval-141 pass       170 tok   32.1s
+[143/164] HumanEval-142 pass        74 tok   67.7s
+[144/164] HumanEval-143 pass       166 tok   28.9s
+[145/164] HumanEval-144 pass        76 tok   16.3s
+[146/164] HumanEval-145 fail        50 tok   11.3s  [failed: order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+[147/164] HumanEval-146 pass        94 tok   18.8s
+[148/164] HumanEval-147 pass       195 tok   34.1s
+[149/164] HumanEval-148 pass       125 tok   24.4s
+[150/164] HumanEval-149 pass        87 tok   16.9s
+[151/164] HumanEval-150 pass       124 tok   21.3s
+[152/164] HumanEval-151 pass        41 tok   10.1s
+[153/164] HumanEval-152 pass        29 tok    9.5s
+[154/164] HumanEval-153 pass        81 tok   18.2s
+[155/164] HumanEval-154 fail        73 tok   14.3s
+[156/164] HumanEval-155 pass        76 tok   13.6s
+[157/164] HumanEval-156 pass       198 tok   32.9s
+[158/164] HumanEval-157 pass        79 tok   15.3s
+[159/164] HumanEval-158 pass        81 tok   68.2s
+[160/164] HumanEval-159 pass        65 tok   16.5s
+[161/164] HumanEval-160 fail       128 tok   25.1s
+[162/164] HumanEval-161 pass        50 tok   11.0s
+[163/164] HumanEval-162 pass        43 tok    9.4s  [refused: import not allowed: hashlib]
+[164/164] HumanEval-163 fail        52 tok   11.3s
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/378] Mbpp-2 pass        25 tok    3.6s
+[2/378] Mbpp-3 pass       112 tok    6.2s
+[3/378] Mbpp-4 pass        27 tok    2.3s
+[4/378] Mbpp-6 fail        46 tok    2.6s
+[5/378] Mbpp-7 pass        55 tok    4.1s
+[6/378] Mbpp-8 pass        22 tok    2.7s
+[7/378] Mbpp-9 fail       120 tok    6.2s
+[8/378] Mbpp-11 error      113 tok    5.9s  [failed: callable(remove_Occ); failed: remove_Occ("hello","l") == "heo"]
+[9/378] Mbpp-12 pass        38 tok    2.6s
+[10/378] Mbpp-14 fail        28 tok    2.0s
+[11/378] Mbpp-16 error       33 tok    2.2s  [failed: callable(text_lowercase_underscore); failed: text_lowercase_un]
+[12/378] Mbpp-17 pass        25 tok    1.8s
+[13/378] Mbpp-18 pass        39 tok    2.4s
+[14/378] Mbpp-19 pass        20 tok    1.8s
+[15/378] Mbpp-20 pass       163 tok    8.1s
+[16/378] Mbpp-56 pass        43 tok    2.6s
+[17/378] Mbpp-57 pass        60 tok    3.5s
+[18/378] Mbpp-58 pass        46 tok    2.8s
+[19/378] Mbpp-59 pass        23 tok    1.9s
+[20/378] Mbpp-61 fail       157 tok    8.0s
+[21/378] Mbpp-62 pass        15 tok    1.6s
+[22/378] Mbpp-63 fail       163 tok    8.7s  [failed: max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7]
+[23/378] Mbpp-64 error       30 tok    2.5s  [failed: callable(subject_marks); failed: subject_marks([('English', 88]
+[24/378] Mbpp-65 pass        50 tok    3.3s
+[25/378] Mbpp-66 pass        25 tok    2.1s
+[26/378] Mbpp-67 fail       189 tok    9.2s  [failed: bell_number(2)==2]
+[27/378] Mbpp-68 pass        99 tok    5.6s
+[28/378] Mbpp-69 pass        55 tok    3.1s
+[29/378] Mbpp-70 pass        36 tok    2.4s
+[30/378] Mbpp-71 pass       117 tok    6.1s
+[31/378] Mbpp-72 pass       128 tok    7.1s
+[32/378] Mbpp-74 fail       137 tok    7.3s
+[33/378] Mbpp-75 pass        49 tok    3.0s
+[34/378] Mbpp-77 error      122 tok    6.8s  [failed: is_Diff (12345) == False]
+[35/378] Mbpp-79 pass        22 tok    1.8s
+[36/378] Mbpp-80 pass        33 tok    2.1s
+[37/378] Mbpp-82 error       50 tok    2.7s  [failed: callable(volume_sphere)]
+[38/378] Mbpp-84 error      123 tok    6.6s  [failed: sequence(10) == 6]
+[39/378] Mbpp-85 error       46 tok    2.7s  [failed: callable(surfacearea_sphere)]
+[40/378] Mbpp-86 pass        29 tok    2.3s
+[41/378] Mbpp-87 pass        34 tok    2.8s
+[42/378] Mbpp-88 pass        24 tok    2.4s
+[43/378] Mbpp-89 error       86 tok    4.3s
+[44/378] Mbpp-90 pass        21 tok    1.8s
+[45/378] Mbpp-91 fail        21 tok    1.6s  [failed: find_substring(["red", "black", "white", "green", "orange"],"a]
+[46/378] Mbpp-92 fail       118 tok    6.4s
+[47/378] Mbpp-93 pass        17 tok    1.7s
+[48/378] Mbpp-94 pass        29 tok    2.1s
+[49/378] Mbpp-95 pass        27 tok    2.2s
+[50/378] Mbpp-96 pass       111 tok    6.0s
+[51/378] Mbpp-97 pass        50 tok    3.2s
+[52/378] Mbpp-98 error       54 tok    3.0s  [failed: callable(multiply_num)]
+[53/378] Mbpp-99 fail        63 tok    4.1s
+[54/378] Mbpp-100 fail       334 tok   64.8s  [failed: next_smallest_palindrome(99)==101]
+[55/378] Mbpp-101 pass        21 tok    1.9s
+[56/378] Mbpp-102 fail        49 tok    3.6s  [failed: snake_to_camel('python_program')=='PythonProgram']
+[57/378] Mbpp-103 error      123 tok    6.5s  [failed: eulerian_num(3, 1) == 4]
+[58/378] Mbpp-104 fail        34 tok    2.4s  [failed: sort_sublists((["green", "orange"], ["black", "white"], ["whit]
+[59/378] Mbpp-105 pass        15 tok    1.4s
+[60/378] Mbpp-106 pass        19 tok    1.5s
+[61/378] Mbpp-108 pass        60 tok    3.8s
+[62/378] Mbpp-109 fail       114 tok    6.0s
+[63/378] Mbpp-111 pass        83 tok    4.7s
+[64/378] Mbpp-113 fail        67 tok    3.5s
+[65/378] Mbpp-116 pass        22 tok    1.9s
+[66/378] Mbpp-118 fail        16 tok    1.4s
+[67/378] Mbpp-119 fail        80 tok    4.3s
+[68/378] Mbpp-120 pass        55 tok    3.0s
+[69/378] Mbpp-123 fail       206 tok   12.3s  [failed: amicable_numbers_sum(999)==504]
+[70/378] Mbpp-124 error       46 tok    2.8s  [failed: callable(angle_complex)]
+[71/378] Mbpp-125 fail        94 tok    5.5s  [failed: find_length("11000010001") == 6]
+[72/378] Mbpp-126 error      112 tok    5.8s  [failed: sum(10,15) == 6]
+[73/378] Mbpp-127 pass        25 tok    1.8s
+[74/378] Mbpp-128 fail        29 tok    1.9s  [failed: long_words(3,"python is a programming language")==['python','p]
+[75/378] Mbpp-129 pass       180 tok    9.2s
+[76/378] Mbpp-130 pass        31 tok    2.3s
+[77/378] Mbpp-131 fail       118 tok    6.6s  [failed: reverse_vowels("Python") == "Python"]
+[78/378] Mbpp-132 pass        18 tok    1.7s
+[79/378] Mbpp-133 pass        27 tok    1.9s
+[80/378] Mbpp-135 pass        23 tok    1.8s
+[81/378] Mbpp-137 error       99 tok    5.1s  [failed: callable(zero_count)]
+[82/378] Mbpp-138 error     1536 tok   76.5s  [SyntaxError: invalid syntax (<solution>, line 1)]
+[83/378] Mbpp-139 error       67 tok    3.5s  [failed: callable(circle_circumference)]
+[84/378] Mbpp-140 pass        24 tok    2.3s
+[85/378] Mbpp-141 fail       169 tok    9.2s  [failed: pancake_sort([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]]
+[86/378] Mbpp-142 pass        47 tok    2.9s
+[87/378] Mbpp-145 pass        87 tok    4.8s
+[88/378] Mbpp-160 fail       240 tok   12.5s  [failed: find_solution(2, 3, 7) == (2, 1)]
+[89/378] Mbpp-161 pass        28 tok    2.2s
+[90/378] Mbpp-162 pass        48 tok    2.8s
+[91/378] Mbpp-165 error       54 tok    3.1s
+[92/378] Mbpp-166 fail        60 tok    3.4s  [failed: find_even_pair([5, 4, 7, 2, 1]) == 4]
+[93/378] Mbpp-167 pass        42 tok    2.7s
+[94/378] Mbpp-168 pass        17 tok    1.6s
+[95/378] Mbpp-170 pass        24 tok    1.9s
+[96/378] Mbpp-171 pass        26 tok    1.7s
+[97/378] Mbpp-172 error       23 tok    1.8s  [failed: callable(count_occurance); failed: count_occurance("letstdlens]
+[98/378] Mbpp-222 pass        31 tok    2.0s
+[99/378] Mbpp-223 error      126 tok    6.6s
+[100/378] Mbpp-224 pass        26 tok    2.0s
+[101/378] Mbpp-226 pass        38 tok    2.2s
+[102/378] Mbpp-227 pass        24 tok    1.9s
+[103/378] Mbpp-230 pass        20 tok    1.7s
+[104/378] Mbpp-232 pass        28 tok    2.1s
+[105/378] Mbpp-233 error      126 tok    6.8s  [failed: callable(lateralsuface_cylinder)]
+[106/378] Mbpp-234 pass        24 tok    1.8s
+[107/378] Mbpp-235 fail        91 tok    4.7s  [failed: even_bit_set_number(10) == 10]
+[108/378] Mbpp-237 fail        59 tok    4.0s  [failed: check_occurences([(3, 1), (1, 3), (2, 5), (5, 2), (6, 3)] ) ==]
+[109/378] Mbpp-238 pass        37 tok    2.6s
+[110/378] Mbpp-239 error     1536 tok   77.0s  [SyntaxError: invalid syntax (<solution>, line 1)]
+[111/378] Mbpp-240 pass        47 tok    3.0s
+[112/378] Mbpp-242 pass        21 tok    1.9s
+[113/378] Mbpp-244 error       45 tok    2.6s
+[114/378] Mbpp-245 pass       283 tok   15.1s
+[115/378] Mbpp-247 pass       218 tok   11.1s
+[116/378] Mbpp-250 pass        18 tok    1.9s
+[117/378] Mbpp-251 pass        36 tok    2.2s
+[118/378] Mbpp-252 pass        95 tok    5.3s
+[119/378] Mbpp-253 pass        25 tok    2.3s
+[120/378] Mbpp-255 pass        29 tok    2.2s
+[121/378] Mbpp-256 pass       119 tok    5.8s
+[122/378] Mbpp-257 pass        19 tok    1.8s
+[123/378] Mbpp-259 fail       267 tok   13.5s  [failed: maximize_elements(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), ]
+[124/378] Mbpp-260 fail       362 tok   17.4s  [failed: newman_prime(3) == 7]
+[125/378] Mbpp-261 fail        38 tok    2.5s
+[126/378] Mbpp-262 pass        23 tok    2.0s
+[127/378] Mbpp-264 fail        70 tok    3.9s  [failed: dog_age(12)==61]
+[128/378] Mbpp-265 fail        46 tok    3.1s  [failed: list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', ]
+[129/378] Mbpp-266 pass        24 tok    2.0s
+[130/378] Mbpp-267 fail        36 tok    2.3s  [failed: square_Sum(2) == 10]
+[131/378] Mbpp-268 pass        92 tok    5.6s
+[132/378] Mbpp-269 pass        20 tok    1.6s
+[133/378] Mbpp-270 pass        42 tok    2.4s
+[134/378] Mbpp-271 pass        37 tok    2.5s
+[135/378] Mbpp-272 pass        25 tok    1.8s
+[136/378] Mbpp-273 error       32 tok    2.2s  [failed: callable(substract_elements); failed: substract_elements((10, ]
+[137/378] Mbpp-274 pass        79 tok    4.6s
+[138/378] Mbpp-276 error       27 tok    2.0s  [failed: callable(volume_cylinder)]
+[139/378] Mbpp-277 pass        38 tok    2.6s
+[140/378] Mbpp-278 fail        49 tok    3.0s  [failed: count_first_elements((1, 5, 7, (4, 6), 10) ) == 3]
+[141/378] Mbpp-279 fail        47 tok    2.7s  [failed: is_num_decagonal(3) == 27]
+[142/378] Mbpp-280 pass        42 tok    3.0s
+[143/378] Mbpp-281 pass        20 tok    1.7s
+[144/378] Mbpp-282 pass        32 tok    2.1s
+[145/378] Mbpp-283 pass        74 tok    4.1s
+[146/378] Mbpp-284 pass        23 tok    1.8s
+[147/378] Mbpp-285 pass        30 tok    1.9s
+[148/378] Mbpp-286 fail       299 tok   15.7s
+[149/378] Mbpp-287 fail        28 tok    2.1s  [failed: square_Sum(2) == 20]
+[150/378] Mbpp-290 pass        72 tok    4.0s
+[151/378] Mbpp-292 pass        17 tok    1.8s
+[152/378] Mbpp-293 pass        29 tok    1.8s
+[153/378] Mbpp-294 fail        38 tok    2.3s  [failed: max_val(['Python', 3, 2, 4, 5, 'version'])==5]
+[154/378] Mbpp-296 pass       321 tok   16.2s
+[155/378] Mbpp-297 pass        50 tok    3.4s
+[156/378] Mbpp-299 error      273 tok   13.7s  [IndentationError: expected an indented block after 'else' statement on]
+[157/378] Mbpp-300 error      279 tok   14.0s  [failed: callable(count_binary_seq)]
+[158/378] Mbpp-301 pass        68 tok    3.8s
+[159/378] Mbpp-305 fail        42 tok    2.6s  [failed: start_withp(["Python PHP", "Java JavaScript", "c c++"])==('Pyt]
+[160/378] Mbpp-306 fail       437 tok   23.2s  [failed: max_sum_increasing_subseq([1, 101, 2, 3, 100, 4, 5 ], 7, 4, 6)]
+[161/378] Mbpp-308 pass       216 tok   11.1s
+[162/378] Mbpp-309 pass        21 tok    1.8s
+[163/378] Mbpp-310 fail        16 tok    1.5s  [failed: string_to_tuple("python 3.0")==('p', 'y', 't', 'h', 'o', 'n', ]
+[164/378] Mbpp-311 error      289 tok   13.9s  [failed: set_left_most_unset_bit(10) == 14]
+[165/378] Mbpp-312 error      118 tok    6.0s  [failed: callable(volume_cone)]
+[166/378] Mbpp-388 error       30 tok    2.2s  [failed: callable(highest_Power_of_2); failed: highest_Power_of_2(10) =]
+[167/378] Mbpp-389 pass        74 tok    4.1s
+[168/378] Mbpp-390 pass        26 tok    2.0s
+[169/378] Mbpp-391 error       53 tok    3.4s
+[170/378] Mbpp-392 pass        82 tok    4.9s
+[171/378] Mbpp-394 pass        21 tok    1.8s
+[172/378] Mbpp-395 pass        52 tok    3.1s
+[173/378] Mbpp-397 error       25 tok    2.2s  [failed: median_numbers(25,55,65)==55.0]
+[174/378] Mbpp-398 error       42 tok    2.5s
+[175/378] Mbpp-404 pass        21 tok    1.8s
+[176/378] Mbpp-405 pass        21 tok    1.6s
+[177/378] Mbpp-406 pass        26 tok    1.7s
+[178/378] Mbpp-409 pass        27 tok    2.0s
+[179/378] Mbpp-410 fail        56 tok    3.5s
+[180/378] Mbpp-412 pass        27 tok    2.2s
+[181/378] Mbpp-413 pass        32 tok    2.3s
+[182/378] Mbpp-414 pass        59 tok    3.6s
+[183/378] Mbpp-415 fail       306 tok   15.4s  [failed: max_Product([1,2,3,4,7,0,8,4]) == (7,8)]
+[184/378] Mbpp-418 pass        18 tok    1.8s
+[185/378] Mbpp-419 fail        46 tok    2.8s  [failed: round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20,]
+[186/378] Mbpp-420 fail        38 tok    2.4s  [failed: cube_Sum(2) == 72]
+[187/378] Mbpp-421 error       28 tok    2.2s  [failed: concatenate_tuple(("ID", "is", 4, "UTS") ) == 'ID-is-4-UTS']
+[188/378] Mbpp-422 pass        35 tok    2.7s
+[189/378] Mbpp-424 pass        24 tok    1.9s
+[190/378] Mbpp-425 pass        42 tok    2.5s
+[191/378] Mbpp-426 pass        28 tok    2.2s
+[192/378] Mbpp-427 fail        37 tok    2.6s
+[193/378] Mbpp-428 pass       105 tok    6.0s
+[194/378] Mbpp-429 pass        32 tok    2.3s
+[195/378] Mbpp-430 fail       170 tok    8.5s  [failed: parabola_directrix(5,3,2)==-198]
+[196/378] Mbpp-432 fail        55 tok    3.2s  [failed: median_trapezium(15,25,35)==20]
+[197/378] Mbpp-433 fail        70 tok    4.0s
+[198/378] Mbpp-435 pass        26 tok    2.1s
+[199/378] Mbpp-436 pass        25 tok    1.8s
+[200/378] Mbpp-437 error       30 tok    2.3s  [failed: remove_odd("python")==("yhn")]
+[201/378] Mbpp-439 pass        24 tok    1.9s
+[202/378] Mbpp-440 fail       141 tok    8.1s
+[203/378] Mbpp-441 pass        21 tok    1.7s
+[204/378] Mbpp-445 pass        61 tok    3.6s
+[205/378] Mbpp-446 error       29 tok    2.3s  [failed: callable(count_Occurrence); failed: count_Occurrence(('a', 'a']
+[206/378] Mbpp-447 pass        21 tok    2.2s
+[207/378] Mbpp-448 fail        94 tok    4.8s
+[208/378] Mbpp-450 pass        27 tok    2.0s
+[209/378] Mbpp-451 pass        24 tok    1.8s
+[210/378] Mbpp-453 pass        99 tok    6.1s
+[211/378] Mbpp-454 fail        31 tok    1.8s  [failed: text_match_wordz("pythonz.")==True]
+[212/378] Mbpp-455 pass       137 tok    6.9s
+[213/378] Mbpp-456 pass        25 tok    2.2s
+[214/378] Mbpp-457 pass        69 tok    3.7s
+[215/378] Mbpp-458 pass        18 tok    1.7s
+[216/378] Mbpp-459 fail        31 tok    1.8s
+[217/378] Mbpp-460 error       24 tok    1.8s  [failed: callable(Extract); failed: Extract([[1, 2], [3, 4, 5], [6, 7, ]
+[218/378] Mbpp-462 fail        51 tok    3.8s  [failed: combinations_list(['orange', 'red', 'green', 'blue'])==[[], [']
+[219/378] Mbpp-463 pass       122 tok    6.4s
+[220/378] Mbpp-465 pass        30 tok    2.2s
+[221/378] Mbpp-468 fail        88 tok    4.9s  [failed: max_product([3, 100, 4, 5, 150, 6]) == 3000]
+[222/378] Mbpp-470 pass        30 tok    2.1s
+[223/378] Mbpp-471 pass        43 tok    2.5s
+[224/378] Mbpp-472 pass       108 tok    5.8s
+[225/378] Mbpp-473 pass       104 tok    6.0s
+[226/378] Mbpp-474 pass        35 tok    2.5s
+[227/378] Mbpp-475 fail        24 tok    1.9s  [failed: sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Ch]
+[228/378] Mbpp-476 pass        20 tok    1.6s
+[229/378] Mbpp-477 pass        15 tok    1.3s
+[230/378] Mbpp-478 pass        27 tok    1.8s
+[231/378] Mbpp-479 pass        19 tok    1.6s
+[232/378] Mbpp-554 pass        26 tok    1.8s
+[233/378] Mbpp-555 pass        47 tok    2.6s
+[234/378] Mbpp-556 fail        86 tok    4.9s
+[235/378] Mbpp-557 pass        16 tok    1.7s
+[236/378] Mbpp-558 fail       133 tok    6.8s
+[237/378] Mbpp-559 error       69 tok    4.5s
+[238/378] Mbpp-560 pass        64 tok    4.2s
+[239/378] Mbpp-562 pass        23 tok    2.0s
+[240/378] Mbpp-563 pass        25 tok    1.6s
+[241/378] Mbpp-564 fail        65 tok    3.6s
+[242/378] Mbpp-565 pass        19 tok    1.8s
+[243/378] Mbpp-566 pass        28 tok    1.7s
+[244/378] Mbpp-567 error       34 tok    2.3s  [failed: callable(issort_list); failed: issort_list([1,2,4,6,8,10,12,14]
+[245/378] Mbpp-568 error       20 tok    1.9s  [SyntaxError: closing parenthesis '}' does not match opening parenthesi]
+[246/378] Mbpp-569 fail        34 tok    2.7s  [failed: sort_sublists([['green', 'orange'], ['black', 'white'], ['whit]
+[247/378] Mbpp-572 fail        17 tok    1.8s  [failed: two_unique_nums([1,2,3,2,3,4,5]) == [1, 4, 5]]
+[248/378] Mbpp-573 pass        40 tok    2.5s
+[249/378] Mbpp-576 error       65 tok    4.1s  [failed: callable(is_Sub_Array); failed: is_Sub_Array([1,4,3,5],[1,2]) ]
+[250/378] Mbpp-577 error       62 tok    3.5s
+[251/378] Mbpp-578 pass        56 tok    3.9s
+[252/378] Mbpp-579 pass        50 tok    3.4s
+[253/378] Mbpp-580 pass       101 tok    5.6s
+[254/378] Mbpp-581 fail       116 tok    6.0s  [failed: surface_Area(3,4) == 33]
+[255/378] Mbpp-583 pass        33 tok    2.2s
+[256/378] Mbpp-585 pass        61 tok    3.6s
+[257/378] Mbpp-586 pass        52 tok    3.3s
+[258/378] Mbpp-587 pass        15 tok    1.7s
+[259/378] Mbpp-588 pass        19 tok    1.4s
+[260/378] Mbpp-589 fail        90 tok    4.7s
+[261/378] Mbpp-590 fail        42 tok    2.7s  [failed: polar_rect(3,4)==((5.0, 0.9272952180016122), (-2+2.44929359829]
+[262/378] Mbpp-591 pass        41 tok    2.7s
+[263/378] Mbpp-592 error      115 tok    7.0s  [failed: callable(sum_Of_product); failed: sum_Of_product(3) == 15]
+[264/378] Mbpp-593 fail        56 tok    3.1s  [failed: removezero_ip("216.08.094.196")==('216.8.94.196')]
+[265/378] Mbpp-594 fail       111 tok    6.3s  [failed: diff_even_odd([1,3,5,7,4,1,6,8])==3]
+[266/378] Mbpp-596 pass        20 tok    1.9s  [refused: import not allowed: sys]
+[267/378] Mbpp-597 fail       332 tok   16.1s  [failed: find_kth([2, 3, 6, 7, 9], [1, 4, 8, 10], 5) == 6]
+[268/378] Mbpp-598 pass        85 tok    5.1s
+[269/378] Mbpp-599 pass        39 tok    2.4s
+[270/378] Mbpp-600 pass        26 tok    1.9s
+[271/378] Mbpp-602 fail        46 tok    3.0s
+[272/378] Mbpp-603 fail       187 tok    9.7s  [failed: get_ludic(10) == [1, 2, 3, 5, 7]]
+[273/378] Mbpp-604 pass        25 tok    2.0s
+[274/378] Mbpp-605 pass        86 tok    4.4s
+[275/378] Mbpp-606 pass        22 tok    1.9s
+[276/378] Mbpp-607 pass        44 tok    2.6s
+[277/378] Mbpp-608 pass       167 tok    9.2s
+[278/378] Mbpp-610 fail        42 tok    2.7s  [failed: remove_kth_element([1,1,2,3,4,4,5,1],3)==[1, 1, 3, 4, 4, 5, 1]]
+[279/378] Mbpp-611 pass        24 tok    2.1s
+[280/378] Mbpp-612 pass        73 tok    4.2s
+[281/378] Mbpp-614 error       34 tok    2.2s  [failed: callable(cummulative_sum); failed: cummulative_sum([(1, 3), (5]
+[282/378] Mbpp-615 fail        26 tok    2.3s  [failed: average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39]
+[283/378] Mbpp-616 pass        29 tok    2.1s
+[284/378] Mbpp-618 pass        36 tok    2.4s
+[285/378] Mbpp-619 pass        46 tok    3.7s
+[286/378] Mbpp-620 fail        81 tok    4.5s
+[287/378] Mbpp-622 fail       190 tok   10.1s  [failed: get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.]
+[288/378] Mbpp-623 pass        23 tok    2.3s
+[289/378] Mbpp-624 pass        15 tok    1.2s
+[290/378] Mbpp-626 fail       104 tok    5.8s
+[291/378] Mbpp-628 pass        25 tok    1.9s
+[292/378] Mbpp-629 error       26 tok    1.8s  [failed: callable(Split); failed: Split([1,2,3,4,5]) == [2,4]]
+[293/378] Mbpp-630 fail       117 tok    6.2s  [failed: get_coordinates((3, 4)) == [[2, 3], [2, 4], [2, 5], [3, 3], [3]
+[294/378] Mbpp-631 fail        22 tok    1.8s  [failed: replace_spaces('Jumanji The Jungle') == 'Jumanji_The_Jungle']
+[295/378] Mbpp-632 pass        44 tok    2.5s
+[296/378] Mbpp-633 error       71 tok    4.4s  [failed: callable(pair_xor_Sum); failed: pair_xor_Sum([5,9,7,6],4) == 4]
+[297/378] Mbpp-635 pass        65 tok    3.9s
+[298/378] Mbpp-637 pass        26 tok    2.1s
+[299/378] Mbpp-638 fail       207 tok   10.3s  [failed: wind_chill(120,35)==40]
+[300/378] Mbpp-639 error       29 tok    2.3s  [failed: callable(sample_nam); failed: sample_nam(['sally', 'Dylan', 'r]
+[301/378] Mbpp-641 fail        63 tok    4.5s  [failed: is_nonagonal(10) == 325]
+[302/378] Mbpp-643 fail        33 tok    2.3s
+[303/378] Mbpp-644 fail        74 tok    4.2s  [failed: reverse_Array_Upto_K([1, 2, 3, 4, 5, 6],4) == [4, 3, 2, 1, 5, ]
+[304/378] Mbpp-720 pass        22 tok    2.1s
+[305/378] Mbpp-721 fail       459 tok   22.8s
+[306/378] Mbpp-722 fail        59 tok    3.7s  [failed: filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9,]
+[307/378] Mbpp-723 pass        37 tok    2.8s
+[308/378] Mbpp-724 pass        33 tok    2.2s
+[309/378] Mbpp-725 pass        27 tok    2.1s
+[310/378] Mbpp-726 pass        34 tok    2.4s
+[311/378] Mbpp-728 pass        28 tok    2.3s
+[312/378] Mbpp-730 pass        45 tok    3.0s
+[313/378] Mbpp-731 pass        35 tok    2.4s
+[314/378] Mbpp-732 pass        27 tok    2.1s
+[315/378] Mbpp-733 pass        54 tok    3.4s
+[316/378] Mbpp-734 error       65 tok    3.9s  [failed: callable(sum_Of_Subarray_Prod); failed: sum_Of_Subarray_Prod([]
+[317/378] Mbpp-735 fail       177 tok    9.0s
+[318/378] Mbpp-736 pass        29 tok    2.3s
+[319/378] Mbpp-737 error       54 tok    3.0s  [failed: callable(check_str)]
+[320/378] Mbpp-739 fail       203 tok   10.3s  [failed: find_Index(2) == 4]
+[321/378] Mbpp-740 pass        57 tok    3.8s
+[322/378] Mbpp-741 error       30 tok    2.4s  [failed: callable(all_Characters_Same); failed: all_Characters_Same("py]
+[323/378] Mbpp-742 pass        82 tok    4.9s
+[324/378] Mbpp-743 error       46 tok    3.4s
+[325/378] Mbpp-744 pass        17 tok    1.9s
+[326/378] Mbpp-745 pass       103 tok    6.3s
+[327/378] Mbpp-748 fail        34 tok    2.4s
+[328/378] Mbpp-749 fail        31 tok    2.5s  [failed: sort_numeric_strings( ['4','12','45','7','0','100','200','-12']
+[329/378] Mbpp-750 pass        21 tok    1.7s
+[330/378] Mbpp-751 error      142 tok    7.4s  [failed: check_min_heap([1, 2, 3, 4, 5, 6]) == True]
+[331/378] Mbpp-752 fail        92 tok    5.4s  [failed: jacobsthal_num(5) == 11]
+[332/378] Mbpp-753 fail        50 tok    3.1s
+[333/378] Mbpp-754 fail        45 tok    3.3s  [failed: extract_index_list([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 5, 7]]
+[334/378] Mbpp-755 pass        90 tok    5.1s
+[335/378] Mbpp-757 fail        60 tok    3.5s
+[336/378] Mbpp-758 pass        69 tok    4.6s
+[337/378] Mbpp-759 fail        79 tok    4.9s
+[338/378] Mbpp-760 error       20 tok    1.7s  [failed: callable(unique_Element); failed: unique_Element([1,1,1]) == T]
+[339/378] Mbpp-762 error      130 tok    6.4s  [failed: callable(check_monthnumber_number); failed: check_monthnumber_]
+[340/378] Mbpp-763 error       95 tok    5.2s  [failed: find_min_diff((1,5,3,19,18,25),6) == 1]
+[341/378] Mbpp-764 pass        23 tok    1.9s
+[342/378] Mbpp-765 no_code   1536 tok   75.6s  [no code block]
+[343/378] Mbpp-766 pass        33 tok    2.7s
+[344/378] Mbpp-767 pass        83 tok    4.7s
+[345/378] Mbpp-769 fail        29 tok    2.1s  [failed: (Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35])) == [10, 20,]
+[346/378] Mbpp-770 pass        31 tok    1.9s
+[347/378] Mbpp-771 fail       168 tok    9.1s
+[348/378] Mbpp-772 fail        80 tok    4.3s
+[349/378] Mbpp-773 error       51 tok    2.9s  [failed: callable(occurance_substring); failed: occurance_substring('py]
+[350/378] Mbpp-775 pass        44 tok    2.7s
+[351/378] Mbpp-777 fail        67 tok    4.1s  [failed: find_sum([1,2,3,1,1,4,5,6]) == 21]
+[352/378] Mbpp-778 pass        83 tok    5.2s
+[353/378] Mbpp-780 fail        80 tok    4.5s  [failed: find_combinations([(2, 4), (6, 7), (5, 1), (6, 10)]) == [(8, 1]
+[354/378] Mbpp-781 error       99 tok    5.5s  [failed: callable(count_divisors)]
+[355/378] Mbpp-782 pass        81 tok    4.2s
+[356/378] Mbpp-784 fail        91 tok    4.8s  [failed: mul_even_odd([1,3,5,7,4,1,6,8])==4]
+[357/378] Mbpp-785 pass        26 tok    2.1s
+[358/378] Mbpp-786 pass        31 tok    2.1s
+[359/378] Mbpp-787 error       39 tok    2.3s  [failed: callable(text_match_three)]
+[360/378] Mbpp-788 pass        22 tok    1.8s
+[361/378] Mbpp-790 fail        54 tok    2.9s
+[362/378] Mbpp-791 pass        52 tok    3.1s
+[363/378] Mbpp-792 fail        19 tok    2.0s
+[364/378] Mbpp-793 pass        62 tok    3.1s
+[365/378] Mbpp-794 error       33 tok    2.2s  [failed: callable(text_starta_endb)]
+[366/378] Mbpp-796 pass        16 tok    1.5s
+[367/378] Mbpp-797 pass       203 tok    9.8s
+[368/378] Mbpp-798 pass        15 tok    1.4s
+[369/378] Mbpp-799 pass       140 tok    6.8s
+[370/378] Mbpp-800 pass        23 tok    1.8s
+[371/378] Mbpp-801 fail        23 tok    1.7s  [failed: test_three_equal(1,1,1) == 3]
+[372/378] Mbpp-803 pass        47 tok    2.6s
+[373/378] Mbpp-804 pass        40 tok    2.6s
+[374/378] Mbpp-805 pass        19 tok    2.0s
+[375/378] Mbpp-806 fail        76 tok    3.8s
+[376/378] Mbpp-807 pass        39 tok    2.4s
+[377/378] Mbpp-808 pass        19 tok    1.7s
+[378/378] Mbpp-809 fail        33 tok    2.0s  [failed: check_smaller((1, 2, 3), (2, 3, 4)) == False]
+qwen3:8b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen3_8b.jsonl
+[1/378] Mbpp-2 pass        26 tok    4.6s
+[2/378] Mbpp-3 pass        88 tok    8.9s
+[3/378] Mbpp-4 pass        27 tok    3.7s
+[4/378] Mbpp-6 fail        37 tok    4.4s
+[5/378] Mbpp-7 pass        31 tok    3.8s
+[6/378] Mbpp-8 pass        22 tok    3.6s
+[7/378] Mbpp-9 pass        59 tok    6.3s
+[8/378] Mbpp-11 error       84 tok    8.6s  [failed: callable(remove_Occ); failed: remove_Occ("hello","l") == "heo"]
+[9/378] Mbpp-12 pass        22 tok    3.4s
+[10/378] Mbpp-14 fail        35 tok    4.0s
+[11/378] Mbpp-16 pass        35 tok    4.2s
+[12/378] Mbpp-17 pass        20 tok    3.2s
+[13/378] Mbpp-18 pass        32 tok    4.0s
+[14/378] Mbpp-19 pass        52 tok    5.8s
+[15/378] Mbpp-20 pass       124 tok   11.6s
+[16/378] Mbpp-56 pass        33 tok    3.8s
+[17/378] Mbpp-57 error       56 tok    6.2s  [failed: callable(find_Max_Num); failed: find_Max_Num([1,2,3]) == 321]
+[18/378] Mbpp-58 pass        39 tok    4.5s
+[19/378] Mbpp-59 error       27 tok    3.5s  [failed: callable(is_octagonal); failed: is_octagonal(5) == 65]
+[20/378] Mbpp-61 error      130 tok   12.4s  [failed: count_Substrings('112112') == 6]
+[21/378] Mbpp-62 pass        49 tok    5.5s
+[22/378] Mbpp-63 fail        51 tok    5.8s  [failed: max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7]
+[23/378] Mbpp-64 pass        23 tok    3.5s
+[24/378] Mbpp-65 pass        46 tok    5.2s
+[25/378] Mbpp-66 pass        25 tok    3.2s
+[26/378] Mbpp-67 fail       104 tok   10.3s  [failed: bell_number(2)==2]
+[27/378] Mbpp-68 error       62 tok    6.5s  [failed: callable(is_Monotonic); failed: is_Monotonic([6, 5, 4, 4]) == ]
+[28/378] Mbpp-69 pass        70 tok    7.2s
+[29/378] Mbpp-70 pass        59 tok    6.4s
+[30/378] Mbpp-71 pass       110 tok   10.9s
+[31/378] Mbpp-72 pass        75 tok    7.7s
+[32/378] Mbpp-74 fail       121 tok   11.7s
+[33/378] Mbpp-75 pass        48 tok    5.7s
+[34/378] Mbpp-77 error      111 tok   10.7s  [failed: is_Diff (12345) == False]
+[35/378] Mbpp-79 fail        22 tok    3.2s  [failed: word_len("Hadoop") == False]
+[36/378] Mbpp-80 pass        33 tok    4.3s
+[37/378] Mbpp-82 error       30 tok    3.5s  [failed: callable(volume_sphere)]
+[38/378] Mbpp-84 fail        72 tok    7.4s  [failed: sequence(10) == 6]
+[39/378] Mbpp-85 error       28 tok    3.2s  [failed: callable(surfacearea_sphere)]
+[40/378] Mbpp-86 pass        29 tok    3.6s
+[41/378] Mbpp-87 pass        57 tok    6.9s
+[42/378] Mbpp-88 pass        40 tok    5.1s
+[43/378] Mbpp-89 pass        17 tok    2.6s
+[44/378] Mbpp-90 pass        21 tok    2.8s
+[45/378] Mbpp-91 fail        21 tok    3.0s  [failed: find_substring(["red", "black", "white", "green", "orange"],"a]
+[46/378] Mbpp-92 fail        71 tok    7.3s  [failed: is_undulating(1212121) == True]
+[47/378] Mbpp-93 fail        22 tok    3.0s
+[48/378] Mbpp-94 pass        27 tok    3.6s
+[49/378] Mbpp-95 pass        26 tok    3.4s
+[50/378] Mbpp-96 pass        90 tok   54.9s
+[51/378] Mbpp-97 pass        47 tok    5.9s
+[52/378] Mbpp-98 error       41 tok    4.8s  [failed: callable(multiply_num)]
+[53/378] Mbpp-99 fail        58 tok    6.5s
+[54/378] Mbpp-100 pass       105 tok   11.3s
+[55/378] Mbpp-101 pass        21 tok    3.2s
+[56/378] Mbpp-102 fail        43 tok    6.2s  [failed: snake_to_camel('python_program')=='PythonProgram']
+[57/378] Mbpp-103 fail        86 tok    9.3s  [failed: eulerian_num(3, 1) == 4]
+[58/378] Mbpp-104 pass        23 tok    3.6s
+[59/378] Mbpp-105 pass        18 tok    2.8s
+[60/378] Mbpp-106 pass        19 tok    2.8s
+[61/378] Mbpp-108 pass        36 tok    6.1s
+[62/378] Mbpp-109 fail        68 tok    7.4s  [failed: odd_Equivalent("011001",6) == 3]
+[63/378] Mbpp-111 pass        89 tok    9.6s
+[64/378] Mbpp-113 fail        26 tok    3.1s
+[65/378] Mbpp-116 pass        22 tok    3.2s
+[66/378] Mbpp-118 fail        16 tok    2.7s
+[67/378] Mbpp-119 fail        44 tok    4.8s
+[68/378] Mbpp-120 pass        56 tok    6.1s
+[69/378] Mbpp-123 fail       157 tok   14.6s  [failed: amicable_numbers_sum(999)==504]
+[70/378] Mbpp-124 error       26 tok    3.0s  [failed: callable(angle_complex)]
+[71/378] Mbpp-125 fail        98 tok    9.7s  [failed: find_length("11000010001") == 6]
+[72/378] Mbpp-126 error       71 tok    8.2s  [failed: sum(10,15) == 6]
+[73/378] Mbpp-127 pass        25 tok    3.0s
+[74/378] Mbpp-128 fail        27 tok    3.5s  [failed: long_words(3,"python is a programming language")==['python','p]
+[75/378] Mbpp-129 fail       213 tok   19.9s
+[76/378] Mbpp-130 pass        48 tok    5.7s
+[77/378] Mbpp-131 fail       130 tok   12.6s
+[78/378] Mbpp-132 pass        18 tok    2.8s
+[79/378] Mbpp-133 pass        27 tok    3.5s
+[80/378] Mbpp-135 pass        23 tok    3.3s
+[81/378] Mbpp-137 error       93 tok    9.8s  [failed: callable(zero_count)]
+[82/378] Mbpp-138 fail       134 tok   13.0s
+[83/378] Mbpp-139 error       22 tok    2.8s  [failed: callable(circle_circumference)]
+[84/378] Mbpp-140 pass        36 tok    4.5s
+[85/378] Mbpp-141 pass       142 tok   13.8s
+[86/378] Mbpp-142 pass        60 tok    6.7s
+[87/378] Mbpp-145 error       94 tok    9.3s  [failed: callable(max_Abs_Diff); failed: max_Abs_Diff((2,1,5,3)) == 4]
+[88/378] Mbpp-160 fail       265 tok   25.1s
+[89/378] Mbpp-161 pass        28 tok    3.7s
+[90/378] Mbpp-162 pass        43 tok    5.9s
+[91/378] Mbpp-165 fail        54 tok    5.7s
+[92/378] Mbpp-166 fail        66 tok   53.0s  [failed: find_even_pair([5, 4, 7, 2, 1]) == 4]
+[93/378] Mbpp-167 pass        42 tok    5.5s
+[94/378] Mbpp-168 pass        17 tok    2.9s
+[95/378] Mbpp-170 pass        24 tok    3.2s
+[96/378] Mbpp-171 pass        21 tok    3.1s
+[97/378] Mbpp-172 pass        19 tok    2.8s
+[98/378] Mbpp-222 pass        51 tok    5.6s
+[99/378] Mbpp-223 error      137 tok   13.4s
+[100/378] Mbpp-224 pass        40 tok    4.7s
+[101/378] Mbpp-226 pass        18 tok    2.9s
+[102/378] Mbpp-227 pass        24 tok    3.0s
+[103/378] Mbpp-230 pass        20 tok    3.0s
+[104/378] Mbpp-232 pass        26 tok    3.5s
+[105/378] Mbpp-233 error       28 tok    3.3s  [failed: callable(lateralsuface_cylinder)]
+[106/378] Mbpp-234 pass        24 tok    3.1s
+[107/378] Mbpp-235 fail        82 tok    8.4s  [failed: even_bit_set_number(10) == 10]
+[108/378] Mbpp-237 fail        43 tok    5.5s  [failed: check_occurences([(3, 1), (1, 3), (2, 5), (5, 2), (6, 3)] ) ==]
+[109/378] Mbpp-238 pass        30 tok    3.6s
+[110/378] Mbpp-239 fail       111 tok   11.3s  [failed: get_total_number_of_sequences(10, 4) == 4]
+[111/378] Mbpp-240 pass        29 tok    4.4s
+[112/378] Mbpp-242 pass        16 tok    3.2s
+[113/378] Mbpp-244 error       59 tok    6.3s
+[114/378] Mbpp-245 fail       250 tok   22.8s  [failed: max_sum([1, 15, 51, 45, 33, 100, 12, 18, 9]) == 194]
+[115/378] Mbpp-247 pass       173 tok   15.9s
+[116/378] Mbpp-250 pass        19 tok    3.3s
+[117/378] Mbpp-251 pass        36 tok    4.3s
+[118/378] Mbpp-252 pass        58 tok    7.2s  [failed: convert(1) == (1.0, 0.0)]
+[119/378] Mbpp-253 pass        32 tok    4.1s
+[120/378] Mbpp-255 fail        26 tok    3.8s
+[121/378] Mbpp-256 pass       101 tok   10.1s
+[122/378] Mbpp-257 pass        19 tok    2.9s
+[123/378] Mbpp-259 fail        81 tok    8.7s  [failed: maximize_elements(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), ]
+[124/378] Mbpp-260 fail       190 tok   17.5s
+[125/378] Mbpp-261 fail        32 tok    4.0s
+[126/378] Mbpp-262 pass        23 tok    3.7s
+[127/378] Mbpp-264 fail        60 tok    6.5s  [failed: dog_age(12)==61]
+[128/378] Mbpp-265 fail        33 tok    4.5s  [failed: list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', ]
+[129/378] Mbpp-266 pass        27 tok    3.6s
+[130/378] Mbpp-267 pass        39 tok    5.6s
+[131/378] Mbpp-268 pass        28 tok    3.6s
+[132/378] Mbpp-269 pass        15 tok    2.5s
+[133/378] Mbpp-270 pass        42 tok    4.7s
+[134/378] Mbpp-271 pass       218 tok   20.1s
+[135/378] Mbpp-272 pass        25 tok    4.0s
+[136/378] Mbpp-273 error       32 tok    5.8s  [failed: callable(substract_elements); failed: substract_elements((10, ]
+[137/378] Mbpp-274 pass        54 tok    6.4s
+[138/378] Mbpp-276 error       27 tok    3.1s  [failed: callable(volume_cylinder)]
+[139/378] Mbpp-277 pass        31 tok    4.4s
+[140/378] Mbpp-278 fail        43 tok    5.2s
+[141/378] Mbpp-279 error       29 tok   48.6s  [failed: callable(is_num_decagonal); failed: is_num_decagonal(3) == 27]
+[142/378] Mbpp-280 pass        42 tok    5.5s
+[143/378] Mbpp-281 pass        52 tok    5.8s
+[144/378] Mbpp-282 pass        32 tok    3.7s
+[145/378] Mbpp-283 pass        63 tok    6.9s
+[146/378] Mbpp-284 pass        23 tok    3.1s
+[147/378] Mbpp-285 pass        36 tok    4.1s
+[148/378] Mbpp-286 fail       162 tok   15.7s
+[149/378] Mbpp-287 fail        37 tok    4.6s  [failed: square_Sum(2) == 20]
+[150/378] Mbpp-290 pass        71 tok    8.0s
+[151/378] Mbpp-292 pass        22 tok    3.2s
+[152/378] Mbpp-293 pass        27 tok    3.5s
+[153/378] Mbpp-294 fail        57 tok    6.4s
+[154/378] Mbpp-296 fail        91 tok    9.0s
+[155/378] Mbpp-297 pass        50 tok    6.6s
+[156/378] Mbpp-299 pass        54 tok    6.2s
+[157/378] Mbpp-300 error       54 tok    5.6s  [failed: callable(count_binary_seq)]
+[158/378] Mbpp-301 pass        66 tok    7.4s
+[159/378] Mbpp-305 fail        50 tok    5.6s  [failed: start_withp(["Python PHP", "Java JavaScript", "c c++"])==('Pyt]
+[160/378] Mbpp-306 fail       267 tok   24.6s  [failed: max_sum_increasing_subseq([1, 101, 2, 3, 100, 4, 5 ], 7, 4, 6)]
+[161/378] Mbpp-308 error      405 tok   37.0s
+[162/378] Mbpp-309 pass        21 tok    3.0s
+[163/378] Mbpp-310 fail        16 tok    2.7s  [failed: string_to_tuple("python 3.0")==('p', 'y', 't', 'h', 'o', 'n', ]
+[164/378] Mbpp-311 fail       106 tok   11.1s  [failed: set_left_most_unset_bit(10) == 14]
+[165/378] Mbpp-312 error       32 tok    3.5s  [failed: callable(volume_cone)]
+[166/378] Mbpp-388 fail        31 tok    3.9s  [failed: highest_Power_of_2(10) == 8]
+[167/378] Mbpp-389 pass        60 tok    6.8s
+[168/378] Mbpp-390 pass        26 tok    3.1s
+[169/378] Mbpp-391 fail       117 tok   12.5s  [failed: convert_list_dictionary(["S001", "S002", "S003", "S004"],["Adi]
+[170/378] Mbpp-392 pass        77 tok    8.1s
+[171/378] Mbpp-394 pass        21 tok    3.0s
+[172/378] Mbpp-395 pass        47 tok    5.2s
+[173/378] Mbpp-397 error       25 tok    3.2s  [failed: median_numbers(25,55,65)==55.0]
+[174/378] Mbpp-398 fail        30 tok    3.7s  [failed: sum_of_digits([10,2,56])==14]
+[175/378] Mbpp-404 pass        21 tok    3.2s
+[176/378] Mbpp-405 pass        21 tok    3.3s
+[177/378] Mbpp-406 pass        21 tok    3.2s
+[178/378] Mbpp-409 pass        53 tok    5.9s
+[179/378] Mbpp-410 fail        64 tok    6.7s
+[180/378] Mbpp-412 pass        27 tok    3.4s
+[181/378] Mbpp-413 pass        24 tok    3.9s
+[182/378] Mbpp-414 pass        25 tok    3.6s
+[183/378] Mbpp-415 fail       176 tok   16.5s  [failed: max_Product([1,2,3,4,7,0,8,4]) == (7,8)]
+[184/378] Mbpp-418 pass        18 tok   50.6s
+[185/378] Mbpp-419 error       48 tok    6.0s  [failed: round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20,]
+[186/378] Mbpp-420 fail        46 tok    5.0s  [failed: cube_Sum(2) == 72]
+[187/378] Mbpp-421 pass        27 tok    3.3s
+[188/378] Mbpp-422 pass        50 tok    5.6s
+[189/378] Mbpp-424 pass        24 tok    3.1s
+[190/378] Mbpp-425 pass        42 tok    4.8s
+[191/378] Mbpp-426 pass        28 tok    3.5s
+[192/378] Mbpp-427 fail        34 tok    4.1s
+[193/378] Mbpp-428 pass        98 tok   10.4s
+[194/378] Mbpp-429 pass        32 tok    4.0s
+[195/378] Mbpp-430 fail       101 tok   10.3s  [failed: parabola_directrix(5,3,2)==-198]
+[196/378] Mbpp-432 pass        32 tok    3.7s
+[197/378] Mbpp-433 pass        23 tok    3.3s
+[198/378] Mbpp-435 pass        21 tok    3.0s
+[199/378] Mbpp-436 pass        25 tok    3.2s
+[200/378] Mbpp-437 pass        18 tok    2.7s
+[201/378] Mbpp-439 pass        24 tok    3.0s
+[202/378] Mbpp-440 fail        96 tok    9.6s
+[203/378] Mbpp-441 pass        24 tok    3.2s
+[204/378] Mbpp-445 pass        57 tok    6.8s
+[205/378] Mbpp-446 pass        42 tok    4.7s
+[206/378] Mbpp-447 pass        22 tok    3.7s
+[207/378] Mbpp-448 fail       102 tok    9.9s  [failed: cal_sum(9) == 49]
+[208/378] Mbpp-450 pass        27 tok    3.4s
+[209/378] Mbpp-451 fail        26 tok    3.4s
+[210/378] Mbpp-453 pass       113 tok   11.1s
+[211/378] Mbpp-454 fail        30 tok    3.7s  [failed: text_match_wordz("pythonz.")==True]
+[212/378] Mbpp-455 error       38 tok    4.6s  [failed: callable(check_monthnumb_number); failed: check_monthnumb_numb]
+[213/378] Mbpp-456 pass        25 tok    3.7s
+[214/378] Mbpp-457 pass        65 tok    7.0s
+[215/378] Mbpp-458 pass        18 tok    2.8s
+[216/378] Mbpp-459 fail        26 tok    3.1s
+[217/378] Mbpp-460 pass        25 tok    3.4s
+[218/378] Mbpp-462 error       31 tok    4.7s  [failed: combinations_list(['orange', 'red', 'green', 'blue'])==[[], [']
+[219/378] Mbpp-463 pass       122 tok   11.9s
+[220/378] Mbpp-465 pass        30 tok    3.6s
+[221/378] Mbpp-468 fail        94 tok    9.5s  [failed: max_product([3, 100, 4, 5, 150, 6]) == 3000]
+[222/378] Mbpp-470 pass        34 tok    4.0s
+[223/378] Mbpp-471 pass        40 tok    4.9s
+[224/378] Mbpp-472 error       58 tok    6.5s  [failed: callable(check_Consecutive); failed: check_Consecutive([1,2,3,]
+[225/378] Mbpp-473 error       52 tok    6.9s  [ImportError: cannot import name 'Set' from 'collections' (/Users/ro/.l]
+[226/378] Mbpp-474 pass        26 tok    3.1s
+[227/378] Mbpp-475 fail        36 tok    4.4s
+[228/378] Mbpp-476 pass        29 tok    3.7s
+[229/378] Mbpp-477 pass        15 tok    2.6s
+[230/378] Mbpp-478 pass        26 tok    3.2s
+[231/378] Mbpp-479 pass        43 tok    5.2s
+[232/378] Mbpp-554 error       27 tok    3.4s  [failed: callable(Split); failed: Split([1,2,3,4,5,6]) == [1,3,5]]
+[233/378] Mbpp-555 pass        59 tok    6.4s
+[234/378] Mbpp-556 fail        70 tok    8.0s
+[235/378] Mbpp-557 pass        16 tok    3.0s
+[236/378] Mbpp-558 pass        40 tok    4.4s
+[237/378] Mbpp-559 error       65 tok    6.9s
+[238/378] Mbpp-560 pass        33 tok    4.1s
+[239/378] Mbpp-562 pass        27 tok    3.6s
+[240/378] Mbpp-563 pass        26 tok    3.4s
+[241/378] Mbpp-564 error       56 tok    6.1s  [failed: callable(count_Pairs); failed: count_Pairs([1,2,1],3) == 2]
+[242/378] Mbpp-565 pass        14 tok    2.7s
+[243/378] Mbpp-566 pass        23 tok    2.8s
+[244/378] Mbpp-567 pass        18 tok   47.6s
+[245/378] Mbpp-568 pass        20 tok    2.8s
+[246/378] Mbpp-569 pass        23 tok    3.4s
+[247/378] Mbpp-572 fail        26 tok    3.3s  [failed: two_unique_nums([1,2,3,2,3,4,5]) == [1, 4, 5]]
+[248/378] Mbpp-573 pass        21 tok    3.5s
+[249/378] Mbpp-576 fail        70 tok    7.1s
+[250/378] Mbpp-577 error       71 tok    7.3s
+[251/378] Mbpp-578 pass        56 tok    7.4s
+[252/378] Mbpp-579 pass        50 tok    5.8s
+[253/378] Mbpp-580 fail        58 tok    6.5s  [failed: extract_even((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)),]
+[254/378] Mbpp-581 fail       114 tok   11.0s  [failed: surface_Area(3,4) == 33]
+[255/378] Mbpp-583 pass        33 tok    3.9s
+[256/378] Mbpp-585 fail       145 tok   14.3s  [failed: expensive_items([{'name': 'Item-1', 'price': 101.1},{'name': ']
+[257/378] Mbpp-586 pass        39 tok    4.8s
+[258/378] Mbpp-587 pass        17 tok    3.0s
+[259/378] Mbpp-588 pass        29 tok    3.3s
+[260/378] Mbpp-589 fail        67 tok    7.1s
+[261/378] Mbpp-590 fail        45 tok    5.4s  [failed: polar_rect(3,4)==((5.0, 0.9272952180016122), (-2+2.44929359829]
+[262/378] Mbpp-591 pass        45 tok    5.5s
+[263/378] Mbpp-592 fail        55 tok    6.0s  [failed: sum_Of_product(3) == 15]
+[264/378] Mbpp-593 fail        80 tok    8.0s
+[265/378] Mbpp-594 pass        96 tok    9.5s
+[266/378] Mbpp-596 pass        20 tok    3.0s  [refused: import not allowed: sys]
+[267/378] Mbpp-597 fail       462 tok   41.1s  [failed: find_kth([2, 3, 6, 7, 9], [1, 4, 8, 10], 5) == 6]
+[268/378] Mbpp-598 pass        67 tok    7.2s
+[269/378] Mbpp-599 pass        39 tok    4.5s
+[270/378] Mbpp-600 pass        21 tok    3.2s
+[271/378] Mbpp-602 fail        63 tok    6.7s
+[272/378] Mbpp-603 fail       131 tok   12.5s  [failed: get_ludic(10) == [1, 2, 3, 5, 7]]
+[273/378] Mbpp-604 pass        33 tok    3.9s
+[274/378] Mbpp-605 pass        86 tok    8.6s
+[275/378] Mbpp-606 pass        22 tok    3.1s
+[276/378] Mbpp-607 pass        46 tok    6.5s
+[277/378] Mbpp-608 error       99 tok    9.5s  [failed: bell_Number(2) == 2]
+[278/378] Mbpp-610 fail        26 tok    3.6s  [failed: remove_kth_element([1,1,2,3,4,4,5,1],3)==[1, 1, 3, 4, 4, 5, 1]]
+[279/378] Mbpp-611 pass        24 tok    3.7s
+[280/378] Mbpp-612 pass        65 tok    7.2s
+[281/378] Mbpp-614 pass        36 tok    4.3s
+[282/378] Mbpp-615 fail        26 tok    4.0s  [failed: average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39]
+[283/378] Mbpp-616 pass        33 tok    4.2s
+[284/378] Mbpp-618 pass        34 tok    4.2s
+[285/378] Mbpp-619 pass        80 tok    8.6s
+[286/378] Mbpp-620 fail       173 tok   16.2s  [failed: largest_subset([ 1, 3, 6, 13, 17, 18 ]) == 4]
+[287/378] Mbpp-622 fail       141 tok   60.2s
+[288/378] Mbpp-623 pass        23 tok    3.7s
+[289/378] Mbpp-624 pass        15 tok    2.4s
+[290/378] Mbpp-626 fail        81 tok    8.0s
+[291/378] Mbpp-628 pass        20 tok    3.0s
+[292/378] Mbpp-629 error       26 tok    3.2s  [failed: callable(Split); failed: Split([1,2,3,4,5]) == [2,4]]
+[293/378] Mbpp-630 fail        90 tok    9.4s  [failed: get_coordinates((3, 4)) == [[2, 3], [2, 4], [2, 5], [3, 3], [3]
+[294/378] Mbpp-631 fail        30 tok    3.6s
+[295/378] Mbpp-632 pass        44 tok    5.2s
+[296/378] Mbpp-633 error       54 tok    6.0s  [failed: callable(pair_xor_Sum); failed: pair_xor_Sum([5,9,7,6],4) == 4]
+[297/378] Mbpp-635 pass        36 tok    4.6s
+[298/378] Mbpp-637 pass        22 tok    3.2s
+[299/378] Mbpp-638 fail       204 tok   19.4s  [failed: wind_chill(120,35)==40]
+[300/378] Mbpp-639 error       30 tok    3.9s  [failed: callable(sample_nam); failed: sample_nam(['sally', 'Dylan', 'r]
+[301/378] Mbpp-641 error       30 tok    3.8s  [failed: callable(is_nonagonal); failed: is_nonagonal(10) == 325]
+[302/378] Mbpp-643 pass        30 tok    3.9s
+[303/378] Mbpp-644 fail        51 tok    6.1s  [failed: reverse_Array_Upto_K([1, 2, 3, 4, 5, 6],4) == [4, 3, 2, 1, 5, ]
+[304/378] Mbpp-720 pass        22 tok    3.3s
+[305/378] Mbpp-721 fail       246 tok   23.8s  [failed: maxAverageOfPath([[1, 2, 3], [6, 5, 4], [7, 3, 9]]) == 5.2]
+[306/378] Mbpp-722 fail        50 tok    6.6s  [failed: filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9,]
+[307/378] Mbpp-723 pass        37 tok    4.7s
+[308/378] Mbpp-724 pass        33 tok    4.2s
+[309/378] Mbpp-725 pass        27 tok    3.6s
+[310/378] Mbpp-726 pass        34 tok    4.4s
+[311/378] Mbpp-728 pass        32 tok    4.2s
+[312/378] Mbpp-730 pass        51 tok    6.6s
+[313/378] Mbpp-731 pass        53 tok    5.8s
+[314/378] Mbpp-732 pass        27 tok    3.4s
+[315/378] Mbpp-733 pass        54 tok    6.3s
+[316/378] Mbpp-734 pass        71 tok    7.7s
+[317/378] Mbpp-735 fail       107 tok   10.5s  [failed: toggle_middle_bits(9) == 15]
+[318/378] Mbpp-736 pass        31 tok    4.0s
+[319/378] Mbpp-737 error       30 tok    4.2s  [failed: callable(check_str)]
+[320/378] Mbpp-739 fail       158 tok   15.7s
+[321/378] Mbpp-740 pass        33 tok    4.2s
+[322/378] Mbpp-741 pass        23 tok    3.4s
+[323/378] Mbpp-742 pass        54 tok    6.0s
+[324/378] Mbpp-743 pass        40 tok    5.2s
+[325/378] Mbpp-744 pass        17 tok    2.9s
+[326/378] Mbpp-745 error       65 tok    7.3s  [failed: divisible_by_digits(1,22)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12,]
+[327/378] Mbpp-748 fail        34 tok    3.9s
+[328/378] Mbpp-749 pass        19 tok    3.7s
+[329/378] Mbpp-750 pass        20 tok    2.8s
+[330/378] Mbpp-751 pass        82 tok    8.6s
+[331/378] Mbpp-752 fail        79 tok    8.6s  [failed: jacobsthal_num(5) == 11]
+[332/378] Mbpp-753 fail        28 tok    4.0s
+[333/378] Mbpp-754 pass        67 tok    8.1s
+[334/378] Mbpp-755 error       39 tok    4.5s
+[335/378] Mbpp-757 fail        89 tok   55.6s
+[336/378] Mbpp-758 pass        44 tok    6.0s
+[337/378] Mbpp-759 fail        33 tok    3.8s
+[338/378] Mbpp-760 pass        26 tok    3.7s
+[339/378] Mbpp-762 error       40 tok    4.8s  [failed: callable(check_monthnumber_number); failed: check_monthnumber_]
+[340/378] Mbpp-763 error       66 tok    7.3s  [failed: find_min_diff((1,5,3,19,18,25),6) == 1]
+[341/378] Mbpp-764 pass        23 tok    3.2s
+[342/378] Mbpp-765 error      155 tok   16.3s  [failed: callable(is_polite); failed: is_polite(7) == 11]
+[343/378] Mbpp-766 pass        31 tok    5.5s
+[344/378] Mbpp-767 pass        65 tok    9.1s
+[345/378] Mbpp-769 fail        30 tok    5.4s  [failed: (Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35])) == [10, 20,]
+[346/378] Mbpp-770 pass        50 tok    6.4s
+[347/378] Mbpp-771 fail       105 tok   10.5s
+[348/378] Mbpp-772 fail        53 tok    6.2s
+[349/378] Mbpp-773 pass        58 tok    6.5s
+[350/378] Mbpp-775 pass        44 tok    5.2s
+[351/378] Mbpp-777 fail        37 tok    4.5s  [failed: find_sum([1,2,3,1,1,4,5,6]) == 21]
+[352/378] Mbpp-778 pass        33 tok    4.9s
+[353/378] Mbpp-780 fail        93 tok   10.5s
+[354/378] Mbpp-781 error       82 tok    8.6s  [failed: callable(count_divisors)]
+[355/378] Mbpp-782 pass        73 tok    8.0s
+[356/378] Mbpp-784 pass        96 tok   10.1s
+[357/378] Mbpp-785 pass        56 tok    6.6s
+[358/378] Mbpp-786 pass        31 tok    4.8s
+[359/378] Mbpp-787 error       42 tok    5.7s  [failed: callable(text_match_three)]
+[360/378] Mbpp-788 pass        23 tok    3.5s
+[361/378] Mbpp-790 fail        46 tok    6.3s
+[362/378] Mbpp-791 fail        47 tok    5.6s  [failed: remove_nested((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)]
+[363/378] Mbpp-792 pass        42 tok    5.4s
+[364/378] Mbpp-793 pass        50 tok    5.7s
+[365/378] Mbpp-794 error       45 tok    5.0s  [failed: callable(text_starta_endb)]
+[366/378] Mbpp-796 pass        16 tok    2.9s
+[367/378] Mbpp-797 pass        50 tok    5.4s
+[368/378] Mbpp-798 pass        31 tok    3.6s
+[369/378] Mbpp-799 pass        63 tok    7.5s
+[370/378] Mbpp-800 pass        18 tok    2.9s
+[371/378] Mbpp-801 fail        25 tok    3.5s  [failed: test_three_equal(1,1,1) == 3]
+[372/378] Mbpp-803 pass        42 tok    5.3s
+[373/378] Mbpp-804 pass        26 tok    3.2s
+[374/378] Mbpp-805 pass        23 tok    3.7s
+[375/378] Mbpp-806 fail        75 tok    8.3s
+[376/378] Mbpp-807 pass        34 tok    4.1s
+[377/378] Mbpp-808 pass        19 tok    3.1s
+[378/378] Mbpp-809 pass        57 tok    6.1s
+qwen2.5-coder:14b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen2.5-coder_14b.jsonl
+[1/378] Mbpp-2 pass        26 tok   12.3s
+[2/378] Mbpp-3 pass       104 tok   17.5s
+[3/378] Mbpp-4 pass        27 tok    7.4s
+[4/378] Mbpp-6 pass        90 tok   67.6s
+[5/378] Mbpp-7 fail        29 tok    6.9s
+[6/378] Mbpp-8 pass        22 tok    6.0s
+[7/378] Mbpp-9 pass        61 tok   11.8s
+[8/378] Mbpp-11 pass        95 tok   17.0s
+[9/378] Mbpp-12 pass        18 tok    5.7s
+[10/378] Mbpp-14 pass        28 tok    7.3s
+[11/378] Mbpp-16 pass        35 tok    7.7s
+[12/378] Mbpp-17 pass        20 tok    5.0s
+[13/378] Mbpp-18 pass        32 tok    7.5s
+[14/378] Mbpp-19 pass        40 tok    8.3s
+[15/378] Mbpp-20 fail        60 tok   11.2s  [failed: is_woodall(383) == True]
+[16/378] Mbpp-56 pass        31 tok    8.2s
+[17/378] Mbpp-57 pass       139 tok   23.2s
+[18/378] Mbpp-58 pass        25 tok    6.1s
+[19/378] Mbpp-59 pass        51 tok    9.5s
+[20/378] Mbpp-61 fail       113 tok   19.3s  [failed: count_Substrings('112112') == 6]
+[21/378] Mbpp-62 pass        15 tok    4.6s
+[22/378] Mbpp-63 pass        51 tok   10.3s
+[23/378] Mbpp-64 pass        27 tok    7.2s
+[24/378] Mbpp-65 pass        50 tok   10.0s
+[25/378] Mbpp-66 pass        25 tok    6.2s
+[26/378] Mbpp-67 pass       113 tok   19.1s
+[27/378] Mbpp-68 pass        62 tok   12.2s
+[28/378] Mbpp-69 pass        81 tok   14.5s
+[29/378] Mbpp-70 pass        48 tok    9.5s
+[30/378] Mbpp-71 pass       135 tok   22.5s
+[31/378] Mbpp-72 pass        50 tok   10.2s
+[32/378] Mbpp-74 fail       127 tok   74.5s
+[33/378] Mbpp-75 pass        36 tok    8.5s
+[34/378] Mbpp-77 error      129 tok   22.4s
+[35/378] Mbpp-79 pass        22 tok    5.3s
+[36/378] Mbpp-80 pass        33 tok    7.2s
+[37/378] Mbpp-82 error       30 tok    6.6s  [failed: callable(volume_sphere)]
+[38/378] Mbpp-84 pass       127 tok   22.7s
+[39/378] Mbpp-85 error       28 tok    6.0s  [failed: callable(surfacearea_sphere)]
+[40/378] Mbpp-86 pass        29 tok    6.4s
+[41/378] Mbpp-87 pass        49 tok   11.0s
+[42/378] Mbpp-88 pass        49 tok   11.1s
+[43/378] Mbpp-89 pass        17 tok    4.3s
+[44/378] Mbpp-90 pass        21 tok    5.5s
+[45/378] Mbpp-91 pass        33 tok    7.6s
+[46/378] Mbpp-92 fail        67 tok   12.2s
+[47/378] Mbpp-93 pass        17 tok    4.6s
+[48/378] Mbpp-94 pass        29 tok    7.4s
+[49/378] Mbpp-95 pass        26 tok    6.4s
+[50/378] Mbpp-96 pass        67 tok   12.3s
+[51/378] Mbpp-97 pass        64 tok   13.1s
+[52/378] Mbpp-98 error       36 tok    7.3s  [failed: callable(multiply_num)]
+[53/378] Mbpp-99 fail        58 tok   10.9s
+[54/378] Mbpp-100 pass        56 tok   10.6s
+[55/378] Mbpp-101 pass        21 tok    5.5s
+[56/378] Mbpp-102 fail        29 tok    6.6s
+[57/378] Mbpp-103 pass        80 tok   13.9s
+[58/378] Mbpp-104 pass        27 tok    7.0s
+[59/378] Mbpp-105 error       17 tok    4.2s  [failed: callable(count); failed: count([True,False,True]) == 2]
+[60/378] Mbpp-106 pass        19 tok    5.2s
+[61/378] Mbpp-108 pass        55 tok   13.5s
+[62/378] Mbpp-109 fail       324 tok   51.8s  [failed: odd_Equivalent("011001",6) == 3]
+[63/378] Mbpp-111 pass        89 tok   70.4s
+[64/378] Mbpp-113 fail        29 tok    6.9s
+[65/378] Mbpp-116 pass        22 tok    5.9s
+[66/378] Mbpp-118 fail        16 tok    5.0s
+[67/378] Mbpp-119 error      107 tok   18.6s
+[68/378] Mbpp-120 pass        27 tok    6.5s
+[69/378] Mbpp-123 pass       202 tok   33.6s
+[70/378] Mbpp-124 error       24 tok    5.1s  [refused: import not allowed: cmath]
+[71/378] Mbpp-125 pass        94 tok   16.5s
+[72/378] Mbpp-126 error      146 tok   24.6s  [failed: sum(10,15) == 6]
+[73/378] Mbpp-127 pass        18 tok    4.6s
+[74/378] Mbpp-128 pass        29 tok    7.3s
+[75/378] Mbpp-129 pass       198 tok   32.5s
+[76/378] Mbpp-130 pass        51 tok   10.6s
+[77/378] Mbpp-131 pass       127 tok   22.0s
+[78/378] Mbpp-132 pass        18 tok    4.8s
+[79/378] Mbpp-133 pass        27 tok    6.7s
+[80/378] Mbpp-135 pass        23 tok    5.2s
+[81/378] Mbpp-137 error       69 tok   12.4s  [failed: callable(zero_count)]
+[82/378] Mbpp-138 fail        91 tok   16.5s  [failed: is_Sum_Of_Powers_Of_Two(10) == True]
+[83/378] Mbpp-139 error       26 tok    6.0s  [failed: callable(circle_circumference)]
+[84/378] Mbpp-140 pass        28 tok    7.1s
+[85/378] Mbpp-141 pass       204 tok   32.8s
+[86/378] Mbpp-142 pass        47 tok   63.2s
+[87/378] Mbpp-145 pass        45 tok    9.6s
+[88/378] Mbpp-160 fail       145 tok   24.7s  [failed: find_solution(2, 3, 7) == (2, 1)]
+[89/378] Mbpp-161 pass        32 tok    8.0s
+[90/378] Mbpp-162 pass        43 tok    9.4s
+[91/378] Mbpp-165 pass        51 tok   10.1s
+[92/378] Mbpp-166 pass       139 tok   23.4s
+[93/378] Mbpp-167 pass        47 tok    9.8s
+[94/378] Mbpp-168 pass        17 tok    4.7s
+[95/378] Mbpp-170 pass        29 tok    7.5s
+[96/378] Mbpp-171 pass        21 tok    5.2s
+[97/378] Mbpp-172 pass        19 tok    5.2s
+[98/378] Mbpp-222 pass        51 tok   10.3s
+[99/378] Mbpp-223 error      108 tok   18.7s  [failed: is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True]
+[100/378] Mbpp-224 pass        40 tok    8.3s
+[101/378] Mbpp-226 pass        18 tok    4.3s
+[102/378] Mbpp-227 pass        24 tok    5.5s
+[103/378] Mbpp-230 pass        20 tok    5.2s
+[104/378] Mbpp-232 pass        26 tok    7.2s
+[105/378] Mbpp-233 error       31 tok    6.6s  [failed: callable(lateralsuface_cylinder)]
+[106/378] Mbpp-234 pass        19 tok    4.4s
+[107/378] Mbpp-235 fail        95 tok   16.4s  [failed: even_bit_set_number(10) == 10]
+[108/378] Mbpp-237 fail        56 tok   11.7s  [failed: check_occurences([(3, 1), (1, 3), (2, 5), (5, 2), (6, 3)] ) ==]
+[109/378] Mbpp-238 pass        37 tok    7.8s
+[110/378] Mbpp-239 pass       109 tok   18.8s
+[111/378] Mbpp-240 pass        40 tok    8.0s
+[112/378] Mbpp-242 pass        16 tok    4.0s
+[113/378] Mbpp-244 fail        31 tok    6.9s
+[114/378] Mbpp-245 fail       294 tok   46.3s
+[115/378] Mbpp-247 pass       183 tok   82.5s
+[116/378] Mbpp-250 pass        19 tok    5.6s
+[117/378] Mbpp-251 pass        36 tok    8.7s
+[118/378] Mbpp-252 pass        25 tok    6.1s  [refused: import not allowed: cmath]
+[119/378] Mbpp-253 pass        23 tok    5.8s
+[120/378] Mbpp-255 pass        32 tok    8.0s
+[121/378] Mbpp-256 pass       100 tok   16.6s
+[122/378] Mbpp-257 pass        19 tok    5.0s
+[123/378] Mbpp-259 fail        34 tok    8.5s  [failed: maximize_elements(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), ]
+[124/378] Mbpp-260 fail       190 tok   30.5s  [failed: newman_prime(3) == 7]
+[125/378] Mbpp-261 fail        32 tok    7.7s
+[126/378] Mbpp-262 pass        22 tok    6.0s
+[127/378] Mbpp-264 pass        68 tok   12.3s
+[128/378] Mbpp-265 pass        26 tok    7.4s
+[129/378] Mbpp-266 pass        24 tok    5.7s
+[130/378] Mbpp-267 error       28 tok    6.7s
+[131/378] Mbpp-268 pass        61 tok   11.1s
+[132/378] Mbpp-269 pass        15 tok    4.1s
+[133/378] Mbpp-270 pass        43 tok    8.7s
+[134/378] Mbpp-271 pass        89 tok   16.2s
+[135/378] Mbpp-272 pass        25 tok    6.0s
+[136/378] Mbpp-273 error       32 tok    7.7s  [failed: callable(substract_elements); failed: substract_elements((10, ]
+[137/378] Mbpp-274 pass        48 tok    9.6s
+[138/378] Mbpp-276 error       27 tok    5.7s  [failed: callable(volume_cylinder)]
+[139/378] Mbpp-277 pass        31 tok    8.3s
+[140/378] Mbpp-278 fail        52 tok   10.0s
+[141/378] Mbpp-279 pass        37 tok    8.0s
+[142/378] Mbpp-280 pass        42 tok    9.4s
+[143/378] Mbpp-281 pass        20 tok    5.0s
+[144/378] Mbpp-282 pass        32 tok    7.6s
+[145/378] Mbpp-283 pass       136 tok   76.9s
+[146/378] Mbpp-284 pass        23 tok    6.2s
+[147/378] Mbpp-285 pass        35 tok    8.3s
+[148/378] Mbpp-286 pass       369 tok   61.8s
+[149/378] Mbpp-287 pass        34 tok    8.3s
+[150/378] Mbpp-290 pass       125 tok   22.7s
+[151/378] Mbpp-292 pass        18 tok    5.2s
+[152/378] Mbpp-293 pass        29 tok    7.7s
+[153/378] Mbpp-294 fail        60 tok   12.1s
+[154/378] Mbpp-296 pass       451 tok   70.4s
+[155/378] Mbpp-297 pass        54 tok   12.2s
+[156/378] Mbpp-299 pass       107 tok   19.0s
+[157/378] Mbpp-300 error       77 tok   13.6s  [failed: callable(count_binary_seq)]
+[158/378] Mbpp-301 fail        46 tok    9.5s  [failed: dict_depth({'a':1, 'b': {'c': {'d': {}}}})==4]
+[159/378] Mbpp-305 fail        41 tok    8.6s
+[160/378] Mbpp-306 fail       211 tok   34.3s
+[161/378] Mbpp-308 fail       201 tok   85.3s  [failed: large_product([1, 2, 3, 4, 5, 6],[3, 6, 8, 9, 10, 6],3)==[60, ]
+[162/378] Mbpp-309 pass        21 tok    4.8s
+[163/378] Mbpp-310 fail        16 tok    4.9s  [failed: string_to_tuple("python 3.0")==('p', 'y', 't', 'h', 'o', 'n', ]
+[164/378] Mbpp-311 fail        78 tok   14.4s  [failed: set_left_most_unset_bit(10) == 14]
+[165/378] Mbpp-312 error       32 tok    6.8s  [failed: callable(volume_cone)]
+[166/378] Mbpp-388 pass        51 tok   10.2s
+[167/378] Mbpp-389 pass        77 tok   13.6s
+[168/378] Mbpp-390 pass        24 tok    6.1s
+[169/378] Mbpp-391 pass        39 tok   10.1s
+[170/378] Mbpp-392 pass        89 tok   15.6s
+[171/378] Mbpp-394 pass        45 tok    9.4s
+[172/378] Mbpp-395 pass       101 tok   17.7s
+[173/378] Mbpp-397 pass        26 tok    6.2s
+[174/378] Mbpp-398 error       30 tok    6.9s
+[175/378] Mbpp-404 pass        21 tok    4.7s
+[176/378] Mbpp-405 pass        23 tok    5.9s
+[177/378] Mbpp-406 pass        21 tok    5.3s
+[178/378] Mbpp-409 pass        25 tok    6.3s
+[179/378] Mbpp-410 fail        59 tok   11.2s
+[180/378] Mbpp-412 pass        27 tok    6.4s
+[181/378] Mbpp-413 pass        27 tok    7.6s
+[182/378] Mbpp-414 pass        26 tok    6.1s
+[183/378] Mbpp-415 fail       151 tok   24.4s  [failed: max_Product([1,2,3,4,7,0,8,4]) == (7,8)]
+[184/378] Mbpp-418 pass        65 tok   12.1s
+[185/378] Mbpp-419 pass        46 tok   10.2s
+[186/378] Mbpp-420 pass        34 tok    7.7s
+[187/378] Mbpp-421 pass        21 tok    5.2s
+[188/378] Mbpp-422 pass        46 tok    9.5s
+[189/378] Mbpp-424 pass        23 tok    5.6s
+[190/378] Mbpp-425 pass        46 tok    9.4s
+[191/378] Mbpp-426 pass        28 tok   58.0s
+[192/378] Mbpp-427 fail        34 tok    7.4s
+[193/378] Mbpp-428 pass        98 tok   17.2s
+[194/378] Mbpp-429 pass        32 tok    7.4s
+[195/378] Mbpp-430 fail        38 tok    8.0s  [failed: parabola_directrix(5,3,2)==-198]
+[196/378] Mbpp-432 pass        60 tok   11.5s
+[197/378] Mbpp-433 pass        23 tok    5.7s
+[198/378] Mbpp-435 fail        19 tok    5.2s
+[199/378] Mbpp-436 pass        25 tok    6.3s
+[200/378] Mbpp-437 pass        18 tok    4.4s
+[201/378] Mbpp-439 pass        22 tok    5.7s
+[202/378] Mbpp-440 fail       135 tok   23.2s
+[203/378] Mbpp-441 pass        21 tok    4.8s
+[204/378] Mbpp-445 pass        50 tok   11.2s
+[205/378] Mbpp-446 pass        28 tok    6.6s
+[206/378] Mbpp-447 pass        21 tok    6.3s
+[207/378] Mbpp-448 fail        83 tok   14.5s
+[208/378] Mbpp-450 pass        27 tok    6.5s
+[209/378] Mbpp-451 fail        19 tok    4.5s
+[210/378] Mbpp-453 error      215 tok   34.1s  [failed: sumofFactors(18) == 26]
+[211/378] Mbpp-454 pass        33 tok    6.8s
+[212/378] Mbpp-455 pass        78 tok   13.8s
+[213/378] Mbpp-456 pass        23 tok    5.7s
+[214/378] Mbpp-457 pass        51 tok   10.1s
+[215/378] Mbpp-458 pass        18 tok    4.2s
+[216/378] Mbpp-459 fail        26 tok    6.4s
+[217/378] Mbpp-460 pass        24 tok    5.8s
+[218/378] Mbpp-462 fail        40 tok   10.2s  [failed: combinations_list(['orange', 'red', 'green', 'blue'])==[[], [']
+[219/378] Mbpp-463 pass       110 tok   18.3s
+[220/378] Mbpp-465 pass        30 tok    7.0s
+[221/378] Mbpp-468 fail       116 tok   19.5s  [failed: max_product([3, 100, 4, 5, 150, 6]) == 3000]
+[222/378] Mbpp-470 pass        30 tok   58.5s
+[223/378] Mbpp-471 pass        40 tok    8.2s
+[224/378] Mbpp-472 fail        58 tok   10.8s
+[225/378] Mbpp-473 pass        92 tok   17.6s
+[226/378] Mbpp-474 pass        22 tok    5.0s
+[227/378] Mbpp-475 pass        27 tok    6.9s
+[228/378] Mbpp-476 pass        42 tok    8.6s
+[229/378] Mbpp-477 pass        15 tok    4.1s
+[230/378] Mbpp-478 pass        24 tok    5.5s
+[231/378] Mbpp-479 pass        44 tok    8.9s
+[232/378] Mbpp-554 pass        26 tok    6.2s
+[233/378] Mbpp-555 pass        55 tok   10.8s
+[234/378] Mbpp-556 fail       128 tok   21.4s
+[235/378] Mbpp-557 pass        31 tok    6.6s
+[236/378] Mbpp-558 fail       143 tok   23.5s
+[237/378] Mbpp-559 error       69 tok   12.6s
+[238/378] Mbpp-560 pass        91 tok   16.2s
+[239/378] Mbpp-562 pass        52 tok   10.0s
+[240/378] Mbpp-563 pass        27 tok    6.3s
+[241/378] Mbpp-564 pass        57 tok   10.7s
+[242/378] Mbpp-565 pass        14 tok    4.3s
+[243/378] Mbpp-566 pass        23 tok    5.6s
+[244/378] Mbpp-567 pass        35 tok    7.7s
+[245/378] Mbpp-568 pass        20 tok    4.5s
+[246/378] Mbpp-569 pass        27 tok    7.1s
+[247/378] Mbpp-572 pass        39 tok    8.2s
+[248/378] Mbpp-573 pass        39 tok    8.6s
+[249/378] Mbpp-576 fail        68 tok   12.2s
+[250/378] Mbpp-577 error       58 tok   10.8s
+[251/378] Mbpp-578 pass        66 tok   14.2s
+[252/378] Mbpp-579 pass        52 tok   10.1s
+[253/378] Mbpp-580 pass        53 tok   62.3s
+[254/378] Mbpp-581 error       89 tok   15.4s  [failed: callable(surface_Area); failed: surface_Area(3,4) == 33]
+[255/378] Mbpp-583 pass       112 tok   18.6s
+[256/378] Mbpp-585 pass        47 tok   10.0s
+[257/378] Mbpp-586 pass        23 tok    6.2s
+[258/378] Mbpp-587 pass        15 tok    4.8s
+[259/378] Mbpp-588 pass        29 tok    6.9s
+[260/378] Mbpp-589 error      109 tok   18.5s
+[261/378] Mbpp-590 fail        45 tok    9.6s  [failed: polar_rect(3,4)==((5.0, 0.9272952180016122), (-2+2.44929359829]
+[262/378] Mbpp-591 pass        62 tok   11.8s
+[263/378] Mbpp-592 fail       116 tok   19.3s  [failed: sum_Of_product(3) == 15]
+[264/378] Mbpp-593 fail        27 tok    6.3s
+[265/378] Mbpp-594 fail        82 tok   14.4s
+[266/378] Mbpp-596 pass        20 tok    5.0s  [refused: import not allowed: sys]
+[267/378] Mbpp-597 fail       341 tok   52.7s
+[268/378] Mbpp-598 pass        46 tok    8.8s
+[269/378] Mbpp-599 pass        41 tok    8.4s
+[270/378] Mbpp-600 pass        21 tok    4.8s
+[271/378] Mbpp-602 fail        46 tok    8.8s
+[272/378] Mbpp-603 pass       117 tok   19.4s
+[273/378] Mbpp-604 pass        21 tok    4.5s
+[274/378] Mbpp-605 pass       103 tok   17.3s
+[275/378] Mbpp-606 pass        28 tok    6.5s
+[276/378] Mbpp-607 pass        58 tok   10.9s
+[277/378] Mbpp-608 pass       113 tok   69.9s
+[278/378] Mbpp-610 fail        26 tok    6.6s  [failed: remove_kth_element([1,1,2,3,4,4,5,1],3)==[1, 1, 3, 4, 4, 5, 1]]
+[279/378] Mbpp-611 pass        24 tok    6.3s
+[280/378] Mbpp-612 pass        26 tok    7.0s
+[281/378] Mbpp-614 pass        40 tok    8.4s
+[282/378] Mbpp-615 fail        29 tok    7.8s  [failed: average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39]
+[283/378] Mbpp-616 pass        33 tok    7.5s
+[284/378] Mbpp-618 pass        32 tok    7.1s
+[285/378] Mbpp-619 pass        54 tok   10.3s
+[286/378] Mbpp-620 fail       172 tok   29.1s
+[287/378] Mbpp-622 pass       182 tok   29.7s
+[288/378] Mbpp-623 pass        23 tok    6.3s
+[289/378] Mbpp-624 pass        15 tok    4.1s
+[290/378] Mbpp-626 fail       108 tok   18.5s
+[291/378] Mbpp-628 pass        25 tok    6.0s
+[292/378] Mbpp-629 error       28 tok    6.6s  [failed: callable(Split); failed: Split([1,2,3,4,5]) == [2,4]]
+[293/378] Mbpp-630 error       48 tok   10.0s
+[294/378] Mbpp-631 fail        22 tok    5.3s  [failed: replace_spaces('Jumanji The Jungle') == 'Jumanji_The_Jungle']
+[295/378] Mbpp-632 pass        52 tok   10.3s
+[296/378] Mbpp-633 pass        98 tok   16.6s
+[297/378] Mbpp-635 pass        36 tok    8.3s
+[298/378] Mbpp-637 pass        26 tok    6.1s
+[299/378] Mbpp-638 fail       109 tok   18.4s  [failed: wind_chill(120,35)==40]
+[300/378] Mbpp-639 error       79 tok   14.0s  [failed: callable(sample_nam); failed: sample_nam(['sally', 'Dylan', 'r]
+[301/378] Mbpp-641 pass        81 tok   14.6s
+[302/378] Mbpp-643 pass        80 tok   14.2s
+[303/378] Mbpp-644 fail        51 tok   62.2s  [failed: reverse_Array_Upto_K([1, 2, 3, 4, 5, 6],4) == [4, 3, 2, 1, 5, ]
+[304/378] Mbpp-720 pass        22 tok    5.9s
+[305/378] Mbpp-721 pass       265 tok   43.7s
+[306/378] Mbpp-722 fail        50 tok   11.6s  [failed: filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9,]
+[307/378] Mbpp-723 pass        37 tok    8.5s
+[308/378] Mbpp-724 pass        33 tok    7.2s
+[309/378] Mbpp-725 pass        27 tok    6.3s
+[310/378] Mbpp-726 pass        34 tok    8.0s
+[311/378] Mbpp-728 pass        32 tok    7.7s
+[312/378] Mbpp-730 pass        61 tok   12.3s
+[313/378] Mbpp-731 pass        53 tok   10.1s
+[314/378] Mbpp-732 pass        27 tok    6.3s
+[315/378] Mbpp-733 pass        55 tok   10.9s
+[316/378] Mbpp-734 pass       104 tok   17.6s
+[317/378] Mbpp-735 fail       122 tok   20.3s
+[318/378] Mbpp-736 pass        29 tok    7.2s
+[319/378] Mbpp-737 error       31 tok    6.4s  [failed: callable(check_str)]
+[320/378] Mbpp-739 timeout    243 tok   38.0s  [failed: find_Index(2) == 4]
+[321/378] Mbpp-740 pass        43 tok   50.0s
+[322/378] Mbpp-741 fail        23 tok    5.5s
+[323/378] Mbpp-742 pass        33 tok    7.6s
+[324/378] Mbpp-743 pass        55 tok   11.7s
+[325/378] Mbpp-744 pass        18 tok    4.9s
+[326/378] Mbpp-745 fail        55 tok   12.1s  [failed: divisible_by_digits(1,22)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12,]
+[327/378] Mbpp-748 fail        34 tok    7.2s
+[328/378] Mbpp-749 fail        21 tok    6.3s  [failed: sort_numeric_strings( ['4','12','45','7','0','100','200','-12']
+[329/378] Mbpp-750 pass        20 tok    5.5s
+[330/378] Mbpp-751 pass        87 tok   16.1s
+[331/378] Mbpp-752 pass       117 tok   20.6s
+[332/378] Mbpp-753 pass        28 tok    7.6s
+[333/378] Mbpp-754 error       43 tok    9.8s
+[334/378] Mbpp-755 error       56 tok   10.7s
+[335/378] Mbpp-757 fail       108 tok   18.6s  [failed: count_reverse_pairs(["julia", "best", "tseb", "for", "ailuj"])]
+[336/378] Mbpp-758 pass        58 tok   12.5s
+[337/378] Mbpp-759 fail        51 tok    9.7s
+[338/378] Mbpp-760 pass        20 tok    5.0s
+[339/378] Mbpp-762 error       73 tok   13.2s  [failed: callable(check_monthnumber_number); failed: check_monthnumber_]
+[340/378] Mbpp-763 pass        60 tok   11.8s
+[341/378] Mbpp-764 pass        21 tok    4.7s
+[342/378] Mbpp-765 fail        92 tok   16.5s  [failed: is_polite(7) == 11]
+[343/378] Mbpp-766 pass        22 tok    6.0s
+[344/378] Mbpp-767 pass        88 tok   15.6s
+[345/378] Mbpp-769 fail        29 tok    7.3s  [failed: (Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35])) == [10, 20,]
+[346/378] Mbpp-770 pass        28 tok    6.5s
+[347/378] Mbpp-771 fail        90 tok   15.3s
+[348/378] Mbpp-772 pass        43 tok    8.6s
+[349/378] Mbpp-773 pass        49 tok    9.5s
+[350/378] Mbpp-775 pass        35 tok   58.9s
+[351/378] Mbpp-777 fail        42 tok    8.3s  [failed: find_sum([1,2,3,1,1,4,5,6]) == 21]
+[352/378] Mbpp-778 pass        69 tok   13.7s
+[353/378] Mbpp-780 pass        50 tok   10.9s
+[354/378] Mbpp-781 error       80 tok   14.1s  [failed: callable(count_divisors)]
+[355/378] Mbpp-782 pass       138 tok   22.7s
+[356/378] Mbpp-784 pass       117 tok   19.9s
+[357/378] Mbpp-785 pass        81 tok   14.3s
+[358/378] Mbpp-786 pass        29 tok    7.1s
+[359/378] Mbpp-787 error       31 tok    6.4s  [failed: callable(text_match_three)]
+[360/378] Mbpp-788 pass        24 tok    5.7s
+[361/378] Mbpp-790 fail        35 tok    7.7s
+[362/378] Mbpp-791 fail        52 tok    9.9s  [failed: remove_nested((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)]
+[363/378] Mbpp-792 fail        19 tok    4.9s
+[364/378] Mbpp-793 pass        57 tok   10.9s
+[365/378] Mbpp-794 error       31 tok    6.4s  [failed: callable(text_starta_endb)]
+[366/378] Mbpp-796 pass        16 tok    4.5s
+[367/378] Mbpp-797 fail       151 tok   24.2s  [failed: sum_in_range(2,5) == 8]
+[368/378] Mbpp-798 pass        15 tok    3.9s
+[369/378] Mbpp-799 pass        66 tok   12.1s
+[370/378] Mbpp-800 fail        18 tok    4.2s
+[371/378] Mbpp-801 pass        55 tok   11.2s
+[372/378] Mbpp-803 pass        42 tok    8.4s
+[373/378] Mbpp-804 pass        35 tok    7.0s
+[374/378] Mbpp-805 pass        21 tok    5.6s
+[375/378] Mbpp-806 fail        71 tok   13.0s
+[376/378] Mbpp-807 pass        34 tok    7.4s
+[377/378] Mbpp-808 pass        22 tok    5.4s
+[378/378] Mbpp-809 pass        33 tok    7.4s
+humaneval: 163 tasks
+   always 4B                               116/163    71%  compute   35%
+   always 8B                               122/163    75%  compute   56%
+   always coder                            139/163    85%  compute  100%
+   cascade 4B -> 8B -> coder (shipped)     114/163    70%  compute   39%
+   cascade 4B -> coder                     115/163    71%  compute   38%
+   cascade 8B -> coder                     122/163    75%  compute   60%
+   check, 4B     wrong   47  caught    3  false alarms   4
+   check, 8B     wrong   41  caught    4  false alarms   2
+   check, coder  wrong   24  caught    7  false alarms   4
+mbpp: 377 tasks
+   always 4B                               219/377    58%  compute   38%
+   always 8B                               231/377    61%  compute   54%
+   always coder                            271/377    72%  compute  100%
+   cascade 4B -> 8B -> coder (shipped)     273/377    72%  compute   81%
+   cascade 4B -> coder                     272/377    72%  compute   73%
+   cascade 8B -> coder                     272/377    72%  compute   88%
+   check, 4B     wrong  158  caught  111  false alarms   1
+   check, 8B     wrong  146  caught   96  false alarms   2
+   check, coder  wrong  106  caught   56  false alarms   2
+
+pooled (540 tasks)
+policy                                     score       95% CI  compute   vs shipped, 95% CI
+always 4B                               335/540    58%-66%        37%           -67 to -38
+always 8B                               353/540    61%-70%        55%           -52 to -16
+always coder                            410/540    72%-79%       100%            +6 to +40
+cascade 4B -> 8B -> coder (shipped)     387/540    68%-76%        64%                     
+cascade 4B -> coder                     387/540    68%-75%        59%             -6 to +6
+cascade 8B -> coder                     394/540    69%-77%        77%            -7 to +21
+
+rule: over both benchmarks pooled, the policy with the most tasks right replaces the shipped cascade iff a paired bootstrap 95% interval of its score minus the shipped cascade's lies entirely above 0 (accuracy first, compute reported); ties for the most right go to the cheaper policy
+-> ADOPT: always coder
