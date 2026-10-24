@@ -47,6 +47,10 @@ SHIPPED = "always 8B"
 BENCH_RULE = (f"the benchmark supports the shipped SQL policy ({SHIPPED}) unless another policy in POLICIES_SQL beats it "
               "with a paired bootstrap 95% interval of the score difference entirely above 0, at no more than its "
               "compute + 10 points; the cheapest such policy is then the candidate, to be judged on the other benchmark")
+# Fixed after Spider named its candidate and before any model answered BIRD.
+SPIDER_CANDIDATE = "cascade 8B -> coder"
+BIRD_RULE = (f"Spider's candidate ({SPIDER_CANDIDATE}) replaces {SHIPPED} iff on BIRD it also beats it with a paired "
+             "bootstrap 95% interval of the score difference entirely above 0, at no more than its compute + 10 points")
 
 
 def schema_sql(db):
@@ -160,6 +164,10 @@ def simulate(bench, resamples=2000):
               f"{'' if name == SHIPPED else f'{dlo:+d} to {dhi:+d}':>22}")
     print(f"\nrule: {BENCH_RULE}")
     print(f"-> CANDIDATE: {min(candidates)[1]}" if candidates else f"-> SUPPORTS: {SHIPPED}")
+    if bench == "bird":
+        print(f"\nrule: {BIRD_RULE}")
+        print(f"-> ADOPT: {SPIDER_CANDIDATE}" if any(n == SPIDER_CANDIDATE for _, n in candidates)
+              else f"-> KEEP: {SHIPPED}")
     print("\nkey-free check vs the key:")
     for k in R:
         wrong = [t["id"] for t in ts if R[k][t["id"]]["verdict"] != "correct"]
