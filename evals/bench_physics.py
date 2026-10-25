@@ -2,6 +2,8 @@
 
     .venv/bin/python evals/bench_physics.py --model qwen3:8b --strategy bare   # results/bench_scibench__<model>[__tool].jsonl
     .venv/bin/python evals/bench_physics.py --simulate                         # POLICIES_PHYSICS, 95% CIs, PHYS_RULE
+    .venv/bin/python evals/bench_physics.py --bench theoremqa --model qwen3:8b # TheoremQA physics, then --simulate:
+                                                                               # TQA_RULE, the confirmation
 
 Data (not redistributed): xw27/scibench from Hugging Face, saved by the datasets-server rows API as
 .benchmarks/numeric/scibench.jsonl (692 problems; 2026-10-24). Only its physics sources are used:
@@ -36,6 +38,10 @@ from plm_physics.levels import classify  # noqa: E402
 from simulate_routing import POLICIES_PHYSICS  # noqa: E402
 
 DATA = ROOT / ".benchmarks/numeric/scibench.jsonl"
+# TheoremQA (wenhuchen/TheoremQA theoremqa_test.json on GitHub, 800 problems; 2026-10-24): its physics
+# problems with a numeric answer (float or integer) and no picture. The question states its own unit.
+TQA_DATA = ROOT / ".benchmarks/theoremqa/test.json"
+BENCH = "scibench"
 RESULTS = ROOT / "results"
 SOURCES = ("fund", "class")
 REL_TOL = 0.05
@@ -46,6 +52,10 @@ PHYS_RULE = ("the policy with the most problems right replaces the physics pack'
              "paired bootstrap 95% interval of its score minus the shipped one's lies entirely above 0 (accuracy first, "
              "compute reported); ties for the most right go to the cheaper policy")
 SEED = 20261024
+# Fixed after SciBench switched the physics pack and before any model answered TheoremQA.
+TQA_RULE = ("the switch is confirmed unless always 8B (bare), the physics pack's old policy, beats the shipped policy "
+            "on TheoremQA physics with a paired bootstrap 95% interval entirely above 0; if it does, the pack reverts")
+SHIPPED_NOW = "+ escalate on failed check (pre-sweep default)"
 
 
 def clean_unit(u):
@@ -56,6 +66,12 @@ def clean_unit(u):
 
 
 def problems():
+    if BENCH == "theoremqa":
+        if not TQA_DATA.exists():
+            sys.exit(f"{TQA_DATA} is missing: fetch it as this file's docstring says")
+        return [{"id": f"tqa-{x['id']}", "question": x["Question"].strip(), "answer": float(x["Answer"])}
+                for x in json.load(open(TQA_DATA)) if x["field"] == "Physics"
+                and x["Answer_type"] in ("float", "integer") and x["Picture"] in (None, "None")]
     if not DATA.exists():
         sys.exit(f"{DATA} is missing: fetch it as this file's docstring says")
     out = []
@@ -77,7 +93,7 @@ def correct(output, answer):
 
 
 def results_path(model, strategy):
-    return RESULTS / f"bench_scibench__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}{'' if strategy == 'bare' else '__' + strategy}.jsonl"
+    return RESULTS / f"bench_{BENCH}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}{'' if strategy == 'bare' else '__' + strategy}.jsonl"
 
 
 def run(model, strategy, timeout):
@@ -86,7 +102,7 @@ def run(model, strategy, timeout):
     done = {r["id"] for r in map(json.loads, open(out))} if out.exists() else set()
     todo = [p for p in ps if p["id"] not in done]
     num_predict = 1536 if strategy == "bare" else 1024
-    print(f"{model} {strategy} on SciBench physics: {len(todo)} to run, {len(done)} already in {out}")
+    print(f"{model} {strategy} on {BENCH} physics: {len(todo)} to run, {len(done)} already in {out}")
     with out.open("a") as f:
         for i, p in enumerate(todo, 1):
             row = {"id": p["id"], "model": model, "strategy": strategy, "num_predict": num_predict}
@@ -117,7 +133,7 @@ def simulate(resamples=2000):
         p = results_path(MODELS[key.split("+")[0]], strategy)
         R[key] = {r["id"]: r for r in map(json.loads, open(p))} if p.exists() else {}
         if len(R[key]) < len(ps):
-            sys.exit(f"no complete SciBench results for {key} ({len(R[key])}/{len(ps)}); run results/run_bench_physics.sh")
+            sys.exit(f"no complete {BENCH} results for {key} ({len(R[key])}/{len(ps)}); run results/run_bench_physics.sh")
     levels = {p["id"]: classify(p["question"])[0] for p in ps}
     per = {}
     for name, pol in POLICIES_PHYSICS:
@@ -135,8 +151,7 @@ def simulate(resamples=2000):
     idx = [[rng.randrange(n) for _ in range(n)] for _ in range(resamples)]
     base = sum(s for _, s in per[SHIPPED])
     shipped = per[SHIPPED]
-    print(f"SciBench physics ({n} problems: fund {sum(p['id'].startswith('sb-fund') for p in ps)}, "
-          f"class {sum(p['id'].startswith('sb-class') for p in ps)})\n")
+    print(f"{BENCH} physics ({n} problems)\n")
     print(f"{'policy':<48} {'score':>8} {'95% CI':>12} {'compute':>8} {'vs shipped, 95% CI':>20}")
     rows = []
     for name, res in per.items():
@@ -150,8 +165,15 @@ def simulate(resamples=2000):
         print(f"{name:<48} {score:>3}/{n:<4} {lo / n:>5.0%}-{hi / n:<5.0%} {cost:>8.0%} "
               f"{'' if name == SHIPPED else f'{dlo:+d} to {dhi:+d}':>20}")
     score, _, best, dlo = max(rows)
-    print(f"\nrule: {PHYS_RULE}")
-    print(f"-> ADOPT: {best}" if best != SHIPPED and dlo > 0 else f"-> KEEP: {SHIPPED} (most right: {best})")
+    if BENCH == "theoremqa":
+        old, new = per[SHIPPED], per[SHIPPED_NOW]
+        diffs = sorted(sum(old[i][0] - new[i][0] for i in b) for b in idx)
+        print(f"\nrule: {TQA_RULE}\nold minus shipped, 95% CI: {diffs[int(0.025 * resamples)]:+d} to "
+              f"{diffs[int(0.975 * resamples)]:+d}")
+        print("-> REVERT to always 8B (bare)" if diffs[int(0.025 * resamples)] > 0 else "-> CONFIRMED: keep the switch")
+    else:
+        print(f"\nrule: {PHYS_RULE}")
+        print(f"-> ADOPT: {best}" if best != SHIPPED and dlo > 0 else f"-> KEEP: {SHIPPED} (most right: {best})")
     print("\nkey-free check vs the key:")
     for k in R:
         wrong = [p["id"] for p in ps if not R[k][p["id"]]["correct"]]
@@ -165,8 +187,11 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--strategy", choices=["bare", "tool"], default="bare")
     ap.add_argument("--simulate", action="store_true")
+    ap.add_argument("--bench", choices=["scibench", "theoremqa"], default="scibench")
     ap.add_argument("--timeout", type=int, default=600)
     args = ap.parse_args()
+    global BENCH
+    BENCH = args.bench
     if args.simulate:
         return simulate()
     if not args.model:
