@@ -107,6 +107,9 @@ What could carry over, in order of value per effort; each policy fixed before it
       (accuracy first) fixed before: 4B+calc escalating to 8B+calc 69/144 vs the shipped 8B direct 52 (+4 to +30)
       at 48% of its compute: the physics pack switched. Only 30 of the 144 routed to physics (LaTeX quantities);
       with LaTeX read as plain text (`plm/latex.py`, LATEX_RULE on 20 new held-out cases: 12 -> 19/20), 73.
+- [x] Physics confirmation: TheoremQA physics (112), TQA_RULE: the switch holds (48 vs 46, 42% compute).
+- [x] CAD: CADPrompt (195 parts built from their own CadQuery references), CADP_RULE: keeps the coder (28/195;
+      cascades 35, interval 0 to +14). Electrical and aerospace: no fitting public benchmark found.
 - [x] GSM8K cross-check (300 sampled, `evals/bench_gsm8k.py`, GSM_RULE fixed before): the 8B direct 272/300 (91%)
       beats the 8B with the calculator 261 (-21 to -1) and the 4B with it 256: the general pack stays as it is.
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).

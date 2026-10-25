@@ -1,0 +1,605 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/195] cadp-00000007 correct         95 tok    7.0s
+[2/195] cadp-00000633 wrong_volume   137 tok    5.6s
+[3/195] cadp-00000960 invalid        212 tok    8.6s  [2 solids, expected one part; overall size 0.7812 mm matches no dimensi]
+[4/195] cadp-00001411 correct         36 tok    1.5s  [overall size 0.02885 mm matches no dimension in the task; overall size]
+[5/195] cadp-00001490 invalid        153 tok    5.9s  [2 solids, expected one part; overall size 0.973 mm matches no dimensio]
+[6/195] cadp-00001615 no_part        184 tok    7.6s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[7/195] cadp-00001817 invalid        293 tok   12.9s  [4 solids, expected one part; overall size 0.8683 mm matches no dimensi]
+[8/195] cadp-00001977 no_part        119 tok    5.2s  [TypeError: Workplane.rotate() got an unexpected keyword argument 'axis]
+[9/195] cadp-00002221 invalid        190 tok    8.8s  [2 solids, expected one part; overall size 1.156 mm matches no dimensio]
+[10/195] cadp-00002298 no_part        332 tok   16.0s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[11/195] cadp-00003219 correct         39 tok    1.6s  [overall size 0.5445 mm matches no dimension in the task; overall size ]
+[12/195] cadp-00003247 correct         35 tok    1.7s
+[13/195] cadp-00003558 correct         45 tok    2.2s
+[14/195] cadp-00003763 invalid        442 tok   24.5s  [3 solids, expected one part; overall size 0.5803 mm matches no dimensi]
+[15/195] cadp-00003801 no_part        153 tok   54.3s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[16/195] cadp-00004154 no_part        188 tok    9.6s  [TypeError: Workplane.fillet() got an unexpected keyword argument 'mode]
+[17/195] cadp-00004495 no_part        110 tok    5.2s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[18/195] cadp-00004596 no_part        127 tok    6.4s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[19/195] cadp-00004935 correct        153 tok    8.0s
+[20/195] cadp-00005161 wrong_size     225 tok   11.4s  [overall size 0.9863 mm matches no dimension in the task; overall size ]
+[21/195] cadp-00005358 no_part        122 tok    6.5s  [SyntaxError: invalid syntax. Perhaps you forgot a comma?]
+[22/195] cadp-00005721 no_part        195 tok   10.1s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[23/195] cadp-00006013 correct         88 tok    4.3s
+[24/195] cadp-00006136 wrong_volume   104 tok    5.1s
+[25/195] cadp-00006578 invalid        270 tok   13.5s  [4 solids, expected one part; overall size 0.2614 mm matches no dimensi]
+[26/195] cadp-00006863 correct        100 tok    4.8s
+[27/195] cadp-00006892 wrong_size     186 tok    9.4s
+[28/195] cadp-00007258 no_part        110 tok    5.4s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[29/195] cadp-00007362 no_part        105 tok    5.4s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[30/195] cadp-00008138 no_part        180 tok    8.7s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[31/195] cadp-00008315 no_part        107 tok    5.4s  [AttributeError: 'Workplane' object has no attribute 'centroid']
+[32/195] cadp-00008597 correct         54 tok    2.4s
+[33/195] cadp-00008835 no_part         95 tok    5.3s  [ValueError: No pending wires present]
+[34/195] cadp-00009044 wrong_volume   107 tok    5.1s
+[35/195] cadp-00009307 no_part        216 tok   11.1s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[36/195] cadp-00009529 invalid        245 tok   12.6s  [2 solids, expected one part; overall size 2.469 mm matches no dimensio]
+[37/195] cadp-00009823 no_part         89 tok    4.5s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[38/195] cadp-00009843 no_part        510 tok   25.9s  [AttributeError: module 'cadquery' has no attribute 'constants'. Did yo]
+[39/195] cadp-00009863 no_part        176 tok    8.7s  [TypeError: Workplane.center() missing 1 required positional argument: ]
+[40/195] cadp-00017291 wrong_size     254 tok   16.0s  [overall size 1.122 mm matches no dimension in the task]
+[41/195] cadp-00019015 invalid        222 tok   10.7s  [2 solids, expected one part; overall size 0.7781 mm matches no dimensi]
+[42/195] cadp-00019066 wrong_size     172 tok    8.9s
+[43/195] cadp-00031181 no_part        138 tok    6.8s  [AttributeError: 'Workplane' object has no attribute 'inverse'. Did you]
+[44/195] cadp-00031303 no_part        227 tok   11.6s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[45/195] cadp-00031637 no_part        183 tok    9.1s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[46/195] cadp-00032961 wrong_size     327 tok   16.3s  [overall size 4.499 mm matches no dimension in the task]
+[47/195] cadp-00033093 no_part        299 tok   15.1s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[48/195] cadp-00033624 wrong_volume   259 tok   13.0s
+[49/195] cadp-00034100 no_part        440 tok   23.5s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'ba]
+[50/195] cadp-00034239 wrong_size     312 tok   15.4s  [overall size 0.2353 mm matches no dimension in the task]
+[51/195] cadp-00034243 no_part        431 tok   23.9s  [OCP.OCP.Standard.Standard_Failure]
+[52/195] cadp-00034256 wrong_size     242 tok   12.6s  [overall size 1.65 mm matches no dimension in the task]
+[53/195] cadp-00036518 no_part        314 tok   15.9s  [AttributeError: 'Workplane' object has no attribute 'planeThroughPoint]
+[54/195] cadp-00037135 no_part        439 tok   23.0s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[55/195] cadp-00037161 correct        127 tok    6.2s
+[56/195] cadp-00037276 no_part        376 tok   20.0s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[57/195] cadp-00037494 no_part        242 tok   12.8s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[58/195] cadp-00038438 correct        233 tok   11.1s
+[59/195] cadp-00038614 no_part        174 tok    8.6s  [TypeError: Workplane.chamfer() takes from 2 to 3 positional arguments ]
+[60/195] cadp-00039012 wrong_size     221 tok   12.0s  [overall size 17.84 mm matches no dimension in the task; overall size 1]
+[61/195] cadp-00039227 no_part        169 tok    8.7s  [TypeError: Workplane.rect() got an unexpected keyword argument 'length]
+[62/195] cadp-00039365 wrong_volume   392 tok   20.0s
+[63/195] cadp-00039681 wrong_size     197 tok    9.8s
+[64/195] cadp-00039777 no_part        287 tok   15.7s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[65/195] cadp-00300037 wrong_size     274 tok   13.4s
+[66/195] cadp-00520130 invalid        217 tok   10.8s  [2 solids, expected one part; overall size 2.85 mm matches no dimension]
+[67/195] cadp-00520150 wrong_size     115 tok    5.4s
+[68/195] cadp-00520321 no_part        270 tok   14.4s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[69/195] cadp-00520402 no_part        240 tok   12.6s  [AttributeError: 'Workplane' object has no attribute 'cutCylinder'. Did]
+[70/195] cadp-00520453 wrong_volume   113 tok    5.5s
+[71/195] cadp-00520570 no_part       1024 tok   50.5s  [no code block]
+[72/195] cadp-00520638 no_part        495 tok   26.9s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[73/195] cadp-00520671 no_part        341 tok   17.5s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[74/195] cadp-00520675 no_part        279 tok   13.9s  [ValueError: If multiple objects selected, they all must be planar face]
+[75/195] cadp-00520699 wrong_size     229 tok   11.3s  [overall size 0.05375 mm matches no dimension in the task]
+[76/195] cadp-00520726 invalid        391 tok   20.0s  [2 solids, expected one part]
+[77/195] cadp-00520776 no_part        146 tok    7.0s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'bot]
+[78/195] cadp-00520974 no_part         70 tok    3.4s  [AttributeError: 'Workplane' object has no attribute 'square']
+[79/195] cadp-00520976 wrong_volume   136 tok    7.1s
+[80/195] cadp-00521000 no_part        416 tok   20.6s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[81/195] cadp-00521025 correct        304 tok   17.4s
+[82/195] cadp-00521217 wrong_size     199 tok   11.7s
+[83/195] cadp-00521230 invalid        251 tok   12.4s  [3 solids, expected one part; overall size 0.759 mm matches no dimensio]
+[84/195] cadp-00521437 no_part        380 tok   20.2s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'fro]
+[85/195] cadp-00521895 no_part        250 tok   12.9s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[86/195] cadp-00521969 no_part        113 tok    5.5s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[87/195] cadp-00522355 no_part        306 tok   15.9s  [ValueError: No pending wires present]
+[88/195] cadp-00522404 wrong_size     266 tok   13.1s  [overall size 0.4611 mm matches no dimension in the task]
+[89/195] cadp-00522865 no_part        669 tok   34.9s  [AttributeError: 'Workplane' object has no attribute 'width']
+[90/195] cadp-00523882 no_part        360 tok   19.0s  [ValueError: No pending wires present]
+[91/195] cadp-00524912 wrong_size     439 tok   22.1s  [overall size 0.4286 mm matches no dimension in the task; overall size ]
+[92/195] cadp-00670105 wrong_size     186 tok    9.6s
+[93/195] cadp-00670106 no_part         79 tok    3.8s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'di]
+[94/195] cadp-00670231 correct        191 tok    9.4s
+[95/195] cadp-00670256 no_part        205 tok   10.1s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[96/195] cadp-00670259 no_part        209 tok   10.2s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[97/195] cadp-00670266 no_part        218 tok   10.9s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[98/195] cadp-00670274 no_part        237 tok   11.8s  [TypeError: Workplane.box() got an unexpected keyword argument 'size']
+[99/195] cadp-00670279 wrong_size     250 tok   12.2s  [overall size 0.391 mm matches no dimension in the task]
+[100/195] cadp-00670334 wrong_volume   180 tok    9.1s
+[101/195] cadp-00670441 no_part        192 tok    9.5s  [AttributeError: 'Workplane' object has no attribute 'corner']
+[102/195] cadp-00670454 wrong_size     254 tok   12.6s
+[103/195] cadp-00670457 no_part        247 tok   12.3s  [ValueError: Workplane object must have at least one solid on the stack]
+[104/195] cadp-00670466 no_part        141 tok    7.5s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[105/195] cadp-00670817 no_part        139 tok    7.0s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[106/195] cadp-00670960 no_part        647 tok   31.8s  [ValueError: Workplane object must have at least one solid on the stack]
+[107/195] cadp-00671873 no_part        206 tok   11.5s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[108/195] cadp-00671898 no_part        569 tok   28.5s  [OCP.OCP.Standard.Standard_Failure: BRepSweep_Translation::Constructor]
+[109/195] cadp-00671938 correct        176 tok    8.6s
+[110/195] cadp-00672098 correct        188 tok   10.0s
+[111/195] cadp-00672272 wrong_size     238 tok   12.8s
+[112/195] cadp-00672291 wrong_size     175 tok    8.7s
+[113/195] cadp-00672309 no_part        333 tok   16.4s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[114/195] cadp-00672352 wrong_volume   167 tok    8.1s
+[115/195] cadp-00672355 no_part        189 tok   10.2s  [NameError: name 'cylinder_diameter' is not defined]
+[116/195] cadp-00672359 no_part        153 tok    7.7s  [TypeError: 'Workplane' object does not support the context manager pro]
+[117/195] cadp-00672804 wrong_volume   127 tok    6.7s
+[118/195] cadp-00673733 no_part        191 tok    9.6s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[119/195] cadp-00673788 no_part        237 tok   11.5s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[120/195] cadp-00675092 no_part        157 tok    7.8s  [ValueError: Selected faces must be co-planar.]
+[121/195] cadp-00675498 no_part        332 tok   16.8s  [ValueError: Workplane object must have at least one solid on the stack]
+[122/195] cadp-00675952 no_part        170 tok    8.3s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[123/195] cadp-00676218 no_part        317 tok   15.7s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[124/195] cadp-00680715 correct        213 tok   10.3s
+[125/195] cadp-00681053 no_part        379 tok   20.9s  [TypeError: Workplane.rotate() got an unexpected keyword argument 'axis]
+[126/195] cadp-00681399 no_part        263 tok   14.1s  [AttributeError: 'Workplane' object has no attribute 'annulus']
+[127/195] cadp-00681463 no_part       1024 tok   52.9s  [no code block]
+[128/195] cadp-00681547 no_part        317 tok   17.4s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[129/195] cadp-00681589 no_part        359 tok   19.2s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[130/195] cadp-00681754 wrong_size     217 tok   11.0s  [overall size 1.714 mm matches no dimension in the task]
+[131/195] cadp-00681760 wrong_size     412 tok   20.7s
+[132/195] cadp-00681831 no_part        489 tok   24.8s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[133/195] cadp-00681999 wrong_volume   179 tok    9.1s
+[134/195] cadp-00682073 wrong_size     121 tok    6.6s
+[135/195] cadp-00682075 no_part        203 tok   10.6s  [ValueError: No pending wires present]
+[136/195] cadp-00684686 no_part        218 tok   12.2s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[137/195] cadp-00684841 no_part        369 tok   18.7s  [AttributeError: 'Workplane' object has no attribute 'arcTo']
+[138/195] cadp-00685823 no_part        136 tok    7.3s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'hei]
+[139/195] cadp-00689964 no_part        120 tok    6.2s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[140/195] cadp-00851553 no_part        417 tok   22.9s  [AttributeError: 'Workplane' object has no attribute 'cutout']
+[141/195] cadp-00852000 no_part        400 tok   20.1s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[142/195] cadp-00853706 no_part        476 tok   25.6s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[143/195] cadp-00857821 no_part        280 tok   14.1s  [AttributeError: 'Workplane' object has no attribute 'polygons'. Did yo]
+[144/195] cadp-00980651 no_part        184 tok    9.3s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[145/195] cadp-00983173 no_part        350 tok   18.8s  [SyntaxError: invalid syntax]
+[146/195] cadp-00984033 no_part        274 tok   16.0s  [TypeError: Workplane.cut() missing 1 required positional argument: 'to]
+[147/195] cadp-00984234 no_part        288 tok   15.2s  [AttributeError: 'Workplane' object has no attribute 'rectCut']
+[148/195] cadp-00984488 wrong_size     146 tok    7.5s  [overall size 0.9442 mm matches no dimension in the task]
+[149/195] cadp-00984833 wrong_size     294 tok   15.5s
+[150/195] cadp-00985066 wrong_size     285 tok   15.2s  [overall size 350 mm matches no dimension in the task; overall size 725]
+[151/195] cadp-00985482 wrong_volume   248 tok   13.3s
+[152/195] cadp-00985494 no_part        178 tok    8.9s  [ValueError: No pending wires present]
+[153/195] cadp-00986712 no_part        302 tok   16.2s  [TypeError: Workplane.fillet() takes 2 positional arguments but 5 were ]
+[154/195] cadp-00986814 invalid        264 tok   13.5s  [3 solids, expected one part; overall size 0.445 mm matches no dimensio]
+[155/195] cadp-00995686 no_part        265 tok   14.1s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'de]
+[156/195] cadp-00995733 invalid        212 tok   11.4s  [the kernel says the solid is invalid; no volume; overall size 0 mm mat]
+[157/195] cadp-00995759 wrong_volume   147 tok    8.1s
+[158/195] cadp-00995843 correct        173 tok    8.9s
+[159/195] cadp-00996001 no_part        305 tok   15.6s  [OCP.OCP.Standard.Standard_Failure: BRepSweep_Translation::Constructor]
+[160/195] cadp-00996329 no_part        157 tok    8.1s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[161/195] cadp-00996368 wrong_size     265 tok   13.2s  [overall size 0.2346 mm matches no dimension in the task; overall size ]
+[162/195] cadp-00996457 no_part        196 tok   12.0s  [AttributeError: 'Workplane' object has no attribute 'subtract']
+[163/195] cadp-00996473 wrong_volume   383 tok   20.3s
+[164/195] cadp-00996962 no_part        238 tok   12.2s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'bot]
+[165/195] cadp-00997040 invalid        157 tok    9.8s  [2 solids, expected one part; overall size 0.0429 mm matches no dimensi]
+[166/195] cadp-00997065 no_part        321 tok   16.9s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[167/195] cadp-00997068 no_part        188 tok   10.5s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[168/195] cadp-00997071 no_part        313 tok   16.6s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[169/195] cadp-00997229 no_part        325 tok   16.7s  [ValueError: Workplane object must have at least one solid on the stack]
+[170/195] cadp-00997300 no_part        304 tok   15.0s  [AttributeError: 'Workplane' object has no attribute 'toPoint']
+[171/195] cadp-00997373 no_part        222 tok   11.4s  [ValueError: Cannot union type '<class 'list'>']
+[172/195] cadp-00997428 no_part        310 tok   17.4s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[173/195] cadp-00997536 no_part        305 tok   16.6s  [NameError: name 'sqrt' is not defined]
+[174/195] cadp-00997580 wrong_volume   181 tok    9.5s
+[175/195] cadp-00997616 no_part        457 tok   23.5s  [OCP.OCP.Standard.Standard_ConstructionError: gp_Dir() - input vector h]
+[176/195] cadp-00997677 no_part        271 tok   14.8s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[177/195] cadp-00997681 no_part        165 tok    8.3s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[178/195] cadp-00997753 no_part        453 tok   23.0s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[179/195] cadp-00997785 no_part        136 tok    6.7s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[180/195] cadp-00997852 wrong_size     218 tok   11.3s
+[181/195] cadp-00997878 no_part        299 tok   14.8s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'mov]
+[182/195] cadp-00998012 no_part        308 tok   15.9s  [ValueError: Workplane object must have at least one solid on the stack]
+[183/195] cadp-00998074 no_part        314 tok   17.3s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[184/195] cadp-00998088 no_part        340 tok   17.4s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[185/195] cadp-00998283 no_part        187 tok    9.7s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[186/195] cadp-00998300 invalid        296 tok   15.3s  [2 solids, expected one part; overall size 13.5 mm matches no dimension]
+[187/195] cadp-00998356 no_part        600 tok   31.1s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[188/195] cadp-00998398 correct        317 tok   17.2s
+[189/195] cadp-00998698 no_part       1024 tok   51.0s  [no code block]
+[190/195] cadp-00998714 no_part        332 tok   18.0s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[191/195] cadp-00998749 wrong_size     381 tok   20.4s  [overall size 0.2685 mm matches no dimension in the task; overall size ]
+[192/195] cadp-00998843 wrong_size     425 tok   21.2s
+[193/195] cadp-00999126 wrong_volume   374 tok   20.2s
+[194/195] cadp-00999141 no_part        333 tok   18.1s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[195/195] cadp-00999374 no_part        530 tok   29.7s  [AttributeError: 'Workplane' object has no attribute 'ruledSurface']
+qwen3:8b on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen3_8b.jsonl
+[1/195] cadp-00000007 correct         44 tok    6.2s
+[2/195] cadp-00000633 wrong_volume    83 tok    8.2s
+[3/195] cadp-00000960 wrong_size     163 tok   16.4s  [overall size 0.7812 mm matches no dimension in the task; overall size ]
+[4/195] cadp-00001411 wrong_size      36 tok    3.6s  [overall size 3 mm matches no dimension in the task; overall size 3 mm ]
+[5/195] cadp-00001490 invalid         89 tok    8.6s  [2 solids, expected one part; overall size 0.973 mm matches no dimensio]
+[6/195] cadp-00001615 no_part        196 tok   18.7s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[7/195] cadp-00001817 invalid        295 tok   27.5s  [4 solids, expected one part; overall size 75 mm matches no dimension i]
+[8/195] cadp-00001977 no_part        151 tok   59.2s  [ValueError: No pending wires present]
+[9/195] cadp-00002221 wrong_size     162 tok   15.4s
+[10/195] cadp-00002298 no_part        387 tok   36.2s  [AttributeError: 'Workplane' object has no attribute 'bounding_box']
+[11/195] cadp-00003219 no_part         39 tok    4.0s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[12/195] cadp-00003247 correct         37 tok    3.8s
+[13/195] cadp-00003558 no_part         59 tok    5.9s  [ValueError: No pending wires present]
+[14/195] cadp-00003763 no_part        336 tok   31.9s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[15/195] cadp-00003801 invalid         68 tok    6.9s  [2 solids, expected one part; overall size 0.1899 mm matches no dimensi]
+[16/195] cadp-00004154 wrong_size     211 tok   19.5s  [overall size 220.6 mm matches no dimension in the task; overall size 4]
+[17/195] cadp-00004495 invalid         77 tok    7.3s  [2 solids, expected one part; overall size 1.5 mm matches no dimension ]
+[18/195] cadp-00004596 no_part         80 tok    7.9s  [ValueError: No pending wires present]
+[19/195] cadp-00004935 correct        163 tok   15.9s
+[20/195] cadp-00005161 wrong_size     165 tok   15.6s  [overall size 0.289 mm matches no dimension in the task; overall size 0]
+[21/195] cadp-00005358 correct         87 tok    8.2s
+[22/195] cadp-00005721 no_part        285 tok   26.2s  [TypeError: Workplane.polygon() got an unexpected keyword argument 'clo]
+[23/195] cadp-00006013 correct         48 tok    4.8s
+[24/195] cadp-00006136 no_part        102 tok    9.6s  [TypeError: unsupported operand type(s) for /: 'list' and 'float']
+[25/195] cadp-00006578 no_part        209 tok   19.7s  [result holds no solid]
+[26/195] cadp-00006863 correct        113 tok   10.4s
+[27/195] cadp-00006892 wrong_size     189 tok   17.9s  [overall size 157.9 mm matches no dimension in the task; overall size 5]
+[28/195] cadp-00007258 no_part        119 tok   56.6s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[29/195] cadp-00007362 no_part        107 tok   10.1s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[30/195] cadp-00008138 no_part        124 tok   11.9s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[31/195] cadp-00008315 correct         76 tok    7.2s
+[32/195] cadp-00008597 wrong_size      46 tok    4.7s  [overall size 750 mm matches no dimension in the task; overall size 150]
+[33/195] cadp-00008835 correct         53 tok    5.2s
+[34/195] cadp-00009044 invalid        138 tok   12.5s  [2 solids, expected one part]
+[35/195] cadp-00009307 invalid        285 tok   27.1s  [2 solids, expected one part; overall size 32.14 mm matches no dimensio]
+[36/195] cadp-00009529 invalid        299 tok   29.3s  [2 solids, expected one part; overall size 2.689 mm matches no dimensio]
+[37/195] cadp-00009823 no_part         78 tok    7.6s  [AttributeError: 'Workplane' object has no attribute 'hexagon']
+[38/195] cadp-00009843 no_part       1024 tok   95.6s  [no code block]
+[39/195] cadp-00009863 wrong_size      73 tok    7.6s  [overall size 78.49 mm matches no dimension in the task; overall size 8]
+[40/195] cadp-00017291 no_part        241 tok   22.9s  [ValueError: No pending wires present]
+[41/195] cadp-00019015 no_part        130 tok   12.7s  [AttributeError: 'Workplane' object has no attribute 'height']
+[42/195] cadp-00019066 wrong_size     208 tok   19.9s  [overall size 0.015 mm matches no dimension in the task]
+[43/195] cadp-00031181 wrong_size     111 tok   56.7s  [overall size 338.4 mm matches no dimension in the task; overall size 3]
+[44/195] cadp-00031303 wrong_size     291 tok   27.0s
+[45/195] cadp-00031637 wrong_size     190 tok   18.3s  [overall size 263.6 mm matches no dimension in the task; overall size 5]
+[46/195] cadp-00032961 invalid        390 tok   36.9s  [2 solids, expected one part; overall size 1.607 mm matches no dimensio]
+[47/195] cadp-00033093 wrong_volume   265 tok   25.5s
+[48/195] cadp-00033624 wrong_size     256 tok   24.5s  [overall size 75 mm matches no dimension in the task; overall size 214.]
+[49/195] cadp-00034100 no_part        315 tok   30.1s  [AttributeError: 'Workplane' object has no attribute 'rectangularWedge']
+[50/195] cadp-00034239 no_part        252 tok   24.8s  [ValueError: No pending wires present]
+[51/195] cadp-00034243 no_part        388 tok   38.0s  [AttributeError: 'Workplane' object has no attribute 'bounding_box']
+[52/195] cadp-00034256 wrong_size     208 tok   21.7s  [overall size 45 mm matches no dimension in the task; overall size 60 m]
+[53/195] cadp-00036518 no_part        314 tok   29.7s  [TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments b]
+[54/195] cadp-00037135 no_part        484 tok   94.6s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[55/195] cadp-00037161 wrong_volume   159 tok   15.6s
+[56/195] cadp-00037276 no_part        623 tok   58.8s  [AttributeError: 'list' object has no attribute 'IsNull']
+[57/195] cadp-00037494 wrong_size     152 tok   15.1s  [overall size 1.5 mm matches no dimension in the task]
+[58/195] cadp-00038438 no_part        224 tok   21.1s  [TypeError: unsupported operand type(s) for /: 'float' and 'list']
+[59/195] cadp-00038614 wrong_size     161 tok   15.2s  [overall size 2.65 mm matches no dimension in the task; overall size 15]
+[60/195] cadp-00039012 wrong_size     195 tok   19.1s  [overall size 19.34 mm matches no dimension in the task; overall size 2]
+[61/195] cadp-00039227 no_part        168 tok   18.3s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[62/195] cadp-00039365 no_part        352 tok   34.2s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[63/195] cadp-00039681 wrong_size     219 tok   22.2s
+[64/195] cadp-00039777 no_part        329 tok   34.6s  [TypeError: Workplane.polygon() takes from 3 to 5 positional arguments ]
+[65/195] cadp-00300037 wrong_size     251 tok   74.8s
+[66/195] cadp-00520130 invalid        333 tok   31.6s  [2 solids, expected one part; overall size 41.25 mm matches no dimensio]
+[67/195] cadp-00520150 wrong_size      89 tok    8.6s
+[68/195] cadp-00520321 invalid        412 tok   40.0s  [2 solids, expected one part; overall size 61.72 mm matches no dimensio]
+[69/195] cadp-00520402 no_part        246 tok   23.3s  [ValueError: No pending wires present]
+[70/195] cadp-00520453 no_part        123 tok   11.9s  [ValueError: No pending wires present]
+[71/195] cadp-00520570 no_part       1024 tok   95.3s  [no code block]
+[72/195] cadp-00520638 no_part        592 tok   57.8s  [ValueError: No pending wires present]
+[73/195] cadp-00520671 wrong_size     293 tok   72.3s
+[74/195] cadp-00520675 no_part        116 tok   10.8s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[75/195] cadp-00520699 wrong_size     213 tok   20.3s  [overall size 0.05812 mm matches no dimension in the task]
+[76/195] cadp-00520726 no_part        315 tok   30.5s  [AttributeError: 'Workplane' object has no attribute 'difference']
+[77/195] cadp-00520776 wrong_size     132 tok   12.9s  [overall size 150 mm matches no dimension in the task; overall size 150]
+[78/195] cadp-00520974 no_part         46 tok    4.4s  [AttributeError: 'Workplane' object has no attribute 'square']
+[79/195] cadp-00520976 wrong_volume   194 tok   19.0s
+[80/195] cadp-00521000 no_part        347 tok   33.2s  [ValueError: No pending wires present]
+[81/195] cadp-00521025 no_part        272 tok   25.9s  [ValueError: No pending wires present]
+[82/195] cadp-00521217 invalid        168 tok   16.5s  [2 solids, expected one part; overall size 1.522 mm matches no dimensio]
+[83/195] cadp-00521230 wrong_size     436 tok   41.7s  [overall size 1.5 mm matches no dimension in the task; overall size 1.5]
+[84/195] cadp-00521437 wrong_volume   362 tok   35.6s
+[85/195] cadp-00521895 wrong_size     168 tok   63.4s  [overall size 7.5 mm matches no dimension in the task; overall size 10 ]
+[86/195] cadp-00521969 wrong_volume    67 tok    6.6s
+[87/195] cadp-00522355 no_part        288 tok   27.1s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[88/195] cadp-00522404 wrong_size     180 tok   18.0s
+[89/195] cadp-00522865 invalid        568 tok   55.3s  [2 solids, expected one part]
+[90/195] cadp-00523882 no_part        300 tok   30.0s  [ValueError: No pending wires present]
+[91/195] cadp-00524912 no_part        344 tok   36.4s  [TypeError: Workplane.rotate() takes 4 positional arguments but 5 were ]
+[92/195] cadp-00670105 no_part        160 tok   15.3s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[93/195] cadp-00670106 wrong_size      70 tok    6.8s  [overall size 0.8818 mm matches no dimension in the task; overall size ]
+[94/195] cadp-00670231 wrong_volume   109 tok   10.6s
+[95/195] cadp-00670256 no_part        173 tok   16.4s  [AttributeError: 'Workplane' object has no attribute 'hollow']
+[96/195] cadp-00670259 no_part        178 tok   16.7s  [ValueError: No pending wires present]
+[97/195] cadp-00670266 no_part        262 tok   25.3s  [TypeError: Workplane.fillet() got an unexpected keyword argument 'dir']
+[98/195] cadp-00670274 no_part        332 tok   76.5s  [SyntaxError: '(' was never closed]
+[99/195] cadp-00670279 no_part        149 tok   15.0s  [ValueError: No pending wires present]
+[100/195] cadp-00670334 wrong_volume    63 tok    6.6s
+[101/195] cadp-00670441 no_part        256 tok   24.1s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[102/195] cadp-00670454 invalid        256 tok   25.2s  [2 solids, expected one part; overall size 5.921 mm matches no dimensio]
+[103/195] cadp-00670457 no_part        271 tok   26.1s  [ValueError: Workplane object must have at least one solid on the stack]
+[104/195] cadp-00670466 no_part        165 tok   16.3s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[105/195] cadp-00670817 correct        197 tok   18.6s
+[106/195] cadp-00670960 no_part        339 tok   33.1s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[107/195] cadp-00671873 invalid        194 tok   19.8s  [2 solids, expected one part; overall size 1.125 mm matches no dimensio]
+[108/195] cadp-00671898 wrong_size     457 tok   45.0s  [overall size 135.9 mm matches no dimension in the task; overall size 6]
+[109/195] cadp-00671938 correct        171 tok   16.6s
+[110/195] cadp-00672098 no_part        224 tok   21.6s  [ValueError: Null TopoDS_Shape object]
+[111/195] cadp-00672272 invalid        302 tok   76.9s  [2 solids, expected one part; overall size 2.557 mm matches no dimensio]
+[112/195] cadp-00672291 invalid        169 tok   16.4s  [2 solids, expected one part; overall size 15 mm matches no dimension i]
+[113/195] cadp-00672309 no_part        289 tok   28.2s  [AttributeError: 'Workplane' object has no attribute 'rectangularWedge']
+[114/195] cadp-00672352 wrong_volume   137 tok   13.9s
+[115/195] cadp-00672355 no_part        298 tok   28.8s  [ValueError: No pending wires present]
+[116/195] cadp-00672359 no_part        159 tok   15.5s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[117/195] cadp-00672804 wrong_size     104 tok   10.3s  [overall size 11.25 mm matches no dimension in the task; overall size 1]
+[118/195] cadp-00673733 wrong_size     172 tok   17.0s
+[119/195] cadp-00673788 no_part        140 tok   14.1s  [TypeError: Workplane.polygon() got an unexpected keyword argument 'clo]
+[120/195] cadp-00675092 no_part        138 tok   14.2s  [TypeError: Workplane.polygon() takes from 3 to 5 positional arguments ]
+[121/195] cadp-00675498 no_part        280 tok   27.4s  [ValueError: Workplane object must have at least one solid on the stack]
+[122/195] cadp-00675952 no_part        171 tok   17.0s  [ValueError: No pending wires present]
+[123/195] cadp-00676218 wrong_size     162 tok   16.7s
+[124/195] cadp-00680715 no_part        171 tok   16.5s  [ValueError: No pending wires present]
+[125/195] cadp-00681053 wrong_size     179 tok   17.8s
+[126/195] cadp-00681399 no_part        330 tok   81.4s  [TypeError: Workplane.extrude() got an unexpected keyword argument 'dir]
+[127/195] cadp-00681463 no_part         70 tok    6.9s  [TypeError: Workplane.fillet() got an unexpected keyword argument 'segm]
+[128/195] cadp-00681547 no_part        221 tok   21.7s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[129/195] cadp-00681589 no_part        371 tok   37.7s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[130/195] cadp-00681754 wrong_size     183 tok   18.0s  [overall size 427.2 mm matches no dimension in the task; overall size 6]
+[131/195] cadp-00681760 wrong_size     300 tok   29.6s  [overall size 11.25 mm matches no dimension in the task; overall size 7]
+[132/195] cadp-00681831 no_part        254 tok   25.8s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[133/195] cadp-00681999 no_part        190 tok   19.3s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[134/195] cadp-00682073 no_part        229 tok   21.8s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[135/195] cadp-00682075 no_part        281 tok   28.6s  [AttributeError: 'Workplane' object has no attribute 'toShape']
+[136/195] cadp-00684686 invalid        283 tok   27.8s  [2 solids, expected one part]
+[137/195] cadp-00684841 no_part        425 tok   42.5s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[138/195] cadp-00685823 no_part        186 tok   66.1s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[139/195] cadp-00689964 wrong_size     161 tok   15.5s
+[140/195] cadp-00851553 no_part        465 tok   45.7s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[141/195] cadp-00852000 no_part        467 tok   45.7s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[142/195] cadp-00853706 no_part        380 tok   36.6s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[143/195] cadp-00857821 no_part        200 tok   20.2s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[144/195] cadp-00980651 correct        202 tok   19.4s
+[145/195] cadp-00983173 no_part        505 tok   47.8s  [ValueError: No pending wires present]
+[146/195] cadp-00984033 no_part        260 tok   25.5s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[147/195] cadp-00984234 no_part        277 tok   27.1s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[148/195] cadp-00984488 no_part        191 tok   68.3s  [TypeError: Workplane.circle() got an unexpected keyword argument 'mode]
+[149/195] cadp-00984833 wrong_size     169 tok   17.5s  [overall size 198.2 mm matches no dimension in the task; overall size 3]
+[150/195] cadp-00985066 invalid        280 tok   27.2s  [3 solids, expected one part; overall size 725 mm matches no dimension ]
+[151/195] cadp-00985482 wrong_size     361 tok   34.6s  [overall size 0.5279 mm matches no dimension in the task]
+[152/195] cadp-00985494 no_part        482 tok   44.6s  [TypeError: Workplane.polygon() takes from 3 to 5 positional arguments ]
+[153/195] cadp-00986712 no_part        317 tok   30.7s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[154/195] cadp-00986814 invalid        220 tok   21.3s  [2 solids, expected one part; overall size 25 mm matches no dimension i]
+[155/195] cadp-00995686 no_part        209 tok   20.5s  [ValueError: No pending wires present]
+[156/195] cadp-00995733 no_part       1024 tok   95.5s  [no code block]
+[157/195] cadp-00995759 wrong_size     171 tok   69.1s  [overall size 37.5 mm matches no dimension in the task; overall size 50]
+[158/195] cadp-00995843 correct        168 tok   15.6s
+[159/195] cadp-00996001 no_part        960 tok   90.7s  [SyntaxError: '(' was never closed]
+[160/195] cadp-00996329 no_part        136 tok   14.2s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
+[161/195] cadp-00996368 no_part        333 tok   32.0s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[162/195] cadp-00996457 wrong_size     233 tok   22.9s  [overall size 0.9796 mm matches no dimension in the task; overall size ]
+[163/195] cadp-00996473 no_part        441 tok   42.0s  [NameError: name 'right_padding' is not defined. Did you mean: 'left_pa]
+[164/195] cadp-00996962 wrong_size     264 tok   26.1s  [overall size 78.17 mm matches no dimension in the task; overall size 1]
+[165/195] cadp-00997040 no_part        232 tok   24.8s  [AttributeError: 'Location' object has no attribute 'translate']
+[166/195] cadp-00997065 no_part        245 tok   72.6s  [ValueError: Workplane object must have at least one solid on the stack]
+[167/195] cadp-00997068 invalid        205 tok   19.8s  [2 solids, expected one part; overall size 3.125 mm matches no dimensio]
+[168/195] cadp-00997071 no_part        292 tok   28.7s  [ValueError: Workplane object must have at least one solid on the stack]
+[169/195] cadp-00997229 wrong_size     300 tok   29.4s
+[170/195] cadp-00997300 no_part        320 tok   30.5s  [ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', ']
+[171/195] cadp-00997373 wrong_volume   293 tok   28.2s
+[172/195] cadp-00997428 invalid        343 tok   34.0s  [2 solids, expected one part; overall size 0.6664 mm matches no dimensi]
+[173/195] cadp-00997536 no_part        312 tok   30.8s  [AttributeError: module 'cadquery' has no attribute 'cos']
+[174/195] cadp-00997580 no_part        226 tok   22.3s  [TypeError: Workplane.translate() takes 2 positional arguments but 4 we]
+[175/195] cadp-00997616 no_part        441 tok   42.8s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+[176/195] cadp-00997677 invalid        257 tok   74.5s  [2 solids, expected one part; overall size 2.015 mm matches no dimensio]
+[177/195] cadp-00997681 no_part        172 tok   16.7s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[178/195] cadp-00997753 no_part        309 tok   30.0s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[179/195] cadp-00997785 no_part        172 tok   17.4s  [AttributeError: 'Workplane' object has no attribute 'square']
+[180/195] cadp-00997852 wrong_size     204 tok   19.8s  [overall size 841.8 mm matches no dimension in the task; overall size 1]
+[181/195] cadp-00997878 no_part        325 tok   31.1s  [AttributeError: 'Workplane' object has no attribute 'rounded']
+[182/195] cadp-00998012 no_part        307 tok   29.7s  [OCP.OCP.Standard.Standard_Failure: BRepSweep_Translation::Constructor]
+[183/195] cadp-00998074 wrong_size     292 tok   28.3s  [overall size 4.149 mm matches no dimension in the task]
+[184/195] cadp-00998088 no_part        361 tok   34.8s  [TypeError: Workplane.fillet() got an unexpected keyword argument 'segm]
+[185/195] cadp-00998283 no_part        168 tok   16.9s  [TypeError: Workplane.polygon() takes from 3 to 5 positional arguments ]
+[186/195] cadp-00998300 invalid        183 tok   18.6s  [2 solids, expected one part; overall size 13.5 mm matches no dimension]
+[187/195] cadp-00998356 no_part        507 tok   48.4s  [TypeError: Workplane.polygon() takes from 3 to 5 positional arguments ]
+[188/195] cadp-00998398 no_part        276 tok   76.8s  [TypeError: unsupported operand type(s) for /: 'float' and 'list']
+[189/195] cadp-00998698 no_part        414 tok   39.8s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[190/195] cadp-00998714 no_part        226 tok   21.8s  [TypeError: Workplane.polygon() got an unexpected keyword argument 'ang]
+[191/195] cadp-00998749 no_part        294 tok   29.4s  [AttributeError: 'Workplane' object has no attribute 'difference']
+[192/195] cadp-00998843 no_part        355 tok   34.6s  [AttributeError: 'Workplane' object has no attribute 'bounding_box']
+[193/195] cadp-00999126 wrong_size     360 tok   36.3s  [overall size 39.01 mm matches no dimension in the task; overall size 4]
+[194/195] cadp-00999141 no_part        299 tok   29.3s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[195/195] cadp-00999374 no_part        566 tok   55.4s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
+qwen2.5-coder:14b on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen2.5-coder_14b.jsonl
+[1/195] cadp-00000007 correct         81 tok   21.7s
+[2/195] cadp-00000633 wrong_size     100 tok   78.2s  [overall size 0.391 mm matches no dimension in the task; overall size 1]
+[3/195] cadp-00000960 wrong_size     164 tok   36.5s  [overall size 1.95 mm matches no dimension in the task; overall size 75]
+[4/195] cadp-00001411 wrong_size      82 tok   18.3s  [overall size 28.85 mm matches no dimension in the task; overall size 2]
+[5/195] cadp-00001490 wrong_volume   130 tok   28.9s  [overall size 1.5 mm matches no dimension in the task; overall size 1.5]
+[6/195] cadp-00001615 wrong_size     203 tok   43.8s  [overall size 600 mm matches no dimension in the task; overall size 600]
+[7/195] cadp-00001817 wrong_size     258 tok   55.4s  [overall size 619.1 mm matches no dimension in the task; overall size 7]
+[8/195] cadp-00001977 no_part        133 tok   28.5s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[9/195] cadp-00002221 wrong_size     140 tok   30.9s  [overall size 3.4 mm matches no dimension in the task; overall size 6.2]
+[10/195] cadp-00002298 wrong_size     330 tok   69.3s  [overall size 2.045 mm matches no dimension in the task; overall size 2]
+[11/195] cadp-00003219 correct         64 tok   68.7s  [overall size 0.5445 mm matches no dimension in the task; overall size ]
+[12/195] cadp-00003247 wrong_size      57 tok   12.9s  [overall size 300 mm matches no dimension in the task; overall size 300]
+[13/195] cadp-00003558 correct         92 tok   20.3s
+[14/195] cadp-00003763 invalid        412 tok   88.3s  [2 solids, expected one part]
+[15/195] cadp-00003801 correct        125 tok   27.3s
+[16/195] cadp-00004154 correct        136 tok   30.1s
+[17/195] cadp-00004495 wrong_size     173 tok   36.2s  [overall size 750 mm matches no dimension in the task; overall size 857]
+[18/195] cadp-00004596 wrong_size     141 tok   30.4s  [overall size 750 mm matches no dimension in the task; overall size 750]
+[19/195] cadp-00004935 wrong_size     203 tok   44.1s  [overall size 420.9 mm matches no dimension in the task; overall size 1]
+[20/195] cadp-00005161 correct        141 tok  112.1s
+[21/195] cadp-00005358 correct        133 tok   28.4s
+[22/195] cadp-00005721 no_part        168 tok   35.8s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[23/195] cadp-00006013 correct         84 tok   19.0s
+[24/195] cadp-00006136 no_part         88 tok   19.6s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[25/195] cadp-00006578 wrong_size     205 tok   44.3s  [overall size 171.4 mm matches no dimension in the task; overall size 1]
+[26/195] cadp-00006863 correct         86 tok   19.3s
+[27/195] cadp-00006892 wrong_size     199 tok   43.9s  [overall size 78.94 mm matches no dimension in the task; overall size 5]
+[28/195] cadp-00007258 correct         83 tok   16.9s
+[29/195] cadp-00007362 correct         83 tok   14.3s
+[30/195] cadp-00008138 correct        124 tok   76.1s
+[31/195] cadp-00008315 wrong_size     105 tok   17.8s  [overall size 7.5 mm matches no dimension in the task; overall size 7.5]
+[32/195] cadp-00008597 correct         84 tok   15.4s
+[33/195] cadp-00008835 correct         87 tok   15.1s
+[34/195] cadp-00009044 wrong_size     122 tok   21.4s  [overall size 37.5 mm matches no dimension in the task; overall size 15]
+[35/195] cadp-00009307 wrong_size     221 tok   38.7s  [overall size 471.3 mm matches no dimension in the task; overall size 6]
+[36/195] cadp-00009529 wrong_size     367 tok   65.2s  [overall size 280.2 mm matches no dimension in the task; overall size 5]
+[37/195] cadp-00009823 correct        115 tok   19.9s
+[38/195] cadp-00009843 no_part        241 tok   42.8s  [AttributeError: 'Workplane' object has no attribute 'trapezoid']
+[39/195] cadp-00009863 wrong_size     122 tok   21.3s  [overall size 78.49 mm matches no dimension in the task; overall size 8]
+[40/195] cadp-00017291 no_part        212 tok   88.9s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[41/195] cadp-00019015 wrong_size     235 tok   40.7s  [overall size 0.5063 mm matches no dimension in the task]
+[42/195] cadp-00019066 wrong_size     168 tok   29.8s
+[43/195] cadp-00031181 wrong_size      77 tok   13.9s  [overall size 338.4 mm matches no dimension in the task; overall size 3]
+[44/195] cadp-00031303 wrong_size     246 tok   43.1s
+[45/195] cadp-00031637 wrong_size     157 tok   27.5s  [overall size 263.6 mm matches no dimension in the task; overall size 5]
+[46/195] cadp-00032961 no_part        337 tok   56.8s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[47/195] cadp-00033093 no_part        236 tok   41.3s  [ValueError: Null TopoDS_Shape object]
+[48/195] cadp-00033624 no_part        225 tok   91.0s  [TypeError: Workplane.hole() got an unexpected keyword argument 'p']
+[49/195] cadp-00034100 wrong_size     294 tok   52.6s  [overall size 31.58 mm matches no dimension in the task; overall size 4]
+[50/195] cadp-00034239 wrong_size     275 tok   48.6s  [overall size 150 mm matches no dimension in the task; overall size 120]
+[51/195] cadp-00034243 wrong_size     478 tok   80.5s  [overall size 100 mm matches no dimension in the task; overall size 150]
+[52/195] cadp-00034256 no_part        361 tok   61.5s  [ValueError: No pending wires present]
+[53/195] cadp-00036518 no_part       1024 tok  223.4s  [no code block]
+[54/195] cadp-00037135 no_part        534 tok   94.3s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[55/195] cadp-00037161 wrong_size      95 tok   16.7s  [overall size 25.5 mm matches no dimension in the task; overall size 15]
+[56/195] cadp-00037276 no_part        306 tok   52.1s  [AttributeError: 'Vector' object has no attribute 'angle']
+[57/195] cadp-00037494 wrong_volume   151 tok   80.4s
+[58/195] cadp-00038438 correct        163 tok   27.8s
+[59/195] cadp-00038614 wrong_size     209 tok   35.5s  [overall size 2.65 mm matches no dimension in the task; overall size 15]
+[60/195] cadp-00039012 wrong_size     206 tok   35.7s  [overall size 19.34 mm matches no dimension in the task; overall size 2]
+[61/195] cadp-00039227 wrong_size     151 tok   25.5s  [overall size 1 mm matches no dimension in the task]
+[62/195] cadp-00039365 wrong_volume   333 tok   57.4s
+[63/195] cadp-00039681 wrong_size     184 tok   32.2s
+[64/195] cadp-00039777 no_part        276 tok   49.9s  [TypeError: unsupported operand type(s) for /: 'list' and 'float']
+[65/195] cadp-00300037 no_part        340 tok  112.4s  [AttributeError: 'Sketch' object has no attribute 'extrude']
+[66/195] cadp-00520130 wrong_size     168 tok   30.2s  [overall size 37.5 mm matches no dimension in the task; overall size 90]
+[67/195] cadp-00520150 wrong_size     140 tok   24.4s  [overall size 187.5 mm matches no dimension in the task; overall size 7]
+[68/195] cadp-00520321 invalid        271 tok   47.3s  [2 solids, expected one part; overall size 75 mm matches no dimension i]
+[69/195] cadp-00520402 no_part        261 tok   44.3s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[70/195] cadp-00520453 correct        151 tok   25.3s
+[71/195] cadp-00520570 no_part        208 tok   35.7s  [AttributeError: 'Workplane' object has no attribute 'trapezoid']
+[72/195] cadp-00520638 invalid        501 tok   88.4s  [3 solids, expected one part; overall size 112.5 mm matches no dimensio]
+[73/195] cadp-00520671 wrong_size     244 tok   88.2s
+[74/195] cadp-00520675 wrong_volume   122 tok   20.6s
+[75/195] cadp-00520699 wrong_size     199 tok   35.9s
+[76/195] cadp-00520726 invalid        272 tok   49.2s  [2 solids, expected one part; overall size 500 mm matches no dimension ]
+[77/195] cadp-00520776 wrong_volume   126 tok   22.6s
+[78/195] cadp-00520974 wrong_size      73 tok   12.4s
+[79/195] cadp-00520976 wrong_volume   127 tok   24.3s
+[80/195] cadp-00521000 no_part        280 tok   48.2s  [AttributeError: 'Vector' object has no attribute 'rotateZ']
+[81/195] cadp-00521025 no_part        222 tok   38.3s  [ValueError: No pending wires present]
+[82/195] cadp-00521217 wrong_size     156 tok   80.8s
+[83/195] cadp-00521230 no_part        383 tok   66.0s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[84/195] cadp-00521437 wrong_volume   340 tok   60.1s
+[85/195] cadp-00521895 wrong_size     193 tok   33.4s  [overall size 750 mm matches no dimension in the task; overall size 750]
+[86/195] cadp-00521969 no_part         97 tok   17.0s  [TypeError: Workplane.rect() got an unexpected keyword argument 'round_]
+[87/195] cadp-00522355 wrong_size     301 tok   51.0s  [overall size 568.3 mm matches no dimension in the task; overall size 5]
+[88/195] cadp-00522404 wrong_size     138 tok   25.0s
+[89/195] cadp-00522865 invalid        397 tok  127.2s  [3 solids, expected one part; overall size 555.1 mm matches no dimensio]
+[90/195] cadp-00523882 no_part        359 tok   63.9s  [AttributeError: 'Workplane' object has no attribute 'trapezoid']
+[91/195] cadp-00524912 wrong_size     236 tok   43.1s  [overall size 0.5227 mm matches no dimension in the task]
+[92/195] cadp-00670105 wrong_size     271 tok   45.1s  [overall size 0.5795 mm matches no dimension in the task; overall size ]
+[93/195] cadp-00670106 correct         88 tok   14.9s
+[94/195] cadp-00670231 no_part        103 tok   19.6s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[95/195] cadp-00670256 correct        187 tok   30.9s
+[96/195] cadp-00670259 wrong_size     140 tok   75.3s  [overall size 60 mm matches no dimension in the task; overall size 60 m]
+[97/195] cadp-00670266 wrong_size     192 tok   33.3s  [overall size 108.9 mm matches no dimension in the task; overall size 8]
+[98/195] cadp-00670274 correct        235 tok   40.8s
+[99/195] cadp-00670279 no_part        106 tok   18.7s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[100/195] cadp-00670334 correct         95 tok   16.9s
+[101/195] cadp-00670441 wrong_size     253 tok   41.1s  [overall size 0.6335 mm matches no dimension in the task; overall size ]
+[102/195] cadp-00670454 no_part        216 tok   37.4s  [TypeError: Workplane.hole() got an unexpected keyword argument 'p']
+[103/195] cadp-00670457 no_part        290 tok   49.2s  [ValueError: Workplane object must have at least one solid on the stack]
+[104/195] cadp-00670466 correct        135 tok   23.9s
+[105/195] cadp-00670817 wrong_volume   204 tok   86.1s
+[106/195] cadp-00670960 no_part        368 tok   62.3s  [AttributeError: module 'cadquery' has no attribute 'math']
+[107/195] cadp-00671873 correct        164 tok   29.5s
+[108/195] cadp-00671898 invalid        387 tok   67.9s  [the kernel says the solid is invalid]
+[109/195] cadp-00671938 invalid        314 tok   53.0s  [the kernel says the solid is invalid; overall size 0.2541 mm matches n]
+[110/195] cadp-00672098 no_part        224 tok   38.7s  [ValueError: No pending wires present]
+[111/195] cadp-00672272 wrong_size     226 tok   93.2s  [overall size 0.1023 mm matches no dimension in the task]
+[112/195] cadp-00672291 no_part        203 tok   34.6s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
+[113/195] cadp-00672309 no_part        303 tok   52.2s  [AttributeError: 'Workplane' object has no attribute 'drill']
+[114/195] cadp-00672352 no_part        199 tok   34.9s  [TypeError: Workplane.hole() got an unexpected keyword argument 'p']
+[115/195] cadp-00672355 no_part        262 tok   45.7s  [AttributeError: 'Workplane' object has no attribute 'copy']
+[116/195] cadp-00672359 no_part       1024 tok  167.5s  [no code block]
+[117/195] cadp-00672804 no_part        154 tok   61.2s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[118/195] cadp-00673733 wrong_size     173 tok   29.8s
+[119/195] cadp-00673788 no_part        157 tok   27.6s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[120/195] cadp-00675092 no_part        109 tok   19.4s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[121/195] cadp-00675498 wrong_size     227 tok   39.5s  [overall size 0.7064 mm matches no dimension in the task]
+[122/195] cadp-00675952 correct        205 tok   35.4s
+[123/195] cadp-00676218 wrong_size     193 tok   34.1s  [overall size 46.88 mm matches no dimension in the task; overall size 1]
+[124/195] cadp-00680715 correct        140 tok   23.7s
+[125/195] cadp-00681053 wrong_size     201 tok   34.8s  [overall size 0.4231 mm matches no dimension in the task; overall size ]
+[126/195] cadp-00681399 no_part        212 tok   38.8s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[127/195] cadp-00681463 no_part        153 tok   77.8s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[128/195] cadp-00681547 wrong_size     178 tok   31.7s  [overall size 0.2325 mm matches no dimension in the task; overall size ]
+[129/195] cadp-00681589 no_part        380 tok   68.7s  [AttributeError: 'Workplane' object has no attribute 'scale']
+[130/195] cadp-00681754 wrong_size     177 tok   30.9s  [overall size 632.7 mm matches no dimension in the task; overall size 1]
+[131/195] cadp-00681760 wrong_size     361 tok   61.5s  [overall size 0.8063 mm matches no dimension in the task]
+[132/195] cadp-00681831 no_part       1024 tok  173.0s  [no code block]
+[133/195] cadp-00681999 correct        192 tok   50.6s
+[134/195] cadp-00682073 wrong_volume   304 tok   51.4s
+[135/195] cadp-00682075 invalid        171 tok   32.0s  [2 solids, expected one part; overall size 250 mm matches no dimension ]
+[136/195] cadp-00684686 no_part        226 tok   39.9s  [ValueError: Null TopoDS_Shape object]
+[137/195] cadp-00684841 no_part        298 tok   51.3s  [AttributeError: 'Workplane' object has no attribute 'sector'. Did you ]
+[138/195] cadp-00685823 no_part        139 tok   25.2s  [ValueError: Null TopoDS_Shape object]
+[139/195] cadp-00689964 wrong_size     300 tok   51.0s  [overall size 1.237 mm matches no dimension in the task]
+[140/195] cadp-00851553 wrong_size     400 tok  124.1s  [overall size 36.23 mm matches no dimension in the task; overall size 9]
+[141/195] cadp-00852000 wrong_size     508 tok   86.2s  [overall size 0.1906 mm matches no dimension in the task; overall size ]
+[142/195] cadp-00853706 no_part        385 tok   65.9s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[143/195] cadp-00857821 no_part        232 tok   39.7s  [ValueError: Workplane object must have at least one solid on the stack]
+[144/195] cadp-00980651 invalid        241 tok   40.7s  [2 solids, expected one part; overall size 0.875 mm matches no dimensio]
+[145/195] cadp-00983173 wrong_size     477 tok  131.4s  [overall size 17.46 mm matches no dimension in the task; overall size 3]
+[146/195] cadp-00984033 invalid        438 tok   74.9s  [2 solids, expected one part; overall size 17.56 mm matches no dimensio]
+[147/195] cadp-00984234 invalid        361 tok   60.6s  [2 solids, expected one part]
+[148/195] cadp-00984488 no_part        173 tok   29.7s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[149/195] cadp-00984833 wrong_size     165 tok   30.0s  [overall size 0.6342 mm matches no dimension in the task]
+[150/195] cadp-00985066 invalid        319 tok   53.5s  [2 solids, expected one part; overall size 750 mm matches no dimension ]
+[151/195] cadp-00985482 wrong_size     341 tok  110.4s  [overall size 34.08 mm matches no dimension in the task; overall size 5]
+[152/195] cadp-00985494 wrong_size     177 tok   31.2s
+[153/195] cadp-00986712 no_part        317 tok   54.4s  [OCP.OCP.Standard.Standard_Failure: BRep_API: command not done]
+[154/195] cadp-00986814 wrong_size     197 tok   32.9s  [overall size 0.285 mm matches no dimension in the task]
+[155/195] cadp-00995686 no_part        152 tok   27.6s  [OCP.OCP.Standard.Standard_Failure: Bnd_Box is void]
+[156/195] cadp-00995733 no_part        162 tok   28.8s  [AttributeError: 'Workplane' object has no attribute 'splineTo'. Did yo]
+[157/195] cadp-00995759 no_part        161 tok   28.6s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[158/195] cadp-00995843 correct        178 tok   31.4s
+[159/195] cadp-00996001 no_part        211 tok   90.4s  [TypeError: must be real number, not tuple]
+[160/195] cadp-00996329 no_part        154 tok   26.9s  [ValueError: No pending wires present]
+[161/195] cadp-00996368 no_part        338 tok   58.3s  [ValueError: No pending wires present]
+[162/195] cadp-00996457 wrong_size     236 tok   40.6s  [overall size 0.01021 mm matches no dimension in the task; overall size]
+[163/195] cadp-00996473 no_part        444 tok   77.6s  [ValueError: Null TopoDS_Shape object]
+[164/195] cadp-00996962 no_part        219 tok   40.2s  [ValueError: Null TopoDS_Shape object]
+[165/195] cadp-00997040 no_part        241 tok   97.3s  [TypeError: 'Workplane' object does not support the context manager pro]
+[166/195] cadp-00997065 wrong_size     296 tok   50.3s  [overall size 2.501 mm matches no dimension in the task]
+[167/195] cadp-00997068 no_part        187 tok   33.3s  [TypeError: Workplane.cutBlind() got an unexpected keyword argument 'mo]
+[168/195] cadp-00997071 no_part        292 tok   50.4s  [ValueError: Workplane object must have at least one solid on the stack]
+[169/195] cadp-00997229 no_part        339 tok   58.7s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[170/195] cadp-00997300 no_part        233 tok   39.5s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[171/195] cadp-00997373 wrong_size     263 tok   43.8s  [overall size 16.3 mm matches no dimension in the task; overall size 12]
+[172/195] cadp-00997428 wrong_size     266 tok  101.2s  [overall size 1.016 mm matches no dimension in the task]
+[173/195] cadp-00997536 no_part        140 tok   26.3s  [AttributeError: 'Workplane' object has no attribute 'regularPolygon']
+[174/195] cadp-00997580 wrong_size     150 tok   28.3s  [overall size 60 mm matches no dimension in the task; overall size 1125]
+[175/195] cadp-00997616 no_part        450 tok   76.6s  [AttributeError: 'Workplane' object has no attribute 'triangularBlind']
+[176/195] cadp-00997677 wrong_size     347 tok   57.3s  [overall size 699.2 mm matches no dimension in the task; overall size 7]
+[177/195] cadp-00997681 no_part        156 tok   26.5s  [TypeError: Workplane.fillet() takes 2 positional arguments but 3 were ]
+[178/195] cadp-00997753 no_part        240 tok   42.9s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[179/195] cadp-00997785 wrong_size     245 tok   92.3s
+[180/195] cadp-00997852 wrong_size     248 tok   41.4s  [overall size 841.8 mm matches no dimension in the task; overall size 1]
+[181/195] cadp-00997878 no_part        239 tok   42.9s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[182/195] cadp-00998012 invalid        246 tok   42.4s  [the kernel says the solid is invalid; 2 solids, expected one part]
+[183/195] cadp-00998074 invalid        272 tok   47.5s  [the kernel says the solid is invalid; overall size 0.5027 mm matches n]
+[184/195] cadp-00998088 no_part        379 tok   63.2s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[185/195] cadp-00998283 wrong_volume   191 tok   86.1s
+[186/195] cadp-00998300 wrong_size     169 tok   30.4s  [overall size 13.5 mm matches no dimension in the task; overall size 36]
+[187/195] cadp-00998356 no_part        616 tok  103.7s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[188/195] cadp-00998398 correct        290 tok   50.7s
+[189/195] cadp-00998698 no_part        393 tok   65.4s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[190/195] cadp-00998714 no_part        200 tok   86.1s  [AttributeError: 'Workplane' object has no attribute 'triangle']
+[191/195] cadp-00998749 no_part        306 tok   55.2s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[192/195] cadp-00998843 no_part        188 tok   34.1s  [ValueError: Cannot find a solid on the stack or in the parent chain]
+[193/195] cadp-00999126 wrong_size     262 tok   44.7s  [overall size 3.901 mm matches no dimension in the task; overall size 4]
+[194/195] cadp-00999141 wrong_volume   298 tok   50.0s
+[195/195] cadp-00999374 invalid        487 tok   84.0s  [2 solids, expected one part]
+CADPrompt: 195 parts
+
+policy                                              score       95% CI  compute   vs shipped, 95% CI
+always 4B                                         18/195     6%-13%        31%            -20 to -1
+always 8B                                         12/195     3%-10%        60%            -26 to -6
+always coder                                      28/195    10%-19%       100%                     
+cascade 4B -> 8B -> coder (pre-sweep default)     35/195    13%-24%       153%            +0 to +14
+cascade 8B -> coder                               33/195    12%-23%       147%            +0 to +11
+routed: cascade | intensive 8B -> coder           35/195    13%-24%       151%            +0 to +14
+
+rule: the policy with the most parts right replaces the CAD pack's shipped one (always coder) iff a paired bootstrap 95% interval of its score minus the shipped one's lies entirely above 0 (accuracy first, compute reported)
+-> KEEP: always coder (most right: routed: cascade | intensive 8B -> coder)
+
+key-free check vs the key:
+   4B     wrong  177  caught  146  false alarms   2
+   8B     wrong  183  caught  161  false alarms   0
+   coder  wrong  167  caught  146  false alarms   1

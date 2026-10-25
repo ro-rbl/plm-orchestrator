@@ -96,6 +96,13 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       pinned addresses. Fix (needs the password): `sudo killall -HUP mDNSResponder`.
 - [x] **GSM8K** (`evals/bench_gsm8k.py`, `results/bench_gsm8k.log`): 8B direct 272/300 vs 8B+calc 261 (-21 to -1,
       paired 95%): on everyday arithmetic the calculator costs accuracy. The general pack stays; no candidate.
+- [x] **TheoremQA physics** confirms the switch; **CADPrompt** keeps the coder (`results/bench_theoremqa.log`,
+      `results/bench_cad.log`, `docs/results.md`).
+- [ ] **CAD: cascades 35/195 vs coder 28 on CADPrompt** (0 to +14, not clear). The check catches most wrong CAD
+      parts (146-161 of 167-183; they fail to build), so a cascade judged on new parts could pay. CADPrompt asks
+      in "units", not mm, so the pack's size check rarely applies; most misses are API errors (no_part).
+- [ ] **No public benchmark for electrical or aerospace.** Options: problems written by someone other than Claude,
+      or a textbook set with a licence that allows it.
 - [ ] **Phase 4 next: then numeric cross-checks (GSM8K, optional), and
       the headline table (always-small, always-large, router, hindsight per domain) for publishing.
 - [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second

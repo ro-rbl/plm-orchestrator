@@ -54,6 +54,28 @@ def physics():
     return ok, shipped, "4B+calc -> 8B+calc (routed)"
 
 
+def theoremqa():
+    import bench_physics
+    bench_physics.BENCH = "theoremqa"
+    from plm_physics.levels import classify
+    runs = {"4B": load(f"bench_theoremqa__{SMALL}.jsonl"), "4B+calc": load(f"bench_theoremqa__{SMALL}__tool.jsonl"),
+            "8B": load(f"bench_theoremqa__{LARGE}.jsonl"), "8B+calc": load(f"bench_theoremqa__{LARGE}__tool.jsonl")}
+    ok = {k: {i: x["correct"] for i, x in r.items()} for k, r in runs.items()}
+    shipped = {}
+    for p in bench_physics.problems():
+        chain = ["8B+calc", "8B"] if classify(p["question"])[0] == "intensive" else ["4B+calc", "8B+calc"]
+        k = chain[0] if not runs[chain[0]][p["id"]]["issues"] else chain[1]
+        shipped[p["id"]] = ok[k][p["id"]]
+    bench_physics.BENCH = "scibench"
+    return ok, shipped, "4B+calc -> 8B+calc (routed)"
+
+
+def cad():
+    runs = {k: load(f"bench_cadprompt__{m}.jsonl") for k, m in (("4B", SMALL), ("8B", LARGE), ("coder", CODER))}
+    ok = {k: {i: x["verdict"] == "correct" for i, x in r.items()} for k, r in runs.items()}
+    return ok, ok["coder"], "coder alone"
+
+
 def gsm8k():
     runs = {"8B": load(f"bench_gsm8k__{LARGE}.jsonl"), "8B+calc": load(f"bench_gsm8k__{LARGE}__tool.jsonl"),
             "4B+calc": load(f"bench_gsm8k__{SMALL}__tool.jsonl")}
@@ -68,6 +90,7 @@ def pct(d):
 def main():
     rows = [("SQL", "Spider dev (300 sampled)", *sql("spider")), ("SQL", "BIRD mini-dev", *sql("bird")),
             ("Software", "HumanEval+ and MBPP+", *code()), ("Physics", "SciBench physics", *physics()),
+            ("Physics", "TheoremQA physics (confirmation)", *theoremqa()), ("CAD", "CADPrompt (195 parts)", *cad()),
             ("General", "GSM8K (300 sampled)", *gsm8k())]
     print("| Pack | Benchmark | " + " | ".join(["4B", "8B", "Coder 14B"]) + " | Ships | Hindsight |")
     print("|---|---|---|---|---|---|---|")

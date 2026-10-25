@@ -11,6 +11,8 @@ Apple-silicon Mac. Models: Qwen3-4B (Q4_K_M), Qwen3-8B, Qwen2.5-Coder-14B.
 | SQL | BIRD mini-dev | 155/496 (31%) | 172/496 (35%) | 254/496 (51%) | 254/496 (51%): coder alone | 295/496 (59%) |
 | Software | HumanEval+ and MBPP+ | 335/540 (62%) | 353/540 (65%) | 410/540 (76%) | 410/540 (76%): coder alone | 443/540 (82%) |
 | Physics | SciBench physics | 63/144 (44%) (+calc) | 68/144 (47%) (+calc) | not run | 69/144 (48%): 4B+calc -> 8B+calc (routed) | 99/144 (69%) |
+| Physics | TheoremQA physics (confirmation) | 43/112 (38%) | 47/112 (42%) (+calc) | not run | 48/112 (43%): 4B+calc -> 8B+calc (routed) | 73/112 (65%) |
+| CAD | CADPrompt (195 parts) | 18/195 (9%) | 12/195 (6%) | 28/195 (14%) | 28/195 (14%): coder alone | 39/195 (20%) |
 | General | GSM8K (300 sampled) | 256/300 (85%) (+calc) | 272/300 (91%) | not run | 272/300 (91%): general pack: 8B direct | 285/300 (95%) |
 
 Model columns show each model's better strategy (direct or +calc) where both ran.
@@ -23,6 +25,14 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   exact number.
 - **Dropped:** gold queries that error on their own database (Spider 1, BIRD 2) and reference solutions
   that fail their own tests (HumanEval-32, Mbpp-590). BIRD lists two questions twice; each counts once.
+- **CADPrompt** (github.com/Kamel773/CAD_Code_Generation, 200 parts; 195 references build in our kernel): graded
+  on bounding box and volume within 0.1%, far stricter than CADPrompt's own point-cloud metrics, so scores are
+  not comparable with its paper. The cascades scored 35/195 vs the coder's 28 (0 to +14, paired 95%) at 1.5x
+  compute: not clearly better, so the CAD pack keeps the coder.
+- **TheoremQA physics** (112 numeric problems, unseen when SciBench chose the physics switch) confirms it:
+  48 vs 46 for the old policy, at 42% of its compute.
+- **No public benchmark found for electrical or aerospace** that fits (numeric, unit-bearing engineering
+  problems): TheoremQA's EECS subset is signals, graphs and networking; aerospace searches found corpora only.
 - **What changed because of these:** SQL and software moved to the coder alone; physics moved from the
   8B answering directly (52/144) to the routed calculator policy; GSM8K left the general pack as it is.
 
