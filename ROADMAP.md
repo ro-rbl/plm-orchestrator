@@ -105,7 +105,10 @@ What could carry over, in order of value per effort; each policy fixed before it
       ships the coder alone. The examples check caught 14 of 112 wrong HumanEval answers (no parseable examples).
 - [x] Physics: SciBench's physics problems (Halliday + classical mechanics, 144), `evals/bench_physics.py`, PHYS_RULE
       (accuracy first) fixed before: 4B+calc escalating to 8B+calc 69/144 vs the shipped 8B direct 52 (+4 to +30)
-      at 48% of its compute: the physics pack switched. Only 30 of the 144 route to physics (LaTeX quantities).
+      at 48% of its compute: the physics pack switched. Only 30 of the 144 routed to physics (LaTeX quantities);
+      with LaTeX read as plain text (`plm/latex.py`, LATEX_RULE on 20 new held-out cases: 12 -> 19/20), 73.
+- [x] GSM8K cross-check (300 sampled, `evals/bench_gsm8k.py`, GSM_RULE fixed before): the 8B direct 272/300 (91%)
+      beats the 8B with the calculator 261 (-21 to -1) and the 4B with it 256: the general pack stays as it is.
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
 - SQL: Spider or BIRD. Physics: a public set, to be chosen. Optional numeric cross-check: GSM8K.
 - Hundreds of items per domain with bootstrap confidence intervals; pinned model digests,

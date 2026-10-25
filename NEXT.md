@@ -94,6 +94,8 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       25 SciBench problems -> aerospace). Same term-count overlap as plain text; fix needs new held-out cases.
 - [ ] **Mac DNS (mDNSResponder) stopped resolving on 2026-10-24** while direct DNS worked; downloads used
       pinned addresses. Fix (needs the password): `sudo killall -HUP mDNSResponder`.
+- [x] **GSM8K** (`evals/bench_gsm8k.py`, `results/bench_gsm8k.log`): 8B direct 272/300 vs 8B+calc 261 (-21 to -1,
+      paired 95%): on everyday arithmetic the calculator costs accuracy. The general pack stays; no candidate.
 - [ ] **Phase 4 next: then numeric cross-checks (GSM8K, optional), and
       the headline table (always-small, always-large, router, hindsight per domain) for publishing.
 - [ ] **The SQL policy now has no unseen set behind it.** Both fresh sets were used to choose it (the second
