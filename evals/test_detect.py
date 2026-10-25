@@ -55,6 +55,9 @@ def main():
                + load("evals/cad/holdout_levels.jsonl", "task", "cad")
                + load("evals/sql/holdout_levels.jsonl", "prompt", "sql"))
     score("holdout cases (labels written before the rule they test)", holdout, verbose)
+    # Written 2026-10-24 before LaTeX normalization existed (12/20 then). LATEX_RULE: normalization ships iff
+    # these improve and no decision on a text without LaTeX changes (evals/dump_decisions.py diff).
+    score("LaTeX holdout cases", load("evals/router/latex_cases.jsonl", "text"), verbose)
     sys.exit(1 if misses else 0)  # the eval texts must all route correctly; the holdout is reported
 
 

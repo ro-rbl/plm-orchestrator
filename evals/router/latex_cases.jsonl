@@ -1,0 +1,20 @@
+{"id": "lx01", "pack": "physics", "text": "A cart of mass $m = 4.0 \\mathrm{~kg}$ moves at $v = 2.5 \\mathrm{~m} / \\mathrm{s}$. What is its momentum, in $\\mathrm{kg} \\cdot \\mathrm{m} / \\mathrm{s}$?"}
+{"id": "lx02", "pack": "physics", "text": "A spring with constant $k=250 \\mathrm{~N} / \\mathrm{m}$ is stretched by $0.12 \\mathrm{~m}$. How much elastic potential energy does it store, in joules?"}
+{"id": "lx03", "pack": "physics", "text": "A stone is dropped from a bridge $45 \\mathrm{~m}$ above the water. Taking $g=9.8 \\mathrm{~m} / \\mathrm{s}^2$, how long does it take to reach the water, in seconds?"}
+{"id": "lx04", "pack": "physics", "text": "A $1500 \\mathrm{~kg}$ car rounds a curve of radius $r=60 \\mathrm{~m}$ at $15 \\mathrm{~m} / \\mathrm{s}$. What friction force keeps it on the curve, in newtons?"}
+{"id": "lx05", "pack": "physics", "text": "How much heat is needed to raise $0.50 \\mathrm{~kg}$ of water from $20^{\\circ} \\mathrm{C}$ to $80^{\\circ} \\mathrm{C}$, with $c = 4186 \\mathrm{~J} /(\\mathrm{kg} \\cdot \\mathrm{K})$, in kJ?"}
+{"id": "lx06", "pack": "physics", "text": "A pendulum of length $L=0.80 \\mathrm{~m}$ swings with small amplitude. With $g = 9.81 \\mathrm{~m} / \\mathrm{s}^2$, find its period in seconds."}
+{"id": "lx07", "pack": "physics", "text": "A wheel accelerates uniformly from rest to $\\omega=12 \\mathrm{rad} / \\mathrm{s}$ in $4.0 \\mathrm{~s}$. What is its angular acceleration, in $\\mathrm{rad} / \\mathrm{s}^2$?"}
+{"id": "lx08", "pack": "physics", "text": "A $0.25 \\mathrm{~kg}$ ball hits a wall at $12 \\mathrm{~m} / \\mathrm{s}$ and rebounds at $10 \\mathrm{~m} / \\mathrm{s}$. What impulse does the wall give it, in $\\mathrm{N} \\cdot \\mathrm{s}$?"}
+{"id": "lx09", "pack": "physics", "text": "An ideal gas at $300 \\mathrm{~K}$ and $1.0 \\times 10^5 \\mathrm{~Pa}$ occupies $0.020 \\mathrm{~m}^3$. How many moles are there, with $R=8.314 \\mathrm{~J} /(\\mathrm{mol} \\cdot \\mathrm{K})$?"}
+{"id": "lx10", "pack": "physics", "text": "A block slides down a frictionless incline of angle $\\theta=30^{\\circ}$ from a height of $2.0 \\mathrm{~m}$. What is its speed at the bottom, in m/s?"}
+{"id": "lx11", "pack": "physics", "text": "Two point charges, $q_1=3.0 \\mu \\mathrm{C}$ and $q_2=-2.0 \\mu \\mathrm{C}$, are $0.50 \\mathrm{~m}$ apart. What force acts between them, in newtons?"}
+{"id": "lx12", "pack": "physics", "text": "A satellite of mass $500 \\mathrm{~kg}$ is lifted $200 \\mathrm{~m}$ by a crane at constant speed in $40 \\mathrm{~s}$. What power does the crane deliver, in watts?"}
+{"id": "lx13", "pack": "electrical", "text": "A resistor of $R = 220 \\Omega$ carries a current of $I = 0.05 \\mathrm{~A}$. What voltage is across it, in volts?"}
+{"id": "lx14", "pack": "electrical", "text": "A capacitor of $C=47 \\mu \\mathrm{F}$ is charged to $12 \\mathrm{~V}$ through a $10 \\mathrm{k} \\Omega$ resistor. What is the RC time constant, in seconds?"}
+{"id": "lx15", "pack": "electrical", "text": "An inductor of $L=25 \\mathrm{mH}$ is driven at $f=2 \\mathrm{kHz}$. What is its inductive reactance, in ohms?"}
+{"id": "lx16", "pack": "aerospace", "text": "A rocket with specific impulse $I_{sp}=320 \\mathrm{~s}$ burns from $m_0=50 \\mathrm{t}$ to $m_f=20 \\mathrm{t}$. Using the rocket equation, what delta-v does it achieve, in m/s?"}
+{"id": "lx17", "pack": "aerospace", "text": "A wing of area $S=16 \\mathrm{~m}^2$ flies at $V=60 \\mathrm{~m} / \\mathrm{s}$ in air of density $\\rho=1.225 \\mathrm{~kg} / \\mathrm{m}^3$ with lift coefficient $C_L=0.8$. What lift does it produce, in newtons?"}
+{"id": "lx18", "pack": "general", "text": "Prove that $\\sqrt{2}$ is irrational."}
+{"id": "lx19", "pack": "general", "text": "What is the integral of $\\int_0^1 x^2 \\, dx$?"}
+{"id": "lx20", "pack": "general", "text": "Explain what $E = mc^2$ means in plain words."}
