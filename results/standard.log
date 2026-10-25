@@ -1,4 +1,4 @@
-qwen3:0.6b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_0.6b.jsonl
+qwen3:0.6b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_0.6b.jsonl
 [1/50] ee-c01 correct       145 tok    2.2s
 [2/50] ee-c02 correct        89 tok    0.6s
 [3/50] ee-c03 correct       101 tok    0.7s
@@ -60,7 +60,7 @@ calm            137    1.0        0
 alert           191    1.4        0
 intensive       380    2.7        0
 ALL             231    1.7        0
-qwen3:0.6b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_0.6b__tool.jsonl
+qwen3:0.6b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_0.6b__tool.jsonl
 [1/50] ee-c01 correct        63 tok    0.5s
 [2/50] ee-c02 wrong_value    29 tok    0.3s
 [3/50] ee-c03 unit_error     22 tok    0.2s
@@ -122,7 +122,7 @@ calm             56    0.4        0
 alert            77    0.6        0
 intensive       130    1.0        0
 ALL              87    0.7        0
-qwen3:0.6b: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/software__qwen3_0.6b.jsonl
+qwen3:0.6b: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/software__qwen3_0.6b.jsonl
 [1/45] sw-c01 error       47 tok    0.4s  0/4 hidden  [ImportError: cannot import name 'str' from 'typing' (/Users/]
 [2/45] sw-c02 error       67 tok    0.6s  0/3 hidden  [ImportError: cannot import name 'str' from 'typing' (/Users/]
 [3/45] sw-c03 error       54 tok    0.5s  0/5 hidden  [ImportError: cannot import name 'str' from 'typing' (/Users/]
@@ -173,7 +173,7 @@ calm        15        7        1        7        0        0        0   47%      
 alert       15        5        9        1        0        0        0   33%      140       0
 intensive   15        2       12        1        0        0        0   13%      179       0
 ALL         45       14       22        9        0        0        0   31%      126       0
-qwen3:4b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_4b.jsonl
+qwen3:4b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_4b.jsonl
 [1/50] ee-c01 no_answer    1024 tok   47.9s
 [2/50] ee-c02 correct       605 tok   60.2s
 [3/50] ee-c03 correct       658 tok   34.1s
@@ -235,7 +235,7 @@ calm            838   53.3        6
 alert           895   56.3       10
 intensive      1024   58.1       15
 ALL             916   55.9       31
-qwen3:4b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_4b__tool.jsonl
+qwen3:4b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_4b__tool.jsonl
 [1/50] ee-c01 correct      1024 tok   47.7s
 [2/50] ee-c02 no_answer    1024 tok   40.9s  [no code block]
 [3/50] ee-c03 no_answer    1024 tok   40.1s  [no code block]

@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on humaneval: 164 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_humaneval__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/164] HumanEval-0 pass       112 tok    6.8s
 [2/164] HumanEval-1 pass       127 tok    4.5s
 [3/164] HumanEval-2 pass        35 tok    1.6s
@@ -163,7 +163,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on humaneval: 164 to run, 0 already in
 [162/164] HumanEval-161 pass       109 tok    7.4s
 [163/164] HumanEval-162 pass        66 tok    4.8s  [refused: import not allowed: hashlib]
 [164/164] HumanEval-163 fail       145 tok    9.4s
-qwen3:8b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen3_8b.jsonl
+qwen3:8b on humaneval: 164 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen3_8b.jsonl
 [1/164] HumanEval-0 pass        77 tok   11.7s
 [2/164] HumanEval-1 pass       111 tok   11.9s
 [3/164] HumanEval-2 error       23 tok    3.3s
@@ -328,7 +328,7 @@ qwen3:8b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orche
 [162/164] HumanEval-161 pass        80 tok    8.2s
 [163/164] HumanEval-162 pass        66 tok    6.9s  [refused: import not allowed: hashlib]
 [164/164] HumanEval-163 fail        64 tok    6.9s
-qwen2.5-coder:14b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b on humaneval: 164 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_humaneval__qwen2.5-coder_14b.jsonl
 [1/164] HumanEval-0 pass       104 tok   23.2s
 [2/164] HumanEval-1 error      106 tok   17.6s  [NameError: name 'List' is not defined]
 [3/164] HumanEval-2 pass        96 tok   16.3s
@@ -493,7 +493,7 @@ qwen2.5-coder:14b on humaneval: 164 to run, 0 already in /Users/ro/ClaudeCoding/
 [162/164] HumanEval-161 pass        50 tok   11.0s
 [163/164] HumanEval-162 pass        43 tok    9.4s  [refused: import not allowed: hashlib]
 [164/164] HumanEval-163 fail        52 tok   11.3s
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on mbpp: 378 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_mbpp__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/378] Mbpp-2 pass        25 tok    3.6s
 [2/378] Mbpp-3 pass       112 tok    6.2s
 [3/378] Mbpp-4 pass        27 tok    2.3s
@@ -872,7 +872,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on mbpp: 378 to run, 0 already in /Use
 [376/378] Mbpp-807 pass        39 tok    2.4s
 [377/378] Mbpp-808 pass        19 tok    1.7s
 [378/378] Mbpp-809 fail        33 tok    2.0s  [failed: check_smaller((1, 2, 3), (2, 3, 4)) == False]
-qwen3:8b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen3_8b.jsonl
+qwen3:8b on mbpp: 378 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen3_8b.jsonl
 [1/378] Mbpp-2 pass        26 tok    4.6s
 [2/378] Mbpp-3 pass        88 tok    8.9s
 [3/378] Mbpp-4 pass        27 tok    3.7s
@@ -1097,7 +1097,7 @@ qwen3:8b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrat
 [222/378] Mbpp-470 pass        34 tok    4.0s
 [223/378] Mbpp-471 pass        40 tok    4.9s
 [224/378] Mbpp-472 error       58 tok    6.5s  [failed: callable(check_Consecutive); failed: check_Consecutive([1,2,3,]
-[225/378] Mbpp-473 error       52 tok    6.9s  [ImportError: cannot import name 'Set' from 'collections' (/Users/ro/.l]
+[225/378] Mbpp-473 error       52 tok    6.9s  [ImportError: cannot import name 'Set' from 'collections' (~/.l]
 [226/378] Mbpp-474 pass        26 tok    3.1s
 [227/378] Mbpp-475 fail        36 tok    4.4s
 [228/378] Mbpp-476 pass        29 tok    3.7s
@@ -1251,7 +1251,7 @@ qwen3:8b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrat
 [376/378] Mbpp-807 pass        34 tok    4.1s
 [377/378] Mbpp-808 pass        19 tok    3.1s
 [378/378] Mbpp-809 pass        57 tok    6.1s
-qwen2.5-coder:14b on mbpp: 378 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b on mbpp: 378 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_mbpp__qwen2.5-coder_14b.jsonl
 [1/378] Mbpp-2 pass        26 tok   12.3s
 [2/378] Mbpp-3 pass       104 tok   17.5s
 [3/378] Mbpp-4 pass        27 tok    7.4s

@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on CADPrompt: 195 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/195] cadp-00000007 correct         95 tok    7.0s
 [2/195] cadp-00000633 wrong_volume   137 tok    5.6s
 [3/195] cadp-00000960 invalid        212 tok    8.6s  [2 solids, expected one part; overall size 0.7812 mm matches no dimensi]
@@ -194,7 +194,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on CADPrompt: 195 to run, 0 already in
 [193/195] cadp-00999126 wrong_volume   374 tok   20.2s
 [194/195] cadp-00999141 no_part        333 tok   18.1s  [ValueError: Cannot convert object type <class 'cadquery.occ_impl.shape]
 [195/195] cadp-00999374 no_part        530 tok   29.7s  [AttributeError: 'Workplane' object has no attribute 'ruledSurface']
-qwen3:8b on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen3_8b.jsonl
+qwen3:8b on CADPrompt: 195 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen3_8b.jsonl
 [1/195] cadp-00000007 correct         44 tok    6.2s
 [2/195] cadp-00000633 wrong_volume    83 tok    8.2s
 [3/195] cadp-00000960 wrong_size     163 tok   16.4s  [overall size 0.7812 mm matches no dimension in the task; overall size ]
@@ -390,7 +390,7 @@ qwen3:8b on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orche
 [193/195] cadp-00999126 wrong_size     360 tok   36.3s  [overall size 39.01 mm matches no dimension in the task; overall size 4]
 [194/195] cadp-00999141 no_part        299 tok   29.3s  [ValueError: Cannot find a solid on the stack or in the parent chain]
 [195/195] cadp-00999374 no_part        566 tok   55.4s  [TypeError: Workplane.polygon() missing 1 required positional argument:]
-qwen2.5-coder:14b on CADPrompt: 195 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b on CADPrompt: 195 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_cadprompt__qwen2.5-coder_14b.jsonl
 [1/195] cadp-00000007 correct         81 tok   21.7s
 [2/195] cadp-00000633 wrong_size     100 tok   78.2s  [overall size 0.391 mm matches no dimension in the task; overall size 1]
 [3/195] cadp-00000960 wrong_size     164 tok   36.5s  [overall size 1.95 mm matches no dimension in the task; overall size 75]

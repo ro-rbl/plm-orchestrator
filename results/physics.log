@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/50] ph-c01 correct       105 tok    6.4s
 [2/50] ph-c02 correct        96 tok    3.5s
 [3/50] ph-c03 correct       160 tok    5.5s
@@ -60,7 +60,7 @@ calm            112    4.1        0
 alert           182    6.6        0
 intensive       368   17.0        0
 ALL             217    9.0        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/50] ph-c01 correct        69 tok    3.0s
 [2/50] ph-c02 correct        90 tok    3.7s
 [3/50] ph-c03 correct        52 tok    2.4s
@@ -122,7 +122,7 @@ calm             75    3.3        0
 alert           107    4.7        0
 intensive       175    7.4        0
 ALL             118    5.1        0
-qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
+qwen3:8b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
 [1/50] ph-c01 correct        98 tok   11.2s
 [2/50] ph-c02 correct       101 tok    7.7s
 [3/50] ph-c03 correct       165 tok   12.0s
@@ -166,7 +166,7 @@ qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/result
 [41/50] ph-i06 correct       235 tok   31.6s
 [42/50] ph-i07 correct       423 tok   59.6s
 === resumed Thu Oct 22 21:07:25 CDT 2026
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in ~/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm        15       14      0     1         1     0  93%
 alert       20       19      1     0         0     0  95%
@@ -178,7 +178,7 @@ calm            112    4.1        0
 alert           182    6.6        0
 intensive       368   17.0        0
 ALL             217    9.0        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 0 to run, 50 already in ~/ClaudeCoding/plm-orchestrator/results/physics__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm        15       14      0     1         1     0  93%
 alert       20       18      2     0         0     0  90%
@@ -190,7 +190,7 @@ calm             75    3.3        0
 alert           107    4.7        0
 intensive       175    7.4        0
 ALL             118    5.1        0
-qwen3:8b: 8 to run, 42 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
+qwen3:8b: 8 to run, 42 already in ~/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b.jsonl
 [1/8] ph-i08 correct       553 tok   34.0s
 [2/8] ph-i09 correct       589 tok   33.7s
 [3/8] ph-i10 correct       342 tok   19.9s
@@ -210,7 +210,7 @@ calm            111    9.0        0
 alert           195   17.4        0
 intensive       370   35.9        0
 ALL             222   20.4        0
-qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b__tool.jsonl
+qwen3:8b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics__qwen3_8b__tool.jsonl
 [1/50] ph-c01 correct        38 tok    3.1s
 [2/50] ph-c02 correct        63 tok    4.7s
 [3/50] ph-c03 correct        54 tok    4.4s

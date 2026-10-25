@@ -2099,7 +2099,7 @@ writing manifest [K
 success [K[?25h[?2026l
 
 === judge set, every model with the calculator  12:14:47
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/36] ae-l-c01 correct        68 tok    6.9s
 [2/36] ae-l-c02 correct       128 tok    4.1s
 [3/36] ae-l-c03 correct        93 tok    3.1s
@@ -2147,7 +2147,7 @@ calm             96    3.6        0
 alert           140    4.9        0
 intensive       390   16.3        2
 ALL             195    7.6        2
-plm-qwen3-4b-control: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__plm-qwen3-4b-control__tool.jsonl
+plm-qwen3-4b-control: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__plm-qwen3-4b-control__tool.jsonl
 [1/36] ae-l-c01 correct        68 tok    6.7s
 [2/36] ae-l-c02 correct       105 tok    6.4s
 [3/36] ae-l-c03 correct       102 tok    6.4s
@@ -2195,7 +2195,7 @@ calm             94    5.9        0
 alert           147    8.4        0
 intensive       296   16.1        0
 ALL             171    9.7        0
-plm-qwen3-4b-aero-lora: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__plm-qwen3-4b-aero-lora__tool.jsonl
+plm-qwen3-4b-aero-lora: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__plm-qwen3-4b-aero-lora__tool.jsonl
 [1/36] ae-l-c01 correct        48 tok    6.5s
 [2/36] ae-l-c02 wrong_value    61 tok    3.1s
 [3/36] ae-l-c03 correct        65 tok    4.4s
@@ -2243,7 +2243,7 @@ calm             53    3.6        0
 alert            72    4.5        0
 intensive       106   10.9        0
 ALL              75    6.0        0
-qwen3:8b: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__qwen3_8b__tool.jsonl
+qwen3:8b: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_lora__qwen3_8b__tool.jsonl
 [1/36] ae-l-c01 correct        57 tok    5.8s
 [2/36] ae-l-c02 wrong_value    61 tok    5.2s
 [3/36] ae-l-c03 correct        86 tok    7.2s

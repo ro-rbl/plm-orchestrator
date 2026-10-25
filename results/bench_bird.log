@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on bird: 500 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_bird__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/500] bird-1471 correct          61 tok    5.3s
 [2/500] bird-1472 wrong_columns    44 tok    1.8s
 [3/500] bird-1473 correct          63 tok    2.4s
@@ -499,7 +499,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on bird: 500 to run, 0 already in /Use
 [498/500] bird-0189 error           107 tok    4.8s  [doesn't run on the schema: OperationalError: no such column: d.A11]
 [499/500] bird-0192 wrong_rows       61 tok    2.8s
 [500/500] bird-0194 wrong_rows       74 tok    2.5s
-qwen3:8b on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen3_8b.jsonl
+qwen3:8b on bird: 500 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen3_8b.jsonl
 [1/500] bird-1471 correct          50 tok    6.3s
 [2/500] bird-1472 wrong_columns    44 tok    3.9s
 [3/500] bird-1473 correct          67 tok    5.6s
@@ -1000,7 +1000,7 @@ qwen3:8b on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrat
 [498/500] bird-0189 error            28 tok    2.8s  [doesn't run on the schema: OperationalError: no such column: account_id]
 [499/500] bird-0192 error            91 tok    8.3s  [doesn't run on the schema: OperationalError: no such column: l.type]
 [500/500] bird-0194 error            92 tok    7.6s  [doesn't run on the schema: OperationalError: no such column: card.account_id]
-qwen2.5-coder:14b on bird: 500 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b on bird: 500 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_bird__qwen2.5-coder_14b.jsonl
 [1/500] bird-1471 correct          54 tok   17.0s
 [2/500] bird-1472 wrong_rows       51 tok    8.1s
 [3/500] bird-1473 correct          68 tok   10.0s

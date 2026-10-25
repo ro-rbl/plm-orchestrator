@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on theoremqa physics: 112 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/112] tqa-wenhuchen/Fluid_mechanics2.json correct    376 tok   14.9s
 [2/112] tqa-panlu/energy_conservation1.json wrong      379 tok   12.6s
 [3/112] tqa-panlu/angular_frequency3.json wrong      366 tok   11.9s
@@ -111,7 +111,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on theoremqa physics: 112 to run,
 [110/112] tqa-panlu/young’s_modulus1.json correct    560 tok   27.4s
 [111/112] tqa-panlu/kepler’s_third_law2.json wrong      809 tok   38.8s
 [112/112] tqa-panlu/gravitational_force2.json correct    248 tok   12.2s
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on theoremqa physics: 112 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      130 tok    7.0s
 [2/112] tqa-panlu/energy_conservation1.json wrong      150 tok    8.2s
 [3/112] tqa-panlu/angular_frequency3.json wrong      138 tok    7.3s
@@ -224,7 +224,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on theoremqa physics: 112 to run,
 [110/112] tqa-panlu/young’s_modulus1.json wrong      257 tok   17.4s
 [111/112] tqa-panlu/kepler’s_third_law2.json wrong      388 tok   25.9s
 [112/112] tqa-panlu/gravitational_force2.json wrong     1024 tok   66.8s  [no ANSWER line]
-qwen3:8b bare on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b.jsonl
+qwen3:8b bare on theoremqa physics: 112 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b.jsonl
 [1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      189 tok   27.6s
 [2/112] tqa-panlu/energy_conservation1.json wrong      350 tok   48.0s
 [3/112] tqa-panlu/angular_frequency3.json correct    375 tok   50.5s
@@ -337,7 +337,7 @@ qwen3:8b bare on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCod
 [110/112] tqa-panlu/young’s_modulus1.json correct    573 tok   52.7s
 [111/112] tqa-panlu/kepler’s_third_law2.json wrong      774 tok  119.7s
 [112/112] tqa-panlu/gravitational_force2.json correct    259 tok   24.8s
-qwen3:8b tool on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b__tool.jsonl
+qwen3:8b tool on theoremqa physics: 112 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b__tool.jsonl
 [1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      116 tok   11.8s
 [2/112] tqa-panlu/energy_conservation1.json correct    157 tok   16.3s
 [3/112] tqa-panlu/angular_frequency3.json correct    153 tok   15.9s

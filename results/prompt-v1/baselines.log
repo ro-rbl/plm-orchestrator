@@ -1,4 +1,4 @@
-hf.co/bartowski/mlabonne_Qwen3-0.6B-abliterated-GGUF:Q4_K_M: 42 to run, 8 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-0.6B-abliterated-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/mlabonne_Qwen3-0.6B-abliterated-GGUF:Q4_K_M: 42 to run, 8 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-0.6B-abliterated-GGUF_Q4_K_M.jsonl
 [1/42] ee-c09 no_answer     294 tok    4.1s
 [2/42] ee-c10 correct       127 tok    1.4s
 [3/42] ee-c11 no_answer     100 tok    1.0s
@@ -52,7 +52,7 @@ calm            158    1.5        0
 alert           230    2.2        0
 intensive       365    4.8        1
 ALL             249    2.8        1
-qwen2.5:3b: 39 to run, 11 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen2.5_3b.jsonl
+qwen2.5:3b: 39 to run, 11 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen2.5_3b.jsonl
 [1/39] ee-c12 unit_error     75 tok    6.3s
 [2/39] ee-c13 correct       134 tok    7.0s
 [3/39] ee-c14 wrong_value   297 tok   14.9s
@@ -103,7 +103,7 @@ calm            189    6.2        0
 alert           274   13.5        0
 intensive       477   23.4        1
 ALL             309   14.3        1
-qwen3:8b: 0 to run, 50 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b.jsonl
+qwen3:8b: 0 to run, 50 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b.jsonl
 level        n  correct  wrong  unit  none  acc
 calm        15       15      0     0     0  100%
 alert       20       20      0     0     0  100%
@@ -115,7 +115,7 @@ calm            110   13.3        0
 alert           166   18.8        0
 intensive       347   45.8        0
 ALL             204   25.2        0
-hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 36 to run, 14 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 36 to run, 14 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl
 [1/36] ee-c15 correct       346 tok   23.9s
 [2/36] ee-a01 no_answer    1024 tok   66.1s
 [3/36] ee-a02 no_answer    1024 tok   67.0s

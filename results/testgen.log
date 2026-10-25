@@ -1,4 +1,4 @@
-hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/software_tests__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/software_tests__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M.jsonl
 [1/45] sw-c01 6 tests    99 tok    6.3s
 [2/45] sw-c02 8 tests   171 tok    5.8s
 [3/45] sw-c03 8 tests    88 tok    3.2s
@@ -44,7 +44,7 @@ hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 45 to run, 0 already 
 [43/45] sw-i13 1 tests   257 tok   13.1s
 [44/45] sw-i14 8 tests   199 tok   11.4s
 [45/45] sw-i15 8 tests   153 tok   10.1s
-qwen3:8b: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/software_tests__qwen3_8b.jsonl
+qwen3:8b: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/software_tests__qwen3_8b.jsonl
 [1/45] sw-c01 7 tests   113 tok   13.2s
 [2/45] sw-c02 6 tests   302 tok   83.9s
 [3/45] sw-c03 7 tests    94 tok   10.0s
@@ -90,7 +90,7 @@ qwen3:8b: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/result
 [43/45] sw-i13 8 tests   427 tok   42.5s
 [44/45] sw-i14 8 tests   186 tok   18.6s
 [45/45] sw-i15 7 tests   302 tok   24.0s
-qwen2.5-coder:14b: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/software_tests__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/software_tests__qwen2.5-coder_14b.jsonl
 [1/45] sw-c01 7 tests   113 tok   21.4s
 [2/45] sw-c02 3 tests   136 tok   18.4s
 [3/45] sw-c03 8 tests   110 tok   58.9s

@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        4      0     0         0     0  100%
@@ -10,7 +10,7 @@ calm             69    2.4        0
 alert           120    4.0        0
 intensive       140    4.5        0
 ALL             109    3.6        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b__tool.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        4      0     0         0     0  100%
@@ -22,7 +22,7 @@ calm             44    3.2        0
 alert            80    5.2        0
 intensive       129    8.1        0
 ALL              84    5.5        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical_fresh_quant__qwen3_8b.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        2      1     1         1     0  50%
@@ -34,7 +34,7 @@ calm            112    6.8        0
 alert           227   14.8        0
 intensive       290   20.8        0
 ALL             210   14.1        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        3      1     0         0     0  75%
 alert        4        2      2     0         0     0  50%
@@ -46,7 +46,7 @@ calm             84    3.7        0
 alert           152    6.1        0
 intensive       267   20.9        0
 ALL             168   10.2        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b__tool.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        3      1     0         0     0  75%
 alert        4        3      1     0         0     0  75%
@@ -58,7 +58,7 @@ calm             74    6.4        0
 alert           114    9.2        0
 intensive       210   16.9        0
 ALL             133   10.8        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_quant__qwen3_8b.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        3      1     0         0     0  75%
@@ -70,7 +70,7 @@ calm            153   11.7        0
 alert           335   25.4        0
 intensive       631   59.2        0
 ALL             373   32.1        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        4      0     0         0     0  100%
@@ -82,7 +82,7 @@ calm             67    3.4        0
 alert           107    4.7        0
 intensive       165    7.0        0
 ALL             113    5.0        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b__tool.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b__tool.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        4      0     0         0     0  100%
@@ -94,7 +94,7 @@ calm             50    4.6        0
 alert            74    6.6        0
 intensive       147   22.4        0
 ALL              90   11.2        0
-qwen3:8b: 12 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b.jsonl
+qwen3:8b: 12 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/physics_fresh_quant__qwen3_8b.jsonl
 level        n  correct  wrong  unit  (num ok)  none  acc
 calm         4        4      0     0         0     0  100%
 alert        4        4      0     0         0     0  100%

@@ -1,4 +1,4 @@
-qwen2.5-coder:14b with repair: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad__qwen2.5-coder_14b__repair.jsonl
+qwen2.5-coder:14b with repair: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad__qwen2.5-coder_14b__repair.jsonl
 [1/36] cad-c01 first correct     
 [2/36] cad-c02 first correct     
 [3/36] cad-c03 first correct     

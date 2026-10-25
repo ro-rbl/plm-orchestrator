@@ -1,4 +1,4 @@
-qwen3:8b bare on GSM8K: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__qwen3_8b.jsonl
+qwen3:8b bare on GSM8K: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__qwen3_8b.jsonl
 [1/300] gsm-0001 correct     68 tok    8.7s
 [2/300] gsm-0005 correct    144 tok    8.3s
 [3/300] gsm-0007 correct    237 tok   13.1s
@@ -299,7 +299,7 @@ qwen3:8b bare on GSM8K: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orch
 [298/300] gsm-1313 correct    112 tok    9.4s
 [299/300] gsm-1314 correct    233 tok   18.0s
 [300/300] gsm-1316 correct    130 tok   10.9s
-qwen3:8b tool on GSM8K: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__qwen3_8b__tool.jsonl
+qwen3:8b tool on GSM8K: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__qwen3_8b__tool.jsonl
 [1/300] gsm-0001 correct     61 tok    5.3s
 [2/300] gsm-0005 correct    101 tok    8.7s
 [3/300] gsm-0007 wrong      177 tok   14.9s
@@ -600,7 +600,7 @@ qwen3:8b tool on GSM8K: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orch
 [298/300] gsm-1313 correct     92 tok    8.0s
 [299/300] gsm-1314 correct    247 tok   19.6s
 [300/300] gsm-1316 correct    115 tok   10.1s
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on GSM8K: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on GSM8K: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_gsm8k__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/300] gsm-0001 correct     65 tok    4.9s
 [2/300] gsm-0005 correct    158 tok    7.4s
 [3/300] gsm-0007 correct    165 tok    7.3s

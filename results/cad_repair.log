@@ -1,4 +1,4 @@
-qwen2.5-coder:14b with repair: 20 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh3__qwen2.5-coder_14b__repair.jsonl
+qwen2.5-coder:14b with repair: 20 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad_fresh3__qwen2.5-coder_14b__repair.jsonl
 [1/20] cad-h01 first correct     
 [2/20] cad-h02 first correct     
 [3/20] cad-h03 first no_part      repair no_part      still flagged

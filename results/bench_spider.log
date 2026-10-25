@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on spider: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_spider__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on spider: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_spider__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/300] spider-0009 correct          19 tok    4.0s
 [2/300] spider-0020 correct          32 tok    1.2s
 [3/300] spider-0021 correct          35 tok    1.3s
@@ -299,7 +299,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on spider: 300 to run, 0 already in /U
 [298/300] spider-1019 correct          28 tok    1.1s
 [299/300] spider-1020 correct          39 tok    1.6s
 [300/300] spider-1030 wrong_rows       13 tok    3.1s
-qwen3:8b on spider: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_spider__qwen3_8b.jsonl
+qwen3:8b on spider: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_spider__qwen3_8b.jsonl
 [1/300] spider-0009 correct          19 tok    3.8s
 [2/300] spider-0020 correct          29 tok    2.2s
 [3/300] spider-0021 correct          34 tok    2.5s
@@ -600,7 +600,7 @@ qwen3:8b on spider: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestr
 [298/300] spider-1019 correct          28 tok    2.2s
 [299/300] spider-1020 correct          41 tok    3.2s
 [300/300] spider-1030 correct          20 tok    5.9s
-qwen2.5-coder:14b on spider: 300 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_spider__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b on spider: 300 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_spider__qwen2.5-coder_14b.jsonl
 [1/300] spider-0009 correct          19 tok   11.3s
 [2/300] spider-0020 correct          27 tok    3.7s
 [3/300] spider-0021 correct          27 tok    3.7s

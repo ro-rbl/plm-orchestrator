@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/50] ee-c01 correct       139 tok   12.4s
 [2/50] ee-c02 correct        70 tok    5.8s
 [3/50] ee-c03 correct       145 tok   11.5s
@@ -60,7 +60,7 @@ calm            122   10.2        0
 alert           179   21.1        0
 intensive       362   29.5        0
 ALL             217   20.4        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/50] ee-c01 correct        50 tok    3.3s
 [2/50] ee-c02 correct        74 tok    5.2s
 [3/50] ee-c03 correct        76 tok    4.8s
@@ -122,7 +122,7 @@ calm             82    5.5        0
 alert            92    6.8        0
 intensive       166   13.1        0
 ALL             111    8.3        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/45] sw-c01 pass        41 tok    4.1s  4/4 hidden
 [2/45] sw-c02 pass        70 tok    6.4s  3/3 hidden
 [3/45] sw-c03 pass        72 tok    6.9s  5/5 hidden
@@ -173,7 +173,7 @@ calm        15       13        2        0        0        0        0   87%      
 alert       15       14        1        0        0        0        0   93%      120       0
 intensive   15        9        6        0        0        0        0   60%      225       0
 ALL         45       36        9        0        0        0        0   80%      132       0
-qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M.jsonl
+qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M.jsonl
 [1/50] ee-c01 correct       144 tok   16.0s
 [2/50] ee-c02 correct        92 tok    8.8s
 [3/50] ee-c03 correct       109 tok   10.5s
@@ -235,7 +235,7 @@ calm            143   13.5        0
 alert           229   25.9        0
 intensive       503   40.3        2
 ALL             285   26.5        2
-qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M__tool.jsonl
+qwen3:4b-instruct-2507-q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/electrical__qwen3_4b-instruct-2507-q4_K_M__tool.jsonl
 [1/50] ee-c01 correct        64 tok    4.2s
 [2/50] ee-c02 correct        62 tok    4.5s
 [3/50] ee-c03 correct        78 tok    5.5s
@@ -297,7 +297,7 @@ calm             94    6.4        0
 alert           124   11.5        0
 intensive       307   20.2        0
 ALL             170   12.6        0
-qwen3:4b-instruct-2507-q4_K_M: 45 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__qwen3_4b-instruct-2507-q4_K_M.jsonl
+qwen3:4b-instruct-2507-q4_K_M: 45 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/.worktrees/phase2-router/results/software__qwen3_4b-instruct-2507-q4_K_M.jsonl
 [1/45] sw-c01 pass        55 tok    4.2s  4/4 hidden
 [2/45] sw-c02 pass        59 tok    5.1s  3/3 hidden
 [3/45] sw-c03 pass        67 tok    5.3s  5/5 hidden

@@ -1,4 +1,4 @@
-hf.co/bartowski/mlabonne_Qwen3-0.6B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-0.6B-abliterated-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/mlabonne_Qwen3-0.6B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-0.6B-abliterated-GGUF_Q4_K_M__tool.jsonl
 [1/50] ee-c01 correct        67 tok    2.2s
 [2/50] ee-c02 wrong_value    30 tok    0.3s
 [3/50] ee-c03 wrong_value    29 tok    0.3s
@@ -60,7 +60,7 @@ calm             63    0.6        0
 alert            86    0.7        0
 intensive       125    1.0        0
 ALL              91    0.8        0
-qwen2.5:3b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen2.5_3b__tool.jsonl
+qwen2.5:3b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen2.5_3b__tool.jsonl
 [1/50] ee-c01 correct        71 tok    5.0s
 [2/50] ee-c02 correct        71 tok    2.1s
 [3/50] ee-c03 wrong_value    85 tok    2.5s
@@ -122,7 +122,7 @@ calm             75   17.4        0
 alert           101   13.0        0
 intensive       171   21.9        0
 ALL             114   17.0        0
-hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/mlabonne_Qwen3-4B-abliterated-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__hf.co_bartowski_mlabonne_Qwen3-4B-abliterated-GGUF_Q4_K_M__tool.jsonl
 [1/50] ee-c01 correct        42 tok   10.8s
 [2/50] ee-c02 correct        80 tok   11.3s
 [3/50] ee-c03 correct        78 tok   11.7s
@@ -184,7 +184,7 @@ calm             92   67.0        0
 alert           101   38.3        0
 intensive       201   39.5        0
 ALL             128   47.3        0
-qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b__tool.jsonl
+qwen3:8b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/electrical__qwen3_8b__tool.jsonl
 [1/50] ee-c01 correct        42 tok   23.5s
 [2/50] ee-c02 correct        41 tok  244.5s
 [3/50] ee-c03 correct        50 tok   16.1s

@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/50] ae-c01 correct        86 tok    3.7s
 [2/50] ae-c02 correct       103 tok    3.5s
 [3/50] ae-c03 correct        75 tok    2.6s
@@ -60,7 +60,7 @@ calm            116    4.1        0
 alert           288   11.5        0
 intensive       505   23.1        0
 ALL             302   12.7        0
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/50] ae-c01 correct        68 tok    3.7s
 [2/50] ae-c02 correct        73 tok    4.1s
 [3/50] ae-c03 correct        77 tok    5.0s
@@ -122,7 +122,7 @@ calm             90    5.1        0
 alert           132    7.1        0
 intensive       246   12.7        0
 ALL             154    8.2        0
-qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b.jsonl
+qwen3:8b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b.jsonl
 [1/50] ae-c01 correct       102 tok   13.6s
 [2/50] ae-c02 correct       100 tok    9.9s
 [3/50] ae-c03 correct        74 tok    7.8s
@@ -184,7 +184,7 @@ calm            121  100.9        0
 alert           263   19.6        0
 intensive       606   72.0        1
 ALL             323   59.7        1
-qwen3:8b: 50 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__tool.jsonl
+qwen3:8b: 50 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__tool.jsonl
 [1/50] ae-c01 correct        52 tok   10.1s
 [2/50] ae-c02 correct        55 tok   10.7s
 [3/50] ae-c03 correct        64 tok   13.1s

@@ -1,4 +1,4 @@
-qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__tool.jsonl
+qwen3:8b: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__tool.jsonl
 [1/15] ae-f01 wrong_value   220 tok   12.4s
 [2/15] ae-f02 wrong_value   209 tok   11.9s
 [3/15] ae-f03 wrong_value   187 tok   48.1s
@@ -21,7 +21,7 @@ ALL         15        6      7     0         0     2  40%
 level       avg tok  avg s  hit cap
 intensive       194   14.3        0
 ALL             194   14.3        0
-qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__decompose.jsonl
+qwen3:8b: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace_fresh_intensive__qwen3_8b__decompose.jsonl
 [1/15] ae-f01 correct       386 tok   29.4s  5 calls
 [2/15] ae-f02 wrong_value   458 tok   33.0s  3 calls  [fallback: step 1 (semi-major axis): planned km, got A]
 [3/15] ae-f03 wrong_value   509 tok   39.7s  5 calls
@@ -44,7 +44,7 @@ ALL         15        5      9     0         0     1  33%
 level       avg tok  avg s  hit cap
 intensive       455   49.0        0
 ALL             455   49.0        0
-qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__decompose.jsonl
+qwen3:8b: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/aerospace__qwen3_8b__decompose.jsonl
 [1/15] ae-i01 wrong_value   692 tok   88.2s  6 calls
 [2/15] ae-i02 correct       811 tok  148.2s  7 calls
 [3/15] ae-i03 wrong_value   640 tok   68.8s  6 calls  [fallback: step 4 (calculate the fuel mass fraction): planned unitless, got 'A']

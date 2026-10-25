@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/15] cad-g01 correct         30 tok    3.3s
 [2/15] cad-g02 correct        117 tok    3.8s
 [3/15] cad-g03 no_part         96 tok    3.1s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
@@ -20,7 +20,7 @@ calm         2        1  wrong_volume 1
 alert        6        1  invalid 1, no_part 3, wrong_volume 1
 intensive    7        0  no_part 7
 ALL         15        2  invalid 1, no_part 10, wrong_volume 2
-qwen3:8b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen3_8b.jsonl
+qwen3:8b: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen3_8b.jsonl
 [1/15] cad-g01 correct         37 tok    7.1s
 [2/15] cad-g02 wrong_volume    47 tok    5.1s
 [3/15] cad-g03 no_part         86 tok    7.8s  [TypeError: Expected three floats, OCC gp_, or 3-tuple]
@@ -42,7 +42,7 @@ calm         2        1  no_part 1
 alert        6        0  no_part 4, wrong_volume 2
 intensive    7        0  invalid 1, no_part 3, wrong_size 2, wrong_volume 1
 ALL         15        1  invalid 1, no_part 8, wrong_size 2, wrong_volume 3
-qwen2.5-coder:14b: 15 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b: 15 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad_fresh2__qwen2.5-coder_14b.jsonl
 [1/15] cad-g01 correct         66 tok   15.4s
 [2/15] cad-g02 wrong_volume   109 tok   15.7s
 [3/15] cad-g03 wrong_volume    87 tok   13.2s

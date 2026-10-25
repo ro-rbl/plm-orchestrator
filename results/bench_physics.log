@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on SciBench physics: 144 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/144] sb-class-Problem 3.40 wrong      894 tok   30.3s  [no ANSWER line]
 [2/144] sb-class-Problem 6.14 wrong     1485 tok   45.2s  [asked for a unitless number, got 'π']
 [3/144] sb-class-Problem 2.6 wrong      491 tok   14.9s
@@ -143,7 +143,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on SciBench physics: 144 to run, 
 [142/144] sb-fund-9.03 wrong      413 tok   16.9s  [no ANSWER line]
 [143/144] sb-fund-13.03 wrong     1180 tok   48.6s
 [144/144] sb-fund-8.03 correct    258 tok   10.8s
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on SciBench physics: 144 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_scibench__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
 [1/144] sb-class-Problem 3.40 wrong      396 tok   17.2s  [no ANSWER line]
 [2/144] sb-class-Problem 6.14 wrong      485 tok   19.8s
 [3/144] sb-class-Problem 2.6 wrong      285 tok   11.9s
@@ -288,7 +288,7 @@ hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on SciBench physics: 144 to run, 
 [142/144] sb-fund-9.03 wrong      404 tok   20.5s
 [143/144] sb-fund-13.03 correct    355 tok   15.6s
 [144/144] sb-fund-8.03 correct     92 tok    4.6s
-qwen3:8b bare on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b.jsonl
+qwen3:8b bare on SciBench physics: 144 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b.jsonl
 [1/144] sb-class-Problem 3.40 wrong     1185 tok  101.4s
 [2/144] sb-class-Problem 6.14 wrong      811 tok   67.8s  [asked for a unitless number, got '$ \\sqrt   $  (unitless)']
 [3/144] sb-class-Problem 2.6 correct    442 tok   35.7s
@@ -433,7 +433,7 @@ qwen3:8b bare on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCodi
 [142/144] sb-fund-9.03 wrong      207 tok   17.4s  [no ANSWER line]
 [143/144] sb-fund-13.03 wrong     1286 tok   99.5s
 [144/144] sb-fund-8.03 correct    264 tok   21.6s
-qwen3:8b tool on SciBench physics: 144 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b__tool.jsonl
+qwen3:8b tool on SciBench physics: 144 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/bench_scibench__qwen3_8b__tool.jsonl
 [1/144] sb-class-Problem 3.40 wrong      612 tok   49.6s
 [2/144] sb-class-Problem 6.14 wrong      464 tok   37.1s
 [3/144] sb-class-Problem 2.6 wrong      179 tok   58.1s

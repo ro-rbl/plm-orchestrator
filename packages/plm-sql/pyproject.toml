@@ -7,6 +7,7 @@ name = "plm-sql"
 version = "0.1.0"
 description = "plm pack: SQLite queries, checked by running them on the schema given with the task"
 requires-python = ">=3.13"
+license = "MIT"
 # The checker is the standard library's sqlite3: no other dependency.
 dependencies = ["plm-core>=0.1,<0.2"]
 

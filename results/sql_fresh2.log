@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 24 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/sql_fresh2__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/24] sq2-c01 correct          15 tok    3.7s
 [2/24] sq2-c02 correct          24 tok    1.0s
 [3/24] sq2-c03 correct          20 tok    1.3s
@@ -29,7 +29,7 @@ calm         6        5  wrong_rows 1
 alert        8        7  error 1
 intensive   10        4  error 1, wrong_columns 1, wrong_rows 4
 ALL         24       16  error 2, wrong_columns 1, wrong_rows 5
-qwen3:8b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen3_8b.jsonl
+qwen3:8b: 24 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen3_8b.jsonl
 [1/24] sq2-c01 correct          17 tok    6.4s
 [2/24] sq2-c02 correct          22 tok    1.6s
 [3/24] sq2-c03 correct          22 tok    2.4s
@@ -60,7 +60,7 @@ calm         6        5  wrong_rows 1
 alert        8        8  
 intensive   10        7  wrong_rows 3
 ALL         24       20  wrong_rows 4
-qwen2.5-coder:14b: 24 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b: 24 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/sql_fresh2__qwen2.5-coder_14b.jsonl
 [1/24] sq2-c01 correct          15 tok   10.3s
 [2/24] sq2-c02 correct          18 tok   44.2s
 [3/24] sq2-c03 correct          21 tok    4.6s

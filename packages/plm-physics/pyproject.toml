@@ -7,6 +7,7 @@ name = "plm-physics"
 version = "0.1.0"
 description = "plm pack: Physics and mechanical calculations, checked by units and sanity rules"
 requires-python = ">=3.13"
+license = "MIT"
 dependencies = ["plm-core>=0.1,<0.2"]
 
 [project.entry-points."plm.packs"]

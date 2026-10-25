@@ -1,4 +1,4 @@
-hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
 [1/36] cad-c01 correct         30 tok    8.1s
 [2/36] cad-c02 no_part         30 tok    1.1s  [TypeError: Workplane.cylinder() got an unexpected keyword argument 'diameter']
 [3/36] cad-c03 wrong_size      22 tok    0.9s  [overall size 60 mm matches no dimension in the task; overall size 60 mm matches no dimensi]
@@ -41,7 +41,7 @@ calm        12        7  no_part 3, wrong_size 1, wrong_volume 1
 alert       12        2  no_part 4, wrong_size 3, wrong_volume 3
 intensive   12        1  no_part 6, wrong_size 2, wrong_volume 3
 ALL         36       10  no_part 13, wrong_size 6, wrong_volume 7
-qwen3:8b: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad__qwen3_8b.jsonl
+qwen3:8b: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad__qwen3_8b.jsonl
 [1/36] cad-c01 correct         37 tok    6.9s
 [2/36] cad-c02 wrong_size      34 tok    2.2s  [overall size 50 mm matches no dimension in the task; overall size 50 mm matches no dimensi]
 [3/36] cad-c03 correct         24 tok    1.7s
@@ -84,7 +84,7 @@ calm        12        6  no_part 5, wrong_size 1
 alert       12        1  no_part 6, wrong_size 1, wrong_volume 4
 intensive   12        0  invalid 1, no_part 8, wrong_size 2, wrong_volume 1
 ALL         36        7  invalid 1, no_part 19, wrong_size 4, wrong_volume 5
-qwen2.5-coder:14b: 36 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/cad__qwen2.5-coder_14b.jsonl
+qwen2.5-coder:14b: 36 to run, 0 already in ~/ClaudeCoding/plm-orchestrator/results/cad__qwen2.5-coder_14b.jsonl
 [1/36] cad-c01 correct         54 tok   14.9s
 [2/36] cad-c02 correct         53 tok   55.0s
 [3/36] cad-c03 correct         50 tok    7.2s
