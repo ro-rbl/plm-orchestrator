@@ -68,6 +68,18 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       4.3 GB each), kept for the hypotheses above; `ollama rm` them when done. The scratch work folder
       holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
 
+## Publishing (phase 5), 2026-10-25
+- [x] GitHub: https://github.com/ro-rbl/plm-orchestrator, **private**, `main` pushed (MIT license; home paths
+      replaced by ~ in the current files, still present in older commits).
+- [x] Hugging Face dataset: https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, **private**, 140 files
+      (eval sets, every model answer, RESULTS.md, dataset card; no benchmark data, no CADPrompt references).
+      It was public for about a minute on upload (`hf upload` created it before `hf repos create` ran) and was
+      then set private; anonymous access now returns 401.
+- [ ] **Going public is the user's call:** `gh repo edit ro-rbl/plm-orchestrator --visibility public
+      --accept-visibility-change-consequences` and, for the dataset, `HfApi().update_repo_settings(...,
+      private=False)`. Then check `pip install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`
+      in a fresh venv (untested while private), and claim the PyPI names if publishing there.
+
 ## SQL pack: built (2026-10-23)
 `packages/plm-sql`; eval set `evals/sql/build_tasks.py` (45 tasks, 3 seeded databases, 24 level holdouts, 12
 routing cases), sweep `results/run_sql.sh`, log `results/sql.log`. Ships 4B first, the coder when the query
