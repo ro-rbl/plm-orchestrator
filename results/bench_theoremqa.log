@@ -1,0 +1,472 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M bare on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/112] tqa-wenhuchen/Fluid_mechanics2.json correct    376 tok   14.9s
+[2/112] tqa-panlu/energy_conservation1.json wrong      379 tok   12.6s
+[3/112] tqa-panlu/angular_frequency3.json wrong      366 tok   11.9s
+[4/112] tqa-panlu/center_of_gravity2.json correct    221 tok    7.6s
+[5/112] tqa-wenhuchen/Fluid_mechanics1.json wrong      865 tok   29.1s
+[6/112] tqa-tonyxia/atom1.json wrong      835 tok   31.3s
+[7/112] tqa-panlu/friction1.json wrong      210 tok    9.6s
+[8/112] tqa-tonyxia/nuclear2.json wrong      324 tok   15.8s
+[9/112] tqa-panlu/work_energy1.json wrong      333 tok   19.1s
+[10/112] tqa-tonyxia/quantum2.json wrong      234 tok   14.1s
+[11/112] tqa-wenhuchen/optics4.json wrong      327 tok   21.3s
+[12/112] tqa-wenhuchen/optics5.json correct    286 tok   94.0s
+[13/112] tqa-tonyxia/wave1.json wrong      434 tok   22.7s
+[14/112] tqa-tonyxia/relativity3.json correct    379 tok   21.1s
+[15/112] tqa-tonyxia/semiconductor4.json wrong      553 tok   29.4s
+[16/112] tqa-tonyxia/particle2.json wrong      378 tok   21.1s
+[17/112] tqa-panlu/wave_length1.json correct    127 tok    7.2s
+[18/112] tqa-wenhuchen/kepler's_law3.json wrong      468 tok   27.6s
+[19/112] tqa-panlu/black_hole1.json correct    389 tok   21.7s
+[20/112] tqa-wenhuchen/optics8.json correct    244 tok   16.0s
+[21/112] tqa-tonyxia/statisticalphysics1.json correct    267 tok   15.0s
+[22/112] tqa-panlu/liquid_compressibility1.json wrong      357 tok   22.3s
+[23/112] tqa-wenhuchen/relativity1.json correct    844 tok   48.6s
+[24/112] tqa-panlu/molar_heat_capacity2.json correct    614 tok   35.5s
+[25/112] tqa-panlu/angular_frequency1.json wrong      201 tok   11.8s
+[26/112] tqa-wenhuchen/kinetics1.json wrong      920 tok   48.6s  [no ANSWER line]
+[27/112] tqa-tonyxia/statisticalphysics4.json wrong      210 tok    9.5s
+[28/112] tqa-xinyi/momentum.json correct    821 tok   42.3s
+[29/112] tqa-tonyxia/semiconductor6.json wrong      249 tok   13.2s
+[30/112] tqa-panlu/molar_heat_capacity1.json wrong      479 tok   24.2s
+[31/112] tqa-panlu/rigid-body1.json wrong      996 tok   56.8s
+[32/112] tqa-xinyi/rotation.json wrong      508 tok   32.3s
+[33/112] tqa-xinyi/angular_momentum.json wrong      676 tok   46.3s
+[34/112] tqa-tonyxia/photoelectric2.json correct    395 tok   26.6s
+[35/112] tqa-panlu/angular_frequency2.json correct    254 tok   17.5s
+[36/112] tqa-tonyxia/atom3.json correct    346 tok   23.1s
+[37/112] tqa-wenhuchen/optics2.json correct    193 tok   13.1s
+[38/112] tqa-xueguangma/physics_current_and_resistance.json wrong      437 tok   29.3s
+[39/112] tqa-tonyxia/semiconductor3.json correct    320 tok   21.6s
+[40/112] tqa-panlu/rigid-body3.json correct    595 tok   42.1s
+[41/112] tqa-panlu/kepler’s_third_law1.json wrong      259 tok   18.1s
+[42/112] tqa-panlu/density1.json wrong      460 tok   32.7s
+[43/112] tqa-tonyxia/statisticalphysics2.json wrong      225 tok   15.5s
+[44/112] tqa-tonyxia/nuclear5.json wrong      305 tok   21.5s
+[45/112] tqa-tonyxia/statisticalphysics6.json correct    175 tok   12.3s
+[46/112] tqa-wenhuchen/optics6.json wrong      502 tok   51.8s
+[47/112] tqa-panlu/shock_wave1.json wrong      254 tok   17.2s
+[48/112] tqa-wenhuchen/relativity2.json wrong      516 tok   37.4s
+[49/112] tqa-panlu/rigid-body2.json correct    352 tok   26.0s
+[50/112] tqa-wenhuchen/optics7.json wrong      336 tok   25.2s
+[51/112] tqa-tonyxia/particle5.json correct   1232 tok   91.9s
+[52/112] tqa-tonyxia/atom2.json wrong      531 tok   37.8s
+[53/112] tqa-tonyxia/wave2.json correct    254 tok   18.8s
+[54/112] tqa-panlu/physical_pendulum1.json wrong      501 tok   36.9s
+[55/112] tqa-tonyxia/particle3.json wrong      236 tok   16.1s
+[56/112] tqa-panlu/standing_sound_wave1.json wrong      516 tok   38.3s
+[57/112] tqa-panlu/pojectile_motion1.json wrong      606 tok   46.5s
+[58/112] tqa-wenhuchen/kinetics4.json wrong     1322 tok   98.9s  [no ANSWER line]
+[59/112] tqa-xinyi/work_energy_theorem.json correct    332 tok   24.1s
+[60/112] tqa-tonyxia/quantum3.json correct    322 tok   23.1s
+[61/112] tqa-tonyxia/nuclear6.json correct    533 tok   32.4s
+[62/112] tqa-xinyi/potential_energy.json wrong      764 tok   40.3s
+[63/112] tqa-tonyxia/nuclear3.json wrong      200 tok   10.4s
+[64/112] tqa-tonyxia/statisticalphysics3.json wrong      371 tok   17.6s
+[65/112] tqa-xinyi/newtons_laws_3.json wrong     1010 tok   47.9s  [no ANSWER line]
+[66/112] tqa-wenhuchen/kepler's_law1.json correct    448 tok   22.0s
+[67/112] tqa-panlu/thermal_stress1.json wrong      561 tok   28.2s
+[68/112] tqa-tonyxia/photoelectric1.json correct    330 tok   17.0s
+[69/112] tqa-tonyxia/particle1.json wrong      531 tok   27.3s
+[70/112] tqa-wenhuchen/relativity3.json wrong      169 tok    9.6s
+[71/112] tqa-tonyxia/semiconductor2.json correct    365 tok   19.5s
+[72/112] tqa-tonyxia/atom4.json wrong      841 tok   45.8s
+[73/112] tqa-panlu/fluid_pressure1.json wrong      194 tok   11.1s
+[74/112] tqa-tonyxia/nuclear1.json wrong      478 tok   27.7s
+[75/112] tqa-tonyxia/nuclear4.json wrong      349 tok   19.5s
+[76/112] tqa-wenhuchen/kinetics3.json wrong      548 tok   30.2s
+[77/112] tqa-panlu/pojectile_motion2.json wrong      590 tok   26.5s
+[78/112] tqa-tonyxia/relativity4.json correct    552 tok   25.3s
+[79/112] tqa-xueguangma/physics_coulombs_law.json wrong      574 tok   30.0s
+[80/112] tqa-panlu/molecule_vibration1.json wrong      779 tok   37.2s
+[81/112] tqa-tonyxia/particle4.json wrong      322 tok   14.8s
+[82/112] tqa-tonyxia/semiconductor5.json wrong      240 tok   12.4s
+[83/112] tqa-panlu/gravitational_force1.json wrong      359 tok   19.1s
+[84/112] tqa-wenhuchen/optics3.json correct    118 tok    6.3s
+[85/112] tqa-panlu/fluid_flow1.json correct    353 tok   16.7s
+[86/112] tqa-tonyxia/quantum4.json wrong      609 tok   27.7s
+[87/112] tqa-xinyi/newtons_laws_1.json correct    378 tok   17.9s
+[88/112] tqa-panlu/wave_speed1.json wrong      480 tok   22.5s  [no ANSWER line]
+[89/112] tqa-xueguangma/physics_gauss_law.json correct    242 tok   11.6s
+[90/112] tqa-panlu/center_of_gravity1.json wrong      594 tok   30.0s
+[91/112] tqa-wenhuchen/kepler's_law2.json wrong      484 tok   22.9s
+[92/112] tqa-tonyxia/particle6.json wrong      176 tok    8.5s
+[93/112] tqa-panlu/sound_wave_amplitude1.json wrong      451 tok   21.9s
+[94/112] tqa-wenhuchen/optics1.json correct    555 tok   26.3s
+[95/112] tqa-tonyxia/relativity1.json wrong      422 tok   20.9s
+[96/112] tqa-panlu/uniform_circular_motion1.json correct    175 tok    9.3s
+[97/112] tqa-panlu/force_and_power1.json correct    255 tok   12.4s
+[98/112] tqa-panlu/volume_thermal_expansion1.json correct    655 tok   32.2s
+[99/112] tqa-tonyxia/semiconductor1.json wrong      687 tok   36.1s
+[100/112] tqa-panlu/circular_orbit1.json wrong      727 tok   35.9s
+[101/112] tqa-wenhuchen/kinetics2.json wrong     1536 tok   77.8s  [no ANSWER line]
+[102/112] tqa-tonyxia/relativity2.json correct    303 tok   14.9s
+[103/112] tqa-panlu/center_of_mass1.json wrong      613 tok   30.0s
+[104/112] tqa-panlu/uniform_circular_motion2.json correct    209 tok   10.2s
+[105/112] tqa-tonyxia/quantum1.json wrong      444 tok   22.0s
+[106/112] tqa-tonyxia/wave3.json correct    443 tok   21.8s
+[107/112] tqa-tonyxia/statisticalphysics5.json correct    418 tok   19.7s
+[108/112] tqa-tonyxia/quantum5.json wrong      560 tok   27.5s
+[109/112] tqa-panlu/linear_expansion1.json correct    488 tok   24.4s
+[110/112] tqa-panlu/young’s_modulus1.json correct    560 tok   27.4s
+[111/112] tqa-panlu/kepler’s_third_law2.json wrong      809 tok   38.8s
+[112/112] tqa-panlu/gravitational_force2.json correct    248 tok   12.2s
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      130 tok    7.0s
+[2/112] tqa-panlu/energy_conservation1.json wrong      150 tok    8.2s
+[3/112] tqa-panlu/angular_frequency3.json wrong      138 tok    7.3s
+[4/112] tqa-panlu/center_of_gravity2.json wrong      139 tok    8.2s
+[5/112] tqa-wenhuchen/Fluid_mechanics1.json correct    516 tok   26.5s
+[6/112] tqa-tonyxia/atom1.json wrong      509 tok   24.9s
+[7/112] tqa-panlu/friction1.json correct    114 tok    6.6s
+[8/112] tqa-tonyxia/nuclear2.json wrong      190 tok   19.5s
+[9/112] tqa-panlu/work_energy1.json wrong      172 tok   12.2s
+[10/112] tqa-tonyxia/quantum2.json wrong      190 tok   13.1s
+[11/112] tqa-wenhuchen/optics4.json correct    159 tok   11.3s
+[12/112] tqa-wenhuchen/optics5.json correct    129 tok    9.0s
+[13/112] tqa-tonyxia/wave1.json wrong      148 tok   10.3s
+[14/112] tqa-tonyxia/relativity3.json wrong      100 tok    7.3s
+[15/112] tqa-tonyxia/semiconductor4.json wrong      295 tok   20.0s
+[16/112] tqa-tonyxia/particle2.json correct    232 tok   15.7s
+[17/112] tqa-panlu/wave_length1.json correct     84 tok    5.0s
+[18/112] tqa-wenhuchen/kepler's_law3.json correct    228 tok   11.7s
+[19/112] tqa-panlu/black_hole1.json correct    206 tok   10.6s
+[20/112] tqa-wenhuchen/optics8.json correct    132 tok    6.9s
+[21/112] tqa-tonyxia/statisticalphysics1.json wrong      145 tok    8.2s
+[22/112] tqa-panlu/liquid_compressibility1.json wrong      104 tok    5.4s
+[23/112] tqa-wenhuchen/relativity1.json wrong      326 tok   16.7s  [min answer must be positive, got -7.733]
+[24/112] tqa-panlu/molar_heat_capacity2.json correct    361 tok   18.4s
+[25/112] tqa-panlu/angular_frequency1.json wrong      147 tok    8.0s
+[26/112] tqa-wenhuchen/kinetics1.json correct    274 tok   14.4s
+[27/112] tqa-tonyxia/statisticalphysics4.json wrong      103 tok    5.3s
+[28/112] tqa-xinyi/momentum.json wrong     1024 tok   53.0s  [no ANSWER line]
+[29/112] tqa-tonyxia/semiconductor6.json wrong      146 tok    9.5s
+[30/112] tqa-panlu/molar_heat_capacity1.json correct    279 tok   16.6s
+[31/112] tqa-panlu/rigid-body1.json wrong      364 tok   21.0s
+[32/112] tqa-xinyi/rotation.json wrong      263 tok   14.7s
+[33/112] tqa-xinyi/angular_momentum.json wrong      147 tok   10.7s
+[34/112] tqa-tonyxia/photoelectric2.json correct    202 tok   13.7s
+[35/112] tqa-panlu/angular_frequency2.json correct    116 tok    6.9s
+[36/112] tqa-tonyxia/atom3.json correct    119 tok    9.6s
+[37/112] tqa-wenhuchen/optics2.json correct    101 tok    7.2s
+[38/112] tqa-xueguangma/physics_current_and_resistance.json wrong      165 tok   11.1s
+[39/112] tqa-tonyxia/semiconductor3.json wrong      200 tok   11.5s
+[40/112] tqa-panlu/rigid-body3.json correct    255 tok   16.0s
+[41/112] tqa-panlu/kepler’s_third_law1.json correct    231 tok   12.8s
+[42/112] tqa-panlu/density1.json wrong      314 tok   18.8s
+[43/112] tqa-tonyxia/statisticalphysics2.json correct    111 tok    7.0s
+[44/112] tqa-tonyxia/nuclear5.json wrong      169 tok    9.2s
+[45/112] tqa-tonyxia/statisticalphysics6.json correct    143 tok    8.2s
+[46/112] tqa-wenhuchen/optics6.json correct    161 tok    8.4s
+[47/112] tqa-panlu/shock_wave1.json wrong      117 tok    6.6s
+[48/112] tqa-wenhuchen/relativity2.json wrong      245 tok   11.7s
+[49/112] tqa-panlu/rigid-body2.json wrong      152 tok    7.4s
+[50/112] tqa-wenhuchen/optics7.json wrong      192 tok    8.7s
+[51/112] tqa-tonyxia/particle5.json wrong      203 tok    9.5s  [no ANSWER line]
+[52/112] tqa-tonyxia/atom2.json wrong      300 tok   13.4s
+[53/112] tqa-tonyxia/wave2.json wrong      126 tok    5.7s  [no ANSWER line]
+[54/112] tqa-panlu/physical_pendulum1.json wrong      469 tok   19.9s
+[55/112] tqa-tonyxia/particle3.json wrong      359 tok   14.6s
+[56/112] tqa-panlu/standing_sound_wave1.json wrong     1024 tok   42.0s  [no ANSWER line]
+[57/112] tqa-panlu/pojectile_motion1.json wrong      445 tok   20.3s
+[58/112] tqa-wenhuchen/kinetics4.json wrong      160 tok    8.1s
+[59/112] tqa-xinyi/work_energy_theorem.json correct    146 tok    8.0s
+[60/112] tqa-tonyxia/quantum3.json wrong      174 tok    8.5s
+[61/112] tqa-tonyxia/nuclear6.json wrong      368 tok   17.5s
+[62/112] tqa-xinyi/potential_energy.json wrong      320 tok   16.4s
+[63/112] tqa-tonyxia/nuclear3.json correct    110 tok    5.6s
+[64/112] tqa-tonyxia/statisticalphysics3.json wrong      105 tok    5.4s
+[65/112] tqa-xinyi/newtons_laws_3.json wrong      124 tok    6.1s
+[66/112] tqa-wenhuchen/kepler's_law1.json correct    171 tok    8.0s
+[67/112] tqa-panlu/thermal_stress1.json wrong      308 tok   14.3s
+[68/112] tqa-tonyxia/photoelectric1.json correct    175 tok    8.0s
+[69/112] tqa-tonyxia/particle1.json correct    379 tok   20.1s
+[70/112] tqa-wenhuchen/relativity3.json wrong      128 tok    6.8s
+[71/112] tqa-tonyxia/semiconductor2.json wrong      210 tok   11.3s
+[72/112] tqa-tonyxia/atom4.json wrong      318 tok   16.9s
+[73/112] tqa-panlu/fluid_pressure1.json correct    119 tok    6.9s
+[74/112] tqa-tonyxia/nuclear1.json wrong      177 tok   10.1s
+[75/112] tqa-tonyxia/nuclear4.json wrong      178 tok   10.4s
+[76/112] tqa-wenhuchen/kinetics3.json correct    412 tok   22.0s
+[77/112] tqa-panlu/pojectile_motion2.json wrong      329 tok   18.2s
+[78/112] tqa-tonyxia/relativity4.json wrong      220 tok   12.3s
+[79/112] tqa-xueguangma/physics_coulombs_law.json wrong      244 tok   13.6s
+[80/112] tqa-panlu/molecule_vibration1.json wrong      246 tok   13.9s
+[81/112] tqa-tonyxia/particle4.json wrong      177 tok   10.2s
+[82/112] tqa-tonyxia/semiconductor5.json wrong       81 tok    5.0s
+[83/112] tqa-panlu/gravitational_force1.json correct    143 tok    8.5s
+[84/112] tqa-wenhuchen/optics3.json correct     92 tok    5.9s
+[85/112] tqa-panlu/fluid_flow1.json correct    147 tok    8.6s
+[86/112] tqa-tonyxia/quantum4.json wrong      247 tok   13.8s
+[87/112] tqa-xinyi/newtons_laws_1.json correct    164 tok    9.9s
+[88/112] tqa-panlu/wave_speed1.json wrong     1024 tok   58.8s  [no ANSWER line]
+[89/112] tqa-xueguangma/physics_gauss_law.json wrong      128 tok    7.2s
+[90/112] tqa-panlu/center_of_gravity1.json wrong      262 tok   16.1s
+[91/112] tqa-wenhuchen/kepler's_law2.json wrong      161 tok   10.6s
+[92/112] tqa-tonyxia/particle6.json correct    209 tok   13.5s
+[93/112] tqa-panlu/sound_wave_amplitude1.json wrong      201 tok   13.3s  [no ANSWER line]
+[94/112] tqa-wenhuchen/optics1.json wrong      263 tok   16.3s
+[95/112] tqa-tonyxia/relativity1.json wrong      239 tok   15.2s
+[96/112] tqa-panlu/uniform_circular_motion1.json correct     86 tok    5.6s
+[97/112] tqa-panlu/force_and_power1.json correct    129 tok    8.5s
+[98/112] tqa-panlu/volume_thermal_expansion1.json correct    204 tok   13.1s
+[99/112] tqa-tonyxia/semiconductor1.json correct    127 tok    8.3s
+[100/112] tqa-panlu/circular_orbit1.json wrong      328 tok   20.9s
+[101/112] tqa-wenhuchen/kinetics2.json wrong     1024 tok   66.3s  [no ANSWER line]
+[102/112] tqa-tonyxia/relativity2.json correct    139 tok    9.3s
+[103/112] tqa-panlu/center_of_mass1.json wrong      602 tok   38.3s  [no ANSWER line]
+[104/112] tqa-panlu/uniform_circular_motion2.json correct     78 tok    5.8s
+[105/112] tqa-tonyxia/quantum1.json wrong      242 tok   16.0s
+[106/112] tqa-tonyxia/wave3.json wrong      235 tok   15.5s  [no ANSWER line]
+[107/112] tqa-tonyxia/statisticalphysics5.json wrong      428 tok   27.2s
+[108/112] tqa-tonyxia/quantum5.json wrong      213 tok   14.2s
+[109/112] tqa-panlu/linear_expansion1.json correct    251 tok   16.7s
+[110/112] tqa-panlu/young’s_modulus1.json wrong      257 tok   17.4s
+[111/112] tqa-panlu/kepler’s_third_law2.json wrong      388 tok   25.9s
+[112/112] tqa-panlu/gravitational_force2.json wrong     1024 tok   66.8s  [no ANSWER line]
+qwen3:8b bare on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b.jsonl
+[1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      189 tok   27.6s
+[2/112] tqa-panlu/energy_conservation1.json wrong      350 tok   48.0s
+[3/112] tqa-panlu/angular_frequency3.json correct    375 tok   50.5s
+[4/112] tqa-panlu/center_of_gravity2.json wrong      262 tok   35.1s
+[5/112] tqa-wenhuchen/Fluid_mechanics1.json wrong      829 tok   78.2s
+[6/112] tqa-tonyxia/atom1.json wrong     1254 tok  168.2s
+[7/112] tqa-panlu/friction1.json wrong      225 tok   22.6s
+[8/112] tqa-tonyxia/nuclear2.json wrong      554 tok   49.9s
+[9/112] tqa-panlu/work_energy1.json wrong      448 tok   41.2s
+[10/112] tqa-tonyxia/quantum2.json wrong      312 tok   28.3s
+[11/112] tqa-wenhuchen/optics4.json wrong      315 tok   30.1s
+[12/112] tqa-wenhuchen/optics5.json correct    280 tok   26.1s
+[13/112] tqa-tonyxia/wave1.json wrong      454 tok   92.9s
+[14/112] tqa-tonyxia/relativity3.json correct    392 tok   36.5s
+[15/112] tqa-tonyxia/semiconductor4.json wrong      578 tok   52.6s
+[16/112] tqa-tonyxia/particle2.json wrong      398 tok   36.4s
+[17/112] tqa-panlu/wave_length1.json correct    164 tok   15.9s
+[18/112] tqa-wenhuchen/kepler's_law3.json correct    489 tok   46.9s
+[19/112] tqa-panlu/black_hole1.json correct    443 tok   40.2s
+[20/112] tqa-wenhuchen/optics8.json correct    284 tok   26.6s
+[21/112] tqa-tonyxia/statisticalphysics1.json correct    297 tok   27.3s
+[22/112] tqa-panlu/liquid_compressibility1.json wrong      455 tok   93.7s
+[23/112] tqa-wenhuchen/relativity1.json correct    983 tok   89.8s
+[24/112] tqa-panlu/molar_heat_capacity2.json correct    634 tok   59.2s
+[25/112] tqa-panlu/angular_frequency1.json wrong      239 tok   22.3s
+[26/112] tqa-wenhuchen/kinetics1.json correct    580 tok   53.6s
+[27/112] tqa-tonyxia/statisticalphysics4.json wrong      274 tok   24.9s
+[28/112] tqa-xinyi/momentum.json correct    644 tok   58.7s
+[29/112] tqa-tonyxia/semiconductor6.json wrong      385 tok   87.5s
+[30/112] tqa-panlu/molar_heat_capacity1.json correct    504 tok   46.3s
+[31/112] tqa-panlu/rigid-body1.json wrong     1536 tok  141.9s  [no ANSWER line]
+[32/112] tqa-xinyi/rotation.json correct    529 tok   49.5s
+[33/112] tqa-xinyi/angular_momentum.json correct    764 tok   71.0s
+[34/112] tqa-tonyxia/photoelectric2.json wrong      540 tok  102.6s
+[35/112] tqa-panlu/angular_frequency2.json correct    295 tok   28.8s
+[36/112] tqa-tonyxia/atom3.json correct    249 tok   23.4s
+[37/112] tqa-wenhuchen/optics2.json correct    222 tok   21.5s
+[38/112] tqa-xueguangma/physics_current_and_resistance.json wrong      640 tok   60.0s
+[39/112] tqa-tonyxia/semiconductor3.json correct    436 tok   40.3s
+[40/112] tqa-panlu/rigid-body3.json correct    562 tok   52.1s
+[41/112] tqa-panlu/kepler’s_third_law1.json wrong      250 tok   23.7s
+[42/112] tqa-panlu/density1.json wrong      609 tok  109.7s
+[43/112] tqa-tonyxia/statisticalphysics2.json correct    186 tok   18.1s
+[44/112] tqa-tonyxia/nuclear5.json wrong      315 tok   30.9s
+[45/112] tqa-tonyxia/statisticalphysics6.json correct    217 tok   20.5s
+[46/112] tqa-wenhuchen/optics6.json wrong      449 tok   43.1s
+[47/112] tqa-panlu/shock_wave1.json wrong      445 tok   41.8s
+[48/112] tqa-wenhuchen/relativity2.json wrong      560 tok   52.7s
+[49/112] tqa-panlu/rigid-body2.json correct    343 tok   32.8s
+[50/112] tqa-wenhuchen/optics7.json correct    405 tok   38.0s
+[51/112] tqa-tonyxia/particle5.json wrong      680 tok  117.1s
+[52/112] tqa-tonyxia/atom2.json wrong      645 tok   60.4s
+[53/112] tqa-tonyxia/wave2.json wrong      239 tok   22.6s
+[54/112] tqa-panlu/physical_pendulum1.json wrong      277 tok   27.5s
+[55/112] tqa-tonyxia/particle3.json wrong      515 tok   48.2s
+[56/112] tqa-panlu/standing_sound_wave1.json wrong     1418 tok  133.6s
+[57/112] tqa-panlu/pojectile_motion1.json wrong      550 tok  104.8s
+[58/112] tqa-wenhuchen/kinetics4.json wrong      623 tok   59.9s
+[59/112] tqa-xinyi/work_energy_theorem.json correct    296 tok   29.7s
+[60/112] tqa-tonyxia/quantum3.json wrong      431 tok   40.3s
+[61/112] tqa-tonyxia/nuclear6.json wrong      671 tok   64.1s
+[62/112] tqa-xinyi/potential_energy.json wrong      465 tok   46.0s
+[63/112] tqa-tonyxia/nuclear3.json wrong      201 tok   19.8s
+[64/112] tqa-tonyxia/statisticalphysics3.json correct    265 tok   83.3s
+[65/112] tqa-xinyi/newtons_laws_3.json wrong      528 tok   50.9s  [no ANSWER line]
+[66/112] tqa-wenhuchen/kepler's_law1.json correct    406 tok   39.4s
+[67/112] tqa-panlu/thermal_stress1.json wrong      567 tok   54.8s
+[68/112] tqa-tonyxia/photoelectric1.json correct    219 tok   21.6s
+[69/112] tqa-tonyxia/particle1.json wrong      485 tok   46.1s
+[70/112] tqa-wenhuchen/relativity3.json wrong      173 tok   17.8s
+[71/112] tqa-tonyxia/semiconductor2.json correct    423 tok   40.1s
+[72/112] tqa-tonyxia/atom4.json wrong      579 tok   55.0s
+[73/112] tqa-panlu/fluid_pressure1.json wrong      221 tok   77.7s
+[74/112] tqa-tonyxia/nuclear1.json wrong      535 tok   58.5s
+[75/112] tqa-tonyxia/nuclear4.json correct    404 tok   39.8s
+[76/112] tqa-wenhuchen/kinetics3.json wrong      512 tok   52.3s
+[77/112] tqa-panlu/pojectile_motion2.json correct   1428 tok  138.6s
+[78/112] tqa-tonyxia/relativity4.json correct    614 tok  113.4s
+[79/112] tqa-xueguangma/physics_coulombs_law.json wrong      731 tok   70.0s
+[80/112] tqa-panlu/molecule_vibration1.json wrong      867 tok   83.8s
+[81/112] tqa-tonyxia/particle4.json wrong      432 tok   42.0s
+[82/112] tqa-tonyxia/semiconductor5.json wrong      474 tok   45.6s
+[83/112] tqa-panlu/gravitational_force1.json wrong      463 tok  100.2s
+[84/112] tqa-wenhuchen/optics3.json correct    168 tok   17.0s
+[85/112] tqa-panlu/fluid_flow1.json correct    328 tok   32.2s
+[86/112] tqa-tonyxia/quantum4.json wrong      631 tok   60.4s
+[87/112] tqa-xinyi/newtons_laws_1.json correct    460 tok   45.1s
+[88/112] tqa-panlu/wave_speed1.json correct    515 tok   50.0s
+[89/112] tqa-xueguangma/physics_gauss_law.json correct    262 tok   25.7s
+[90/112] tqa-panlu/center_of_gravity1.json wrong      827 tok   79.3s
+[91/112] tqa-wenhuchen/kepler's_law2.json wrong      525 tok  105.8s
+[92/112] tqa-tonyxia/particle6.json correct    161 tok   16.4s
+[93/112] tqa-panlu/sound_wave_amplitude1.json wrong      586 tok   57.1s
+[94/112] tqa-wenhuchen/optics1.json wrong      450 tok   43.7s
+[95/112] tqa-tonyxia/relativity1.json wrong      463 tok   47.5s  [no ANSWER line]
+[96/112] tqa-panlu/uniform_circular_motion1.json correct    170 tok   18.1s
+[97/112] tqa-panlu/force_and_power1.json correct    240 tok   24.1s
+[98/112] tqa-panlu/volume_thermal_expansion1.json wrong      597 tok   58.1s
+[99/112] tqa-tonyxia/semiconductor1.json correct    250 tok   81.5s
+[100/112] tqa-panlu/circular_orbit1.json wrong      929 tok   86.0s
+[101/112] tqa-wenhuchen/kinetics2.json wrong     1144 tok  108.3s
+[102/112] tqa-tonyxia/relativity2.json wrong      344 tok   31.7s
+[103/112] tqa-panlu/center_of_mass1.json wrong      658 tok   60.5s
+[104/112] tqa-panlu/uniform_circular_motion2.json correct    210 tok   68.9s
+[105/112] tqa-tonyxia/quantum1.json wrong      514 tok   47.8s
+[106/112] tqa-tonyxia/wave3.json wrong      384 tok   35.8s
+[107/112] tqa-tonyxia/statisticalphysics5.json correct    456 tok   42.4s
+[108/112] tqa-tonyxia/quantum5.json wrong      670 tok   62.2s
+[109/112] tqa-panlu/linear_expansion1.json correct    580 tok   55.6s
+[110/112] tqa-panlu/young’s_modulus1.json correct    573 tok   52.7s
+[111/112] tqa-panlu/kepler’s_third_law2.json wrong      774 tok  119.7s
+[112/112] tqa-panlu/gravitational_force2.json correct    259 tok   24.8s
+qwen3:8b tool on theoremqa physics: 112 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_theoremqa__qwen3_8b__tool.jsonl
+[1/112] tqa-wenhuchen/Fluid_mechanics2.json wrong      116 tok   11.8s
+[2/112] tqa-panlu/energy_conservation1.json correct    157 tok   16.3s
+[3/112] tqa-panlu/angular_frequency3.json correct    153 tok   15.9s
+[4/112] tqa-panlu/center_of_gravity2.json wrong      129 tok   13.3s
+[5/112] tqa-wenhuchen/Fluid_mechanics1.json wrong      506 tok   47.7s
+[6/112] tqa-tonyxia/atom1.json wrong      375 tok   34.7s
+[7/112] tqa-panlu/friction1.json wrong      135 tok   13.8s
+[8/112] tqa-tonyxia/nuclear2.json wrong      132 tok   13.1s
+[9/112] tqa-panlu/work_energy1.json wrong      113 tok   11.9s
+[10/112] tqa-tonyxia/quantum2.json correct     72 tok    7.4s
+[11/112] tqa-wenhuchen/optics4.json wrong      127 tok   13.4s
+[12/112] tqa-wenhuchen/optics5.json correct    124 tok   12.6s
+[13/112] tqa-tonyxia/wave1.json wrong      155 tok   63.4s
+[14/112] tqa-tonyxia/relativity3.json correct    199 tok   19.1s
+[15/112] tqa-tonyxia/semiconductor4.json wrong      124 tok   13.4s
+[16/112] tqa-tonyxia/particle2.json wrong      242 tok   23.6s
+[17/112] tqa-panlu/wave_length1.json correct     60 tok    6.5s
+[18/112] tqa-wenhuchen/kepler's_law3.json correct    177 tok   17.6s
+[19/112] tqa-panlu/black_hole1.json correct    156 tok   15.9s
+[20/112] tqa-wenhuchen/optics8.json correct    107 tok   11.7s
+[21/112] tqa-tonyxia/statisticalphysics1.json correct    125 tok   15.2s
+[22/112] tqa-panlu/liquid_compressibility1.json wrong      122 tok   16.5s
+[23/112] tqa-wenhuchen/relativity1.json wrong      200 tok   20.1s  [min answer must be positive, got -7.733]
+[24/112] tqa-panlu/molar_heat_capacity2.json wrong      343 tok   32.2s  [no ANSWER line]
+[25/112] tqa-panlu/angular_frequency1.json correct     80 tok    8.6s
+[26/112] tqa-wenhuchen/kinetics1.json correct    253 tok   24.8s
+[27/112] tqa-tonyxia/statisticalphysics4.json correct    130 tok   13.0s
+[28/112] tqa-xinyi/momentum.json correct     78 tok    8.6s
+[29/112] tqa-tonyxia/semiconductor6.json wrong      130 tok   13.2s
+[30/112] tqa-panlu/molar_heat_capacity1.json correct    172 tok   17.2s
+[31/112] tqa-panlu/rigid-body1.json wrong      321 tok   30.8s
+[32/112] tqa-xinyi/rotation.json wrong      208 tok   77.9s
+[33/112] tqa-xinyi/angular_momentum.json wrong      130 tok   13.8s
+[34/112] tqa-tonyxia/photoelectric2.json correct    178 tok   17.3s
+[35/112] tqa-panlu/angular_frequency2.json correct    106 tok   11.6s
+[36/112] tqa-tonyxia/atom3.json correct    147 tok   14.5s
+[37/112] tqa-wenhuchen/optics2.json correct    101 tok   10.6s
+[38/112] tqa-xueguangma/physics_current_and_resistance.json wrong      128 tok   13.6s
+[39/112] tqa-tonyxia/semiconductor3.json wrong      145 tok   14.3s
+[40/112] tqa-panlu/rigid-body3.json correct    237 tok   23.0s
+[41/112] tqa-panlu/kepler’s_third_law1.json correct    234 tok   22.3s
+[42/112] tqa-panlu/density1.json wrong      213 tok   20.8s
+[43/112] tqa-tonyxia/statisticalphysics2.json correct     80 tok    8.2s
+[44/112] tqa-tonyxia/nuclear5.json wrong      147 tok   14.8s
+[45/112] tqa-tonyxia/statisticalphysics6.json wrong      318 tok   29.7s
+[46/112] tqa-wenhuchen/optics6.json wrong      174 tok   17.6s
+[47/112] tqa-panlu/shock_wave1.json wrong      111 tok   11.3s
+[48/112] tqa-wenhuchen/relativity2.json wrong      185 tok   19.5s
+[49/112] tqa-panlu/rigid-body2.json correct    129 tok   13.3s
+[50/112] tqa-wenhuchen/optics7.json correct    149 tok   15.0s
+[51/112] tqa-tonyxia/particle5.json correct    354 tok   79.3s
+[52/112] tqa-tonyxia/atom2.json wrong      239 tok   23.0s
+[53/112] tqa-tonyxia/wave2.json correct     89 tok    9.1s
+[54/112] tqa-panlu/physical_pendulum1.json wrong      129 tok   13.6s
+[55/112] tqa-tonyxia/particle3.json wrong      212 tok   20.1s
+[56/112] tqa-panlu/standing_sound_wave1.json wrong     1024 tok   98.1s  [no ANSWER line]
+[57/112] tqa-panlu/pojectile_motion1.json wrong      304 tok   29.3s
+[58/112] tqa-wenhuchen/kinetics4.json wrong      228 tok   22.7s
+[59/112] tqa-xinyi/work_energy_theorem.json correct    152 tok   16.1s
+[60/112] tqa-tonyxia/quantum3.json correct    208 tok   19.8s
+[61/112] tqa-tonyxia/nuclear6.json wrong      351 tok   33.7s
+[62/112] tqa-xinyi/potential_energy.json wrong      161 tok   68.5s
+[63/112] tqa-tonyxia/nuclear3.json wrong      102 tok   10.6s
+[64/112] tqa-tonyxia/statisticalphysics3.json wrong      109 tok   10.9s
+[65/112] tqa-xinyi/newtons_laws_3.json wrong      118 tok   11.7s
+[66/112] tqa-wenhuchen/kepler's_law1.json wrong      165 tok   16.3s
+[67/112] tqa-panlu/thermal_stress1.json correct    284 tok   27.8s
+[68/112] tqa-tonyxia/photoelectric1.json wrong       82 tok    8.3s
+[69/112] tqa-tonyxia/particle1.json wrong      257 tok   24.6s
+[70/112] tqa-wenhuchen/relativity3.json wrong      123 tok   12.7s
+[71/112] tqa-tonyxia/semiconductor2.json wrong      155 tok   15.2s
+[72/112] tqa-tonyxia/atom4.json wrong      176 tok   16.6s
+[73/112] tqa-panlu/fluid_pressure1.json correct    129 tok   13.0s
+[74/112] tqa-tonyxia/nuclear1.json wrong      125 tok   13.9s
+[75/112] tqa-tonyxia/nuclear4.json correct    158 tok   15.9s
+[76/112] tqa-wenhuchen/kinetics3.json wrong      711 tok   66.8s
+[77/112] tqa-panlu/pojectile_motion2.json wrong      287 tok   27.4s  [no ANSWER line]
+[78/112] tqa-tonyxia/relativity4.json correct    198 tok   67.9s
+[79/112] tqa-xueguangma/physics_coulombs_law.json wrong      229 tok   22.0s
+[80/112] tqa-panlu/molecule_vibration1.json wrong      256 tok   24.9s
+[81/112] tqa-tonyxia/particle4.json wrong      329 tok   31.3s
+[82/112] tqa-tonyxia/semiconductor5.json wrong      174 tok   17.2s
+[83/112] tqa-panlu/gravitational_force1.json wrong      143 tok   14.2s
+[84/112] tqa-wenhuchen/optics3.json correct     76 tok    8.0s
+[85/112] tqa-panlu/fluid_flow1.json correct    143 tok   14.1s
+[86/112] tqa-tonyxia/quantum4.json wrong      230 tok   22.3s
+[87/112] tqa-xinyi/newtons_laws_1.json correct    139 tok   14.1s
+[88/112] tqa-panlu/wave_speed1.json correct    326 tok   31.0s
+[89/112] tqa-xueguangma/physics_gauss_law.json wrong       91 tok    9.6s
+[90/112] tqa-panlu/center_of_gravity1.json wrong      361 tok   34.1s
+[91/112] tqa-wenhuchen/kepler's_law2.json wrong      168 tok   18.6s
+[92/112] tqa-tonyxia/particle6.json correct    154 tok   15.3s
+[93/112] tqa-panlu/sound_wave_amplitude1.json wrong      163 tok   16.7s
+[94/112] tqa-wenhuchen/optics1.json wrong      260 tok   73.6s
+[95/112] tqa-tonyxia/relativity1.json wrong      255 tok   25.4s
+[96/112] tqa-panlu/uniform_circular_motion1.json correct     79 tok   10.0s
+[97/112] tqa-panlu/force_and_power1.json correct     83 tok    9.3s
+[98/112] tqa-panlu/volume_thermal_expansion1.json correct    246 tok   24.1s
+[99/112] tqa-tonyxia/semiconductor1.json correct    142 tok   14.5s
+[100/112] tqa-panlu/circular_orbit1.json wrong      261 tok   25.8s
+[101/112] tqa-wenhuchen/kinetics2.json wrong     1024 tok   96.8s  [no ANSWER line]
+[102/112] tqa-tonyxia/relativity2.json correct    128 tok   12.8s
+[103/112] tqa-panlu/center_of_mass1.json wrong      515 tok   47.8s  [no ANSWER line]
+[104/112] tqa-panlu/uniform_circular_motion2.json correct     79 tok    8.5s
+[105/112] tqa-tonyxia/quantum1.json wrong      179 tok   71.0s
+[106/112] tqa-tonyxia/wave3.json correct    254 tok   23.9s
+[107/112] tqa-tonyxia/statisticalphysics5.json wrong      265 tok   24.6s
+[108/112] tqa-tonyxia/quantum5.json wrong      204 tok   19.8s
+[109/112] tqa-panlu/linear_expansion1.json correct    198 tok   19.5s
+[110/112] tqa-panlu/young’s_modulus1.json correct    194 tok   19.1s
+[111/112] tqa-panlu/kepler’s_third_law2.json wrong      122 tok   12.4s
+[112/112] tqa-panlu/gravitational_force2.json correct    117 tok   12.0s
+theoremqa physics (112 problems)
+
+policy                                              score       95% CI  compute   vs shipped, 95% CI
+always 8B (bare)                                  46/112    32%-50%       100%                     
+always 8B+tool                                    47/112    33%-51%        41%            -9 to +11
+always 4B (bare)                                  43/112    29%-47%        47%            -13 to +7
+always 4B+tool                                    40/112    27%-45%        26%            -17 to +5
+routed: 4B+tool | 8B+tool                         41/112    28%-46%        31%            -16 to +5
++ escalate on failed check (pre-sweep default)    48/112    34%-52%        42%            -9 to +12
++ escalate on disagree w/ 4B bare                 48/112    34%-52%        42%            -9 to +12
+
+rule: the switch is confirmed unless always 8B (bare), the physics pack's old policy, beats the shipped policy on TheoremQA physics with a paired bootstrap 95% interval entirely above 0; if it does, the pack reverts
+old minus shipped, 95% CI: -12 to +9
+-> CONFIRMED: keep the switch
+
+key-free check vs the key:
+   4B       wrong   69  caught    5  false alarms   0
+   4B+tool  wrong   72  caught   11  false alarms   0
+   8B       wrong   66  caught    3  false alarms   0
+   8B+tool  wrong   65  caught    6  false alarms   0
