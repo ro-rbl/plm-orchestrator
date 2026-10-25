@@ -9,6 +9,7 @@ A pack that is installed but fails to load is an error, not a silently missing p
 
 from plm.general.manifest import PACK as GENERAL
 from plm.numeric.checks import add_unit_words
+from plm.latex import plain
 from plm.pack import Pack, discover, pick
 
 
@@ -31,5 +32,5 @@ for _pack in PACKS.values():
 
 
 def detect(text):
-    """Pick a pack from the task text: the strongest claim, else general."""
-    return pick(PACKS.values(), text)
+    """Pick a pack from the task text (LaTeX read as plain text): the strongest claim, else general."""
+    return pick(PACKS.values(), plain(text))

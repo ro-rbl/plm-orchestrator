@@ -169,6 +169,7 @@ Elsewhere:
 .venv/bin/python evals/grade.py evals/aerospace/problems.jsonl --self-test
 .venv/bin/python evals/test_checks.py
 .venv/bin/python -m plm.numeric.calc
+.venv/bin/python -m plm.latex                     # LaTeX quantities read as plain text
 .venv/bin/python evals/test_controllers.py         # controllers, with Ollama replaced by scripted replies
 .venv/bin/python evals/test_manage.py             # `plm packs`, with Ollama, pip and entry points faked
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes

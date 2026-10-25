@@ -9,6 +9,7 @@ the number itself.
 
 import re
 
+from plm.latex import plain
 from plm.numeric.answers import LITERAL_UNITS, parse_answer, ureg
 
 # Unit words that appear in questions ("..., in microfarads?") -> unit string.
@@ -51,6 +52,7 @@ POSITIVE = {"ohm", "ohm*m", "F", "H", "S", "s", "Hz", "J", "W", "C", "V*A",
 
 def requested_unit(question):
     """The unit the question asks for, as a pint string or LITERAL_UNITS key; None if unclear."""
+    question = plain(question)
     if re.search(r"\(unitless\)", question, re.IGNORECASE):
         return ""
     if COUNT_PHRASE.search(question):
@@ -68,6 +70,7 @@ def _base(unit):
 
 
 def check(question, output):
+    question = plain(question)
     parsed = parse_answer(output)
     if parsed is None:
         return ["no ANSWER line"]

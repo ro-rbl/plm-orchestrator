@@ -87,10 +87,11 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
 - [x] **SciBench physics** (`evals/bench_physics.py`, `results/bench_physics.log`): PHYS_RULE adopted 4B+calc
       escalating to 8B+calc, 69/144 vs 52 for the old 8B-direct policy, at 48% of its compute. On our own
       50-problem set this policy scored 44/50 vs 49/50: the public set wins (larger, written by others).
-- [ ] **SciBench physics mostly doesn't route to physics: 30 of 144** (97 to general, 12 aerospace, 5
-      electrical). It writes quantities in LaTeX (`$8.4 \mathrm{~km}$`), which the claim rules and unit words
-      don't read. Fix: normalize LaTeX before claims/levels/checks, judged on new held-out cases written first.
-      Resume: `.venv/bin/python -c "import sys; sys.path.insert(0,'evals'); import bench_physics as b; ..."`.
+- [x] **LaTeX is read as plain text** (`plm/latex.py`, in routing, unit checks and numeric levels). LATEX_RULE:
+      held-out LaTeX cases 12 -> 19/20, no decision on plain text changed. SciBench physics now routes 73/144
+      to physics (was 30); 41 still go to general (most ask for no unit), 25 to aerospace (mechanics terms).
+- [ ] **Physics vs aerospace/electrical overlap on LaTeX mechanics** (lx12 "crane ... watts" -> electrical;
+      25 SciBench problems -> aerospace). Same term-count overlap as plain text; fix needs new held-out cases.
 - [ ] **Mac DNS (mDNSResponder) stopped resolving on 2026-10-24** while direct DNS worked; downloads used
       pinned addresses. Fix (needs the password): `sudo killall -HUP mDNSResponder`.
 - [ ] **Phase 4 next: then numeric cross-checks (GSM8K, optional), and

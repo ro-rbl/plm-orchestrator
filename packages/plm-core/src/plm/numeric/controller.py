@@ -11,6 +11,7 @@ None) the checks can't fail, so the answer is reported as unchecked instead.
 
 import time
 
+from plm.latex import plain
 from plm.numeric import calc, decompose
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer
 from plm.numeric.checks import check, requested_unit
@@ -58,7 +59,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
     if level:
         reason = "set by caller"
     else:
-        level, reason = classify(task)
+        level, reason = classify(plain(task))
     plan = levels[level]
 
     steps = []
