@@ -68,6 +68,20 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       4.3 GB each), kept for the hypotheses above; `ollama rm` them when done. The scratch work folder
       holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
 
+## Physics check, 2026-10-26 (`evals/physics_check.py`, `results/physics_check.log`)
+- [x] Two candidates judged on 150 unseen UGPhysics problems, CHECK_RULE fixed first: **convert** (the calculator
+      converts to the asked unit before printing) 53/150 vs the shipped policy's 46 at 83% of its compute, interval
+      -2 to +17: not clear, so the shipped policy stays. **disagree** (escalate when 4B calc and 4B direct differ)
+      46/150 at 158%: no gain.
+- [ ] **Confirm "convert" on the rest of UGPhysics.** It was more accurate *and* cheaper, just not significantly.
+      About 200 eligible problems are unused (`physics_check.problems()` samples 150 of ~351); a second rule fixed
+      first, judged on those, could adopt it. It changes only the physics prompt, not `calc.TOOL_FORMAT`.
+- [x] A crash took Ollama down mid-run; 60 calls were saved as "connection refused" rows that resuming skipped.
+      They were dropped and re-run (backup of the bad file was in the session scratchpad); every other results file
+      was audited: no failed calls anywhere else.
+- [ ] **Guard the other runners the same way** (physics_check.py stops on "Ollama unreachable" instead of saving
+      error rows): evals/run.py, run_sql.py, run_cad.py, run_code.py, bench_{sql,code,physics,cad,gsm8k}.py.
+
 ## Publishing (phase 5), 2026-10-25
 - [x] GitHub: https://github.com/ro-rbl/plm-orchestrator, **private**, `main` pushed (MIT license; home paths
       replaced by ~ in the current files, still present in older commits).

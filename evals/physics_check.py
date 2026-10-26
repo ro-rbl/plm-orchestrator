@@ -103,6 +103,10 @@ def run(model, strategy, timeout):
                 row.update({"model_response": r["response"], "response": output, "eval_tokens": r["eval_tokens"],
                             "wall_s": r["wall_s"], "done_reason": r["done_reason"]})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if "Connection refused" in str(e) or isinstance(e, ConnectionError):
+                    # Ollama itself is down (on 2026-10-25 a crash saved 60 such rows, which resuming then skipped):
+                    # stop without saving, so a resume retries this problem and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped at {p['id']}, resume to retry")
                 row.update({"response": "", "error": f"{type(e).__name__}: {e}", "eval_tokens": 0, "wall_s": 0,
                             "done_reason": "error"})
             row["issues"] = check(p["question"], row["response"])
