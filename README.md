@@ -122,6 +122,9 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 
 ## Domain packs
 
+Public-benchmark results, and how each compares with published models: `docs/results.md`.
+
+
 Which tasks each pack takes is in its `claims.py`; when two claim one task, the
 stronger claim wins (more distinct domain terms), then the pack's priority.
 
@@ -129,8 +132,8 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 |---|---|---|---|
 | electrical | level picks the model: 4B + calculator, or 8B + calculator for intensive | unit and sanity checks | 48/50 at 35% of always-8B compute |
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
-| physics (mechanics, fluids, heat, materials) | level picks the model: 4B + calculator, escalating to 8B + calculator (as electrical) | unit and sanity checks | SciBench physics 69/144 (48%) vs 52 for the old 8B-direct policy, at 48% of its compute; own set 44/50 |
-| cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | 17/36 parts exactly right (bounding box and volume) |
+| physics (mechanics, fluids, heat, materials) | level picks the model: 4B + calculator, escalating to 8B + calculator (as electrical) | unit and sanity checks | SciBench physics 69/144 (48%) vs 52 for the old 8B-direct policy, at 48% of its compute; TheoremQA 48/112 confirms it; own set 44/50 |
+| cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | own set 17/36; CADPrompt 28/195 (14%) exactly right (bounding box and volume within 0.1%) |
 | sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%) | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
 | software | everything to the coder 14B (the cheap-first cascade lost on public benchmarks) | code must pass the task's examples | HumanEval+ 85%, MBPP+ 72% (540 tasks pooled: 76% vs the old cascade's 72%) |
 | software `--thorough` | the coder, checked harder | examples + 8 tests written by the 8B from the task alone | measured with the old cascade (42/45 at 228%); not re-measured with the coder alone |

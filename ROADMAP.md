@@ -120,7 +120,8 @@ What could carry over, in order of value per effort; each policy fixed before it
   hindsight bound.
 
 ## 5. Publish
-- GitHub repo, installable with `pip install` from git.
-- Hugging Face dataset: our eval sets and every result file, with a dataset card; optional Space.
+- [x] GitHub repo, private for now: https://github.com/ro-rbl/plm-orchestrator (MIT).
+- [x] Hugging Face dataset, private for now: https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (eval
+      sets, every result file, a dataset card; no benchmark data redistributed).
+- [ ] Make both public (the user's call), then check `pip install` from git in a fresh venv; optional Space.
 - Public benchmarks are referenced, not redistributed (each has its own license).
-- Needs at that point: a GitHub remote and a Hugging Face token, both tested live before use.
