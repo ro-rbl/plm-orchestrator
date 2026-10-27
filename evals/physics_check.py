@@ -2,6 +2,8 @@
 
     .venv/bin/python evals/physics_check.py --model qwen3:8b --strategy convert   # results/physcheck_ugphysics__<model>__<s>.jsonl
     .venv/bin/python evals/physics_check.py --simulate                           # current policy vs candidates, CHECK_RULE
+    .venv/bin/python evals/physics_check.py --set confirm --model ... --strategy convert   # the unused problems
+    .venv/bin/python evals/physics_check.py --set confirm --simulate             # CONVERT_RULE
 
 Physics has the widest gap between what ships and the hindsight bound (SciBench 48% vs 69%), and its
 misses mostly pass the checks: right unit, wrong size ("5e+04 MPa" for 50 MPa). Two candidates, both
@@ -51,6 +53,12 @@ FORMATS = {"bare": ANSWER_FORMAT, "tool": calc.TOOL_FORMAT, "convert": calc.TOOL
 CHECK_RULE = ("of the two candidates, the one with more problems right replaces the shipped physics policy iff a paired "
               "bootstrap 95% interval of its score minus the shipped one's lies entirely above 0 (accuracy first, "
               "compute reported); otherwise the shipped policy stays")
+# Fixed on 2026-10-26 after CHECK_RULE kept the shipped policy (convert 53/150 vs 46, interval -2 to +17, at 83%
+# compute) and before any model answered the confirmation set: every eligible problem the first sample didn't use.
+CONVERT_RULE = ("convert replaces the shipped calculator prompt in the physics pack iff (a) on the confirmation set it "
+                "scores at least as many as the shipped policy, (b) over both UGPhysics sets pooled its paired bootstrap 95% "
+                "interval against the shipped policy lies entirely above 0, and (c) its compute is at most the shipped one's")
+SET = "first"
 
 
 def number(boxed):
@@ -77,11 +85,16 @@ def problems():
                 continue
             pool.append({"id": f"ug-{subject}-{r['index']}", "question": f"{r['problem'].strip()} Give the answer in {unit}.",
                          "answer": value})
-    return sorted(random.Random(SEED).sample(pool, SAMPLE), key=lambda p: p["id"])
+    first = sorted(random.Random(SEED).sample(pool, SAMPLE), key=lambda p: p["id"])
+    if SET == "first":
+        return first
+    used = {p["id"] for p in first}
+    return sorted((p for p in pool if p["id"] not in used), key=lambda p: p["id"])
 
 
 def results_path(model, strategy):
-    return RESULTS / f"physcheck_ugphysics__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}__{strategy}.jsonl"
+    tag = "" if SET == "first" else f"_{SET}"
+    return RESULTS / f"physcheck_ugphysics{tag}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}__{strategy}.jsonl"
 
 
 def run(model, strategy, timeout):
@@ -178,15 +191,67 @@ def simulate(resamples=2000):
     print(f"-> ADOPT: {best}" if lows[best][1] > 0 else f"-> KEEP: the shipped policy (best candidate: {best})")
 
 
+def confirm(resamples=2000):
+    """CONVERT_RULE: the shipped policy and convert on the confirmation set, and over both sets pooled."""
+    global SET
+
+    def outcomes():
+        ps = problems()
+        R = {}
+        for key, strategy in (("4B", "tool"), ("4B", "convert"), ("8B", "bare"), ("8B", "tool"), ("8B", "convert")):
+            path = results_path(MODELS[key], strategy)
+            R[(key, strategy)] = {r["id"]: r for r in map(json.loads, open(path))} if path.exists() else {}
+            if len(R[(key, strategy)]) < len(ps):
+                sys.exit(f"no complete {SET} results for {key} {strategy}; run results/run_physics_check.sh {SET}")
+        out = {}
+        for name, calc_strategy in (("shipped", "tool"), ("convert", "convert")):
+            res = []
+            for p in ps:
+                intensive = classify(p["question"])[0] == "intensive"
+                chain = [("8B", calc_strategy), ("8B", "bare")] if intensive else [("4B", calc_strategy), ("8B", calc_strategy)]
+                first = R[chain[0]][p["id"]]
+                spend = PARAMS[chain[0][0]] * first["eval_tokens"]
+                row = first if not first["issues"] else R[chain[1]][p["id"]]
+                if first["issues"]:
+                    spend += PARAMS[chain[1][0]] * row["eval_tokens"]
+                res.append((row["correct"], spend))
+            out[name] = res
+        return out
+
+    SET = "confirm"
+    new = outcomes()
+    SET = "first"
+    old = outcomes()
+    SET = "confirm"
+    pooled = {k: old[k] + new[k] for k in new}
+    n, rng = len(pooled["shipped"]), random.Random(SEED)
+    diffs = sorted(sum(pooled["convert"][i][0] - pooled["shipped"][i][0] for i in (rng.randrange(n) for _ in range(n)))
+                   for _ in range(resamples))
+    dlo, dhi = diffs[int(0.025 * resamples)], diffs[int(0.975 * resamples)]
+    score = {k: sum(c for c, _ in v) for k, v in new.items()}
+    cost = {k: sum(s for _, s in v) for k, v in new.items()}
+    print(f"confirmation set: {len(new['shipped'])} problems; shipped {score['shipped']}, convert {score['convert']}; "
+          f"convert compute {cost['convert'] / cost['shipped']:.0%} of shipped")
+    print(f"pooled with the first set ({n} problems): shipped {sum(c for c, _ in pooled['shipped'])}, convert "
+          f"{sum(c for c, _ in pooled['convert'])}; convert minus shipped, 95% CI {dlo:+d} to {dhi:+d}")
+    ok = score["convert"] >= score["shipped"] and dlo > 0 and cost["convert"] <= cost["shipped"]
+    print(f"\nrule: {CONVERT_RULE}\n(a) {score['convert'] >= score['shipped']}  (b) {dlo > 0}  "
+          f"(c) {cost['convert'] <= cost['shipped']}")
+    print("-> ADOPT: convert" if ok else "-> KEEP: the shipped calculator prompt")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model")
     ap.add_argument("--strategy", choices=list(FORMATS), default="bare")
     ap.add_argument("--simulate", action="store_true")
+    ap.add_argument("--set", choices=["first", "confirm"], default="first")
     ap.add_argument("--timeout", type=int, default=600)
     args = ap.parse_args()
+    global SET
+    SET = args.set
     if args.simulate:
-        return simulate()
+        return confirm() if SET == "confirm" else simulate()
     if not args.model:
         sys.exit("--model or --simulate")
     run(args.model, args.strategy, args.timeout)
