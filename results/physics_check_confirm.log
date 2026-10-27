@@ -1,0 +1,776 @@
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M tool on UGPhysics: 153 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physcheck_ugphysics_confirm__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__tool.jsonl
+[1/153] ug-ClassicalElectromagnetism-101 correct    170 tok    8.3s
+[2/153] ug-ClassicalElectromagnetism-180 wrong      148 tok    5.2s
+[3/153] ug-ClassicalElectromagnetism-196 correct    213 tok    7.2s
+[4/153] ug-ClassicalElectromagnetism-21 wrong      170 tok    5.7s
+[5/153] ug-ClassicalElectromagnetism-246 correct    181 tok    6.2s
+[6/153] ug-ClassicalElectromagnetism-30 correct     94 tok    3.5s
+[7/153] ug-ClassicalElectromagnetism-405 wrong      321 tok   10.4s
+[8/153] ug-ClassicalElectromagnetism-409 wrong     1024 tok   36.2s  [no ANSWER line]
+[9/153] ug-ClassicalElectromagnetism-460 wrong      140 tok    5.6s
+[10/153] ug-ClassicalElectromagnetism-482 wrong       95 tok    4.0s
+[11/153] ug-ClassicalElectromagnetism-58 wrong      252 tok    9.2s
+[12/153] ug-ClassicalElectromagnetism-63 wrong      255 tok    9.0s
+[13/153] ug-ClassicalElectromagnetism-74 correct    107 tok    4.3s
+[14/153] ug-ClassicalElectromagnetism-87 wrong      251 tok    9.3s  [no ANSWER line]
+[15/153] ug-ClassicalMechanics-1539 wrong      378 tok   13.3s  [asked for s, got 'W']
+[16/153] ug-ClassicalMechanics-1544 correct    110 tok    4.1s  [asked for s, got 'cm']
+[17/153] ug-ClassicalMechanics-1553 correct    358 tok   12.3s
+[18/153] ug-ClassicalMechanics-1565 wrong      209 tok    7.7s
+[19/153] ug-ClassicalMechanics-1577 correct    178 tok    6.2s
+[20/153] ug-ClassicalMechanics-1578 correct    258 tok    9.0s
+[21/153] ug-ClassicalMechanics-1583 correct    118 tok    4.4s  [asked for s, got 'cm/s']
+[22/153] ug-ClassicalMechanics-1588 correct    218 tok    8.7s
+[23/153] ug-ClassicalMechanics-1591 correct    319 tok   12.0s
+[24/153] ug-ClassicalMechanics-1593 correct    196 tok    8.2s
+[25/153] ug-ClassicalMechanics-1602 wrong      329 tok   12.0s
+[26/153] ug-ClassicalMechanics-1608 wrong      175 tok    7.0s  [no ANSWER line]
+[27/153] ug-ClassicalMechanics-1614 correct    141 tok    5.7s
+[28/153] ug-ClassicalMechanics-1621 wrong      118 tok    5.1s
+[29/153] ug-ClassicalMechanics-1628 correct    104 tok    4.4s
+[30/153] ug-ClassicalMechanics-1629 wrong      169 tok    7.0s
+[31/153] ug-ClassicalMechanics-1632 correct    130 tok    5.5s
+[32/153] ug-ClassicalMechanics-1644 wrong      198 tok    8.4s
+[33/153] ug-ClassicalMechanics-1645 correct    345 tok   14.2s
+[34/153] ug-ClassicalMechanics-1657 correct     75 tok   43.4s
+[35/153] ug-ClassicalMechanics-1671 correct    229 tok   13.6s
+[36/153] ug-ClassicalMechanics-1678 correct    109 tok    4.7s
+[37/153] ug-ClassicalMechanics-1680 wrong      223 tok    9.2s
+[38/153] ug-ClassicalMechanics-1684 wrong      256 tok   10.6s
+[39/153] ug-ClassicalMechanics-1726 wrong      244 tok   10.1s
+[40/153] ug-ClassicalMechanics-1982 wrong      317 tok   13.3s  [no ANSWER line]
+[41/153] ug-ClassicalMechanics-1990 correct    320 tok   14.4s
+[42/153] ug-ClassicalMechanics-2014 correct     96 tok    4.8s
+[43/153] ug-ClassicalMechanics-2016 correct     70 tok    3.2s
+[44/153] ug-ClassicalMechanics-2021 wrong      932 tok   39.3s
+[45/153] ug-ClassicalMechanics-2082 correct    188 tok    8.3s
+[46/153] ug-ClassicalMechanics-2127 wrong      752 tok   30.9s
+[47/153] ug-ClassicalMechanics-2159 correct     85 tok    4.3s
+[48/153] ug-ClassicalMechanics-2165 wrong      199 tok    9.8s
+[49/153] ug-ClassicalMechanics-2206 wrong      311 tok   14.5s
+[50/153] ug-ClassicalMechanics-2210 wrong      135 tok    6.3s
+[51/153] ug-ClassicalMechanics-2217 correct    115 tok    5.6s
+[52/153] ug-ClassicalMechanics-2221 wrong       91 tok    4.2s
+[53/153] ug-ClassicalMechanics-2242 correct    414 tok   17.9s
+[54/153] ug-ClassicalMechanics-2253 wrong      272 tok   12.0s
+[55/153] ug-ClassicalMechanics-2256 wrong      156 tok    6.9s
+[56/153] ug-ClassicalMechanics-2272 wrong     1024 tok   43.8s  [no ANSWER line]
+[57/153] ug-ClassicalMechanics-2331 wrong      732 tok   32.9s
+[58/153] ug-ClassicalMechanics-2366 wrong      392 tok   17.7s
+[59/153] ug-ClassicalMechanics-2374 wrong      332 tok   15.4s
+[60/153] ug-ClassicalMechanics-2381 wrong      292 tok   13.0s
+[61/153] ug-ClassicalMechanics-2398 wrong      246 tok   13.6s  [no ANSWER line]
+[62/153] ug-ClassicalMechanics-2407 wrong      240 tok   11.1s
+[63/153] ug-ClassicalMechanics-2589 wrong      204 tok    9.6s
+[64/153] ug-ClassicalMechanics-2591 wrong      234 tok   11.4s
+[65/153] ug-ClassicalMechanics-2720 wrong      221 tok   10.5s
+[66/153] ug-ClassicalMechanics-2734 wrong     1024 tok   46.7s  [no ANSWER line]
+[67/153] ug-GeometricalOptics-5051 correct    131 tok    6.7s
+[68/153] ug-GeometricalOptics-5255 wrong      102 tok    5.1s
+[69/153] ug-GeometricalOptics-5308 wrong       80 tok    4.0s
+[70/153] ug-GeometricalOptics-5399 wrong      136 tok    6.8s
+[71/153] ug-GeometricalOptics-5501 wrong      875 tok   41.4s
+[72/153] ug-Thermodynamics-2872 correct    131 tok    6.6s
+[73/153] ug-Thermodynamics-2873 wrong      148 tok    7.3s
+[74/153] ug-Thermodynamics-2883 correct    102 tok    5.8s
+[75/153] ug-Thermodynamics-2888 correct    168 tok    8.3s
+[76/153] ug-Thermodynamics-2901 wrong      188 tok    9.3s
+[77/153] ug-Thermodynamics-2904 correct    126 tok    6.6s
+[78/153] ug-Thermodynamics-2919 wrong     1024 tok   50.9s  [no ANSWER line]
+[79/153] ug-Thermodynamics-2923 correct    168 tok    9.8s
+[80/153] ug-Thermodynamics-2933 wrong      123 tok    6.6s
+[81/153] ug-Thermodynamics-2950 wrong      337 tok   17.8s
+[82/153] ug-Thermodynamics-2951 correct    108 tok    9.2s
+[83/153] ug-Thermodynamics-2997 correct    128 tok    8.4s
+[84/153] ug-Thermodynamics-3004 correct    251 tok   14.2s
+[85/153] ug-Thermodynamics-3005 wrong      315 tok   16.1s
+[86/153] ug-Thermodynamics-3025 wrong      713 tok   35.5s  [no ANSWER line]
+[87/153] ug-Thermodynamics-3044 wrong      281 tok   16.1s
+[88/153] ug-Thermodynamics-3201 wrong      201 tok   11.1s
+[89/153] ug-Thermodynamics-3204 wrong      106 tok    6.3s
+[90/153] ug-Thermodynamics-3205 correct    359 tok   19.0s
+[91/153] ug-Thermodynamics-3209 wrong      230 tok   11.8s
+[92/153] ug-Thermodynamics-3232 wrong      179 tok    9.4s
+[93/153] ug-Thermodynamics-3244 wrong      379 tok   20.0s
+[94/153] ug-Thermodynamics-3271 wrong      298 tok   15.9s
+[95/153] ug-Thermodynamics-3289 wrong      175 tok    9.2s
+[96/153] ug-Thermodynamics-3297 wrong       93 tok    5.3s
+[97/153] ug-Thermodynamics-3308 correct    162 tok    8.3s
+[98/153] ug-Thermodynamics-3315 wrong      115 tok    6.3s
+[99/153] ug-Thermodynamics-3337 wrong     1024 tok   52.3s  [no ANSWER line]
+[100/153] ug-Thermodynamics-3346 wrong      341 tok   18.8s
+[101/153] ug-Thermodynamics-3352 wrong      296 tok   16.5s
+[102/153] ug-Thermodynamics-3354 correct    176 tok   10.9s
+[103/153] ug-Thermodynamics-3358 wrong      430 tok   22.5s
+[104/153] ug-Thermodynamics-3360 wrong      963 tok   50.0s  [no ANSWER line]
+[105/153] ug-Thermodynamics-3364 wrong      210 tok   12.7s  [no ANSWER line]
+[106/153] ug-Thermodynamics-3379 wrong      356 tok   19.6s
+[107/153] ug-Thermodynamics-3442 wrong      141 tok    8.5s
+[108/153] ug-Thermodynamics-3450 wrong      495 tok   25.5s
+[109/153] ug-Thermodynamics-3494 wrong      138 tok    8.4s
+[110/153] ug-Thermodynamics-3634 wrong     1024 tok   53.3s  [no ANSWER line]
+[111/153] ug-Thermodynamics-3762 wrong      144 tok    9.2s
+[112/153] ug-Thermodynamics-3781 wrong     1024 tok   55.3s  [no ANSWER line]
+[113/153] ug-WaveOptics-5043 wrong      192 tok   11.4s
+[114/153] ug-WaveOptics-5045 wrong      281 tok   17.1s
+[115/153] ug-WaveOptics-5055 wrong      235 tok   12.9s
+[116/153] ug-WaveOptics-5063 wrong       92 tok    6.1s
+[117/153] ug-WaveOptics-5068 wrong      276 tok   15.3s
+[118/153] ug-WaveOptics-5088 wrong      112 tok    6.3s  [no ANSWER line]
+[119/153] ug-WaveOptics-5132 wrong     1024 tok   54.5s  [no ANSWER line]
+[120/153] ug-WaveOptics-5146 correct    215 tok   12.0s
+[121/153] ug-WaveOptics-5164 correct    170 tok    9.3s
+[122/153] ug-WaveOptics-5165 wrong      120 tok    6.9s
+[123/153] ug-WaveOptics-5176 wrong      102 tok    6.0s
+[124/153] ug-WaveOptics-5187 wrong      327 tok   17.7s
+[125/153] ug-WaveOptics-5189 wrong      189 tok   11.8s
+[126/153] ug-WaveOptics-5204 wrong      146 tok    8.4s
+[127/153] ug-WaveOptics-5207 correct    192 tok   11.2s
+[128/153] ug-WaveOptics-5209 wrong      202 tok   11.4s
+[129/153] ug-WaveOptics-5216 correct    124 tok    7.6s
+[130/153] ug-WaveOptics-5233 wrong      267 tok   15.8s
+[131/153] ug-WaveOptics-5236 wrong     1024 tok  104.3s  [no ANSWER line]
+[132/153] ug-WaveOptics-5239 wrong      279 tok   16.1s
+[133/153] ug-WaveOptics-5242 wrong      168 tok   10.3s
+[134/153] ug-WaveOptics-5257 correct    186 tok   11.5s
+[135/153] ug-WaveOptics-5264 wrong     1024 tok   55.9s  [no ANSWER line]
+[136/153] ug-WaveOptics-5303 wrong      350 tok   20.3s
+[137/153] ug-WaveOptics-5330 wrong      179 tok   10.3s  [unreadable unit "''"]
+[138/153] ug-WaveOptics-5344 wrong      137 tok    8.1s
+[139/153] ug-WaveOptics-5346 wrong      164 tok   10.7s
+[140/153] ug-WaveOptics-5356 correct    190 tok   11.1s
+[141/153] ug-WaveOptics-5357 wrong      194 tok   12.8s
+[142/153] ug-WaveOptics-5387 wrong      187 tok   10.6s
+[143/153] ug-WaveOptics-5391 wrong      175 tok    9.9s
+[144/153] ug-WaveOptics-5410 wrong       87 tok    5.9s
+[145/153] ug-WaveOptics-5436 wrong     1024 tok   58.5s  [no ANSWER line]
+[146/153] ug-WaveOptics-5439 wrong     1024 tok   58.6s  [no ANSWER line]
+[147/153] ug-WaveOptics-5443 wrong     1024 tok   57.0s  [no ANSWER line]
+[148/153] ug-WaveOptics-5445 wrong      130 tok    8.7s
+[149/153] ug-WaveOptics-5457 wrong      204 tok   11.7s
+[150/153] ug-WaveOptics-5475 wrong      139 tok    8.5s
+[151/153] ug-WaveOptics-5481 wrong     1024 tok   58.4s  [no ANSWER line]
+[152/153] ug-WaveOptics-5483 wrong      474 tok   28.8s
+[153/153] ug-WaveOptics-5491 wrong      123 tok    7.6s
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M convert on UGPhysics: 153 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physcheck_ugphysics_confirm__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M__convert.jsonl
+[1/153] ug-ClassicalElectromagnetism-101 correct    204 tok   11.9s
+[2/153] ug-ClassicalElectromagnetism-180 wrong      184 tok   11.4s
+[3/153] ug-ClassicalElectromagnetism-196 correct    233 tok   13.6s
+[4/153] ug-ClassicalElectromagnetism-21 wrong      154 tok    9.7s
+[5/153] ug-ClassicalElectromagnetism-246 correct    172 tok   10.3s
+[6/153] ug-ClassicalElectromagnetism-30 correct    153 tok    9.6s
+[7/153] ug-ClassicalElectromagnetism-405 wrong        0 tok   25.4s  [no ANSWER line]
+[8/153] ug-ClassicalElectromagnetism-409 wrong     1024 tok   57.2s  [no ANSWER line]
+[9/153] ug-ClassicalElectromagnetism-460 wrong      144 tok    8.6s
+[10/153] ug-ClassicalElectromagnetism-482 wrong     1024 tok   57.4s  [no ANSWER line]
+[11/153] ug-ClassicalElectromagnetism-58 wrong      183 tok   11.7s
+[12/153] ug-ClassicalElectromagnetism-63 wrong      262 tok   16.3s
+[13/153] ug-ClassicalElectromagnetism-74 correct    175 tok   11.0s
+[14/153] ug-ClassicalElectromagnetism-87 correct    276 tok   17.0s
+[15/153] ug-ClassicalMechanics-1539 wrong      333 tok   19.5s  [asked for s, got 'W']
+[16/153] ug-ClassicalMechanics-1544 correct    136 tok    8.0s  [asked for s, got 'cm']
+[17/153] ug-ClassicalMechanics-1553 correct    606 tok   35.7s
+[18/153] ug-ClassicalMechanics-1565 wrong      208 tok   14.1s
+[19/153] ug-ClassicalMechanics-1577 correct    173 tok   10.2s
+[20/153] ug-ClassicalMechanics-1578 correct    270 tok   16.1s
+[21/153] ug-ClassicalMechanics-1583 correct    153 tok    9.9s  [asked for s, got 'cm/s']
+[22/153] ug-ClassicalMechanics-1588 correct    289 tok   17.3s
+[23/153] ug-ClassicalMechanics-1591 correct    344 tok   20.5s
+[24/153] ug-ClassicalMechanics-1593 wrong      152 tok   10.3s
+[25/153] ug-ClassicalMechanics-1602 correct    309 tok   18.7s
+[26/153] ug-ClassicalMechanics-1608 wrong      198 tok   13.0s
+[27/153] ug-ClassicalMechanics-1614 correct    149 tok    9.8s
+[28/153] ug-ClassicalMechanics-1621 correct    143 tok   10.5s
+[29/153] ug-ClassicalMechanics-1628 correct    117 tok    8.0s
+[30/153] ug-ClassicalMechanics-1629 wrong      207 tok   12.7s
+[31/153] ug-ClassicalMechanics-1632 correct    325 tok   19.0s
+[32/153] ug-ClassicalMechanics-1644 wrong      235 tok   13.5s
+[33/153] ug-ClassicalMechanics-1645 wrong      335 tok   20.2s
+[34/153] ug-ClassicalMechanics-1657 correct    101 tok    6.2s
+[35/153] ug-ClassicalMechanics-1671 correct    305 tok   17.0s
+[36/153] ug-ClassicalMechanics-1678 correct    147 tok    9.0s
+[37/153] ug-ClassicalMechanics-1680 wrong      291 tok   16.8s
+[38/153] ug-ClassicalMechanics-1684 wrong      303 tok   17.1s
+[39/153] ug-ClassicalMechanics-1726 wrong      265 tok   14.4s
+[40/153] ug-ClassicalMechanics-1982 wrong      307 tok   17.0s  [no ANSWER line]
+[41/153] ug-ClassicalMechanics-1990 correct    742 tok   42.3s
+[42/153] ug-ClassicalMechanics-2014 correct    117 tok    6.6s
+[43/153] ug-ClassicalMechanics-2016 correct    103 tok    6.5s
+[44/153] ug-ClassicalMechanics-2021 wrong      615 tok   35.4s
+[45/153] ug-ClassicalMechanics-2082 correct    172 tok    9.6s
+[46/153] ug-ClassicalMechanics-2127 wrong     1024 tok   60.5s  [no ANSWER line]
+[47/153] ug-ClassicalMechanics-2159 correct     99 tok    5.8s
+[48/153] ug-ClassicalMechanics-2165 correct    271 tok   15.4s
+[49/153] ug-ClassicalMechanics-2206 wrong      284 tok   17.4s
+[50/153] ug-ClassicalMechanics-2210 wrong      155 tok    9.3s
+[51/153] ug-ClassicalMechanics-2217 correct    200 tok   11.4s
+[52/153] ug-ClassicalMechanics-2221 wrong      170 tok    9.9s
+[53/153] ug-ClassicalMechanics-2242 wrong     1024 tok   58.7s  [no ANSWER line]
+[54/153] ug-ClassicalMechanics-2253 wrong      389 tok   23.0s
+[55/153] ug-ClassicalMechanics-2256 wrong      126 tok    7.3s
+[56/153] ug-ClassicalMechanics-2272 wrong     1024 tok   60.7s  [no ANSWER line]
+[57/153] ug-ClassicalMechanics-2331 wrong     1024 tok   60.1s  [no ANSWER line]
+[58/153] ug-ClassicalMechanics-2366 wrong      347 tok   19.8s
+[59/153] ug-ClassicalMechanics-2374 wrong      791 tok   45.5s
+[60/153] ug-ClassicalMechanics-2381 wrong      269 tok   15.0s
+[61/153] ug-ClassicalMechanics-2398 wrong      341 tok   20.1s
+[62/153] ug-ClassicalMechanics-2407 wrong      237 tok   13.7s
+[63/153] ug-ClassicalMechanics-2589 wrong      234 tok   13.4s
+[64/153] ug-ClassicalMechanics-2591 wrong     1024 tok   61.5s  [no ANSWER line]
+[65/153] ug-ClassicalMechanics-2720 wrong      271 tok   16.4s
+[66/153] ug-ClassicalMechanics-2734 wrong     1024 tok   60.4s  [no ANSWER line]
+[67/153] ug-GeometricalOptics-5051 correct    204 tok   12.0s
+[68/153] ug-GeometricalOptics-5255 wrong      173 tok   10.8s
+[69/153] ug-GeometricalOptics-5308 wrong      170 tok    9.4s
+[70/153] ug-GeometricalOptics-5399 wrong      196 tok   11.5s
+[71/153] ug-GeometricalOptics-5501 wrong      794 tok   45.0s
+[72/153] ug-Thermodynamics-2872 correct    130 tok    8.0s
+[73/153] ug-Thermodynamics-2873 wrong      197 tok   11.1s
+[74/153] ug-Thermodynamics-2883 correct    125 tok    7.7s
+[75/153] ug-Thermodynamics-2888 wrong      303 tok   17.8s
+[76/153] ug-Thermodynamics-2901 wrong      224 tok   13.5s
+[77/153] ug-Thermodynamics-2904 correct    146 tok    9.0s
+[78/153] ug-Thermodynamics-2919 wrong      552 tok   32.9s  [no ANSWER line]
+[79/153] ug-Thermodynamics-2923 correct    190 tok   12.2s
+[80/153] ug-Thermodynamics-2933 wrong      181 tok   10.1s
+[81/153] ug-Thermodynamics-2950 correct    475 tok   30.4s
+[82/153] ug-Thermodynamics-2951 correct    167 tok   10.5s
+[83/153] ug-Thermodynamics-2997 correct    232 tok   13.9s
+[84/153] ug-Thermodynamics-3004 correct    278 tok   17.9s
+[85/153] ug-Thermodynamics-3005 wrong      292 tok   16.4s
+[86/153] ug-Thermodynamics-3025 wrong      269 tok   17.2s
+[87/153] ug-Thermodynamics-3044 wrong      376 tok   22.1s
+[88/153] ug-Thermodynamics-3201 wrong      230 tok   13.2s
+[89/153] ug-Thermodynamics-3204 wrong      124 tok    7.1s
+[90/153] ug-Thermodynamics-3205 correct    478 tok   28.5s
+[91/153] ug-Thermodynamics-3209 wrong      244 tok   14.2s
+[92/153] ug-Thermodynamics-3232 correct    200 tok   11.3s
+[93/153] ug-Thermodynamics-3244 wrong      606 tok   34.3s
+[94/153] ug-Thermodynamics-3271 wrong      251 tok   15.0s
+[95/153] ug-Thermodynamics-3289 wrong      133 tok    8.2s
+[96/153] ug-Thermodynamics-3297 wrong      114 tok    6.6s
+[97/153] ug-Thermodynamics-3308 correct    137 tok    8.4s
+[98/153] ug-Thermodynamics-3315 wrong      163 tok    9.1s
+[99/153] ug-Thermodynamics-3337 wrong     1024 tok   61.5s  [no ANSWER line]
+[100/153] ug-Thermodynamics-3346 wrong      415 tok   26.7s
+[101/153] ug-Thermodynamics-3352 wrong      389 tok   23.1s
+[102/153] ug-Thermodynamics-3354 correct    200 tok   11.7s
+[103/153] ug-Thermodynamics-3358 wrong      517 tok   31.6s
+[104/153] ug-Thermodynamics-3360 wrong      366 tok   21.8s
+[105/153] ug-Thermodynamics-3364 wrong      304 tok   17.8s  [no ANSWER line]
+[106/153] ug-Thermodynamics-3379 wrong     1024 tok   58.0s  [no ANSWER line]
+[107/153] ug-Thermodynamics-3442 wrong      370 tok   20.7s
+[108/153] ug-Thermodynamics-3450 wrong     1024 tok   62.1s  [no ANSWER line]
+[109/153] ug-Thermodynamics-3494 wrong      153 tok   10.0s
+[110/153] ug-Thermodynamics-3634 wrong      386 tok   25.4s
+[111/153] ug-Thermodynamics-3762 wrong      169 tok    9.6s
+[112/153] ug-Thermodynamics-3781 wrong      861 tok   52.4s
+[113/153] ug-WaveOptics-5043 wrong      209 tok   11.8s
+[114/153] ug-WaveOptics-5045 wrong      304 tok   17.7s
+[115/153] ug-WaveOptics-5055 correct    221 tok   12.3s
+[116/153] ug-WaveOptics-5063 wrong      113 tok    6.5s  [no ANSWER line]
+[117/153] ug-WaveOptics-5068 wrong      266 tok   15.8s
+[118/153] ug-WaveOptics-5088 correct    145 tok    9.1s
+[119/153] ug-WaveOptics-5132 wrong      165 tok   11.2s
+[120/153] ug-WaveOptics-5146 correct    231 tok   12.9s
+[121/153] ug-WaveOptics-5164 correct    167 tok    9.5s
+[122/153] ug-WaveOptics-5165 wrong      185 tok   11.0s
+[123/153] ug-WaveOptics-5176 wrong      168 tok   10.2s
+[124/153] ug-WaveOptics-5187 correct    413 tok   22.6s
+[125/153] ug-WaveOptics-5189 correct    151 tok    9.3s
+[126/153] ug-WaveOptics-5204 wrong      372 tok   21.3s
+[127/153] ug-WaveOptics-5207 wrong      199 tok   11.9s
+[128/153] ug-WaveOptics-5209 wrong      212 tok   13.3s
+[129/153] ug-WaveOptics-5216 wrong      204 tok   11.6s
+[130/153] ug-WaveOptics-5233 wrong      244 tok   15.4s  [no ANSWER line]
+[131/153] ug-WaveOptics-5236 wrong     1024 tok   60.7s  [no ANSWER line]
+[132/153] ug-WaveOptics-5239 wrong      308 tok   17.6s
+[133/153] ug-WaveOptics-5242 wrong      139 tok    8.2s
+[134/153] ug-WaveOptics-5257 correct    292 tok   16.9s
+[135/153] ug-WaveOptics-5264 wrong      369 tok   21.7s
+[136/153] ug-WaveOptics-5303 wrong      366 tok   21.8s
+[137/153] ug-WaveOptics-5330 wrong      145 tok    8.8s  [unreadable unit "''"]
+[138/153] ug-WaveOptics-5344 wrong      171 tok   10.0s
+[139/153] ug-WaveOptics-5346 wrong      168 tok   10.2s
+[140/153] ug-WaveOptics-5356 correct    201 tok   11.9s
+[141/153] ug-WaveOptics-5357 wrong      257 tok   15.1s
+[142/153] ug-WaveOptics-5387 wrong      186 tok   11.4s
+[143/153] ug-WaveOptics-5391 wrong      208 tok   11.6s
+[144/153] ug-WaveOptics-5410 wrong      123 tok    7.4s
+[145/153] ug-WaveOptics-5436 wrong     1024 tok   62.9s  [no ANSWER line]
+[146/153] ug-WaveOptics-5439 correct    191 tok   13.0s
+[147/153] ug-WaveOptics-5443 wrong     1024 tok   59.4s  [no ANSWER line]
+[148/153] ug-WaveOptics-5445 wrong      171 tok   10.2s
+[149/153] ug-WaveOptics-5457 wrong      223 tok   12.6s
+[150/153] ug-WaveOptics-5475 wrong      164 tok   10.4s
+[151/153] ug-WaveOptics-5481 wrong      415 tok   25.1s
+[152/153] ug-WaveOptics-5483 wrong      232 tok   14.5s
+[153/153] ug-WaveOptics-5491 wrong      146 tok    8.2s
+qwen3:8b tool on UGPhysics: 153 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physcheck_ugphysics_confirm__qwen3_8b__tool.jsonl
+[1/153] ug-ClassicalElectromagnetism-101 correct    101 tok   16.1s
+[2/153] ug-ClassicalElectromagnetism-180 wrong      130 tok   16.7s
+[3/153] ug-ClassicalElectromagnetism-196 correct    168 tok   20.1s
+[4/153] ug-ClassicalElectromagnetism-21 wrong      166 tok   19.1s
+[5/153] ug-ClassicalElectromagnetism-246 correct    108 tok   13.4s
+[6/153] ug-ClassicalElectromagnetism-30 correct     67 tok    8.9s
+[7/153] ug-ClassicalElectromagnetism-405 wrong      284 tok   31.9s
+[8/153] ug-ClassicalElectromagnetism-409 wrong      787 tok  140.8s
+[9/153] ug-ClassicalElectromagnetism-460 wrong       96 tok   10.7s
+[10/153] ug-ClassicalElectromagnetism-482 wrong      235 tok   26.0s
+[11/153] ug-ClassicalElectromagnetism-58 wrong      214 tok   25.1s
+[12/153] ug-ClassicalElectromagnetism-63 wrong      183 tok   20.7s
+[13/153] ug-ClassicalElectromagnetism-74 correct     89 tok   11.3s
+[14/153] ug-ClassicalElectromagnetism-87 correct    216 tok   25.2s
+[15/153] ug-ClassicalMechanics-1539 wrong      315 tok   35.5s  [asked for s, got 'W']
+[16/153] ug-ClassicalMechanics-1544 correct    183 tok   20.5s  [asked for s, got 'cm']
+[17/153] ug-ClassicalMechanics-1553 wrong       99 tok   12.3s
+[18/153] ug-ClassicalMechanics-1565 wrong      244 tok   28.0s
+[19/153] ug-ClassicalMechanics-1577 correct     90 tok   68.3s
+[20/153] ug-ClassicalMechanics-1578 correct    183 tok   21.2s
+[21/153] ug-ClassicalMechanics-1583 correct    125 tok   14.7s  [asked for s, got 'cm/s']
+[22/153] ug-ClassicalMechanics-1588 wrong      327 tok   36.7s  [no ANSWER line]
+[23/153] ug-ClassicalMechanics-1591 correct    245 tok   26.3s
+[24/153] ug-ClassicalMechanics-1593 correct    138 tok   16.3s
+[25/153] ug-ClassicalMechanics-1602 wrong      365 tok   39.7s
+[26/153] ug-ClassicalMechanics-1608 wrong      116 tok   14.2s
+[27/153] ug-ClassicalMechanics-1614 correct     93 tok   11.3s
+[28/153] ug-ClassicalMechanics-1621 correct    118 tok   15.0s
+[29/153] ug-ClassicalMechanics-1628 correct    103 tok   12.5s
+[30/153] ug-ClassicalMechanics-1629 wrong      206 tok   23.5s
+[31/153] ug-ClassicalMechanics-1632 correct    135 tok   15.9s
+[32/153] ug-ClassicalMechanics-1644 wrong      136 tok   15.8s
+[33/153] ug-ClassicalMechanics-1645 correct    220 tok   24.8s
+[34/153] ug-ClassicalMechanics-1657 correct     59 tok   66.2s
+[35/153] ug-ClassicalMechanics-1671 correct    218 tok   24.4s
+[36/153] ug-ClassicalMechanics-1678 correct     95 tok   11.6s
+[37/153] ug-ClassicalMechanics-1680 wrong      225 tok   25.6s
+[38/153] ug-ClassicalMechanics-1684 wrong      196 tok   22.8s
+[39/153] ug-ClassicalMechanics-1726 wrong      346 tok   39.0s
+[40/153] ug-ClassicalMechanics-1982 wrong      210 tok   23.4s  [no ANSWER line]
+[41/153] ug-ClassicalMechanics-1990 correct    151 tok   18.1s
+[42/153] ug-ClassicalMechanics-2014 correct     60 tok    9.0s
+[43/153] ug-ClassicalMechanics-2016 correct     92 tok   11.1s
+[44/153] ug-ClassicalMechanics-2021 correct    544 tok   59.5s
+[45/153] ug-ClassicalMechanics-2082 wrong      151 tok   17.0s
+[46/153] ug-ClassicalMechanics-2127 wrong      523 tok   56.5s
+[47/153] ug-ClassicalMechanics-2159 wrong      312 tok   95.2s
+[48/153] ug-ClassicalMechanics-2165 wrong      241 tok   28.1s
+[49/153] ug-ClassicalMechanics-2206 wrong      248 tok   30.2s
+[50/153] ug-ClassicalMechanics-2210 wrong      105 tok   12.6s
+[51/153] ug-ClassicalMechanics-2217 correct    128 tok   16.0s
+[52/153] ug-ClassicalMechanics-2221 wrong      108 tok   13.2s
+[53/153] ug-ClassicalMechanics-2242 correct    214 tok   23.4s
+[54/153] ug-ClassicalMechanics-2253 wrong      632 tok   67.1s  [no ANSWER line]
+[55/153] ug-ClassicalMechanics-2256 wrong      130 tok   15.2s
+[56/153] ug-ClassicalMechanics-2272 wrong      187 tok   21.1s
+[57/153] ug-ClassicalMechanics-2331 wrong      265 tok   29.3s
+[58/153] ug-ClassicalMechanics-2366 wrong      386 tok   43.4s
+[59/153] ug-ClassicalMechanics-2374 wrong      128 tok   73.9s
+[60/153] ug-ClassicalMechanics-2381 wrong      149 tok   17.0s
+[61/153] ug-ClassicalMechanics-2398 wrong      229 tok   26.7s
+[62/153] ug-ClassicalMechanics-2407 wrong      179 tok   20.8s
+[63/153] ug-ClassicalMechanics-2589 wrong      156 tok   17.9s
+[64/153] ug-ClassicalMechanics-2591 wrong      212 tok   23.8s
+[65/153] ug-ClassicalMechanics-2720 wrong      208 tok   24.2s
+[66/153] ug-ClassicalMechanics-2734 wrong     1024 tok  110.4s  [no ANSWER line]
+[67/153] ug-GeometricalOptics-5051 correct    100 tok   12.4s
+[68/153] ug-GeometricalOptics-5255 wrong      148 tok   16.6s
+[69/153] ug-GeometricalOptics-5308 wrong      139 tok   15.5s
+[70/153] ug-GeometricalOptics-5399 wrong      121 tok   73.1s
+[71/153] ug-GeometricalOptics-5501 wrong      328 tok   37.7s
+[72/153] ug-Thermodynamics-2872 correct    109 tok   13.3s
+[73/153] ug-Thermodynamics-2873 wrong      154 tok   17.9s
+[74/153] ug-Thermodynamics-2883 correct     98 tok   11.8s
+[75/153] ug-Thermodynamics-2888 correct    108 tok   12.8s
+[76/153] ug-Thermodynamics-2901 wrong      221 tok   24.7s
+[77/153] ug-Thermodynamics-2904 wrong       97 tok   12.0s
+[78/153] ug-Thermodynamics-2919 wrong      224 tok   25.9s
+[79/153] ug-Thermodynamics-2923 correct    161 tok   18.9s
+[80/153] ug-Thermodynamics-2933 wrong      156 tok   19.2s
+[81/153] ug-Thermodynamics-2950 wrong      375 tok   42.8s
+[82/153] ug-Thermodynamics-2951 correct     70 tok    9.0s
+[83/153] ug-Thermodynamics-2997 correct    131 tok   15.3s
+[84/153] ug-Thermodynamics-3004 correct    243 tok   28.8s
+[85/153] ug-Thermodynamics-3005 wrong      240 tok   83.7s
+[86/153] ug-Thermodynamics-3025 wrong      313 tok   35.0s
+[87/153] ug-Thermodynamics-3044 wrong      162 tok   20.9s
+[88/153] ug-Thermodynamics-3201 correct    183 tok   22.5s
+[89/153] ug-Thermodynamics-3204 wrong      148 tok   17.7s
+[90/153] ug-Thermodynamics-3205 correct    258 tok   29.2s
+[91/153] ug-Thermodynamics-3209 wrong      282 tok   31.5s
+[92/153] ug-Thermodynamics-3232 correct    199 tok   23.1s
+[93/153] ug-Thermodynamics-3244 correct    383 tok   41.9s
+[94/153] ug-Thermodynamics-3271 wrong      228 tok   26.6s
+[95/153] ug-Thermodynamics-3289 wrong      163 tok   18.7s
+[96/153] ug-Thermodynamics-3297 wrong      125 tok   14.2s
+[97/153] ug-Thermodynamics-3308 correct    139 tok   75.5s
+[98/153] ug-Thermodynamics-3315 wrong      177 tok   19.4s
+[99/153] ug-Thermodynamics-3337 wrong      397 tok   45.4s
+[100/153] ug-Thermodynamics-3346 wrong      244 tok   28.1s
+[101/153] ug-Thermodynamics-3352 wrong      266 tok   34.0s
+[102/153] ug-Thermodynamics-3354 correct    147 tok   17.2s
+[103/153] ug-Thermodynamics-3358 wrong      236 tok   26.7s
+[104/153] ug-Thermodynamics-3360 wrong      488 tok   53.7s
+[105/153] ug-Thermodynamics-3364 wrong      205 tok   24.8s  [no ANSWER line]
+[106/153] ug-Thermodynamics-3379 wrong      296 tok   33.1s  [no ANSWER line]
+[107/153] ug-Thermodynamics-3442 wrong      251 tok   89.6s
+[108/153] ug-Thermodynamics-3450 wrong      373 tok   41.2s
+[109/153] ug-Thermodynamics-3494 wrong      104 tok   13.1s
+[110/153] ug-Thermodynamics-3634 wrong      479 tok   53.7s
+[111/153] ug-Thermodynamics-3762 wrong      115 tok   13.9s
+[112/153] ug-Thermodynamics-3781 wrong     1024 tok  111.5s  [no ANSWER line]
+[113/153] ug-WaveOptics-5043 wrong      134 tok   16.5s
+[114/153] ug-WaveOptics-5045 wrong      140 tok   16.0s
+[115/153] ug-WaveOptics-5055 wrong      256 tok   28.2s
+[116/153] ug-WaveOptics-5063 wrong       75 tok   68.5s
+[117/153] ug-WaveOptics-5068 wrong      342 tok   37.1s
+[118/153] ug-WaveOptics-5088 wrong       96 tok   11.9s  [no ANSWER line]
+[119/153] ug-WaveOptics-5132 wrong      208 tok   23.5s
+[120/153] ug-WaveOptics-5146 correct    190 tok   21.9s
+[121/153] ug-WaveOptics-5164 correct    154 tok   17.8s
+[122/153] ug-WaveOptics-5165 wrong      118 tok   14.0s
+[123/153] ug-WaveOptics-5176 wrong      114 tok   13.0s
+[124/153] ug-WaveOptics-5187 wrong      303 tok   33.8s
+[125/153] ug-WaveOptics-5189 correct    151 tok   18.2s
+[126/153] ug-WaveOptics-5204 wrong      147 tok   16.7s
+[127/153] ug-WaveOptics-5207 correct    135 tok   16.8s
+[128/153] ug-WaveOptics-5209 wrong      185 tok   21.2s
+[129/153] ug-WaveOptics-5216 wrong      151 tok   17.4s
+[130/153] ug-WaveOptics-5233 wrong      207 tok   24.4s
+[131/153] ug-WaveOptics-5236 wrong      162 tok   77.5s
+[132/153] ug-WaveOptics-5239 wrong      244 tok   27.8s
+[133/153] ug-WaveOptics-5242 wrong      148 tok   17.7s
+[134/153] ug-WaveOptics-5257 correct    166 tok   20.8s
+[135/153] ug-WaveOptics-5264 wrong      198 tok   22.3s
+[136/153] ug-WaveOptics-5303 wrong      359 tok   45.9s
+[137/153] ug-WaveOptics-5330 wrong      159 tok   18.6s  [unreadable unit "''"]
+[138/153] ug-WaveOptics-5344 wrong      129 tok   15.2s
+[139/153] ug-WaveOptics-5346 correct    212 tok   23.6s
+[140/153] ug-WaveOptics-5356 wrong      237 tok   26.9s
+[141/153] ug-WaveOptics-5357 wrong      202 tok   24.7s
+[142/153] ug-WaveOptics-5387 wrong      145 tok   17.6s
+[143/153] ug-WaveOptics-5391 wrong      131 tok   15.4s
+[144/153] ug-WaveOptics-5410 wrong       88 tok   10.7s
+[145/153] ug-WaveOptics-5436 wrong     1024 tok  173.4s  [no ANSWER line]
+[146/153] ug-WaveOptics-5439 wrong      220 tok   25.5s
+[147/153] ug-WaveOptics-5443 wrong      111 tok   13.0s
+[148/153] ug-WaveOptics-5445 wrong     1024 tok  109.4s  [no ANSWER line]
+[149/153] ug-WaveOptics-5457 wrong      224 tok   25.6s
+[150/153] ug-WaveOptics-5475 wrong      197 tok   22.6s
+[151/153] ug-WaveOptics-5481 wrong     1024 tok  174.2s  [no ANSWER line]
+[152/153] ug-WaveOptics-5483 wrong      203 tok   23.6s
+[153/153] ug-WaveOptics-5491 wrong      214 tok   24.7s
+qwen3:8b convert on UGPhysics: 153 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physcheck_ugphysics_confirm__qwen3_8b__convert.jsonl
+[1/153] ug-ClassicalElectromagnetism-101 wrong      158 tok   18.8s
+[2/153] ug-ClassicalElectromagnetism-180 wrong      148 tok   18.0s
+[3/153] ug-ClassicalElectromagnetism-196 correct    187 tok   22.1s
+[4/153] ug-ClassicalElectromagnetism-21 wrong      163 tok   18.2s
+[5/153] ug-ClassicalElectromagnetism-246 correct    102 tok   12.5s
+[6/153] ug-ClassicalElectromagnetism-30 correct    101 tok   12.5s
+[7/153] ug-ClassicalElectromagnetism-405 wrong      227 tok   25.7s
+[8/153] ug-ClassicalElectromagnetism-409 wrong      456 tok   52.1s
+[9/153] ug-ClassicalElectromagnetism-460 wrong      115 tok   73.5s
+[10/153] ug-ClassicalElectromagnetism-482 wrong      260 tok   29.2s
+[11/153] ug-ClassicalElectromagnetism-58 wrong      207 tok   24.6s
+[12/153] ug-ClassicalElectromagnetism-63 wrong      190 tok   21.8s
+[13/153] ug-ClassicalElectromagnetism-74 correct     98 tok   13.0s
+[14/153] ug-ClassicalElectromagnetism-87 correct    244 tok   28.7s
+[15/153] ug-ClassicalMechanics-1539 wrong     1024 tok  115.2s  [no ANSWER line]
+[16/153] ug-ClassicalMechanics-1544 correct    180 tok   20.8s  [asked for s, got 'cm']
+[17/153] ug-ClassicalMechanics-1553 wrong      107 tok   13.5s
+[18/153] ug-ClassicalMechanics-1565 correct    238 tok   28.8s
+[19/153] ug-ClassicalMechanics-1577 correct    138 tok   77.4s
+[20/153] ug-ClassicalMechanics-1578 wrong      153 tok   18.4s
+[21/153] ug-ClassicalMechanics-1583 correct    151 tok   19.0s  [asked for s, got 'cm/s']
+[22/153] ug-ClassicalMechanics-1588 wrong      503 tok   57.8s
+[23/153] ug-ClassicalMechanics-1591 correct    278 tok   31.8s
+[24/153] ug-ClassicalMechanics-1593 correct    137 tok   17.4s
+[25/153] ug-ClassicalMechanics-1602 wrong      391 tok   43.3s
+[26/153] ug-ClassicalMechanics-1608 wrong      196 tok   22.7s
+[27/153] ug-ClassicalMechanics-1614 correct     93 tok   12.2s
+[28/153] ug-ClassicalMechanics-1621 correct    129 tok   15.8s
+[29/153] ug-ClassicalMechanics-1628 correct    103 tok   12.8s
+[30/153] ug-ClassicalMechanics-1629 correct    239 tok   28.4s
+[31/153] ug-ClassicalMechanics-1632 correct     99 tok   14.5s
+[32/153] ug-ClassicalMechanics-1644 correct    149 tok   78.9s
+[33/153] ug-ClassicalMechanics-1645 wrong      366 tok   42.4s
+[34/153] ug-ClassicalMechanics-1657 correct     93 tok   11.7s
+[35/153] ug-ClassicalMechanics-1671 correct    209 tok   23.9s
+[36/153] ug-ClassicalMechanics-1678 correct    102 tok   13.1s
+[37/153] ug-ClassicalMechanics-1680 wrong      278 tok   33.2s
+[38/153] ug-ClassicalMechanics-1684 wrong      140 tok   17.9s
+[39/153] ug-ClassicalMechanics-1726 wrong      259 tok   29.2s
+[40/153] ug-ClassicalMechanics-1982 wrong      210 tok   24.1s  [no ANSWER line]
+[41/153] ug-ClassicalMechanics-1990 wrong     1024 tok  113.5s  [no ANSWER line]
+[42/153] ug-ClassicalMechanics-2014 correct     73 tok   71.6s
+[43/153] ug-ClassicalMechanics-2016 correct     92 tok   11.4s
+[44/153] ug-ClassicalMechanics-2021 correct    770 tok   86.1s
+[45/153] ug-ClassicalMechanics-2082 wrong      178 tok   21.0s
+[46/153] ug-ClassicalMechanics-2127 wrong      505 tok   55.6s
+[47/153] ug-ClassicalMechanics-2159 wrong      226 tok   26.4s
+[48/153] ug-ClassicalMechanics-2165 wrong      209 tok   26.7s
+[49/153] ug-ClassicalMechanics-2206 wrong      280 tok   34.5s
+[50/153] ug-ClassicalMechanics-2210 wrong      110 tok   13.6s
+[51/153] ug-ClassicalMechanics-2217 correct    139 tok   17.0s
+[52/153] ug-ClassicalMechanics-2221 wrong      159 tok   76.8s
+[53/153] ug-ClassicalMechanics-2242 wrong     1024 tok  112.1s  [no ANSWER line]
+[54/153] ug-ClassicalMechanics-2253 wrong      371 tok   40.4s
+[55/153] ug-ClassicalMechanics-2256 wrong      131 tok   16.0s
+[56/153] ug-ClassicalMechanics-2272 wrong      513 tok   57.3s  [no ANSWER line]
+[57/153] ug-ClassicalMechanics-2331 wrong      330 tok   38.2s
+[58/153] ug-ClassicalMechanics-2366 wrong      434 tok   49.2s
+[59/153] ug-ClassicalMechanics-2374 wrong      140 tok   76.8s
+[60/153] ug-ClassicalMechanics-2381 wrong      189 tok   21.9s
+[61/153] ug-ClassicalMechanics-2398 wrong      595 tok   68.5s
+[62/153] ug-ClassicalMechanics-2407 wrong      177 tok   22.2s
+[63/153] ug-ClassicalMechanics-2589 wrong      162 tok   19.5s
+[64/153] ug-ClassicalMechanics-2591 wrong      236 tok   26.3s
+[65/153] ug-ClassicalMechanics-2720 wrong      281 tok   32.6s
+[66/153] ug-ClassicalMechanics-2734 wrong      501 tok   55.1s  [no ANSWER line]
+[67/153] ug-GeometricalOptics-5051 correct    177 tok   20.6s
+[68/153] ug-GeometricalOptics-5255 wrong      119 tok   14.2s
+[69/153] ug-GeometricalOptics-5308 wrong      138 tok   75.9s
+[70/153] ug-GeometricalOptics-5399 wrong      144 tok   18.0s
+[71/153] ug-GeometricalOptics-5501 wrong      425 tok   50.7s
+[72/153] ug-Thermodynamics-2872 correct    121 tok   15.1s
+[73/153] ug-Thermodynamics-2873 wrong      180 tok   20.9s
+[74/153] ug-Thermodynamics-2883 correct    116 tok   14.4s
+[75/153] ug-Thermodynamics-2888 wrong      277 tok   31.7s
+[76/153] ug-Thermodynamics-2901 wrong      220 tok   25.5s
+[77/153] ug-Thermodynamics-2904 correct    146 tok   17.7s
+[78/153] ug-Thermodynamics-2919 wrong      389 tok   43.3s
+[79/153] ug-Thermodynamics-2923 correct    210 tok   27.3s
+[80/153] ug-Thermodynamics-2933 wrong      130 tok   16.0s
+[81/153] ug-Thermodynamics-2950 wrong      365 tok   41.5s
+[82/153] ug-Thermodynamics-2951 correct    113 tok   75.1s
+[83/153] ug-Thermodynamics-2997 correct    233 tok   27.4s
+[84/153] ug-Thermodynamics-3004 wrong      316 tok   37.7s
+[85/153] ug-Thermodynamics-3005 wrong      541 tok   61.1s
+[86/153] ug-Thermodynamics-3025 wrong      427 tok   48.6s
+[87/153] ug-Thermodynamics-3044 correct    137 tok   17.3s
+[88/153] ug-Thermodynamics-3201 correct    558 tok   60.9s
+[89/153] ug-Thermodynamics-3204 wrong      122 tok   15.2s
+[90/153] ug-Thermodynamics-3205 correct    329 tok   38.1s
+[91/153] ug-Thermodynamics-3209 wrong      313 tok   94.0s
+[92/153] ug-Thermodynamics-3232 correct    213 tok   24.7s
+[93/153] ug-Thermodynamics-3244 correct    543 tok   61.0s
+[94/153] ug-Thermodynamics-3271 wrong      284 tok   34.2s
+[95/153] ug-Thermodynamics-3289 wrong      159 tok   21.4s
+[96/153] ug-Thermodynamics-3297 wrong      139 tok   18.6s
+[97/153] ug-Thermodynamics-3308 correct    134 tok   17.2s
+[98/153] ug-Thermodynamics-3315 wrong      161 tok   19.6s
+[99/153] ug-Thermodynamics-3337 wrong      428 tok   48.1s
+[100/153] ug-Thermodynamics-3346 wrong      349 tok   38.9s
+[101/153] ug-Thermodynamics-3352 wrong      518 tok  118.3s
+[102/153] ug-Thermodynamics-3354 correct    146 tok   18.4s
+[103/153] ug-Thermodynamics-3358 wrong      272 tok   32.4s
+[104/153] ug-Thermodynamics-3360 wrong      255 tok   32.5s
+[105/153] ug-Thermodynamics-3364 wrong      566 tok   65.2s
+[106/153] ug-Thermodynamics-3379 correct    327 tok   37.5s
+[107/153] ug-Thermodynamics-3442 wrong     1024 tok  113.3s  [no ANSWER line]
+[108/153] ug-Thermodynamics-3450 wrong      161 tok   81.2s
+[109/153] ug-Thermodynamics-3494 wrong      193 tok   23.4s
+[110/153] ug-Thermodynamics-3634 wrong      473 tok   65.9s
+[111/153] ug-Thermodynamics-3762 wrong      141 tok   23.7s
+[112/153] ug-Thermodynamics-3781 wrong      320 tok   42.9s
+[113/153] ug-WaveOptics-5043 wrong      144 tok   24.3s
+[114/153] ug-WaveOptics-5045 wrong      321 tok   41.3s
+[115/153] ug-WaveOptics-5055 wrong      239 tok   31.9s
+[116/153] ug-WaveOptics-5063 wrong       96 tok   16.8s
+[117/153] ug-WaveOptics-5068 wrong      283 tok   40.6s
+[118/153] ug-WaveOptics-5088 wrong      106 tok   87.7s  [no ANSWER line]
+[119/153] ug-WaveOptics-5132 wrong      310 tok   35.8s  [no ANSWER line]
+[120/153] ug-WaveOptics-5146 correct    157 tok   19.9s
+[121/153] ug-WaveOptics-5164 correct    169 tok   20.5s
+[122/153] ug-WaveOptics-5165 correct    137 tok   17.4s
+[123/153] ug-WaveOptics-5176 correct    106 tok   13.9s
+[124/153] ug-WaveOptics-5187 wrong      323 tok   37.0s
+[125/153] ug-WaveOptics-5189 correct    186 tok   23.0s
+[126/153] ug-WaveOptics-5204 wrong      246 tok   28.7s
+[127/153] ug-WaveOptics-5207 wrong      163 tok   20.2s
+[128/153] ug-WaveOptics-5209 wrong      186 tok   21.0s
+[129/153] ug-WaveOptics-5216 correct    124 tok   16.5s
+[130/153] ug-WaveOptics-5233 wrong      559 tok   60.6s
+[131/153] ug-WaveOptics-5236 wrong      192 tok   78.2s
+[132/153] ug-WaveOptics-5239 wrong      250 tok   28.2s
+[133/153] ug-WaveOptics-5242 wrong      163 tok   19.1s
+[134/153] ug-WaveOptics-5257 correct    190 tok   23.1s
+[135/153] ug-WaveOptics-5264 wrong      193 tok   23.6s
+[136/153] ug-WaveOptics-5303 correct    554 tok   61.5s
+[137/153] ug-WaveOptics-5330 wrong      129 tok   16.2s  [unreadable unit "''"]
+[138/153] ug-WaveOptics-5344 wrong      160 tok   18.7s
+[139/153] ug-WaveOptics-5346 correct    267 tok   29.0s
+[140/153] ug-WaveOptics-5356 correct    283 tok   31.1s
+[141/153] ug-WaveOptics-5357 wrong      162 tok   20.0s
+[142/153] ug-WaveOptics-5387 wrong      155 tok   18.3s
+[143/153] ug-WaveOptics-5391 wrong      134 tok   71.0s
+[144/153] ug-WaveOptics-5410 wrong      103 tok   13.3s
+[145/153] ug-WaveOptics-5436 wrong     1024 tok  109.8s  [no ANSWER line]
+[146/153] ug-WaveOptics-5439 correct    205 tok   23.0s
+[147/153] ug-WaveOptics-5443 wrong      117 tok   13.4s
+[148/153] ug-WaveOptics-5445 wrong      232 tok   24.9s
+[149/153] ug-WaveOptics-5457 wrong      303 tok   31.2s
+[150/153] ug-WaveOptics-5475 wrong      458 tok   47.1s
+[151/153] ug-WaveOptics-5481 wrong      351 tok   36.2s
+[152/153] ug-WaveOptics-5483 wrong      676 tok  129.9s
+[153/153] ug-WaveOptics-5491 wrong      284 tok   30.3s
+qwen3:8b bare on UGPhysics: 153 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/physcheck_ugphysics_confirm__qwen3_8b__bare.jsonl
+[1/153] ug-ClassicalElectromagnetism-101 correct    493 tok   48.3s
+[2/153] ug-ClassicalElectromagnetism-180 wrong      423 tok   42.2s
+[3/153] ug-ClassicalElectromagnetism-196 correct    524 tok   52.0s
+[4/153] ug-ClassicalElectromagnetism-21 wrong      244 tok   26.4s
+[5/153] ug-ClassicalElectromagnetism-246 correct    165 tok   17.9s
+[6/153] ug-ClassicalElectromagnetism-30 correct    241 tok   24.2s
+[7/153] ug-ClassicalElectromagnetism-405 wrong      338 tok   88.7s
+[8/153] ug-ClassicalElectromagnetism-409 wrong     1340 tok  132.2s  [no ANSWER line]
+[9/153] ug-ClassicalElectromagnetism-460 wrong       65 tok    7.1s  [no ANSWER line]
+[10/153] ug-ClassicalElectromagnetism-482 wrong      665 tok   67.1s
+[11/153] ug-ClassicalElectromagnetism-58 correct    725 tok   72.2s
+[12/153] ug-ClassicalElectromagnetism-63 wrong      650 tok  117.2s
+[13/153] ug-ClassicalElectromagnetism-74 correct    136 tok   16.1s
+[14/153] ug-ClassicalElectromagnetism-87 wrong      793 tok   80.4s
+[15/153] ug-ClassicalMechanics-1539 correct    668 tok   65.4s  [asked for s, got 'W']
+[16/153] ug-ClassicalMechanics-1544 correct    271 tok   26.6s  [asked for s, got 'cm']
+[17/153] ug-ClassicalMechanics-1553 correct    588 tok   57.7s
+[18/153] ug-ClassicalMechanics-1565 correct    719 tok  127.7s
+[19/153] ug-ClassicalMechanics-1577 correct    363 tok   37.7s
+[20/153] ug-ClassicalMechanics-1578 wrong      274 tok   27.4s
+[21/153] ug-ClassicalMechanics-1583 correct    211 tok   22.6s  [asked for s, got 'cm/s']
+[22/153] ug-ClassicalMechanics-1588 correct    593 tok   57.6s
+[23/153] ug-ClassicalMechanics-1591 correct    630 tok   59.9s
+[24/153] ug-ClassicalMechanics-1593 wrong      348 tok   34.5s
+[25/153] ug-ClassicalMechanics-1602 wrong      718 tok  127.1s
+[26/153] ug-ClassicalMechanics-1608 wrong      515 tok   52.9s  [no ANSWER line]
+[27/153] ug-ClassicalMechanics-1614 correct    250 tok   25.0s
+[28/153] ug-ClassicalMechanics-1621 correct    357 tok   35.0s
+[29/153] ug-ClassicalMechanics-1628 correct    257 tok   25.7s
+[30/153] ug-ClassicalMechanics-1629 wrong      422 tok   40.9s
+[31/153] ug-ClassicalMechanics-1632 wrong      567 tok   56.5s  [no ANSWER line]
+[32/153] ug-ClassicalMechanics-1644 correct    433 tok   97.3s
+[33/153] ug-ClassicalMechanics-1645 correct    458 tok   44.5s
+[34/153] ug-ClassicalMechanics-1657 correct    194 tok   18.9s
+[35/153] ug-ClassicalMechanics-1671 correct    576 tok   54.8s
+[36/153] ug-ClassicalMechanics-1678 correct    206 tok   19.7s
+[37/153] ug-ClassicalMechanics-1680 correct    652 tok   67.9s
+[38/153] ug-ClassicalMechanics-1684 wrong      689 tok   68.4s  [no ANSWER line]
+[39/153] ug-ClassicalMechanics-1726 correct    603 tok  110.3s
+[40/153] ug-ClassicalMechanics-1982 wrong     1536 tok  144.8s  [no ANSWER line]
+[41/153] ug-ClassicalMechanics-1990 correct    556 tok   54.8s
+[42/153] ug-ClassicalMechanics-2014 correct    203 tok   20.3s
+[43/153] ug-ClassicalMechanics-2016 correct    228 tok   22.0s
+[44/153] ug-ClassicalMechanics-2021 wrong     1536 tok  201.7s  [no ANSWER line]
+[45/153] ug-ClassicalMechanics-2082 correct    313 tok   30.1s
+[46/153] ug-ClassicalMechanics-2127 wrong     1009 tok   94.9s
+[47/153] ug-ClassicalMechanics-2159 wrong      580 tok   54.9s
+[48/153] ug-ClassicalMechanics-2165 wrong      631 tok  110.6s
+[49/153] ug-ClassicalMechanics-2206 correct   1022 tok   98.4s
+[50/153] ug-ClassicalMechanics-2210 wrong      462 tok   43.5s
+[51/153] ug-ClassicalMechanics-2217 correct    354 tok   34.7s
+[52/153] ug-ClassicalMechanics-2221 wrong      215 tok   20.4s
+[53/153] ug-ClassicalMechanics-2242 wrong     1536 tok  144.5s  [no ANSWER line]
+[54/153] ug-ClassicalMechanics-2253 wrong      424 tok   59.2s
+[55/153] ug-ClassicalMechanics-2256 wrong      303 tok   29.1s
+[56/153] ug-ClassicalMechanics-2272 wrong     1093 tok  103.0s  [no ANSWER line]
+[57/153] ug-ClassicalMechanics-2331 wrong      622 tok   58.1s
+[58/153] ug-ClassicalMechanics-2366 wrong      940 tok   88.9s
+[59/153] ug-ClassicalMechanics-2374 wrong      408 tok   92.3s
+[60/153] ug-ClassicalMechanics-2381 wrong      396 tok   37.9s
+[61/153] ug-ClassicalMechanics-2398 wrong      718 tok   70.5s
+[62/153] ug-ClassicalMechanics-2407 wrong      425 tok   58.1s
+[63/153] ug-ClassicalMechanics-2589 wrong      343 tok   32.8s
+[64/153] ug-ClassicalMechanics-2591 wrong     1536 tok  143.7s  [no ANSWER line]
+[65/153] ug-ClassicalMechanics-2720 wrong      595 tok   94.3s  [no ANSWER line]
+[66/153] ug-ClassicalMechanics-2734 wrong      766 tok   72.2s
+[67/153] ug-GeometricalOptics-5051 correct    294 tok   28.2s
+[68/153] ug-GeometricalOptics-5255 wrong      391 tok   36.5s
+[69/153] ug-GeometricalOptics-5308 wrong      260 tok   24.2s
+[70/153] ug-GeometricalOptics-5399 wrong      475 tok   44.5s
+[71/153] ug-GeometricalOptics-5501 wrong     1536 tok  150.4s  [no ANSWER line]
+[72/153] ug-Thermodynamics-2872 correct    291 tok   35.9s
+[73/153] ug-Thermodynamics-2873 wrong      342 tok   33.5s
+[74/153] ug-Thermodynamics-2883 wrong      407 tok   39.0s
+[75/153] ug-Thermodynamics-2888 wrong      302 tok   28.6s
+[76/153] ug-Thermodynamics-2901 wrong      463 tok   44.2s
+[77/153] ug-Thermodynamics-2904 correct    259 tok   25.3s
+[78/153] ug-Thermodynamics-2919 wrong      841 tok   79.9s
+[79/153] ug-Thermodynamics-2923 correct    281 tok   27.3s
+[80/153] ug-Thermodynamics-2933 wrong      464 tok   96.4s
+[81/153] ug-Thermodynamics-2950 correct    793 tok   75.6s
+[82/153] ug-Thermodynamics-2951 correct    197 tok   19.5s
+[83/153] ug-Thermodynamics-2997 correct    523 tok   49.3s
+[84/153] ug-Thermodynamics-3004 correct    645 tok   62.1s
+[85/153] ug-Thermodynamics-3005 wrong      548 tok   52.2s
+[86/153] ug-Thermodynamics-3025 wrong      832 tok  130.9s
+[87/153] ug-Thermodynamics-3044 correct    380 tok   36.9s
+[88/153] ug-Thermodynamics-3201 correct    462 tok   43.8s
+[89/153] ug-Thermodynamics-3204 wrong      494 tok   46.6s
+[90/153] ug-Thermodynamics-3205 correct   1059 tok   98.5s
+[91/153] ug-Thermodynamics-3209 correct    604 tok  108.8s
+[92/153] ug-Thermodynamics-3232 wrong      500 tok   47.2s  [no ANSWER line]
+[93/153] ug-Thermodynamics-3244 correct   1180 tok  111.6s
+[94/153] ug-Thermodynamics-3271 wrong     1042 tok   99.2s
+[95/153] ug-Thermodynamics-3289 wrong      475 tok   97.6s
+[96/153] ug-Thermodynamics-3297 wrong      205 tok   20.8s
+[97/153] ug-Thermodynamics-3308 correct    203 tok   19.9s
+[98/153] ug-Thermodynamics-3315 wrong      411 tok   38.7s
+[99/153] ug-Thermodynamics-3337 wrong     1208 tok  113.1s  [no ANSWER line]
+[100/153] ug-Thermodynamics-3346 wrong      475 tok   44.6s
+[101/153] ug-Thermodynamics-3352 wrong     1112 tok  106.4s
+[102/153] ug-Thermodynamics-3354 correct    411 tok   70.8s
+[103/153] ug-Thermodynamics-3358 wrong      188 tok   20.0s
+[104/153] ug-Thermodynamics-3360 wrong      650 tok   62.1s
+[105/153] ug-Thermodynamics-3364 wrong     1536 tok  147.6s  [no ANSWER line]
+[106/153] ug-Thermodynamics-3379 wrong      953 tok   90.5s
+[107/153] ug-Thermodynamics-3442 wrong      716 tok  124.7s  [no ANSWER line]
+[108/153] ug-Thermodynamics-3450 wrong     1536 tok  145.3s  [no ANSWER line]
+[109/153] ug-Thermodynamics-3494 wrong      227 tok   22.2s
+[110/153] ug-Thermodynamics-3634 wrong     1480 tok  140.3s  [no ANSWER line]
+[111/153] ug-Thermodynamics-3762 wrong      283 tok   70.1s
+[112/153] ug-Thermodynamics-3781 wrong     1536 tok  149.7s  [no ANSWER line]
+[113/153] ug-WaveOptics-5043 wrong      377 tok   36.4s
+[114/153] ug-WaveOptics-5045 wrong      591 tok   56.5s
+[115/153] ug-WaveOptics-5055 correct    539 tok   51.2s
+[116/153] ug-WaveOptics-5063 wrong      346 tok   84.4s
+[117/153] ug-WaveOptics-5068 wrong      456 tok   43.6s
+[118/153] ug-WaveOptics-5088 correct    156 tok   15.1s
+[119/153] ug-WaveOptics-5132 wrong      791 tok   74.2s
+[120/153] ug-WaveOptics-5146 correct    297 tok   28.8s
+[121/153] ug-WaveOptics-5164 correct    278 tok   25.8s
+[122/153] ug-WaveOptics-5165 correct    343 tok   32.8s
+[123/153] ug-WaveOptics-5176 correct    339 tok   32.2s
+[124/153] ug-WaveOptics-5187 wrong     1464 tok  136.9s
+[125/153] ug-WaveOptics-5189 correct    534 tok   53.9s
+[126/153] ug-WaveOptics-5204 correct    475 tok   44.9s
+[127/153] ug-WaveOptics-5207 correct    355 tok   35.0s
+[128/153] ug-WaveOptics-5209 wrong      454 tok   42.9s
+[129/153] ug-WaveOptics-5216 correct    212 tok   20.8s
+[130/153] ug-WaveOptics-5233 wrong      593 tok   57.3s
+[131/153] ug-WaveOptics-5236 wrong      669 tok   62.5s  [no ANSWER line]
+[132/153] ug-WaveOptics-5239 wrong     1536 tok  196.7s  [no ANSWER line]
+[133/153] ug-WaveOptics-5242 correct    536 tok   50.6s
+[134/153] ug-WaveOptics-5257 correct    776 tok   74.5s
+[135/153] ug-WaveOptics-5264 wrong     1536 tok  144.2s  [no ANSWER line]
+[136/153] ug-WaveOptics-5303 wrong     1536 tok  152.0s  [no ANSWER line]
+[137/153] ug-WaveOptics-5330 wrong      367 tok   34.6s  [unreadable unit "''"]
+[138/153] ug-WaveOptics-5344 wrong      655 tok   61.2s
+[139/153] ug-WaveOptics-5346 wrong      452 tok   42.8s
+[140/153] ug-WaveOptics-5356 correct    439 tok   41.9s
+[141/153] ug-WaveOptics-5357 wrong      294 tok   82.2s
+[142/153] ug-WaveOptics-5387 correct    197 tok   19.4s
+[143/153] ug-WaveOptics-5391 wrong      764 tok   72.2s
+[144/153] ug-WaveOptics-5410 wrong      316 tok   30.3s
+[145/153] ug-WaveOptics-5436 wrong     1536 tok  147.3s
+[146/153] ug-WaveOptics-5439 wrong      421 tok   92.4s
+[147/153] ug-WaveOptics-5443 wrong      763 tok   72.1s
+[148/153] ug-WaveOptics-5445 wrong      302 tok   29.2s
+[149/153] ug-WaveOptics-5457 wrong      388 tok   36.2s
+[150/153] ug-WaveOptics-5475 wrong      979 tok   91.5s
+[151/153] ug-WaveOptics-5481 correct   1039 tok   97.9s
+[152/153] ug-WaveOptics-5483 correct    971 tok  144.5s
+[153/153] ug-WaveOptics-5491 wrong      550 tok   52.6s  [no ANSWER line]
+confirmation set: 153 problems; shipped 50, convert 55; convert compute 112% of shipped
+pooled with the first set (303 problems): shipped 96, convert 108; convert minus shipped, 95% CI +0 to +25
+
+rule: convert replaces the shipped calculator prompt in the physics pack iff (a) on the confirmation set it scores at least as many as the shipped policy, (b) over both UGPhysics sets pooled its paired bootstrap 95% interval against the shipped policy lies entirely above 0, and (c) its compute is at most the shipped one's
+(a) True  (b) False  (c) False
+-> KEEP: the shipped calculator prompt

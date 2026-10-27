@@ -73,9 +73,11 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       converts to the asked unit before printing) 53/150 vs the shipped policy's 46 at 83% of its compute, interval
       -2 to +17: not clear, so the shipped policy stays. **disagree** (escalate when 4B calc and 4B direct differ)
       46/150 at 158%: no gain.
-- [ ] **Confirm "convert" on the rest of UGPhysics.** It was more accurate *and* cheaper, just not significantly.
-      About 200 eligible problems are unused (`physics_check.problems()` samples 150 of ~351); a second rule fixed
-      first, judged on those, could adopt it. It changes only the physics prompt, not `calc.TOOL_FORMAT`.
+- [x] **"convert" confirmation** (153 unused UGPhysics problems, CONVERT_RULE fixed first,
+      `results/physics_check_confirm.log`): convert 55 vs shipped 50 (a: yes), pooled over 303 problems 108 vs 96 with
+      interval +0 to +25 (b: not entirely above 0), and 112% of the shipped compute here (c: no). Kept the shipped prompt.
+      Ahead on both sets (+7, +5) but never clearly; UGPhysics has no unused eligible problems left, so a further test
+      needs another physics set, or problems written by someone else.
 - [x] A crash took Ollama down mid-run; 60 calls were saved as "connection refused" rows that resuming skipped.
       They were dropped and re-run (backup of the bad file was in the session scratchpad); every other results file
       was audited: no failed calls anywhere else.
