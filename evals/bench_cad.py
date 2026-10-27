@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 from plm_cad import kernel  # noqa: E402
 from plm_cad.checks import check  # noqa: E402
 from plm_cad.controller import CAD_FORMAT, PROMPT_VERSION  # noqa: E402
@@ -142,6 +142,8 @@ def run(model, num_predict, timeout):
                             "done_reason": r["done_reason"], "code": code, "measured": measured, "error": error,
                             "issues": check(p["task"], measured, error)})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "eval_tokens": 0, "wall_s": 0, "done_reason": "error", "code": None,
                             "measured": None, "error": f"{type(e).__name__}: {e}", "issues": ["request failed"]})
             row["verdict"] = grade(row["measured"], refs[p["id"]])

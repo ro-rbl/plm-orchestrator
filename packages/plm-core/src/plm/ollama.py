@@ -14,6 +14,15 @@ import time
 import urllib.request
 
 
+def unreachable(error):
+    """True if a failed request means the Ollama server itself is down, not that one request went wrong.
+
+    Eval runners save a failed request as an error row and move on; when the server is down, every
+    remaining task would be saved that way, and resuming skips them (60 rows on 2026-10-25). They stop instead.
+    """
+    return isinstance(error, ConnectionError) or "Connection refused" in str(error)
+
+
 def ollama_url():
     host = os.environ.get("OLLAMA_HOST", "127.0.0.1:11434")
     return (host if host.startswith("http") else "http://" + host).rstrip("/")

@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "evals"))
 
 import run_sql  # noqa: E402
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 from plm_sql.controller import check  # noqa: E402
 from plm_sql.sandbox import run_query  # noqa: E402
 from plm_sql.sqlgen import PROMPT_VERSION, build_prompt, extract_sql, split_task  # noqa: E402
@@ -112,6 +112,8 @@ def run(bench, model, num_predict, timeout):
                             "wall_s": r["wall_s"], "done_reason": r["done_reason"], "query": query, "issues": issues,
                             "gold_error": want["error"], "verdict": run_sql.grade(t, got, want) if not want["error"] else "gold_error"})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "eval_tokens": 0, "prompt_tokens": 0, "wall_s": 0, "done_reason": "error",
                             "query": None, "issues": ["request failed"], "error": f"{type(e).__name__}: {e}",
                             "verdict": "request_error"})

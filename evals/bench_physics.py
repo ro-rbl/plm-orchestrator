@@ -33,7 +33,7 @@ import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit wor
 from plm.numeric import calc  # noqa: E402
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer  # noqa: E402
 from plm.numeric.checks import check  # noqa: E402
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 from plm_physics.levels import classify  # noqa: E402
 from simulate_routing import POLICIES_PHYSICS  # noqa: E402
 
@@ -116,6 +116,8 @@ def run(model, strategy, timeout):
                 row.update({"model_response": r["response"], "response": output, "eval_tokens": r["eval_tokens"],
                             "wall_s": r["wall_s"], "done_reason": r["done_reason"]})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "error": f"{type(e).__name__}: {e}", "eval_tokens": 0, "wall_s": 0,
                             "done_reason": "error"})
             row["issues"] = check(p["question"], row["response"])

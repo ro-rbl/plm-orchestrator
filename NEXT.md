@@ -79,8 +79,9 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
 - [x] A crash took Ollama down mid-run; 60 calls were saved as "connection refused" rows that resuming skipped.
       They were dropped and re-run (backup of the bad file was in the session scratchpad); every other results file
       was audited: no failed calls anywhere else.
-- [ ] **Guard the other runners the same way** (physics_check.py stops on "Ollama unreachable" instead of saving
-      error rows): evals/run.py, run_sql.py, run_cad.py, run_code.py, bench_{sql,code,physics,cad,gsm8k}.py.
+- [x] **Every runner now stops when Ollama is unreachable** (`plm.ollama.unreachable`, 11 sites in 11 files)
+      instead of saving error rows a resume would skip; tested live: down server -> stops, 0 rows; missing model ->
+      error rows as before.
 
 ## Publishing (phase 5), 2026-10-25
 - [x] GitHub: https://github.com/ro-rbl/plm-orchestrator, **private**, `main` pushed (MIT license; home paths

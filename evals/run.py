@@ -35,7 +35,7 @@ import grade  # noqa: E402
 import plm.packs  # noqa: E402,F401  (loads every pack, and with it its unit words)
 from plm.numeric import calc, decompose  # noqa: E402
 from plm.numeric.checks import requested_unit  # noqa: E402
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 
 
 # strategy -> (answer-format instructions, prompt version)
@@ -127,6 +127,8 @@ def main():
                         row["response"], row["program_error"] = calc.run_program(code)
                     row["program_s"] = time.time() - t
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "error": f"{type(e).__name__}: {e}", "eval_tokens": 0,
                             "prompt_tokens": 0, "load_s": 0, "wall_s": 0, "done_reason": "error"})
             f.write(json.dumps(row) + "\n")

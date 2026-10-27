@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT))
 import plm.packs  # noqa: E402,F401
 from plm.numeric import calc  # noqa: E402
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer  # noqa: E402
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 from plm.packs import detect  # noqa: E402
 
 DATA = ROOT / ".benchmarks/numeric/gsm8k.jsonl"
@@ -77,6 +77,8 @@ def run(model, strategy, timeout):
                 row.update({"model_response": r["response"], "response": output, "eval_tokens": r["eval_tokens"],
                             "wall_s": r["wall_s"], "done_reason": r["done_reason"]})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "error": f"{type(e).__name__}: {e}", "eval_tokens": 0, "wall_s": 0,
                             "done_reason": "error"})
             row["correct"] = correct(row["response"], p["answer"])

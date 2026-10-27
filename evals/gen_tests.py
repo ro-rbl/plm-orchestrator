@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT))
 
 from plm_software.sandbox import run_tests  # noqa: E402
 from plm_software.testgen import TESTGEN_PROMPT_VERSION, failing_tests, generate_tests, is_broken_test  # noqa: E402
+from plm.ollama import unreachable  # noqa: E402
 from run_code import load_jsonl, verdict  # noqa: E402
 
 RESULTS = ROOT / "results"
@@ -49,6 +50,8 @@ def gen(writer, tasks):
                 tests, call = generate_tests(t, writer)
                 row.update({"tests": tests, **call})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"tests": [], "error": f"{type(e).__name__}: {e}", "tokens": 0, "seconds": 0, "raw": ""})
             f.write(json.dumps(row) + "\n")
             f.flush()

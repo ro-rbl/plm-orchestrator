@@ -31,7 +31,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from plm.ollama import ask  # noqa: E402
+from plm.ollama import ask, unreachable  # noqa: E402
 from plm_software.codegen import PROMPT_VERSION, build_prompt, extract_code  # noqa: E402
 from plm_software.controller import parse_task  # noqa: E402
 from plm_software.sandbox import run_tests  # noqa: E402
@@ -118,6 +118,8 @@ def run(bench, model, num_predict, timeout):
                             "done_reason": r["done_reason"], "code": code, "issues": key_free_issues(code, t),
                             "verdict": grade(code, t)})
             except Exception as e:  # keep going; one bad request must not lose the run
+                if unreachable(e):  # stop without saving, so a resume retries this task and the rest
+                    sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
                 row.update({"response": "", "eval_tokens": 0, "wall_s": 0, "done_reason": "error", "code": None,
                             "issues": ["request failed"], "error": f"{type(e).__name__}: {e}", "verdict": "request_error"})
             f.write(json.dumps(row) + "\n")
