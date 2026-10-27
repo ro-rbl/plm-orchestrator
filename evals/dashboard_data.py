@@ -181,6 +181,32 @@ def main():
                         "n": int(s[2]), "cost_ratio": None,
                         "note": "candidate intensive 8B -> coder; the rule then shipped always 8B (42/48 pooled at 60%)"})
 
+    def score_of(text, label):
+        """(score, n, compute) from a simulation row that starts with label."""
+        m = re.search(rf"^{re.escape(label)}\s+(\d+)/(\d+)\s+\S+\s+(\d+)%", text, re.M)
+        return int(m[1]), int(m[2]), int(m[3]) / 100
+
+    text = run("evals/bench_physics.py", "--bench", "theoremqa", "--simulate")
+    (old, n, _), (new, _, cost) = score_of(text, "always 8B (bare)"), score_of(text, "+ escalate on failed check (pre-sweep default)")
+    experiments.append({"id": "theoremqa-physics", "date": "2026-10-25", "experiment": "Physics switch, confirmed on TheoremQA",
+                        "verdict": verdict(text, "-> CONFIRMED", "-> REVERT"), "metric": "problems right (old vs new policy)",
+                        "before": old, "after": new, "n": n, "cost_ratio": cost,
+                        "note": "the switch stands unless the old 8B-direct policy is clearly better; it isn't"})
+
+    text = run("evals/bench_cad.py", "--simulate")
+    (coder, n, _), (cascade, _, cost) = score_of(text, "always coder"), score_of(text, "cascade 4B -> 8B -> coder (pre-sweep default)")
+    experiments.append({"id": "cadprompt", "date": "2026-10-25", "experiment": "CADPrompt: cascade vs the coder",
+                        "verdict": verdict(text, "-> ADOPT", "-> KEEP"), "metric": "parts exactly right (coder vs cascade)",
+                        "before": coder, "after": cascade, "n": n, "cost_ratio": cost,
+                        "note": "cascade's lead 0 to +14 (paired 95%), not clear; bbox and volume within 0.1%"})
+
+    text = run("evals/physics_check.py", "--simulate")
+    (ship, n, _), (conv, _, cost) = score_of(text, "shipped (calc, escalate on failed check)"), score_of(text, "candidate convert")
+    experiments.append({"id": "physics-convert", "date": "2026-10-26", "experiment": "Physics: convert to the asked unit",
+                        "verdict": verdict(text, "-> ADOPT", "-> KEEP"), "metric": "UGPhysics problems right (shipped vs convert)",
+                        "before": ship, "after": conv, "n": n, "cost_ratio": cost,
+                        "note": "lead -2 to +17 (paired 95%), not clear; a confirmation on 153 unused problems is running"})
+
     text = run("evals/test_detect.py")
     routing = [{"set": label, "right": int(m[1]), "total": int(m[2])}
                for label, m in (("eval-set texts", re.search(r"eval-set texts.*?(\d+)/(\d+)", text)),
