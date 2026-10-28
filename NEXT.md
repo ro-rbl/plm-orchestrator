@@ -20,10 +20,15 @@ Published privately: https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
 Suggested order for the next session:
-1. **Better SQL checks** (best remaining gain): flag queries that run but look wrong (no rows, a huge result, none
-   of the question's tables), so a cheaper model can go first and the coder takes only flagged ones. Write the
-   rule first and judge on BIRD/Spider questions not used so far (Spider dev has 734 unsampled questions:
-   `evals/bench_sql.py` samples 300 of 1034 with SAMPLE_SEED). See "SQL pack" below.
+1. **Better SQL checks: overnight run started 2026-10-27, read its verdict first.** Flags in
+   `plm_sql/flags.py` (error, empty, >100 rows, all NULL, none of the question's tables; read on the real
+   database), CANDIDATE and FLAGS_RULE in `evals/bench_sql_check.py`, committed in 9468d76 before any answer.
+   On the seen Spider/BIRD answers, cheap-first cascades stayed 10-30 behind the coder, so the candidate is the
+   coder with a 4B second opinion on a flag. Judged on 734 unsampled Spider dev + 2147 Spider test questions.
+   Log `results/sql_check.log`; resume (skips what's done): `results/run_sql_check.sh`; verdict:
+   `.venv/bin/python evals/bench_sql_check.py --simulate`. Then record it in `docs/results.md`, ROADMAP and
+   the `plm_sql/controller.py` docstring. If adopted, the pack needs an optional read-only database path
+   (the user's choice: real DB, opt-in; `sandbox.run_query(db_path=...)` already exists).
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
