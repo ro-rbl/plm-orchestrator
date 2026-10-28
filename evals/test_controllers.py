@@ -28,6 +28,7 @@ from plm_physics import controller as physics  # noqa: E402
 import plm_cad.controller as cad  # noqa: E402
 import plm_sql.controller as sql  # noqa: E402
 from plm.report import answer_body  # noqa: E402
+from plm_sql.flags import named_tables, result_flags  # noqa: E402
 from plm_sql.sandbox import run_query  # noqa: E402
 
 FAILS = []
@@ -201,6 +202,24 @@ def test_sql():
     slow = run_query("CREATE TABLE t (a);", "WITH RECURSIVE r(n) AS (SELECT 1 UNION ALL SELECT n + 1 FROM r) SELECT COUNT(*) FROM r",
                      seconds=0.5)
     expect("sql: a runaway query is stopped", "longer than" in (slow["error"] or ""), slow)
+    tables = ["singer", "concert", "singer_in_concert"]
+    db = ("CREATE TABLE singer (id, name); CREATE TABLE concert (id, year); CREATE TABLE singer_in_concert (s, c);"
+          "INSERT INTO singer VALUES (1, 'A'), (2, NULL); INSERT INTO concert VALUES (1, 2014);")
+    q = "How many singers are there?"
+    flagged = {query: result_flags(q, query, run_query(db, query), tables) for query in
+               ["SELECT COUNT(*) FROM singer", "SELECT COUNT(*) FROM concert", "SELECT name FROM singer WHERE id = 9",
+                "SELECT name FROM singer WHERE id = 2", "SELECT nme FROM singer", "SELECT 1"]}
+    expect("sql flags: the right query raises none", flagged["SELECT COUNT(*) FROM singer"] == [], flagged)
+    expect("sql flags: none of the question's tables", flagged["SELECT COUNT(*) FROM concert"] == ["tables"], flagged)
+    expect("sql flags: no rows", flagged["SELECT name FROM singer WHERE id = 9"] == ["empty"], flagged)
+    expect("sql flags: only NULLs", flagged["SELECT name FROM singer WHERE id = 2"] == ["nulls"], flagged)
+    expect("sql flags: doesn't run", flagged["SELECT nme FROM singer"] == ["error"], flagged)
+    expect("sql flags: no FROM at all still misses the question's table", flagged["SELECT 1"] == ["tables"], flagged)
+    expect("sql flags: a plural folds to its table, a multiword table needs every word",
+           named_tables("Which singers performed at a concert?", tables) == ["singer", "concert"]
+           and named_tables("singer in concert", tables) == tables, named_tables("singer in concert", tables))
+    big = run_query("CREATE TABLE t (n);" + "".join(f"INSERT INTO t VALUES ({i});" for i in range(101)), "SELECT n FROM t")
+    expect("sql flags: more than 100 rows", result_flags("list every t", "SELECT n FROM t", big, ["t"]) == ["huge"], big["n_rows"])
     expect("detect: a Python function on SQLite stays software",
            detect("Write a Python function `count(db: str) -> int` that runs a SQL query on a SQLite table.") == "software")
     expect("detect: a question about SQL with no query asked goes to general", detect("What is SQL injection?") == "general")
