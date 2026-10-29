@@ -33,6 +33,11 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   48 vs 46 for the old policy, at 42% of its compute.
 - **No public benchmark found for electrical or aerospace** that fits (numeric, unit-bearing engineering
   problems): TheoremQA's EECS subset is signals, graphs and networking; aerospace searches found corpora only.
+- **SQL result flags** (`evals/bench_sql_check.py`, FLAGS_RULE fixed before): on 2880 Spider questions no model had
+  answered (733 unsampled dev, 2147 test), the coder alone 2212 (76.8%); the coder with a 4B second opinion when its
+  query's result on the real database looks wrong (error, no rows, over 100 rows, all NULL, none of the question's
+  tables) 2230 (77.4%), +7 to +30 paired 95%, at 105% compute: adopted. The 4B first with the coder on a flag: 1990.
+  It needs the user's database, so the pack uses it only when one is given (not built yet).
 - **What changed because of these:** SQL and software moved to the coder alone; physics moved from the
   8B answering directly (52/144) to the routed calculator policy; GSM8K left the general pack as it is.
 

@@ -20,17 +20,13 @@ Published privately: https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
 Suggested order for the next session:
-1. **Better SQL checks: overnight run started 2026-10-27, read its verdict first.** Flags in
-   `plm_sql/flags.py` (error, empty, >100 rows, all NULL, none of the question's tables; read on the real
-   database), CANDIDATE and FLAGS_RULE in `evals/bench_sql_check.py`, committed in 9468d76 before any answer.
-   On the seen Spider/BIRD answers, cheap-first cascades stayed 10-30 behind the coder, so the candidate is the
-   coder with a 4B second opinion on a flag. Judged on 734 unsampled Spider dev + 2147 Spider test questions.
-   Log `results/sql_check.log`; resume (skips what's done): `results/run_sql_check.sh`; verdict:
-   `.venv/bin/python evals/bench_sql_check.py --simulate`. Then record it in `docs/results.md`, ROADMAP and
-   the `plm_sql/controller.py` docstring. If adopted, the pack needs an optional read-only database path
-   (the user's choice: real DB, opt-in; `sandbox.run_query(db_path=...)` already exists).
-   Interrupted 2026-10-28 (Mac slept on battery; 40 timed-out rows removed), resumed 2026-10-29 on AC: the
-   runner now stops after 3 timeouts in a row instead of saving them.
+1. **Build the SQL flags into the pack** (adopted 2026-10-29, not built yet). FLAGS_RULE passed on 2880 unseen
+   Spider questions: the coder with a 4B second opinion on a flag, 2230 vs 2212 for the coder alone (+7 to +30,
+   105% compute; `results/sql_check_verdict.log`). The flags read the result on the real database, so: add an
+   opt-in read-only database (`plm --sql-db <file>`, `PLM_SQL_DB` for the server, never a per-request path),
+   read the schema from it, run the policy in `plm_sql/controller.py` (a flagged query the 4B can't fix is
+   reported with its flag), offline tests, a live check on a Spider database, `/verify`. Then the
+   controller docstring and README. Without a database the pack stays as it is today.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
@@ -105,6 +101,9 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       fare per km" with `AVG(fare) / AVG(km)`, which runs, and was trusted. Ideas, each to judge on new
       tasks: flag a query that names none of the schema's tables, or one returning no rows on given sample rows.
       On the fresh sets the check caught 4 of 26 wrong queries: this is now the pack's main weakness.
+      2026-10-29: result flags on a real database (`plm_sql/flags.py`) caught 194 of the coder's 668 wrong
+      Spider queries, but with 170 false alarms (the tables flag: 38 caught, 86 false). Noticed after the
+      verdict; tightening it needs new questions to judge. Without a database, still schema-only.
 - [ ] **A schema written in prose is unchecked** ("a table sales(region, month, amount)", routing case q03):
       only CREATE TABLE statements are run. Building a table from such a signature is untested.
 - [ ] **Level misses** (left as measured): eval 42/45, holdout 24/24, but fresh 19/24 and fresh2 14/24, so the

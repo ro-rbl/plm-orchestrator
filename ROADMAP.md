@@ -110,6 +110,10 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] Physics confirmation: TheoremQA physics (112), TQA_RULE: the switch holds (48 vs 46, 42% compute).
 - [x] CAD: CADPrompt (195 parts built from their own CadQuery references), CADP_RULE: keeps the coder (28/195;
       cascades 35, interval 0 to +14). Electrical and aerospace: no fitting public benchmark found.
+- [x] SQL result flags (`plm_sql/flags.py`: error, no rows, >100 rows, all NULL, none of the question's tables),
+      read on the real database; FLAGS_RULE fixed before, judged on 2880 unseen Spider questions (733 unsampled
+      dev + 2147 test): the coder with a 4B second opinion on a flag 2230 vs the coder alone 2212 (+7 to +30,
+      105% compute): adopted; needs an opt-in database in the pack, not built yet. 4B first, coder on a flag: 1990.
 - [x] GSM8K cross-check (300 sampled, `evals/bench_gsm8k.py`, GSM_RULE fixed before): the 8B direct 272/300 (91%)
       beats the 8B with the calculator 261 (-21 to -1) and the 4B with it 256: the general pack stays as it is.
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
