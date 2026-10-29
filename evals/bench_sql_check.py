@@ -85,6 +85,7 @@ def run(name, model, num_predict, timeout):
     done = {r["id"] for r in run_sql.load(out)} if out.exists() else set()
     todo = [t for t in ts if t["id"] not in done]
     print(f"{model} on spider {name}: {len(todo)} to run, {len(done)} already in {out}")
+    timeouts = 0
     with out.open("a") as f:
         for i, t in enumerate(todo, 1):
             row = {"id": t["id"], "model": model, "prompt_version": PROMPT_VERSION, "num_predict": num_predict}
@@ -102,9 +103,16 @@ def run(name, model, num_predict, timeout):
             except Exception as e:  # keep going; one bad request must not lose the run
                 if unreachable(e):  # stop without saving, so a resume retries this task and the rest
                     sys.exit(f"Ollama is unreachable ({type(e).__name__}: {e}); stopped, resume to retry")
+                if isinstance(e, TimeoutError):  # not saved, so a resume retries it; a run of them means a sleeping Mac
+                    timeouts += 1
+                    print(f"[{i}/{len(todo)}] {t['id']} timed out, not saved ({timeouts} in a row)", flush=True)
+                    if timeouts >= 3:
+                        sys.exit("3 requests in a row timed out (did the Mac sleep?); stopped, resume to retry")
+                    continue
                 row.update({"response": "", "eval_tokens": 0, "prompt_tokens": 0, "wall_s": 0, "done_reason": "error",
                             "query": None, "issues": ["request failed"], "flags": ["error"], "error": f"{type(e).__name__}: {e}",
                             "verdict": "request_error"})
+            timeouts = 0
             f.write(json.dumps(row) + "\n")
             f.flush()
             print(f"[{i}/{len(todo)}] {t['id']} {row['verdict']:<13} {row['eval_tokens']:>5} tok {row['wall_s']:>6.1f}s"
