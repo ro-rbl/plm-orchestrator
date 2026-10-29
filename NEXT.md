@@ -29,6 +29,8 @@ Suggested order for the next session:
    `.venv/bin/python evals/bench_sql_check.py --simulate`. Then record it in `docs/results.md`, ROADMAP and
    the `plm_sql/controller.py` docstring. If adopted, the pack needs an optional read-only database path
    (the user's choice: real DB, opt-in; `sandbox.run_query(db_path=...)` already exists).
+   Interrupted 2026-10-28 (Mac slept on battery; 40 timed-out rows removed), resumed 2026-10-29 on AC: the
+   runner now stops after 3 timeouts in a row instead of saving them.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
@@ -50,9 +52,6 @@ The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly 
 - [ ] **Claim scores for third-party packs are uncalibrated.** Today's are term counts tuned for three
       packs; a fourth could out-claim them. Open decision in `docs/pack-packaging.md`; decide before
       accepting a pack written by someone else.
-- [ ] **With a broken pack installed, `plm "<task>"` prints a Python traceback**, ending in a clear
-      RuntimeError that names `plm packs remove <name>`. A one-line message would be friendlier:
-      `packages/plm-core/src/plm/__main__.py` (catch around `from plm.packs import ...`) and the same in `server.py`.
 
 ## Decompose-then-solve: loose ends
 - [ ] **Step prompt v1 shows the unit "A" in its example, and the 8B copied it** in all 12 fallbacks

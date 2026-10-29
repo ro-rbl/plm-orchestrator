@@ -92,14 +92,19 @@ def run_one(task, args):
 
 
 def main():
-    if sys.argv[1:2] == ["serve"]:
-        from plm.server import main as serve
-        return serve(sys.argv[2:])
     if sys.argv[1:2] == ["packs"]:
         # before importing plm.packs, which refuses to start with a broken pack installed
         from plm.manage import main as packs
         return packs(sys.argv[2:])
-    from plm.packs import PACKS
+    try:  # a broken pack is a one-line message (it names `plm packs remove`), not a traceback
+        if sys.argv[1:2] == ["serve"]:
+            from plm.server import main as serve
+        else:
+            from plm.packs import PACKS
+    except RuntimeError as e:
+        sys.exit(f"plm: {e}")
+    if sys.argv[1:2] == ["serve"]:
+        return serve(sys.argv[2:])
 
     ap = argparse.ArgumentParser(prog="plm", description="Adaptive multi-model orchestrator "
                                  "('plm serve' for the server, 'plm packs' to manage packs)")

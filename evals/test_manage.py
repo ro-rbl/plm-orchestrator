@@ -110,8 +110,23 @@ def test_guards():
            and ollama.full_name("qwen3:8b") == "qwen3:8b")
 
 
+def test_broken_pack_message():
+    """With a broken pack installed, `plm <task>` and `plm serve` print one line naming `plm packs remove`."""
+    import subprocess
+    fake = ("import types, plm.pack as p\n"
+            "p.discover = lambda: [(types.SimpleNamespace(name='broken', value='plm_broken.manifest:PACK'), "
+            "ImportError('boom'))]\n"
+            "import sys; sys.argv = ['plm'] + sys.argv[1:]\n"
+            "from plm.__main__ import main; main()\n")
+    for argv in (["What is 2 + 2?"], ["serve", "--port", "0"]):
+        r = subprocess.run([sys.executable, "-c", fake, *argv], capture_output=True, text=True, timeout=60, cwd=ROOT)
+        expect(f"broken pack: plm {argv[0]} prints one line", r.returncode == 1 and "Traceback" not in r.stderr
+               and r.stderr.strip().count("\n") == 0 and "plm packs remove broken" in r.stderr, r.stderr)
+
+
 def main():
     test_source()
+    test_broken_pack_message()
     test_list_and_doctor()
     test_guards()
     for f in FAILS:
