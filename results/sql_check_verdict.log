@@ -1,0 +1,17 @@
+spider rest: 733 tasks (1 dropped: gold query errors or a request failed)
+spider test: 2147 tasks (0 dropped: gold query errors or a request failed)
+
+policy                                              score  compute   vs shipped, 95% CI
+always coder                                    2212/2880     100%                     
+coder, 4B second opinion on a flag              2230/2880     105%            +7 to +30
+always 4B (reported)                            1804/2880      32%         -452 to -361
+4B -> coder when it doesn't run (reported)      1895/2880      38%         -358 to -274
+4B -> coder on any flag (reported)              1990/2880      54%         -259 to -183
+hindsight (reported)                            2297/2880       0%          +68 to +104
+
+rule: coder, 4B second opinion on a flag (the coder answers; when its query is flagged, the 4B answers too, and the 4B's query is used iff it raises no flag) replaces always coder iff, over both sets pooled, a paired bootstrap 95% interval of its score minus the shipped policy's lies entirely above 0 (accuracy first, compute reported); otherwise the pack keeps the coder alone
+-> ADOPT: coder, 4B second opinion on a flag
+
+flags vs the key (per model, pooled):
+   4B     wrong  1076  caught   387  false alarms  124   caught by {'error': 144, 'empty': 146, 'huge': 30, 'nulls': 21, 'tables': 59}   false by {'error': 0, 'empty': 51, 'huge': 12, 'nulls': 2, 'tables': 61}
+   coder  wrong   668  caught   194  false alarms  170   caught by {'error': 18, 'empty': 107, 'huge': 26, 'nulls': 14, 'tables': 38}   false by {'error': 0, 'empty': 61, 'huge': 23, 'nulls': 2, 'tables': 86}
