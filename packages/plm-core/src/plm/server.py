@@ -330,6 +330,10 @@ def main(argv=None):
         sys.exit(f"plm serve: refusing to listen on {args.host}: there is no authentication and the software pack "
                  "runs model-written code. Use --allow-remote if you really mean it.")
 
+    sql_db = os.environ.get("PLM_SQL_DB")
+    if sql_db and not Path(sql_db).expanduser().is_file():
+        sys.exit(f"plm serve: PLM_SQL_DB is {sql_db!r}, which isn't a file")
+
     server = make_server(args.host, args.port)
     port = server.server_address[1]
     LOG_DIR.mkdir(parents=True, exist_ok=True)

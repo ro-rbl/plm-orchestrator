@@ -124,8 +124,23 @@ def test_broken_pack_message():
                and r.stderr.strip().count("\n") == 0 and "plm packs remove broken" in r.stderr, r.stderr)
 
 
+def test_sql_db_errors():
+    """A bad --sql-db or PLM_SQL_DB is a one-line error before any model is called."""
+    import os
+    import subprocess
+    env = {k: v for k, v in os.environ.items() if k != "PLM_SQL_DB"}
+    r = subprocess.run([sys.executable, "-m", "plm", "--sql-db", "/nonexistent/x.sqlite", "How many?"],
+                       capture_output=True, text=True, timeout=60, cwd=ROOT, env=env)
+    expect("--sql-db: a missing file is one line", r.returncode == 1 and "Traceback" not in r.stderr
+           and "no database file" in r.stderr, r.stderr)
+    r = subprocess.run([sys.executable, "-m", "plm", "serve", "--port", "0"], capture_output=True, text=True,
+                       timeout=60, cwd=ROOT, env=env | {"PLM_SQL_DB": "/nonexistent/x.sqlite"})
+    expect("serve: a missing PLM_SQL_DB stops startup", r.returncode == 1 and "isn't a file" in r.stderr, r.stderr)
+
+
 def main():
     test_source()
+    test_sql_db_errors()
     test_broken_pack_message()
     test_list_and_doctor()
     test_guards()

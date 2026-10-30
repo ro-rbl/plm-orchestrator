@@ -6,6 +6,7 @@
     .venv/bin/python -m plm                 # interactive: one task per line
     .venv/bin/python -m plm --pack software --level intensive --show-work "..."
     .venv/bin/python -m plm --thorough "$(cat task.txt)"   # software: add model-written tests (~4x compute)
+    .venv/bin/python -m plm --sql-db shop.sqlite "Which customers ordered twice?"   # sql pack, checked on the data
     .venv/bin/python -m plm serve           # OpenAI-compatible server, see plm/server.py
     .venv/bin/python -m plm packs list      # installed packs; also install / remove / doctor, see plm/manage.py
 
@@ -42,7 +43,7 @@ def report(result, show_work):
         if s["issues"] and i < len(result["steps"]):
             status += " -> escalated"
         if s is chosen and i < len(result["steps"]):
-            status += "  [answer used: passed the examples and the most generated tests]"
+            status += f"  [answer used: {result.get('chosen_note') or 'passed the examples and the most generated tests'}]"
         if not result["checked"] and not s["issues"]:
             status = "unchecked"
         print(f"step {i}  {short(s['model']):<22} {how(s):<10} {s['tokens']:>5} tok {s['seconds']:>6.1f} s   {status}")
@@ -67,8 +68,13 @@ def run_one(task, args):
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
-    pack = args.pack if args.pack != "auto" else detect(task)
+    pack = args.pack if args.pack != "auto" else "sql" if args.sql_db else detect(task)
     extra = {}
+    if args.sql_db:
+        if pack == "sql":
+            extra["db"] = args.sql_db
+        else:
+            print(f"plm: --sql-db only applies to the sql pack; ignoring it for {pack}", file=sys.stderr)
     if args.thorough:
         if pack == "software":
             extra["thorough"] = True
@@ -82,6 +88,8 @@ def run_one(task, args):
                  "(set PLM_SMALL_MODEL / PLM_LARGE_MODEL / PLM_CODER_MODEL)")
     except urllib.error.URLError as e:
         sys.exit(f"Can't reach Ollama ({e.reason}). Is it running? Address comes from OLLAMA_HOST.")
+    except ValueError as e:  # a --sql-db / PLM_SQL_DB file that can't be opened
+        sys.exit(f"plm: {e}")
     LOG.parent.mkdir(parents=True, exist_ok=True)
     with LOG.open("a") as f:
         f.write(json.dumps(result) + "\n")
@@ -113,6 +121,8 @@ def main():
     ap.add_argument("--level", choices=["calm", "alert", "intensive"], help="force an adrenaline level instead of classifying")
     ap.add_argument("--thorough", action="store_true",
                     help="software: also check code against tests a second model writes (~4x compute)")
+    ap.add_argument("--sql-db", metavar="FILE", help="sql: a SQLite database to read the schema from and check the query "
+                    "on, read-only (implies --pack sql; the server reads PLM_SQL_DB)")
     ap.add_argument("--show-work", action="store_true", help="print each model's program or reasoning")
     ap.add_argument("--json", action="store_true", help="print the full result as JSON")
     ap.add_argument("--timeout", type=int, default=600, help="seconds per model call")

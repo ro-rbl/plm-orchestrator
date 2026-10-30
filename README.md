@@ -39,7 +39,7 @@ Ollama doesn't have yet:
 | software | `plm-software` | `qwen2.5-coder:14b` (9.0 GB); `--thorough` also uses `qwen3:8b` to write tests |
 | physics | `plm-physics` | the 4B and `qwen3:8b` (as electrical) |
 | cad | `plm-cad` | `qwen2.5-coder:14b` (9.0 GB); also installs CadQuery (about 1.3 GB on disk) to build and measure every part |
-| sql | `plm-sql` | `qwen2.5-coder:14b` (9.0 GB); the checker is Python's built-in SQLite |
+| sql | `plm-sql` | `qwen2.5-coder:14b` (9.0 GB), and the 4B as a second opinion when a database is given; the checker is Python's built-in SQLite |
 
 ```bash
 .venv/bin/plm packs list                 # installed packs, versions, and whether their models are pulled
@@ -103,6 +103,8 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
+- With `PLM_SQL_DB` set, SQL answers are checked on that database, but routing still reads the message: a
+  question with no schema and no SQL wording may not reach the SQL pack (the CLI's `--sql-db` forces it).
 - Tasks an installed pack claims (electrical, aerospace, physics, coding, CAD, SQL) go to that pack
   and are released only after they're checked, so a streamed answer arrives in
   one piece. Everything else goes to the 8B, streams token by token, and is never checked.
@@ -134,7 +136,7 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | aerospace | everything to the 8B + calculator (routing to the 4B lost accuracy here) | unit and sanity checks | 39/50 at 41% of always-8B compute |
 | physics (mechanics, fluids, heat, materials) | level picks the model: 4B + calculator, escalating to 8B + calculator (as electrical) | unit and sanity checks | SciBench physics 69/144 (48%) vs 52 for the old 8B-direct policy, at 48% of its compute; TheoremQA 48/112 confirms it; own set 44/50 |
 | cad (parts in millimeters) | everything to the coder 14B (the smaller models misuse CadQuery's API) | the part must build as one valid solid whose overall size matches the task; it can't see wrong features inside | own set 17/36; CADPrompt 28/195 (14%) exactly right (bounding box and volume within 0.1%) |
-| sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%) | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked); it can't see a query that runs but answers something else | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
+| sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%); with a database, a flagged query gets a 4B second opinion | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked). With your database (`plm --sql-db file.sqlite`, or `PLM_SQL_DB` for the server; read-only) it runs on the real data, and a result with no rows, over 100 rows, only NULLs or none of the question's tables is flagged: 2230 vs 2212 of 2880 unseen Spider questions | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
 | software | everything to the coder 14B (the cheap-first cascade lost on public benchmarks) | code must pass the task's examples | HumanEval+ 85%, MBPP+ 72% (540 tasks pooled: 76% vs the old cascade's 72%) |
 | software `--thorough` | the coder, checked harder | examples + 8 tests written by the 8B from the task alone | measured with the old cascade (42/45 at 228%); not re-measured with the coder alone |
 
@@ -156,7 +158,8 @@ and `claims.py` (which tasks it takes):
 - `plm_cad`: a part described in words becomes a CadQuery program; `kernel.py` builds it in an isolated
   process and measures it, `checks.py` checks its size against the task without an answer key.
 - `plm_sql`: a question about tables becomes a SQLite query; `sandbox.py` runs it on the task's schema in a
-  throwaway read-only database in an isolated process.
+  throwaway read-only database in an isolated process, or on the user's database opened read-only, where
+  `flags.py` reads the result.
 
 Elsewhere:
 - `docs/pack-packaging.md`: the design for separately installable packs and its migration steps.

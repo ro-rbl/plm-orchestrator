@@ -20,13 +20,10 @@ Published privately: https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
 Suggested order for the next session:
-1. **Build the SQL flags into the pack** (adopted 2026-10-29, not built yet). FLAGS_RULE passed on 2880 unseen
-   Spider questions: the coder with a 4B second opinion on a flag, 2230 vs 2212 for the coder alone (+7 to +30,
-   105% compute; `results/sql_check_verdict.log`). The flags read the result on the real database, so: add an
-   opt-in read-only database (`plm --sql-db <file>`, `PLM_SQL_DB` for the server, never a per-request path),
-   read the schema from it, run the policy in `plm_sql/controller.py` (a flagged query the 4B can't fix is
-   reported with its flag), offline tests, a live check on a Spider database, `/verify`. Then the
-   controller docstring and README. Without a database the pack stays as it is today.
+1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test
+   questions, every query and path matched the benchmark's. Open: with only `PLM_SQL_DB`, the server's routing
+   still reads the message, so a schema-free question may not reach the SQL pack (`plm_sql/claims.py`; a fix
+   needs held-out routing cases). The tables flag's false alarms are under "SQL pack" below.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.

@@ -27,7 +27,7 @@ from plm_electrical import controller as electrical  # noqa: E402
 from plm_physics import controller as physics  # noqa: E402
 import plm_cad.controller as cad  # noqa: E402
 import plm_sql.controller as sql  # noqa: E402
-from plm.report import answer_body  # noqa: E402
+from plm.report import answer_body, caveat  # noqa: E402
 from plm_sql.flags import named_tables, result_flags  # noqa: E402
 from plm_sql.sandbox import run_query  # noqa: E402
 
@@ -220,9 +220,78 @@ def test_sql():
            and named_tables("singer in concert", tables) == tables, named_tables("singer in concert", tables))
     big = run_query("CREATE TABLE t (n);" + "".join(f"INSERT INTO t VALUES ({i});" for i in range(101)), "SELECT n FROM t")
     expect("sql flags: more than 100 rows", result_flags("list every t", "SELECT n FROM t", big, ["t"]) == ["huge"], big["n_rows"])
+    test_sql_database(large)
     expect("detect: a Python function on SQLite stays software",
            detect("Write a Python function `count(db: str) -> int` that runs a SQL query on a SQLite table.") == "software")
     expect("detect: a question about SQL with no query asked goes to general", detect("What is SQL injection?") == "general")
+
+
+def test_sql_database(large):
+    """With the user's database: the schema comes from the file, and a flagged coder query gets a 4B second opinion."""
+    import sqlite3
+    import tempfile
+    small = sql.MODELS["small"]
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "pets.sqlite"
+        con = sqlite3.connect(path)
+        con.executescript("CREATE TABLE pets (id INTEGER PRIMARY KEY, name TEXT, kind TEXT);"
+                          "INSERT INTO pets VALUES (1, 'Rex', 'dog'), (2, 'Tom', 'cat');")
+        con.commit()
+        con.close()
+        q = "List the names of the dog pets."
+        good = "```sql\nSELECT name FROM pets WHERE kind = 'dog'\n```"
+        empty = "```sql\nSELECT name FROM pets WHERE kind = 'Dog'\n```"
+        prompts = []
+
+        def recording(replies):
+            ask, calls = fake_ollama(replies)
+
+            def wrapped(model, prompt, *rest):
+                prompts.append(prompt)
+                return ask(model, prompt, *rest)
+            return wrapped, calls
+
+        sql.ask, calls = recording({large: [good]})
+        r = sql.solve(q, db=str(path))
+        expect("sql db: the schema is read from the file and a clean query is trusted, one call",
+               calls == [large] and r["trusted"] and r["checked"] and "CREATE TABLE pets" in prompts[-1]
+               and r["task"] == q and r["database"] == str(path.resolve()) and r["steps"][0]["on_db"]["n_rows"] == 1, r)
+        sql.ask, calls = recording({large: [empty], small: [good]})
+        r = sql.solve(q, db=str(path))
+        expect("sql db: no rows -> the 4B's clean query is used", calls == [large, small] and r["trusted"]
+               and r["answer"]["code"].endswith("'dog'") and r["final_step"] == 2
+               and r["steps"][0]["issues"] == ["returns no rows on the database"], r)
+        sql.ask, calls = recording({large: [empty], small: ["```sql\nSELECT nme FROM pets\n```"]})
+        r = sql.solve(q, db=str(path))
+        expect("sql db: both flagged -> the coder's query, reported with its flag", calls == [large, small]
+               and not r["trusted"] and r["final_step"] == 1 and r["answer"]["code"].endswith("'Dog'")
+               and caveat(r) == "unverified: returns no rows on the database", r)
+        sql.ask, calls = recording({large: ["I need more detail."], small: [good]})
+        r = sql.solve(q, db=str(path))
+        expect("sql db: no query from the coder -> the 4B is asked", calls == [large, small] and r["trusted"], r)
+        sql.ask, calls = recording({large: ["```sql\nSELECT COUNT(*) FROM pets WHERE kind = 'dog'\n```"]})
+        r = sql.solve("How many pets are dogs?", db=str(path))
+        expect("sql db: a count of one row is not flagged", calls == [large] and r["trusted"], r)
+        try:
+            sql.solve(q, db=str(Path(tmp) / "missing.sqlite"))
+            expect("sql db: a missing file is an error", False)
+        except ValueError as e:
+            expect("sql db: a missing file is an error", "no database file" in str(e), e)
+        (Path(tmp) / "junk.sqlite").write_text("not a database")
+        try:
+            sql.solve(q, db=str(Path(tmp) / "junk.sqlite"))
+            expect("sql db: a non-database file is an error", False)
+        except ValueError as e:
+            expect("sql db: a non-database file is an error", "isn't a readable SQLite database" in str(e), e)
+        con = sqlite3.connect(path)
+        before = con.execute("SELECT COUNT(*) FROM pets").fetchone()[0]
+        con.close()
+        sql.ask, calls = recording({large: ["```sql\nDELETE FROM pets\n```"], small: ["```sql\nDROP TABLE pets\n```"]})
+        r = sql.solve(q, db=str(path))
+        con = sqlite3.connect(path)
+        after = con.execute("SELECT COUNT(*) FROM pets").fetchone()[0]
+        con.close()
+        expect("sql db: writes are refused and the file is untouched", before == after == 2 and not r["trusted"], r)
 
 
 def test_decompose():
