@@ -26,7 +26,7 @@ Suggested order for the next session:
    needs held-out routing cases). The tables flag's false alarms are under "SQL pack" below.
 1b. **BIRD confirmation of the SQL flags policy, started 2026-10-31 overnight.** 1036 BIRD dev questions mini-dev
    doesn't use (2025-11-06 revision from Hugging Face; databases are mini-dev's), CONFIRM_RULE committed in
-   e6f405d before any answer. About 26 s/question for the coder (long answers, tight memory): ~10 h in all.
+   e6f405d before any answer. Slow at first (26 s/question) until the pinned 8B was unloaded (see Tooling notes); resumed at 7-11 s.
    Log `results/sql_confirm.log`; resume: `results/run_sql_confirm.sh >> results/sql_confirm.log 2>&1 &`;
    verdict: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`. If it says REVERT, set the
    pack back to the coder alone (`plm_sql/controller.py` SECOND_OPINION step) and record why.
@@ -227,10 +227,10 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
   write the script to a file.
 - Ollama's `qwen3:4b` tag is Qwen3-4B-Thinking-2507 (always reasons first; 31/50 direct answers hit the token
   cap with thinking suppressed), not the original hybrid Qwen3-4B the abliterated build comes from.
-- The machine pins `qwen3:8b` in memory ("Forever" in `ollama ps`, 6.3 GB), set by something outside this repo;
-  with it, swap sits around 11 GB during sweeps.
-
-## Deferred by choice
+- The machine pins `qwen3:8b` in memory ("Forever" in `ollama ps`, 6.3 GB), set by something outside this repo.
+  On 2026-10-31 it left the coder unable to load: requests hung with nothing returned (a run stopped on 3
+  timeouts), and the coder had been generating at about 4 tok/s. `ollama stop qwen3:8b` fixed both (coder 7-11 s
+  per BIRD question, was 26+). Before a long run that doesn't use the 8B: `ollama stop qwen3:8b`, then `ollama ps`.
 - The abliterated 4B is no longer a default. Against its own original (same base, quantizer and quant) it
   loses 9 electrical problems answering directly and 4 with the calculator, mostly intensive ones; software
   is within noise. An earlier note here called abliterated models "fine as specialists": that came from
