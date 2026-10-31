@@ -15,6 +15,14 @@ the coder was CANDIDATE: 231 vs 228 and 262 vs 254, at 105-108% compute. Other c
 10-30 tasks behind and are reported here, not judged.
 
 CANDIDATE, FLAGS_RULE and plm_sql.flags were fixed on 2026-10-27 before any model answered either set.
+FLAGS_RULE adopted CANDIDATE on 2026-10-29 (2230/2880 vs 2212, +7 to +30).
+
+Confirmation on a second benchmark: "bird", the 1036 questions of BIRD dev (the 2025-11-06 revision,
+birdsql/bird_sql_dev_20251106 on Hugging Face; questions only, its 11 databases are mini-dev's) that
+mini-dev doesn't use (mini-dev's question_ids are dev's). The question gets its hint ("evidence"), as in
+bench_sql.py. CONFIRM_RULE was fixed on 2026-10-31 before any model answered it:
+    .venv/bin/python evals/bench_sql_check.py --set bird --model qwen2.5-coder:14b
+    .venv/bin/python evals/bench_sql_check.py --simulate --sets bird
 """
 
 import argparse
@@ -38,7 +46,8 @@ from plm_sql.sandbox import run_query  # noqa: E402
 from plm_sql.sqlgen import PROMPT_VERSION, build_prompt, extract_sql, split_task  # noqa: E402
 
 BASE = bench_sql.DATA / "spider/spider_data"
-SETS = ("rest", "test")
+SETS = ("rest", "test")  # FLAGS_RULE's sets, pooled; "bird" is CONFIRM_RULE's
+BIRD = bench_sql.DATA / "bird"
 MODELS = {"4B": run_sql.SMALL, "coder": run_sql.MODELS["coder"]}
 SHIPPED = "always coder"
 CANDIDATE = "coder, 4B second opinion on a flag"
@@ -46,23 +55,37 @@ FLAGS_RULE = (f"{CANDIDATE} (the coder answers; when its query is flagged, the 4
               f"used iff it raises no flag) replaces {SHIPPED} iff, over both sets pooled, a paired bootstrap 95% "
               "interval of its score minus the shipped policy's lies entirely above 0 (accuracy first, compute reported); "
               "otherwise the pack keeps the coder alone")
+CONFIRM_RULE = (f"the adopted policy ({CANDIDATE}) is confirmed on the BIRD dev questions mini-dev doesn't use unless "
+                f"{SHIPPED} beats it there with a paired bootstrap 95% interval of the score difference entirely above 0; "
+                "if it does, the SQL pack reverts to the coder alone")
 SEED = 20261027
 
 
 def tasks(name):
-    if not BASE.exists():
+    if name == "bird":
+        dev_file, base = BIRD / "dev_20251106/dev_20251106.json", BIRD / "minidev/MINIDEV"
+        if not (dev_file.exists() and base.exists()):
+            sys.exit(f"{dev_file} or {base} is missing: data/dev_20251106-00000-of-00001.json from "
+                     "huggingface.co/datasets/birdsql/bird_sql_dev_20251106, saved as that name, and mini-dev (bench_sql.py)")
+        mini = {d["question_id"] for d in json.load(open(base / "mini_dev_sqlite.json"))}
+        items = [(f"bird-dev-{d['question_id']:04d}",
+                  {"db_id": d["db_id"], "query": d["SQL"],
+                   "question": d["question"] + (f" Hint: {d['evidence']}" if d.get("evidence") else "")})
+                 for d in json.load(open(dev_file)) if d["question_id"] not in mini]
+        folder, root = "dev_databases", base
+    elif not BASE.exists():
         sys.exit(f"{BASE} is missing: download and unzip Spider into .benchmarks/ (see evals/bench_sql.py)")
     if name == "rest":
         dev = json.load(open(BASE / "dev.json"))
         used = set(random.Random(bench_sql.SAMPLE_SEED).sample(range(len(dev)), bench_sql.SPIDER_SAMPLE))
         items = [(f"spider-{i:04d}", dev[i]) for i in range(len(dev)) if i not in used]
-        folder = "database"
-    else:
+        folder, root = "database", BASE
+    elif name == "test":
         items = [(f"spider-test-{i:04d}", d) for i, d in enumerate(json.load(open(BASE / "test.json")))]
-        folder = "test_database"
+        folder, root = "test_database", BASE
     schemas, tables, out = {}, {}, []
     for tid, d in items:
-        db = BASE / folder / d["db_id"] / f"{d['db_id']}.sqlite"
+        db = root / folder / d["db_id"] / f"{d['db_id']}.sqlite"
         if db not in schemas:
             schemas[db] = bench_sql.schema_sql(db)
             con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
@@ -76,6 +99,8 @@ def tasks(name):
 
 
 def results_path(name, model):
+    if name == "bird":
+        return run_sql.RESULTS / f"bench_bird_rest__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
     return run_sql.RESULTS / f"bench_spider_{name}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
 
 
@@ -84,7 +109,7 @@ def run(name, model, num_predict, timeout):
     out = results_path(name, model)
     done = {r["id"] for r in run_sql.load(out)} if out.exists() else set()
     todo = [t for t in ts if t["id"] not in done]
-    print(f"{model} on spider {name}: {len(todo)} to run, {len(done)} already in {out}")
+    print(f"{model} on {name}: {len(todo)} to run, {len(done)} already in {out}")
     timeouts = 0
     with out.open("a") as f:
         for i, t in enumerate(todo, 1):
@@ -148,19 +173,19 @@ def outcomes(R, ids):
     }
 
 
-def simulate(resamples=2000):
+def simulate(sets=SETS, resamples=2000):
     R, ids = {k: {} for k in MODELS}, []
-    for name in SETS:
+    for name in sets:
         ts = tasks(name)
         got = {}
         for k, m in MODELS.items():
             p = results_path(name, m)
             got[k] = {r["id"]: r for r in run_sql.load(p)} if p.exists() else {}
             if len(got[k]) < len(ts):
-                sys.exit(f"no complete spider {name} results for {k} ({len(got[k])}/{len(ts)}); run results/run_sql_check.sh")
+                sys.exit(f"no complete {name} results for {k} ({len(got[k])}/{len(ts)}); run results/run_sql_check.sh")
             R[k].update(got[k])
         bad = {t["id"] for t in ts if any(got[k][t["id"]]["verdict"] in ("gold_error", "request_error") for k in got)}
-        print(f"spider {name}: {len(ts) - len(bad)} tasks ({len(bad)} dropped: gold query errors or a request failed)")
+        print(f"{name}: {len(ts) - len(bad)} tasks ({len(bad)} dropped: gold query errors or a request failed)")
         ids += [t["id"] for t in ts if t["id"] not in bad]
     per = outcomes(R, ids)
     base = sum(c for _, c in per[SHIPPED])
@@ -175,10 +200,15 @@ def simulate(resamples=2000):
         dlo, dhi = diffs[int(0.025 * resamples)], diffs[int(0.975 * resamples)]
         if name == CANDIDATE:
             verdict = dlo > 0
+            reverts = dhi < 0  # the coder alone beats the candidate: interval of candidate - coder entirely below 0
         print(f"{name:<46} {score:>5}/{len(ids):<4} {sum(c for _, c in res) / base:>8.0%} "
               f"{'' if name == SHIPPED else f'{dlo:+d} to {dhi:+d}':>20}")
-    print(f"\nrule: {FLAGS_RULE}")
-    print(f"-> ADOPT: {CANDIDATE}" if verdict else f"-> KEEP: {SHIPPED}")
+    if tuple(sets) == SETS:
+        print(f"\nrule: {FLAGS_RULE}")
+        print(f"-> ADOPT: {CANDIDATE}" if verdict else f"-> KEEP: {SHIPPED}")
+    elif tuple(sets) == ("bird",):
+        print(f"\nrule: {CONFIRM_RULE}")
+        print(f"-> REVERT to {SHIPPED}" if reverts else f"-> CONFIRMED: {CANDIDATE}")
     print("\nflags vs the key (per model, pooled):")
     for k in MODELS:
         wrong = [i for i in ids if R[k][i]["verdict"] != "correct"]
@@ -192,14 +222,15 @@ def simulate(resamples=2000):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--set", choices=SETS)
+    ap.add_argument("--set", choices=(*SETS, "bird"))
+    ap.add_argument("--sets", nargs="+", choices=(*SETS, "bird"), default=list(SETS), help="--simulate: sets to pool")
     ap.add_argument("--model")
     ap.add_argument("--simulate", action="store_true")
     ap.add_argument("--num-predict", type=int, default=1024)
     ap.add_argument("--timeout", type=int, default=300)
     args = ap.parse_args()
     if args.simulate:
-        return simulate()
+        return simulate(args.sets)
     if not (args.set and args.model):
         sys.exit("--set and --model, or --simulate")
     run(args.set, args.model, args.num_predict, args.timeout)
