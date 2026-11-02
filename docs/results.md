@@ -37,7 +37,11 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   answered (733 unsampled dev, 2147 test), the coder alone 2212 (76.8%); the coder with a 4B second opinion when its
   query's result on the real database looks wrong (error, no rows, over 100 rows, all NULL, none of the question's
   tables) 2230 (77.4%), +7 to +30 paired 95%, at 105% compute: adopted. The 4B first with the coder on a flag: 1990.
-  It needs the user's database, so the pack uses it only when one is given (not built yet).
+  It needs the user's database, so the pack uses it only when one is given (`plm --sql-db`, `PLM_SQL_DB`).
+- **SQL flags confirmation on BIRD** (CONFIRM_RULE fixed before any answer): on 1035 BIRD dev questions mini-dev
+  doesn't use (2025-11-06 revision; 1 dropped), the shipped policy 534 (51.6%) at 112% compute vs the coder alone
+  528 (51.0%), -1 to +13 paired 95%. The rule reverts only if the coder alone is clearly ahead: confirmed, kept.
+  Reported: 4B alone 357, 4B -> coder on any flag 478, hindsight 584. `results/bench_bird_rest__*`, `results/sql_confirm.log`.
 - **What changed because of these:** SQL and software moved to the coder alone; physics moved from the
   8B answering directly (52/144) to the routed calculator policy; GSM8K left the general pack as it is.
 

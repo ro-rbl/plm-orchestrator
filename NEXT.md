@@ -1,6 +1,6 @@
 # NEXT
 
-_Updated: 2026-10-27 · branch: main · last commit: 0991909 · plan: ROADMAP.md · results: docs/results.md_
+_Updated: 2026-11-01 · branch: main · plan: ROADMAP.md · results: docs/results.md_
 
 ## Start here (next session)
 Where things stand: phases 1-4 of `ROADMAP.md` are done; phase 5 (publishing) is done privately. Six packs,
@@ -24,12 +24,10 @@ Suggested order for the next session:
    questions, every query and path matched the benchmark's. Open: with only `PLM_SQL_DB`, the server's routing
    still reads the message, so a schema-free question may not reach the SQL pack (`plm_sql/claims.py`; a fix
    needs held-out routing cases). The tables flag's false alarms are under "SQL pack" below.
-1b. **BIRD confirmation of the SQL flags policy, started 2026-10-31 overnight.** 1036 BIRD dev questions mini-dev
-   doesn't use (2025-11-06 revision from Hugging Face; databases are mini-dev's), CONFIRM_RULE committed in
-   e6f405d before any answer. Slow at first (26 s/question) until the pinned 8B was unloaded (see Tooling notes); resumed at 7-11 s.
-   Log `results/sql_confirm.log`; resume: `results/run_sql_confirm.sh >> results/sql_confirm.log 2>&1 &`;
-   verdict: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`. If it says REVERT, set the
-   pack back to the coder alone (`plm_sql/controller.py` SECOND_OPINION step) and record why.
+1b. **BIRD confirmation of the SQL flags policy: CONFIRMED (2026-11-01).** 1035 BIRD dev questions mini-dev
+   doesn't use, CONFIRM_RULE committed in e6f405d before any answer: shipped 534 vs coder alone 528 (-1 to +13
+   paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
+   Re-check: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.

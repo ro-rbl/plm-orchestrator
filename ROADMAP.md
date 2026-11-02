@@ -113,7 +113,9 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] SQL result flags (`plm_sql/flags.py`: error, no rows, >100 rows, all NULL, none of the question's tables),
       read on the real database; FLAGS_RULE fixed before, judged on 2880 unseen Spider questions (733 unsampled
       dev + 2147 test): the coder with a 4B second opinion on a flag 2230 vs the coder alone 2212 (+7 to +30,
-      105% compute): adopted; needs an opt-in database in the pack, not built yet. 4B first, coder on a flag: 1990.
+      105% compute): adopted, built as an opt-in database (`--sql-db`, `PLM_SQL_DB`). 4B first, coder on a flag: 1990.
+- [x] SQL flags confirmation: 1035 BIRD dev questions mini-dev doesn't use, CONFIRM_RULE fixed before: 534 vs the
+      coder alone 528 (-1 to +13, 112% compute): confirmed, the pack keeps the 4B second opinion.
 - [x] GSM8K cross-check (300 sampled, `evals/bench_gsm8k.py`, GSM_RULE fixed before): the 8B direct 272/300 (91%)
       beats the 8B with the calculator 261 (-21 to -1) and the 4B with it 256: the general pack stays as it is.
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).

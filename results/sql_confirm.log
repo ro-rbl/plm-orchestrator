@@ -1,0 +1,2097 @@
+qwen2.5-coder:14b on bird: 1036 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird_rest__qwen2.5-coder_14b.jsonl
+[1/1036] bird-dev-0000 wrong_columns   511 tok   82.3s
+[2/1036] bird-dev-0001 error            82 tok   12.6s  [error]
+[3/1036] bird-dev-0002 error           436 tok   77.6s  [error]
+[4/1036] bird-dev-0003 wrong_columns   620 tok  121.8s
+[5/1036] bird-dev-0004 wrong_rows       71 tok   84.1s  [empty]
+[6/1036] bird-dev-0006 wrong_columns   251 tok   55.7s
+[7/1036] bird-dev-0007 correct          52 tok   13.1s
+[8/1036] bird-dev-0008 error           210 tok   47.8s  [error]
+[9/1036] bird-dev-0009 wrong_rows       56 tok   14.3s
+[10/1036] bird-dev-0010 wrong_columns   199 tok   47.3s
+[11/1036] bird-dev-0013 wrong_columns   242 tok   58.9s  [empty]
+[12/1036] bird-dev-0014 error            31 tok    9.6s  [error]
+[13/1036] bird-dev-0015 wrong_columns    56 tok   14.4s  [empty]
+[14/1036] bird-dev-0016 correct          62 tok  102.7s
+[15/1036] bird-dev-0018 wrong_columns   241 tok   45.9s
+[16/1036] bird-dev-0019 wrong_rows      280 tok   56.9s
+[17/1036] bird-dev-0020 wrong_columns   550 tok  112.4s
+[18/1036] bird-dev-0021 error           282 tok   60.3s  [error]
+[19/1036] bird-dev-0022 wrong_rows       54 tok  101.0s  [nulls]
+[20/1036] bird-dev-0029 correct          49 tok   11.0s
+[21/1036] bird-dev-0030 error            22 tok    6.7s  [error]
+[22/1036] bird-dev-0033 wrong_rows       61 tok   13.9s
+[23/1036] bird-dev-0034 correct         105 tok   24.8s
+[24/1036] bird-dev-0035 error            31 tok    8.9s  [error]
+[25/1036] bird-dev-0038 correct          56 tok   13.4s
+[26/1036] bird-dev-0042 correct          43 tok    9.7s
+[27/1036] bird-dev-0043 error            75 tok   17.4s  [error]
+[28/1036] bird-dev-0044 correct          57 tok   14.0s
+[29/1036] bird-dev-0049 wrong_rows       42 tok   12.9s
+[30/1036] bird-dev-0051 wrong_rows       44 tok   12.5s
+[31/1036] bird-dev-0052 correct          72 tok   18.8s
+[32/1036] bird-dev-0053 correct          55 tok   12.9s
+[33/1036] bird-dev-0054 correct          38 tok    9.6s
+[34/1036] bird-dev-0055 wrong_columns   364 tok   82.2s
+[35/1036] bird-dev-0056 correct          35 tok  102.8s
+[36/1036] bird-dev-0057 correct          59 tok   14.1s
+[37/1036] bird-dev-0058 correct          28 tok    7.9s
+[38/1036] bird-dev-0059 correct          58 tok   14.0s
+[39/1036] bird-dev-0060 error           315 tok   72.5s  [error]
+[40/1036] bird-dev-0061 error           261 tok   60.1s  [error]
+[41/1036] bird-dev-0063 wrong_columns    98 tok   24.2s
+[42/1036] bird-dev-0064 correct          31 tok    8.8s
+[43/1036] bird-dev-0065 wrong_rows       88 tok   21.6s
+[44/1036] bird-dev-0066 error           391 tok   90.4s  [error]
+[45/1036] bird-dev-0067 wrong_rows       52 tok  110.8s
+[46/1036] bird-dev-0068 wrong_columns    67 tok   17.3s
+[47/1036] bird-dev-0069 wrong_rows      365 tok   85.8s
+[48/1036] bird-dev-0070 error            77 tok   18.8s  [error]
+[49/1036] bird-dev-0071 error            44 tok   11.5s  [error]
+[50/1036] bird-dev-0073 wrong_rows       74 tok   18.4s  [empty]
+[51/1036] bird-dev-0074 wrong_rows       56 tok   14.7s  [nulls]
+[52/1036] bird-dev-0075 wrong_columns    40 tok   10.3s  [tables]
+[53/1036] bird-dev-0076 wrong_rows       78 tok   19.7s  [empty]
+[54/1036] bird-dev-0078 wrong_columns   320 tok   80.8s
+[55/1036] bird-dev-0080 error            25 tok  108.3s  [error]
+[56/1036] bird-dev-0081 error            32 tok    8.6s  [error]
+[57/1036] bird-dev-0084 wrong_columns    53 tok   13.5s
+[58/1036] bird-dev-0086 wrong_rows       29 tok    8.2s  [empty]
+[59/1036] bird-dev-0088 correct          62 tok   16.0s
+[60/1036] bird-dev-0090 wrong_rows       51 tok   30.5s
+[61/1036] bird-dev-0091 wrong_columns    39 tok   11.2s
+[62/1036] bird-dev-0096 wrong_columns   323 tok   75.9s  [huge]
+[63/1036] bird-dev-0097 wrong_columns   542 tok  127.3s  [empty]
+[64/1036] bird-dev-0101 wrong_rows       37 tok  100.5s  [tables]
+[65/1036] bird-dev-0102 correct          63 tok   15.8s  [huge]
+[66/1036] bird-dev-0103 error           590 tok  140.9s  [error]
+[67/1036] bird-dev-0104 wrong_columns   304 tok   76.3s
+[68/1036] bird-dev-0105 wrong_columns   578 tok  145.5s
+[69/1036] bird-dev-0106 error           507 tok  166.0s  [error]
+[70/1036] bird-dev-0107 correct          94 tok   26.9s
+[71/1036] bird-dev-0108 correct         104 tok   30.1s
+[72/1036] bird-dev-0109 wrong_rows       57 tok   16.4s
+[73/1036] bird-dev-0110 error            51 tok   15.0s  [error]
+[74/1036] bird-dev-0111 error           421 tok  116.7s  [error]
+[75/1036] bird-dev-0113 error           370 tok  155.1s  [error]
+[76/1036] bird-dev-0114 correct          75 tok   22.1s
+[77/1036] bird-dev-0119 error           609 tok  165.3s  [error]
+[78/1036] bird-dev-0120 wrong_rows       81 tok  118.3s  [empty]
+[79/1036] bird-dev-0121 wrong_columns   485 tok  119.4s
+[80/1036] bird-dev-0122 wrong_rows      262 tok   71.9s
+[81/1036] bird-dev-0123 error           588 tok  148.8s  [error]
+[82/1036] bird-dev-0124 wrong_columns   369 tok  146.6s  [huge]
+[83/1036] bird-dev-0126 wrong_columns   421 tok  102.6s
+[84/1036] bird-dev-0127 error           456 tok  110.6s  [error]
+[85/1036] bird-dev-0130 wrong_rows       95 tok   96.7s
+[86/1036] bird-dev-0131 wrong_rows       70 tok   18.0s
+[87/1036] bird-dev-0132 correct          42 tok   11.3s
+[88/1036] bird-dev-0133 wrong_rows       26 tok    8.4s
+[89/1036] bird-dev-0134 wrong_rows      114 tok   29.6s
+[90/1036] bird-dev-0135 error           358 tok   88.2s  [error]
+[91/1036] bird-dev-0139 wrong_columns   171 tok   42.4s
+[92/1036] bird-dev-0140 error           468 tok  114.4s  [error]
+[93/1036] bird-dev-0141 wrong_rows       66 tok   97.8s
+[94/1036] bird-dev-0142 wrong_rows       77 tok   19.2s
+[95/1036] bird-dev-0143 error           493 tok  118.6s  [error]
+[96/1036] bird-dev-0144 error           341 tok   85.2s  [error]
+[97/1036] bird-dev-0146 error           547 tok  132.8s  [error]
+[98/1036] bird-dev-0147 error           461 tok  159.1s  [error]
+[99/1036] bird-dev-0148 wrong_columns   451 tok  107.6s
+[100/1036] bird-dev-0150 wrong_rows       77 tok   20.0s
+[101/1036] bird-dev-0151 wrong_columns   268 tok   67.8s
+[102/1036] bird-dev-0153 error           492 tok  197.0s  [error]
+[103/1036] bird-dev-0154 wrong_columns   396 tok   97.2s  [empty]
+[104/1036] bird-dev-0155 error           311 tok   76.3s  [error]
+[105/1036] bird-dev-0156 wrong_columns   461 tok  206.1s
+[106/1036] bird-dev-0157 error           342 tok   84.9s  [error]
+[107/1036] bird-dev-0158 error           511 tok  123.3s  [error]
+[108/1036] bird-dev-0160 correct          66 tok  125.4s
+[109/1036] bird-dev-0161 wrong_columns   420 tok  117.1s
+[110/1036] bird-dev-0162 wrong_columns   478 tok  137.1s
+[111/1036] bird-dev-0163 wrong_rows       66 tok  131.4s
+[112/1036] bird-dev-0164 wrong_columns   412 tok  103.2s  [empty]
+[113/1036] bird-dev-0165 wrong_columns    33 tok    8.7s  [huge]
+[114/1036] bird-dev-0166 wrong_columns   432 tok  105.3s
+[115/1036] bird-dev-0167 correct          64 tok   16.6s
+[116/1036] bird-dev-0170 correct          40 tok   11.7s  [tables]
+[117/1036] bird-dev-0171 wrong_rows       53 tok   17.7s  [nulls]
+[118/1036] bird-dev-0172 wrong_columns    23 tok  100.9s  [tables]
+[119/1036] bird-dev-0174 wrong_rows       46 tok   12.0s  [tables]
+[120/1036] bird-dev-0175 wrong_columns   270 tok   65.2s
+[121/1036] bird-dev-0176 correct          46 tok   13.0s  [tables]
+[122/1036] bird-dev-0177 wrong_rows       74 tok   18.8s
+[123/1036] bird-dev-0178 wrong_columns   198 tok   49.8s
+[124/1036] bird-dev-0179 correct          55 tok   15.0s  [tables]
+[125/1036] bird-dev-0180 error            80 tok   20.7s  [error]
+[126/1036] bird-dev-0181 error           499 tok  121.7s  [error]
+[127/1036] bird-dev-0182 wrong_rows      113 tok  122.8s
+[128/1036] bird-dev-0183 wrong_columns   839 tok  203.3s  [empty]
+[129/1036] bird-dev-0184 correct          54 tok   15.1s
+[130/1036] bird-dev-0185 wrong_rows      133 tok   35.2s  [nulls]
+[131/1036] bird-dev-0187 error           304 tok  170.0s  [error]
+[132/1036] bird-dev-0188 error           550 tok  133.2s  [error]
+[133/1036] bird-dev-0190 wrong_columns   445 tok  109.7s
+[134/1036] bird-dev-0191 wrong_columns   373 tok  187.5s
+[135/1036] bird-dev-0193 wrong_columns    48 tok   13.3s  [huge]
+[136/1036] bird-dev-0196 wrong_rows      327 tok   87.6s
+[137/1036] bird-dev-0199 wrong_rows       37 tok   10.9s
+[138/1036] bird-dev-0202 correct          16 tok    4.7s
+[139/1036] bird-dev-0203 error           233 tok   55.9s  [error]
+[140/1036] bird-dev-0204 error           502 tok  125.6s  [error]
+[141/1036] bird-dev-0205 wrong_columns   258 tok   79.6s  [huge]
+[142/1036] bird-dev-0209 wrong_columns    96 tok   24.6s
+[143/1036] bird-dev-0210 correct          36 tok    9.6s  [huge]
+[144/1036] bird-dev-0211 wrong_columns    69 tok   16.9s  [huge]
+[145/1036] bird-dev-0214 wrong_rows       34 tok    9.6s  [huge]
+[146/1036] bird-dev-0216 correct          38 tok    9.7s
+[147/1036] bird-dev-0217 wrong_columns    22 tok    7.4s
+[148/1036] bird-dev-0221 error            40 tok   10.8s  [error]
+[149/1036] bird-dev-0222 correct          49 tok   13.8s
+[150/1036] bird-dev-0223 wrong_columns    28 tok    8.2s  [tables]
+[151/1036] bird-dev-0224 error           410 tok   99.3s  [error]
+[152/1036] bird-dev-0225 wrong_rows       46 tok   12.3s  [empty]
+[153/1036] bird-dev-0229 wrong_rows      213 tok   54.6s
+[154/1036] bird-dev-0233 wrong_rows       33 tok   88.5s
+[155/1036] bird-dev-0235 correct          44 tok   12.1s
+[156/1036] bird-dev-0237 wrong_columns    41 tok   11.3s
+[157/1036] bird-dev-0238 correct          23 tok    6.9s
+[158/1036] bird-dev-0241 correct          19 tok    6.5s
+[159/1036] bird-dev-0246 wrong_rows       23 tok    7.8s
+[160/1036] bird-dev-0250 wrong_rows       66 tok   17.0s  [empty]
+[161/1036] bird-dev-0251 wrong_rows       44 tok   12.6s
+[162/1036] bird-dev-0252 wrong_columns    30 tok   10.1s
+[163/1036] bird-dev-0254 wrong_rows      169 tok   40.6s
+[164/1036] bird-dev-0256 correct          24 tok    7.4s
+[165/1036] bird-dev-0257 wrong_rows       35 tok   10.0s  [huge]
+[166/1036] bird-dev-0258 correct          46 tok   12.8s
+[167/1036] bird-dev-0259 wrong_rows       63 tok   16.3s
+[168/1036] bird-dev-0261 correct          33 tok    9.1s  [huge]
+[169/1036] bird-dev-0262 wrong_rows       39 tok   11.1s
+[170/1036] bird-dev-0264 wrong_columns    31 tok    9.3s
+[171/1036] bird-dev-0265 correct          14 tok    5.4s  [huge]
+[172/1036] bird-dev-0266 correct          41 tok   11.8s
+[173/1036] bird-dev-0267 wrong_columns    29 tok    8.7s  [huge]
+[174/1036] bird-dev-0269 wrong_rows       67 tok   16.1s
+[175/1036] bird-dev-0270 wrong_rows      105 tok   26.3s
+[176/1036] bird-dev-0271 wrong_rows      145 tok   37.2s
+[177/1036] bird-dev-0272 correct          83 tok  106.7s
+[178/1036] bird-dev-0274 wrong_rows       19 tok    5.8s  [tables]
+[179/1036] bird-dev-0275 wrong_rows       17 tok    7.4s  [empty]
+[180/1036] bird-dev-0276 correct          38 tok   10.4s
+[181/1036] bird-dev-0277 correct          51 tok   13.2s  [tables]
+[182/1036] bird-dev-0278 correct          39 tok   10.7s
+[183/1036] bird-dev-0279 correct          55 tok   14.3s
+[184/1036] bird-dev-0280 wrong_rows       73 tok   19.5s
+[185/1036] bird-dev-0283 correct          35 tok   10.7s
+[186/1036] bird-dev-0284 correct          46 tok   12.9s
+[187/1036] bird-dev-0285 wrong_columns    80 tok   23.6s
+[188/1036] bird-dev-0286 wrong_rows       45 tok   12.4s
+[189/1036] bird-dev-0287 wrong_rows       62 tok   17.0s
+[190/1036] bird-dev-0288 correct          33 tok    9.1s
+[191/1036] bird-dev-0289 wrong_rows       29 tok    7.6s
+[192/1036] bird-dev-0290 wrong_rows       39 tok   14.4s  [tables]
+[193/1036] bird-dev-0291 correct          20 tok    6.3s
+[194/1036] bird-dev-0292 correct          36 tok   10.7s  [huge]
+[195/1036] bird-dev-0293 correct          31 tok    8.9s
+[196/1036] bird-dev-0294 wrong_rows       40 tok   10.6s  [empty]
+[197/1036] bird-dev-0295 correct          38 tok   10.4s
+[198/1036] bird-dev-0296 wrong_columns    26 tok    7.5s
+[199/1036] bird-dev-0297 correct          39 tok   11.0s  [huge]
+[200/1036] bird-dev-0298 wrong_rows       78 tok   20.3s
+[201/1036] bird-dev-0299 wrong_rows       29 tok  105.8s
+[202/1036] bird-dev-0300 correct          20 tok    6.9s
+[203/1036] bird-dev-0301 correct          25 tok    8.3s
+[204/1036] bird-dev-0302 wrong_rows       42 tok   17.5s
+[205/1036] bird-dev-0303 wrong_rows       87 tok   24.6s
+[206/1036] bird-dev-0304 correct          39 tok   16.5s  [huge]
+[207/1036] bird-dev-0305 correct          43 tok   12.7s  [huge]
+[208/1036] bird-dev-0306 wrong_rows       65 tok   23.8s
+[209/1036] bird-dev-0307 wrong_columns    77 tok   24.5s
+[210/1036] bird-dev-0308 correct          30 tok    9.6s
+[211/1036] bird-dev-0309 correct          86 tok   23.6s  [empty]
+[212/1036] bird-dev-0310 wrong_rows       87 tok   25.4s
+[213/1036] bird-dev-0311 wrong_rows       66 tok   20.2s
+[214/1036] bird-dev-0312 correct          52 tok   15.4s
+[215/1036] bird-dev-0313 correct          22 tok    7.0s
+[216/1036] bird-dev-0314 correct          22 tok    7.5s
+[217/1036] bird-dev-0315 correct          43 tok   13.1s
+[218/1036] bird-dev-0316 correct          42 tok   13.2s  [huge]
+[219/1036] bird-dev-0317 wrong_rows       83 tok   24.0s
+[220/1036] bird-dev-0318 correct          24 tok  122.2s
+[221/1036] bird-dev-0319 wrong_rows       39 tok   18.7s  [tables]
+[222/1036] bird-dev-0320 correct          82 tok   26.3s
+[223/1036] bird-dev-0321 wrong_rows       30 tok   10.4s
+[224/1036] bird-dev-0322 correct          21 tok   11.8s
+[225/1036] bird-dev-0323 correct          19 tok    7.2s
+[226/1036] bird-dev-0324 correct          44 tok   13.3s
+[227/1036] bird-dev-0325 correct          55 tok   16.7s
+[228/1036] bird-dev-0326 wrong_rows       72 tok   21.1s  [empty]
+[229/1036] bird-dev-0328 wrong_rows       73 tok   20.6s
+[230/1036] bird-dev-0329 correct          42 tok   12.5s
+[231/1036] bird-dev-0330 wrong_rows      136 tok   37.3s  [nulls]
+[232/1036] bird-dev-0331 correct          20 tok    6.9s
+[233/1036] bird-dev-0332 wrong_rows       36 tok   12.5s
+[234/1036] bird-dev-0333 correct          31 tok    9.9s  [tables]
+[235/1036] bird-dev-0334 wrong_rows       40 tok   13.2s  [empty]
+[236/1036] bird-dev-0335 error            61 tok   17.7s  [error]
+[237/1036] bird-dev-0336 wrong_rows       45 tok   13.6s
+[238/1036] bird-dev-0337 correct          74 tok  114.4s
+[239/1036] bird-dev-0338 wrong_rows       68 tok   19.9s  [empty]
+[240/1036] bird-dev-0339 correct          39 tok   13.0s  [huge]
+[241/1036] bird-dev-0342 wrong_rows       25 tok   42.3s
+[242/1036] bird-dev-0343 wrong_rows       32 tok   11.9s  [huge]
+[243/1036] bird-dev-0348 correct          35 tok   11.8s
+[244/1036] bird-dev-0350 wrong_rows       45 tok   13.7s  [empty]
+[245/1036] bird-dev-0351 wrong_rows       37 tok   11.4s  [huge]
+[246/1036] bird-dev-0353 wrong_rows       62 tok   19.2s  [huge]
+[247/1036] bird-dev-0354 wrong_rows       23 tok    8.0s
+[248/1036] bird-dev-0355 wrong_rows       17 tok    6.6s
+[249/1036] bird-dev-0357 wrong_rows       17 tok    6.8s
+[250/1036] bird-dev-0359 wrong_rows       21 tok    7.7s
+[251/1036] bird-dev-0360 correct          59 tok   17.4s
+[252/1036] bird-dev-0361 wrong_rows       40 tok   12.5s
+[253/1036] bird-dev-0362 wrong_rows       25 tok    8.2s
+[254/1036] bird-dev-0363 wrong_rows       40 tok   13.4s
+[255/1036] bird-dev-0364 wrong_rows       40 tok   12.1s
+[256/1036] bird-dev-0365 correct          18 tok    6.7s
+[257/1036] bird-dev-0367 correct          44 tok   13.9s
+[258/1036] bird-dev-0369 correct          40 tok  130.1s
+[259/1036] bird-dev-0370 correct          39 tok   12.2s
+[260/1036] bird-dev-0372 correct          17 tok    5.5s
+[261/1036] bird-dev-0373 wrong_rows       16 tok    5.6s
+[262/1036] bird-dev-0374 correct          25 tok    9.4s
+[263/1036] bird-dev-0375 correct          17 tok    6.7s  [huge]
+[264/1036] bird-dev-0376 wrong_rows       15 tok    5.4s  [huge]
+[265/1036] bird-dev-0378 wrong_columns    40 tok   12.9s  [huge]
+[266/1036] bird-dev-0380 correct          22 tok    7.7s  [huge]
+[267/1036] bird-dev-0381 correct          43 tok   13.2s  [huge]
+[268/1036] bird-dev-0382 correct          39 tok   12.2s  [huge]
+[269/1036] bird-dev-0384 wrong_rows       45 tok   14.4s  [huge]
+[270/1036] bird-dev-0385 wrong_rows       27 tok    8.8s
+[271/1036] bird-dev-0386 wrong_rows       41 tok   13.4s
+[272/1036] bird-dev-0387 wrong_rows       19 tok    7.1s  [huge]
+[273/1036] bird-dev-0388 wrong_columns    58 tok   17.1s  [huge]
+[274/1036] bird-dev-0389 wrong_rows       47 tok   14.3s
+[275/1036] bird-dev-0390 correct          49 tok   15.7s  [huge]
+[276/1036] bird-dev-0392 wrong_rows       42 tok   12.9s
+[277/1036] bird-dev-0393 wrong_rows       31 tok   10.4s
+[278/1036] bird-dev-0394 correct          41 tok   13.3s
+[279/1036] bird-dev-0395 correct          36 tok   12.0s
+[280/1036] bird-dev-0396 wrong_rows       36 tok   12.1s
+[281/1036] bird-dev-0398 wrong_rows       23 tok  123.0s
+[282/1036] bird-dev-0399 wrong_rows       23 tok    7.4s  [huge]
+[283/1036] bird-dev-0400 wrong_rows       48 tok   13.6s  [empty, tables]
+[284/1036] bird-dev-0401 correct          52 tok   15.9s
+[285/1036] bird-dev-0403 wrong_rows       63 tok   18.4s  [huge, tables]
+[286/1036] bird-dev-0404 correct          46 tok   14.8s
+[287/1036] bird-dev-0406 wrong_rows       49 tok   14.7s  [empty]
+[288/1036] bird-dev-0410 wrong_rows       60 tok   17.8s  [empty]
+[289/1036] bird-dev-0411 wrong_rows       25 tok    8.6s  [empty]
+[290/1036] bird-dev-0413 wrong_rows       62 tok   18.1s
+[291/1036] bird-dev-0417 correct          76 tok   22.2s
+[292/1036] bird-dev-0418 wrong_rows       18 tok    6.8s  [huge]
+[293/1036] bird-dev-0419 correct          32 tok   11.3s
+[294/1036] bird-dev-0420 correct          35 tok   10.7s
+[295/1036] bird-dev-0421 correct          39 tok   11.8s
+[296/1036] bird-dev-0423 correct          54 tok   16.1s
+[297/1036] bird-dev-0425 wrong_rows       30 tok    9.2s
+[298/1036] bird-dev-0426 correct          33 tok   11.3s
+[299/1036] bird-dev-0428 wrong_rows       46 tok   13.2s  [empty]
+[300/1036] bird-dev-0429 error            19 tok    7.3s  [error]
+[301/1036] bird-dev-0430 wrong_rows       53 tok  125.0s  [empty]
+[302/1036] bird-dev-0431 error            49 tok   15.6s  [error]
+[303/1036] bird-dev-0432 error            58 tok   15.7s  [error]
+[304/1036] bird-dev-0433 wrong_rows       74 tok   21.2s
+[305/1036] bird-dev-0434 correct          49 tok   13.6s
+[306/1036] bird-dev-0435 correct          15 tok    6.0s  [huge]
+[307/1036] bird-dev-0436 correct          17 tok    6.2s  [huge]
+[308/1036] bird-dev-0437 wrong_rows       25 tok    8.9s  [huge]
+[309/1036] bird-dev-0438 wrong_rows       20 tok    6.0s  [empty, tables]
+[310/1036] bird-dev-0439 correct          15 tok    4.9s
+[311/1036] bird-dev-0441 wrong_rows       25 tok    8.0s
+[312/1036] bird-dev-0442 correct          24 tok    7.8s
+[313/1036] bird-dev-0443 correct          16 tok    5.1s
+[314/1036] bird-dev-0444 wrong_rows       50 tok   14.2s  [empty]
+[315/1036] bird-dev-0445 wrong_rows       38 tok   11.2s
+[316/1036] bird-dev-0446 wrong_columns    82 tok   22.7s  [nulls]
+[317/1036] bird-dev-0447 wrong_rows       23 tok    6.8s  [empty]
+[318/1036] bird-dev-0448 wrong_rows       49 tok   14.2s  [empty]
+[319/1036] bird-dev-0449 wrong_rows       47 tok   13.2s  [huge]
+[320/1036] bird-dev-0450 correct          42 tok   12.6s
+[321/1036] bird-dev-0451 correct          24 tok    7.7s
+[322/1036] bird-dev-0452 wrong_rows       17 tok    6.0s  [huge]
+[323/1036] bird-dev-0453 wrong_rows       20 tok    6.9s  [empty]
+[324/1036] bird-dev-0454 correct          28 tok    9.3s
+[325/1036] bird-dev-0455 wrong_rows       22 tok  113.4s  [huge]
+[326/1036] bird-dev-0456 wrong_rows       30 tok   10.4s
+[327/1036] bird-dev-0457 correct          17 tok    5.9s
+[328/1036] bird-dev-0458 wrong_rows       32 tok   11.4s
+[329/1036] bird-dev-0460 correct          21 tok    6.6s
+[330/1036] bird-dev-0461 correct          32 tok   10.7s
+[331/1036] bird-dev-0463 wrong_rows       39 tok   11.1s
+[332/1036] bird-dev-0464 wrong_rows       48 tok   13.7s  [huge]
+[333/1036] bird-dev-0467 correct          50 tok   14.3s
+[334/1036] bird-dev-0470 wrong_rows       46 tok   12.9s
+[335/1036] bird-dev-0471 correct          32 tok   10.2s
+[336/1036] bird-dev-0475 wrong_rows       27 tok    8.5s
+[337/1036] bird-dev-0476 wrong_rows       56 tok   16.2s
+[338/1036] bird-dev-0478 correct          31 tok    9.8s
+[339/1036] bird-dev-0481 wrong_rows       45 tok   13.5s
+[340/1036] bird-dev-0482 wrong_rows       27 tok    8.2s  [empty, tables]
+[341/1036] bird-dev-0485 correct          25 tok    9.4s
+[342/1036] bird-dev-0488 correct          25 tok    8.9s
+[343/1036] bird-dev-0489 correct          19 tok    5.6s
+[344/1036] bird-dev-0490 correct          18 tok    6.1s
+[345/1036] bird-dev-0491 correct          27 tok    8.7s
+[346/1036] bird-dev-0492 correct          19 tok    6.4s
+[347/1036] bird-dev-0493 correct          24 tok    7.7s
+[348/1036] bird-dev-0494 wrong_columns    51 tok   14.8s  [huge]
+[349/1036] bird-dev-0495 correct          43 tok   12.7s
+[350/1036] bird-dev-0496 correct          42 tok   12.9s
+[351/1036] bird-dev-0497 correct          32 tok  114.6s
+[352/1036] bird-dev-0498 correct          53 tok   14.9s
+[353/1036] bird-dev-0499 wrong_rows       31 tok    8.9s
+[354/1036] bird-dev-0500 wrong_rows       68 tok   18.4s
+[355/1036] bird-dev-0501 correct          45 tok   13.7s
+[356/1036] bird-dev-0502 correct          47 tok   14.0s
+[357/1036] bird-dev-0503 correct          43 tok   12.4s
+[358/1036] bird-dev-0504 wrong_rows       48 tok   13.6s
+[359/1036] bird-dev-0505 correct          38 tok   11.5s
+[360/1036] bird-dev-0506 correct          75 tok   21.7s
+[361/1036] bird-dev-0507 correct          76 tok   19.8s
+[362/1036] bird-dev-0508 wrong_rows       29 tok    9.3s  [huge]
+[363/1036] bird-dev-0509 correct          19 tok    6.7s
+[364/1036] bird-dev-0510 correct          27 tok    8.5s
+[365/1036] bird-dev-0511 wrong_rows       46 tok   13.2s  [nulls]
+[366/1036] bird-dev-0512 correct          40 tok   12.2s
+[367/1036] bird-dev-0513 wrong_rows       29 tok    9.0s  [empty]
+[368/1036] bird-dev-0514 wrong_columns    49 tok   13.9s
+[369/1036] bird-dev-0515 wrong_rows       68 tok   18.8s  [empty]
+[370/1036] bird-dev-0516 correct          42 tok   11.6s
+[371/1036] bird-dev-0517 correct          76 tok  123.5s
+[372/1036] bird-dev-0519 wrong_rows       39 tok   11.4s  [empty]
+[373/1036] bird-dev-0520 wrong_rows       70 tok   19.3s  [huge]
+[374/1036] bird-dev-0521 wrong_rows       76 tok   22.1s
+[375/1036] bird-dev-0523 wrong_columns   124 tok   37.4s
+[376/1036] bird-dev-0524 wrong_rows       24 tok    9.2s  [huge]
+[377/1036] bird-dev-0525 wrong_rows       29 tok    9.1s  [empty, tables]
+[378/1036] bird-dev-0526 correct          27 tok    8.8s
+[379/1036] bird-dev-0527 correct          39 tok   13.5s  [huge]
+[380/1036] bird-dev-0534 correct          21 tok   33.7s
+[381/1036] bird-dev-0535 correct          27 tok    9.1s
+[382/1036] bird-dev-0536 correct          36 tok   10.8s
+[383/1036] bird-dev-0538 correct          34 tok    9.6s  [huge]
+[384/1036] bird-dev-0540 correct          36 tok   10.5s
+[385/1036] bird-dev-0541 correct          27 tok    8.1s
+[386/1036] bird-dev-0542 correct          46 tok   12.4s
+[387/1036] bird-dev-0543 wrong_rows       29 tok    9.5s  [nulls]
+[388/1036] bird-dev-0545 wrong_rows       28 tok    9.3s
+[389/1036] bird-dev-0546 correct          33 tok  112.7s  [huge]
+[390/1036] bird-dev-0548 correct          47 tok   12.6s
+[391/1036] bird-dev-0550 correct          45 tok   13.0s
+[392/1036] bird-dev-0551 correct          31 tok    9.2s
+[393/1036] bird-dev-0552 correct          32 tok    9.3s
+[394/1036] bird-dev-0553 correct          49 tok   14.1s
+[395/1036] bird-dev-0554 correct          42 tok   11.1s
+[396/1036] bird-dev-0556 correct          61 tok   16.9s
+[397/1036] bird-dev-0558 correct          34 tok   11.5s
+[398/1036] bird-dev-0559 correct          28 tok   10.1s
+[399/1036] bird-dev-0560 correct          20 tok    8.8s
+[400/1036] bird-dev-0561 correct          38 tok   12.5s
+[401/1036] bird-dev-0562 correct          31 tok   11.1s
+[402/1036] bird-dev-0564 correct          55 tok   16.8s
+[403/1036] bird-dev-0566 correct          28 tok    9.2s
+[404/1036] bird-dev-0569 correct          32 tok   11.6s
+[405/1036] bird-dev-0570 correct          36 tok   11.7s
+[406/1036] bird-dev-0574 correct          19 tok    7.7s
+[407/1036] bird-dev-0575 correct          31 tok   10.5s
+[408/1036] bird-dev-0577 correct          24 tok    9.0s
+[409/1036] bird-dev-0579 correct          48 tok   14.5s
+[410/1036] bird-dev-0580 wrong_rows       50 tok   14.6s
+[411/1036] bird-dev-0582 wrong_rows       23 tok    8.9s  [empty]
+[412/1036] bird-dev-0583 correct          55 tok  135.9s
+[413/1036] bird-dev-0585 correct          49 tok   14.9s
+[414/1036] bird-dev-0588 correct          17 tok    6.0s
+[415/1036] bird-dev-0589 correct          17 tok    7.5s
+[416/1036] bird-dev-0590 wrong_rows       17 tok    6.0s
+[417/1036] bird-dev-0591 correct          40 tok   13.6s  [tables]
+[418/1036] bird-dev-0593 correct          69 tok   22.0s
+[419/1036] bird-dev-0594 correct          35 tok   12.3s
+[420/1036] bird-dev-0596 correct          66 tok   19.5s  [huge]
+[421/1036] bird-dev-0597 correct          42 tok   13.5s
+[422/1036] bird-dev-0599 wrong_rows       32 tok   10.5s  [tables]
+[423/1036] bird-dev-0600 wrong_columns    41 tok   13.2s
+[424/1036] bird-dev-0601 correct          49 tok   13.4s
+[425/1036] bird-dev-0602 wrong_rows       19 tok    7.6s
+[426/1036] bird-dev-0603 error            41 tok   12.6s  [error]
+[427/1036] bird-dev-0605 wrong_rows       23 tok    7.4s  [tables]
+[428/1036] bird-dev-0606 wrong_rows       35 tok   11.4s
+[429/1036] bird-dev-0607 correct          19 tok    6.5s
+[430/1036] bird-dev-0608 wrong_rows       36 tok   12.1s
+[431/1036] bird-dev-0609 correct          18 tok    6.9s
+[432/1036] bird-dev-0610 wrong_rows       25 tok    7.5s  [huge]
+[433/1036] bird-dev-0611 correct          61 tok   17.9s
+[434/1036] bird-dev-0612 correct          37 tok  111.3s
+[435/1036] bird-dev-0613 correct          33 tok    9.5s
+[436/1036] bird-dev-0614 wrong_rows       65 tok   17.3s
+[437/1036] bird-dev-0615 correct         116 tok   31.3s
+[438/1036] bird-dev-0616 correct          45 tok   13.5s
+[439/1036] bird-dev-0617 correct          36 tok   12.2s
+[440/1036] bird-dev-0618 wrong_rows       44 tok   12.2s
+[441/1036] bird-dev-0619 correct          48 tok   13.1s
+[442/1036] bird-dev-0620 wrong_rows       62 tok   17.2s
+[443/1036] bird-dev-0621 correct          36 tok   10.0s  [huge]
+[444/1036] bird-dev-0622 wrong_rows       30 tok    9.9s
+[445/1036] bird-dev-0623 correct          44 tok   12.3s
+[446/1036] bird-dev-0624 correct          16 tok    5.3s
+[447/1036] bird-dev-0625 correct          17 tok    4.9s
+[448/1036] bird-dev-0626 correct          29 tok    8.1s
+[449/1036] bird-dev-0627 correct          23 tok    6.9s
+[450/1036] bird-dev-0628 wrong_columns    20 tok    6.4s
+[451/1036] bird-dev-0630 wrong_rows       64 tok   16.5s
+[452/1036] bird-dev-0631 correct          30 tok    8.8s
+[453/1036] bird-dev-0632 wrong_rows       29 tok    7.8s
+[454/1036] bird-dev-0635 wrong_rows       51 tok   14.1s
+[455/1036] bird-dev-0636 wrong_rows       36 tok   10.0s
+[456/1036] bird-dev-0638 wrong_rows       42 tok   11.4s  [huge]
+[457/1036] bird-dev-0641 correct          39 tok  111.0s
+[458/1036] bird-dev-0642 error            28 tok    8.0s  [error]
+[459/1036] bird-dev-0643 correct          23 tok    6.5s
+[460/1036] bird-dev-0644 correct          33 tok    9.8s
+[461/1036] bird-dev-0645 correct          25 tok    7.4s
+[462/1036] bird-dev-0646 correct          36 tok   10.1s
+[463/1036] bird-dev-0647 correct          46 tok   12.6s
+[464/1036] bird-dev-0648 correct          41 tok   11.1s
+[465/1036] bird-dev-0649 error            64 tok   17.1s  [error]
+[466/1036] bird-dev-0650 wrong_rows       47 tok   12.2s  [empty]
+[467/1036] bird-dev-0651 wrong_rows       59 tok   16.1s  [empty]
+[468/1036] bird-dev-0652 wrong_rows       84 tok   22.0s  [empty]
+[469/1036] bird-dev-0653 wrong_rows       23 tok    7.6s  [nulls]
+[470/1036] bird-dev-0654 correct          51 tok   14.1s
+[471/1036] bird-dev-0655 wrong_rows       54 tok   14.8s
+[472/1036] bird-dev-0656 error            54 tok   13.9s  [error]
+[473/1036] bird-dev-0657 correct          49 tok   13.4s
+[474/1036] bird-dev-0658 correct          21 tok    7.4s
+[475/1036] bird-dev-0659 correct          27 tok    9.3s
+[476/1036] bird-dev-0660 correct          19 tok    6.3s
+[477/1036] bird-dev-0661 correct          22 tok    6.7s
+[478/1036] bird-dev-0662 correct          48 tok   13.7s
+[479/1036] bird-dev-0663 correct          21 tok    5.8s
+[480/1036] bird-dev-0664 correct          32 tok    9.5s
+[481/1036] bird-dev-0666 correct          46 tok  110.3s
+[482/1036] bird-dev-0667 wrong_rows       46 tok   12.8s
+[483/1036] bird-dev-0668 correct          42 tok   11.2s
+[484/1036] bird-dev-0670 correct          51 tok   13.9s
+[485/1036] bird-dev-0673 correct          40 tok   10.8s
+[486/1036] bird-dev-0674 correct          22 tok    6.9s
+[487/1036] bird-dev-0675 correct          30 tok    9.9s
+[488/1036] bird-dev-0676 correct          20 tok    7.2s  [huge]
+[489/1036] bird-dev-0677 correct          51 tok   14.2s
+[490/1036] bird-dev-0679 wrong_rows       23 tok    6.9s
+[491/1036] bird-dev-0680 correct          32 tok    9.2s
+[492/1036] bird-dev-0681 wrong_rows       58 tok   15.7s
+[493/1036] bird-dev-0684 correct          48 tok   13.9s
+[494/1036] bird-dev-0686 correct          25 tok    7.5s
+[495/1036] bird-dev-0688 correct          29 tok    9.6s
+[496/1036] bird-dev-0689 wrong_rows       49 tok   12.9s  [empty]
+[497/1036] bird-dev-0690 correct          37 tok   10.9s
+[498/1036] bird-dev-0691 correct          32 tok    9.5s
+[499/1036] bird-dev-0692 wrong_rows       49 tok   13.9s
+[500/1036] bird-dev-0693 wrong_rows       76 tok   19.4s
+[501/1036] bird-dev-0695 correct          22 tok    7.3s  [tables]
+[502/1036] bird-dev-0696 wrong_rows       30 tok    9.3s
+[503/1036] bird-dev-0697 correct          19 tok    6.7s
+[504/1036] bird-dev-0698 correct          79 tok   20.3s
+[505/1036] bird-dev-0699 correct          18 tok  104.5s
+[506/1036] bird-dev-0700 wrong_rows       25 tok    8.2s  [tables]
+[507/1036] bird-dev-0702 correct          17 tok    5.5s
+[508/1036] bird-dev-0703 correct          25 tok    8.2s
+[509/1036] bird-dev-0706 correct          42 tok   11.1s  [huge]
+[510/1036] bird-dev-0708 wrong_rows       49 tok   13.7s  [huge]
+[511/1036] bird-dev-0709 correct          43 tok   11.9s
+[512/1036] bird-dev-0711 correct          42 tok   11.6s
+[513/1036] bird-dev-0712 correct          53 tok   14.1s
+[514/1036] bird-dev-0713 correct          44 tok   12.7s
+[515/1036] bird-dev-0714 correct          27 tok    8.9s  [huge]
+[516/1036] bird-dev-0715 correct          41 tok   11.7s  [huge]
+[517/1036] bird-dev-0718 correct          36 tok   23.1s  [tables]
+[518/1036] bird-dev-0720 wrong_rows       44 tok   11.6s  [huge]
+[519/1036] bird-dev-0721 correct          31 tok    8.7s
+[520/1036] bird-dev-0722 correct          46 tok   13.1s
+[521/1036] bird-dev-0725 correct          31 tok    9.0s
+[522/1036] bird-dev-0727 correct          46 tok   12.2s
+[523/1036] bird-dev-0729 correct          33 tok    9.0s
+[524/1036] bird-dev-0731 correct          31 tok    8.6s
+[525/1036] bird-dev-0734 correct          42 tok   11.9s
+[526/1036] bird-dev-0735 correct          33 tok    9.1s
+[527/1036] bird-dev-0741 wrong_rows       55 tok   14.4s
+[528/1036] bird-dev-0742 correct          32 tok    8.3s
+[529/1036] bird-dev-0746 correct          19 tok    6.0s  [tables]
+[530/1036] bird-dev-0748 correct          40 tok   99.5s
+[531/1036] bird-dev-0749 correct          53 tok   13.2s
+[532/1036] bird-dev-0752 correct          28 tok    7.3s
+[533/1036] bird-dev-0754 wrong_rows       29 tok    9.5s
+[534/1036] bird-dev-0755 correct          32 tok    9.3s
+[535/1036] bird-dev-0756 correct          27 tok    7.6s
+[536/1036] bird-dev-0757 correct          43 tok   11.1s
+[537/1036] bird-dev-0759 correct          48 tok   12.9s
+[538/1036] bird-dev-0762 correct          48 tok   12.5s  [tables]
+[539/1036] bird-dev-0763 wrong_columns    34 tok    9.5s
+[540/1036] bird-dev-0767 wrong_rows       43 tok   12.3s
+[541/1036] bird-dev-0768 correct          32 tok    8.2s
+[542/1036] bird-dev-0770 correct          48 tok   13.3s
+[543/1036] bird-dev-0771 correct          61 tok   15.4s  [huge]
+[544/1036] bird-dev-0774 correct          43 tok   11.5s
+[545/1036] bird-dev-0776 error            22 tok    7.6s  [error]
+[546/1036] bird-dev-0777 correct          42 tok   12.3s
+[547/1036] bird-dev-0778 correct          63 tok   16.8s
+[548/1036] bird-dev-0780 correct          55 tok   14.3s
+[549/1036] bird-dev-0783 correct          62 tok   16.4s
+[550/1036] bird-dev-0784 correct          26 tok    6.9s
+[551/1036] bird-dev-0787 correct          66 tok   17.4s
+[552/1036] bird-dev-0789 correct          48 tok   12.5s
+[553/1036] bird-dev-0793 correct          26 tok    7.7s
+[554/1036] bird-dev-0795 correct          19 tok    5.5s
+[555/1036] bird-dev-0799 correct          19 tok   94.2s
+[556/1036] bird-dev-0802 correct          19 tok    5.8s
+[557/1036] bird-dev-0803 wrong_rows       19 tok    5.9s  [empty]
+[558/1036] bird-dev-0804 correct          18 tok    5.7s
+[559/1036] bird-dev-0805 wrong_rows       24 tok    7.0s  [huge]
+[560/1036] bird-dev-0807 correct          54 tok   14.4s
+[561/1036] bird-dev-0808 wrong_rows       53 tok   14.0s
+[562/1036] bird-dev-0809 correct          39 tok    9.8s
+[563/1036] bird-dev-0810 error           126 tok   30.0s  [error]
+[564/1036] bird-dev-0811 correct          62 tok   15.6s
+[565/1036] bird-dev-0812 correct          50 tok   13.9s
+[566/1036] bird-dev-0813 correct          45 tok   12.0s
+[567/1036] bird-dev-0814 wrong_rows       47 tok   12.3s  [huge]
+[568/1036] bird-dev-0815 correct          25 tok    8.1s
+[569/1036] bird-dev-0816 correct          50 tok   13.1s  [huge]
+[570/1036] bird-dev-0817 correct          85 tok   20.7s
+[571/1036] bird-dev-0818 correct          80 tok   21.3s
+[572/1036] bird-dev-0820 correct          53 tok   13.9s
+[573/1036] bird-dev-0821 correct          47 tok   12.0s
+[574/1036] bird-dev-0823 correct          51 tok   13.1s
+[575/1036] bird-dev-0826 correct          40 tok   11.3s
+[576/1036] bird-dev-0827 correct          53 tok   14.3s
+[577/1036] bird-dev-0828 correct          43 tok   98.5s
+[578/1036] bird-dev-0830 correct          58 tok   14.7s
+[579/1036] bird-dev-0831 correct          46 tok   12.6s
+[580/1036] bird-dev-0832 correct          19 tok    5.4s
+[581/1036] bird-dev-0833 correct          18 tok    6.2s
+[582/1036] bird-dev-0834 correct         100 tok   24.8s
+[583/1036] bird-dev-0835 wrong_rows       97 tok   24.9s
+[584/1036] bird-dev-0836 correct          20 tok    6.3s
+[585/1036] bird-dev-0837 wrong_rows       23 tok    7.6s
+[586/1036] bird-dev-0838 correct          18 tok    5.2s
+[587/1036] bird-dev-0839 wrong_rows       55 tok   14.1s  [empty]
+[588/1036] bird-dev-0840 correct          35 tok    9.1s
+[589/1036] bird-dev-0841 error            20 tok    6.3s  [error]
+[590/1036] bird-dev-0842 correct          29 tok    8.1s
+[591/1036] bird-dev-0843 wrong_rows       30 tok    7.8s  [huge, tables]
+[592/1036] bird-dev-0844 correct          47 tok   12.6s
+[593/1036] bird-dev-0845 wrong_rows       77 tok   20.2s  [huge]
+[594/1036] bird-dev-0848 correct          45 tok   44.7s
+[595/1036] bird-dev-0849 correct          21 tok    6.5s
+[596/1036] bird-dev-0851 wrong_rows       34 tok    8.8s  [huge]
+[597/1036] bird-dev-0852 wrong_rows       47 tok   14.0s
+[598/1036] bird-dev-0853 wrong_rows       40 tok   11.2s
+[599/1036] bird-dev-0855 wrong_rows       28 tok  120.5s
+[600/1036] bird-dev-0856 wrong_rows       47 tok   11.9s
+[601/1036] bird-dev-0858 error            52 tok   13.7s  [error]
+[602/1036] bird-dev-0860 wrong_rows       51 tok   13.4s  [empty]
+[603/1036] bird-dev-0863 correct          40 tok   12.2s
+[604/1036] bird-dev-0864 correct          49 tok   14.6s  [tables]
+[605/1036] bird-dev-0867 correct          71 tok   18.5s
+[606/1036] bird-dev-0870 correct          44 tok   14.1s  [tables]
+[607/1036] bird-dev-0871 wrong_rows       61 tok   16.9s  [empty]
+[608/1036] bird-dev-0873 correct          65 tok   17.4s
+[609/1036] bird-dev-0874 correct          69 tok   17.9s
+[610/1036] bird-dev-0876 correct          43 tok   11.8s  [tables]
+[611/1036] bird-dev-0878 correct          52 tok   14.5s
+[612/1036] bird-dev-0882 correct          21 tok    7.2s
+[613/1036] bird-dev-0883 wrong_columns    31 tok    9.3s
+[614/1036] bird-dev-0885 correct          27 tok    8.0s
+[615/1036] bird-dev-0886 correct          26 tok    7.9s
+[616/1036] bird-dev-0887 wrong_rows       37 tok   11.4s
+[617/1036] bird-dev-0888 wrong_columns    65 tok   17.4s
+[618/1036] bird-dev-0889 wrong_rows       58 tok   15.7s  [tables]
+[619/1036] bird-dev-0890 correct          60 tok  125.2s
+[620/1036] bird-dev-0891 wrong_rows       66 tok   18.8s
+[621/1036] bird-dev-0893 wrong_rows       85 tok   25.2s
+[622/1036] bird-dev-0899 correct          62 tok   19.0s
+[623/1036] bird-dev-0900 correct          50 tok   16.3s
+[624/1036] bird-dev-0903 wrong_rows       98 tok   29.3s
+[625/1036] bird-dev-0905 wrong_rows       84 tok   25.1s
+[626/1036] bird-dev-0907 correct          44 tok   14.7s
+[627/1036] bird-dev-0908 wrong_columns    75 tok   23.0s  [huge]
+[628/1036] bird-dev-0911 correct          36 tok   11.6s
+[629/1036] bird-dev-0913 correct          17 tok    8.3s
+[630/1036] bird-dev-0914 correct          15 tok    6.5s
+[631/1036] bird-dev-0916 wrong_rows       16 tok    7.3s  [empty]
+[632/1036] bird-dev-0917 correct          23 tok    8.3s
+[633/1036] bird-dev-0918 correct          23 tok    7.7s
+[634/1036] bird-dev-0919 correct          53 tok   15.7s
+[635/1036] bird-dev-0920 correct          47 tok   14.3s
+[636/1036] bird-dev-0921 wrong_rows       27 tok  145.9s
+[637/1036] bird-dev-0922 wrong_columns    64 tok   18.5s  [empty]
+[638/1036] bird-dev-0923 correct          32 tok    9.0s
+[639/1036] bird-dev-0924 wrong_rows       29 tok    8.8s  [empty]
+[640/1036] bird-dev-0925 correct          57 tok   15.9s
+[641/1036] bird-dev-0926 correct          56 tok   15.6s
+[642/1036] bird-dev-0927 correct          63 tok   17.2s
+[643/1036] bird-dev-0929 correct          51 tok   13.0s  [huge]
+[644/1036] bird-dev-0932 error            51 tok   13.7s  [error]
+[645/1036] bird-dev-0934 correct          68 tok   18.2s
+[646/1036] bird-dev-0935 correct          50 tok   13.5s  [tables]
+[647/1036] bird-dev-0936 correct          93 tok   22.6s  [empty]
+[648/1036] bird-dev-0938 correct          71 tok   18.5s  [empty]
+[649/1036] bird-dev-0939 correct          86 tok   21.6s
+[650/1036] bird-dev-0941 correct          55 tok   14.1s  [tables]
+[651/1036] bird-dev-0942 wrong_rows       62 tok   16.6s  [tables]
+[652/1036] bird-dev-0943 error            72 tok   19.1s  [error]
+[653/1036] bird-dev-0946 correct          17 tok  111.5s
+[654/1036] bird-dev-0947 correct          32 tok    8.5s
+[655/1036] bird-dev-0949 wrong_columns    49 tok   12.7s
+[656/1036] bird-dev-0952 wrong_rows       44 tok   11.0s
+[657/1036] bird-dev-0953 wrong_rows       62 tok   16.1s
+[658/1036] bird-dev-0956 wrong_rows       65 tok   17.3s
+[659/1036] bird-dev-0957 wrong_rows       40 tok   11.2s
+[660/1036] bird-dev-0958 wrong_columns    49 tok   13.9s  [empty]
+[661/1036] bird-dev-0961 correct          60 tok   16.2s
+[662/1036] bird-dev-0965 correct          19 tok    6.0s
+[663/1036] bird-dev-0966 wrong_rows       23 tok    6.6s  [tables]
+[664/1036] bird-dev-0968 correct          25 tok    7.0s
+[665/1036] bird-dev-0969 correct          32 tok   10.1s
+[666/1036] bird-dev-0970 error           164 tok   41.0s  [error]
+[667/1036] bird-dev-0973 wrong_columns    75 tok   19.8s
+[668/1036] bird-dev-0974 wrong_rows       49 tok   13.1s  [empty]
+[669/1036] bird-dev-0975 correct          39 tok   11.2s
+[670/1036] bird-dev-0976 correct          56 tok   15.0s  [tables]
+[671/1036] bird-dev-0979 wrong_rows       51 tok   12.7s
+[672/1036] bird-dev-0980 correct          64 tok   17.3s
+[673/1036] bird-dev-0982 correct          60 tok  123.7s
+[674/1036] bird-dev-0983 wrong_rows       27 tok    8.9s
+[675/1036] bird-dev-0984 wrong_rows       48 tok   13.9s
+[676/1036] bird-dev-0985 wrong_columns   107 tok   28.3s
+[677/1036] bird-dev-0986 wrong_columns    29 tok    8.8s  [nulls]
+[678/1036] bird-dev-0987 correct          72 tok   19.6s  [tables]
+[679/1036] bird-dev-0991 error            43 tok   12.9s  [error]
+[680/1036] bird-dev-0992 error            48 tok   13.7s  [error]
+[681/1036] bird-dev-0993 correct          25 tok    7.7s
+[682/1036] bird-dev-0995 wrong_rows       82 tok   21.2s
+[683/1036] bird-dev-0996 error            76 tok   21.0s  [error]
+[684/1036] bird-dev-0997 correct          25 tok    7.6s
+[685/1036] bird-dev-0998 wrong_rows       28 tok    8.4s  [tables]
+[686/1036] bird-dev-0999 wrong_rows       43 tok   13.2s  [empty, tables]
+[687/1036] bird-dev-1000 wrong_columns    50 tok   14.1s
+[688/1036] bird-dev-1004 wrong_rows       53 tok   14.0s
+[689/1036] bird-dev-1005 correct          18 tok    5.9s
+[690/1036] bird-dev-1006 wrong_rows      102 tok   26.1s  [nulls]
+[691/1036] bird-dev-1007 correct          54 tok  121.2s
+[692/1036] bird-dev-1008 correct          92 tok   22.7s  [empty]
+[693/1036] bird-dev-1009 correct          69 tok   17.3s  [empty]
+[694/1036] bird-dev-1010 wrong_rows       58 tok   16.7s
+[695/1036] bird-dev-1012 wrong_rows       65 tok   21.4s  [nulls, tables]
+[696/1036] bird-dev-1013 wrong_rows       72 tok   19.0s  [nulls]
+[697/1036] bird-dev-1015 wrong_rows       80 tok   23.4s  [empty]
+[698/1036] bird-dev-1016 wrong_rows       80 tok   22.7s  [empty]
+[699/1036] bird-dev-1017 wrong_rows       71 tok   18.8s  [empty]
+[700/1036] bird-dev-1018 correct          55 tok   15.2s  [tables]
+[701/1036] bird-dev-1019 wrong_rows       48 tok   14.0s
+[702/1036] bird-dev-1020 correct          25 tok   61.2s  [tables]
+[703/1036] bird-dev-1021 correct          25 tok  139.7s
+[704/1036] bird-dev-1022 wrong_rows       29 tok    9.0s  [tables]
+[705/1036] bird-dev-1023 wrong_rows       34 tok   11.5s  [tables]
+[706/1036] bird-dev-1024 wrong_rows       24 tok    7.4s  [tables]
+[707/1036] bird-dev-1026 wrong_rows       54 tok   16.1s
+[708/1036] bird-dev-1027 wrong_rows       72 tok   19.1s
+[709/1036] bird-dev-1033 wrong_rows       64 tok   19.5s
+[710/1036] bird-dev-1034 wrong_rows       53 tok   15.8s  [tables]
+[711/1036] bird-dev-1038 wrong_columns    50 tok   13.9s  [tables]
+[712/1036] bird-dev-1041 wrong_rows      259 tok   69.7s  [empty]
+[713/1036] bird-dev-1043 correct          22 tok    7.9s
+[714/1036] bird-dev-1045 wrong_rows       42 tok   11.8s
+[715/1036] bird-dev-1046 wrong_rows       45 tok   14.4s
+[716/1036] bird-dev-1047 correct          78 tok   22.1s
+[717/1036] bird-dev-1049 correct          48 tok  141.7s
+[718/1036] bird-dev-1050 correct          38 tok   10.2s
+[719/1036] bird-dev-1051 correct          42 tok   12.0s
+[720/1036] bird-dev-1052 wrong_rows       48 tok   13.1s
+[721/1036] bird-dev-1053 wrong_rows       44 tok   12.9s
+[722/1036] bird-dev-1054 wrong_rows       39 tok   10.8s
+[723/1036] bird-dev-1055 correct          32 tok    9.5s
+[724/1036] bird-dev-1056 correct          25 tok    8.1s
+[725/1036] bird-dev-1059 correct          18 tok    6.0s  [huge]
+[726/1036] bird-dev-1060 correct          26 tok    8.0s
+[727/1036] bird-dev-1061 correct          27 tok    8.8s
+[728/1036] bird-dev-1062 correct          63 tok   18.5s  [huge]
+[729/1036] bird-dev-1063 correct          38 tok   10.1s
+[730/1036] bird-dev-1064 wrong_columns    31 tok    9.1s  [huge]
+[731/1036] bird-dev-1065 correct          35 tok   10.1s  [huge]
+[732/1036] bird-dev-1066 wrong_rows       43 tok   11.9s
+[733/1036] bird-dev-1067 correct          36 tok   10.4s
+[734/1036] bird-dev-1069 correct          18 tok    5.7s
+[735/1036] bird-dev-1070 correct          39 tok   11.0s
+[736/1036] bird-dev-1071 wrong_rows       78 tok   23.9s
+[737/1036] bird-dev-1072 correct          52 tok   14.0s
+[738/1036] bird-dev-1073 wrong_rows       64 tok   17.5s
+[739/1036] bird-dev-1074 correct          41 tok  141.2s
+[740/1036] bird-dev-1075 correct          50 tok   13.6s
+[741/1036] bird-dev-1077 correct          19 tok    6.2s
+[742/1036] bird-dev-1081 correct          42 tok   11.9s
+[743/1036] bird-dev-1082 correct          24 tok    6.7s
+[744/1036] bird-dev-1083 correct          33 tok   10.2s
+[745/1036] bird-dev-1085 wrong_columns    94 tok   24.5s  [huge]
+[746/1036] bird-dev-1086 correct          52 tok   14.2s
+[747/1036] bird-dev-1087 wrong_rows       48 tok   14.0s
+[748/1036] bird-dev-1089 correct          46 tok   13.8s
+[749/1036] bird-dev-1090 wrong_rows       43 tok   12.2s
+[750/1036] bird-dev-1093 wrong_rows       58 tok   17.9s
+[751/1036] bird-dev-1095 correct          56 tok   15.8s
+[752/1036] bird-dev-1097 correct          55 tok   15.5s
+[753/1036] bird-dev-1099 wrong_rows       41 tok   11.7s
+[754/1036] bird-dev-1100 correct          55 tok   15.9s
+[755/1036] bird-dev-1101 correct          77 tok   20.7s
+[756/1036] bird-dev-1104 correct          68 tok  146.5s
+[757/1036] bird-dev-1106 correct          77 tok   21.2s
+[758/1036] bird-dev-1108 wrong_rows       64 tok   18.2s  [empty]
+[759/1036] bird-dev-1109 correct          71 tok   22.3s
+[760/1036] bird-dev-1111 wrong_rows       82 tok   23.7s  [empty]
+[761/1036] bird-dev-1112 wrong_rows       86 tok   23.5s  [empty]
+[762/1036] bird-dev-1117 correct          20 tok    6.4s
+[763/1036] bird-dev-1118 wrong_rows       44 tok   13.6s  [empty]
+[764/1036] bird-dev-1119 wrong_rows       35 tok   12.1s
+[765/1036] bird-dev-1120 correct         211 tok   53.7s
+[766/1036] bird-dev-1121 wrong_rows       79 tok   21.4s
+[767/1036] bird-dev-1123 correct          32 tok  141.2s
+[768/1036] bird-dev-1125 correct          47 tok   13.2s
+[769/1036] bird-dev-1126 error           301 tok   72.5s  [error]
+[770/1036] bird-dev-1127 error            78 tok   20.2s  [error]
+[771/1036] bird-dev-1128 wrong_rows      624 tok  173.0s  [empty]
+[772/1036] bird-dev-1129 wrong_rows       43 tok  126.7s
+[773/1036] bird-dev-1131 gold_error      659 tok  181.6s
+[774/1036] bird-dev-1132 correct          30 tok  135.1s
+[775/1036] bird-dev-1137 correct          50 tok   13.5s  [tables]
+[776/1036] bird-dev-1138 correct          45 tok   11.8s
+[777/1036] bird-dev-1140 correct          71 tok   19.3s
+[778/1036] bird-dev-1142 wrong_rows       58 tok   15.8s
+[779/1036] bird-dev-1143 wrong_rows       60 tok   16.1s  [nulls]
+[780/1036] bird-dev-1151 correct          76 tok   35.8s
+[781/1036] bird-dev-1154 correct          68 tok   18.0s
+[782/1036] bird-dev-1158 wrong_columns    77 tok   20.1s
+[783/1036] bird-dev-1159 wrong_rows       41 tok   11.2s  [huge]
+[784/1036] bird-dev-1160 wrong_rows       86 tok   23.9s
+[785/1036] bird-dev-1161 correct          77 tok   21.3s
+[786/1036] bird-dev-1163 timed out, not saved (1 in a row)
+[787/1036] bird-dev-1165 timed out, not saved (2 in a row)
+[788/1036] bird-dev-1167 timed out, not saved (3 in a row)
+3 requests in a row timed out (did the Mac sleep?); stopped, resume to retry
+qwen2.5-coder:14b on bird: 251 to run, 785 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird_rest__qwen2.5-coder_14b.jsonl
+[1/251] bird-dev-1163 timed out, not saved (1 in a row)
+qwen2.5-coder:14b on bird: 251 to run, 785 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird_rest__qwen2.5-coder_14b.jsonl
+[1/251] bird-dev-1163 error            26 tok    2.7s  [error]
+[2/251] bird-dev-1165 error            48 tok    5.8s  [error]
+[3/251] bird-dev-1167 wrong_rows       88 tok   11.4s
+[4/251] bird-dev-1170 error            47 tok    6.5s  [error]
+[5/251] bird-dev-1172 correct          49 tok    7.3s
+[6/251] bird-dev-1173 correct          60 tok   10.5s
+[7/251] bird-dev-1174 correct          79 tok   11.3s
+[8/251] bird-dev-1176 correct          41 tok    7.3s  [empty]
+[9/251] bird-dev-1177 error            47 tok    7.8s  [error]
+[10/251] bird-dev-1178 wrong_rows       33 tok    6.5s
+[11/251] bird-dev-1180 correct          48 tok   11.6s
+[12/251] bird-dev-1181 correct          76 tok   22.0s
+[13/251] bird-dev-1182 correct          70 tok   20.2s
+[14/251] bird-dev-1183 correct          63 tok   19.2s
+[15/251] bird-dev-1184 correct          54 tok   92.5s
+[16/251] bird-dev-1186 wrong_rows       67 tok   16.1s  [empty]
+[17/251] bird-dev-1188 error            37 tok    9.7s  [error]
+[18/251] bird-dev-1190 wrong_rows       87 tok   20.6s  [tables]
+[19/251] bird-dev-1191 correct          68 tok   15.0s
+[20/251] bird-dev-1193 wrong_rows       77 tok   17.8s
+[21/251] bird-dev-1194 correct          68 tok   16.4s
+[22/251] bird-dev-1196 correct          36 tok    8.3s  [tables]
+[23/251] bird-dev-1197 wrong_rows       21 tok    5.4s
+[24/251] bird-dev-1199 wrong_rows       75 tok   16.5s
+[25/251] bird-dev-1200 wrong_rows       65 tok   14.7s  [tables]
+[26/251] bird-dev-1202 wrong_rows       83 tok   20.2s
+[27/251] bird-dev-1203 wrong_rows       46 tok   10.5s
+[28/251] bird-dev-1204 correct          54 tok   11.9s
+[29/251] bird-dev-1206 correct          27 tok    7.3s
+[30/251] bird-dev-1207 wrong_columns    70 tok   16.7s
+[31/251] bird-dev-1210 correct          23 tok    7.1s  [tables]
+[32/251] bird-dev-1211 wrong_rows       57 tok   13.7s  [huge]
+[33/251] bird-dev-1212 wrong_rows       35 tok    8.7s
+[34/251] bird-dev-1213 wrong_rows       53 tok   12.3s
+[35/251] bird-dev-1214 wrong_rows       41 tok    9.7s  [huge]
+[36/251] bird-dev-1215 wrong_columns    61 tok   15.3s  [huge]
+[37/251] bird-dev-1216 wrong_columns    62 tok   90.8s  [huge]
+[38/251] bird-dev-1217 wrong_columns    88 tok   19.8s
+[39/251] bird-dev-1218 correct          76 tok   17.6s
+[40/251] bird-dev-1219 wrong_rows      115 tok   25.2s
+[41/251] bird-dev-1221 wrong_rows       47 tok   11.1s  [huge]
+[42/251] bird-dev-1222 correct          56 tok   13.6s
+[43/251] bird-dev-1223 wrong_rows       81 tok   18.5s
+[44/251] bird-dev-1224 wrong_columns    61 tok   13.4s
+[45/251] bird-dev-1226 wrong_rows       65 tok   14.9s  [empty]
+[46/251] bird-dev-1228 wrong_rows       37 tok    9.7s  [huge]
+[47/251] bird-dev-1230 correct          40 tok    9.3s  [huge]
+[48/251] bird-dev-1233 wrong_rows       52 tok   12.4s
+[49/251] bird-dev-1234 error            83 tok   18.6s  [error]
+[50/251] bird-dev-1236 wrong_columns    84 tok   20.0s  [huge]
+[51/251] bird-dev-1237 correct          43 tok   10.1s
+[52/251] bird-dev-1240 correct          31 tok    8.3s
+[53/251] bird-dev-1244 wrong_columns    76 tok   17.4s
+[54/251] bird-dev-1245 wrong_rows       49 tok   12.3s
+[55/251] bird-dev-1246 correct          72 tok   16.7s
+[56/251] bird-dev-1248 wrong_rows       74 tok   94.5s
+[57/251] bird-dev-1249 wrong_rows       46 tok   11.4s
+[58/251] bird-dev-1250 wrong_rows       57 tok   14.9s
+[59/251] bird-dev-1253 wrong_rows       42 tok   10.2s  [tables]
+[60/251] bird-dev-1258 error            55 tok   16.5s  [error]
+[61/251] bird-dev-1259 wrong_rows       62 tok   17.9s
+[62/251] bird-dev-1260 error            51 tok   15.7s  [error]
+[63/251] bird-dev-1261 wrong_rows       48 tok   13.9s
+[64/251] bird-dev-1262 correct          72 tok   19.5s
+[65/251] bird-dev-1263 correct          81 tok   21.9s
+[66/251] bird-dev-1264 wrong_rows       56 tok   14.6s
+[67/251] bird-dev-1266 correct          44 tok   11.3s
+[68/251] bird-dev-1268 wrong_rows       44 tok   10.4s
+[69/251] bird-dev-1269 wrong_rows       67 tok   17.1s  [empty]
+[70/251] bird-dev-1271 correct          72 tok   17.4s
+[71/251] bird-dev-1272 correct          45 tok   12.7s
+[72/251] bird-dev-1273 wrong_rows       70 tok   19.7s
+[73/251] bird-dev-1274 correct          73 tok   18.1s
+[74/251] bird-dev-1276 correct          42 tok  100.9s
+[75/251] bird-dev-1277 correct          51 tok   14.4s
+[76/251] bird-dev-1278 error           133 tok   33.3s  [error]
+[77/251] bird-dev-1279 wrong_rows       77 tok   20.8s
+[78/251] bird-dev-1280 wrong_rows       56 tok   14.2s
+[79/251] bird-dev-1282 wrong_rows       44 tok   11.2s
+[80/251] bird-dev-1283 wrong_rows       37 tok    9.4s
+[81/251] bird-dev-1284 wrong_rows       46 tok   13.2s
+[82/251] bird-dev-1285 wrong_rows       66 tok   17.5s  [nulls]
+[83/251] bird-dev-1286 correct          55 tok   13.7s
+[84/251] bird-dev-1287 correct          55 tok   14.3s
+[85/251] bird-dev-1288 wrong_rows       44 tok   11.7s
+[86/251] bird-dev-1289 correct          56 tok   16.0s
+[87/251] bird-dev-1290 wrong_rows       67 tok   16.8s
+[88/251] bird-dev-1291 wrong_rows       72 tok   15.9s
+[89/251] bird-dev-1292 wrong_rows       91 tok   20.8s
+[90/251] bird-dev-1293 correct          36 tok    9.8s  [tables]
+[91/251] bird-dev-1294 wrong_rows       47 tok   13.5s  [empty, tables]
+[92/251] bird-dev-1295 wrong_rows       61 tok   97.1s
+[93/251] bird-dev-1296 correct          61 tok   13.6s  [tables]
+[94/251] bird-dev-1297 wrong_rows       56 tok   12.8s
+[95/251] bird-dev-1298 correct          73 tok   15.7s
+[96/251] bird-dev-1299 correct          69 tok   14.9s
+[97/251] bird-dev-1300 wrong_rows       44 tok   10.6s
+[98/251] bird-dev-1301 correct          68 tok   15.6s
+[99/251] bird-dev-1303 correct          37 tok    8.6s
+[100/251] bird-dev-1304 correct          70 tok   16.5s
+[101/251] bird-dev-1305 wrong_rows       60 tok   14.7s
+[102/251] bird-dev-1306 wrong_rows       61 tok   13.7s
+[103/251] bird-dev-1307 correct          50 tok   11.9s
+[104/251] bird-dev-1308 wrong_rows       64 tok   14.8s
+[105/251] bird-dev-1309 correct          45 tok   11.4s  [huge]
+[106/251] bird-dev-1310 correct          53 tok   12.8s
+[107/251] bird-dev-1311 correct          67 tok   14.5s
+[108/251] bird-dev-1313 correct          34 tok   17.3s
+[109/251] bird-dev-1314 wrong_rows       61 tok   13.5s  [empty]
+[110/251] bird-dev-1315 wrong_rows       69 tok   15.3s
+[111/251] bird-dev-1316 correct          65 tok   14.7s
+[112/251] bird-dev-1318 wrong_rows       82 tok   17.4s  [empty]
+[113/251] bird-dev-1319 wrong_rows       26 tok   80.2s  [empty]
+[114/251] bird-dev-1320 correct          74 tok   15.2s
+[115/251] bird-dev-1321 correct          68 tok   14.6s
+[116/251] bird-dev-1324 wrong_rows       52 tok   13.8s
+[117/251] bird-dev-1325 wrong_columns    19 tok    6.8s
+[118/251] bird-dev-1326 correct          33 tok    9.0s
+[119/251] bird-dev-1327 correct          69 tok   15.0s
+[120/251] bird-dev-1328 correct          44 tok    9.7s
+[121/251] bird-dev-1329 correct          55 tok   10.9s
+[122/251] bird-dev-1330 correct          56 tok   12.1s
+[123/251] bird-dev-1332 correct          56 tok   12.7s
+[124/251] bird-dev-1333 correct          46 tok   10.2s
+[125/251] bird-dev-1335 correct          56 tok   11.7s
+[126/251] bird-dev-1336 wrong_rows       51 tok   10.4s  [empty]
+[127/251] bird-dev-1337 correct          39 tok    9.0s
+[128/251] bird-dev-1341 correct          18 tok    4.3s
+[129/251] bird-dev-1342 correct          33 tok    8.4s  [tables]
+[130/251] bird-dev-1343 correct          27 tok    6.8s
+[131/251] bird-dev-1345 correct          21 tok    5.7s
+[132/251] bird-dev-1347 correct          58 tok   12.8s
+[133/251] bird-dev-1348 correct          40 tok    9.1s
+[134/251] bird-dev-1349 correct          38 tok    8.2s
+[135/251] bird-dev-1353 correct          51 tok   11.2s
+[136/251] bird-dev-1354 correct          42 tok   10.9s
+[137/251] bird-dev-1355 correct          50 tok   10.6s
+[138/251] bird-dev-1358 wrong_rows       53 tok   11.4s  [empty]
+[139/251] bird-dev-1360 correct          88 tok   18.3s
+[140/251] bird-dev-1363 correct          21 tok   75.3s
+[141/251] bird-dev-1364 correct          62 tok   13.0s
+[142/251] bird-dev-1365 wrong_rows       52 tok   11.5s
+[143/251] bird-dev-1366 wrong_columns    69 tok   14.2s
+[144/251] bird-dev-1367 correct          37 tok    9.0s
+[145/251] bird-dev-1369 correct          42 tok    9.6s
+[146/251] bird-dev-1370 wrong_columns    33 tok    9.1s
+[147/251] bird-dev-1372 correct          56 tok   12.6s
+[148/251] bird-dev-1373 correct          33 tok    7.4s
+[149/251] bird-dev-1374 correct          42 tok    9.1s
+[150/251] bird-dev-1377 correct          18 tok    5.7s
+[151/251] bird-dev-1379 correct          35 tok    9.7s
+[152/251] bird-dev-1382 correct          76 tok   18.1s
+[153/251] bird-dev-1383 correct          58 tok   12.7s
+[154/251] bird-dev-1384 correct          49 tok    9.9s
+[155/251] bird-dev-1385 wrong_rows       50 tok   10.6s
+[156/251] bird-dev-1386 error            52 tok   11.3s  [error]
+[157/251] bird-dev-1388 wrong_columns    77 tok   15.9s
+[158/251] bird-dev-1391 correct          77 tok   16.1s  [nulls]
+[159/251] bird-dev-1393 correct          21 tok    5.1s
+[160/251] bird-dev-1395 correct          49 tok   10.5s
+[161/251] bird-dev-1396 error            66 tok   13.1s  [error]
+[162/251] bird-dev-1397 correct          31 tok    7.7s  [tables]
+[163/251] bird-dev-1400 correct          75 tok   16.4s
+[164/251] bird-dev-1402 correct          35 tok    7.8s
+[165/251] bird-dev-1406 wrong_columns    27 tok    6.3s
+[166/251] bird-dev-1407 wrong_columns    29 tok    6.7s  [empty]
+[167/251] bird-dev-1408 correct          25 tok   75.6s
+[168/251] bird-dev-1412 wrong_rows       51 tok   11.5s
+[169/251] bird-dev-1413 wrong_rows       44 tok    9.6s
+[170/251] bird-dev-1414 correct          52 tok   11.8s
+[171/251] bird-dev-1415 correct          40 tok   10.3s
+[172/251] bird-dev-1416 correct          42 tok   10.6s
+[173/251] bird-dev-1417 wrong_rows       45 tok   12.8s
+[174/251] bird-dev-1418 wrong_rows       30 tok    7.9s
+[175/251] bird-dev-1419 correct          45 tok   12.8s
+[176/251] bird-dev-1420 correct          42 tok   11.2s
+[177/251] bird-dev-1421 wrong_rows       78 tok   17.3s
+[178/251] bird-dev-1423 correct          17 tok    4.5s
+[179/251] bird-dev-1424 correct          29 tok    7.5s
+[180/251] bird-dev-1425 correct          38 tok    8.4s
+[181/251] bird-dev-1428 correct          76 tok   16.1s
+[182/251] bird-dev-1429 wrong_rows      104 tok   23.5s  [empty]
+[183/251] bird-dev-1430 correct          69 tok   17.0s
+[184/251] bird-dev-1431 correct          73 tok   16.6s
+[185/251] bird-dev-1433 wrong_rows       17 tok    4.6s  [huge]
+[186/251] bird-dev-1434 correct          37 tok    9.5s
+[187/251] bird-dev-1436 correct          48 tok   11.0s  [tables]
+[188/251] bird-dev-1437 wrong_columns   107 tok   25.4s
+[189/251] bird-dev-1438 correct          26 tok    6.8s
+[190/251] bird-dev-1439 correct          58 tok   12.7s
+[191/251] bird-dev-1440 correct          78 tok   93.1s
+[192/251] bird-dev-1441 wrong_rows       44 tok   11.1s
+[193/251] bird-dev-1442 wrong_rows       47 tok   11.5s
+[194/251] bird-dev-1443 correct          43 tok   10.7s
+[195/251] bird-dev-1444 correct          33 tok    8.7s
+[196/251] bird-dev-1445 correct          24 tok    6.1s
+[197/251] bird-dev-1446 correct          48 tok   10.9s
+[198/251] bird-dev-1447 wrong_rows       47 tok   10.4s
+[199/251] bird-dev-1448 correct          85 tok   19.2s
+[200/251] bird-dev-1449 correct          74 tok   18.0s
+[201/251] bird-dev-1450 correct          45 tok   10.9s
+[202/251] bird-dev-1451 wrong_columns    72 tok   15.3s
+[203/251] bird-dev-1452 correct          45 tok   10.3s
+[204/251] bird-dev-1453 error            76 tok   19.0s  [error]
+[205/251] bird-dev-1454 wrong_rows       63 tok   14.8s  [nulls]
+[206/251] bird-dev-1455 correct          62 tok   14.2s
+[207/251] bird-dev-1456 correct          60 tok   14.0s
+[208/251] bird-dev-1458 wrong_rows      134 tok   31.3s
+[209/251] bird-dev-1459 correct          60 tok   14.2s
+[210/251] bird-dev-1461 correct          51 tok   11.9s
+[211/251] bird-dev-1462 correct          30 tok   87.8s
+[212/251] bird-dev-1463 correct          40 tok   10.7s
+[213/251] bird-dev-1465 wrong_rows       43 tok   10.2s
+[214/251] bird-dev-1466 correct          54 tok   11.9s
+[215/251] bird-dev-1467 correct          64 tok   16.1s
+[216/251] bird-dev-1468 correct          50 tok   11.7s
+[217/251] bird-dev-1469 correct          63 tok   14.2s
+[218/251] bird-dev-1470 correct          26 tok   10.4s
+[219/251] bird-dev-1474 correct          89 tok   19.8s
+[220/251] bird-dev-1475 wrong_rows       48 tok   12.0s  [tables]
+[221/251] bird-dev-1477 wrong_rows       70 tok   14.4s
+[222/251] bird-dev-1478 error            28 tok    6.1s  [error]
+[223/251] bird-dev-1485 correct          56 tok   11.8s
+[224/251] bird-dev-1487 wrong_rows       79 tok   17.8s  [empty]
+[225/251] bird-dev-1488 wrong_rows       71 tok   15.7s
+[226/251] bird-dev-1489 correct          56 tok   12.0s
+[227/251] bird-dev-1491 wrong_columns    33 tok    7.4s  [empty]
+[228/251] bird-dev-1492 wrong_rows       78 tok   16.8s
+[229/251] bird-dev-1494 wrong_rows       51 tok   12.6s  [nulls]
+[230/251] bird-dev-1495 correct          33 tok    8.2s
+[231/251] bird-dev-1496 wrong_rows       60 tok   13.9s
+[232/251] bird-dev-1497 correct          33 tok    7.4s
+[233/251] bird-dev-1499 wrong_rows       48 tok   10.5s  [nulls]
+[234/251] bird-dev-1502 wrong_rows       70 tok   15.2s  [empty]
+[235/251] bird-dev-1503 error            45 tok   75.6s  [error]
+[236/251] bird-dev-1504 correct          30 tok    6.9s  [nulls]
+[237/251] bird-dev-1508 correct          65 tok   14.0s
+[238/251] bird-dev-1510 correct          53 tok   12.0s
+[239/251] bird-dev-1511 wrong_rows       48 tok   12.2s  [nulls]
+[240/251] bird-dev-1512 correct          47 tok   12.4s  [tables]
+[241/251] bird-dev-1513 correct          72 tok   15.4s
+[242/251] bird-dev-1516 correct          62 tok   15.1s
+[243/251] bird-dev-1517 wrong_rows       18 tok    6.0s
+[244/251] bird-dev-1518 correct          74 tok   19.6s
+[245/251] bird-dev-1519 correct          41 tok   12.0s  [tables]
+[246/251] bird-dev-1520 wrong_columns    83 tok   17.7s  [empty, tables]
+[247/251] bird-dev-1522 correct          66 tok   16.8s
+[248/251] bird-dev-1523 correct          52 tok   11.7s
+[249/251] bird-dev-1527 wrong_rows       36 tok    9.3s
+[250/251] bird-dev-1530 wrong_rows       46 tok   10.8s
+[251/251] bird-dev-1532 correct          61 tok   12.9s  [tables]
+hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M on bird: 1036 to run, 0 already in /Users/ro/ClaudeCoding/plm-orchestrator/results/bench_bird_rest__hf.co_bartowski_Qwen_Qwen3-4B-GGUF_Q4_K_M.jsonl
+[1/1036] bird-dev-0000 error           299 tok   28.9s  [error]
+[2/1036] bird-dev-0001 wrong_rows       72 tok    5.1s  [empty, tables]
+[3/1036] bird-dev-0002 error           282 tok   18.2s  [error]
+[4/1036] bird-dev-0003 error           473 tok   31.7s  [error]
+[5/1036] bird-dev-0004 wrong_rows       34 tok   36.3s  [huge]
+[6/1036] bird-dev-0006 error           240 tok   45.3s  [error]
+[7/1036] bird-dev-0007 correct          68 tok    4.1s
+[8/1036] bird-dev-0008 wrong_columns   278 tok   17.0s
+[9/1036] bird-dev-0009 error            73 tok    5.8s  [error]
+[10/1036] bird-dev-0010 error           376 tok   24.7s  [error]
+[11/1036] bird-dev-0013 wrong_columns   134 tok    9.1s
+[12/1036] bird-dev-0014 error            80 tok    5.1s  [error]
+[13/1036] bird-dev-0015 error            81 tok    5.2s  [error]
+[14/1036] bird-dev-0016 error            39 tok    2.9s  [error]
+[15/1036] bird-dev-0018 error           488 tok   33.7s  [error]
+[16/1036] bird-dev-0019 error           178 tok   12.4s  [error]
+[17/1036] bird-dev-0020 error           363 tok   23.6s  [error]
+[18/1036] bird-dev-0021 error           346 tok   23.8s  [error]
+[19/1036] bird-dev-0022 wrong_columns    94 tok    6.3s
+[20/1036] bird-dev-0029 correct          69 tok    4.8s
+[21/1036] bird-dev-0030 error            44 tok    3.0s  [error]
+[22/1036] bird-dev-0033 error            60 tok    4.4s  [error]
+[23/1036] bird-dev-0034 error            47 tok    3.5s  [error]
+[24/1036] bird-dev-0035 error            71 tok    5.7s  [error]
+[25/1036] bird-dev-0038 error            41 tok    3.0s  [error]
+[26/1036] bird-dev-0042 wrong_columns   230 tok   15.6s
+[27/1036] bird-dev-0043 wrong_rows       82 tok    6.6s
+[28/1036] bird-dev-0044 wrong_rows       94 tok    6.4s
+[29/1036] bird-dev-0049 wrong_rows       40 tok    2.6s  [huge]
+[30/1036] bird-dev-0051 correct          94 tok    6.7s
+[31/1036] bird-dev-0052 correct          75 tok    5.3s
+[32/1036] bird-dev-0053 correct          52 tok    3.6s
+[33/1036] bird-dev-0054 wrong_rows       29 tok    2.2s  [empty]
+[34/1036] bird-dev-0055 error           444 tok   29.8s  [error]
+[35/1036] bird-dev-0056 wrong_rows       47 tok    3.3s
+[36/1036] bird-dev-0057 wrong_rows       44 tok    3.1s
+[37/1036] bird-dev-0058 correct          36 tok    2.8s
+[38/1036] bird-dev-0059 correct          57 tok    4.2s
+[39/1036] bird-dev-0060 error           342 tok   23.1s  [error]
+[40/1036] bird-dev-0061 error           208 tok   14.0s  [error]
+[41/1036] bird-dev-0063 wrong_columns    70 tok    5.8s
+[42/1036] bird-dev-0064 correct          36 tok    2.6s
+[43/1036] bird-dev-0065 wrong_rows       62 tok    5.0s  [nulls]
+[44/1036] bird-dev-0066 error           326 tok   21.9s  [error]
+[45/1036] bird-dev-0067 wrong_rows       48 tok    3.4s
+[46/1036] bird-dev-0068 wrong_columns    88 tok    6.8s
+[47/1036] bird-dev-0069 error           316 tok   23.5s  [error]
+[48/1036] bird-dev-0070 wrong_columns    55 tok    4.3s
+[49/1036] bird-dev-0071 error            26 tok    2.5s  [error]
+[50/1036] bird-dev-0073 error            51 tok    4.1s  [error]
+[51/1036] bird-dev-0074 error            42 tok    3.7s  [error]
+[52/1036] bird-dev-0075 error            50 tok    3.4s  [error]
+[53/1036] bird-dev-0076 error           111 tok    7.9s  [error]
+[54/1036] bird-dev-0078 error           308 tok   22.0s  [error]
+[55/1036] bird-dev-0080 wrong_columns    22 tok    2.1s
+[56/1036] bird-dev-0081 error            75 tok    5.9s  [error]
+[57/1036] bird-dev-0084 wrong_columns    60 tok    4.8s
+[58/1036] bird-dev-0086 wrong_rows       50 tok    3.5s  [empty]
+[59/1036] bird-dev-0088 wrong_rows       95 tok    7.5s
+[60/1036] bird-dev-0090 wrong_rows       36 tok    6.0s
+[61/1036] bird-dev-0091 error            90 tok    6.8s  [error]
+[62/1036] bird-dev-0096 error           344 tok   24.0s  [error]
+[63/1036] bird-dev-0097 error           431 tok   29.6s  [error]
+[64/1036] bird-dev-0101 wrong_columns    52 tok    3.3s  [tables]
+[65/1036] bird-dev-0102 wrong_columns    55 tok    3.7s  [huge]
+[66/1036] bird-dev-0103 error           996 tok   67.8s  [error]
+[67/1036] bird-dev-0104 error           245 tok   17.4s  [error]
+[68/1036] bird-dev-0105 error           536 tok   33.5s  [error]
+[69/1036] bird-dev-0106 error           318 tok   20.7s  [error]
+[70/1036] bird-dev-0107 correct          79 tok    4.9s
+[71/1036] bird-dev-0108 error            94 tok    7.1s  [error]
+[72/1036] bird-dev-0109 wrong_rows       67 tok    4.4s
+[73/1036] bird-dev-0110 correct          63 tok    4.4s
+[74/1036] bird-dev-0111 error           646 tok   41.5s  [error]
+[75/1036] bird-dev-0113 error           624 tok   43.3s  [error]
+[76/1036] bird-dev-0114 wrong_rows       59 tok    4.1s
+[77/1036] bird-dev-0119 error           408 tok   29.6s  [error]
+[78/1036] bird-dev-0120 error            64 tok    4.5s  [error]
+[79/1036] bird-dev-0121 error           516 tok   35.3s  [error]
+[80/1036] bird-dev-0122 error           426 tok   27.2s  [error]
+[81/1036] bird-dev-0123 error           589 tok   39.7s  [error]
+[82/1036] bird-dev-0124 error           485 tok   33.3s  [error]
+[83/1036] bird-dev-0126 error           440 tok   30.5s  [error]
+[84/1036] bird-dev-0127 error           678 tok   45.7s  [error]
+[85/1036] bird-dev-0130 wrong_rows       56 tok    3.7s  [tables]
+[86/1036] bird-dev-0131 wrong_columns    71 tok    4.8s
+[87/1036] bird-dev-0132 wrong_rows       37 tok    2.5s
+[88/1036] bird-dev-0133 wrong_rows       43 tok    4.2s
+[89/1036] bird-dev-0134 wrong_rows      190 tok   13.5s
+[90/1036] bird-dev-0135 error           539 tok   37.6s  [error]
+[91/1036] bird-dev-0139 error           103 tok    6.7s  [error]
+[92/1036] bird-dev-0140 error           399 tok   26.3s  [error]
+[93/1036] bird-dev-0141 error            65 tok    4.1s  [error]
+[94/1036] bird-dev-0142 wrong_rows       39 tok    2.9s  [huge]
+[95/1036] bird-dev-0143 error           517 tok   33.4s  [error]
+[96/1036] bird-dev-0144 error           304 tok   18.6s  [error]
+[97/1036] bird-dev-0146 error           550 tok   33.4s  [error]
+[98/1036] bird-dev-0147 error           346 tok   21.8s  [error]
+[99/1036] bird-dev-0148 error           415 tok   27.4s  [error]
+[100/1036] bird-dev-0150 wrong_rows       56 tok    3.6s
+[101/1036] bird-dev-0151 error           293 tok   18.1s  [error]
+[102/1036] bird-dev-0153 wrong_rows      237 tok   15.3s
+[103/1036] bird-dev-0154 wrong_columns   458 tok   28.6s  [empty]
+[104/1036] bird-dev-0155 wrong_columns   199 tok   12.8s
+[105/1036] bird-dev-0156 error           613 tok   41.8s  [error]
+[106/1036] bird-dev-0157 wrong_columns   253 tok   16.3s
+[107/1036] bird-dev-0158 error           451 tok   29.8s  [error]
+[108/1036] bird-dev-0160 correct          64 tok    4.8s
+[109/1036] bird-dev-0161 error           604 tok   39.4s  [error]
+[110/1036] bird-dev-0162 wrong_columns   453 tok   28.3s
+[111/1036] bird-dev-0163 error            39 tok    2.6s  [error]
+[112/1036] bird-dev-0164 wrong_columns   490 tok   31.2s
+[113/1036] bird-dev-0165 wrong_columns    71 tok    4.8s  [huge]
+[114/1036] bird-dev-0166 error           405 tok   25.0s  [error]
+[115/1036] bird-dev-0167 error            52 tok    3.3s  [error]
+[116/1036] bird-dev-0170 correct          45 tok    2.9s  [tables]
+[117/1036] bird-dev-0171 wrong_rows       49 tok    3.7s  [nulls]
+[118/1036] bird-dev-0172 wrong_rows       35 tok    2.7s  [tables]
+[119/1036] bird-dev-0174 wrong_rows       45 tok    3.8s
+[120/1036] bird-dev-0175 error           257 tok   16.6s  [error]
+[121/1036] bird-dev-0176 wrong_rows       77 tok    4.9s  [tables]
+[122/1036] bird-dev-0177 wrong_rows       61 tok    3.9s
+[123/1036] bird-dev-0178 error           157 tok   10.2s  [error]
+[124/1036] bird-dev-0179 correct          64 tok    4.4s  [tables]
+[125/1036] bird-dev-0180 wrong_rows       82 tok    5.5s  [empty]
+[126/1036] bird-dev-0181 error           500 tok   32.2s  [error]
+[127/1036] bird-dev-0182 wrong_rows      105 tok    7.3s
+[128/1036] bird-dev-0183 error           536 tok   33.3s  [error]
+[129/1036] bird-dev-0184 error            59 tok    3.9s  [error]
+[130/1036] bird-dev-0185 error            74 tok    5.3s  [error]
+[131/1036] bird-dev-0187 error           341 tok   22.2s  [error]
+[132/1036] bird-dev-0188 error           260 tok   16.1s  [error]
+[133/1036] bird-dev-0190 error           664 tok   42.4s  [error]
+[134/1036] bird-dev-0191 wrong_columns   587 tok   36.8s
+[135/1036] bird-dev-0193 wrong_columns    70 tok    5.1s  [huge]
+[136/1036] bird-dev-0196 error           376 tok   23.9s  [error]
+[137/1036] bird-dev-0199 wrong_rows       70 tok    4.5s
+[138/1036] bird-dev-0202 correct          20 tok    1.5s
+[139/1036] bird-dev-0203 wrong_columns   100 tok    5.7s
+[140/1036] bird-dev-0204 wrong_columns   539 tok   31.8s  [nulls]
+[141/1036] bird-dev-0205 wrong_columns   279 tok   16.9s  [huge]
+[142/1036] bird-dev-0209 wrong_columns   114 tok    6.5s
+[143/1036] bird-dev-0210 correct          95 tok    5.4s  [huge]
+[144/1036] bird-dev-0211 correct          48 tok    3.0s  [huge]
+[145/1036] bird-dev-0214 wrong_rows       54 tok    3.6s  [huge]
+[146/1036] bird-dev-0216 correct          42 tok    2.6s
+[147/1036] bird-dev-0217 error            85 tok    5.5s  [error]
+[148/1036] bird-dev-0221 error            78 tok    4.7s  [error]
+[149/1036] bird-dev-0222 correct          43 tok    2.7s
+[150/1036] bird-dev-0223 correct          26 tok    1.8s  [tables]
+[151/1036] bird-dev-0224 wrong_columns   213 tok   12.4s
+[152/1036] bird-dev-0225 wrong_columns    64 tok    4.5s  [empty]
+[153/1036] bird-dev-0229 error           135 tok    8.3s  [error]
+[154/1036] bird-dev-0233 wrong_rows       59 tok    3.9s
+[155/1036] bird-dev-0235 correct          48 tok    3.1s
+[156/1036] bird-dev-0237 wrong_rows       52 tok    3.7s
+[157/1036] bird-dev-0238 error            56 tok    3.6s  [error]
+[158/1036] bird-dev-0241 correct          24 tok    1.8s
+[159/1036] bird-dev-0246 error            45 tok    2.9s  [error]
+[160/1036] bird-dev-0250 wrong_columns    87 tok    5.2s  [empty]
+[161/1036] bird-dev-0251 wrong_rows       46 tok    3.0s
+[162/1036] bird-dev-0252 wrong_columns    35 tok    2.3s
+[163/1036] bird-dev-0254 wrong_rows      249 tok   15.1s
+[164/1036] bird-dev-0256 correct          24 tok    2.0s
+[165/1036] bird-dev-0257 wrong_rows       29 tok    2.0s  [huge]
+[166/1036] bird-dev-0258 wrong_rows       43 tok    3.5s
+[167/1036] bird-dev-0259 correct          41 tok    2.6s
+[168/1036] bird-dev-0261 wrong_rows       57 tok    3.8s  [huge]
+[169/1036] bird-dev-0262 error            84 tok    6.5s  [error]
+[170/1036] bird-dev-0264 wrong_columns    33 tok    2.3s
+[171/1036] bird-dev-0265 correct          16 tok    1.6s  [huge]
+[172/1036] bird-dev-0266 correct          43 tok    3.2s
+[173/1036] bird-dev-0267 wrong_columns    29 tok    2.5s  [huge]
+[174/1036] bird-dev-0269 error            50 tok    3.8s  [error]
+[175/1036] bird-dev-0270 error            81 tok    5.3s  [error]
+[176/1036] bird-dev-0271 error           101 tok    5.9s  [error]
+[177/1036] bird-dev-0272 wrong_rows      117 tok    7.3s  [empty]
+[178/1036] bird-dev-0274 wrong_rows       21 tok    1.6s  [tables]
+[179/1036] bird-dev-0275 wrong_rows       19 tok    1.5s  [empty]
+[180/1036] bird-dev-0276 error            65 tok    4.4s  [error]
+[181/1036] bird-dev-0277 correct          38 tok    3.0s  [tables]
+[182/1036] bird-dev-0278 error            52 tok    3.8s  [error]
+[183/1036] bird-dev-0279 wrong_rows       59 tok    3.4s
+[184/1036] bird-dev-0280 error            64 tok    4.6s  [error]
+[185/1036] bird-dev-0283 correct          51 tok    3.8s
+[186/1036] bird-dev-0284 wrong_rows       51 tok    3.0s  [huge]
+[187/1036] bird-dev-0285 correct          38 tok    3.4s  [tables]
+[188/1036] bird-dev-0286 wrong_rows       78 tok    5.0s
+[189/1036] bird-dev-0287 wrong_rows      109 tok    7.0s
+[190/1036] bird-dev-0288 error            77 tok    4.9s  [error]
+[191/1036] bird-dev-0289 wrong_rows       29 tok    1.9s
+[192/1036] bird-dev-0290 wrong_rows       21 tok    2.5s  [tables]
+[193/1036] bird-dev-0291 correct          22 tok    1.4s
+[194/1036] bird-dev-0292 wrong_rows      513 tok   30.5s  [huge]
+[195/1036] bird-dev-0293 correct          35 tok    2.0s
+[196/1036] bird-dev-0294 wrong_rows       69 tok    4.7s  [empty]
+[197/1036] bird-dev-0295 wrong_rows       41 tok    2.6s
+[198/1036] bird-dev-0296 wrong_columns    69 tok    4.7s  [empty]
+[199/1036] bird-dev-0297 error            67 tok    5.0s  [error]
+[200/1036] bird-dev-0298 wrong_rows       61 tok    4.6s
+[201/1036] bird-dev-0299 wrong_rows       29 tok    2.1s
+[202/1036] bird-dev-0300 wrong_rows       62 tok    5.0s
+[203/1036] bird-dev-0301 wrong_rows       36 tok    2.5s  [empty]
+[204/1036] bird-dev-0302 wrong_rows       41 tok    3.3s
+[205/1036] bird-dev-0303 wrong_rows       82 tok    5.4s
+[206/1036] bird-dev-0304 wrong_rows       50 tok    4.1s  [empty]
+[207/1036] bird-dev-0305 error            74 tok    4.9s  [error]
+[208/1036] bird-dev-0306 error            99 tok    7.1s  [error]
+[209/1036] bird-dev-0307 correct         115 tok    7.8s
+[210/1036] bird-dev-0308 wrong_rows       70 tok    4.6s
+[211/1036] bird-dev-0309 correct          83 tok    5.4s  [empty]
+[212/1036] bird-dev-0310 error            95 tok    5.9s  [error]
+[213/1036] bird-dev-0311 wrong_rows      148 tok    9.7s
+[214/1036] bird-dev-0312 wrong_rows       87 tok    5.5s
+[215/1036] bird-dev-0313 correct          25 tok    1.6s
+[216/1036] bird-dev-0314 correct          22 tok    1.6s
+[217/1036] bird-dev-0315 wrong_columns    46 tok    3.0s  [huge]
+[218/1036] bird-dev-0316 correct          49 tok    3.3s  [huge]
+[219/1036] bird-dev-0317 wrong_rows       76 tok    4.9s
+[220/1036] bird-dev-0318 correct          26 tok    1.9s
+[221/1036] bird-dev-0319 correct          63 tok    4.9s
+[222/1036] bird-dev-0320 correct          50 tok    3.2s
+[223/1036] bird-dev-0321 error           104 tok    6.6s  [error]
+[224/1036] bird-dev-0322 correct          23 tok    2.4s
+[225/1036] bird-dev-0323 correct          21 tok    1.8s
+[226/1036] bird-dev-0324 correct          37 tok    2.5s
+[227/1036] bird-dev-0325 correct          96 tok    6.1s
+[228/1036] bird-dev-0326 wrong_columns   110 tok    6.5s  [empty]
+[229/1036] bird-dev-0328 wrong_rows       63 tok    3.8s
+[230/1036] bird-dev-0329 error            52 tok    3.3s  [error]
+[231/1036] bird-dev-0330 error           144 tok    9.5s  [error]
+[232/1036] bird-dev-0331 correct          21 tok    1.6s
+[233/1036] bird-dev-0332 wrong_rows       54 tok    3.5s
+[234/1036] bird-dev-0333 correct          31 tok    2.1s  [tables]
+[235/1036] bird-dev-0334 wrong_rows       47 tok    3.9s  [empty]
+[236/1036] bird-dev-0335 wrong_rows      118 tok    7.0s
+[237/1036] bird-dev-0336 wrong_rows       72 tok    4.5s
+[238/1036] bird-dev-0337 wrong_rows       56 tok    3.4s  [empty]
+[239/1036] bird-dev-0338 wrong_rows       70 tok    4.6s  [empty]
+[240/1036] bird-dev-0339 wrong_rows       66 tok    4.1s  [huge]
+[241/1036] bird-dev-0342 wrong_columns    27 tok    7.3s  [huge]
+[242/1036] bird-dev-0343 wrong_rows       33 tok    2.3s  [huge]
+[243/1036] bird-dev-0348 wrong_columns    45 tok    3.6s
+[244/1036] bird-dev-0350 wrong_columns    52 tok    3.7s
+[245/1036] bird-dev-0351 wrong_rows       26 tok    1.9s  [huge]
+[246/1036] bird-dev-0353 wrong_columns    49 tok    3.8s  [huge]
+[247/1036] bird-dev-0354 wrong_rows       26 tok    2.0s
+[248/1036] bird-dev-0355 wrong_rows       17 tok    1.5s
+[249/1036] bird-dev-0357 wrong_rows       17 tok    1.4s
+[250/1036] bird-dev-0359 error            23 tok    1.8s  [error]
+[251/1036] bird-dev-0360 correct          57 tok    5.4s
+[252/1036] bird-dev-0361 wrong_rows       42 tok    2.4s
+[253/1036] bird-dev-0362 wrong_rows       28 tok    2.2s  [empty]
+[254/1036] bird-dev-0363 wrong_rows       38 tok    3.0s
+[255/1036] bird-dev-0364 wrong_rows       27 tok    2.0s
+[256/1036] bird-dev-0365 correct          18 tok    1.4s
+[257/1036] bird-dev-0367 wrong_rows       22 tok    1.7s
+[258/1036] bird-dev-0369 error            28 tok    2.5s  [error]
+[259/1036] bird-dev-0370 correct          42 tok    2.8s
+[260/1036] bird-dev-0372 correct          21 tok    1.5s
+[261/1036] bird-dev-0373 wrong_rows       18 tok    1.5s
+[262/1036] bird-dev-0374 correct          28 tok    1.9s
+[263/1036] bird-dev-0375 correct          17 tok    1.7s  [huge]
+[264/1036] bird-dev-0376 wrong_rows       19 tok    1.3s  [huge]
+[265/1036] bird-dev-0378 correct          32 tok    2.1s  [huge]
+[266/1036] bird-dev-0380 correct          24 tok    2.0s  [huge]
+[267/1036] bird-dev-0381 wrong_rows       35 tok    2.3s  [huge]
+[268/1036] bird-dev-0382 wrong_columns    53 tok    3.8s  [huge]
+[269/1036] bird-dev-0384 correct          43 tok    2.9s  [huge]
+[270/1036] bird-dev-0385 wrong_rows       27 tok    2.3s
+[271/1036] bird-dev-0386 correct          42 tok    2.9s
+[272/1036] bird-dev-0387 wrong_rows       22 tok    1.8s  [huge]
+[273/1036] bird-dev-0388 error            62 tok    4.3s  [error]
+[274/1036] bird-dev-0389 wrong_rows       34 tok    2.3s
+[275/1036] bird-dev-0390 correct          37 tok    3.1s  [huge]
+[276/1036] bird-dev-0392 error            72 tok    4.9s  [error]
+[277/1036] bird-dev-0393 wrong_rows       44 tok    2.9s
+[278/1036] bird-dev-0394 correct          42 tok    3.9s
+[279/1036] bird-dev-0395 correct          36 tok    3.0s
+[280/1036] bird-dev-0396 correct          40 tok    3.4s
+[281/1036] bird-dev-0398 wrong_rows       33 tok    2.7s
+[282/1036] bird-dev-0399 wrong_columns    62 tok    4.7s
+[283/1036] bird-dev-0400 correct          44 tok    3.3s  [huge]
+[284/1036] bird-dev-0401 correct          49 tok    3.7s
+[285/1036] bird-dev-0403 error            47 tok    3.5s  [error]
+[286/1036] bird-dev-0404 correct          39 tok    3.4s
+[287/1036] bird-dev-0406 wrong_columns    49 tok    3.9s  [empty]
+[288/1036] bird-dev-0410 wrong_rows       38 tok    2.8s  [empty]
+[289/1036] bird-dev-0411 wrong_rows       25 tok    2.3s  [empty]
+[290/1036] bird-dev-0413 wrong_rows       48 tok    4.1s
+[291/1036] bird-dev-0417 correct          59 tok    4.1s
+[292/1036] bird-dev-0418 wrong_rows       18 tok    1.7s  [huge]
+[293/1036] bird-dev-0419 correct          34 tok    2.9s
+[294/1036] bird-dev-0420 correct          48 tok    3.6s
+[295/1036] bird-dev-0421 wrong_columns    43 tok    3.8s
+[296/1036] bird-dev-0423 wrong_columns    58 tok    4.1s
+[297/1036] bird-dev-0425 wrong_rows       30 tok    2.1s
+[298/1036] bird-dev-0426 error            35 tok    2.4s  [error]
+[299/1036] bird-dev-0428 wrong_rows       37 tok    2.6s  [empty]
+[300/1036] bird-dev-0429 error            30 tok    2.7s  [error]
+[301/1036] bird-dev-0430 wrong_rows       54 tok    4.7s
+[302/1036] bird-dev-0431 wrong_columns    67 tok    5.5s  [empty]
+[303/1036] bird-dev-0432 wrong_columns    32 tok    2.1s  [empty]
+[304/1036] bird-dev-0433 error            47 tok    4.6s  [error]
+[305/1036] bird-dev-0434 error            33 tok    2.4s  [error]
+[306/1036] bird-dev-0435 wrong_columns    26 tok    2.1s
+[307/1036] bird-dev-0436 wrong_columns    29 tok    2.0s
+[308/1036] bird-dev-0437 wrong_columns    29 tok    2.6s  [huge]
+[309/1036] bird-dev-0438 wrong_rows       36 tok    3.0s  [empty]
+[310/1036] bird-dev-0439 correct          15 tok    1.4s
+[311/1036] bird-dev-0441 wrong_rows       29 tok    2.2s
+[312/1036] bird-dev-0442 correct          29 tok    2.8s
+[313/1036] bird-dev-0443 correct          16 tok    1.7s
+[314/1036] bird-dev-0444 error            37 tok    2.8s  [error]
+[315/1036] bird-dev-0445 correct          42 tok    3.7s
+[316/1036] bird-dev-0446 wrong_columns    49 tok    3.6s
+[317/1036] bird-dev-0447 wrong_rows       17 tok    1.7s  [empty]
+[318/1036] bird-dev-0448 error            37 tok    2.6s  [error]
+[319/1036] bird-dev-0449 error            37 tok    2.8s  [error]
+[320/1036] bird-dev-0450 correct          43 tok    3.6s
+[321/1036] bird-dev-0451 correct          26 tok    2.2s
+[322/1036] bird-dev-0452 wrong_rows       17 tok    1.8s  [huge]
+[323/1036] bird-dev-0453 error            22 tok    2.0s  [error]
+[324/1036] bird-dev-0454 correct          31 tok    2.4s
+[325/1036] bird-dev-0455 wrong_rows       27 tok    2.5s  [huge]
+[326/1036] bird-dev-0456 wrong_columns    44 tok    4.0s
+[327/1036] bird-dev-0457 correct          17 tok    1.7s
+[328/1036] bird-dev-0458 wrong_rows       36 tok    2.8s
+[329/1036] bird-dev-0460 correct          23 tok    2.1s
+[330/1036] bird-dev-0461 correct          32 tok    2.6s
+[331/1036] bird-dev-0463 wrong_rows       40 tok    4.1s
+[332/1036] bird-dev-0464 error            49 tok    3.4s  [error]
+[333/1036] bird-dev-0467 error            25 tok    2.3s  [error]
+[334/1036] bird-dev-0470 wrong_rows       23 tok    1.9s  [empty]
+[335/1036] bird-dev-0471 correct          38 tok    2.8s
+[336/1036] bird-dev-0475 wrong_rows       29 tok    2.4s
+[337/1036] bird-dev-0476 wrong_rows       31 tok    2.5s  [empty]
+[338/1036] bird-dev-0478 error            41 tok    3.4s  [error]
+[339/1036] bird-dev-0481 wrong_rows       32 tok    2.7s  [empty, tables]
+[340/1036] bird-dev-0482 wrong_rows       41 tok    3.4s  [empty, tables]
+[341/1036] bird-dev-0485 wrong_rows       25 tok    2.1s
+[342/1036] bird-dev-0488 correct          25 tok    2.3s
+[343/1036] bird-dev-0489 correct          19 tok    1.6s
+[344/1036] bird-dev-0490 correct          22 tok    2.1s
+[345/1036] bird-dev-0491 correct          29 tok    2.3s
+[346/1036] bird-dev-0492 wrong_rows       22 tok    2.1s  [empty]
+[347/1036] bird-dev-0493 correct          29 tok    2.3s
+[348/1036] bird-dev-0494 wrong_columns    65 tok    5.8s  [huge]
+[349/1036] bird-dev-0495 wrong_rows       35 tok    2.5s
+[350/1036] bird-dev-0496 wrong_rows       42 tok    3.4s
+[351/1036] bird-dev-0497 correct          36 tok    2.8s
+[352/1036] bird-dev-0498 wrong_rows       77 tok    5.8s  [empty]
+[353/1036] bird-dev-0499 wrong_rows       33 tok    2.4s
+[354/1036] bird-dev-0500 wrong_rows       68 tok    4.9s  [empty]
+[355/1036] bird-dev-0501 wrong_columns    40 tok    2.9s  [empty]
+[356/1036] bird-dev-0502 error            45 tok    3.4s  [error]
+[357/1036] bird-dev-0503 correct          33 tok    2.6s
+[358/1036] bird-dev-0504 correct          50 tok    4.3s
+[359/1036] bird-dev-0505 correct          48 tok    3.6s
+[360/1036] bird-dev-0506 error            94 tok    7.7s  [error]
+[361/1036] bird-dev-0507 error            83 tok    6.8s  [error]
+[362/1036] bird-dev-0508 wrong_rows       30 tok    2.5s
+[363/1036] bird-dev-0509 correct          23 tok    2.0s
+[364/1036] bird-dev-0510 wrong_columns    48 tok    3.9s
+[365/1036] bird-dev-0511 wrong_rows       38 tok    2.8s
+[366/1036] bird-dev-0512 wrong_rows       40 tok    4.2s
+[367/1036] bird-dev-0513 wrong_rows      172 tok   11.7s  [empty]
+[368/1036] bird-dev-0514 wrong_columns    51 tok    3.6s  [empty]
+[369/1036] bird-dev-0515 wrong_rows       52 tok    3.7s  [nulls]
+[370/1036] bird-dev-0516 correct          44 tok    3.4s
+[371/1036] bird-dev-0517 correct          66 tok    6.2s
+[372/1036] bird-dev-0519 wrong_rows       35 tok    2.5s  [empty]
+[373/1036] bird-dev-0520 wrong_rows       58 tok    5.2s
+[374/1036] bird-dev-0521 wrong_rows       55 tok    4.2s
+[375/1036] bird-dev-0523 error            60 tok    4.4s  [error]
+[376/1036] bird-dev-0524 correct          24 tok    2.0s  [huge]
+[377/1036] bird-dev-0525 wrong_rows       30 tok    2.2s  [empty, tables]
+[378/1036] bird-dev-0526 correct          29 tok    2.6s
+[379/1036] bird-dev-0527 wrong_columns    40 tok    3.8s  [huge]
+[380/1036] bird-dev-0534 correct          20 tok    7.2s
+[381/1036] bird-dev-0535 correct          29 tok    2.0s
+[382/1036] bird-dev-0536 wrong_rows       37 tok    3.1s
+[383/1036] bird-dev-0538 wrong_rows       21 tok    2.1s  [empty]
+[384/1036] bird-dev-0540 wrong_rows       31 tok    2.1s  [empty]
+[385/1036] bird-dev-0541 wrong_rows       22 tok    2.1s  [nulls]
+[386/1036] bird-dev-0542 error            49 tok    3.7s  [error]
+[387/1036] bird-dev-0543 wrong_rows       55 tok    4.3s
+[388/1036] bird-dev-0545 correct          46 tok    3.4s
+[389/1036] bird-dev-0546 error            30 tok    2.7s  [error]
+[390/1036] bird-dev-0548 error            23 tok    2.2s  [error]
+[391/1036] bird-dev-0550 correct          36 tok    2.9s
+[392/1036] bird-dev-0551 correct          38 tok    2.8s
+[393/1036] bird-dev-0552 correct          34 tok    3.1s
+[394/1036] bird-dev-0553 correct          67 tok    5.6s
+[395/1036] bird-dev-0554 wrong_rows       45 tok    3.4s  [tables]
+[396/1036] bird-dev-0556 correct          52 tok    4.5s
+[397/1036] bird-dev-0558 correct          38 tok    3.0s
+[398/1036] bird-dev-0559 correct          27 tok    2.2s
+[399/1036] bird-dev-0560 correct          21 tok    2.1s
+[400/1036] bird-dev-0561 correct          38 tok    3.1s
+[401/1036] bird-dev-0562 correct          40 tok    3.3s
+[402/1036] bird-dev-0564 error            31 tok    2.5s  [error]
+[403/1036] bird-dev-0566 correct          30 tok    2.7s
+[404/1036] bird-dev-0569 correct          37 tok    3.1s
+[405/1036] bird-dev-0570 correct          38 tok    2.9s
+[406/1036] bird-dev-0574 correct          21 tok    2.0s
+[407/1036] bird-dev-0575 correct          33 tok    2.5s
+[408/1036] bird-dev-0577 wrong_rows       21 tok    2.0s  [empty]
+[409/1036] bird-dev-0579 correct          43 tok    3.2s
+[410/1036] bird-dev-0580 wrong_rows       34 tok    2.8s  [huge]
+[411/1036] bird-dev-0582 wrong_rows       25 tok    2.2s  [empty]
+[412/1036] bird-dev-0583 correct          43 tok    3.6s
+[413/1036] bird-dev-0585 correct          41 tok    2.9s
+[414/1036] bird-dev-0588 correct          22 tok    1.8s
+[415/1036] bird-dev-0589 error            20 tok    1.8s  [error]
+[416/1036] bird-dev-0590 error            20 tok    1.5s  [error]
+[417/1036] bird-dev-0591 correct          45 tok    3.6s  [tables]
+[418/1036] bird-dev-0593 wrong_rows       85 tok    6.5s
+[419/1036] bird-dev-0594 correct          33 tok    2.3s
+[420/1036] bird-dev-0596 wrong_columns    46 tok    3.4s
+[421/1036] bird-dev-0597 correct          37 tok    2.7s
+[422/1036] bird-dev-0599 error            65 tok    4.9s  [error]
+[423/1036] bird-dev-0600 error            55 tok    3.6s  [error]
+[424/1036] bird-dev-0601 error            24 tok    1.9s  [error]
+[425/1036] bird-dev-0602 wrong_rows       41 tok    3.5s
+[426/1036] bird-dev-0603 error            58 tok    4.2s  [error]
+[427/1036] bird-dev-0605 wrong_rows       27 tok    1.9s  [tables]
+[428/1036] bird-dev-0606 wrong_rows       37 tok    3.0s
+[429/1036] bird-dev-0607 correct          23 tok    2.1s
+[430/1036] bird-dev-0608 correct          38 tok    3.1s
+[431/1036] bird-dev-0609 correct          21 tok    2.3s
+[432/1036] bird-dev-0610 error            35 tok    2.5s  [error]
+[433/1036] bird-dev-0611 correct          49 tok    3.4s
+[434/1036] bird-dev-0612 wrong_rows       32 tok    2.2s
+[435/1036] bird-dev-0613 correct          35 tok    2.5s
+[436/1036] bird-dev-0614 wrong_rows       51 tok    3.7s
+[437/1036] bird-dev-0615 correct          62 tok    4.4s
+[438/1036] bird-dev-0616 wrong_rows       84 tok    6.8s  [empty]
+[439/1036] bird-dev-0617 correct          38 tok    3.2s
+[440/1036] bird-dev-0618 wrong_rows       30 tok    2.1s
+[441/1036] bird-dev-0619 correct          44 tok    3.3s
+[442/1036] bird-dev-0620 wrong_rows       52 tok    3.6s
+[443/1036] bird-dev-0621 error            35 tok    2.6s  [error]
+[444/1036] bird-dev-0622 wrong_rows       32 tok    1.5s
+[445/1036] bird-dev-0623 correct          39 tok    3.0s
+[446/1036] bird-dev-0624 correct          16 tok    1.5s
+[447/1036] bird-dev-0625 correct          24 tok    1.4s
+[448/1036] bird-dev-0626 correct          52 tok    3.6s
+[449/1036] bird-dev-0627 correct          26 tok    1.9s
+[450/1036] bird-dev-0628 wrong_rows       26 tok    1.9s
+[451/1036] bird-dev-0630 error            69 tok    5.0s  [error]
+[452/1036] bird-dev-0631 correct          39 tok    2.1s
+[453/1036] bird-dev-0632 wrong_rows       35 tok    2.4s
+[454/1036] bird-dev-0635 wrong_rows       36 tok    2.5s
+[455/1036] bird-dev-0636 wrong_rows       40 tok    3.6s
+[456/1036] bird-dev-0638 correct          32 tok    2.1s  [huge]
+[457/1036] bird-dev-0641 correct          52 tok    3.6s
+[458/1036] bird-dev-0642 error            31 tok    2.4s  [error]
+[459/1036] bird-dev-0643 correct          25 tok    1.9s
+[460/1036] bird-dev-0644 correct          33 tok    2.4s
+[461/1036] bird-dev-0645 correct          29 tok    2.3s
+[462/1036] bird-dev-0646 correct          32 tok    2.2s
+[463/1036] bird-dev-0647 error            43 tok    4.0s  [error]
+[464/1036] bird-dev-0648 error            23 tok    2.4s  [error]
+[465/1036] bird-dev-0649 error            80 tok    5.5s  [error]
+[466/1036] bird-dev-0650 wrong_rows       34 tok    2.1s  [empty]
+[467/1036] bird-dev-0651 wrong_columns    57 tok    4.2s
+[468/1036] bird-dev-0652 error            73 tok    5.3s  [error]
+[469/1036] bird-dev-0653 wrong_rows       22 tok    1.7s  [nulls]
+[470/1036] bird-dev-0654 wrong_rows       40 tok    3.1s
+[471/1036] bird-dev-0655 wrong_rows       41 tok    3.0s
+[472/1036] bird-dev-0656 wrong_rows       46 tok    3.2s  [empty]
+[473/1036] bird-dev-0657 error            31 tok    2.6s  [error]
+[474/1036] bird-dev-0658 correct          24 tok    2.5s
+[475/1036] bird-dev-0659 correct          30 tok    2.5s
+[476/1036] bird-dev-0660 correct          22 tok    1.9s
+[477/1036] bird-dev-0661 wrong_rows       16 tok    1.5s
+[478/1036] bird-dev-0662 correct          66 tok    4.8s
+[479/1036] bird-dev-0663 wrong_rows       15 tok    1.5s
+[480/1036] bird-dev-0664 correct          38 tok    2.6s
+[481/1036] bird-dev-0666 error            31 tok    2.5s  [error]
+[482/1036] bird-dev-0667 wrong_rows       38 tok    3.0s
+[483/1036] bird-dev-0668 wrong_rows       26 tok    2.0s  [nulls, tables]
+[484/1036] bird-dev-0670 correct          44 tok    3.5s
+[485/1036] bird-dev-0673 correct          43 tok    3.0s
+[486/1036] bird-dev-0674 correct          20 tok    1.9s
+[487/1036] bird-dev-0675 correct          32 tok    2.2s
+[488/1036] bird-dev-0676 error            23 tok    1.9s  [error]
+[489/1036] bird-dev-0677 error            36 tok    2.6s  [error]
+[490/1036] bird-dev-0679 wrong_rows       26 tok    2.1s
+[491/1036] bird-dev-0680 wrong_rows       26 tok    2.0s  [nulls]
+[492/1036] bird-dev-0681 error            36 tok    2.9s  [error]
+[493/1036] bird-dev-0684 correct          48 tok    3.3s
+[494/1036] bird-dev-0686 correct          30 tok    2.2s
+[495/1036] bird-dev-0688 correct          34 tok    2.5s
+[496/1036] bird-dev-0689 error            26 tok    2.0s  [error]
+[497/1036] bird-dev-0690 correct          42 tok    3.9s
+[498/1036] bird-dev-0691 correct          38 tok    2.6s
+[499/1036] bird-dev-0692 wrong_rows       64 tok    4.9s
+[500/1036] bird-dev-0693 wrong_rows       65 tok    4.4s
+[501/1036] bird-dev-0695 correct          22 tok    1.1s  [tables]
+[502/1036] bird-dev-0696 correct          32 tok    2.2s
+[503/1036] bird-dev-0697 error            22 tok    1.9s  [error]
+[504/1036] bird-dev-0698 wrong_columns    43 tok    2.9s
+[505/1036] bird-dev-0699 correct          20 tok    1.9s
+[506/1036] bird-dev-0700 correct          23 tok    1.6s  [tables]
+[507/1036] bird-dev-0702 correct          21 tok    1.7s
+[508/1036] bird-dev-0703 correct          29 tok    2.3s
+[509/1036] bird-dev-0706 wrong_rows       33 tok    2.1s  [empty]
+[510/1036] bird-dev-0708 wrong_rows       23 tok    1.9s  [huge]
+[511/1036] bird-dev-0709 wrong_rows       53 tok    3.9s
+[512/1036] bird-dev-0711 correct          45 tok    2.9s
+[513/1036] bird-dev-0712 correct          41 tok    2.8s
+[514/1036] bird-dev-0713 correct          36 tok    2.5s
+[515/1036] bird-dev-0714 wrong_rows       24 tok    2.0s  [empty]
+[516/1036] bird-dev-0715 wrong_rows       37 tok    2.8s  [huge, nulls]
+[517/1036] bird-dev-0718 correct          38 tok    4.7s  [tables]
+[518/1036] bird-dev-0720 wrong_rows       45 tok    2.8s  [huge]
+[519/1036] bird-dev-0721 correct          33 tok    2.2s
+[520/1036] bird-dev-0722 error            33 tok    2.2s  [error]
+[521/1036] bird-dev-0725 correct          33 tok    2.3s
+[522/1036] bird-dev-0727 correct          34 tok    2.4s
+[523/1036] bird-dev-0729 correct          38 tok    2.5s
+[524/1036] bird-dev-0731 correct          36 tok    2.4s
+[525/1036] bird-dev-0734 correct          34 tok    2.1s
+[526/1036] bird-dev-0735 correct          35 tok    2.3s
+[527/1036] bird-dev-0741 error            42 tok    2.8s  [error]
+[528/1036] bird-dev-0742 correct          34 tok    2.3s
+[529/1036] bird-dev-0746 correct          33 tok    2.3s
+[530/1036] bird-dev-0748 error            31 tok    2.2s  [error]
+[531/1036] bird-dev-0749 correct          45 tok    3.0s
+[532/1036] bird-dev-0752 wrong_rows       34 tok    2.8s  [empty]
+[533/1036] bird-dev-0754 correct          36 tok    2.9s
+[534/1036] bird-dev-0755 correct          34 tok    2.3s
+[535/1036] bird-dev-0756 correct          32 tok    2.1s
+[536/1036] bird-dev-0757 correct          35 tok    2.3s
+[537/1036] bird-dev-0759 error            35 tok    2.4s  [error]
+[538/1036] bird-dev-0762 wrong_columns    45 tok    3.1s  [tables]
+[539/1036] bird-dev-0763 wrong_columns    36 tok    3.8s
+[540/1036] bird-dev-0767 correct          39 tok    2.6s
+[541/1036] bird-dev-0768 correct          34 tok    2.3s
+[542/1036] bird-dev-0770 correct          36 tok    2.5s
+[543/1036] bird-dev-0771 correct          48 tok    3.3s  [huge]
+[544/1036] bird-dev-0774 correct          35 tok    2.3s
+[545/1036] bird-dev-0776 correct          35 tok    2.5s
+[546/1036] bird-dev-0777 correct          34 tok    2.4s
+[547/1036] bird-dev-0778 correct          51 tok    3.4s
+[548/1036] bird-dev-0780 correct          47 tok    3.1s
+[549/1036] bird-dev-0783 wrong_rows       29 tok    2.2s
+[550/1036] bird-dev-0784 correct          32 tok    2.2s
+[551/1036] bird-dev-0787 correct          48 tok    3.1s
+[552/1036] bird-dev-0789 correct          40 tok    2.7s
+[553/1036] bird-dev-0793 correct          30 tok    2.3s
+[554/1036] bird-dev-0795 correct          21 tok    1.7s
+[555/1036] bird-dev-0799 wrong_rows       21 tok    2.3s
+[556/1036] bird-dev-0802 wrong_columns    41 tok    3.6s
+[557/1036] bird-dev-0803 wrong_rows       25 tok    2.1s  [empty]
+[558/1036] bird-dev-0804 correct          20 tok    1.9s
+[559/1036] bird-dev-0805 wrong_rows       26 tok    2.3s  [huge]
+[560/1036] bird-dev-0807 correct          48 tok    3.0s
+[561/1036] bird-dev-0808 wrong_rows       44 tok    3.7s
+[562/1036] bird-dev-0809 correct          31 tok    2.0s
+[563/1036] bird-dev-0810 error            94 tok    6.1s  [error]
+[564/1036] bird-dev-0811 correct          62 tok    4.1s
+[565/1036] bird-dev-0812 wrong_rows       36 tok    2.4s
+[566/1036] bird-dev-0813 correct          51 tok    3.7s
+[567/1036] bird-dev-0814 wrong_rows       33 tok    2.2s  [empty]
+[568/1036] bird-dev-0815 correct          29 tok    2.2s
+[569/1036] bird-dev-0816 correct          36 tok    3.0s  [huge]
+[570/1036] bird-dev-0817 wrong_rows       59 tok    4.5s  [empty]
+[571/1036] bird-dev-0818 correct          50 tok    3.8s
+[572/1036] bird-dev-0820 correct          55 tok    3.7s
+[573/1036] bird-dev-0821 correct          47 tok    3.2s
+[574/1036] bird-dev-0823 correct          50 tok    3.5s
+[575/1036] bird-dev-0826 wrong_columns    54 tok    3.6s
+[576/1036] bird-dev-0827 correct          57 tok    3.6s
+[577/1036] bird-dev-0828 correct          56 tok    3.4s
+[578/1036] bird-dev-0830 correct          55 tok    4.2s
+[579/1036] bird-dev-0831 correct          34 tok    2.2s
+[580/1036] bird-dev-0832 wrong_columns    76 tok    5.0s
+[581/1036] bird-dev-0833 correct          20 tok    1.6s
+[582/1036] bird-dev-0834 correct          66 tok    4.6s
+[583/1036] bird-dev-0835 error            80 tok    5.5s  [error]
+[584/1036] bird-dev-0836 correct          24 tok    1.8s
+[585/1036] bird-dev-0837 wrong_rows       26 tok    1.8s
+[586/1036] bird-dev-0838 correct          20 tok    1.5s
+[587/1036] bird-dev-0839 wrong_rows       39 tok    2.6s  [empty]
+[588/1036] bird-dev-0840 correct          37 tok    2.5s
+[589/1036] bird-dev-0841 correct          36 tok    2.5s
+[590/1036] bird-dev-0842 wrong_rows       36 tok    2.3s  [nulls]
+[591/1036] bird-dev-0843 wrong_rows       35 tok    2.5s  [empty]
+[592/1036] bird-dev-0844 correct          35 tok    2.4s
+[593/1036] bird-dev-0845 correct          57 tok    4.5s  [huge]
+[594/1036] bird-dev-0848 correct          34 tok    8.7s
+[595/1036] bird-dev-0849 wrong_rows       23 tok    1.9s  [empty]
+[596/1036] bird-dev-0851 wrong_rows       28 tok    2.9s  [huge]
+[597/1036] bird-dev-0852 wrong_rows       53 tok    3.5s
+[598/1036] bird-dev-0853 wrong_rows       32 tok    2.3s
+[599/1036] bird-dev-0855 wrong_rows       29 tok    2.3s  [empty]
+[600/1036] bird-dev-0856 wrong_rows       27 tok    1.9s
+[601/1036] bird-dev-0858 error            55 tok    3.8s  [error]
+[602/1036] bird-dev-0860 wrong_rows       88 tok    6.0s  [empty]
+[603/1036] bird-dev-0863 wrong_columns    27 tok    2.1s  [empty, tables]
+[604/1036] bird-dev-0864 correct          64 tok    4.1s  [tables]
+[605/1036] bird-dev-0867 wrong_rows       64 tok    4.6s  [empty]
+[606/1036] bird-dev-0870 correct          44 tok    2.9s  [tables]
+[607/1036] bird-dev-0871 wrong_rows       73 tok    5.8s  [empty]
+[608/1036] bird-dev-0873 correct          46 tok    2.9s
+[609/1036] bird-dev-0874 wrong_columns    47 tok    4.1s
+[610/1036] bird-dev-0876 correct          48 tok    3.4s  [tables]
+[611/1036] bird-dev-0878 wrong_columns    71 tok    5.1s
+[612/1036] bird-dev-0882 correct          25 tok    2.0s
+[613/1036] bird-dev-0883 wrong_columns    35 tok    2.7s
+[614/1036] bird-dev-0885 correct          31 tok    2.3s
+[615/1036] bird-dev-0886 wrong_columns    33 tok    2.4s
+[616/1036] bird-dev-0887 wrong_rows       30 tok    2.5s
+[617/1036] bird-dev-0888 wrong_columns    64 tok    4.5s
+[618/1036] bird-dev-0889 wrong_rows       56 tok    3.9s  [nulls]
+[619/1036] bird-dev-0890 wrong_rows       56 tok    3.9s
+[620/1036] bird-dev-0891 error            65 tok    4.4s  [error]
+[621/1036] bird-dev-0893 wrong_rows       70 tok    4.8s
+[622/1036] bird-dev-0899 wrong_columns    73 tok    5.2s
+[623/1036] bird-dev-0900 correct          49 tok    3.3s
+[624/1036] bird-dev-0903 wrong_rows       89 tok    7.1s
+[625/1036] bird-dev-0905 error            55 tok    3.5s  [error]
+[626/1036] bird-dev-0907 wrong_rows       45 tok    3.0s
+[627/1036] bird-dev-0908 wrong_columns   181 tok   12.9s
+[628/1036] bird-dev-0911 wrong_columns    41 tok    3.2s  [empty]
+[629/1036] bird-dev-0913 wrong_columns    32 tok    2.8s
+[630/1036] bird-dev-0914 correct          23 tok    2.0s
+[631/1036] bird-dev-0916 wrong_rows       18 tok    2.1s  [empty]
+[632/1036] bird-dev-0917 wrong_rows       22 tok    1.7s  [empty]
+[633/1036] bird-dev-0918 correct          23 tok    1.8s
+[634/1036] bird-dev-0919 error            26 tok    1.8s  [error]
+[635/1036] bird-dev-0920 correct          35 tok    2.5s
+[636/1036] bird-dev-0921 wrong_rows       27 tok    2.2s  [empty]
+[637/1036] bird-dev-0922 wrong_columns    37 tok    2.5s  [empty]
+[638/1036] bird-dev-0923 correct          34 tok    2.3s
+[639/1036] bird-dev-0924 wrong_rows       32 tok    2.3s  [empty]
+[640/1036] bird-dev-0925 error            31 tok    2.5s  [error]
+[641/1036] bird-dev-0926 correct          49 tok    3.6s
+[642/1036] bird-dev-0927 correct          53 tok    4.0s
+[643/1036] bird-dev-0929 wrong_columns    70 tok    4.8s  [huge]
+[644/1036] bird-dev-0932 wrong_rows       54 tok    3.5s  [empty]
+[645/1036] bird-dev-0934 correct          69 tok    5.4s
+[646/1036] bird-dev-0935 correct          42 tok    2.8s  [tables]
+[647/1036] bird-dev-0936 wrong_columns    80 tok    5.8s  [empty]
+[648/1036] bird-dev-0938 wrong_columns   117 tok    8.0s  [empty]
+[649/1036] bird-dev-0939 error            83 tok    5.6s  [error]
+[650/1036] bird-dev-0941 wrong_rows       42 tok    2.9s  [nulls, tables]
+[651/1036] bird-dev-0942 wrong_rows       58 tok    4.2s  [tables]
+[652/1036] bird-dev-0943 correct          58 tok    4.2s  [nulls, tables]
+[653/1036] bird-dev-0946 wrong_columns    21 tok    1.8s
+[654/1036] bird-dev-0947 wrong_rows       35 tok    2.4s
+[655/1036] bird-dev-0949 wrong_columns    54 tok    3.7s
+[656/1036] bird-dev-0952 wrong_rows       37 tok    2.4s
+[657/1036] bird-dev-0953 wrong_rows       52 tok    4.1s
+[658/1036] bird-dev-0956 error            59 tok    4.1s  [error]
+[659/1036] bird-dev-0957 error            26 tok    2.0s  [error]
+[660/1036] bird-dev-0958 wrong_columns    53 tok    3.7s
+[661/1036] bird-dev-0961 error            47 tok    3.4s  [error]
+[662/1036] bird-dev-0965 correct          21 tok    1.9s
+[663/1036] bird-dev-0966 wrong_rows       42 tok    2.6s
+[664/1036] bird-dev-0968 correct          25 tok    2.2s
+[665/1036] bird-dev-0969 correct          34 tok    2.3s
+[666/1036] bird-dev-0970 wrong_columns   131 tok    8.9s  [empty]
+[667/1036] bird-dev-0973 wrong_columns    78 tok    5.5s  [empty]
+[668/1036] bird-dev-0974 error            31 tok    2.2s  [error]
+[669/1036] bird-dev-0975 error            36 tok    2.6s  [error]
+[670/1036] bird-dev-0976 wrong_columns    45 tok    3.3s  [tables]
+[671/1036] bird-dev-0979 error            39 tok    2.8s  [error]
+[672/1036] bird-dev-0980 wrong_rows       75 tok    5.1s
+[673/1036] bird-dev-0982 correct          53 tok    3.7s
+[674/1036] bird-dev-0983 wrong_columns    58 tok    3.9s
+[675/1036] bird-dev-0984 wrong_rows       59 tok    4.1s  [empty]
+[676/1036] bird-dev-0985 error            67 tok    5.7s  [error]
+[677/1036] bird-dev-0986 wrong_rows       24 tok    1.7s
+[678/1036] bird-dev-0987 correct          66 tok    4.6s  [tables]
+[679/1036] bird-dev-0991 wrong_columns    52 tok    3.9s
+[680/1036] bird-dev-0992 wrong_columns    81 tok    5.5s  [empty]
+[681/1036] bird-dev-0993 wrong_rows       26 tok    2.0s  [empty]
+[682/1036] bird-dev-0995 wrong_rows       66 tok    4.5s
+[683/1036] bird-dev-0996 correct          68 tok    4.8s
+[684/1036] bird-dev-0997 wrong_columns    29 tok    2.1s
+[685/1036] bird-dev-0998 wrong_rows       44 tok    3.1s  [tables]
+[686/1036] bird-dev-0999 wrong_rows       68 tok    5.0s
+[687/1036] bird-dev-1000 correct          44 tok    2.9s
+[688/1036] bird-dev-1004 wrong_columns    82 tok    5.9s
+[689/1036] bird-dev-1005 correct          18 tok    1.6s
+[690/1036] bird-dev-1006 wrong_rows       19 tok    1.5s  [tables]
+[691/1036] bird-dev-1007 error            35 tok    2.3s  [error]
+[692/1036] bird-dev-1008 correct          53 tok    3.8s  [empty]
+[693/1036] bird-dev-1009 wrong_columns    63 tok    4.5s  [empty]
+[694/1036] bird-dev-1010 wrong_rows       40 tok    2.7s
+[695/1036] bird-dev-1012 wrong_rows       57 tok    4.2s  [empty, tables]
+[696/1036] bird-dev-1013 wrong_rows       43 tok    2.9s  [tables]
+[697/1036] bird-dev-1015 wrong_columns    86 tok    5.8s  [empty]
+[698/1036] bird-dev-1016 wrong_columns   120 tok    7.6s  [empty]
+[699/1036] bird-dev-1017 wrong_columns    69 tok    4.6s  [empty]
+[700/1036] bird-dev-1018 wrong_rows       49 tok    3.3s  [nulls, tables]
+[701/1036] bird-dev-1019 error            56 tok    4.2s  [error]
+[702/1036] bird-dev-1020 correct          25 tok   15.0s  [tables]
+[703/1036] bird-dev-1021 correct          30 tok    2.1s
+[704/1036] bird-dev-1022 wrong_rows       29 tok    3.1s  [tables]
+[705/1036] bird-dev-1023 correct          40 tok    4.1s  [tables]
+[706/1036] bird-dev-1024 wrong_columns    26 tok    2.4s  [tables]
+[707/1036] bird-dev-1026 wrong_columns    77 tok    6.2s
+[708/1036] bird-dev-1027 wrong_columns    55 tok    3.6s
+[709/1036] bird-dev-1033 correct          69 tok    5.5s
+[710/1036] bird-dev-1034 correct          42 tok    3.1s  [tables]
+[711/1036] bird-dev-1038 correct          68 tok    5.0s  [tables]
+[712/1036] bird-dev-1041 error            68 tok    5.3s  [error]
+[713/1036] bird-dev-1043 correct          24 tok    2.1s
+[714/1036] bird-dev-1045 wrong_rows       38 tok    2.6s
+[715/1036] bird-dev-1046 error            29 tok    2.5s  [error]
+[716/1036] bird-dev-1047 correct          67 tok    5.4s
+[717/1036] bird-dev-1049 correct          54 tok    3.9s
+[718/1036] bird-dev-1050 error            21 tok    1.9s  [error]
+[719/1036] bird-dev-1051 error            35 tok    2.6s  [error]
+[720/1036] bird-dev-1052 wrong_rows       50 tok    3.7s
+[721/1036] bird-dev-1053 wrong_rows       46 tok    3.6s  [huge]
+[722/1036] bird-dev-1054 wrong_rows       46 tok    3.3s
+[723/1036] bird-dev-1055 correct          38 tok    2.9s
+[724/1036] bird-dev-1056 correct          30 tok    2.5s
+[725/1036] bird-dev-1059 correct          18 tok    1.7s  [huge]
+[726/1036] bird-dev-1060 correct          30 tok    2.3s
+[727/1036] bird-dev-1061 correct          29 tok    2.6s
+[728/1036] bird-dev-1062 wrong_rows       59 tok    4.5s  [huge]
+[729/1036] bird-dev-1063 correct          32 tok    2.4s
+[730/1036] bird-dev-1064 error            28 tok    2.3s  [error]
+[731/1036] bird-dev-1065 error            25 tok    2.1s  [error]
+[732/1036] bird-dev-1066 error            27 tok    2.2s  [error]
+[733/1036] bird-dev-1067 correct          50 tok    4.1s
+[734/1036] bird-dev-1069 wrong_columns    23 tok    1.8s
+[735/1036] bird-dev-1070 wrong_rows       23 tok    1.9s
+[736/1036] bird-dev-1071 error            51 tok    4.6s  [error]
+[737/1036] bird-dev-1072 correct          50 tok    3.7s
+[738/1036] bird-dev-1073 wrong_rows       63 tok    4.9s
+[739/1036] bird-dev-1074 error            33 tok    3.0s  [error]
+[740/1036] bird-dev-1075 wrong_columns    74 tok    5.5s
+[741/1036] bird-dev-1077 correct          21 tok    2.0s
+[742/1036] bird-dev-1081 wrong_rows       24 tok    2.0s
+[743/1036] bird-dev-1082 correct          30 tok    2.2s
+[744/1036] bird-dev-1083 wrong_columns    42 tok    3.3s
+[745/1036] bird-dev-1085 wrong_rows       61 tok    4.6s
+[746/1036] bird-dev-1086 correct          36 tok    2.4s
+[747/1036] bird-dev-1087 error            49 tok    3.6s  [error]
+[748/1036] bird-dev-1089 wrong_rows       70 tok    5.3s
+[749/1036] bird-dev-1090 correct          39 tok    2.7s
+[750/1036] bird-dev-1093 error            40 tok    3.3s  [error]
+[751/1036] bird-dev-1095 correct          60 tok    4.5s
+[752/1036] bird-dev-1097 correct          53 tok    5.2s
+[753/1036] bird-dev-1099 wrong_rows       35 tok    2.8s
+[754/1036] bird-dev-1100 correct          53 tok    4.3s
+[755/1036] bird-dev-1101 error            67 tok    6.6s  [error]
+[756/1036] bird-dev-1104 error            50 tok    3.5s  [error]
+[757/1036] bird-dev-1106 error            60 tok    4.6s  [error]
+[758/1036] bird-dev-1108 error            44 tok    3.3s  [error]
+[759/1036] bird-dev-1109 wrong_rows       52 tok    4.3s
+[760/1036] bird-dev-1111 error            53 tok    3.8s  [error]
+[761/1036] bird-dev-1112 correct          89 tok    6.6s
+[762/1036] bird-dev-1117 correct          23 tok    2.0s
+[763/1036] bird-dev-1118 wrong_rows       32 tok    2.4s  [huge]
+[764/1036] bird-dev-1119 wrong_rows      264 tok   18.5s
+[765/1036] bird-dev-1120 wrong_rows      562 tok   37.8s
+[766/1036] bird-dev-1121 error            58 tok    4.0s  [error]
+[767/1036] bird-dev-1123 wrong_rows       44 tok    3.7s
+[768/1036] bird-dev-1125 error            40 tok    3.3s  [error]
+[769/1036] bird-dev-1126 wrong_rows       68 tok    5.4s  [empty]
+[770/1036] bird-dev-1127 wrong_columns    57 tok    4.9s  [empty]
+[771/1036] bird-dev-1128 error           106 tok    8.0s  [error]
+[772/1036] bird-dev-1129 error            25 tok    2.0s  [error]
+[773/1036] bird-dev-1131 gold_error       70 tok    4.7s  [nulls]
+[774/1036] bird-dev-1132 correct          29 tok    1.9s
+[775/1036] bird-dev-1137 correct          49 tok    3.8s  [tables]
+[776/1036] bird-dev-1138 wrong_rows       37 tok    2.5s
+[777/1036] bird-dev-1140 error           291 tok   21.4s  [error]
+[778/1036] bird-dev-1142 wrong_rows       55 tok    4.1s
+[779/1036] bird-dev-1143 correct          40 tok    2.7s
+[780/1036] bird-dev-1151 error            58 tok   11.7s  [error]
+[781/1036] bird-dev-1154 correct          49 tok    3.9s
+[782/1036] bird-dev-1158 error            68 tok    6.2s  [error]
+[783/1036] bird-dev-1159 wrong_rows       41 tok    3.3s  [huge]
+[784/1036] bird-dev-1160 wrong_rows       63 tok    5.5s
+[785/1036] bird-dev-1161 error            65 tok    5.4s  [error]
+[786/1036] bird-dev-1163 error            31 tok    2.4s  [error]
+[787/1036] bird-dev-1165 error            46 tok    4.1s  [error]
+[788/1036] bird-dev-1167 error            80 tok    6.8s  [error]
+[789/1036] bird-dev-1170 wrong_rows       65 tok    4.2s
+[790/1036] bird-dev-1172 wrong_rows       45 tok    3.1s
+[791/1036] bird-dev-1173 wrong_columns    61 tok    5.2s
+[792/1036] bird-dev-1174 error            73 tok    5.8s  [error]
+[793/1036] bird-dev-1176 correct          41 tok    3.1s  [empty]
+[794/1036] bird-dev-1177 wrong_rows       68 tok    5.0s  [tables]
+[795/1036] bird-dev-1178 wrong_rows       37 tok    2.9s  [empty]
+[796/1036] bird-dev-1180 correct          39 tok    3.0s
+[797/1036] bird-dev-1181 error            89 tok    6.5s  [error]
+[798/1036] bird-dev-1182 wrong_rows       99 tok    8.4s
+[799/1036] bird-dev-1183 correct          68 tok    5.4s
+[800/1036] bird-dev-1184 correct          59 tok    4.6s
+[801/1036] bird-dev-1186 wrong_rows       73 tok    5.1s  [empty]
+[802/1036] bird-dev-1188 error            36 tok    2.5s  [error]
+[803/1036] bird-dev-1190 wrong_rows      116 tok    8.4s
+[804/1036] bird-dev-1191 correct         170 tok   10.8s
+[805/1036] bird-dev-1193 wrong_rows       75 tok    5.4s
+[806/1036] bird-dev-1194 wrong_rows       72 tok    4.9s  [empty]
+[807/1036] bird-dev-1196 wrong_columns    36 tok    2.3s  [tables]
+[808/1036] bird-dev-1197 wrong_rows       23 tok    2.2s
+[809/1036] bird-dev-1199 error            69 tok    4.6s  [error]
+[810/1036] bird-dev-1200 error            82 tok    6.1s  [error]
+[811/1036] bird-dev-1202 correct          84 tok    5.3s
+[812/1036] bird-dev-1203 correct          41 tok    2.7s
+[813/1036] bird-dev-1204 correct          65 tok    4.6s
+[814/1036] bird-dev-1206 correct          29 tok    2.2s
+[815/1036] bird-dev-1207 wrong_rows       67 tok    4.5s  [huge]
+[816/1036] bird-dev-1210 correct          29 tok    2.2s  [tables]
+[817/1036] bird-dev-1211 error            63 tok    4.3s  [error]
+[818/1036] bird-dev-1212 wrong_rows       69 tok    4.5s  [huge]
+[819/1036] bird-dev-1213 wrong_rows       55 tok    3.4s
+[820/1036] bird-dev-1214 wrong_rows       41 tok    3.2s  [huge]
+[821/1036] bird-dev-1215 wrong_columns    92 tok    6.9s
+[822/1036] bird-dev-1216 wrong_columns    71 tok    5.7s  [huge]
+[823/1036] bird-dev-1217 error            72 tok    4.8s  [error]
+[824/1036] bird-dev-1218 wrong_rows       77 tok    5.9s
+[825/1036] bird-dev-1219 wrong_rows       91 tok    6.8s
+[826/1036] bird-dev-1221 wrong_rows       58 tok    4.0s  [empty]
+[827/1036] bird-dev-1222 correct          49 tok    3.3s
+[828/1036] bird-dev-1223 wrong_rows       82 tok    5.8s
+[829/1036] bird-dev-1224 wrong_columns    55 tok    3.7s
+[830/1036] bird-dev-1226 error            59 tok    4.1s  [error]
+[831/1036] bird-dev-1228 wrong_rows       37 tok    2.6s  [huge]
+[832/1036] bird-dev-1230 correct          40 tok    2.9s  [huge]
+[833/1036] bird-dev-1233 error            50 tok    3.9s  [error]
+[834/1036] bird-dev-1234 wrong_rows       94 tok    6.3s  [huge]
+[835/1036] bird-dev-1236 error            97 tok    7.1s  [error]
+[836/1036] bird-dev-1237 wrong_rows       55 tok    3.8s
+[837/1036] bird-dev-1240 correct          39 tok    2.8s
+[838/1036] bird-dev-1244 wrong_columns    65 tok    5.5s  [huge]
+[839/1036] bird-dev-1245 error            43 tok    3.1s  [error]
+[840/1036] bird-dev-1246 correct          69 tok    5.5s
+[841/1036] bird-dev-1248 wrong_rows       69 tok    5.0s
+[842/1036] bird-dev-1249 error            41 tok    3.6s  [error]
+[843/1036] bird-dev-1250 wrong_rows       68 tok    5.6s
+[844/1036] bird-dev-1253 error            51 tok    3.6s  [error]
+[845/1036] bird-dev-1258 wrong_rows      108 tok    7.7s
+[846/1036] bird-dev-1259 error            53 tok    3.8s  [error]
+[847/1036] bird-dev-1260 wrong_rows       71 tok    6.2s  [empty]
+[848/1036] bird-dev-1261 wrong_rows       98 tok    7.3s  [tables]
+[849/1036] bird-dev-1262 correct          60 tok    4.7s
+[850/1036] bird-dev-1263 wrong_rows       85 tok    6.1s  [empty]
+[851/1036] bird-dev-1264 wrong_rows       60 tok    4.0s
+[852/1036] bird-dev-1266 wrong_rows       46 tok    3.2s
+[853/1036] bird-dev-1268 wrong_rows       69 tok    4.9s
+[854/1036] bird-dev-1269 wrong_rows       70 tok    4.8s  [empty]
+[855/1036] bird-dev-1271 correct          63 tok    4.8s
+[856/1036] bird-dev-1272 correct          50 tok    3.5s
+[857/1036] bird-dev-1273 wrong_rows       54 tok    4.4s
+[858/1036] bird-dev-1274 wrong_rows      149 tok   10.4s
+[859/1036] bird-dev-1276 wrong_rows       43 tok    3.3s  [empty]
+[860/1036] bird-dev-1277 error            69 tok    4.6s  [error]
+[861/1036] bird-dev-1278 correct          90 tok    6.1s
+[862/1036] bird-dev-1279 error            93 tok    6.4s  [error]
+[863/1036] bird-dev-1280 correct          41 tok    2.8s
+[864/1036] bird-dev-1282 wrong_columns    52 tok    3.6s
+[865/1036] bird-dev-1283 correct          44 tok    3.1s
+[866/1036] bird-dev-1284 error            53 tok    3.5s  [error]
+[867/1036] bird-dev-1285 error            55 tok    3.6s  [error]
+[868/1036] bird-dev-1286 correct          55 tok    3.8s
+[869/1036] bird-dev-1287 wrong_rows       44 tok    3.0s
+[870/1036] bird-dev-1288 correct          34 tok    3.0s  [huge]
+[871/1036] bird-dev-1289 wrong_rows       67 tok    4.7s
+[872/1036] bird-dev-1290 wrong_rows       72 tok    5.1s  [empty]
+[873/1036] bird-dev-1291 correct          69 tok    5.2s
+[874/1036] bird-dev-1292 correct         112 tok    7.4s
+[875/1036] bird-dev-1293 wrong_rows       47 tok    3.1s
+[876/1036] bird-dev-1294 error            52 tok    3.7s  [error]
+[877/1036] bird-dev-1295 correct          70 tok    4.9s
+[878/1036] bird-dev-1296 wrong_rows       68 tok    4.5s  [empty]
+[879/1036] bird-dev-1297 correct          53 tok    3.7s
+[880/1036] bird-dev-1298 error            55 tok    3.6s  [error]
+[881/1036] bird-dev-1299 wrong_rows       52 tok    3.3s
+[882/1036] bird-dev-1300 wrong_rows       41 tok    2.8s
+[883/1036] bird-dev-1301 correct          45 tok    3.1s  [tables]
+[884/1036] bird-dev-1303 correct          39 tok    3.0s
+[885/1036] bird-dev-1304 error            42 tok    2.9s  [error]
+[886/1036] bird-dev-1305 wrong_rows       50 tok    4.3s
+[887/1036] bird-dev-1306 correct          48 tok    3.1s
+[888/1036] bird-dev-1307 wrong_rows       51 tok    3.9s
+[889/1036] bird-dev-1308 wrong_rows       51 tok    3.1s
+[890/1036] bird-dev-1309 wrong_rows       52 tok    3.6s  [empty]
+[891/1036] bird-dev-1310 correct          43 tok    3.2s
+[892/1036] bird-dev-1311 error            46 tok    3.4s  [error]
+[893/1036] bird-dev-1313 correct          37 tok    6.0s
+[894/1036] bird-dev-1314 wrong_rows       38 tok    3.0s  [empty]
+[895/1036] bird-dev-1315 wrong_rows       71 tok    4.9s
+[896/1036] bird-dev-1316 wrong_rows       82 tok    4.8s  [empty]
+[897/1036] bird-dev-1318 wrong_columns    86 tok    4.9s  [empty]
+[898/1036] bird-dev-1319 wrong_columns    42 tok    2.5s
+[899/1036] bird-dev-1320 correct          63 tok    4.2s
+[900/1036] bird-dev-1321 error            71 tok    4.6s  [error]
+[901/1036] bird-dev-1324 error            78 tok    5.2s  [error]
+[902/1036] bird-dev-1325 wrong_rows       29 tok    1.9s  [nulls]
+[903/1036] bird-dev-1326 correct          39 tok    3.3s
+[904/1036] bird-dev-1327 correct          51 tok    3.1s
+[905/1036] bird-dev-1328 correct          39 tok    2.7s
+[906/1036] bird-dev-1329 error            43 tok    2.9s  [error]
+[907/1036] bird-dev-1330 correct          38 tok    2.4s
+[908/1036] bird-dev-1332 error            71 tok    4.9s  [error]
+[909/1036] bird-dev-1333 correct          36 tok    2.4s
+[910/1036] bird-dev-1335 correct          48 tok    3.1s
+[911/1036] bird-dev-1336 wrong_rows       49 tok    3.1s  [empty]
+[912/1036] bird-dev-1337 correct          41 tok    2.6s
+[913/1036] bird-dev-1341 correct          20 tok    1.8s
+[914/1036] bird-dev-1342 correct          36 tok    2.4s  [tables]
+[915/1036] bird-dev-1343 correct          26 tok    1.9s
+[916/1036] bird-dev-1345 correct          28 tok    1.7s
+[917/1036] bird-dev-1347 correct          47 tok    3.0s
+[918/1036] bird-dev-1348 wrong_rows       29 tok    2.1s
+[919/1036] bird-dev-1349 correct          40 tok    2.6s
+[920/1036] bird-dev-1353 correct          44 tok    3.1s
+[921/1036] bird-dev-1354 correct          32 tok    2.2s
+[922/1036] bird-dev-1355 wrong_rows       44 tok    3.0s
+[923/1036] bird-dev-1358 wrong_columns    51 tok    3.5s  [empty]
+[924/1036] bird-dev-1360 error            47 tok    3.7s  [error]
+[925/1036] bird-dev-1363 wrong_rows       20 tok    1.3s
+[926/1036] bird-dev-1364 error            48 tok    3.0s  [error]
+[927/1036] bird-dev-1365 correct          39 tok    2.6s
+[928/1036] bird-dev-1366 wrong_columns    54 tok    3.5s
+[929/1036] bird-dev-1367 wrong_columns    47 tok    3.8s
+[930/1036] bird-dev-1369 wrong_columns    47 tok    3.7s
+[931/1036] bird-dev-1370 wrong_rows       39 tok    3.2s
+[932/1036] bird-dev-1372 correct          39 tok    2.3s
+[933/1036] bird-dev-1373 correct          35 tok    2.2s
+[934/1036] bird-dev-1374 correct          49 tok    3.5s
+[935/1036] bird-dev-1377 correct          20 tok    2.4s
+[936/1036] bird-dev-1379 error            36 tok    2.9s  [error]
+[937/1036] bird-dev-1382 wrong_columns    75 tok    5.1s
+[938/1036] bird-dev-1383 correct          47 tok    3.4s
+[939/1036] bird-dev-1384 correct          48 tok    4.0s
+[940/1036] bird-dev-1385 correct          37 tok    2.5s
+[941/1036] bird-dev-1386 correct          55 tok    3.5s
+[942/1036] bird-dev-1388 wrong_rows       44 tok    2.9s
+[943/1036] bird-dev-1391 correct          74 tok    5.7s  [nulls]
+[944/1036] bird-dev-1393 wrong_columns    50 tok    3.2s  [empty]
+[945/1036] bird-dev-1395 error            53 tok    3.5s  [error]
+[946/1036] bird-dev-1396 correct          64 tok    4.1s
+[947/1036] bird-dev-1397 error            50 tok    3.4s  [error]
+[948/1036] bird-dev-1400 wrong_rows       80 tok    5.6s
+[949/1036] bird-dev-1402 wrong_columns    44 tok    2.8s
+[950/1036] bird-dev-1406 wrong_rows       24 tok    2.0s
+[951/1036] bird-dev-1407 wrong_columns    30 tok    2.0s  [empty]
+[952/1036] bird-dev-1408 correct          28 tok    2.1s
+[953/1036] bird-dev-1412 error            46 tok    2.9s  [error]
+[954/1036] bird-dev-1413 correct          47 tok    3.3s
+[955/1036] bird-dev-1414 correct          40 tok    2.8s
+[956/1036] bird-dev-1415 correct          29 tok    2.1s
+[957/1036] bird-dev-1416 correct          42 tok    3.2s
+[958/1036] bird-dev-1417 error            18 tok    1.7s  [error]
+[959/1036] bird-dev-1418 wrong_rows       38 tok    2.5s
+[960/1036] bird-dev-1419 wrong_rows       37 tok    2.9s  [empty]
+[961/1036] bird-dev-1420 correct          32 tok    2.4s
+[962/1036] bird-dev-1421 wrong_rows       56 tok    4.0s
+[963/1036] bird-dev-1423 correct          21 tok    1.7s
+[964/1036] bird-dev-1424 correct          31 tok    1.9s
+[965/1036] bird-dev-1425 correct          42 tok    2.8s
+[966/1036] bird-dev-1428 correct          59 tok    3.9s
+[967/1036] bird-dev-1429 error            67 tok    4.6s  [error]
+[968/1036] bird-dev-1430 error            55 tok    3.5s  [error]
+[969/1036] bird-dev-1431 error            45 tok    2.7s  [error]
+[970/1036] bird-dev-1433 wrong_rows       20 tok    1.7s  [huge]
+[971/1036] bird-dev-1434 wrong_rows       29 tok    1.8s
+[972/1036] bird-dev-1436 correct          36 tok    2.4s  [tables]
+[973/1036] bird-dev-1437 correct          74 tok    5.2s
+[974/1036] bird-dev-1438 wrong_rows       48 tok    3.1s  [empty]
+[975/1036] bird-dev-1439 wrong_rows       46 tok    3.0s  [empty]
+[976/1036] bird-dev-1440 wrong_rows       65 tok    4.8s
+[977/1036] bird-dev-1441 error            59 tok    3.7s  [error]
+[978/1036] bird-dev-1442 correct          61 tok    4.3s
+[979/1036] bird-dev-1443 correct          45 tok    3.5s
+[980/1036] bird-dev-1444 error            34 tok    3.1s  [error]
+[981/1036] bird-dev-1445 correct          26 tok    1.9s
+[982/1036] bird-dev-1446 correct          46 tok    2.8s
+[983/1036] bird-dev-1447 correct          37 tok    2.6s
+[984/1036] bird-dev-1448 error            57 tok    4.0s  [error]
+[985/1036] bird-dev-1449 wrong_columns    61 tok    4.4s
+[986/1036] bird-dev-1450 wrong_rows       35 tok    2.3s
+[987/1036] bird-dev-1451 error            82 tok    4.8s  [error]
+[988/1036] bird-dev-1452 correct          40 tok    2.6s
+[989/1036] bird-dev-1453 error            65 tok    4.3s  [error]
+[990/1036] bird-dev-1454 error            67 tok    4.3s  [error]
+[991/1036] bird-dev-1455 wrong_columns    37 tok    2.4s
+[992/1036] bird-dev-1456 wrong_rows       74 tok    4.7s
+[993/1036] bird-dev-1458 wrong_rows       95 tok    7.2s
+[994/1036] bird-dev-1459 correct          44 tok    3.3s
+[995/1036] bird-dev-1461 correct          34 tok    3.0s
+[996/1036] bird-dev-1462 correct          32 tok    2.8s
+[997/1036] bird-dev-1463 wrong_rows       35 tok    2.8s
+[998/1036] bird-dev-1465 wrong_rows       34 tok    2.1s
+[999/1036] bird-dev-1466 wrong_columns    46 tok    3.2s
+[1000/1036] bird-dev-1467 correct          51 tok    3.3s
+[1001/1036] bird-dev-1468 correct          43 tok    2.7s
+[1002/1036] bird-dev-1469 correct          51 tok    3.5s
+[1003/1036] bird-dev-1470 wrong_rows       55 tok    4.3s
+[1004/1036] bird-dev-1474 wrong_columns   165 tok   10.3s  [empty]
+[1005/1036] bird-dev-1475 wrong_rows       94 tok    5.8s  [tables]
+[1006/1036] bird-dev-1477 wrong_columns    90 tok    5.6s
+[1007/1036] bird-dev-1478 error            37 tok    2.3s  [error]
+[1008/1036] bird-dev-1485 error            87 tok    5.7s  [error]
+[1009/1036] bird-dev-1487 wrong_columns    99 tok    6.2s  [empty]
+[1010/1036] bird-dev-1488 correct          57 tok    4.0s
+[1011/1036] bird-dev-1489 error            53 tok    3.2s  [error]
+[1012/1036] bird-dev-1491 wrong_columns    89 tok    5.8s  [empty]
+[1013/1036] bird-dev-1492 wrong_rows      114 tok    7.9s
+[1014/1036] bird-dev-1494 wrong_rows       54 tok    3.9s  [nulls]
+[1015/1036] bird-dev-1495 correct          34 tok    2.2s
+[1016/1036] bird-dev-1496 wrong_columns    60 tok    3.9s
+[1017/1036] bird-dev-1497 wrong_columns    68 tok    4.4s
+[1018/1036] bird-dev-1499 error            63 tok    4.3s  [error]
+[1019/1036] bird-dev-1502 wrong_rows       86 tok    5.2s  [empty]
+[1020/1036] bird-dev-1503 wrong_rows       72 tok    4.5s  [empty]
+[1021/1036] bird-dev-1504 correct          48 tok    3.0s  [nulls]
+[1022/1036] bird-dev-1508 correct          60 tok    4.0s
+[1023/1036] bird-dev-1510 wrong_rows       72 tok    6.2s
+[1024/1036] bird-dev-1511 wrong_rows       68 tok    4.6s
+[1025/1036] bird-dev-1512 wrong_rows       39 tok    2.7s  [tables]
+[1026/1036] bird-dev-1513 correct          59 tok    4.4s
+[1027/1036] bird-dev-1516 correct          99 tok    6.1s
+[1028/1036] bird-dev-1517 wrong_rows       21 tok    1.4s
+[1029/1036] bird-dev-1518 correct          63 tok    3.9s
+[1030/1036] bird-dev-1519 correct          43 tok    2.8s  [tables]
+[1031/1036] bird-dev-1520 wrong_columns   118 tok    7.3s  [empty]
+[1032/1036] bird-dev-1522 correct          65 tok    4.5s
+[1033/1036] bird-dev-1523 wrong_rows       61 tok    4.1s  [empty]
+[1034/1036] bird-dev-1527 wrong_columns    75 tok    4.4s
+[1035/1036] bird-dev-1530 wrong_columns    52 tok    3.2s
+[1036/1036] bird-dev-1532 correct          78 tok    4.9s
+bird: 1035 tasks (1 dropped: gold query errors or a request failed)
+
+policy                                              score  compute   vs shipped, 95% CI
+always coder                                     528/1035     100%                     
+coder, 4B second opinion on a flag               534/1035     112%            -1 to +13
+always 4B (reported)                             357/1035      29%         -202 to -141
+4B -> coder when it doesn't run (reported)       432/1035      73%          -123 to -69
+4B -> coder on any flag (reported)               478/1035      90%           -71 to -28
+hindsight (reported)                             584/1035       0%           +43 to +71
+
+rule: the adopted policy (coder, 4B second opinion on a flag) is confirmed on the BIRD dev questions mini-dev doesn't use unless always coder beats it there with a paired bootstrap 95% interval of the score difference entirely above 0; if it does, the SQL pack reverts to the coder alone
+-> CONFIRMED: coder, 4B second opinion on a flag
+
+flags vs the key (per model, pooled):
+   4B     wrong   678  caught   424  false alarms   49   caught by {'error': 233, 'empty': 108, 'huge': 48, 'nulls': 15, 'tables': 30}   false by {'error': 0, 'empty': 3, 'huge': 18, 'nulls': 3, 'tables': 26}
+   coder  wrong   507  caught   242  false alarms   72   caught by {'error': 75, 'empty': 74, 'huge': 50, 'nulls': 19, 'tables': 34}   false by {'error': 0, 'empty': 6, 'huge': 34, 'nulls': 2, 'tables': 30}
