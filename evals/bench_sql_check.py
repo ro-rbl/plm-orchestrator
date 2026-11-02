@@ -23,6 +23,19 @@ mini-dev doesn't use (mini-dev's question_ids are dev's). The question gets its 
 bench_sql.py. CONFIRM_RULE was fixed on 2026-10-31 before any model answered it:
     .venv/bin/python evals/bench_sql_check.py --set bird --model qwen2.5-coder:14b
     .venv/bin/python evals/bench_sql_check.py --simulate --sets bird
+
+Dropping the "huge" flag (more than 100 rows): "train", 3000 questions sampled (TRAIN_SEED) from Spider's
+train_spider.json (7000; its 140 databases are in no dev or test set; train_others.json's 6 older databases
+are left out). On the seen sets (rest + test + bird, 3915 questions) the second opinion without "huge" scored
+2770 vs 2764 (7 tasks won, 1 lost) and asked the 4B 551 times instead of 678. The gain sought is fewer
+false alarms and 4B calls at the same accuracy, not a higher score (8 disagreements in 3915 can't show one),
+so NOHUGE_RULE is a non-inferiority rule, unlike FLAGS_RULE. Both policies are scored on the same answers:
+the candidate's flags are the saved ones minus "huge". The 4B runs only where the coder's query raised a
+shipped flag (--only-flagged), the only tasks where either policy asks it. Caveat: Spider's train split is
+the likeliest of its splits to be in the models' training data. NOHUGE_RULE was fixed on 2026-11-01
+before any model answered the set:
+    results/run_sql_nohuge.sh                                   # coder on all 3000, then the 4B where flagged
+    .venv/bin/python evals/bench_sql_check.py --simulate-nohuge
 """
 
 import argparse
@@ -59,6 +72,12 @@ CONFIRM_RULE = (f"the adopted policy ({CANDIDATE}) is confirmed on the BIRD dev 
                 f"{SHIPPED} beats it there with a paired bootstrap 95% interval of the score difference entirely above 0; "
                 "if it does, the SQL pack reverts to the coder alone")
 SEED = 20261027
+TRAIN_SEED, TRAIN_SAMPLE = 20261101, 3000
+NOHUGE = f"{CANDIDATE}, without the huge flag"
+NOHUGE_RULE = (f"{NOHUGE} (the same policy, with \"huge\" left out of both models' flags) replaces the shipped flags iff, "
+               f"on the {TRAIN_SAMPLE} sampled Spider train questions, the lower end of a paired bootstrap 95% interval of "
+               f"its score minus the shipped policy's ({CANDIDATE}) is at least -{TRAIN_SAMPLE // 1000} (no more than 0.1% "
+               "of the tasks worse) and it asks the 4B fewer times; otherwise the pack keeps all five flags")
 
 
 def tasks(name):
@@ -75,7 +94,14 @@ def tasks(name):
         folder, root = "dev_databases", base
     elif not BASE.exists():
         sys.exit(f"{BASE} is missing: download and unzip Spider into .benchmarks/ (see evals/bench_sql.py)")
-    if name == "rest":
+    if name == "train":
+        if not BASE.exists():
+            sys.exit(f"{BASE} is missing: download and unzip Spider into .benchmarks/ (see evals/bench_sql.py)")
+        train = json.load(open(BASE / "train_spider.json"))
+        pick = sorted(random.Random(TRAIN_SEED).sample(range(len(train)), TRAIN_SAMPLE))
+        items = [(f"spider-train-{i:04d}", train[i]) for i in pick]
+        folder, root = "database", BASE
+    elif name == "rest":
         dev = json.load(open(BASE / "dev.json"))
         used = set(random.Random(bench_sql.SAMPLE_SEED).sample(range(len(dev)), bench_sql.SPIDER_SAMPLE))
         items = [(f"spider-{i:04d}", dev[i]) for i in range(len(dev)) if i not in used]
@@ -104,8 +130,14 @@ def results_path(name, model):
     return run_sql.RESULTS / f"bench_spider_{name}__{re.sub(r'[^A-Za-z0-9._-]+', '_', model)}.jsonl"
 
 
-def run(name, model, num_predict, timeout):
+def run(name, model, num_predict, timeout, only_flagged=False):
     ts = tasks(name)
+    if only_flagged:  # only where the coder's saved query raised a flag: the only tasks a second opinion asks about
+        coder = results_path(name, MODELS["coder"])
+        flagged = {r["id"]: bool(r["flags"]) for r in run_sql.load(coder)} if coder.exists() else {}
+        if len(flagged) < len(ts):
+            sys.exit(f"--only-flagged needs the coder's complete results on {name} ({len(flagged)}/{len(ts)})")
+        ts = [t for t in ts if flagged[t["id"]]]
     out = results_path(name, model)
     done = {r["id"] for r in run_sql.load(out)} if out.exists() else set()
     todo = [t for t in ts if t["id"] not in done]
@@ -220,20 +252,79 @@ def simulate(sets=SETS, resamples=2000):
         print(f"   {k:<6} wrong {len(wrong):>5}  caught {caught:>5}  false alarms {false:>4}   caught by {by}   false by {fa}")
 
 
+def simulate_nohuge(resamples=2000):
+    ts = tasks("train")
+    R = {k: {r["id"]: r for r in run_sql.load(results_path("train", m))} if results_path("train", m).exists() else {}
+         for k, m in MODELS.items()}
+    if len(R["coder"]) < len(ts):
+        sys.exit(f"no complete train results for the coder ({len(R['coder'])}/{len(ts)}); run results/run_sql_nohuge.sh")
+    need = [t["id"] for t in ts if R["coder"][t["id"]]["flags"]]
+    if missing := [i for i in need if i not in R["4B"]]:
+        sys.exit(f"the 4B hasn't answered {len(missing)} flagged train tasks; run results/run_sql_nohuge.sh")
+    bad = {i for i in R["coder"] if R["coder"][i]["verdict"] in ("gold_error", "request_error")
+           or (i in R["4B"] and R["4B"][i]["verdict"] == "request_error")}
+    ids = [t["id"] for t in ts if t["id"] not in bad]
+    print(f"train: {len(ids)} tasks ({len(bad)} dropped: gold query errors or a request failed)")
+
+    def ok(k, i):
+        return R[k][i]["verdict"] == "correct"
+
+    def policy(drop):
+        def flags(r):
+            return [f for f in r["flags"] if f not in drop]
+        out, asked = [], 0
+        for i in ids:
+            c = run_sql.PARAMS["coder"] * R["coder"][i]["eval_tokens"]
+            if not flags(R["coder"][i]):
+                out.append((ok("coder", i), c))
+                continue
+            asked += 1
+            b = R["4B"][i]
+            out.append((ok("4B", i) if not flags(b) else ok("coder", i), c + run_sql.PARAMS["4B"] * b["eval_tokens"]))
+        return out, asked
+
+    coder = [(ok("coder", i), run_sql.PARAMS["coder"] * R["coder"][i]["eval_tokens"]) for i in ids]
+    shipped, asked_s = policy(())
+    cand, asked_c = policy(("huge",))
+    base = sum(c for _, c in coder)
+    rng = random.Random(SEED)
+    idx = [[rng.randrange(len(ids)) for _ in ids] for _ in range(resamples)]
+    print(f"\n{'policy':<60} {'score':>10} {'compute':>8} {'4B asked':>9} {'vs shipped, 95% CI':>20}")
+    lo = None
+    for name, res, asked in ((SHIPPED + " (reported)", coder, 0), (CANDIDATE + " (shipped)", shipped, asked_s),
+                             (NOHUGE, cand, asked_c)):
+        diffs = sorted(sum(res[i][0] - shipped[i][0] for i in b) for b in idx)
+        dlo, dhi = diffs[int(0.025 * resamples)], diffs[int(0.975 * resamples)]
+        if res is cand:
+            lo = dlo
+        print(f"{name:<60} {sum(c for c, _ in res):>5}/{len(ids):<4} {sum(c for _, c in res) / base:>8.0%} {asked:>9} "
+              f"{'' if res is shipped else f'{dlo:+d} to {dhi:+d}':>20}")
+    won = sum(c and not s for (c, _), (s, _) in zip(cand, shipped))
+    lost = sum(s and not c for (c, _), (s, _) in zip(cand, shipped))
+    print(f"\nwithout huge vs shipped: {won} won, {lost} lost")
+    print(f"rule: {NOHUGE_RULE}")
+    adopt = lo >= -(TRAIN_SAMPLE // 1000) and asked_c < asked_s
+    print(f"-> ADOPT: {NOHUGE}" if adopt else f"-> KEEP: {CANDIDATE} with all five flags")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--set", choices=(*SETS, "bird"))
+    ap.add_argument("--set", choices=(*SETS, "bird", "train"))
     ap.add_argument("--sets", nargs="+", choices=(*SETS, "bird"), default=list(SETS), help="--simulate: sets to pool")
     ap.add_argument("--model")
     ap.add_argument("--simulate", action="store_true")
+    ap.add_argument("--simulate-nohuge", action="store_true", help="NOHUGE_RULE on the train set")
+    ap.add_argument("--only-flagged", action="store_true", help="answer only tasks the coder's saved query flagged")
     ap.add_argument("--num-predict", type=int, default=1024)
     ap.add_argument("--timeout", type=int, default=300)
     args = ap.parse_args()
     if args.simulate:
         return simulate(args.sets)
+    if args.simulate_nohuge:
+        return simulate_nohuge()
     if not (args.set and args.model):
         sys.exit("--set and --model, or --simulate")
-    run(args.set, args.model, args.num_predict, args.timeout)
+    run(args.set, args.model, args.num_predict, args.timeout, args.only_flagged)
 
 
 if __name__ == "__main__":
