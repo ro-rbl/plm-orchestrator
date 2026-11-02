@@ -28,6 +28,13 @@ Suggested order for the next session:
    doesn't use, CONFIRM_RULE committed in e6f405d before any answer: shipped 534 vs coder alone 528 (-1 to +13
    paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
    Re-check: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`.
+1c. **Dropping the SQL pack's "huge" flag: run started 2026-11-01 ~22:30.** 3000 sampled Spider train questions
+   (never answered here), NOHUGE_RULE committed in 58100b4 before any answer (non-inferiority: at most 0.1% worse at
+   the low end of a paired 95% interval, and fewer 4B calls). On seen data: 7 won, 1 lost, 4B calls 678 -> 551.
+   Log `results/sql_nohuge.log`; resume: `results/run_sql_nohuge.sh >> results/sql_nohuge.log 2>&1 &`;
+   verdict: `.venv/bin/python evals/bench_sql_check.py --simulate-nohuge`. If ADOPT: remove "huge" from
+   `plm_sql/flags.py:result_flags` (and its tests/docstring), record in `docs/results.md`. Something outside the repo
+   reloads `qwen3:8b` (pinned) and the abliterated 4B between runs: `ollama ps` before resuming.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
