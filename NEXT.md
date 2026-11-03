@@ -28,17 +28,11 @@ Suggested order for the next session:
    doesn't use, CONFIRM_RULE committed in e6f405d before any answer: shipped 534 vs coder alone 528 (-1 to +13
    paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
    Re-check: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`.
-1c. **Dropping the SQL pack's "huge" flag: run started 2026-11-01 ~22:30.** 3000 sampled Spider train questions
-   (never answered here), NOHUGE_RULE committed in 58100b4 before any answer (non-inferiority: at most 0.1% worse at
-   the low end of a paired 95% interval, and fewer 4B calls). On seen data: 7 won, 1 lost, 4B calls 678 -> 551.
-   Log `results/sql_nohuge.log`; resume: `results/run_sql_nohuge.sh >> results/sql_nohuge.log 2>&1 &`;
-   verdict: `.venv/bin/python evals/bench_sql_check.py --simulate-nohuge`. If ADOPT: remove "huge" from
-   `plm_sql/flags.py:result_flags` (and its tests/docstring), record in `docs/results.md`.
-   **Paused 2026-11-02 at 2091/3000 coder answers** (then the 4B, ~350 flagged). Cause of the slowdown (60-90 s per
-   question, swap full): the user's `assistant` service (launchd `com.ro.assistant`) and a Claude session in
-   `~/ClaudeCoding/Assistant` use `qwen3:8b` and keep it pinned ("Forever"), so it and the coder don't fit together.
-   Resume only once that work is paused: `ollama stop qwen3:8b`, `ollama ps` (nothing else loaded), then the resume
-   command above; about 2.5-3 h at 7-10 s per question.
+1c. **Dropping the SQL pack's "huge" flag: KEEP (2026-11-03).** 2999 Spider train questions, NOHUGE_RULE fixed in
+   58100b4 before any answer: without "huge" 2448 vs shipped 2450 (1 won, 3 lost, -6 to +2; needed >= -3), 4B calls
+   432 -> 375. The flags stay as they are. Recorded in `docs/results.md`. Spider train is now seen.
+   During the run the user's assistant service was stopped (`launchctl bootout`); restore it with
+   `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist` if not done yet.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.

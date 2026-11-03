@@ -42,6 +42,9 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   doesn't use (2025-11-06 revision; 1 dropped), the shipped policy 534 (51.6%) at 112% compute vs the coder alone
   528 (51.0%), -1 to +13 paired 95%. The rule reverts only if the coder alone is clearly ahead: confirmed, kept.
   Reported: 4B alone 357, 4B -> coder on any flag 478, hindsight 584. `results/bench_bird_rest__*`, `results/sql_confirm.log`.
+- **Dropping the "huge" flag: not adopted** (NOHUGE_RULE, fixed before; non-inferiority, at most 3 of 3000 worse at
+  the low end). On 2999 sampled Spider train questions: shipped 2450 (81.7%), without "huge" 2448 (1 won, 3 lost,
+  -6 to +2 paired 95%), 4B asked 375 times instead of 432; coder alone 2440. The 7-1 edge on seen data didn't hold.
 - **What changed because of these:** SQL and software moved to the coder alone; physics moved from the
   8B answering directly (52/144) to the routed calculator policy; GSM8K left the general pack as it is.
 

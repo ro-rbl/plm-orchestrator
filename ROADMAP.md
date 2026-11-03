@@ -116,6 +116,8 @@ What could carry over, in order of value per effort; each policy fixed before it
       105% compute): adopted, built as an opt-in database (`--sql-db`, `PLM_SQL_DB`). 4B first, coder on a flag: 1990.
 - [x] SQL flags confirmation: 1035 BIRD dev questions mini-dev doesn't use, CONFIRM_RULE fixed before: 534 vs the
       coder alone 528 (-1 to +13, 112% compute): confirmed, the pack keeps the 4B second opinion.
+- [x] Dropping the huge flag (NOHUGE_RULE, 3000 Spider train questions): 2448 vs 2450 (-6 to +2, needed >= -3):
+      not adopted, the pack keeps all five flags.
 - [x] GSM8K cross-check (300 sampled, `evals/bench_gsm8k.py`, GSM_RULE fixed before): the 8B direct 272/300 (91%)
       beats the 8B with the calculator 261 (-21 to -1) and the 4B with it 256: the general pack stays as it is.
 - Code: EvalPlus (HumanEval+/MBPP+), LiveCodeBench (problems newer than the models).
