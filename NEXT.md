@@ -33,8 +33,12 @@ Suggested order for the next session:
    the low end of a paired 95% interval, and fewer 4B calls). On seen data: 7 won, 1 lost, 4B calls 678 -> 551.
    Log `results/sql_nohuge.log`; resume: `results/run_sql_nohuge.sh >> results/sql_nohuge.log 2>&1 &`;
    verdict: `.venv/bin/python evals/bench_sql_check.py --simulate-nohuge`. If ADOPT: remove "huge" from
-   `plm_sql/flags.py:result_flags` (and its tests/docstring), record in `docs/results.md`. Something outside the repo
-   reloads `qwen3:8b` (pinned) and the abliterated 4B between runs: `ollama ps` before resuming.
+   `plm_sql/flags.py:result_flags` (and its tests/docstring), record in `docs/results.md`.
+   **Paused 2026-11-02 at 2091/3000 coder answers** (then the 4B, ~350 flagged). Cause of the slowdown (60-90 s per
+   question, swap full): the user's `assistant` service (launchd `com.ro.assistant`) and a Claude session in
+   `~/ClaudeCoding/Assistant` use `qwen3:8b` and keep it pinned ("Forever"), so it and the coder don't fit together.
+   Resume only once that work is paused: `ollama stop qwen3:8b`, `ollama ps` (nothing else loaded), then the resume
+   command above; about 2.5-3 h at 7-10 s per question.
 2. **Going public** is the user's decision (commands under "Publishing").
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
