@@ -37,27 +37,39 @@ def score(name, items, verbose):
     return len(wrong)
 
 
-def main():
-    verbose = "-v" in sys.argv
-    known = (load("evals/electrical/problems.jsonl", "question", "electrical")
-             + load("evals/electrical/holdout_levels.jsonl", "question", "electrical")
-             + load("evals/software/tasks.jsonl", "prompt", "software")
-             + load("evals/software/holdout_levels.jsonl", "prompt", "software")
-             + load("evals/aerospace/problems.jsonl", "question", "aerospace")
-             + load("evals/physics/problems.jsonl", "question", "physics")
-             + load("evals/sql/tasks.jsonl", "prompt", "sql"))
-    misses = score("eval-set texts (known while writing the rule)", known, verbose)
-    holdout = (load("evals/router/detect_cases.jsonl", "text")
-               + load("evals/aerospace/holdout_levels.jsonl", "question", "aerospace")
-               + load("evals/physics/holdout_levels.jsonl", "question", "physics")
-               # CAD's eval set is part descriptions sent straight to the CAD prompt, not requests,
-               # so only its request-phrased holdout is routed
-               + load("evals/cad/holdout_levels.jsonl", "task", "cad")
-               + load("evals/sql/holdout_levels.jsonl", "prompt", "sql"))
-    score("holdout cases (labels written before the rule they test)", holdout, verbose)
+def known_texts():
+    """The eval texts, known while the routing rules were written: all must route correctly."""
+    return (load("evals/electrical/problems.jsonl", "question", "electrical")
+            + load("evals/electrical/holdout_levels.jsonl", "question", "electrical")
+            + load("evals/software/tasks.jsonl", "prompt", "software")
+            + load("evals/software/holdout_levels.jsonl", "prompt", "software")
+            + load("evals/aerospace/problems.jsonl", "question", "aerospace")
+            + load("evals/physics/problems.jsonl", "question", "physics")
+            + load("evals/sql/tasks.jsonl", "prompt", "sql"))
+
+
+def holdout_texts():
+    """Cases labeled before the rule they test; reported, not required."""
+    return (load("evals/router/detect_cases.jsonl", "text")
+            + load("evals/aerospace/holdout_levels.jsonl", "question", "aerospace")
+            + load("evals/physics/holdout_levels.jsonl", "question", "physics")
+            # CAD's eval set is part descriptions sent straight to the CAD prompt, not requests,
+            # so only its request-phrased holdout is routed
+            + load("evals/cad/holdout_levels.jsonl", "task", "cad")
+            + load("evals/sql/holdout_levels.jsonl", "prompt", "sql"))
+
+
+def latex_texts():
     # Written 2026-10-24 before LaTeX normalization existed (12/20 then). LATEX_RULE: normalization ships iff
     # these improve and no decision on a text without LaTeX changes (evals/dump_decisions.py diff).
-    score("LaTeX holdout cases", load("evals/router/latex_cases.jsonl", "text"), verbose)
+    return load("evals/router/latex_cases.jsonl", "text")
+
+
+def main():
+    verbose = "-v" in sys.argv
+    misses = score("eval-set texts (known while writing the rule)", known_texts(), verbose)
+    score("holdout cases (labels written before the rule they test)", holdout_texts(), verbose)
+    score("LaTeX holdout cases", latex_texts(), verbose)
     sys.exit(1 if misses else 0)  # the eval texts must all route correctly; the holdout is reported
 
 

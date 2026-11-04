@@ -1,0 +1,54 @@
+{"id": "dq01", "db": "concert_singer", "pack": "sql", "text": "how many concerts were held in 2014?"}
+{"id": "dq02", "db": "concert_singer", "pack": "sql", "text": "who's the youngest singer?"}
+{"id": "dq03", "db": "pets_1", "pack": "sql", "text": "average weight of the dogs?"}
+{"id": "dq04", "db": "car_1", "pack": "sql", "text": "which car maker has the most models?"}
+{"id": "dq05", "db": "flight_2", "pack": "sql", "text": "list all airlines based in the USA"}
+{"id": "dq06", "db": "employee_hire_evaluation", "pack": "sql", "text": "who got the biggest bonus?"}
+{"id": "dq07", "db": "world_1", "pack": "sql", "text": "top 5 countries by population"}
+{"id": "dq08", "db": "wta_1", "pack": "sql", "text": "how many matches did Serena Williams win?"}
+{"id": "dq09", "db": "dog_kennels", "pack": "sql", "text": "what's the total of all charges?"}
+{"id": "dq10", "db": "tvshow", "pack": "sql", "text": "which TV channels broadcast in Italian?"}
+{"id": "dq11", "db": "orchestra", "pack": "sql", "text": "list the conductors older than 50"}
+{"id": "dq12", "db": "network_1", "pack": "sql", "text": "who has the most friends?"}
+{"id": "dq13", "db": "museum_visit", "pack": "sql", "text": "which museum had the most visitors?"}
+{"id": "dq14", "db": "singer", "pack": "sql", "text": "songs that sold more than a million copies?"}
+{"id": "dq15", "db": "student_transcripts_tracking", "pack": "sql", "text": "how many students are enrolled in each degree program?"}
+{"id": "dq16", "db": "course_teach", "pack": "sql", "text": "which teachers teach more than one course?"}
+{"id": "dq17", "db": "battle_death", "pack": "sql", "text": "how many ships were lost in total?"}
+{"id": "dq18", "db": "poker_player", "pack": "sql", "text": "what's the highest earnings of any poker player?"}
+{"id": "dq19", "db": "voter_1", "pack": "sql", "text": "number of votes per state"}
+{"id": "dq20", "db": "real_estate_properties", "pack": "sql", "text": "how many properties are on the market?"}
+{"id": "dn01", "db": "concert_singer", "pack": "general", "text": "Write a short poem about a singer at her first concert."}
+{"id": "dn02", "db": "concert_singer", "pack": "general", "text": "What makes a stadium concert sound different from an indoor one?"}
+{"id": "dn03", "db": "concert_singer", "pack": "electrical", "text": "A stadium speaker draws 8 A at 230 V. What power does it use?"}
+{"id": "dn04", "db": "pets_1", "pack": "general", "text": "What are good pets for a student living in a small apartment?"}
+{"id": "dn05", "db": "pets_1", "pack": "software", "text": "Write a Python function that returns the oldest pet from a list of (name, age) tuples."}
+{"id": "dn06", "db": "car_1", "pack": "physics", "text": "A car accelerates from 0 to 27 m/s in 9 s. What is its acceleration?"}
+{"id": "dn07", "db": "car_1", "pack": "general", "text": "Explain how a car engine converts fuel into motion."}
+{"id": "dn08", "db": "flight_2", "pack": "general", "text": "What should I pack for a long flight?"}
+{"id": "dn09", "db": "flight_2", "pack": "aerospace", "text": "An airliner cruises at 250 m/s at 11 km altitude. What is its Mach number?"}
+{"id": "dn10", "db": "flight_2", "pack": "general", "text": "Why do airlines overbook flights?"}
+{"id": "dn11", "db": "employee_hire_evaluation", "pack": "general", "text": "How should a shop owner evaluate a new employee after the first month?"}
+{"id": "dn12", "db": "employee_hire_evaluation", "pack": "general", "text": "Draft an email to an employee about their performance evaluation."}
+{"id": "dn13", "db": "course_teach", "pack": "general", "text": "What makes a teacher effective in an introductory course?"}
+{"id": "dn14", "db": "museum_visit", "pack": "general", "text": "Plan a one-day visit to a museum in Paris."}
+{"id": "dn15", "db": "wta_1", "pack": "general", "text": "Explain how tennis ranking points are calculated."}
+{"id": "dn16", "db": "battle_death", "pack": "general", "text": "Summarize the battle of Trafalgar in three sentences."}
+{"id": "dn17", "db": "battle_death", "pack": "physics", "text": "A ship of mass 2e7 kg moves at 10 m/s. What is its kinetic energy?"}
+{"id": "dn18", "db": "student_transcripts_tracking", "pack": "general", "text": "How do I request an official transcript from my university?"}
+{"id": "dn19", "db": "student_transcripts_tracking", "pack": "software", "text": "Write a function that computes a student's GPA from a list of grades."}
+{"id": "dn20", "db": "tvshow", "pack": "general", "text": "Recommend a cartoon for a five-year-old."}
+{"id": "dn21", "db": "poker_player", "pack": "general", "text": "What are the basic rules of Texas hold'em poker?"}
+{"id": "dn22", "db": "voter_1", "pack": "general", "text": "Why do some states have more than one area code?"}
+{"id": "dn23", "db": "world_1", "pack": "general", "text": "Translate 'good morning' into the main language of Brazil."}
+{"id": "dn24", "db": "orchestra", "pack": "general", "text": "What does a conductor do during an orchestra performance?"}
+{"id": "dn25", "db": "orchestra", "pack": "electrical", "text": "A conductor of resistance 4 ohm carries 3 A. What voltage drops across it?"}
+{"id": "dn26", "db": "network_1", "pack": "general", "text": "How can a highschooler make new friends after moving?"}
+{"id": "dn27", "db": "dog_kennels", "pack": "general", "text": "Which dog breeds are best for owners with allergies?"}
+{"id": "dn28", "db": "dog_kennels", "pack": "cad", "text": "Write a CadQuery model of a dog bowl 150 mm across and 50 mm tall."}
+{"id": "dn29", "db": "singer", "pack": "general", "text": "Write a song about a singer leaving home."}
+{"id": "dn30", "db": "real_estate_properties", "pack": "general", "text": "What features raise a property's value the most?"}
+{"id": "dn31", "db": "cre_Doc_Template_Mgt", "pack": "general", "text": "Give me a template for a cover letter, three paragraphs long."}
+{"id": "dn32", "db": "cre_Doc_Template_Mgt", "pack": "software", "text": "Write a Python function that splits a document into paragraphs on blank lines."}
+{"id": "dn33", "db": "world_1", "pack": "general", "text": "What is a city-state? Give two examples."}
+{"id": "dn34", "db": "wta_1", "pack": "general", "text": "What do tennis players eat before a long match?"}
