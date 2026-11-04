@@ -103,8 +103,10 @@ print(r.choices[0].message.content)    # 22 V
 print(r.model_extra["plm"])            # pack, level, models called, checks, tokens
 ```
 
-- With `PLM_SQL_DB` set, SQL answers are checked on that database, but routing still reads the message: a
-  question with no schema and no SQL wording may not reach the SQL pack (the CLI's `--sql-db` forces it).
+- With `PLM_SQL_DB` set, SQL answers are checked on that database, and a question with no schema goes to the
+  SQL pack when it asks for data and names the database's tables or columns ("How many singers do we have?"):
+  115/120 held-out Spider questions. Advice that uses the data's words can go there too ("Which dog breeds
+  suit owners with allergies?" with a kennel database: 4 of 34 look-alikes). The CLI's `--sql-db` always uses SQL.
 - Tasks an installed pack claims (electrical, aerospace, physics, coding, CAD, SQL) go to that pack
   and are released only after they're checked, so a streamed answer arrives in
   one piece. Everything else goes to the 8B, streams token by token, and is never checked.
@@ -180,6 +182,7 @@ Elsewhere:
 .venv/bin/python evals/test_manage.py             # `plm packs`, with Ollama, pip and entry points faked
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
+.venv/bin/python evals/test_sqldb_routing.py       # with PLM_SQL_DB set: schema-free data questions go to sql
 .venv/bin/python evals/cad/build_problems.py --verify .venv/bin/python   # every CAD reference builds to its key
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
 uv run --with openai --with pint python evals/compat_openai.py --fake   # with the official `openai` client

@@ -21,9 +21,12 @@ https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" 
 
 Suggested order for the next session:
 1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test
-   questions, every query and path matched the benchmark's. Open: with only `PLM_SQL_DB`, the server's routing
-   still reads the message, so a schema-free question may not reach the SQL pack (`plm_sql/claims.py`; a fix
-   needs held-out routing cases). The tables flag's false alarms are under "SQL pack" below.
+   questions, every query and path matched the benchmark's. **Routing with only `PLM_SQL_DB` fixed 2026-11-04**
+   (SQLDB_RULE passed on held-out cases: 115/120 Spider dev to sql, 30/34 look-alikes unmoved, exactly the bar).
+   Left as measured (fixing them needs new cases, these are now seen): advice full of the data's words goes to
+   sql (dn04, dn27, dn30, dn31); "weather ... like" matched a `Likes` table; "capital of Australia" with a world
+   database goes to sql (arguably right). `evals/test_sqldb_routing.py -v`. The tables flag's false alarms are
+   under "SQL pack" below.
 1b. **BIRD confirmation of the SQL flags policy: CONFIRMED (2026-11-01).** 1035 BIRD dev questions mini-dev
    doesn't use, CONFIRM_RULE committed in e6f405d before any answer: shipped 534 vs coder alone 528 (-1 to +13
    paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
@@ -110,6 +113,10 @@ doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
       2026-10-29: result flags on a real database (`plm_sql/flags.py`) caught 194 of the coder's 668 wrong
       Spider queries, but with 170 false alarms (the tables flag: 38 caught, 86 false). Noticed after the
       verdict; tightening it needs new questions to judge. Without a database, still schema-only.
+      2026-11-04: the tables flag folds plurals badly (`plm_sql/flags.py:stem`: "movies" -> "movy", "wines" ->
+      "win", "courses" -> "cours"), so a question naming those tables names none; the routing claim matches
+      every singular form instead (`plm_sql/claims.py:forms`). Changing the flag changes an adopted policy:
+      judge it on new questions first.
 - [ ] **A schema written in prose is unchecked** ("a table sales(region, month, amount)", routing case q03):
       only CREATE TABLE statements are run. Building a table from such a signature is untested.
 - [ ] **Level misses** (left as measured): eval 42/45, holdout 24/24, but fresh 19/24 and fresh2 14/24, so the

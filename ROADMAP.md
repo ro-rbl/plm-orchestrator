@@ -114,6 +114,9 @@ What could carry over, in order of value per effort; each policy fixed before it
       read on the real database; FLAGS_RULE fixed before, judged on 2880 unseen Spider questions (733 unsampled
       dev + 2147 test): the coder with a 4B second opinion on a flag 2230 vs the coder alone 2212 (+7 to +30,
       105% compute): adopted, built as an opt-in database (`--sql-db`, `PLM_SQL_DB`). 4B first, coder on a flag: 1990.
+- [x] SQL routing with a database (`plm_sql/claims.py`, SQLDB_RULE fixed before, cases in `evals/router/sqldb_*`):
+      with PLM_SQL_DB set, schema-free data questions naming the database's tables or columns go to sql. Designed on
+      Spider train; held out: 115/120 Spider dev, 18/20 casual, 30/34 look-alikes unmoved, 5 of 9860 other pairs moved.
 - [x] SQL flags confirmation: 1035 BIRD dev questions mini-dev doesn't use, CONFIRM_RULE fixed before: 534 vs the
       coder alone 528 (-1 to +13, 112% compute): confirmed, the pack keeps the 4B second opinion.
 - [x] Dropping the huge flag (NOHUGE_RULE, 3000 Spider train questions): 2448 vs 2450 (-6 to +2, needed >= -3):

@@ -8,6 +8,7 @@ replaced by scripted replies, so no model is loaded.
 
 import json
 import os
+import sqlite3
 import sys
 import tempfile
 import threading
@@ -24,6 +25,7 @@ import plm.numeric.controller as numeric  # noqa: E402
 import plm.ollama as ollama  # noqa: E402
 import plm.server as server  # noqa: E402
 import plm_software.controller as software  # noqa: E402
+import plm_sql.controller as sql  # noqa: E402
 from plm_electrical import controller as electrical  # noqa: E402
 
 FAILS = []
@@ -236,9 +238,31 @@ def run(port, log_path):
                        ("192.168.1.5", False), ("example.com", False)]:
         expect(f"is_loopback({host})", server.is_loopback(host) is want)
 
+    # PLM_SQL_DB: a question with no schema, about the database's data, goes to the SQL pack (SQLDB_RULE)
+    with tempfile.TemporaryDirectory() as tmp:
+        db = os.path.join(tmp, "music.sqlite")
+        con = sqlite3.connect(db)
+        con.execute("CREATE TABLE singer (singer_id INTEGER, name TEXT, country TEXT, age INTEGER)")
+        con.executemany("INSERT INTO singer VALUES (?, ?, ?, ?)", [(1, "Ana", "Spain", 30), (2, "Bo", "Sweden", 41)])
+        con.commit()
+        con.close()
+        sql.ask = fake_ask({sql.MODELS["coder"]: "```sql\nSELECT COUNT(*) FROM singer;\n```"})
+        os.environ["PLM_SQL_DB"] = db
+        try:
+            status, _, body = call(port, "POST", "/v1/chat/completions", chat_body("How many singers do we have?"))
+        finally:
+            del os.environ["PLM_SQL_DB"]
+        r = json.loads(body)
+        expect("PLM_SQL_DB: a schema-free data question goes to sql, checked on the data",
+               status == 200 and r["plm"]["pack"] == "sql" and r["plm"]["trusted"] is True
+               and "SELECT COUNT(*) FROM singer" in r["choices"][0]["message"]["content"], body)
+        status, _, body = call(port, "POST", "/v1/chat/completions", chat_body("How many singers do we have?"))
+        expect("no PLM_SQL_DB: the same question goes to general", json.loads(body)["plm"]["pack"] == "general", body)
+
 
 def main():
     real = (numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version)
+    real_sql = sql.ask
     import plm_software.testgen as testgen
     real_testgen = testgen.ask
     with tempfile.TemporaryDirectory() as tmp:
@@ -253,6 +277,7 @@ def main():
             srv.server_close()
             numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version = real
             testgen.ask = real_testgen
+            sql.ask = real_sql
     for f in FAILS:
         print("FAIL", f)
     print(f"server tests: {'all passed' if not FAILS else f'{len(FAILS)} failed'}")
