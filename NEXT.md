@@ -44,10 +44,9 @@ Before running anything long: `pmset -g batt` (on AC?), `caffeinate -i -s -t <se
 The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly if Ollama goes down, and resume.
 
 ## Packaging: loose ends
-- [ ] **`plm packs install` has never downloaded a model for real.** The pull code ran live only on a model
-      already present (`qwen3:0.6b`: Ollama re-verified it). Resume, in a throwaway venv, with a small model
-      you don't have (~1.4 GB): `PLM_LARGE_MODEL=qwen3:1.7b <venv>/bin/plm packs install aerospace --source
-      packages`, check `plm packs list` shows it pulled, then `ollama rm qwen3:1.7b`.
+- [x] **`plm packs install` downloaded a model for real (2026-11-04):** in a throwaway venv,
+      `PLM_LARGE_MODEL=qwen3:1.7b plm packs install aerospace --source packages` pulled 1.4 GB (digest verified),
+      `plm packs list` showed it "pulled"; then `ollama rm qwen3:1.7b`.
 - [ ] **Installing a pack from a git URL or a wheel is untested.** Only local directories (editable) were
       installed live; there's no remote yet. Once there is one: `plm packs install aerospace --source
       "plm-aerospace @ git+https://<repo>#subdirectory=packages/plm-aerospace"` in a fresh venv.
