@@ -3,7 +3,7 @@
 _Updated: 2026-11-01 · branch: main · plan: ROADMAP.md · results: docs/results.md_
 
 ## Start here (next session)
-Where things stand: phases 1-4 of `ROADMAP.md` are done; phase 5 (publishing) is done privately. Six packs,
+Where things stand: phases 1-4 of `ROADMAP.md` are done; phase 5 (publishing) is done: public since 2026-11-05. Six packs,
 each with its policy chosen by a rule committed before its results, and checked on public benchmarks where one
 fits (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
@@ -93,7 +93,7 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       but for one redacted line. Commit IDs all changed (IDs cited in docs updated). Backup of the old history:
       `~/ClaudeCoding/plm-orchestrator-backup-20261105.bundle`. Home path in 5 logs kept (user's call).
 - [x] **Hugging Face dataset refreshed (2026-11-05):** 23 new files, 5 updated, card updated (Spider router files
-      CC BY-SA 4.0); re-diff against the repo shows nothing missing. Still private.
+      CC BY-SA 4.0); re-diff against the repo shows nothing missing. Public since 2026-11-05.
 - [x] **Public (2026-11-05):** GitHub repo and Hugging Face dataset made public by the user; confirmed with anonymous
       requests. Fresh install with no git credentials: `uv tool install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`,
       then `plm packs install electrical` (from GitHub) and a live question: 22 V, checked. PyPI names still unclaimed.
