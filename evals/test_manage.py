@@ -58,11 +58,22 @@ def test_source():
     real_file = manage.plm.__file__
     try:  # an installed plm, no checkout around it: the GitHub repo
         manage.plm.__file__ = "/opt/tool/lib/python3.13/site-packages/plm/__init__.py"
+        real_on_pypi, manage.on_pypi = manage.on_pypi, lambda dist, timeout=10: False
         got = manage._source("aerospace", None)
     finally:
-        manage.plm.__file__ = real_file
-    expect("source: an installed plm defaults to the GitHub repo",
+        manage.plm.__file__, manage.on_pypi = real_file, real_on_pypi
+    expect("source: an installed plm, pack not on PyPI -> the GitHub repo",
            got == [f"plm-aerospace @ git+{manage.REPO}#subdirectory=packages/plm-aerospace"], got)
+    real_on_pypi = manage.on_pypi
+    try:
+        manage.plm.__file__ = "/opt/tool/lib/python3.13/site-packages/plm/__init__.py"
+        manage.on_pypi = lambda dist, timeout=10: True
+        got = manage._source("aerospace", None)
+        expect("source: an installed plm, pack on PyPI -> by name", got == ["plm-aerospace"], got)
+        code, _ = run(manage._source, "chemistry", None)
+        expect("source: an unofficial pack never comes from PyPI by name", isinstance(code, str) and "--source" in code, code)
+    finally:
+        manage.plm.__file__, manage.on_pypi = real_file, real_on_pypi
     code, _ = run(manage._source, "chemistry", str(ROOT / "evals"))
     expect("source: a directory without the pack is an error", isinstance(code, str) and "pyproject" in code, code)
 

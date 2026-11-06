@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import sys
 import urllib.error
+import urllib.request
 from pathlib import Path
 
 import plm
@@ -69,6 +70,16 @@ def _installer(verb):
 
 
 REPO = "https://github.com/ro-rbl/plm-orchestrator"
+OFFICIAL = ("electrical", "aerospace", "physics", "software", "sql", "cad")  # the only packs fetched by name
+
+
+def on_pypi(dist, timeout=10):
+    """Whether PyPI has a project named `dist` (False when PyPI can't be reached)."""
+    try:
+        with urllib.request.urlopen(f"https://pypi.org/pypi/{dist}/json", timeout=timeout) as r:
+            return r.status == 200
+    except (urllib.error.URLError, OSError):
+        return False
 
 
 def _run(cmd):
@@ -77,17 +88,19 @@ def _run(cmd):
 
 
 def _source(name, source):
-    """pip arguments that install plm-<name> from --source, PLM_PACKS_SOURCE, this checkout, or the GitHub repo."""
+    """pip arguments that install plm-<name> from --source, PLM_PACKS_SOURCE, this checkout, or (an official pack,
+    with no checkout around plm) PyPI, else the GitHub repo."""
     dist = f"plm-{name}"
     source = source or os.environ.get("PLM_PACKS_SOURCE")
     if source is None:
         checkout = Path(plm.__file__).resolve().parents[3]  # packages/plm-core/src/plm -> packages
         if (checkout / dist / "pyproject.toml").exists():
             return ["-e", str(checkout / dist)]
-        if not (checkout / "plm-core" / "pyproject.toml").exists():
-            # an installed plm (uv tool install, pip) has no checkout around it: the project's repo
-            return [f"{dist} @ git+{REPO}#subdirectory=packages/{dist}"]
-        sys.exit(f"plm packs: no source for {dist}, and packs aren't on PyPI yet. Pass --source: a directory "
+        if name in OFFICIAL and not (checkout / "plm-core" / "pyproject.toml").exists():
+            # an installed plm (uv tool install, pip) has no checkout around it: PyPI, else the project's repo
+            return [dist] if on_pypi(dist) else [f"{dist} @ git+{REPO}#subdirectory=packages/{dist}"]
+        sys.exit(f"plm packs: no source for {dist}: only the official packs ({', '.join(OFFICIAL)}) install "
+                 f"without one. Pass --source: a directory "
                  f"holding {dist}/, or a pip requirement such as "
                  f"'{dist} @ git+https://<repo>#subdirectory=packages/{dist}'")
     path = Path(source).expanduser()

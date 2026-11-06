@@ -55,7 +55,9 @@ The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly 
       projects" limit (429). Resume later, from the repo root (built files in `dist/`, rebuild with
       `uv build --out-dir dist packages/plm-<name>` if gone): `uv publish dist/* --check-url https://pypi.org/simple/ --token <token>`.
       Then: per-project tokens, revoke the account-wide one (a token was pasted into a chat on 2026-11-06),
-      and switch `plm packs install`'s default source from GitHub to PyPI (`plm/manage.py:_source`).
+      Done 2026-11-06: outside a checkout, an official pack installs from PyPI when it's there, else GitHub (tested
+      live both ways); unofficial names still need --source. Ships to PyPI users with the next plm-core release
+      (0.1.0 on PyPI defaults to GitHub): bump `packages/plm-core/pyproject.toml` to 0.1.1, `uv build`, publish.
 - [ ] **Claim scores for third-party packs are uncalibrated.** Today's are term counts tuned for three
       packs; a fourth could out-claim them. Open decision in `docs/pack-packaging.md`; decide before
       accepting a pack written by someone else.

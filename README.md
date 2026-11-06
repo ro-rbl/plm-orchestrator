@@ -13,10 +13,11 @@ Ollama. There's no PyPI release, so install from a checkout:
 git clone https://github.com/ro-rbl/plm-orchestrator && cd plm-orchestrator
 ```
 
-Or just the `plm` command, usable from any folder (packs then install from this GitHub repo):
+Or just the `plm` command, usable from any folder (packs then install from PyPI, or from this GitHub
+repo for any not on PyPI yet):
 
 ```bash
-uv tool install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"
+uv tool install plm-core          # or the latest code: "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"
 plm packs install electrical      # and any other packs, as below
 ```
 
