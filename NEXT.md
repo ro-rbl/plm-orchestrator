@@ -57,7 +57,11 @@ The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly 
       Then: per-project tokens, revoke the account-wide one (a token was pasted into a chat on 2026-11-06),
       Done 2026-11-06: outside a checkout, an official pack installs from PyPI when it's there, else GitHub (tested
       live both ways); unofficial names still need --source. Ships to PyPI users with the next plm-core release
-      (0.1.0 on PyPI defaults to GitHub): 0.1.1 is built in `dist/` (2026-11-06), waiting on the upload above.
+      (0.1.0 on PyPI defaults to GitHub): 0.1.1 is on PyPI (2026-11-06; tested: `uv tool install "plm-core==0.1.1"`,
+      electrical installed from PyPI by name, live 22 V). Still to upload: the sdists of the 5 existing projects
+      (any time; `uv publish dist/plm_{core,electrical,aerospace,cad}-*.tar.gz --check-url https://pypi.org/simple/`),
+      and plm-physics, plm-software, plm-sql (429 again 2026-11-06; wait 24-48 h, then the full command once; if
+      still blocked, PyPI support). uv uploads all wheels before any sdist, so a 429 on a new project stops the sdists.
 - [ ] **Claim scores for third-party packs are uncalibrated.** Today's are term counts tuned for three
       packs; a fourth could out-claim them. Open decision in `docs/pack-packaging.md`; decide before
       accepting a pack written by someone else.
