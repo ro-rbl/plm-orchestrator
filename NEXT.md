@@ -88,11 +88,12 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       command, a caveats section (eval sets written by Claude, small sets, one Mac) and credits for every public
       benchmark; the two Spider files in `evals/router/` are credited and marked CC BY-SA 4.0 (checked on Spider's
       page). Benchmark data itself isn't redistributed; results hold model answers and ids only.
-- [ ] **Visible once public, the user's call:** the author email `[old author email]` on all commits (GitHub can hide it
-      only for new commits: a noreply address in `git config user.email`; old ones need a history rewrite), and the
-      home path `/Users/ro/...` in 5 run logs under `results/`.
-- [ ] **The Hugging Face dataset is a 2026-10-25 snapshot:** it lacks the SQL flags, BIRD, Spider train and routing
-      results. Re-upload before making it public.
+- [x] **Author email removed (2026-11-05):** history rewritten with git-filter-repo to the GitHub noreply address
+      (`280029870+ro-rbl@users.noreply.github.com`, now this repo's `user.email`) and force-pushed; tree identical
+      but for one redacted line. Commit IDs all changed (IDs cited in docs updated). Backup of the old history:
+      `~/ClaudeCoding/plm-orchestrator-backup-20261105.bundle`. Home path in 5 logs kept (user's call).
+- [x] **Hugging Face dataset refreshed (2026-11-05):** 23 new files, 5 updated, card updated (Spider router files
+      CC BY-SA 4.0); re-diff against the repo shows nothing missing. Still private.
 - [ ] **Going public is the user's call:** `gh repo edit ro-rbl/plm-orchestrator --visibility public
       --accept-visibility-change-consequences` and, for the dataset, `HfApi().update_repo_settings(...,
       private=False)`. Then check `pip install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`
