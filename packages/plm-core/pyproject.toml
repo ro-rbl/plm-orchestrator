@@ -6,6 +6,8 @@ build-backend = "hatchling.build"
 name = "plm-core"
 version = "0.1.0"
 description = "Router, OpenAI-compatible server, CLI, numeric engine and the general pack; domain packs install separately"
+readme = "README.md"
+authors = [{ name = "ro-rbl" }]
 requires-python = ">=3.13"
 license = "MIT"
 dependencies = ["pint>=0.26.1,<0.27"]
@@ -15,3 +17,8 @@ plm = "plm.__main__:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/plm"]
+
+[project.urls]
+Homepage = "https://github.com/ro-rbl/plm-orchestrator"
+Source = "https://github.com/ro-rbl/plm-orchestrator"
+Issues = "https://github.com/ro-rbl/plm-orchestrator/issues"

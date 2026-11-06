@@ -6,6 +6,8 @@ build-backend = "hatchling.build"
 name = "plm-sql"
 version = "0.1.0"
 description = "plm pack: SQLite queries, checked by running them on the schema given with the task"
+readme = "README.md"
+authors = [{ name = "ro-rbl" }]
 requires-python = ">=3.13"
 license = "MIT"
 # The checker is the standard library's sqlite3: no other dependency.
@@ -16,3 +18,8 @@ sql = "plm_sql.manifest:PACK"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/plm_sql"]
+
+[project.urls]
+Homepage = "https://github.com/ro-rbl/plm-orchestrator"
+Source = "https://github.com/ro-rbl/plm-orchestrator"
+Issues = "https://github.com/ro-rbl/plm-orchestrator/issues"

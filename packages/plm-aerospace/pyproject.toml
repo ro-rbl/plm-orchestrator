@@ -6,6 +6,8 @@ build-backend = "hatchling.build"
 name = "plm-aerospace"
 version = "0.1.0"
 description = "plm pack: Aerospace calculations, checked by units and sanity rules"
+readme = "README.md"
+authors = [{ name = "ro-rbl" }]
 requires-python = ">=3.13"
 license = "MIT"
 dependencies = ["plm-core>=0.1,<0.2"]
@@ -15,3 +17,8 @@ aerospace = "plm_aerospace.manifest:PACK"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/plm_aerospace"]
+
+[project.urls]
+Homepage = "https://github.com/ro-rbl/plm-orchestrator"
+Source = "https://github.com/ro-rbl/plm-orchestrator"
+Issues = "https://github.com/ro-rbl/plm-orchestrator/issues"
