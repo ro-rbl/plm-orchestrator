@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "plm-core"
-version = "0.1.0"
+version = "0.1.1"
 description = "Router, OpenAI-compatible server, CLI, numeric engine and the general pack; domain packs install separately"
 readme = "README.md"
 authors = [{ name = "ro-rbl" }]
