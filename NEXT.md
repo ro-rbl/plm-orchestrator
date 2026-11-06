@@ -28,11 +28,11 @@ Suggested order for the next session:
    database goes to sql (arguably right). `evals/test_sqldb_routing.py -v`. The tables flag's false alarms are
    under "SQL pack" below.
 1b. **BIRD confirmation of the SQL flags policy: CONFIRMED (2026-11-01).** 1035 BIRD dev questions mini-dev
-   doesn't use, CONFIRM_RULE committed in e6f405d before any answer: shipped 534 vs coder alone 528 (-1 to +13
+   doesn't use, CONFIRM_RULE committed in 66c3e1c before any answer: shipped 534 vs coder alone 528 (-1 to +13
    paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
    Re-check: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`.
 1c. **Dropping the SQL pack's "huge" flag: KEEP (2026-11-03).** 2999 Spider train questions, NOHUGE_RULE fixed in
-   58100b4 before any answer: without "huge" 2448 vs shipped 2450 (1 won, 3 lost, -6 to +2; needed >= -3), 4B calls
+   357b524 before any answer: without "huge" 2448 vs shipped 2450 (1 won, 3 lost, -6 to +2; needed >= -3), 4B calls
    432 -> 375. The flags stay as they are. Recorded in `docs/results.md`. Spider train is now seen.
    During the run the user's assistant service was stopped (`launchctl bootout`); restore it with
    `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist` if not done yet.
