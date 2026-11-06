@@ -13,6 +13,13 @@ Ollama. There's no PyPI release, so install from a checkout:
 git clone https://github.com/ro-rbl/plm-orchestrator && cd plm-orchestrator
 ```
 
+Or just the `plm` command, usable from any folder (packs then install from this GitHub repo):
+
+```bash
+uv tool install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"
+plm packs install electrical      # and any other packs, as below
+```
+
 **1. The core.** Router, server, CLI, the shared numeric engine and the general
 pack. On its own it works: every task goes to the general pack (`qwen3:8b`,
 answers unchecked).
@@ -83,8 +90,8 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 Each answer comes with a report: the level, every model call, tokens, time,
 and why anything was escalated. An answer is marked unverified if it failed a
 check, and unchecked if the task gave nothing to check against (no unit asked
-for, no code examples). Runs are logged to `logs/runs.jsonl` under the
-working directory (`PLM_LOG` to change). See `ROADMAP.md`
+for, no code examples). Runs are logged to `runs.jsonl` in `./logs` if that folder
+exists (a checkout), else in `~/.local/state/plm/` (`PLM_LOG_DIR` or `PLM_LOG` to change). See `ROADMAP.md`
 for what's next and `NEXT.md` for known open items.
 
 ## Use it as a model (OpenAI-compatible server)

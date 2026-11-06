@@ -239,8 +239,12 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
       differ; `logs/server.jsonl` records every routing decision, so check it after real use.
 
 ## Tooling notes
-- Logs (`logs/runs.jsonl`, `logs/server.jsonl`, the server's pid/port files) are relative to the working
-  directory since the split; run from the repo root to keep them in `logs/` here (`PLM_LOG_DIR`, `PLM_LOG`).
+- Logs (`runs.jsonl`, `server.jsonl`, the server's pid/port files) go to `./logs` when that folder exists (the repo
+  root here), else `~/.local/state/plm/` (2026-11-05, `plm/paths.py`; `PLM_LOG_DIR`, `PLM_LOG`). Run from the repo
+  root to keep them in `logs/` here.
+- **`plm` as a standalone tool (2026-11-05):** `uv tool install ./packages/plm-core` (non-editable, isolated) ran
+  from a plain folder; `plm packs install aerospace` with no `--source` installed from the GitHub repo (worked
+  while private via stored git credentials) and routed live. Untested: the same from the git URL once public.
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now
   refused), and `with-timeout N python - <<EOF` runs an empty script. Pass `"$(cat file)"` as an argument, or
   write the script to a file.

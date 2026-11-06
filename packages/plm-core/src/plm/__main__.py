@@ -11,7 +11,7 @@
     .venv/bin/python -m plm packs list      # installed packs; also install / remove / doctor, see plm/manage.py
 
 The pack is picked from the task text unless --pack is given. Every run is
-appended to logs/runs.jsonl (override with PLM_LOG).
+appended to runs.jsonl in plm.paths.log_dir() (./logs in a checkout; override with PLM_LOG).
 """
 
 import argparse
@@ -21,10 +21,10 @@ import sys
 import urllib.error
 from pathlib import Path
 
+from plm.paths import log_dir
 from plm.report import answer_text, final_step, short
 
-# Relative to the working directory: the code may be installed anywhere.
-LOG = Path(os.environ.get("PLM_LOG", Path("logs") / "runs.jsonl"))
+LOG = Path(os.environ.get("PLM_LOG") or log_dir() / "runs.jsonl")
 
 
 def how(step):

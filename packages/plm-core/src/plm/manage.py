@@ -68,19 +68,25 @@ def _installer(verb):
     return [sys.executable, "-m", "pip", verb] + (["-y"] if verb == "uninstall" else [])
 
 
+REPO = "https://github.com/ro-rbl/plm-orchestrator"
+
+
 def _run(cmd):
     print("$", shlex.join(cmd), flush=True)
     return subprocess.run(cmd).returncode
 
 
 def _source(name, source):
-    """pip arguments that install plm-<name> from --source, PLM_PACKS_SOURCE, or this checkout."""
+    """pip arguments that install plm-<name> from --source, PLM_PACKS_SOURCE, this checkout, or the GitHub repo."""
     dist = f"plm-{name}"
     source = source or os.environ.get("PLM_PACKS_SOURCE")
     if source is None:
         checkout = Path(plm.__file__).resolve().parents[3]  # packages/plm-core/src/plm -> packages
         if (checkout / dist / "pyproject.toml").exists():
             return ["-e", str(checkout / dist)]
+        if not (checkout / "plm-core" / "pyproject.toml").exists():
+            # an installed plm (uv tool install, pip) has no checkout around it: the project's repo
+            return [f"{dist} @ git+{REPO}#subdirectory=packages/{dist}"]
         sys.exit(f"plm packs: no source for {dist}, and packs aren't on PyPI yet. Pass --source: a directory "
                  f"holding {dist}/, or a pip requirement such as "
                  f"'{dist} @ git+https://<repo>#subdirectory=packages/{dist}'")

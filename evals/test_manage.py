@@ -8,6 +8,7 @@ docs/pack-packaging.md, step 5.
 
 import contextlib
 import io
+import os
 import sys
 import types
 from pathlib import Path
@@ -54,6 +55,14 @@ def test_source():
     expect("source: a pip requirement passes through", manage._source("chemistry", req) == [req])
     code, _ = run(manage._source, "chemistry", None)
     expect("source: unknown pack with no source is an error", isinstance(code, str) and "--source" in code, code)
+    real_file = manage.plm.__file__
+    try:  # an installed plm, no checkout around it: the GitHub repo
+        manage.plm.__file__ = "/opt/tool/lib/python3.13/site-packages/plm/__init__.py"
+        got = manage._source("aerospace", None)
+    finally:
+        manage.plm.__file__ = real_file
+    expect("source: an installed plm defaults to the GitHub repo",
+           got == [f"plm-aerospace @ git+{manage.REPO}#subdirectory=packages/plm-aerospace"], got)
     code, _ = run(manage._source, "chemistry", str(ROOT / "evals"))
     expect("source: a directory without the pack is an error", isinstance(code, str) and "pyproject" in code, code)
 
@@ -138,8 +147,33 @@ def test_sql_db_errors():
     expect("serve: a missing PLM_SQL_DB stops startup", r.returncode == 1 and "isn't a file" in r.stderr, r.stderr)
 
 
+def test_log_dir():
+    """Logs: PLM_LOG_DIR, else ./logs if it exists (a checkout), else the user's state folder."""
+    import tempfile
+    from plm.paths import log_dir
+    saved = {k: os.environ.pop(k, None) for k in ("PLM_LOG_DIR", "XDG_STATE_HOME")}
+    cwd = os.getcwd()
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            os.chdir(tmp)
+            expect("log_dir: no ./logs -> ~/.local/state/plm", log_dir() == Path.home() / ".local/state/plm", log_dir())
+            os.environ["XDG_STATE_HOME"] = os.path.join(tmp, "state")
+            expect("log_dir: XDG_STATE_HOME is honored", log_dir() == Path(tmp) / "state/plm", log_dir())
+            os.mkdir("logs")
+            expect("log_dir: ./logs when it exists", log_dir() == Path("logs"), log_dir())
+            os.environ["PLM_LOG_DIR"] = os.path.join(tmp, "elsewhere")
+            expect("log_dir: PLM_LOG_DIR wins", log_dir() == Path(tmp) / "elsewhere", log_dir())
+    finally:
+        os.chdir(cwd)
+        for k, v in saved.items():
+            os.environ.pop(k, None)
+            if v is not None:
+                os.environ[k] = v
+
+
 def main():
     test_source()
+    test_log_dir()
     test_sql_db_errors()
     test_broken_pack_message()
     test_list_and_doctor()

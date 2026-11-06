@@ -39,10 +39,10 @@ from ipaddress import ip_address
 from pathlib import Path
 
 from plm import ollama, packs
+from plm.paths import log_dir
 from plm.report import answer_text, final_step
 
-# Relative to the working directory: the code may be installed anywhere.
-LOG_DIR = Path(os.environ.get("PLM_LOG_DIR", "logs"))
+LOG_DIR = log_dir()  # ./logs in a checkout, else the user's state folder (plm.paths)
 MODEL_IDS = {"plm-router": {}, "plm-router-thorough": {"thorough": True}}
 MAX_BODY = 10 * 1024 * 1024
 KEEPALIVE_S = 10
