@@ -50,9 +50,12 @@ The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly 
 - [ ] **Installing a pack from a git URL or a wheel is untested.** Only local directories (editable) were
       installed live; there's no remote yet. Once there is one: `plm packs install aerospace --source
       "plm-aerospace @ git+https://<repo>#subdirectory=packages/plm-aerospace"` in a fresh venv.
-- [ ] **Package names are unclaimed on PyPI** (all four 404 on 2026-10-22): installing a pack where
-      `plm-core` isn't installed could fetch someone else's `plm-core`. Claim the names when publishing
-      (ROADMAP phase 5); `docs/pack-packaging.md` "Risks".
+- [ ] **PyPI, partly claimed (2026-11-06):** plm-core, plm-electrical, plm-aerospace, plm-cad are up (wheels;
+      `uv tool install plm-core` from PyPI tested). plm-physics, plm-software, plm-sql hit PyPI's "too many new
+      projects" limit (429). Resume later, from the repo root (built files in `dist/`, rebuild with
+      `uv build --out-dir dist packages/plm-<name>` if gone): `uv publish dist/* --check-url https://pypi.org/simple/ --token <token>`.
+      Then: per-project tokens, revoke the account-wide one (a token was pasted into a chat on 2026-11-06),
+      and switch `plm packs install`'s default source from GitHub to PyPI (`plm/manage.py:_source`).
 - [ ] **Claim scores for third-party packs are uncalibrated.** Today's are term counts tuned for three
       packs; a fourth could out-claim them. Open decision in `docs/pack-packaging.md`; decide before
       accepting a pack written by someone else.
