@@ -131,8 +131,9 @@ What could carry over, in order of value per effort; each policy fixed before it
   hindsight bound.
 
 ## 5. Publish
-- [x] GitHub repo, private for now: https://github.com/ro-rbl/plm-orchestrator (MIT).
-- [x] Hugging Face dataset, private for now: https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (eval
+- [x] GitHub repo, public since 2026-11-05: https://github.com/ro-rbl/plm-orchestrator (MIT).
+- [x] Hugging Face dataset, public since 2026-11-05: https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (eval
       sets, every result file, a dataset card; no benchmark data redistributed).
-- [ ] Make both public (the user's call), then check `pip install` from git in a fresh venv; optional Space.
+- [x] Both public (2026-11-05); a fresh `uv tool install` from the git URL, a pack install from GitHub and a live
+      question work without credentials. Optional: a Space, PyPI.
 - Public benchmarks are referenced, not redistributed (each has its own license).

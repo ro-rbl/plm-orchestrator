@@ -16,7 +16,7 @@ fits (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 | sql | coder 14B alone | Spider 76%, BIRD mini-dev 51% (EX 54.5) |
 | cad | coder 14B alone | CADPrompt 14% (bbox + volume within 0.1%) |
 
-Published privately: https://github.com/ro-rbl/plm-orchestrator and
+Public (2026-11-05): https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
 Suggested order for the next session:
@@ -36,7 +36,7 @@ Suggested order for the next session:
    432 -> 375. The flags stay as they are. Recorded in `docs/results.md`. Spider train is now seen.
    During the run the user's assistant service was stopped (`launchctl bootout`); restore it with
    `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist` if not done yet.
-2. **Going public** is the user's decision (commands under "Publishing").
+2. **Public since 2026-11-05.** Open: claim the PyPI names (see "Packaging"), or decide not to publish there.
 3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
    `evals/bench_*.py` docstring says where to download it from, if it's missing.
 
@@ -94,15 +94,9 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       `~/ClaudeCoding/plm-orchestrator-backup-20261105.bundle`. Home path in 5 logs kept (user's call).
 - [x] **Hugging Face dataset refreshed (2026-11-05):** 23 new files, 5 updated, card updated (Spider router files
       CC BY-SA 4.0); re-diff against the repo shows nothing missing. Still private.
-- [ ] **Going public is the user's call:** `gh repo edit ro-rbl/plm-orchestrator --visibility public
-      --accept-visibility-change-consequences` and, for the dataset, `HfApi().update_repo_settings(...,
-      private=False)`. Then check `pip install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`
-      in a fresh venv (untested while private), and claim the PyPI names if publishing there.
-
-## SQL pack: built (2026-10-23)
-`packages/plm-sql`; eval set `evals/sql/build_tasks.py` (45 tasks, 3 seeded databases, 24 level holdouts, 12
-routing cases), sweep `results/run_sql.sh`, log `results/sql.log`. Ships 4B first, the coder when the query
-doesn't run: 45/45 at 45% of always-coder compute. Loose ends:
+- [x] **Public (2026-11-05):** GitHub repo and Hugging Face dataset made public by the user; confirmed with anonymous
+      requests. Fresh install with no git credentials: `uv tool install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`,
+      then `plm packs install electrical` (from GitHub) and a live question: 22 V, checked. PyPI names still unclaimed.
 - [ ] **`--thorough` wasn't re-measured with the coder alone** (it was 42/45 at 228% with the old cascade).
       Resume: a thorough column in `evals/bench_code.py`, judged on new tasks.
 - [ ] **Physics vs aerospace/electrical overlap on LaTeX mechanics** (lx12 "crane ... watts" -> electrical;
@@ -244,7 +238,7 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
   root to keep them in `logs/` here.
 - **`plm` as a standalone tool (2026-11-05):** `uv tool install ./packages/plm-core` (non-editable, isolated) ran
   from a plain folder; `plm packs install aerospace` with no `--source` installed from the GitHub repo (worked
-  while private via stored git credentials) and routed live. Untested: the same from the git URL once public.
+  while private via stored git credentials) and routed live. From the public git URL: tested 2026-11-05 (see Publishing).
 - `with-timeout` does not pass stdin through: `with-timeout N python -m plm < file` sends an empty task (now
   refused), and `with-timeout N python - <<EOF` runs an empty script. Pass `"$(cat file)"` as an argument, or
   write the script to a file.
