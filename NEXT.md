@@ -84,6 +84,15 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       holds the adapter (small); rebuilding needs `MLX_PY`, `LLAMACPP` and `WORK` as in the pipeline.
 
 ## Publishing (phase 5), 2026-10-25
+- [x] **Pre-publish pass (2026-11-05):** no keys or tokens in any tracked file or in history. README now has a clone
+      command, a caveats section (eval sets written by Claude, small sets, one Mac) and credits for every public
+      benchmark; the two Spider files in `evals/router/` are credited and marked CC BY-SA 4.0 (checked on Spider's
+      page). Benchmark data itself isn't redistributed; results hold model answers and ids only.
+- [ ] **Visible once public, the user's call:** the author email `[old author email]` on all commits (GitHub can hide it
+      only for new commits: a noreply address in `git config user.email`; old ones need a history rewrite), and the
+      home path `/Users/ro/...` in 5 run logs under `results/`.
+- [ ] **The Hugging Face dataset is a 2026-10-25 snapshot:** it lacks the SQL flags, BIRD, Spider train and routing
+      results. Re-upload before making it public.
 - [ ] **Going public is the user's call:** `gh repo edit ro-rbl/plm-orchestrator --visibility public
       --accept-visibility-change-consequences` and, for the dataset, `HfApi().update_repo_settings(...,
       private=False)`. Then check `pip install "plm-core @ git+https://github.com/ro-rbl/plm-orchestrator#subdirectory=packages/plm-core"`

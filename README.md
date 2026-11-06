@@ -7,7 +7,11 @@ model when the check fails. Models run in [Ollama](https://ollama.com).
 ## Setup
 
 Needs Python 3.13, [uv](https://docs.astral.sh/uv/) (or pip) and a running
-Ollama. There's no PyPI release or public repo yet, so install from a checkout.
+Ollama. There's no PyPI release, so install from a checkout:
+
+```bash
+git clone https://github.com/ro-rbl/plm-orchestrator && cd plm-orchestrator
+```
 
 **1. The core.** Router, server, CLI, the shared numeric engine and the general
 pack. On its own it works: every task goes to the general pack (`qwen3:8b`,
@@ -141,6 +145,32 @@ stronger claim wins (more distinct domain terms), then the pack's priority.
 | sql (SQLite queries) | everything to the coder 14B (chosen for accuracy: Spider 76% vs the 8B's 67%, BIRD 51% vs 35%); with a database, a flagged query gets a 4B second opinion | the query must run on the task's own CREATE TABLE statements (no schema given: unchecked). With your database (`plm --sql-db file.sqlite`, or `PLM_SQL_DB` for the server; read-only) it runs on the real data, and a result with no rows, over 100 rows, only NULLs or none of the question's tables is flagged: 2230 vs 2212 of 2880 unseen Spider questions | Spider dev (300 sampled) 76%, BIRD mini-dev 51%, on a grade stricter than the official one |
 | software | everything to the coder 14B (the cheap-first cascade lost on public benchmarks) | code must pass the task's examples | HumanEval+ 85%, MBPP+ 72% (540 tasks pooled: 76% vs the old cascade's 72%) |
 | software `--thorough` | the coder, checked harder | examples + 8 tests written by the 8B from the task alone | measured with the old cascade (42/45 at 228%); not re-measured with the coder alone |
+
+## Caveats
+
+- **The project's own eval sets were written by Claude** (an AI model): every electrical, aerospace, physics,
+  software, SQL and CAD problem, label and reference answer under `evals/`, and most routing cases. Holdouts
+  guard against tuning a rule to its test, not against the author's blind spots. Public benchmarks
+  (`docs/results.md`) are the independent check, and there is none yet for electrical or aerospace.
+- Small sets: 36-50 problems per pack; differences of 1-2 between policies are noise.
+- Everything was measured on one 24 GB Apple-silicon Mac; timings there are unreliable (it swapped), so
+  token counts are the cost measure.
+
+## Data and credits
+
+Public benchmarks are downloaded into `.benchmarks/` (ignored by git) and not redistributed; each
+`evals/bench_*.py` says where from. Thanks to their authors:
+[Spider](https://yale-lily.github.io/spider) (Yu et al., 2018),
+[BIRD](https://bird-bench.github.io/) (Li et al., 2023),
+[EvalPlus](https://github.com/evalplus/evalplus) (HumanEval+ and MBPP+),
+[SciBench](https://huggingface.co/datasets/xw27/scibench), [TheoremQA](https://github.com/wenhuchen/TheoremQA),
+[UGPhysics](https://huggingface.co/datasets/UGPhysics/ugphysics), [GSM8K](https://github.com/openai/grade-school-math)
+and [CADPrompt](https://github.com/Kamel773/CAD_Code_Generation).
+
+One exception: `evals/router/sqldb_spider.jsonl` and `evals/router/sqldb_schemas.json` hold 120 Spider dev
+questions and 20 Spider database schemas (table and column names), unchanged. They are from Spider, by Tao Yu
+et al., licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), and those two files stay
+under that license; the rest of the repo is MIT (`LICENSE`).
 
 ## Layout
 
