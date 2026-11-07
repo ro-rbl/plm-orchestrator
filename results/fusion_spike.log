@@ -1,0 +1,45 @@
+cad_alone  fu-01 no_part       
+cad_alone  fu-02 wrong_size    
+cad_alone  fu-03 wrong_size    
+cad_alone  fu-04 correct       
+cad_alone  fu-05 wrong_size    
+cad_alone  fu-06 no_part       
+cad_alone  fu-07 correct       
+cad_alone  fu-08 wrong_size    
+cad_alone  fu-09 correct       
+cad_alone  fu-10 correct       
+fusion     fu-01 wrong_size    
+fusion     fu-02 bad_calc      answer {'value': 100.0, 'unit': 'mm²'} isn't a length: DimensionalityError
+fusion     fu-03 wrong_size    
+fusion     fu-04 correct       
+fusion     fu-05 wrong_size    
+fusion     fu-06 wrong_size    
+fusion     fu-07 correct       
+fusion     fu-08 wrong_volume  
+fusion     fu-09 correct       
+fusion     fu-10 wrong_size    
+oracle     fu-01 wrong_volume  
+oracle     fu-02 correct       
+oracle     fu-03 wrong_volume  
+oracle     fu-04 correct       
+oracle     fu-05 correct       
+oracle     fu-06 correct       
+oracle     fu-07 correct       
+oracle     fu-08 wrong_volume  
+oracle     fu-09 correct       
+oracle     fu-10 correct       
+problem cad_alone     fusion        oracle        plan pack / calc
+fu-01   no_part       wrong_size    wrong_volume  physics / -
+fu-02   wrong_size    bad_calc      correct       physics / -
+fu-03   wrong_size    wrong_size    wrong_volume  electrical / 0.004
+fu-04   correct       correct       correct       physics / ok
+fu-05   wrong_size    wrong_size    correct       physics / 0.255
+fu-06   no_part       wrong_size    correct       physics / 0.019
+fu-07   correct       correct       correct       electrical / ok
+fu-08   wrong_size    wrong_volume  wrong_volume  physics / ok
+fu-09   correct       correct       correct       physics / ok
+fu-10   correct       wrong_size    correct       physics / 48.66
+cad_alone  correct 4/10  tokens 1997
+fusion     correct 3/10  tokens 3180
+oracle     correct 7/10  tokens 1803
+fusion: usable plans 10/10, right calculations 4/10

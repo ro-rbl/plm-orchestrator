@@ -43,6 +43,18 @@ Suggested order for the next session:
 Before running anything long: `pmset -g batt` (on AC?), `caffeinate -i -s -t <seconds> &`, `ollama ps`.
 The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly if Ollama goes down, and resume.
 
+## Pack fusion (`/fuse`): spike done 2026-11-07
+User's design: `/fuse` at the start or end of a prompt; a planner splits a mixed problem between packs; each step lit
+in the TUI's packs strip. Pairs wanted: CAD + engineering (first), SQL + software, physics + aerospace (least
+promising: same calculator, it's decompose-then-solve again). Spike on 10 CAD + engineering problems
+(`evals/fusion/`, written first; `results/fusion_spike.*`): CAD alone 4/10, fusion 3/10, perfect hand-off 7/10.
+The 8B planned 10/10 usably; calculations were right 4/10, mostly the known prefix bug (0.0042 "mm" for 4.2 mm;
+see Physics loose ends); 3 oracle misses are the CAD pack's hole bugs (one of two holes cut). Next: ask the
+calculation in metres and convert in code, judged on a NEW problem set written first; then a rule (fusion vs the
+best single pack, accuracy first), then plm-core module + `/fuse`. TUI mockup: `mockups/tui.html` (ignored by git;
+orange banner and part, packs strip and models strip at the bottom, active one green).
+- [ ] `ollama stop qwen3:8b` before any run that uses the coder: the user's assistant service pins it.
+
 ## Packaging: loose ends
 - [x] **`plm packs install` downloaded a model for real (2026-11-04):** in a throwaway venv,
       `PLM_LARGE_MODEL=qwen3:1.7b plm packs install aerospace --source packages` pulled 1.4 GB (digest verified),
