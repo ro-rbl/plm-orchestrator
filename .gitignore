@@ -6,3 +6,4 @@ logs/
 .worktrees/
 .benchmarks/
 dist/
+mockups/
