@@ -73,13 +73,18 @@ REPO = "https://github.com/ro-rbl/plm-orchestrator"
 OFFICIAL = ("electrical", "aerospace", "physics", "software", "sql", "cad")  # the only packs fetched by name
 
 
+OWNER = "ro-rbl"  # the PyPI account that owns the official packs
+
+
 def on_pypi(dist, timeout=10):
-    """Whether PyPI has a project named `dist` (False when PyPI can't be reached)."""
+    """Whether PyPI has `dist` published by OWNER (False when it doesn't, someone else owns the name, or PyPI
+    can't be reached), so a squatted name falls back to the GitHub repo instead of installing a stranger's code."""
     try:
         with urllib.request.urlopen(f"https://pypi.org/pypi/{dist}/json", timeout=timeout) as r:
-            return r.status == 200
-    except (urllib.error.URLError, OSError):
+            roles = (json.load(r).get("ownership") or {}).get("roles") or []
+    except (urllib.error.URLError, OSError, ValueError):
         return False
+    return any(role.get("user") == OWNER for role in roles)
 
 
 def _run(cmd):
