@@ -1,0 +1,65 @@
+"""Follow-up questions: which pack a conversation's last message goes to, and whether earlier turns are used.
+
+    .venv/bin/python evals/test_followup.py [-v]
+
+Until 2026-11-08 the server routed and solved only the last user message, so "now for 200 ohm" after an
+electrical question went to the general pack with nothing to go on. plm.followup.resolve(messages) decides
+whether the last message is a follow-up; if so the pack gets the earlier question and the change.
+
+Cases: evals/router/followup_cases.jsonl, written before plm/followup.py existed: 25 follow-ups (fu*: a change to
+an electrical, aerospace, physics, software, sql or cad question) and 15 messages that start something new
+(nf*: thanks, chat, or a complete question for another pack).
+
+FOLLOWUP_RULE, fixed 2026-11-08 before the code: it ships iff all of
+    (a) at least 20 of the 25 follow-ups go to their pack with context
+    (b) at least 13 of the 15 others go to their labeled pack without context
+    (c) a conversation of one message routes exactly as before (plm.packs.detect), with no context,
+        for every existing routing text (evals/test_detect.py's sets)
+Exits 1 if any fails, so after it ships this is a regression test.
+"""
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "evals"))
+
+from plm.followup import resolve  # noqa: E402
+from plm.packs import detect  # noqa: E402
+from test_detect import holdout_texts, known_texts, latex_texts  # noqa: E402
+
+
+def main():
+    verbose = "-v" in sys.argv
+    cases = [json.loads(line) for line in open(ROOT / "evals/router/followup_cases.jsonl") if line.strip()]
+
+    def score(group, label, need):
+        miss = []
+        for c in group:
+            r = resolve(c["messages"])
+            if r["pack"] != c["pack"] or r["context"] != c["context"]:
+                miss.append((c, r))
+        ok = len(group) - len(miss)
+        print(f"{label}: {ok}/{len(group)} (need {need})")
+        for c, r in miss if verbose else []:
+            print(f"   miss {c['id']}: want {c['pack']}{' +context' if c['context'] else ''}, got {r['pack']}"
+                  f"{' +context' if r['context'] else ''}: {c['messages'][-1]['content'][:70]!r}")
+        return ok >= need
+
+    a = score([c for c in cases if c["id"].startswith("fu")], "(a) follow-ups to their pack, with context", 20)
+    b = score([c for c in cases if c["id"].startswith("nf")], "(b) new messages to their pack, alone", 13)
+    texts = [t for _, t, _ in known_texts() + holdout_texts() + latex_texts()]
+    changed = [t for t in texts if (r := resolve([{"role": "user", "content": t}]))["pack"] != detect(t) or r["context"]]
+    c = not changed
+    print(f"(c) one-message conversations unchanged: {len(texts) - len(changed)}/{len(texts)}")
+    for t in changed[:10] if verbose else []:
+        print(f"   changed: {t[:90]!r}")
+    passed = a and b and c
+    print("FOLLOWUP_RULE:", "PASS" if passed else "FAIL")
+    sys.exit(0 if passed else 1)
+
+
+if __name__ == "__main__":
+    main()
