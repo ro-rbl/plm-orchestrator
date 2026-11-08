@@ -175,6 +175,7 @@ def main():
         return report()
     done = {(r["id"], r["setup"]) for r in load(OUT)} if OUT.exists() else set()
     problems = load(PROBLEMS)
+    timeouts = 0
     with OUT.open("a") as f:
         for setup in ("cad_alone", "fusion", "oracle"):
             for p in problems:
@@ -182,6 +183,13 @@ def main():
                     continue
                 try:
                     row = run_one(p, setup, args.variant)
+                    timeouts = 0
+                except TimeoutError as e:  # not saved, so a resume retries it; a run of them means a blocked Ollama
+                    timeouts += 1
+                    print(f"{setup:<10} {p['id']} timed out, not saved ({timeouts} in a row): {e}", flush=True)
+                    if timeouts >= 3:
+                        sys.exit("3 timeouts in a row (is qwen3:8b pinned, or did the Mac sleep?); stopped, resume to retry")
+                    continue
                 except Exception as e:  # keep going; one bad problem must not lose the run
                     row = {"verdict": "error", "why": f"{type(e).__name__}: {e}"}
                 row = {"id": p["id"], "setup": setup} | row
