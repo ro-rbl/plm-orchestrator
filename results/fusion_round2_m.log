@@ -1,0 +1,48 @@
+cad_alone  fr-01 wrong_size    
+cad_alone  fr-02 wrong_size    
+cad_alone  fr-03 correct       
+cad_alone  fr-04 no_part       
+cad_alone  fr-05 error         TimeoutError: timed out
+cad_alone  fr-05 correct       
+cad_alone  fr-06 wrong_volume  
+cad_alone  fr-07 wrong_size    
+cad_alone  fr-08 wrong_volume  
+cad_alone  fr-09 correct       
+cad_alone  fr-10 wrong_size    
+fusion     fr-01 correct       
+fusion     fr-02 wrong_volume  
+fusion     fr-03 wrong_size    
+fusion     fr-04 correct       
+fusion     fr-05 correct       
+fusion     fr-06 no_part       
+fusion     fr-07 correct       
+fusion     fr-08 wrong_size    
+fusion     fr-09 correct       
+fusion     fr-10 error         TimeoutError: timed out
+fusion     fr-10 correct       
+oracle     fr-01 correct       
+oracle     fr-02 wrong_volume  
+oracle     fr-03 correct       
+oracle     fr-04 correct       
+oracle     fr-05 correct       
+oracle     fr-06 no_part       
+oracle     fr-07 correct       
+oracle     fr-08 wrong_size    
+oracle     fr-09 correct       
+oracle     fr-10 correct       
+round2.jsonl, results fusion_round2_m.jsonl
+problem cad_alone     fusion        oracle        plan pack / calc
+fr-01   wrong_size    correct       correct       physics / ok
+fr-02   wrong_size    wrong_volume  wrong_volume  electrical / ok
+fr-03   correct       wrong_size    correct       physics / 3382000000.0
+fr-04   no_part       correct       correct       aerospace / ok
+fr-05   correct       correct       correct       physics / ok
+fr-06   wrong_volume  no_part       no_part       electrical / ok
+fr-07   wrong_size    correct       correct       physics / ok
+fr-08   wrong_volume  wrong_size    wrong_size    physics / 15.96
+fr-09   correct       correct       correct       aerospace / ok
+fr-10   wrong_size    correct       correct       electrical / ok
+cad_alone  correct 3/10  tokens 1953
+fusion     correct 6/10  tokens 3319
+oracle     correct 7/10  tokens 1890
+fusion: usable plans 10/10, right calculations 8/10

@@ -49,9 +49,13 @@ in the TUI's packs strip. Pairs wanted: CAD + engineering (first), SQL + softwar
 promising: same calculator, it's decompose-then-solve again). Spike on 10 CAD + engineering problems
 (`evals/fusion/`, written first; `results/fusion_spike.*`): CAD alone 4/10, fusion 3/10, perfect hand-off 7/10.
 The 8B planned 10/10 usably; calculations were right 4/10, mostly the known prefix bug (0.0042 "mm" for 4.2 mm;
-see Physics loose ends); 3 oracle misses are the CAD pack's hole bugs (one of two holes cut). Next: ask the
-calculation in metres and convert in code, judged on a NEW problem set written first; then a rule (fusion vs the
-best single pack, accuracy first), then plm-core module + `/fuse`. TUI mockup: `mockups/tui.html` (ignored by git;
+see Physics loose ends); 3 oracle misses are the CAD pack's hole bugs (one of two holes cut). Round 2 (2026-11-07,
+`evals/fusion/round2.jsonl` written first, `--variant m`: calculation asked in metres, converted in code): CAD alone
+3/10, fusion 6/10, perfect hand-off 7/10; calculations 8/10 (prefix bug gone; misses: a load not split between two
+bolts, one absurd value); the 2 other misses are CAD hole bugs. The calc pack's `trusted` flag doesn't separate right
+from wrong (10 of 12 right answers untrusted), so a fallback needs another signal (e.g. a plausible-size check).
+Next: a larger fusion set and a rule fixed first (fusion vs the best single pack, accuracy first, compute reported),
+then the plm-core module + `/fuse`; SQL + software after. TUI mockup: `mockups/tui.html` (ignored by git;
 orange banner and part, packs strip and models strip at the bottom, active one green).
 - [ ] `ollama stop qwen3:8b` before any run that uses the coder: the user's assistant service pins it.
 
