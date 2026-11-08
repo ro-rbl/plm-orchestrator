@@ -54,8 +54,13 @@ see Physics loose ends); 3 oracle misses are the CAD pack's hole bugs (one of tw
 3/10, fusion 6/10, perfect hand-off 7/10; calculations 8/10 (prefix bug gone; misses: a load not split between two
 bolts, one absurd value); the 2 other misses are CAD hole bugs. The calc pack's `trusted` flag doesn't separate right
 from wrong (10 of 12 right answers untrusted), so a fallback needs another signal (e.g. a plausible-size check).
-Next: a larger fusion set and a rule fixed first (fusion vs the best single pack, accuracy first, compute reported),
-then the plm-core module + `/fuse`; SQL + software after. TUI mockup: `mockups/tui.html` (ignored by git;
+**FUSE_RULE verdict (2026-11-08): don't build.** 40 judged problems (`evals/fusion/judged.jsonl`, rule and set
+committed first in ca2cd75): fusion 18/40 = CAD alone 18/40 (paired 95% -8 to +8), at 1.8x the tokens; perfect
+hand-off 32/40. Plans 39/40 usable; calculations right only 23/40 (wire voltage drop 0/3, heat conduction 0/3,
+bending 1/3; fj-01 gave 7.07 m for 14.1 mm). The coder computing inside its own CadQuery program did as well or
+better on drag, wing chord and disc mass (3/3 each). Hypotheses, each needing a new set: (1) the calculation step
+by the coder writing a Python program (as CAD alone effectively does) instead of the numeric packs; (2) fusion only
+when the plan's calculation is a kind the numeric packs get right. `results/fusion_judged_m.*`. TUI mockup: `mockups/tui.html` (ignored by git;
 orange banner and part, packs strip and models strip at the bottom, active one green).
 - [ ] `ollama stop qwen3:8b` before any run that uses the coder: the user's assistant service pins it.
 

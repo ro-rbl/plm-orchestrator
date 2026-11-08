@@ -1,0 +1,172 @@
+[supervisor 00:29] waiting for AC power
+[supervisor 00:34] attempt 1
+cad_alone  fj-01 correct       
+cad_alone  fj-02 wrong_size    
+cad_alone  fj-03 correct       
+cad_alone  fj-04 no_part       
+cad_alone  fj-05 no_part       
+cad_alone  fj-06 no_part       
+cad_alone  fj-07 wrong_size    
+cad_alone  fj-08 correct       
+cad_alone  fj-09 wrong_size    
+cad_alone  fj-10 correct       
+cad_alone  fj-11 correct       
+cad_alone  fj-12 correct       
+cad_alone  fj-13 wrong_size    
+cad_alone  fj-14 wrong_size    
+cad_alone  fj-15 wrong_size    
+cad_alone  fj-16 wrong_size    
+cad_alone  fj-17 wrong_size    
+cad_alone  fj-18 wrong_size    
+cad_alone  fj-19 correct       
+cad_alone  fj-20 correct       
+cad_alone  fj-21 correct       
+cad_alone  fj-22 correct       
+cad_alone  fj-23 correct       
+cad_alone  fj-24 correct       
+cad_alone  fj-25 no_part       
+cad_alone  fj-26 no_part       
+cad_alone  fj-27 no_part       
+cad_alone  fj-28 correct       
+cad_alone  fj-29 correct       
+cad_alone  fj-30 correct       
+cad_alone  fj-31 wrong_size    
+cad_alone  fj-32 wrong_size    
+cad_alone  fj-33 wrong_size    
+cad_alone  fj-34 correct       
+cad_alone  fj-35 no_part       
+cad_alone  fj-36 correct       
+cad_alone  fj-37 wrong_size    
+cad_alone  fj-38 wrong_size    
+cad_alone  fj-39 wrong_size    
+cad_alone  fj-40 correct       
+fusion     fj-01 wrong_size    
+fusion     fj-02 correct       
+fusion     fj-03 wrong_size    
+fusion     fj-04 correct       
+fusion     fj-05 correct       
+fusion     fj-06 wrong_size    
+fusion     fj-07 wrong_size    
+fusion     fj-08 wrong_size    
+fusion     fj-09 wrong_size    
+fusion     fj-10 correct       
+fusion     fj-11 correct       
+fusion     fj-12 correct       
+fusion     fj-13 wrong_size    
+fusion     fj-14 wrong_size    
+fusion     fj-15 wrong_size    
+fusion     fj-16 correct       
+fusion     fj-17 wrong_size    
+fusion     fj-18 wrong_size    
+fusion     fj-19 bad_calc      answer {'value': 0.01134, 'unit': 'm²'} isn't a length: DimensionalityError
+fusion     fj-20 bad_calc      answer {'value': 0.0285, 'unit': 'm²'} isn't a length: DimensionalityError
+fusion     fj-21 correct       
+fusion     fj-22 wrong_size    
+fusion     fj-23 correct       
+fusion     fj-24 wrong_size    
+fusion     fj-25 wrong_volume  
+fusion     fj-26 wrong_size    
+fusion     fj-27 wrong_size    
+fusion     fj-28 correct       
+fusion     fj-29 correct       
+fusion     fj-30 wrong_volume  
+fusion     fj-31 bad_plan      pack 'mechanics' isn't a numeric pack
+fusion     fj-32 wrong_size    
+fusion     fj-33 correct       
+fusion     fj-34 wrong_volume  
+fusion     fj-35 correct       
+fusion     fj-36 correct       
+fusion     fj-37 correct       
+fusion     fj-38 correct       
+fusion     fj-39 correct       
+fusion     fj-40 correct       
+oracle     fj-01 correct       
+oracle     fj-02 correct       
+oracle     fj-03 correct       
+oracle     fj-04 correct       
+oracle     fj-05 correct       
+oracle     fj-06 correct       
+oracle     fj-07 correct       
+oracle     fj-08 correct       
+oracle     fj-09 correct       
+oracle     fj-10 correct       
+oracle     fj-11 correct       
+oracle     fj-12 correct       
+oracle     fj-13 correct       
+oracle     fj-14 correct       
+oracle     fj-15 correct       
+oracle     fj-16 correct       
+oracle     fj-17 correct       
+oracle     fj-18 correct       
+oracle     fj-19 correct       
+oracle     fj-20 correct       
+oracle     fj-21 correct       
+oracle     fj-22 wrong_size    
+oracle     fj-23 correct       
+oracle     fj-24 wrong_size    
+oracle     fj-25 wrong_volume  
+oracle     fj-26 no_part       
+oracle     fj-27 wrong_volume  
+oracle     fj-28 correct       
+oracle     fj-29 wrong_volume  
+oracle     fj-30 correct       
+oracle     fj-31 bad_plan      pack 'mechanics' isn't a numeric pack
+oracle     fj-32 correct       
+oracle     fj-33 correct       
+oracle     fj-34 wrong_volume  
+oracle     fj-35 correct       
+oracle     fj-36 correct       
+oracle     fj-37 correct       
+oracle     fj-38 correct       
+oracle     fj-39 correct       
+oracle     fj-40 correct       
+judged.jsonl, results fusion_judged_m.jsonl
+problem cad_alone     fusion        oracle        plan pack / calc
+fj-01   correct       wrong_size    correct       physics / 7071.0
+fj-02   wrong_size    correct       correct       physics / ok
+fj-03   correct       wrong_size    correct       physics / 45000.0
+fj-04   no_part       correct       correct       physics / ok
+fj-05   no_part       correct       correct       physics / ok
+fj-06   no_part       wrong_size    correct       physics / 269.7
+fj-07   wrong_size    wrong_size    correct       electrical / 0.654
+fj-08   correct       wrong_size    correct       electrical / 0.822
+fj-09   wrong_size    wrong_size    correct       electrical / 2.068
+fj-10   correct       correct       correct       electrical / ok
+fj-11   correct       correct       correct       electrical / ok
+fj-12   correct       correct       correct       electrical / ok
+fj-13   wrong_size    wrong_size    correct       physics / 200.0
+fj-14   wrong_size    wrong_size    correct       physics / 0.1
+fj-15   wrong_size    wrong_size    correct       physics / 125.0
+fj-16   wrong_size    correct       correct       physics / ok
+fj-17   wrong_size    wrong_size    correct       physics / 1077000.0
+fj-18   wrong_size    wrong_size    correct       physics / 2895000.0
+fj-19   correct       bad_calc      correct       aerospace / -
+fj-20   correct       bad_calc      correct       aerospace / -
+fj-21   correct       correct       correct       aerospace / ok
+fj-22   correct       wrong_size    wrong_size    aerospace / ok
+fj-23   correct       correct       correct       aerospace / ok
+fj-24   correct       wrong_size    wrong_size    aerospace / ok
+fj-25   no_part       wrong_volume  wrong_volume  physics / ok
+fj-26   no_part       wrong_size    no_part       physics / 25.0
+fj-27   no_part       wrong_size    wrong_volume  physics / 0.12
+fj-28   correct       correct       correct       physics / ok
+fj-29   correct       correct       wrong_volume  physics / ok
+fj-30   correct       wrong_volume  correct       physics / ok
+fj-31   wrong_size    bad_plan      bad_plan      - / -
+fj-32   wrong_size    wrong_size    correct       physics / 9.142
+fj-33   wrong_size    correct       correct       physics / ok
+fj-34   correct       wrong_volume  wrong_volume  electrical / ok
+fj-35   no_part       correct       correct       electrical / ok
+fj-36   correct       correct       correct       electrical / ok
+fj-37   wrong_size    correct       correct       physics / ok
+fj-38   wrong_size    correct       correct       physics / ok
+fj-39   wrong_size    correct       correct       physics / ok
+fj-40   correct       correct       correct       physics / ok
+cad_alone  correct 18/40  tokens 8884
+fusion     correct 18/40  tokens 15759
+oracle     correct 32/40  tokens 7068
+fusion - cad_alone: +0, paired bootstrap 95% -8 to +8
+rule: fusion (variant m) is built as an opt-in /fuse for CAD + engineering problems iff, on judged.jsonl, a paired bootstrap 95% interval (2000 resamples, seed 20261108) of its correct parts minus cad_alone's lies entirely above 0; tokens are reported; oracle is a diagnostic only
+-> DON'T BUILD (not clearly better than the CAD pack alone)
+fusion: usable plans 39/40, right calculations 23/40
+[supervisor 02:08] finished

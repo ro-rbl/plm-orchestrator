@@ -38,6 +38,10 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   query's result on the real database looks wrong (error, no rows, over 100 rows, all NULL, none of the question's
   tables) 2230 (77.4%), +7 to +30 paired 95%, at 105% compute: adopted. The 4B first with the coder on a flag: 1990.
   It needs the user's database, so the pack uses it only when one is given (`plm --sql-db`, `PLM_SQL_DB`).
+- **Pack fusion, CAD + engineering** (`evals/fusion/`, FUSE_RULE fixed before): a planner (Qwen3-8B) splits a
+  problem into a calculation for a numeric pack and a part for the CAD pack. On 40 problems written for it: fusion
+  18/40, the CAD pack alone 18/40 (paired 95% -8 to +8): not built. With the correct numbers handed over, the same
+  plans reach 32/40; the calculation step was right on 23/40.
 - **SQL flags confirmation on BIRD** (CONFIRM_RULE fixed before any answer): on 1035 BIRD dev questions mini-dev
   doesn't use (2025-11-06 revision; 1 dropped), the shipped policy 534 (51.6%) at 112% compute vs the coder alone
   528 (51.0%), -1 to +13 paired 95%. The rule reverts only if the coder alone is clearly ahead: confirmed, kept.
