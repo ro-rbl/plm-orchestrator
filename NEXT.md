@@ -143,8 +143,10 @@ routing calm and alert to the tuned 4B: 25/36 at 69% compute (rule needed >= 27)
       verdict; tightening it needs new questions to judge. Without a database, still schema-only.
       2026-11-04: the tables flag folds plurals badly (`plm_sql/flags.py:stem`: "movies" -> "movy", "wines" ->
       "win", "courses" -> "cours"), so a question naming those tables names none; the routing claim matches
-      every singular form instead (`plm_sql/claims.py:forms`). Changing the flag changes an adopted policy:
-      judge it on new questions first.
+      every singular form instead (`plm_sql/claims.py:forms`). 2026-11-08, checked on seen answers before
+      spending a run: matching plural forms both ways moves the policy score by at most 1 per set (Spider
+      2230 -> 2229, BIRD 534 -> 534, Spider train 2450 -> 2451) and trades a few false alarms for a few catches.
+      Not worth a judged run; left as is. The flag's limit is the name-matching idea, not the plurals.
 - [ ] **A schema written in prose is unchecked** ("a table sales(region, month, amount)", routing case q03):
       only CREATE TABLE statements are run. Building a table from such a signature is untested.
 - [ ] **Level misses** (left as measured): eval 42/45, holdout 24/24, but fresh 19/24 and fresh2 14/24, so the
