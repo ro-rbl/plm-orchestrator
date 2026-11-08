@@ -168,6 +168,115 @@ def round2():
     return out
 
 
+def judged():
+    """40 problems for FUSE_RULE (evals/fusion/run_spike.py), written 2026-11-08 after rounds 1-2, before any answer."""
+    out = []
+    n = [0]
+
+    def add(pack, task, dim, ref):
+        n[0] += 1
+        out.append({"id": f"fj-{n[0]:02d}", "pack": pack, "task": task, "dim_mm": dim, "reference": ref})
+
+    def box(x, y, z, holes=(), d=0):
+        r = f"cq.Workplane('XY').box({x}, {y}, {z})"
+        if holes:
+            r += f".faces('>Z').workplane().pushPoints({list(holes)}).hole({d})"
+        return "result = " + r
+
+    def cyl(d, h, hole=0):
+        r = f"cq.Workplane('XY').circle({d / 2}).extrude({h})"
+        if hole:
+            r += f".faces('>Z').workplane().hole({hole})"
+        return "result = " + r
+
+    # cantilever bending: h = sqrt(6 F L / (b sigma))
+    for F, L, b, sig in ((200, 300, 30, 60e6), (500, 250, 40, 100e6), (120, 400, 20, 80e6)):
+        h = math.sqrt(6 * F * (L / 1000) / ((b / 1000) * sig)) * 1000
+        add("physics", f"A rectangular cantilever beam {L} mm long and {b} mm wide carries a {F} N point load at its free "
+            f"end, and the bending stress may not exceed {sig / 1e6:g} MPa. Find the minimum beam depth (height), then "
+            f"model the beam as a solid block {L} mm long, {b} mm wide and that deep.", h, box(L, b, h))
+    # floating cube: side = (m / (rho_w - rho)) ^ (1/3)
+    for m, rho in ((2.0, 600), (5.0, 700), (1.2, 400)):
+        a = (m / (1000 - rho)) ** (1 / 3) * 1000
+        add("physics", f"A wooden cube (density {rho} kg/m^3) floating in fresh water (1000 kg/m^3) must just keep a "
+            f"{m:g} kg load above the water when fully submerged. Find the cube's side length, then model the cube.",
+            a, box(a, a, a))
+    # round wire from voltage drop: A = rho L I / dV, d = sqrt(4A/pi)
+    for L, I, dV, rho, mat in ((10, 5, 0.25, 1.68e-8, "copper"), (20, 10, 0.5, 2.65e-8, "aluminium"),
+                               (5, 20, 0.1, 1.68e-8, "copper")):
+        d = math.sqrt(4 * (rho * L * I / dV) / PI) * 1000
+        add("electrical", f"A {mat} wire (resistivity {rho:g} ohm m) {L} m long carries {I} A, and the voltage drop "
+            f"along it may not exceed {dV:g} V. Find the minimum wire diameter, then model a 300 mm long sample of the "
+            f"wire as a solid cylinder of that diameter.", d, cyl(d, 300))
+    # parallel-plate capacitor: A = C d / (eps0 epsr), square side
+    for C, gap, er in ((1e-9, 0.1e-3, 4.0), (470e-12, 0.2e-3, 2.2), (2.2e-9, 0.05e-3, 10.0)):
+        side = math.sqrt(C * gap / (8.854e-12 * er)) * 1000
+        add("electrical", f"A parallel-plate capacitor with square plates must have a capacitance of {C * 1e12:g} pF, "
+            f"with a dielectric of relative permittivity {er:g} and a gap of {gap * 1000:g} mm (vacuum permittivity "
+            f"8.854e-12 F/m). Find the side of a plate, then model one plate as a square plate with that side, 1 mm "
+            f"thick.", side, box(side, side, 1))
+    # heat conduction: t = k A dT / Q
+    for k, A_side, dT, Q in ((0.04, 500, 20, 4.0), (0.8, 300, 15, 54.0), (1.5, 200, 30, 360.0)):
+        t = k * (A_side / 1000) ** 2 * dT / Q * 1000
+        add("physics", f"A square insulating panel {A_side} mm by {A_side} mm (thermal conductivity {k:g} W/(m K)) has a "
+            f"{dT} K temperature difference across it and may conduct at most {Q:g} W. Find its minimum thickness, "
+            f"then model the panel.", t, box(A_side, A_side, t))
+    # ideal gas tank: V = nRT/P, cylinder of given diameter
+    for nmol, T, P, D in ((2.0, 300, 500e3, 100), (1.0, 293, 200e3, 120), (0.5, 350, 100e3, 80)):
+        h = (nmol * 8.314 * T / P) * 1e9 / (PI * (D / 2) ** 2)
+        add("physics", f"A cylindrical tank {D} mm in inside diameter must hold {nmol:g} mol of an ideal gas at {T} K "
+            f"and {P / 1e3:g} kPa (R = 8.314 J/(mol K)). Find the inside height, then model the tank's gas space as a "
+            f"solid cylinder {D} mm in diameter and that tall.", h, cyl(D, h))
+    # drag on a cylinder end-on: A = D / (0.5 rho v^2 Cd), d = sqrt(4A/pi)
+    for Dn, v, cd in ((5.0, 30, 0.8), (12.0, 25, 1.1), (2.0, 40, 0.9)):
+        d = math.sqrt(4 * Dn / (0.5 * 1.225 * v ** 2 * cd) / PI) * 1000
+        add("aerospace", f"A cylinder faces a {v} m/s airflow end-on (air density 1.225 kg/m^3, drag coefficient {cd:g}) "
+            f"and must produce {Dn:g} N of drag. Find its diameter, then model the cylinder with that diameter and "
+            f"100 mm long.", d, cyl(d, 100))
+    # wing chord from lift and span
+    for W, v, cl, span in ((600, 20, 1.2, 8), (250, 12, 0.9, 5), (1500, 30, 1.1, 10)):
+        c = W / (0.5 * 1.225 * v ** 2 * cl) / span * 1000
+        add("aerospace", f"A wing with a lift coefficient of {cl:g} flies at {v} m/s in air of density 1.225 kg/m^3 and "
+            f"must lift {W} N. Its span is {span} m; find its chord. Then model a 500 mm long section of the wing as a "
+            f"flat plate 500 mm long, as wide as that chord, and 15 mm thick.", c, box(500, c, 15))
+    # tensile plate thickness with holes
+    for F, w, sig, L in ((9000, 50, 60e6, 120), (4000, 25, 40e6, 90), (15000, 60, 125e6, 150)):
+        t = F / (sig * w / 1000) * 1000
+        add("physics", f"A plate {w} mm wide carries a {F} N tensile load across its width, and the stress may not "
+            f"exceed {sig / 1e6:g} MPa. Find the minimum thickness, then model a plate {L} mm long and {w} mm wide with "
+            f"that thickness and an 8 mm diameter through hole {L / 2 - 15:g} mm from its center at each end, on the "
+            f"long centerline.", t, box(L, w, t, [(-(L / 2 - 15), 0), (L / 2 - 15, 0)], 8))
+    # mass-sized disc with center hole
+    for m, rho, D, mat in ((2.0, 7850, 120, "steel"), (0.3, 2700, 80, "aluminium"), (1.5, 8900, 90, "copper")):
+        t = m / rho * 1e9 / (PI * (D / 2) ** 2)
+        add("physics", f"A solid {mat} disc (density {rho} kg/m^3) {D} mm in diameter must weigh {m:g} kg. Find its "
+            f"thickness, then model the disc with that thickness and add a 10 mm diameter through hole at its center.",
+            t, cyl(D, t, 10))
+    # torsion shaft
+    for T, tau, L in ((120, 50e6, 150), (30, 25e6, 100), (400, 60e6, 200)):
+        d = (16 * T / (PI * tau)) ** (1 / 3) * 1000
+        add("physics", f"A solid circular shaft transmits {T} N m of torque, and the shear stress may not exceed "
+            f"{tau / 1e6:g} MPa. Find the minimum diameter, then model a solid shaft of that diameter and {L} mm long.",
+            d, cyl(d, L))
+    # current density bar with center hole
+    for I, J, w, L in ((500, 2.5, 40, 200), (150, 1.5, 20, 120), (800, 4.0, 50, 250)):
+        t = I / J / w
+        add("electrical", f"A copper bar must carry {I} A at a current density of {J:g} A/mm^2. It is {w} mm wide; find "
+            f"its thickness. Then model the bar, {L} mm long and {w} mm wide with that thickness, with a 6 mm diameter "
+            f"through hole at its center.", t, box(L, w, t, [(0, 0)], 6))
+    # hydraulic piston
+    for F, P, L in ((50000, 15e6, 80), (8000, 5e6, 50), (120000, 20e6, 100)):
+        d = math.sqrt(4 * (F / P) / PI) * 1000
+        add("physics", f"A hydraulic piston must produce {F / 1000:g} kN at an oil pressure of {P / 1e6:g} MPa. Find the "
+            f"piston diameter, then model it as a solid cylinder of that diameter and {L} mm long.", d, cyl(d, L))
+    # pendulum
+    T, = (2.0,)
+    L = 9.81 * T ** 2 / (4 * PI ** 2) * 1000
+    add("physics", f"A simple pendulum must have a period of {T:g} s where g = 9.81 m/s^2. Find its length, then model "
+        f"the pendulum rod as a solid cylinder 8 mm in diameter with that length.", L, cyl(8, L))
+    return out
+
+
 def build(problems, name):
     rows = []
     for p in problems:
@@ -184,6 +293,7 @@ def build(problems, name):
 def main():
     build(problems(), "spike.jsonl")
     build(round2(), "round2.jsonl")
+    build(judged(), "judged.jsonl")
 
 
 if __name__ == "__main__":
