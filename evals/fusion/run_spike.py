@@ -1,7 +1,11 @@
 """Fusion spike: can a small local model plan a CAD + engineering problem into a calculation and a part?
 
-    .venv/bin/python evals/fusion/run_spike.py           # resumes; results/fusion_spike.jsonl
-    .venv/bin/python evals/fusion/run_spike.py --report
+    .venv/bin/python evals/fusion/run_spike.py                              # round 1: spike set, mm; results/fusion_spike.jsonl
+    .venv/bin/python evals/fusion/run_spike.py --set round2 --variant m    # round 2; results/fusion_round2_m.jsonl
+    .venv/bin/python evals/fusion/run_spike.py --report [--set ... --variant ...]
+
+Variant "mm" (round 1) asks the calculation for millimetres; "m" asks for metres, the base unit, so the model never
+prints a prefixed unit (round 1's main miss: 0.0042 "mm" for 4.2 mm), and the code converts to mm.
 
 Three setups per problem (evals/fusion/spike.jsonl):
     cad_alone   the CAD pack gets the whole problem (today's behavior)
@@ -31,6 +35,7 @@ from plm.ollama import ask  # noqa: E402
 
 PROBLEMS = Path(__file__).parent / "spike.jsonl"
 OUT = ROOT / "results/fusion_spike.jsonl"
+UNIT_ASK = {"mm": 'in millimeters ("... Give the answer in mm.")', "m": 'in meters ("... Give the answer in m.")'}
 PLANNER = "qwen3:8b"
 NUMERIC = ("physics", "electrical", "aerospace")
 UREG = pint.UnitRegistry()
@@ -42,14 +47,14 @@ Step 1, a calculation, goes to one of these packs:
   electrical  resistance, resistivity, current, current density, voltage, power
   aerospace   flight, lift, drag, atmosphere, rockets, orbits
 Write it as a complete, self-contained question that gives every number it needs and asks for ONE length,
-in millimeters ("... Give the answer in mm.").
+{unit_ask}.
 
 Step 2, the part, goes to the CAD pack. Write the full description of the part to model, with every
-dimension written out, and the literal text {value} where the length from step 1 goes (it will be
-replaced by the number of millimeters, e.g. "a plate {value} mm thick").
+dimension written out, and the literal text {{value}} where the length from step 1 goes (it will be
+replaced by the number of millimeters, e.g. "a plate {{value}} mm thick").
 
 Answer with JSON only, no other text:
-{"pack": "<physics|electrical|aerospace>", "question": "<step 1>", "cad_task": "<step 2, containing {value}>"}
+{{"pack": "<physics|electrical|aerospace>", "question": "<step 1>", "cad_task": "<step 2, containing {{value}}>"}}
 
 Problem:
 """
@@ -93,12 +98,12 @@ def cad(task):
             "seconds": round(r["seconds"], 1), "code": r["answer"] and r["answer"]["code"]}
 
 
-def run_one(p, setup):
+def run_one(p, setup, variant):
     start = time.time()
     if setup == "cad_alone":
         c = cad(p["task"])
         return {"verdict": grade(p, c["measured"]), "cad": c, "tokens": c["tokens"]}
-    r = ask(PLANNER, PLAN_PROMPT + p["task"], False, 1024, 600)
+    r = ask(PLANNER, PLAN_PROMPT.format(unit_ask=UNIT_ASK[variant]) + p["task"], False, 1024, 600)
     plan, why = parse_plan(r["response"])
     row = {"plan_text": r["response"], "plan": plan, "plan_tokens": r["eval_tokens"], "tokens": r["eval_tokens"]}
     if not plan:
@@ -120,6 +125,7 @@ def run_one(p, setup):
 
 def report():
     rows = load(OUT)
+    print(f"{PROBLEMS.name}, results {OUT.name}")
     by = {}
     for r in rows:
         by.setdefault(r["setup"], {})[r["id"]] = r
@@ -143,7 +149,13 @@ def report():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--set", default="spike", choices=("spike", "round2"))
+    ap.add_argument("--variant", default="mm", choices=tuple(UNIT_ASK))
     args = ap.parse_args()
+    global PROBLEMS, OUT
+    PROBLEMS = Path(__file__).parent / f"{args.set}.jsonl"
+    if (args.set, args.variant) != ("spike", "mm"):
+        OUT = ROOT / f"results/fusion_{args.set}_{args.variant}.jsonl"
     if args.report:
         return report()
     done = {(r["id"], r["setup"]) for r in load(OUT)} if OUT.exists() else set()
@@ -154,7 +166,7 @@ def main():
                 if (p["id"], setup) in done:
                     continue
                 try:
-                    row = run_one(p, setup)
+                    row = run_one(p, setup, args.variant)
                 except Exception as e:  # keep going; one bad problem must not lose the run
                     row = {"verdict": "error", "why": f"{type(e).__name__}: {e}"}
                 row = {"id": p["id"], "setup": setup} | row

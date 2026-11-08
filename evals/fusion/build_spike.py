@@ -1,6 +1,9 @@
-"""Fusion spike: 10 CAD + engineering problems, written 2026-11-07 before any fusion code or model answer.
+"""Fusion spike: CAD + engineering problems, each set written before any model answered it.
 
-    .venv/bin/python evals/fusion/build_spike.py      # writes evals/fusion/spike.jsonl; fails if a reference doesn't build to its key
+    .venv/bin/python evals/fusion/build_spike.py      # writes spike.jsonl and round2.jsonl; fails if a reference doesn't build to its key
+
+spike.jsonl (fu-*, 2026-11-07 morning) judged the first planner; round2.jsonl (fr-*, written after its results)
+judges the metres variant (run_spike.py --variant m).
 
 Each problem needs a calculation first (physics, electrical or aerospace) whose result is a dimension of the part
 the CAD step then models. Keys: the dimension (mm) computed here, and the finished part's bbox and volume, measured
@@ -92,17 +95,95 @@ def problems():
     return out
 
 
-def main():
+def round2():
+    out = []
+
+    def add(pid, pack, task, dim, ref):
+        out.append({"id": pid, "pack": pack, "task": task, "dim_mm": dim, "reference": ref})
+
+    side = math.sqrt(80000 / 20e6) * 1000
+    add("fr-01", "physics",
+        "A short square column carries an 80 kN compressive load, and the compressive stress may not exceed 20 MPa. "
+        "Find the minimum side of the square section, then model the column with that square section and 150 mm tall.",
+        side, f"result = cq.Workplane('XY').box({side}, {side}, 150)")
+
+    t = 2.65e-8 * 0.5 / 50e-6 * 1e6 / 20
+    add("fr-02", "electrical",
+        "An aluminium busbar (resistivity 2.65e-8 ohm m) 500 mm long must have a resistance of 50 microohm. It is "
+        "20 mm wide; find its thickness. Then model the busbar, 500 mm by 20 mm by that thickness, with a 10 mm "
+        "diameter through hole 15 mm from each end, on the centerline.",
+        t, f"result = cq.Workplane('XY').box(500, 20, {t}).faces('>Z').workplane().pushPoints([(-235, 0), (235, 0)]).hole(10)")
+
+    h = 0.5 / 8500 * 1e9 / (PI * 20 ** 2)
+    add("fr-03", "physics",
+        "A solid brass cylinder (density 8500 kg/m^3) 40 mm in diameter must weigh 0.5 kg. Find its height, then "
+        "model the cylinder.",
+        h, f"result = cq.Workplane('XY').circle(20).extrude({h})")
+
+    side = math.sqrt(14.7 / (0.5 * 1.225 * 20 ** 2 * 1.2)) * 1000
+    add("fr-04", "aerospace",
+        "A flat square plate faces a 20 m/s airflow (air density 1.225 kg/m^3, drag coefficient 1.2) and must produce "
+        "14.7 N of drag. Find the side of the square, then model the plate with that side and 5 mm thick.",
+        side, f"result = cq.Workplane('XY').box({side}, {side}, 5)")
+
+    L = 0.36e-3 / (12e-6 * 100) * 1000
+    add("fr-05", "physics",
+        "A steel rod (thermal expansion coefficient 12e-6 per K) must lengthen by 0.36 mm when heated by 100 K. Find "
+        "its length, then model the rod as a solid cylinder 10 mm in diameter with that length.",
+        L, f"result = cq.Workplane('XY').circle(5).extrude({L})")
+
+    L = 120 / 0.5 * 100 / 120  # cm^2 -> mm^2, / width
+    add("fr-06", "electrical",
+        "A heater plate must dissipate 120 W at a surface power density of 0.5 W/cm^2. It is 120 mm wide; find its "
+        "length. Then model the plate, that long, 120 mm wide and 4 mm thick, with a 4 mm diameter through hole "
+        "10 mm in from each side at each of the four corners.",
+        L, f"result = cq.Workplane('XY').box({L}, 120, 4).faces('>Z').workplane()"
+           f".pushPoints([({L / 2 - 10}, 50), ({L / 2 - 10}, -50), ({-L / 2 + 10}, 50), ({-L / 2 + 10}, -50)]).hole(4)")
+
+    d = math.sqrt(4 * (20000 / 10e6) / PI) * 1000
+    add("fr-07", "physics",
+        "A hydraulic piston must produce 20 kN of force at an oil pressure of 10 MPa. Find the piston diameter, then "
+        "model the piston as a solid cylinder of that diameter and 60 mm long.",
+        d, f"result = cq.Workplane('XY').circle({d / 2}).extrude(60)")
+
+    d = math.sqrt(4 * (6000 / 60e6) / PI) * 1000
+    add("fr-08", "physics",
+        "Two bolts share a 12 kN shear load equally, and the shear stress in each may not exceed 60 MPa. Find the "
+        "minimum bolt diameter. Then model a bar 80 mm long, 30 mm wide and 10 mm thick with two through holes of "
+        "that diameter on the long centerline, 50 mm apart and centered on the bar.",
+        d, f"result = cq.Workplane('XY').box(80, 30, 10).faces('>Z').workplane().pushPoints([(-25, 0), (25, 0)]).hole({d})")
+
+    c = 400 / (0.5 * 1.225 * 15 ** 2 * 1.0) / 6 * 1000
+    add("fr-09", "aerospace",
+        "A glider wing with a lift coefficient of 1.0 flies at 15 m/s in air of density 1.225 kg/m^3 and must lift "
+        "400 N. Its span is 6 m; find its chord. Then model the wing as a flat plate 6000 mm long, as wide as that "
+        "chord, and 20 mm thick.",
+        c, f"result = cq.Workplane('XY').box(6000, {c}, 20)")
+
+    w = 1.68e-8 * 1.0 / 0.4e-3 * 1e6 / 2
+    add("fr-10", "electrical",
+        "A copper ground strap (resistivity 1.68e-8 ohm m) 1 m long and 2 mm thick must have a resistance of "
+        "0.4 milliohm. Find its width, then model the strap, 1000 mm long, that wide and 2 mm thick.",
+        w, f"result = cq.Workplane('XY').box(1000, {w}, 2)")
+    return out
+
+
+def build(problems, name):
     rows = []
-    for p in problems():
+    for p in problems:
         measured, error = kernel.build(p["reference"])
         if error or not measured or not measured["valid"] or measured["solids"] != 1:
             sys.exit(f"{p['id']}: reference doesn't build: {error}")
         rows.append(p | {"bbox": measured["bbox"], "volume": measured["volume"], "rel_tol": 0.001})
         print(f"{p['id']} {p['pack']:<10} dim {p['dim_mm']:9.4f} mm  bbox {[round(x, 3) for x in measured['bbox']]}  "
               f"volume {measured['volume']:.1f}")
-    (Path(__file__).parent / "spike.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
-    print(f"wrote {len(rows)} problems")
+    (Path(__file__).parent / name).write_text("".join(json.dumps(r) + "\n" for r in rows))
+    print(f"wrote {len(rows)} problems to {name}")
+
+
+def main():
+    build(problems(), "spike.jsonl")
+    build(round2(), "round2.jsonl")
 
 
 if __name__ == "__main__":
