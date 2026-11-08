@@ -1,0 +1,45 @@
+{"id": "pr01", "pack": "physics", "text": "What is the speed of sound in air at 30 \u00b0C, in m/s?"}
+{"id": "pr02", "pack": "physics", "text": "A pendulum 0.8 m long swings where the gravitational acceleration is 9.81 m/s^2. What is its period, in seconds?"}
+{"id": "pr03", "pack": "physics", "text": "A 1200 kg car brakes against 6000 N of resistance. What is its deceleration, in m/s^2?"}
+{"id": "pr04", "pack": "physics", "text": "A 10 g bullet moving at 400 m/s embeds in a 2 kg block hanging from a string. How high does the block swing, in cm?"}
+{"id": "pr05", "pack": "physics", "text": "A crane lifts a 500 kg load 12 m in 20 s. What power does it deliver, in watts?"}
+{"id": "pr06", "pack": "physics", "text": "A 70 kg skier slides down a 30 degree frictionless slope. What is her acceleration, in m/s^2?"}
+{"id": "pr07", "pack": "physics", "text": "A spring with stiffness 200 N/m is compressed 0.05 m. How much energy does it store, in joules?"}
+{"id": "pr08", "pack": "physics", "text": "A ball is thrown straight up at 15 m/s. How high does it rise, in meters?"}
+{"id": "pr09", "pack": "physics", "text": "A 3 kg block on a table is pushed with 12 N against 3 N of friction. What is its acceleration, in m/s^2?"}
+{"id": "pr10", "pack": "physics", "text": "A wheel spins at 300 rpm. What is its angular velocity, in rad/s?"}
+{"id": "pr11", "pack": "physics", "text": "A 0.5 kg mass on a 1.2 m string moves in a horizontal circle at 4 m/s. What is the tension, in newtons?"}
+{"id": "pr12", "pack": "physics", "text": "Water flows through a pipe at 2 m/s; the pipe narrows from 10 cm to 5 cm in diameter. What is the speed in the narrow part, in m/s?"}
+{"id": "pr13", "pack": "physics", "text": "How long does a stone take to fall 45 m from rest, in seconds?"}
+{"id": "pr14", "pack": "physics", "text": "A 2 kg object moving at 3 m/s collides elastically with a stationary 1 kg object. What is the 1 kg object's speed afterwards, in m/s?"}
+{"id": "pr15", "pack": "physics", "text": "A 60 W light bulb converts 5% of its power into light. How much light energy does it emit in one hour, in kJ?"}
+{"id": "pr16", "pack": "physics", "text": "A 4 kg box is lifted 2.5 m. How much potential energy does it gain, in joules?"}
+{"id": "pr17", "pack": "physics", "text": "A projectile is launched at 20 m/s at 45 degrees. What is its range on level ground, in meters?"}
+{"id": "pr18", "pack": "physics", "text": "A 1500 kg car rounds a 50 m radius curve at 15 m/s. What friction force is needed, in newtons?"}
+{"id": "pr19", "pack": "physics", "text": "Sound travels 1 km in air at 20 \u00b0C. How long does it take, in seconds?"}
+{"id": "pr20", "pack": "physics", "text": "An ice skater spinning at 2 rev/s pulls in her arms, halving her moment of inertia. What is her new spin rate, in rev/s?"}
+{"id": "pr21", "pack": "physics", "text": "A 5 kg mass hangs from a rope. What is the tension in the rope, in newtons? Use g = 9.81 m/s^2."}
+{"id": "pr22", "pack": "physics", "text": "A cyclist accelerates from 2 m/s to 8 m/s in 4 s. What distance does she cover, in meters?"}
+{"id": "pr23", "pack": "physics", "text": "A hydraulic press has pistons of 2 cm and 20 cm diameter. What force on the small piston lifts 10 kN, in newtons?"}
+{"id": "pr24", "pack": "physics", "text": "A 0.2 kg ball hits a wall at 10 m/s and bounces back at 8 m/s. What impulse does the wall give it, in N s?"}
+{"id": "pr25", "pack": "physics", "text": "What is the kinetic energy of a 1000 kg car at 25 m/s, in kJ?"}
+{"id": "pr26", "pack": "physics", "text": "A uniform 4 m plank of 20 kg rests on supports at its ends. What force does each support exert, in newtons?"}
+{"id": "pr27", "pack": "physics", "text": "A wave has a frequency of 440 Hz and a wavelength of 0.78 m. What is its speed, in m/s?"}
+{"id": "pr28", "pack": "physics", "text": "A 50 kg crate is pulled 10 m across the floor by a 200 N force at 30 degrees. How much work is done, in joules?"}
+{"id": "pr29", "pack": "physics", "text": "An object floats with 60% of its volume submerged in water. What is its density, in kg/m^3?"}
+{"id": "pr30", "pack": "physics", "text": "A motor lifts a 200 kg elevator at 1.5 m/s against gravity. What power does it need, in kW?"}
+{"id": "po01", "pack": "aerospace", "text": "An aircraft cruises at Mach 0.8 at an altitude where the speed of sound is 295 m/s. What is its true airspeed, in m/s?"}
+{"id": "po02", "pack": "aerospace", "text": "A wing of 20 m^2 with a lift coefficient of 0.5 flies at 60 m/s in air of density 1.225 kg/m^3. What lift does it produce, in newtons?"}
+{"id": "po03", "pack": "aerospace", "text": "A rocket engine has an exhaust velocity of 3000 m/s and burns 50 kg/s of propellant. What is its thrust, in kN?"}
+{"id": "po04", "pack": "aerospace", "text": "What is the orbital speed of a satellite 400 km above Earth's surface, in km/s? Use GM = 3.986e14 m^3/s^2 and an Earth radius of 6371 km."}
+{"id": "po05", "pack": "aerospace", "text": "A rocket with a specific impulse of 300 s has a mass ratio of 4. What is its delta-v, in m/s?"}
+{"id": "po06", "pack": "aerospace", "text": "What is the air density at 5 km altitude in the International Standard Atmosphere, in kg/m^3?"}
+{"id": "po07", "pack": "aerospace", "text": "An airplane weighing 50 kN has a lift-to-drag ratio of 15 in level flight. What is the drag, in newtons?"}
+{"id": "po08", "pack": "electrical", "text": "A 12 V battery drives 2 A through a resistor. What is the resistance, in ohms?"}
+{"id": "po09", "pack": "electrical", "text": "A 100 microfarad capacitor is charged to 50 V. How much energy does it store, in joules?"}
+{"id": "po10", "pack": "electrical", "text": "Three 30 ohm resistors are connected in parallel. What is the equivalent resistance, in ohms?"}
+{"id": "po11", "pack": "electrical", "text": "A transformer steps 240 V down to 12 V. If the primary has 2000 turns, how many does the secondary have?"}
+{"id": "po12", "pack": "electrical", "text": "An RC circuit has R = 10 kilohm and C = 1 microfarad. What is its time constant, in ms?"}
+{"id": "po13", "pack": "electrical", "text": "A 230 V heater draws 8.7 A. What power does it use, in kW?"}
+{"id": "po14", "pack": "electrical", "text": "A 50 mH inductor carries 2 A. How much energy does it store, in joules?"}
+{"id": "po15", "pack": "electrical", "text": "What is the reactance of a 10 microfarad capacitor at 50 Hz, in ohms?"}
