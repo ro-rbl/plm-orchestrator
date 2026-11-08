@@ -81,6 +81,12 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 
 ## Use
 
+**Full screen:** run `plm` with no question (needs the optional extra: `pip install "plm-core[tui]"`,
+or `uv tool install "plm-core[tui]"`). Chat on the left, with follow-ups; the answer's Part, Code, Steps
+and Log on the right; the packs and models at the bottom, the ones in use green. `/help`, `/new`, `/quit`;
+ctrl+p opens a CAD part's drawing. `plm --plain` gives the line-by-line mode instead.
+
+
 ```bash
 .venv/bin/python -m plm "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?"
 .venv/bin/python -m plm "$(cat task.txt)"     # coding task; assert/>>> lines become checks
@@ -224,6 +230,7 @@ Elsewhere:
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
 .venv/bin/python evals/test_sqldb_routing.py       # with PLM_SQL_DB set: schema-free data questions go to sql
 .venv/bin/python evals/test_followup.py            # follow-ups keep their conversation's pack and question
+.venv/bin/python evals/test_tui.py                 # the full-screen plm, driven by Textual's test pilot
 .venv/bin/python evals/cad/build_problems.py --verify .venv/bin/python   # every CAD reference builds to its key
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
 uv run --with openai --with pint python evals/compat_openai.py --fake   # with the official `openai` client

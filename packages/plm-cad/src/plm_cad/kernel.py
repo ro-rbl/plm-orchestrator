@@ -14,6 +14,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
 
 CODE_RE = re.compile(r"```(?:python|py)?\s*\n(.*?)```", re.DOTALL | re.IGNORECASE)
 ALLOWED_IMPORTS = {"cadquery", "math"}
@@ -138,3 +139,36 @@ def build(code, timeout=60):
         err = (p.stderr.strip().splitlines() or [f"exit {p.returncode}, no measurement"])[-1]
         return None, err.replace("PLM_CAD: ", "")[:300]
     return json.loads(lines[-1][len("PLM_CAD "):]), None
+
+
+PREVIEW = """
+import cadquery as _cq
+from cadquery import exporters as _exporters
+_found = globals().get("result")
+if _found is None:
+    _found = next((v for v in reversed(list(globals().values())) if isinstance(v, (_cq.Workplane, _cq.Shape))), None)
+if _found is None:
+    raise SystemExit("PLM_CAD: no result")
+_exporters.export(_found, "part.svg", opt={"width": 480, "height": 480, "marginLeft": 40, "marginTop": 40,
+                                          "showAxes": False, "showHidden": True,
+                                          "strokeColor": (255, 158, 74), "hiddenColor": (110, 110, 120)})
+"""
+
+
+def preview_svg(code, out_path, timeout=60):
+    """Draw a part program's result as an isometric SVG line drawing at out_path, built in the same isolated
+    process as build(). Returns None, or why it couldn't."""
+    refused = screen(code)
+    if refused:
+        return refused
+    with tempfile.TemporaryDirectory() as d:
+        try:
+            p = subprocess.run([sys.executable, "-I", "-c", PRELUDE + code + "\n" + PREVIEW],
+                               capture_output=True, text=True, timeout=timeout, cwd=d)
+        except subprocess.TimeoutExpired:
+            return f"timed out after {timeout} s"
+        svg = Path(d) / "part.svg"
+        if p.returncode or not svg.exists():
+            return (p.stderr.strip().splitlines() or ["no drawing"])[-1][:200]
+        Path(out_path).write_bytes(svg.read_bytes())
+    return None

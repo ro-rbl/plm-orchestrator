@@ -29,6 +29,10 @@ https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" 
 - New: units asked as symbols ("in m/s") aren't read, so those answers go unchecked (Known bugs).
 - The user's assistant re-pins `qwen3:8b`; overnight runs used `results/fusion_supervisor.sh` (waits for AC,
   unpins). Turn the assistant back on: `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist`.
+- 2026-11-08 day: the full-screen interface is built (`plm/tui.py`, extra `plm-core[tui]`, `evals/test_tui.py`),
+  from `mockups/tui.html`. Not yet: live step-by-step progress (packs report when done; a spinner shows meanwhile),
+  inline images (macOS Terminal can't; ctrl+p opens the part in Quick Look), more `/` commands (user wants to
+  discuss), fusion's multi-pack lighting. Needs a release (plm-core 0.1.3) to reach PyPI users.
 - Waiting on the user: PyPI upload of plm-physics/software/sql + plm-core 0.1.2 (Sunday 2026-11-08 after 23:00),
   the TUI build from `mockups/tui.html`, slash commands.
 

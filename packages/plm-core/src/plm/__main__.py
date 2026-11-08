@@ -134,25 +134,40 @@ def main():
     ap.add_argument("--show-work", action="store_true", help="print each model's program or reasoning")
     ap.add_argument("--json", action="store_true", help="print the full result as JSON")
     ap.add_argument("--timeout", type=int, default=600, help="seconds per model call")
+    ap.add_argument("--plain", action="store_true", help="with no task: line-by-line mode instead of the full screen")
     args = ap.parse_args()
 
     if args.task:
         run_one(" ".join(args.task), args)
     elif not sys.stdin.isatty():
         run_one(sys.stdin.read().strip(), args)
+    elif not args.plain and args.pack == "auto" and not args.sql_db and not args.json:
+        try:
+            from plm import tui
+        except ImportError:
+            print('plm: the full-screen interface needs Textual: pip install "plm-core[tui]" '
+                  "(plain line mode below; --plain to skip this note)\n")
+        else:
+            return tui.main()
+        run_interactive(args)
     else:
-        print("plm: one task per line, empty line to quit; follow-ups like 'now for 200 ohm' use the earlier question")
-        history = []
-        while True:
-            try:
-                task = input("\ntask> ").strip()
-            except EOFError:
-                break
-            if not task:
-                break
-            result = run_one(task, args, history)
-            history += [{"role": "user", "content": task},
-                        {"role": "assistant", "content": answer_text(result)}]
+        run_interactive(args)
+
+
+def run_interactive(args):
+    """Line-by-line mode: one task per line, with follow-ups."""
+    print("plm: one task per line, empty line to quit; follow-ups like 'now for 200 ohm' use the earlier question")
+    history = []
+    while True:
+        try:
+            task = input("\ntask> ").strip()
+        except EOFError:
+            break
+        if not task:
+            break
+        result = run_one(task, args, history)
+        history += [{"role": "user", "content": task},
+                    {"role": "assistant", "content": answer_text(result)}]
 
 
 if __name__ == "__main__":
