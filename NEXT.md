@@ -19,6 +19,19 @@ fits (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 Public (2026-11-05): https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
+**Overnight 2026-11-08 (read first):**
+- Fusion: FUSE_RULE says don't build `/fuse` (fusion 18/40 = CAD alone 18/40; perfect hand-off 32/40; the numeric
+  packs' calculations were right 23/40). See "Pack fusion" below for two hypotheses.
+- Follow-up questions shipped (server + interactive `plm`); routing right, but one live answer repeated the
+  original. See "Follow-ups" under Known bugs.
+- Physics routing attempt 1: 27/30 vs the 28 required: not shipped; diff in `docs/attempts/`.
+- SQL tables-flag plural fix: checked on seen answers first, moves scores by at most 1: no run, left as is.
+- New: units asked as symbols ("in m/s") aren't read, so those answers go unchecked (Known bugs).
+- The user's assistant re-pins `qwen3:8b`; overnight runs used `results/fusion_supervisor.sh` (waits for AC,
+  unpins). Turn the assistant back on: `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist`.
+- Waiting on the user: PyPI upload of plm-physics/software/sql + plm-core 0.1.2 (Sunday 2026-11-08 after 23:00),
+  the TUI build from `mockups/tui.html`, slash commands.
+
 Suggested order for the next session:
 1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test
    questions, every query and path matched the benchmark's. **Routing with only `PLM_SQL_DB` fixed 2026-11-04**
@@ -260,6 +273,13 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
       "now for 200 ohm"); a code follow-up that changes behavior keeps the original examples, which the new code
       may fail; on a CAD follow-up ("now make it 10 mm thick") the size check passes both the new part and the
       unchanged old one (checked offline 2026-11-08), so a model that ignores the change isn't caught.
+      Live through `plm serve` (2026-11-08, real models): 3/3 follow-ups routed right; answers right 2/3. The
+      electrical follow-up ("now for 200 ohm") came back 22 V again, marked checked: the model answered the original
+      question. Next: a set of follow-up conversations with answer keys, written first, to judge the task wording.
+- [ ] **Units asked as symbols aren't read** (`plm/numeric/checks.py:requested_unit`, found 2026-11-08): "in m/s",
+      "in km/h", "in m/s^2" give None, so those answers are reported unchecked; only unit words ("in meters per
+      second", "in volts") are recognized. Fixing it changes which answers are checked in every numeric pack, so
+      re-run each pack's sweep and simulations after.
 
 ## Unverified
 - [ ] **Every problem, task, label and reference solution was written by Claude.** Holdouts guard against tuning
