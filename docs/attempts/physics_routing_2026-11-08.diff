@@ -1,0 +1,33 @@
+diff --git a/packages/plm-electrical/src/plm_electrical/claims.py b/packages/plm-electrical/src/plm_electrical/claims.py
+index 7126c8f..27e46f5 100644
+--- a/packages/plm-electrical/src/plm_electrical/claims.py
++++ b/packages/plm-electrical/src/plm_electrical/claims.py
+@@ -9,8 +9,9 @@ from plm.pack import evidence
+ # after a number) and gives numbers or asks for a unit. Conceptual questions
+ # ("Explain Ohm's law") have neither and go to the general pack.
+ ELECTRICAL_TERM = re.compile(
+-    # "air resistance" (and wind, rolling) is mechanics, not a resistor
+-    r"\b(?:volts?|voltage|amps?|amperes?|amperage|current|ohms?|(?<!air )(?<!wind )(?<!rolling )resist(?:or|ors|ance)"
++    # "air resistance" (and wind, rolling, "600 N of resistance") is mechanics, not a resistor
++    r"\b(?:volts?|voltage|amps?|amperes?|amperage|current|ohms?"
++    r"|(?<!air )(?<!wind )(?<!rolling )(?<!N of )(?<!newtons of )resist(?:or|ors|ance)"
+     r"|capacit(?:or|ors|ance)"
+     r"|inductors?|inductance|watts?|kilowatts?|kWh|transformers?|circuits?|hertz|batter(?:y|ies)|LEDs?"
+     r"|op-amps?|amplifiers?|impedance|reactance|three-phase|RMS|farads?|henr(?:y|ies)|siemens|coulombs?"
+diff --git a/packages/plm-physics/src/plm_physics/claims.py b/packages/plm-physics/src/plm_physics/claims.py
+index d94ba9f..0503802 100644
+--- a/packages/plm-physics/src/plm_physics/claims.py
++++ b/packages/plm-physics/src/plm_physics/claims.py
+@@ -33,7 +33,11 @@ PHYSICS_TERM = re.compile(
+     r"|latent heat|boil\w*|melt\w*|thermal|conductivity|expansion|ideal gas|moles?|stress|strain"
+     r"|young's modulus|tensile|cable|beam|collision|projectile|thrown|kicked|dropped|falls?|cliff|ramp"
+     r"|incline\w*|slope|crate|ball|machine|motor|elevator|crane|pump|lifts?|kettle|gravity|centripetal|tension"
+-    r"|brakes?|stopping distance|air resistance)\b",
++    r"|brakes?|stopping distance|air resistance"
++    # 2026-11-08, from the holdout misses in NEXT.md (pho-c6, pho-a4, pho-i3, k09); shared phrases like
++    # "speed of sound" and "gravitational acceleration" count for physics too, so a physics question that uses
++    # one ties aerospace on it and wins on its own words. Judged by evals/test_physics_routing.py (PHYS_RULE).
++    r"|speed of sound|in air|gravitational acceleration|bullet|block|string|stretch\w*)\b",
+     re.IGNORECASE)
+ QUANTITY = re.compile(r"\d\s*(?:m/s²|m/s\^?2|m/s|km/h|kg/m³|kg|g|N·m|N/m|N|kN|J|kJ|MJ|Pa|kPa|MPa|GPa|K|°C|m|cm|mm"
+                       r"|km|m²|m³|s|min|h|L|rpm|mol|degrees?|%)(?![\w/])")

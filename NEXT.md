@@ -199,6 +199,12 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
       (4B + calculator, ph-c10) are right numbers graded as unit errors, like "15.58 rev" above. Decide with that
       item; `plm-core: plm/numeric/answers.py:normalize_unit`. Accepting them wouldn't change the pick (8B direct
       would be 50/50).
+- [ ] **Physics routing attempt 1 (2026-11-08): measured, not shipped.** PHYS_RULE (cases and rule first, 6483b5b):
+      terms from the old holdout misses (speed of sound, in air, gravitational acceleration, bullet, block, string,
+      stretch; electrical ignores "N of resistance") gave physics 27/30 (need 28; was 24), others 15/15, eval texts
+      279/279, holdout 193/194 (was 188, but designed from it). Reverted; the diff is `docs/attempts/physics_routing_2026-11-08.diff`.
+      Remaining misses: pr15 (light bulb, arguably electrical), pr17 ("projectile launched": aerospace wins the tie),
+      pr20 ("2 rev/s" isn't a quantity). The pr cases are now seen: a next attempt needs new cases.
 - [ ] **Physics holdout routing misses, left unfixed on purpose:** pho-c6 ("speed of sound ... at 20 °C") and
       pho-a4 (pendulum with "gravitational acceleration") go to aerospace, pho-i2 ("600 N of resistance") to
       electrical, pho-i3 (bullet into a hanging block) to general. Fixing them needs fresh cases to judge.
