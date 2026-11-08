@@ -259,6 +259,27 @@ def run(port, log_path):
         status, _, body = call(port, "POST", "/v1/chat/completions", chat_body("How many singers do we have?"))
         expect("no PLM_SQL_DB: the same question goes to general", json.loads(body)["plm"]["pack"] == "general", body)
 
+    # a follow-up stays in its conversation's pack, with the question it changes (FOLLOWUP_RULE)
+    prompts = []
+
+    def capture(model, prompt, think, num_predict, timeout):
+        prompts.append(prompt)
+        return reply('```python\nprint(f"ANSWER: {200 * 0.1:.4g} V")\n```')
+    numeric.ask = capture
+    convo = [{"role": "user", "content": "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?"},
+             {"role": "assistant", "content": "22 V"}, {"role": "user", "content": "now for 200 ohm"}]
+    status, _, body = call(port, "POST", "/v1/chat/completions", {"model": "plm-router", "messages": convo})
+    r = json.loads(body)
+    expect("follow-up stays in electrical with the original question",
+           status == 200 and r["plm"]["pack"] == "electrical" and r["choices"][0]["message"]["content"].startswith("20 V")
+           and prompts and "220 ohm resistor" in prompts[-1] and "now for 200 ohm" in prompts[-1], (body, prompts[-1:]))
+    logged = [json.loads(line) for line in open(log_path)]
+    expect("follow-up is logged with context", logged[-1].get("context") is True and logged[-1]["pack"] == "electrical",
+           logged[-1])
+    status, _, body = call(port, "POST", "/v1/chat/completions",
+                           {"model": "plm-router", "messages": convo[:2] + [{"role": "user", "content": "thanks!"}]})
+    expect("'thanks!' after it goes to general", json.loads(body)["plm"]["pack"] == "general", body)
+
 
 def main():
     real = (numeric.ask, software.ask, general.chat, general.chat_stream, ollama.version)

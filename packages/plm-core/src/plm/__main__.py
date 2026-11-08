@@ -62,13 +62,20 @@ def report(result, show_work):
         print(f"note    {result['unchecked_reason']}")
 
 
-def run_one(task, args):
+def run_one(task, args, history=()):
+    """Solve one task; `history` is the interactive session's earlier messages, for follow-ups (plm.followup)."""
+    from plm.followup import resolve
     from plm.packs import PACKS, detect
 
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
     pack = args.pack if args.pack != "auto" else "sql" if args.sql_db else detect(task)
+    if history and args.pack == "auto" and not args.sql_db:
+        routed = resolve([*history, {"role": "user", "content": task}])
+        if routed["context"] and routed["pack"] != "general":
+            pack, task = routed["pack"], routed["task"]
+            print(f"(follow-up: kept in {pack}, with the earlier question)")
     extra = {}
     if args.sql_db:
         if pack == "sql":
@@ -97,6 +104,7 @@ def run_one(task, args):
         print(json.dumps(result, indent=2))
     else:
         report(result, args.show_work)
+    return result
 
 
 def main():
@@ -133,7 +141,8 @@ def main():
     elif not sys.stdin.isatty():
         run_one(sys.stdin.read().strip(), args)
     else:
-        print("plm: one task per line, empty line to quit")
+        print("plm: one task per line, empty line to quit; follow-ups like 'now for 200 ohm' use the earlier question")
+        history = []
         while True:
             try:
                 task = input("\ntask> ").strip()
@@ -141,7 +150,9 @@ def main():
                 break
             if not task:
                 break
-            run_one(task, args)
+            result = run_one(task, args, history)
+            history += [{"role": "user", "content": task},
+                        {"role": "assistant", "content": answer_text(result)}]
 
 
 if __name__ == "__main__":

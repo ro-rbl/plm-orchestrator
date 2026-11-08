@@ -125,10 +125,12 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 - A pack answer ends with a caveat line when it failed a check or had nothing
   to check against. The routing report is the extra `plm` field (on the last
   chunk when streaming).
-- Packs see only the last user message and use their own token budgets; the general pack gets the whole
-  conversation and the client's `temperature`, `top_p` and `max_tokens`.
-- Every request is logged to `logs/server.jsonl` under the working directory
-  (`PLM_LOG_DIR` to move `logs/`, `PLM_SERVER_LOG=off` to disable):
+- Packs see the last user message, or, when it's a follow-up to an earlier pack question ("now for 200 ohm",
+  "what if...", "make it 10 mm thick"), that question, the last answer and the change; they use their own token
+  budgets. The general pack gets the whole conversation and the client's `temperature`, `top_p` and `max_tokens`.
+  The interactive `plm` (no question given) does the same with its session.
+- Every request is logged to `server.jsonl` in `./logs` if that folder exists, else `~/.local/state/plm/`
+  (`PLM_LOG_DIR` to move it, `PLM_SERVER_LOG=off` to disable):
   which pack it went to shows how much traffic the packs actually cover.
 - Loopback only unless `--allow-remote`: there is no authentication, and the
   software pack runs model-written code. Not supported: tool calling, images.
@@ -221,6 +223,7 @@ Elsewhere:
 .venv/bin/python evals/test_server.py              # the HTTP server, same fakes
 .venv/bin/python evals/test_detect.py              # which pack each task goes to
 .venv/bin/python evals/test_sqldb_routing.py       # with PLM_SQL_DB set: schema-free data questions go to sql
+.venv/bin/python evals/test_followup.py            # follow-ups keep their conversation's pack and question
 .venv/bin/python evals/cad/build_problems.py --verify .venv/bin/python   # every CAD reference builds to its key
 .venv/bin/python evals/dump_decisions.py           # every routing/unit/check decision, to diff before/after a refactor
 uv run --with openai --with pint python evals/compat_openai.py --fake   # with the official `openai` client

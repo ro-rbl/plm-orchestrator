@@ -241,8 +241,14 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
       electrical classifier too, so re-run `evals/eval_levels.py` for every pack. `plm-core: plm/numeric/levels.py:NUMBER`.
 - [ ] **Electrical/aerospace overlap is decided by counting domain terms**, tested on 3 cases only
       (detect_cases a06, e06, e07). `plm_electrical/claims.py`, `plm_aerospace/claims.py`, priorities in each `manifest.py`.
-- [ ] **Server: packs see only the last user message.** A follow-up like "now do it for 200 ohm" loses the
-      earlier question and goes wherever the follow-up alone points. `plm-core: plm/server.py:parse_request`.
+- [x] **Follow-ups (2026-11-08):** `plm/followup.py`, server and interactive CLI. FOLLOWUP_RULE (cases written
+      first, `evals/router/followup_cases.jsonl`): 25/25 follow-ups and 15/15 new messages right, 493/493 one-message
+      routings unchanged. A perfect score on cases Claude wrote for a rule Claude wrote: check real conversations
+      (`logs/server.jsonl` has a `context` field). Open: answers to follow-ups weren't checked live with models yet
+      (`plm` interactive: "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?" then
+      "now for 200 ohm"); a code follow-up that changes behavior keeps the original examples, which the new code
+      may fail; on a CAD follow-up ("now make it 10 mm thick") the size check passes both the new part and the
+      unchanged old one (checked offline 2026-11-08), so a model that ignores the change isn't caught.
 
 ## Unverified
 - [ ] **Every problem, task, label and reference solution was written by Claude.** Holdouts guard against tuning

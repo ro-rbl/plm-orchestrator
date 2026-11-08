@@ -9,7 +9,8 @@ Point any OpenAI-compatible client at http://127.0.0.1:<port>/v1 with any API ke
     GET  /v1/models              plm-router, plm-router-thorough
     POST /v1/chat/completions    with or without "stream": true
 
-Each request goes to the pack plm.packs.detect picks from the last user message.
+Each request goes to the pack plm.packs.detect picks from the last user message, unless that message is a
+follow-up to an earlier pack question (plm.followup): then it stays in that pack, with the question it changes.
 Pack answers are released only after they're checked, so with "stream": true they
 arrive as one chunk, with SSE comments keeping the connection alive meanwhile;
 general answers stream token by token. The routing report is an extra top-level
@@ -38,7 +39,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from ipaddress import ip_address
 from pathlib import Path
 
-from plm import ollama, packs
+from plm import followup, ollama, packs
 from plm.paths import log_dir
 from plm.report import answer_text, final_step
 
@@ -153,7 +154,7 @@ def log_request(req, pack, result, stream):
              "level": result["level"], "trusted": result["trusted"], "checked": result["checked"],
              "tokens": result["tokens"], "seconds": round(result["seconds"], 2),
              "calls": [{"model": s["model"], "tokens": s["tokens"]} for s in result["steps"]],
-             "task": req["task"][:500]}
+             "context": req.get("context", False), "task": req["task"][:500]}
     Path(target).parent.mkdir(parents=True, exist_ok=True)
     with _log_lock, open(target, "a") as f:
         f.write(json.dumps(entry) + "\n")
@@ -219,7 +220,10 @@ class Handler(BaseHTTPRequestHandler):
             req = parse_request(self.rfile.read(length))
         except RequestError as e:
             return self._error(e.status, str(e), e.code)
-        pack = packs.detect(req["task"])
+        routed = followup.resolve(req["messages"])  # a follow-up keeps its conversation's pack and question
+        pack, req["context"] = routed["pack"], routed["context"]
+        if routed["context"] and pack != "general":  # general already gets the whole conversation
+            req["task"] = routed["task"]
         cid, created = "chatcmpl-" + uuid.uuid4().hex, int(time.time())
         if req["stream"]:
             self._stream(req, pack, cid, created)
