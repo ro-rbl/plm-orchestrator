@@ -94,6 +94,8 @@ system message; checked packs only when the skill names them. The bottom bar's *
 last request's tokens out of the window Ollama loaded the model with (Ollama's default is 4096; past it,
 the oldest part of a conversation is dropped).
 `plm --plain` gives the line-by-line mode instead.
+On a Mac, double-clicking `plm.command` (in the repo; copy it anywhere, e.g. the Desktop) opens it in Terminal,
+starting Ollama first if it isn't answering.
 
 
 ```bash
