@@ -280,6 +280,13 @@ Disagreements 11 to 8, sign test p = 0.32, electrical -5: part 1 fails. Loose en
       Live through `plm serve` (2026-11-08, real models): 3/3 follow-ups routed right; answers right 2/3. The
       electrical follow-up ("now for 200 ohm") came back 22 V again, marked checked: the model answered the original
       question. Next: a set of follow-up conversations with answer keys, written first, to judge the task wording.
+- [ ] **Unit inference attempt 1 (2026-11-08, user's request): measured, not shipped.** `expected_unit` (symbol units
+      "in m/s"/"in kN" + a unit inferred from the quantity asked, kind-only), UNITS_RULE committed first (8417c0d),
+      replayed on 4738 saved answers: 72 wrong answers newly caught, 28 right answers falsely flagged (limit 11.9).
+      False alarms: mostly the existing "must be positive" rule now reaching SciBench (charge, mechanical energy and
+      force can be negative: -45 µC, -213 MJ were right), and ratio/fraction questions inferred as a speed or length.
+      Next try: positivity only where the sign can't be negative, skip "ratio"/"fraction of" questions; judge on answers
+      not yet replayed (new runs). Diff kept: `docs/attempts/units_check_2026-11-08.diff`; `evals/score_units.py`.
 - [ ] **Units asked as symbols aren't read** (`plm/numeric/checks.py:requested_unit`, found 2026-11-08): "in m/s",
       "in km/h", "in m/s^2" give None, so those answers are reported unchecked; only unit words ("in meters per
       second", "in volts") are recognized. Fixing it changes which answers are checked in every numeric pack, so

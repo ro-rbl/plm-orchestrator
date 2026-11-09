@@ -1,0 +1,122 @@
+diff --git a/packages/plm-core/src/plm/numeric/checks.py b/packages/plm-core/src/plm/numeric/checks.py
+index 307d47f..e7c445b 100644
+--- a/packages/plm-core/src/plm/numeric/checks.py
++++ b/packages/plm-core/src/plm/numeric/checks.py
+@@ -61,6 +61,68 @@ def requested_unit(question):
+     return UNIT_WORDS[hits[-1].lower()] if hits else None
+ 
+ 
++# expected_unit: what an answer is checked against. requested_unit (unit words, "in volts") also drives routing,
++# so it is left alone; for checking only, a unit asked as a symbol ("in m/s", "in kN") counts too, and with no
++# unit named, the quantity asked for implies a kind of unit ("What is its speed?" -> a speed). An inferred unit
++# checks only the kind (dimension) and the sign, never which unit was printed. Judged by evals/score_units.py
++# (UNITS_RULE) on every saved numeric answer before it shipped.
++SYMBOL_PHRASE = re.compile(
++    r"\b(?:in|how many) ((?:[kMGmµunp]?(?:m|g|s|N|J|W|V|A|Pa|Hz|F|H|C|Ω|ohm|L|K|eV|Wh|rad|mol))"
++    r"(?:[·*/\^]?[a-zA-Zµ°Ω]*\^?[0-9²³]?){0,3}|km/h|rpm|°C)(?=\s*[?.,;:)]|\s*$)")
++ASKED = re.compile(r"(?:^|[.?!]\s+)((?:what|find|calculate|compute|determine|estimate|how)\b[^.?!]*[?.!]?)\s*$",
++                   re.IGNORECASE)
++QUANTITY_UNIT = [  # first match in the question's last sentence wins; order: specific before general
++    (r"angular (?:velocity|speed)", "rad/s"), (r"acceleration|deceleration", "m/s^2"),
++    (r"speed|velocity|how fast", "m/s"), (r"kinetic energy|potential energy|energy|work done|\bwork\b|heat", "J"),
++    (r"power", "W"), (r"torque|moment\b", "N*m"), (r"momentum|impulse", "kg*m/s"),
++    (r"force|tension|thrust|drag|lift|weight of|normal reaction", "N"), (r"pressure|stress", "Pa"),
++    (r"voltage|potential difference|emf", "V"), (r"\bcurrent\b", "A"), (r"resistance|impedance|reactance", "ohm"),
++    (r"capacitance", "F"), (r"inductance", "H"), (r"\bcharge\b", "C"), (r"frequency", "Hz"),
++    (r"density", "kg/m^3"), (r"\bmass\b|how heavy", "kg"), (r"\bvolume\b", "m^3"), (r"\barea\b", "m^2"),
++    (r"period|\btime\b|how long does|how long will|how long until|duration", "s"),
++    (r"wavelength|distance|height|how high|how far|length|how long is|depth|radius|diameter|thickness|range|"
++     r"displacement|altitude|deflection|extension|stretch", "m"),
++]
++QUANTITY_UNIT = [(re.compile(rf"\b(?:{w})", re.IGNORECASE), u) for w, u in QUANTITY_UNIT]
++
++
++def symbol_unit(question):
++    """A unit asked as a symbol ("in m/s", "in kN", "in km/h"), as a pint string, or None."""
++    for m in reversed(list(SYMBOL_PHRASE.finditer(question))):
++        token = m.group(1).replace("²", "^2").replace("³", "^3").replace("·", "*").replace("Ω", "ohm")
++        try:
++            q = ureg.Quantity(1, token)
++            if q.dimensionless and token not in ("rad", "rpm"):
++                continue
++            return token
++        except Exception:
++            continue
++    return None
++
++
++def inferred_unit(question):
++    """A unit of the kind of quantity the question's last sentence asks for, or None."""
++    m = ASKED.search(question.strip())
++    if not m:
++        return None
++    asked = m.group(1)
++    hits = [(h.start(), u) for rx, u in QUANTITY_UNIT if (h := rx.search(asked))]
++    return min(hits)[1] if hits else None
++
++
++def expected_unit(question):
++    """(unit, inferred): what to check an answer against. inferred is True when no unit was named."""
++    question = plain(question)
++    named = requested_unit(question)
++    if named is not None:
++        return named, False
++    symbol = symbol_unit(question)
++    if symbol is not None:
++        return symbol, False
++    guess = inferred_unit(question)
++    return (guess, True) if guess else (None, False)
++
++
+ def _base(unit):
+     """Unprefixed unit with the same dimension, for the POSITIVE lookup."""
+     for base in POSITIVE:
+@@ -75,7 +137,7 @@ def check(question, output):
+     if parsed is None:
+         return ["no ANSWER line"]
+     value, unit = parsed
+-    want = requested_unit(question)
++    want, inferred = expected_unit(question)
+     if want is None:
+         return []  # nothing to check against
+ 
+@@ -95,6 +157,8 @@ def check(question, output):
+     except Exception:
+         return [f"unreadable unit {unit!r}"]
+     if not same_kind:
++        if inferred:
++            return [f"the question asks for a {ureg.Quantity(1, want).dimensionality}, got {unit!r}"]
+         return [f"asked for {want}, got {unit!r}"]
+     signed_ok = re.search(r"\bsign\b|negative", question, re.IGNORECASE)
+     if value <= 0 and not signed_ok and _base(want) in POSITIVE:
+diff --git a/packages/plm-core/src/plm/numeric/controller.py b/packages/plm-core/src/plm/numeric/controller.py
+index 928e7e8..2bc3263 100644
+--- a/packages/plm-core/src/plm/numeric/controller.py
++++ b/packages/plm-core/src/plm/numeric/controller.py
+@@ -14,7 +14,7 @@ import time
+ from plm.latex import plain
+ from plm.numeric import calc, decompose
+ from plm.numeric.answers import ANSWER_FORMAT, parse_answer
+-from plm.numeric.checks import check, requested_unit
++from plm.numeric.checks import check, expected_unit, requested_unit
+ from plm.ollama import ask
+ 
+ 
+@@ -70,7 +70,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
+ 
+     final = steps[-1]
+     parsed = parse_answer(final["output"])
+-    checked = requested_unit(task) is not None
++    checked = expected_unit(task)[0] is not None
+     return {
+         "pack": pack,
+         "task": task,
+@@ -78,7 +78,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
+         "reason": reason,
+         "answer": {"value": parsed[0], "unit": parsed[1]} if parsed else None,
+         "checked": checked,
+-        "unchecked_reason": None if checked else "the question names no unit, so the answer couldn't be checked",
++        "unchecked_reason": None if checked else "the question names no unit or quantity, so the answer couldn't be checked",
+         "trusted": checked and not final["issues"],
+         "steps": steps,
+         "tokens": sum(s["tokens"] for s in steps),
