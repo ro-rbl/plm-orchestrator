@@ -12,6 +12,12 @@ UNITS_RULE, fixed 2026-11-08 before this replay ran: expected_unit ships iff, ov
     (a) right answers it newly flags (false alarms) are at most 0.5% of the right answers, and
     (b) wrong answers it newly flags are at least twice the right answers it newly flags.
 Routing must not change (requested_unit is untouched; evals/dump_decisions.py TEXT lines identical).
+Result 2026-11-08: 72 caught, 28 false alarms: DON'T SHIP (see NEXT.md).
+
+Round 2 (--round 2): plm.numeric.expected.check_expected (attempt 2) against the shipped checks.check, on fresh
+answers from evals/units_fresh.py (SciBench subjects no model here had answered). UNITS2_RULE, fixed 2026-11-08
+night before those answers existed: same limits, (a) false alarms <= 0.5% of the right answers, (b) caught >= 2x
+false alarms; if it passes, check_expected replaces check in the numeric controller.
 """
 
 import glob
@@ -93,8 +99,40 @@ def answers():
                     yield "ugphysics", qs[r["id"]], r["response"], bool(r["correct"])
 
 
+def round2(verbose):
+    import units_fresh
+    from plm.numeric import expected
+    qs = {p["id"]: p["question"] for p in units_fresh.problems()}
+    n = Counter()
+    ex = {"false": [], "caught": []}
+    for f in sorted(glob.glob(str(ROOT / "results" / "units_fresh__*.jsonl"))):
+        for r in load(f):
+            q, out, right = qs[r["id"]], r["output"], bool(r["correct"])
+            o, w = bool(new.check(q, out)), bool(expected.check_expected(q, out))
+            n["answers"] += 1
+            n["right"] += right
+            n["checked_now"] += expected.expected_unit(q)[1] in ("symbol", "inferred")
+            if w and not o:
+                n["new_false" if right else "new_caught"] += 1
+                ex["false" if right else "caught"].append((r["id"], q[-80:], out.strip()[-50:], expected.check_expected(q, out)))
+            if o and not w:
+                n["unflagged_right" if right else "unflagged_wrong"] += 1
+    print(f"fresh answers {n['answers']} (right {n['right']}); newly checkable {n['checked_now']}")
+    print(f"newly flagged: wrong caught {n['new_caught']}, right falsely flagged {n['new_false']}; "
+          f"no longer flagged: right {n['unflagged_right']}, wrong {n['unflagged_wrong']}")
+    for kind in ("false", "caught") if verbose else ():
+        for e in ex[kind][:12]:
+            print(f"   {kind}: {e}")
+    a = n["new_false"] <= 0.005 * n["right"]
+    b = n["new_caught"] >= 2 * n["new_false"]
+    print(f"rule: (a) {n['new_false']} <= {0.005 * n['right']:.1f}: {a}; (b) {n['new_caught']} >= 2 x {n['new_false']}: {b}")
+    print("UNITS2_RULE:", "SHIP" if a and b else "DON'T SHIP")
+
+
 def main():
     verbose = "-v" in sys.argv
+    if "--round" in sys.argv and sys.argv[sys.argv.index("--round") + 1] == "2":
+        return round2(verbose)
     old = old_checks()
     n = Counter()
     examples = {"false": [], "caught": []}
