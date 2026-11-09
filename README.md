@@ -87,6 +87,12 @@ and Log on the right (a CAD part is drawn there); the packs and models at the bo
 Commands: `/pack <name>` and `/model <4b|8b|coder|name>` force a pack or a model, `/level`, `/thorough`,
 `/db <file.sqlite>`, `/show` (each model's work), `/fuse <problem>` (experimental CAD + engineering fusion),
 `/export [file]`, `/settings`, `/new`, `/help`, `/quit`; settings in force show in orange at the bottom.
+**Skills** are instruction files in the Claude skills format (a folder with a `SKILL.md`: name, description,
+optional `packs:`, then the instructions) in `~/.plm/skills/` or `./.plm/skills/`: `/skills` lists them,
+`/skill <name>` turns one on (example: `examples/skills/explain-briefly`). The general pack gets them as a
+system message; checked packs only when the skill names them. The bottom bar's **context** meter shows the
+last request's tokens out of the window Ollama loaded the model with (Ollama's default is 4096; past it,
+the oldest part of a conversation is dropped).
 `plm --plain` gives the line-by-line mode instead.
 
 

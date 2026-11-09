@@ -35,6 +35,10 @@ unloaded at the end). Three rules, each committed before any answer:
   `/settings`); `plm/fusion.py` is round 3's fusion (planner 8B, coder calculates, cad), labeled experimental and
   falling back to the CAD pack alone without a usable plan or length. Tested with the pilot and live. Not on PyPI
   yet (next plm-core release).
+- 2026-11-09: skills (`plm/skills.py`, Claude SKILL.md format; `/skills`, `/skill <name> [off]`) and a context meter
+  (last request's tokens / the loaded context window). Found while building it: Ollama loads models with a 4096-token
+  window by default (the 8B supports 40960), so long general conversations lose their start. Option: pass num_ctx
+  for the general pack (more memory); not done.
 
 Suggested order for the next session:
 1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test

@@ -29,6 +29,7 @@ from plm.braille import draw
 from plm.followup import resolve
 from plm.packs import PACKS
 from plm.paths import log_dir
+from plm import skills as plm_skills
 from plm.report import answer_body, caveat, final_step, short
 
 ORANGE, GREEN, YELLOW, RED, DIM = "#ff9e4a", "#7ee787", "#f2cc60", "#ff7b72", "#8a8d99"
@@ -48,6 +49,7 @@ Follow-ups ("now for 200 ohm", "make it 10 mm thick") stay with the question the
   /db <file.sqlite>|off   check SQL on your database (read-only); data questions route to sql
   /show on|off            show each model's program or reasoning under the answer
   /fuse <problem>         experimental: plan a CAD + engineering problem, calculate, then model
+  /skills                 list skills (~/.plm/skills, ./.plm/skills); /skill <name> \\[off] turns one on or off
   /export \\[file]          save the conversation as Markdown
   /settings               what's set now
   /new  /help  /quit      (also ctrl+n, ctrl+q); ctrl+p opens a CAD part's full drawing"""
@@ -78,6 +80,22 @@ def loaded_models(timeout=2):
     except (OSError, ValueError):
         return None
     return [m["name"] for m in models], sum(m.get("size", 0) for m in models) / 1e9
+
+
+def context_window(model, timeout=2):
+    """Tokens of context Ollama has loaded the model with, or its default (4096) when it isn't loaded."""
+    try:
+        with urllib.request.urlopen(f"{ollama.ollama_url()}/api/ps", timeout=timeout) as r:
+            for m in json.load(r).get("models", []):
+                if m["name"] == model or m["name"] == ollama.full_name(model):
+                    return m.get("context_length") or 4096
+    except (OSError, ValueError, KeyError):
+        pass
+    return 4096
+
+
+def kilo(n):
+    return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
 
 
 def status_line(result):
@@ -151,6 +169,9 @@ class PlmApp(App):
         self.part_info = Text("")
         self.settings = {"pack": None, "model": None, "level": None, "thorough": False, "db": None, "show": False}
         self.transcript = []  # (question, answer text, status line) for /export
+        self.skill_dirs = None  # None: ~/.plm/skills and ./.plm/skills
+        self.skills = plm_skills.discover(self.skill_dirs)
+        self.active_skills = []  # names
         self.busy = False
         self.solve_fn = solve  # tests pass a fake; None means the packs' own solve
 
@@ -176,6 +197,7 @@ class PlmApp(App):
                 yield Chip(label(m), id=f"model-{self.model_id(m)}")
             yield Static("", id="level")
             yield Static("", id="overrides")
+            yield Static("", id="context")
             yield Static("", id="ollama")
             yield Static("? /help", classes="label")
 
@@ -264,6 +286,28 @@ class PlmApp(App):
             s["show"] = on
         elif name == "/export":
             return self.export(arg)
+        elif name == "/skills":
+            self.skills = plm_skills.discover(self.skill_dirs)
+            if not self.skills:
+                return self.say(Text("no skills: add a folder with a SKILL.md to ~/.plm/skills or ./.plm/skills "
+                                     "(name, description, then the instructions)", DIM))
+            lines = Text()
+            for sk in self.skills.values():
+                on = sk.name in self.active_skills
+                lines.append(("● " if on else "○ "), GREEN if on else DIM)
+                lines.append(f"{sk.name}", "bold")
+                lines.append(f"  {sk.description}  [{', '.join(sk.packs)}]\n", DIM)
+            return self.say(lines)
+        elif name == "/skill":
+            sk_name, _, state = arg.partition(" ")
+            if sk_name not in self.skills:
+                self.skills = plm_skills.discover(self.skill_dirs)
+            if sk_name not in self.skills:
+                return self.say(Text(f"no skill {sk_name!r}; /skills lists them", YELLOW))
+            if state.strip().lower() == "off":
+                self.active_skills = [n for n in self.active_skills if n != sk_name]
+            elif sk_name not in self.active_skills:
+                self.active_skills.append(sk_name)
         elif name == "/settings":
             pass
         else:
@@ -274,11 +318,13 @@ class PlmApp(App):
         s = self.settings
         parts = [f"pack {s['pack'] or 'auto'}", f"model {label(s['model']) if s['model'] else 'auto'}",
                  f"level {s['level'] or 'auto'}", f"thorough {'on' if s['thorough'] else 'off'}",
-                 f"db {os.path.basename(s['db']) if s['db'] else 'off'}", f"show {'on' if s['show'] else 'off'}"]
+                 f"db {os.path.basename(s['db']) if s['db'] else 'off'}", f"show {'on' if s['show'] else 'off'}",
+                 f"skills {', '.join(self.active_skills) or 'none'}"]
         self.say(Text("settings: " + " · ".join(parts), DIM))
         forced = [f"{k} {os.path.basename(v) if k == 'db' else label(v) if k == 'model' else v}"
                   for k, v in s.items() if v and k in ("pack", "model", "level", "db")]
         forced += [k for k in ("thorough", "show") if s[k]]
+        forced += [f"skill {n}" for n in self.active_skills]
         self.query_one("#overrides", Static).update(Text("│ " + " · ".join(forced), ORANGE) if forced else "")
 
     def export(self, arg):
@@ -371,6 +417,11 @@ class PlmApp(App):
                 extra["thorough"] = True
             if pack == "sql" and s["db"]:
                 extra["db"] = s["db"]
+            active = [self.skills[n] for n in self.active_skills if n in self.skills]
+            if pack == "general" and plm_skills.system_message(active):
+                messages = [{"role": "system", "content": plm_skills.system_message(active)}, *messages]
+            elif pack != "general":
+                task = plm_skills.apply_to_task(task, active, pack)
             if self.solve_fn:
                 result = self.solve_fn(pack, task, messages)
             elif fuse:
@@ -434,7 +485,21 @@ class PlmApp(App):
             used.insert(0, result["fusion"]["plan"].get("pack"))
         self.light(packs=used, models=[s["model"] for s in result["steps"]])
         self.query_one("#level", Static).update(Text.assemble(("│ level ", "#5c5f6b"), result["level"] or "-"))
+        self.update_context(result)
         self.fill_side(result)
+
+    def update_context(self, result):
+        """Bottom bar: the last request's tokens out of the context window its model is loaded with."""
+        step = result["steps"][-1]
+        used = (step.get("prompt_tokens") or 0) + (step.get("tokens") or 0)
+        window = self.context_of(step["model"])
+        share = used / window if window else 0
+        color = RED if share > 0.9 else YELLOW if share > 0.7 else DIM
+        self.query_one("#context", Static).update(Text.assemble(
+            ("│ context ", "#5c5f6b"), (f"{kilo(used)} / {kilo(window)}", color)))
+
+    def context_of(self, model):
+        return context_window(model)
 
     def fill_side(self, result):
         answer = result.get("answer") or {}

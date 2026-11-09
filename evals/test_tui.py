@@ -60,6 +60,15 @@ def fake_planner(model, prompt, think, num_predict, timeout):
                  'Give the answer in m.", "cad_task": "Make a plate 100 mm long, 40 mm wide and {value} mm thick."}')
 
 
+CHATS = []
+
+
+def fake_general_chat(model, messages, num_predict, timeout, options=None):
+    CHATS.append(messages)
+    return {"response": "Canberra.", "eval_tokens": 3, "prompt_tokens": 40, "load_s": 0, "wall_s": 0.0,
+            "done_reason": "stop", "thinking_chars": 0, "mode": "fake"}
+
+
 def chat_text(app):
     return "\n".join(str(w.render()) for w in app.query_one("#chat", VerticalScroll).query(Static))
 
@@ -166,19 +175,62 @@ async def session(shots):
         expect("/fuse reports the plan and the value", "fusion (experimental): physics calculation → 3 mm → cad" in text,
                text[-400:])
         expect("/fuse's part is built and checked", app.last["pack"] == "cad" and app.last["fusion"]["value_mm"] == 3)
+        expect("context meter shows tokens out of the window", "/ 4.1k" in str(app.query_one("#context", Static).render()),
+               str(app.query_one("#context", Static).render()))
+
         expect("/fuse lights both packs", app.query_one("#pack-physics").has_class("live")
                and app.query_one("#pack-cad").has_class("live"))
+
+        # skills: instruction files turned on per session
+        import tempfile as _tf
+        from plm import skills as plm_skills
+        with _tf.TemporaryDirectory() as sk:
+            for name, packs, text in (("terse", "general", "Answer in one short sentence."),
+                                      ("si-units", "general, electrical", "State the formula you used.")):
+                Path(sk, name).mkdir()
+                Path(sk, name, "SKILL.md").write_text(f"---\nname: {name}\ndescription: test skill\npacks: {packs}\n---\n{text}\n")
+            app.skill_dirs = [sk]
+            app.skills = plm_skills.discover([sk])
+            await ask("/skills")
+            expect("/skills lists them", "terse" in chat_text(app) and "si-units" in chat_text(app))
+            await ask("/skill nosuch")
+            expect("/skill with an unknown name explains", "no skill 'nosuch'" in chat_text(app))
+            await ask("/skill terse")
+            await ask("/skill si-units")
+            expect("active skills show in the status bar",
+                   "skill terse" in str(app.query_one("#overrides", Static).render()))
+            await ask("What's the capital of Australia?")
+            system = CHATS[-1][0] if CHATS else {}
+            expect("the general pack gets the skills as a system message", system.get("role") == "system"
+                   and "one short sentence" in system["content"] and "formula you used" in system["content"], CHATS[-1:])
+            await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+            expect("a pack named by a skill gets its instructions", "State the formula you used." in PROMPTS[-1]
+                   and "one short sentence" not in PROMPTS[-1], PROMPTS[-1][-200:])
+            await ask("/skill si-units off")
+            await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+            expect("/skill off stops it", "State the formula you used." not in PROMPTS[-1])
+
+
+
+def help_renders():
+    from rich.text import Text
+    try:
+        Text.from_markup(tui.HELP)
+    except Exception as e:  # a bracket in the help is read as a style
+        FAILS.append(f"/help text doesn't render: {e}")
 
 
 def main():
     shots = sys.argv[sys.argv.index("--screenshots") + 1] if "--screenshots" in sys.argv else None
     import plm.fusion as fusion
-    real = numeric.ask, cad.ask, fusion.ask
-    numeric.ask, cad.ask, fusion.ask = fake_numeric, fake_cad, fake_planner
+    import plm.general.controller as general
+    real = numeric.ask, cad.ask, fusion.ask, general.chat
+    numeric.ask, cad.ask, fusion.ask, general.chat = fake_numeric, fake_cad, fake_planner, fake_general_chat
+    help_renders()
     try:
         asyncio.run(session(shots))
     finally:
-        numeric.ask, cad.ask, fusion.ask = real
+        numeric.ask, cad.ask, fusion.ask, general.chat = real
     for f in FAILS:
         print("FAIL", f)
     print("tui tests: all passed" if not FAILS else f"tui tests: {len(FAILS)} failed")
