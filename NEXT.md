@@ -1,68 +1,50 @@
 # NEXT
 
-_Updated: 2026-11-01 · branch: main · plan: ROADMAP.md · results: docs/results.md_
+_Updated: 2026-11-09 · branch: main · plan: ROADMAP.md · results: docs/results.md_
 
 ## Start here (next session)
-Where things stand: phases 1-4 of `ROADMAP.md` are done; phase 5 (publishing) is done: public since 2026-11-05. Six packs,
-each with its policy chosen by a rule committed before its results, and checked on public benchmarks where one
-fits (`docs/results.md`, `.venv/bin/python evals/headline.py`):
+Phases 1-5 of `ROADMAP.md` are done and public: GitHub https://github.com/ro-rbl/plm-orchestrator, Hugging Face
+https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, and PyPI (all seven packages; plm-core 0.1.3,
+plm-cad 0.1.1, the rest 0.1.0; `uv tool install "plm-core[tui]"`). Every policy was chosen by a rule committed
+before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 | Pack | Ships | Public benchmark (shipped) |
 |---|---|---|
 | electrical | 4B + calc -> 8B + calc | none fits (own set 48/50) |
 | aerospace | 8B + calc | none fits (own set 39/50) |
-| physics | 4B + calc -> 8B + calc (as electrical) | SciBench 48%, TheoremQA 43%, UGPhysics 46/150 |
+| physics | 4B + calc -> 8B + calc | SciBench 48%, TheoremQA 43%, UGPhysics 46/150 |
 | software | coder 14B alone | HumanEval+ 85%, MBPP+ 72% |
-| sql | coder 14B alone | Spider 76%, BIRD mini-dev 51% (EX 54.5) |
+| sql | coder 14B alone (+4B second opinion with a database) | Spider 76%, BIRD mini-dev 51% |
 | cad | coder 14B alone | CADPrompt 14% (bbox + volume within 0.1%) |
 
-Public (2026-11-05): https://github.com/ro-rbl/plm-orchestrator and
-https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
+**Built 2026-11-08/09, in the repo but not yet on PyPI** (plm-core 0.1.4 when the user wants a release):
+- Full-screen interface (`plm` with no question; `plm/tui.py`; double-click `plm.command`, also on the Desktop):
+  chat with follow-ups, Part (Braille drawing of CAD parts) / Code / Steps / Log tabs, packs and models strips,
+  context meter. `/` commands: `/pack /model /level /thorough /db /show /fuse /export /settings /skills /skill
+  /new /help /quit`. Skills: Claude SKILL.md format in `~/.plm/skills` or `./.plm/skills` (`plm/skills.py`,
+  example in `examples/skills/`). `evals/test_tui.py` drives it with Textual's pilot.
+- Follow-up questions in the server and the interface (`plm/followup.py`), and unit checks from the question
+  (`plm/numeric/expected.py`, UNITS2_RULE; this one is in 0.1.3).
 
-**Night of 2026-11-08 to 09 (read first):** all runs done by 05:09 (supervisor, assistant left on; coder and 4B
-unloaded at the end). Three rules, each committed before any answer:
-- **Fusion round 3 (coder computes), FUSE3_RULE: don't build.** fusion 22/40 vs CAD alone 17/40 (+5, paired 95%
-  -4 to +14); calculations 25/40; perfect hand-off 34/40. Across rounds fusion trends ahead but never clearly; the
-  bottleneck stays the calculation step. `results/fusion_round3_code.*`.
-- **Follow-up answers, FOLLOWUP_ANSWER_RULE: keep today's wording.** A 27/36, rewrite-first B 31/36 (+4, -2 to
-  +10), B costs 48% more tokens. A misses fa-01 ("now for 200 ohm"), 04, 07, 13, 15, 17, 21, 28, 36. `results/followup_*`.
-- **Unit check round 2, UNITS2_RULE: shipped.** `plm/numeric/expected.py` now drives the numeric packs' check and
-  "checked" flag: units asked as symbols ("in m/s") and the quantity asked ("What is the voltage?") count. On 698
-  fresh SciBench answers: 10 wrong newly caught, 1 right falsely flagged (limit 1.3). Routing unchanged. Gap: "in
-  cm^-1" isn't read as a symbol. Released as plm-core 0.1.3 on PyPI (2026-11-09; fresh install checked).
-- PyPI: all seven packages up (see Publishing).
-- 2026-11-09: `/` commands in the TUI (`/pack`, `/model`, `/level`, `/thorough`, `/db`, `/show`, `/fuse`, `/export`,
-  `/settings`); `plm/fusion.py` is round 3's fusion (planner 8B, coder calculates, cad), labeled experimental and
-  falling back to the CAD pack alone without a usable plan or length. Tested with the pilot and live. Not on PyPI
-  yet (next plm-core release).
-- 2026-11-09: skills (`plm/skills.py`, Claude SKILL.md format; `/skills`, `/skill <name> [off]`) and a context meter
-  (last request's tokens / the loaded context window). Found while building it: Ollama loads models with a 4096-token
-  window by default (the 8B supports 40960), so long general conversations lose their start. Option: pass num_ctx
-  for the general pack (more memory); not done.
+**Measured, not shipped** (each with a rule fixed first; details further down):
+- Pack fusion: round 3 (coder calculates) 22/40 vs CAD alone 17/40 (-4 to +14); perfect hand-off 34/40. Only as
+  the experimental `/fuse`.
+- Follow-up wording: rewrite-first 31/36 vs today's 27/36 (-2 to +10); "now for 200 ohm" still comes back 22 V.
+- Physics routing attempt 1: 27/30 vs 28 needed. SQL tables-flag plural fix: moves scores by at most 1, no run.
 
-Suggested order for the next session:
-1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test
-   questions, every query and path matched the benchmark's. **Routing with only `PLM_SQL_DB` fixed 2026-11-04**
-   (SQLDB_RULE passed on held-out cases: 115/120 Spider dev to sql, 30/34 look-alikes unmoved, exactly the bar).
-   Left as measured (fixing them needs new cases, these are now seen): advice full of the data's words goes to
-   sql (dn04, dn27, dn30, dn31); "weather ... like" matched a `Likes` table; "capital of Australia" with a world
-   database goes to sql (arguably right). `evals/test_sqldb_routing.py -v`. The tables flag's false alarms are
-   under "SQL pack" below.
-1b. **BIRD confirmation of the SQL flags policy: CONFIRMED (2026-11-01).** 1035 BIRD dev questions mini-dev
-   doesn't use, CONFIRM_RULE committed in 66c3e1c before any answer: shipped 534 vs coder alone 528 (-1 to +13
-   paired 95%, 112% compute), so the pack keeps the 4B second opinion. Recorded in `docs/results.md`.
-   Re-check: `.venv/bin/python evals/bench_sql_check.py --simulate --sets bird`.
-1c. **Dropping the SQL pack's "huge" flag: KEEP (2026-11-03).** 2999 Spider train questions, NOHUGE_RULE fixed in
-   357b524 before any answer: without "huge" 2448 vs shipped 2450 (1 won, 3 lost, -6 to +2; needed >= -3), 4B calls
-   432 -> 375. The flags stay as they are. Recorded in `docs/results.md`. Spider train is now seen.
-   During the run the user's assistant service was stopped (`launchctl bootout`); restore it with
-   `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist` if not done yet.
-2. **Public since 2026-11-05.** Open: claim the PyPI names (see "Packaging"), or decide not to publish there.
-3. Anything else below. Data for the public benchmarks lives in `.benchmarks/` (ignored by git); each
-   `evals/bench_*.py` docstring says where to download it from, if it's missing.
+**Open, in the order I'd take them:**
+1. Follow-up answers: a bigger keyed set (about 100 conversations, written first) to settle rewrite-first vs today.
+2. The general pack's 4096-token context window (Ollama's default; the 8B supports 40960): pass num_ctx, measure
+   memory, decide.
+3. Live step-by-step progress in the interface (packs report steps as they go, instead of a spinner).
+4. Small: read "in cm^-1" as a unit symbol; physics routing attempt 2 on new cases; PyPI Trusted Publishing
+   (GitHub Actions, no tokens; the user sets each package's trusted publisher on PyPI).
 
-Before running anything long: `pmset -g batt` (on AC?), `caffeinate -i -s -t <seconds> &`, `ollama ps`.
-The Mac crashed on battery during a run on 2026-10-25; runners now stop cleanly if Ollama goes down, and resume.
+**Machine notes:** the user's assistant (launchd `com.ro.assistant`) runs their 06:00 alarm and pins `qwen3:8b`;
+for long runs use `results/fusion_supervisor.sh <run script> 05:30` (waits for AC, unpins the 8B, stops at the
+deadline, unloads our models). Restart the assistant only with `launchctl kickstart -k gui/$(id -u)/com.ro.assistant`,
+never `assistant serve` from a terminal. Before a long run: `pmset -g batt`, `ollama ps`, and say the Amphetamine
+time first.
 
 ## Pack fusion (`/fuse`): spike done 2026-11-07
 User's design: `/fuse` at the start or end of a prompt; a planner splits a mixed problem between packs; each step lit

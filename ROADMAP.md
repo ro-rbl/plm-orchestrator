@@ -137,3 +137,13 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] Both public (2026-11-05); a fresh `uv tool install` from the git URL, a pack install from GitHub and a live
       question work without credentials. Optional: a Space, PyPI.
 - Public benchmarks are referenced, not redistributed (each has its own license).
+
+## 6. Using it day to day (2026-11-08/09)
+- [x] Follow-up questions (`plm/followup.py`, FOLLOWUP_RULE) in the server and the interactive CLI.
+- [x] Full-screen interface (`plm/tui.py`, extra `plm-core[tui]`) from the user's mockup; CAD parts drawn in Braille;
+      `/` commands; skills (Claude SKILL.md format); context meter; `plm.command` launcher.
+- [x] Unit checks from the question (`plm/numeric/expected.py`, UNITS2_RULE), released in plm-core 0.1.3.
+- [x] Pack fusion measured three times (FUSE_RULE, FUSE3_RULE): never clearly better than the CAD pack alone; kept
+      as the experimental `/fuse`.
+- [ ] Follow-up wording on a bigger set; the general pack's context window; live step progress; plm-core 0.1.4.
+
