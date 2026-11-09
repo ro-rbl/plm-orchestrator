@@ -88,7 +88,11 @@ orange banner and part, packs strip and models strip at the bottom, active one g
 - [ ] **Installing a pack from a git URL or a wheel is untested.** Only local directories (editable) were
       installed live; there's no remote yet. Once there is one: `plm packs install aerospace --source
       "plm-aerospace @ git+https://<repo>#subdirectory=packages/plm-aerospace"` in a fresh venv.
-- [ ] **PyPI, partly claimed (2026-11-06):** plm-core, plm-electrical, plm-aerospace, plm-cad are up (wheels;
+- [x] **PyPI: all seven up (2026-11-08, ~23:00):** plm-core 0.1.2 (follow-ups, TUI extra, ownership check),
+      plm-cad 0.1.1, plm-electrical/aerospace/physics/software/sql 0.1.0; each owned by ro-rbl, wheel + sdist. Fresh
+      `uv tool install "plm-core[tui]"` from PyPI: 0.1.2, TUI imports; `plm packs install physics` came from PyPI by
+      name. Left: replace the account-wide token with per-project ones (user).
+- [x] (superseded) **PyPI, partly claimed (2026-11-06):** plm-core, plm-electrical, plm-aerospace, plm-cad are up (wheels;
       `uv tool install plm-core` from PyPI tested). plm-physics, plm-software, plm-sql hit PyPI's "too many new
       projects" limit (429). Resume later, from the repo root (built files in `dist/`, rebuild with
       `uv build --out-dir dist packages/plm-<name>` if gone): `uv publish dist/* --check-url https://pypi.org/simple/ --token <token>`.
