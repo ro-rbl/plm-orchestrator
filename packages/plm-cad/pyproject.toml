@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "plm-cad"
-version = "0.1.0"
+version = "0.1.1"
 description = "plm pack: CAD parts as CadQuery programs, checked by building them with the OpenCascade kernel"
 readme = "README.md"
 authors = [{ name = "ro-rbl" }]
