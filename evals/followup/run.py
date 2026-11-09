@@ -3,6 +3,7 @@
     .venv/bin/python evals/followup/run.py --variant A      # resumes; results/followup_A.jsonl
     .venv/bin/python evals/followup/run.py --variant B
     .venv/bin/python evals/followup/run.py --report         # FOLLOWUP_ANSWER_RULE
+    .venv/bin/python evals/followup/run.py --set 2 --variant A   # then B, then --set 2 --report (FOLLOWUP2_RULE)
 
 A: plm.followup.resolve's task ("Original question / Previous answer / Change(s) / Answer the original question
    again with the change applied.") goes to the pack, as shipped on 2026-11-08.
@@ -13,6 +14,15 @@ converted to the key's unit, within 2%. Live check that led here: "now for 200 o
 
 FOLLOWUP_ANSWER_RULE, fixed 2026-11-08 before any answer: B replaces A iff a paired bootstrap 95% interval (2000
 resamples, seed 20261108) of B's correct answers minus A's lies entirely above 0; tokens reported.
+
+Set 2 (--set 2, evals/followup/cases2.jsonl: 100 new conversations from build2.py, keys computed in code; results in
+results/followup2_{A,B}.jsonl). FOLLOWUP2_RULE, fixed 2026-11-09 before any model answered a set-2 case; set 1 (36,
+already seen) doesn't count: accuracy first. Paired bootstrap 95% interval (2000 resamples, seed 20261109) of B's
+correct answers minus A's, over all 100. If it lies entirely above 0, ship B (rewrite first); if entirely below 0,
+keep A; if it contains 0, keep A (one model call fewer). Tokens (B's include the rewrite) and per-pack scores are
+reported, never decide. Checked offline before any answer: every key grades right and 5% off grades wrong; routing
+(shared by A and B) sends 89/100 to the labeled pack (projectile and orbit cases to aerospace; f2-063 photon
+frequency and f2-095 load factor to general).
 """
 
 import argparse
@@ -29,7 +39,8 @@ from plm.followup import resolve  # noqa: E402
 from plm.numeric.checks import ureg  # noqa: E402
 from plm.ollama import ask, unreachable  # noqa: E402
 
-CASES = Path(__file__).parent / "cases.jsonl"
+SETS = {"1": Path(__file__).parent / "cases.jsonl", "2": Path(__file__).parent / "cases2.jsonl"}
+CASES = SETS["1"]
 REWRITER = "qwen3:8b"
 REWRITE_PROMPT = """Below is a conversation. Rewrite the user's LAST message as one complete, self-contained question
 that someone who never saw the conversation could answer: include every number, unit and condition from the
@@ -37,6 +48,9 @@ earlier question that still applies, with the change in the last message applied
 different unit, ask for that unit; otherwise ask for the same unit as before. Answer with the question only.
 
 {transcript}"""
+RULE2 = ("accuracy first: ship B (rewrite first) iff the paired bootstrap 95% interval (2000 resamples, seed 20261109) "
+         "of B's correct answers minus A's over the 100 set-2 cases lies entirely above 0; otherwise keep A (entirely "
+         "below 0: A is better; contains 0: A, one model call fewer); tokens and per-pack scores reported, not decisive")
 RULE = ("B (rewrite first) replaces A (today's wording) iff a paired bootstrap 95% interval (2000 resamples, seed "
         "20261108) of B's correct answers minus A's lies entirely above 0; tokens reported")
 
@@ -46,7 +60,7 @@ def load(path):
 
 
 def out_path(variant):
-    return ROOT / f"results/followup_{variant}.jsonl"
+    return ROOT / (f"results/followup_{variant}.jsonl" if CASES == SETS["1"] else f"results/followup2_{variant}.jsonl")
 
 
 def right(answer, case):
@@ -113,9 +127,18 @@ def report():
         diff = [got["B"][i]["right"] - got["A"][i]["right"] for i in ids]
         rng = random.Random(20261108)
         boot = sorted(sum(diff[rng.randrange(len(diff))] for _ in diff) for _ in range(2000))
-        lo, hi = boot[50], boot[1949]
+        if CASES == SETS["1"]:
+            lo, hi = boot[50], boot[1949]
+        else:  # set 2: its own seed, fixed with FOLLOWUP2_RULE
+            rng = random.Random(20261109)
+            boot = sorted(sum(diff[rng.randrange(len(diff))] for _ in diff) for _ in range(2000))
+            lo, hi = boot[50], boot[1949]
+            for pack in sorted({c["pack"] for c in cases}):
+                pi = [c["id"] for c in cases if c["pack"] == pack]
+                print(f"  {pack}: A {sum(got['A'][i]['right'] for i in pi)}/{len(pi)}, "
+                      f"B {sum(got['B'][i]['right'] for i in pi)}/{len(pi)}")
         print(f"B - A: {sum(diff):+d}, paired bootstrap 95% {lo:+d} to {hi:+d}")
-        print(f"rule: {RULE}")
+        print(f"rule: {RULE if CASES == SETS['1'] else RULE2}")
         print("-> ADOPT B (rewrite first)" if lo > 0 else "-> KEEP A")
         wrong = [i for i in ids if not got["A"][i]["right"]]
         print("A wrong on:", wrong)
@@ -125,7 +148,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--variant", choices=("A", "B"))
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--set", choices=tuple(SETS), default="1")
     args = ap.parse_args()
+    global CASES
+    CASES = SETS[args.set]
     if args.report:
         return report()
     if not args.variant:
