@@ -41,7 +41,13 @@ OUT = ROOT / "results/fusion_spike.jsonl"
 FUSE_RULE = ("fusion (variant m) is built as an opt-in /fuse for CAD + engineering problems iff, on judged.jsonl, a "
              "paired bootstrap 95% interval (2000 resamples, seed 20261108) of its correct parts minus cad_alone's lies "
              "entirely above 0; tokens are reported; oracle is a diagnostic only")
-UNIT_ASK = {"mm": 'in millimeters ("... Give the answer in mm.")', "m": 'in meters ("... Give the answer in m.")'}
+FUSE3_RULE = ("fusion with the calculation done by the coder (variant code: the numeric packs' calculator prompt, "
+              "answered by the CAD pack's coder model) is built as an opt-in /fuse iff, on round3.jsonl, a paired "
+              "bootstrap 95% interval (2000 resamples, seed 20261108) of its correct parts minus cad_alone's lies "
+              "entirely above 0; tokens reported; oracle a diagnostic only. Fixed 2026-11-08 before any answer.")
+CODER = "qwen2.5-coder:14b"
+UNIT_ASK = {"mm": 'in millimeters ("... Give the answer in mm.")', "m": 'in meters ("... Give the answer in m.")',
+            "code": 'in meters ("... Give the answer in m.")'}
 PLANNER = "qwen3:8b"
 NUMERIC = ("physics", "electrical", "aerospace")
 UREG = pint.UnitRegistry()
@@ -117,7 +123,15 @@ def run_one(p, setup, variant):
     if setup == "oracle":
         value = p["dim_mm"]
     else:
-        n = packs.PACKS[plan["pack"]].solve(plan["question"])
+        if variant == "code":  # the coder answers the calculation through the numeric packs' calculator step
+            from plm.numeric.answers import parse_answer
+            from plm.numeric.controller import attempt
+            step = attempt(plan["question"], CODER, "tool", 1024, 600)
+            parsed = parse_answer(step["output"])
+            n = {"answer": {"value": parsed[0], "unit": parsed[1]} if parsed else None,
+                 "trusted": not step["issues"], "tokens": step["tokens"]}
+        else:
+            n = packs.PACKS[plan["pack"]].solve(plan["question"])
         value, why = to_mm(n["answer"])
         row |= {"calc": {"answer": n["answer"], "trusted": n["trusted"], "tokens": n["tokens"], "value_mm": value},
                 "calc_ok": value is not None and abs(value - p["dim_mm"]) <= 1e-3 * p["dim_mm"]}
@@ -147,14 +161,15 @@ def report():
         got = by.get(s, {})
         print(f"{s:<10} correct {sum(r['verdict'] == 'correct' for r in got.values())}/{len(got)}  "
               f"tokens {sum(r.get('tokens', 0) for r in got.values())}")
-    if PROBLEMS.name == "judged.jsonl" and all(i in by.get(s, {}) for s in ("cad_alone", "fusion") for i in ids):
+    rule = {"judged.jsonl": FUSE_RULE, "round3.jsonl": FUSE3_RULE}.get(PROBLEMS.name)
+    if rule and all(i in by.get(s, {}) for s in ("cad_alone", "fusion") for i in ids):
         import random
         diff = [(by["fusion"][i]["verdict"] == "correct") - (by["cad_alone"][i]["verdict"] == "correct") for i in ids]
         rng = random.Random(20261108)
         boot = sorted(sum(diff[rng.randrange(len(diff))] for _ in diff) for _ in range(2000))
         lo, hi = boot[50], boot[1949]
         print(f"fusion - cad_alone: {sum(diff):+d}, paired bootstrap 95% {lo:+d} to {hi:+d}")
-        print(f"rule: {FUSE_RULE}")
+        print(f"rule: {rule}")
         print("-> BUILD /fuse" if lo > 0 else "-> DON'T BUILD (not clearly better than the CAD pack alone)")
     f = by.get("fusion", {}).values()
     print(f"fusion: usable plans {sum(r['verdict'] != 'bad_plan' for r in f)}/{len(f)}, "
@@ -164,7 +179,7 @@ def report():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true")
-    ap.add_argument("--set", default="spike", choices=("spike", "round2", "judged"))
+    ap.add_argument("--set", default="spike", choices=("spike", "round2", "judged", "round3"))
     ap.add_argument("--variant", default="mm", choices=tuple(UNIT_ASK))
     args = ap.parse_args()
     global PROBLEMS, OUT

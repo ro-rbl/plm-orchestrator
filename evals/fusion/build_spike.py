@@ -277,6 +277,120 @@ def judged():
     return out
 
 
+def round3():
+    """40 problems for FUSE3_RULE (coder-computed calculation step), written 2026-11-08 night before any answer."""
+    out = []
+    n = [0]
+
+    def add(pack, task, dim, ref):
+        n[0] += 1
+        out.append({"id": f"f3-{n[0]:02d}", "pack": pack, "task": task, "dim_mm": dim, "reference": ref})
+
+    def box(x, y, z, holes=(), d=0):
+        r = f"cq.Workplane('XY').box({x}, {y}, {z})"
+        if holes:
+            r += f".faces('>Z').workplane().pushPoints({list(holes)}).hole({d})"
+        return "result = " + r
+
+    def cyl(d, h, hole=0):
+        r = f"cq.Workplane('XY').circle({d / 2}).extrude({h})"
+        if hole:
+            r += f".faces('>Z').workplane().hole({hole})"
+        return "result = " + r
+
+    def tube(od, idia, h):
+        return f"result = cq.Workplane('XY').circle({od / 2}).circle({idia / 2}).extrude({h})"
+
+    # Hooke: L = delta E A / F, rod of given diameter
+    for dl, F, d, E in ((0.5, 10000, 10, 200e9), (0.3, 5000, 8, 70e9), (1.0, 20000, 12, 110e9)):
+        A = math.pi * (d / 2000) ** 2
+        L = dl / 1000 * E * A / F * 1000
+        add("physics", f"A rod {d} mm in diameter (Young's modulus {E / 1e9:g} GPa) stretches by {dl:g} mm under a "
+            f"{F / 1000:g} kN tensile load. Find its length, then model the rod as a solid cylinder of that "
+            f"diameter and length.", L, cyl(d, L))
+    # stopping distance: d = v^2 / (2a), a test track plate that long
+    for v, a in ((20, 8), (15, 5), (30, 6)):
+        dist = v ** 2 / (2 * a) * 1000 / 100  # 1:100 scale model
+        add("physics", f"A car braking from {v} m/s decelerates at {a} m/s^2. Find its stopping distance, then model "
+            f"a 1:100 scale test strip as a plate that long (the scaled length), 50 mm wide and 3 mm thick.",
+            dist, box(dist, 50, 3))
+    # heater wire length: R = V^2 / P, L = R A / rho
+    for V, P, d, rho in ((230, 1000, 0.5, 1.1e-6), (120, 600, 0.4, 1.1e-6), (24, 50, 0.3, 4.9e-7)):
+        R = V ** 2 / P
+        L = R * math.pi * (d / 2000) ** 2 / rho * 1000
+        add("electrical", f"A heater runs at {P} W from a {V} V supply and is made of wire {d:g} mm in diameter with "
+            f"resistivity {rho:g} ohm m. Find the wire length, then model a straight 2 mm diameter rod with that "
+            f"length as a stand-in for the wire.", L, cyl(2, L))
+    # fin area: Q = h A dT, square fin
+    for Q, h, dT in ((20, 25, 40), (50, 10, 60), (5, 15, 25)):
+        side = math.sqrt(Q / (h * dT)) * 1000
+        add("physics", f"A square cooling fin must shed {Q} W by convection with a heat transfer coefficient of {h} "
+            f"W/(m^2 K) and a {dT} K temperature difference (count one face only). Find the side of the square, then "
+            f"model the fin as a square plate with that side, 2 mm thick.", side, box(side, side, 2))
+    # pipe bore from flow: A = Q / v, tube 5 mm wall
+    for Qf, v in ((0.002, 1.5), (0.0005, 1.0), (0.01, 2.5)):
+        d = math.sqrt(4 * Qf / v / math.pi) * 1000
+        add("physics", f"Water must flow at {Qf * 1000:g} L/s through a pipe at a mean speed of {v:g} m/s. Find the "
+            f"pipe's inside diameter, then model 200 mm of the pipe as a tube with that inside diameter and a 5 mm "
+            f"wall.", d, tube(d + 10, d, 200))
+    # thin-walled vessel: t = p D / (2 sigma), tube
+    for p_, D, sig in ((2e6, 200, 100e6), (5e6, 120, 150e6), (1e6, 400, 80e6)):
+        t = p_ * D / (2 * sig)
+        add("physics", f"A thin-walled cylindrical pressure vessel with a {D} mm inside diameter holds {p_ / 1e6:g} MPa, "
+            f"and the hoop stress may not exceed {sig / 1e6:g} MPa. Find the minimum wall thickness, then model a "
+            f"100 mm long section of the vessel as a tube with that inside diameter and wall thickness.",
+            t, tube(D + 2 * t, D, 100))
+    # centripetal: r = v^2 / a, disc of that diameter... at 1:10
+    for v, a in ((10, 50), (6, 30), (15, 100)):
+        r = v ** 2 / a * 1000 / 10
+        add("physics", f"An object moves in a circle at {v} m/s with a centripetal acceleration of {a} m/s^2. Find the "
+            f"radius, then model a 1:10 scale turntable as a disc 8 mm thick with that scaled radius.",
+            r, cyl(2 * r, 8))
+    # nozzle exit: A = mdot / (rho v), disc of that diameter with 6 mm center hole
+    for mdot, rho, v in ((2.0, 0.5, 2000), (0.5, 0.8, 1500), (5.0, 0.3, 2500)):
+        d = math.sqrt(4 * mdot / (rho * v) / math.pi) * 1000
+        add("aerospace", f"A rocket nozzle exhausts {mdot:g} kg/s of gas of density {rho:g} kg/m^3 at {v} m/s. Find the "
+            f"exit diameter, then model a cover plate as a disc of that diameter, 4 mm thick, with a 6 mm hole at "
+            f"its center.", d, cyl(d, 4, 6))
+    # wing span from aspect ratio: b = sqrt(AR S), plate span x mean chord x 10, at 1:20
+    for AR, S in ((8, 12.5), (6, 6.0), (10, 16.9)):
+        b = math.sqrt(AR * S) * 1000 / 20
+        c = S / math.sqrt(AR * S) * 1000 / 20
+        add("aerospace", f"A wing has an area of {S:g} m^2 and an aspect ratio of {AR}. Find its span, then model a 1:20 "
+            f"scale model of the wing as a flat plate as long as the scaled span, as wide as the scaled mean chord "
+            f"(area / span, scaled), and 10 mm thick.", b, box(b, c, 10))
+    # nichrome resistor length: L = R A / rho with R = V / I
+    for V, I, d in ((12, 2, 0.5), (5, 0.5, 0.25), (24, 3, 0.8)):
+        L = (V / I) * math.pi * (d / 2000) ** 2 / 1.1e-6 * 1000
+        add("electrical", f"A resistor made of nichrome wire (resistivity 1.1e-6 ohm m), {d:g} mm in diameter, must "
+            f"draw {I:g} A from {V} V. Find the wire length, then model a straight rod of that length, 3 mm in "
+            f"diameter, as a stand-in.", L, cyl(3, L))
+    # capacitor spacer: gap = eps0 er A / C
+    for C, side, er in ((100e-12, 50, 4.0), (1e-9, 100, 3.0), (47e-12, 30, 2.5)):
+        gap = 8.854e-12 * er * (side / 1000) ** 2 / C * 1000
+        add("electrical", f"A parallel-plate capacitor has square plates {side} mm on a side and a dielectric of "
+            f"relative permittivity {er:g}, and must have a capacitance of {C * 1e12:g} pF (vacuum permittivity "
+            f"8.854e-12 F/m). Find the plate gap, then model the dielectric spacer as a square plate {side} mm on a "
+            f"side with that thickness.", gap, box(side, side, gap))
+    # projectile range at 45 deg: R = v^2 / g, rail at 1:100
+    for v in (20, 35, 12):
+        R = v ** 2 / 9.81 * 1000 / 100
+        add("physics", f"A ball is launched at {v} m/s at 45 degrees over level ground (g = 9.81 m/s^2). Find its range, "
+            f"then model a 1:100 scale rail as a bar as long as the scaled range, 10 mm wide and 10 mm tall.",
+            R, box(R, 10, 10))
+    # float: cylinder submerged depth h = m / (rho_w A)
+    for m, D in ((3.0, 150), (0.8, 80), (10.0, 300)):
+        h = m / (1000 * math.pi * (D / 2000) ** 2) * 1000
+        add("physics", f"A cylindrical float {D} mm in diameter carries {m:g} kg in fresh water (1000 kg/m^3), ignoring "
+            f"its own weight. Find how deep it sinks, then model the submerged part as a solid cylinder of that "
+            f"diameter and depth.", h, cyl(D, h))
+    # one more: Ohm bus bar width
+    L = 1.68e-8 * 0.5 / 0.2e-3 * 1e6 / 3
+    add("electrical", "A copper strip (resistivity 1.68e-8 ohm m) 500 mm long and 3 mm thick must have a resistance of "
+        "0.2 milliohm. Find its width, then model the strip, 500 mm long, that wide and 3 mm thick.", L, box(500, L, 3))
+    return out
+
+
 def build(problems, name):
     rows = []
     for p in problems:
@@ -294,6 +408,7 @@ def main():
     build(problems(), "spike.jsonl")
     build(round2(), "round2.jsonl")
     build(judged(), "judged.jsonl")
+    build(round3(), "round3.jsonl")
 
 
 if __name__ == "__main__":
