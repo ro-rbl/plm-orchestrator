@@ -29,7 +29,7 @@ unloaded at the end). Three rules, each committed before any answer:
 - **Unit check round 2, UNITS2_RULE: shipped.** `plm/numeric/expected.py` now drives the numeric packs' check and
   "checked" flag: units asked as symbols ("in m/s") and the quantity asked ("What is the voltage?") count. On 698
   fresh SciBench answers: 10 wrong newly caught, 1 right falsely flagged (limit 1.3). Routing unchanged. Gap: "in
-  cm^-1" isn't read as a symbol. Needs a plm-core release (0.1.3) to reach PyPI users.
+  cm^-1" isn't read as a symbol. Released as plm-core 0.1.3 on PyPI (2026-11-09; fresh install checked).
 - PyPI: all seven packages up (see Publishing).
 
 Suggested order for the next session:
