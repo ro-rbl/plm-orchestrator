@@ -41,10 +41,16 @@ BANNER = r"""       _
 HELP = """[b]plm[/b]: ask anything. Calculations, code, SQL and CAD parts go to a pack that checks the answer.
 Follow-ups ("now for 200 ohm", "make it 10 mm thick") stay with the question they change.
 
-  /new    forget the conversation (also ctrl+n)
-  /help   this help
-  /quit   leave (also ctrl+q)
-  ctrl+p  open a CAD part's preview"""
+  /pack <name>|auto       send questions to one pack (physics, cad, sql, ...); auto routes again
+  /model <name>|auto      use one model for every step (4b, 8b, coder, or a full Ollama name)
+  /level calm|alert|intensive|auto   how hard a question is treated
+  /thorough on|off        code answers are also checked against model-written tests (~4x compute)
+  /db <file.sqlite>|off   check SQL on your database (read-only); data questions route to sql
+  /show on|off            show each model's program or reasoning under the answer
+  /fuse <problem>         experimental: plan a CAD + engineering problem, calculate, then model
+  /export \\[file]          save the conversation as Markdown
+  /settings               what's set now
+  /new  /help  /quit      (also ctrl+n, ctrl+q); ctrl+p opens a CAD part's full drawing"""
 SPIN = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
 
 
@@ -133,6 +139,7 @@ class PlmApp(App):
     .label {{ color: #5c5f6b; }}
     Chip {{ background: #262a35; color: #c9cad1; margin-right: 1; padding: 0 1; }}
     Chip.live {{ background: #1f3326; color: {GREEN}; }}
+    #overrides {{ color: {ORANGE}; }}
     """
     BINDINGS = [Binding("ctrl+n", "new", "new"), Binding("ctrl+p", "preview", "part preview"),
                 Binding("ctrl+q", "quit", "quit")]
@@ -142,6 +149,8 @@ class PlmApp(App):
         self.history = []
         self.last = None
         self.part_info = Text("")
+        self.settings = {"pack": None, "model": None, "level": None, "thorough": False, "db": None, "show": False}
+        self.transcript = []  # (question, answer text, status line) for /export
         self.busy = False
         self.solve_fn = solve  # tests pass a fake; None means the packs' own solve
 
@@ -166,6 +175,7 @@ class PlmApp(App):
                     continue
                 yield Chip(label(m), id=f"model-{self.model_id(m)}")
             yield Static("", id="level")
+            yield Static("", id="overrides")
             yield Static("", id="ollama")
             yield Static("? /help", classes="label")
 
@@ -206,6 +216,85 @@ class PlmApp(App):
         chat.scroll_end(animate=False)
         return widget
 
+    MODEL_ALIASES = {"4b": "qwen3-4b", "small": "qwen3-4b", "8b": "qwen3:8b", "large": "qwen3:8b", "coder": "coder"}
+
+    def resolve_model(self, name):
+        """A model name from an alias (4b, 8b, coder) or a full Ollama name; None if unknown."""
+        key = self.MODEL_ALIASES.get(name.lower(), name.lower())
+        return next((m for m in self.all_models() if key in m.lower()), None) or (name if ":" in name else None)
+
+    def command(self, name, arg):
+        s = self.settings
+        on = arg.lower() in ("on", "yes", "1", "")
+        if name == "/pack":
+            if arg in ("", "auto"):
+                s["pack"] = None
+            elif arg in PACKS:
+                s["pack"] = arg
+            else:
+                return self.say(Text(f"no pack {arg!r}; installed: {', '.join(PACKS)}", YELLOW))
+        elif name == "/model":
+            if arg in ("", "auto"):
+                s["model"] = None
+            else:
+                model = self.resolve_model(arg)
+                if not model:
+                    return self.say(Text(f"no model {arg!r}; try 4b, 8b, coder, or a full Ollama name", YELLOW))
+                s["model"] = model
+        elif name == "/level":
+            if arg in ("", "auto"):
+                s["level"] = None
+            elif arg in ("calm", "alert", "intensive"):
+                s["level"] = arg
+            else:
+                return self.say(Text("levels: calm, alert, intensive, auto", YELLOW))
+        elif name == "/thorough":
+            s["thorough"] = on
+        elif name == "/db":
+            if arg in ("", "off"):
+                s["db"] = None
+                os.environ.pop("PLM_SQL_DB", None)
+            else:
+                path = os.path.abspath(os.path.expanduser(arg))
+                if not os.path.isfile(path):
+                    return self.say(Text(f"no file {path}", YELLOW))
+                s["db"] = path
+                os.environ["PLM_SQL_DB"] = path  # routing reads it: data questions about it go to sql
+        elif name == "/show":
+            s["show"] = on
+        elif name == "/export":
+            return self.export(arg)
+        elif name == "/settings":
+            pass
+        else:
+            return self.say(Text(f"unknown command {name}; /help lists them", YELLOW))
+        self.show_settings()
+
+    def show_settings(self):
+        s = self.settings
+        parts = [f"pack {s['pack'] or 'auto'}", f"model {label(s['model']) if s['model'] else 'auto'}",
+                 f"level {s['level'] or 'auto'}", f"thorough {'on' if s['thorough'] else 'off'}",
+                 f"db {os.path.basename(s['db']) if s['db'] else 'off'}", f"show {'on' if s['show'] else 'off'}"]
+        self.say(Text("settings: " + " · ".join(parts), DIM))
+        forced = [f"{k} {os.path.basename(v) if k == 'db' else label(v) if k == 'model' else v}"
+                  for k, v in s.items() if v and k in ("pack", "model", "level", "db")]
+        forced += [k for k in ("thorough", "show") if s[k]]
+        self.query_one("#overrides", Static).update(Text("│ " + " · ".join(forced), ORANGE) if forced else "")
+
+    def export(self, arg):
+        if not self.transcript:
+            return self.say(Text("nothing to export yet", DIM))
+        path = os.path.expanduser(arg) if arg else os.path.expanduser(f"~/plm-chat-{time.strftime('%Y%m%d-%H%M')}.md")
+        lines = [f"# plm conversation, {time.strftime('%Y-%m-%d %H:%M')}\n"]
+        for q, a, status in self.transcript:
+            lines += [f"**You:** {q}\n", a.strip() + "\n", f"_{status}_\n"]
+        try:
+            with open(path, "w") as f:
+                f.write("\n".join(lines))
+        except OSError as e:
+            return self.say(Text(f"couldn't write {path}: {e}", RED))
+        self.say(Text(f"saved the conversation to {path}", DIM))
+
     def light(self, packs=(), models=()):
         for p in PACKS:
             self.query_one(f"#pack-{p}", Chip).set_class(p in packs, "live")
@@ -227,22 +316,37 @@ class PlmApp(App):
             return self.say(Text.from_markup(HELP))
         if text == "/new":
             return self.action_new()
+        fuse = False
         if text.startswith("/"):
-            return self.say(Text(f"unknown command {text.split()[0]}; /help lists them", YELLOW))
+            name, _, arg = text.partition(" ")
+            arg = arg.strip()
+            if name == "/fuse":
+                if not arg:
+                    return self.say(Text("/fuse needs a problem: /fuse <a CAD + engineering problem>", YELLOW))
+                text, fuse = arg, True
+            else:
+                return self.command(name, arg)
         if self.busy:
             return self.say(Text("still working on the last question", YELLOW))
-        self.say(Text.assemble(("› ", "#79c0ff"), text), classes="you")
+        self.say(Text.assemble(("› ", "#79c0ff"), ("/fuse " if fuse else "", ORANGE), text), classes="you")
         messages = [*self.history, {"role": "user", "content": text}]
         routed = resolve(messages)
-        pack = routed["pack"]
-        task = routed["task"] if routed["context"] and pack != "general" else text
-        self.light(packs=[pack], models=PACKS[pack].models.values())
+        pack, followup = routed["pack"], routed["context"]
+        task = routed["task"] if followup and pack != "general" else text
+        if fuse:
+            pack, task, followup = "cad", text, False
+        elif self.settings["pack"]:
+            pack = self.settings["pack"]
+            task = routed["task"] if followup and routed["pack"] == pack else text
+            followup = followup and routed["pack"] == pack
+        lit = [p for p in (("physics", "electrical", "aerospace") if fuse else ()) if p in PACKS] + [pack]
+        self.light(packs=lit, models=[self.settings["model"]] if self.settings["model"] else PACKS[pack].models.values())
         self.busy = True
-        spinner = self.say(Text(f"{SPIN[0]} {pack} · working…", "#56d4dd"))
-        self.run_task(text, pack, task, messages, routed["context"], spinner)
+        spinner = self.say(Text(f"{SPIN[0]} {'fusion' if fuse else pack} · working…", "#56d4dd"))
+        self.run_task(text, pack, task, messages, followup, spinner, fuse)
 
     @work(thread=True, exclusive=True)
-    def run_task(self, text, pack, task, messages, followup, spinner):
+    def run_task(self, text, pack, task, messages, followup, spinner, fuse=False):
         start = time.time()
         stop = []
 
@@ -254,16 +358,34 @@ class PlmApp(App):
                     f"{SPIN[i % len(SPIN)]} {pack} · working… {time.time() - start:.0f} s", "#56d4dd"))
                 time.sleep(0.15)
         threading.Thread(target=tick, daemon=True).start()
+        s = self.settings
+        models = PACKS[pack].models
+        saved = dict(models)
         try:
+            if s["model"]:  # every tier of this pack uses the forced model, for this question only
+                models.update({k: s["model"] for k in models})
+            extra = {}
+            if s["level"] and pack != "general":
+                extra["level"] = s["level"]
+            if pack == "software" and s["thorough"]:
+                extra["thorough"] = True
+            if pack == "sql" and s["db"]:
+                extra["db"] = s["db"]
             if self.solve_fn:
                 result = self.solve_fn(pack, task, messages)
+            elif fuse:
+                from plm import fusion
+                result = fusion.solve(task)
             elif pack == "general":
                 result = PACKS["general"].solve(task, messages=messages)
             else:
-                result = PACKS[pack].solve(task)
+                result = PACKS[pack].solve(task, **extra)
             error = None
         except Exception as e:  # show any failure (Ollama down, a pack error) instead of crashing the screen
             result, error = None, f"{type(e).__name__}: {e}"
+        finally:
+            models.clear()
+            models.update(saved)
         stop.append(True)
         self.call_from_thread(self.show, text, result, error, spinner, followup)
 
@@ -290,9 +412,27 @@ class PlmApp(App):
                 self.say(Text(chunk.strip(), "bold"), classes="answer")
         if note:
             self.say(Text(note.strip(), YELLOW))
-        self.say(status_line(result))
+        fusion = result.get("fusion")
+        if fusion:
+            if fusion.get("fell_back"):
+                self.say(Text(f"fusion (experimental) fell back to the CAD pack alone: {fusion['fell_back']}", YELLOW))
+            else:
+                self.say(Text(f"fusion (experimental): {fusion['plan'].get('pack', '?')} calculation → "
+                              f"{fusion['value_mm']:.4g} mm → cad", ORANGE))
+        line = status_line(result)
+        self.say(line)
+        if self.settings["show"]:
+            for i, step in enumerate(result["steps"], 1):
+                work = (step.get("program") or step.get("code") or step.get("model_text") or "").strip()
+                if work:
+                    self.say(Text(f"step {i} · {label(step['model'])}{' · ' + step['role'] if step.get('role') else ''}\n"
+                                  + work[:2000], DIM))
         self.history += [{"role": "user", "content": text}, {"role": "assistant", "content": body}]
-        self.light(packs=[result["pack"]], models=[s["model"] for s in result["steps"]])
+        self.transcript.append((text, body, line.plain))
+        used = [result["pack"]]
+        if result.get("fusion", {}).get("plan"):  # both packs of a fusion: the calculation's and cad
+            used.insert(0, result["fusion"]["plan"].get("pack"))
+        self.light(packs=used, models=[s["model"] for s in result["steps"]])
         self.query_one("#level", Static).update(Text.assemble(("│ level ", "#5c5f6b"), result["level"] or "-"))
         self.fill_side(result)
 

@@ -31,6 +31,10 @@ unloaded at the end). Three rules, each committed before any answer:
   fresh SciBench answers: 10 wrong newly caught, 1 right falsely flagged (limit 1.3). Routing unchanged. Gap: "in
   cm^-1" isn't read as a symbol. Released as plm-core 0.1.3 on PyPI (2026-11-09; fresh install checked).
 - PyPI: all seven packages up (see Publishing).
+- 2026-11-09: `/` commands in the TUI (`/pack`, `/model`, `/level`, `/thorough`, `/db`, `/show`, `/fuse`, `/export`,
+  `/settings`); `plm/fusion.py` is round 3's fusion (planner 8B, coder calculates, cad), labeled experimental and
+  falling back to the CAD pack alone without a usable plan or length. Tested with the pilot and live. Not on PyPI
+  yet (next plm-core release).
 
 Suggested order for the next session:
 1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test

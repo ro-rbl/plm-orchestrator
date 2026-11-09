@@ -28,6 +28,7 @@ from textual.widgets import Static, TabbedContent  # noqa: E402
 
 FAILS = []
 PROMPTS = []
+MODELS_SEEN = []
 
 
 def expect(name, cond, detail=""):
@@ -42,6 +43,9 @@ def reply(text):
 
 def fake_numeric(model, prompt, think, num_predict, timeout):
     PROMPTS.append(prompt)
+    MODELS_SEEN.append(model)
+    if "Give the answer in m." in prompt:  # /fuse's calculation step: a thickness of 3 mm
+        return reply('```python\nprint("ANSWER: 0.003 m")\n```')
     ohms = 200 if "now for 200 ohm" in prompt else 220
     return reply(f'```python\nprint(f"ANSWER: {{{ohms} * 0.1:.4g}} V")\n```')
 
@@ -49,6 +53,11 @@ def fake_numeric(model, prompt, think, num_predict, timeout):
 def fake_cad(model, prompt, think, num_predict, timeout):
     return reply("```python\nimport cadquery as cq\nresult = (cq.Workplane('XY').box(40, 40, 40)\n"
                  "          .faces('>Z').workplane().hole(10))\n```")
+
+
+def fake_planner(model, prompt, think, num_predict, timeout):
+    return reply('{"pack": "physics", "question": "A plate 40 mm wide carries 6000 N at 50 MPa. Find the thickness. '
+                 'Give the answer in m.", "cad_task": "Make a plate 100 mm long, 40 mm wide and {value} mm thick."}')
 
 
 def chat_text(app):
@@ -109,15 +118,67 @@ async def session(shots):
         text = chat_text(app)
         expect("/new clears the chat and history", "220 ohm" not in text and app.history == [], text)
 
+        # settings commands
+        await ask("/pack nosuch")
+        expect("/pack with an unknown name explains", "no pack 'nosuch'" in chat_text(app))
+        await ask("/pack physics")
+        expect("/pack shows in the status bar", "pack physics" in str(app.query_one("#overrides", Static).render()))
+        await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+        expect("/pack physics routes an electrical question to physics", app.last["pack"] == "physics", app.last["pack"])
+        await ask("/pack auto")
+        await ask("/model coder")
+        import plm_electrical.controller as ec
+        before = dict(ec.MODELS)
+        MODELS_SEEN.clear()
+        await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+        expect("/model coder: every step used the coder", MODELS_SEEN and all("coder" in m for m in MODELS_SEEN), MODELS_SEEN)
+        expect("/model is undone after the question", dict(ec.MODELS) == before, ec.MODELS)
+        await ask("/model auto")
+        await ask("/level intensive")
+        await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+        expect("/level intensive is passed to the pack", app.last["level"] == "intensive", app.last["level"])
+        await ask("/level auto")
+        await ask("/show on")
+        await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
+        expect("/show prints the program", "print(f\"ANSWER" in chat_text(app), chat_text(app)[-400:])
+        await ask("/show off")
+        await ask("/settings")
+        expect("/settings lists them", "settings: pack auto · model auto · level auto" in chat_text(app), chat_text(app)[-300:])
+        import os
+        import sqlite3
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            db = os.path.join(tmp, "music.sqlite")
+            con = sqlite3.connect(db)
+            con.execute("CREATE TABLE singer (singer_id INTEGER, name TEXT, age INTEGER)")
+            con.commit()
+            con.close()
+            await ask(f"/db {db}")
+            expect("/db sets PLM_SQL_DB for routing", os.environ.get("PLM_SQL_DB") == db)
+            await ask("/db off")
+            expect("/db off clears it", "PLM_SQL_DB" not in os.environ)
+            out = os.path.join(tmp, "chat.md")
+            await ask(f"/export {out}")
+            expect("/export writes the conversation", os.path.exists(out) and "220 ohm" in open(out).read())
+        # /fuse: planner -> the coder's calculation (3 mm) -> cad
+        await ask("/fuse A steel plate 40 mm wide carries 6000 N; stress at most 50 MPa. Size it and model a 100 x 40 plate.")
+        text = chat_text(app)
+        expect("/fuse reports the plan and the value", "fusion (experimental): physics calculation → 3 mm → cad" in text,
+               text[-400:])
+        expect("/fuse's part is built and checked", app.last["pack"] == "cad" and app.last["fusion"]["value_mm"] == 3)
+        expect("/fuse lights both packs", app.query_one("#pack-physics").has_class("live")
+               and app.query_one("#pack-cad").has_class("live"))
+
 
 def main():
     shots = sys.argv[sys.argv.index("--screenshots") + 1] if "--screenshots" in sys.argv else None
-    real = numeric.ask, cad.ask
-    numeric.ask, cad.ask = fake_numeric, fake_cad
+    import plm.fusion as fusion
+    real = numeric.ask, cad.ask, fusion.ask
+    numeric.ask, cad.ask, fusion.ask = fake_numeric, fake_cad, fake_planner
     try:
         asyncio.run(session(shots))
     finally:
-        numeric.ask, cad.ask = real
+        numeric.ask, cad.ask, fusion.ask = real
     for f in FAILS:
         print("FAIL", f)
     print("tui tests: all passed" if not FAILS else f"tui tests: {len(FAILS)} failed")

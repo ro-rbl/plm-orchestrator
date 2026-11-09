@@ -83,8 +83,11 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 
 **Full screen:** run `plm` with no question (needs the optional extra: `pip install "plm-core[tui]"`,
 or `uv tool install "plm-core[tui]"`). Chat on the left, with follow-ups; the answer's Part, Code, Steps
-and Log on the right; the packs and models at the bottom, the ones in use green. `/help`, `/new`, `/quit`;
-ctrl+p opens a CAD part's drawing. `plm --plain` gives the line-by-line mode instead.
+and Log on the right (a CAD part is drawn there); the packs and models at the bottom, the ones in use green.
+Commands: `/pack <name>` and `/model <4b|8b|coder|name>` force a pack or a model, `/level`, `/thorough`,
+`/db <file.sqlite>`, `/show` (each model's work), `/fuse <problem>` (experimental CAD + engineering fusion),
+`/export [file]`, `/settings`, `/new`, `/help`, `/quit`; settings in force show in orange at the bottom.
+`plm --plain` gives the line-by-line mode instead.
 
 
 ```bash
