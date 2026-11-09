@@ -25,6 +25,7 @@ from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.widgets import Input, Static, TabbedContent, TabPane
 
 from plm import ollama
+from plm.braille import draw
 from plm.followup import resolve
 from plm.packs import PACKS
 from plm.paths import log_dir
@@ -140,6 +141,7 @@ class PlmApp(App):
         super().__init__()
         self.history = []
         self.last = None
+        self.part_info = Text("")
         self.busy = False
         self.solve_fn = solve  # tests pass a fake; None means the packs' own solve
 
@@ -303,11 +305,14 @@ class PlmApp(App):
         if result["pack"] == "cad" and isinstance(answer, dict):
             m = answer.get("measured") or {}
             dims = " × ".join(f"{x:g}" for x in m.get("bbox", [])) if m else "-"
-            part = Text.assemble(("measured\n", DIM), f"{dims} mm\n", f"{m.get('volume', 0):,.0f} mm³\n\n" if m else "\n",
-                                 ("✓ size and volume look right" if result["trusted"] else "! the part failed a check",
-                                  GREEN if result["trusted"] else RED), ("\n\nctrl+p: open the part preview", DIM))
-            self.query_one("#part", Static).update(part)
+            self.part_info = Text.assemble(
+                f"{dims} mm · {m.get('volume', 0):,.0f} mm³\n" if m else "",
+                ("✓ size and volume look right" if result["trusted"] else "! the part failed a check",
+                 GREEN if result["trusted"] else RED), ("\nctrl+p: full drawing", DIM))
+            self.query_one("#part", Static).update(Text.assemble(("drawing the part…\n\n", DIM), self.part_info))
             self.query_one("#side", TabbedContent).active = "tab-part"
+            if answer.get("code"):
+                self.draw_part(answer["code"])
         else:
             self.query_one("#part", Static).update(Text("no part: this answer isn't a CAD model", DIM))
             if code:
@@ -320,6 +325,17 @@ class PlmApp(App):
         rows.append(f"level {result['level']} ({result['reason']})", DIM)
         self.query_one("#steps", Static).update(rows)
         self.query_one("#log", Static).update(Text(json.dumps(result, indent=1, default=str)[:20000], DIM))
+
+    @work(thread=True, exclusive=True, group="part")
+    def draw_part(self, code):
+        try:
+            from plm_cad.kernel import preview_edges
+            edges, why = preview_edges(code)
+        except Exception as e:  # the CAD pack missing or broken: say so in the panel
+            edges, why = None, f"{type(e).__name__}: {e}"
+        rows = draw(edges, cols=40, rows=16) if edges else []
+        art = Text("\n".join(rows) + "\n\n", ORANGE) if rows else Text(f"couldn't draw the part: {why}\n\n", DIM)
+        self.call_from_thread(self.query_one("#part", Static).update, Text.assemble(art, self.part_info))
 
     def action_new(self):
         self.history, self.last = [], None

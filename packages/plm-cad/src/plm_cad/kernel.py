@@ -172,3 +172,38 @@ def preview_svg(code, out_path, timeout=60):
             return (p.stderr.strip().splitlines() or ["no drawing"])[-1][:200]
         Path(out_path).write_bytes(svg.read_bytes())
     return None
+
+
+EDGES = """
+import json as _json
+import cadquery as _cq
+_found = globals().get("result")
+if _found is None:
+    _found = next((v for v in reversed(list(globals().values())) if isinstance(v, (_cq.Workplane, _cq.Shape))), None)
+if _found is None:
+    raise SystemExit("PLM_CAD: no result")
+_shape = _found.val() if isinstance(_found, _cq.Workplane) else _found
+_lines = []
+for _e in _shape.Edges():
+    _n = 1 if _e.geomType() == "LINE" else 32
+    _lines.append([[round(c, 4) for c in _e.positionAt(_i / _n).toTuple()] for _i in range(_n + 1)])
+print("PLM_EDGES " + _json.dumps(_lines))
+"""
+
+
+def preview_edges(code, timeout=60):
+    """(polylines of the part's edges as [[x, y, z], ...] lists, None) or (None, why), built in the same isolated
+    process as build(), for drawing the part in a terminal."""
+    refused = screen(code)
+    if refused:
+        return None, refused
+    with tempfile.TemporaryDirectory() as d:
+        try:
+            p = subprocess.run([sys.executable, "-I", "-c", PRELUDE + code + "\n" + EDGES],
+                               capture_output=True, text=True, timeout=timeout, cwd=d)
+        except subprocess.TimeoutExpired:
+            return None, f"timed out after {timeout} s"
+    lines = [ln for ln in p.stdout.splitlines() if ln.startswith("PLM_EDGES ")]
+    if p.returncode or not lines:
+        return None, (p.stderr.strip().splitlines() or ["no edges"])[-1][:200]
+    return json.loads(lines[-1][len("PLM_EDGES "):]), None

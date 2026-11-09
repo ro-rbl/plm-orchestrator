@@ -91,8 +91,13 @@ async def session(shots):
         expect("cad answer checked", "✓ checked" in text.split("Make a CadQuery")[-1], text[-300:])
         expect("cad pack lit, electrical not", app.query_one("#pack-cad").has_class("live")
                and not app.query_one("#pack-electrical").has_class("live"))
-        expect("part tab shows measurements", "40 × 40 × 40" in str(app.query_one("#part", Static).render()),
-               str(app.query_one("#part", Static).render()))
+        for _ in range(300):  # the drawing is made in the background
+            await pilot.pause(0.1)
+            if "drawing the part" not in str(app.query_one("#part", Static).render()):
+                break
+        part = str(app.query_one("#part", Static).render())
+        expect("part tab shows measurements", "40 × 40 × 40" in part, part)
+        expect("part tab shows a drawing", sum(0x2800 < ord(c) <= 0x28FF for c in part) > 50, part[:300])
         expect("part tab active", app.query_one("#side", TabbedContent).active == "tab-part")
         if shots:
             app.save_screenshot("tui_cad.svg", path=shots)
