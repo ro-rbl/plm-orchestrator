@@ -1,0 +1,349 @@
+{"id": "sb-atkins-e1.17(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 0.05068 atm\n", "tokens": 176, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.21(a)", "model": "qwen3:8b", "output": "ANSWER: 65.45 kJ/mol\n", "tokens": 155, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.19(a)", "model": "qwen3:8b", "output": "ANSWER: 0.0719 kJmol^-1\n", "tokens": 151, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.1(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 67 J/K\n", "tokens": 82, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.4(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 0 J\n", "tokens": 96, "issues": ["asked for a unitless number, got 'J'"], "correct": true}
+{"id": "sb-atkins-e2.24(a)", "model": "qwen3:8b", "output": "ANSWER: -1368 kJ/mol\n", "tokens": 252, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.3(a)", "model": "qwen3:8b", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e1.11(a)", "model": "qwen3:8b", "output": "ANSWER: 168.7 g/mol\n", "tokens": 164, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.5(a)(b)", "model": "qwen3:8b", "output": "ANSWER: -445 J\n", "tokens": 381, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.7(a)", "model": "qwen3:8b", "output": "ANSWER: -0.1283 kJ\n", "tokens": 323, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.31(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 1.354e+06 J/mol\n", "tokens": 278, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.21", "model": "qwen3:8b", "output": "ANSWER: 0 kJ\n", "tokens": 287, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.2(a)", "model": "qwen3:8b", "output": "ANSWER: 152.7 J/K/mol\n", "tokens": 174, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.9(a)", "model": "qwen3:8b", "output": "ANSWER: 131.3 K\n", "tokens": 195, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.1(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 91.52 J/K\n", "tokens": 128, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.3(c)", "model": "qwen3:8b", "output": "ANSWER: 2470 kJ\n", "tokens": 533, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.45(a)", "model": "qwen3:8b", "output": "ANSWER: -29.91 K MPa^-1\n", "tokens": 104, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.15(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 1.435 dm\u00b3mol\u207b\u00b9\n", "tokens": 200, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.9(a)", "model": "qwen3:8b", "output": "ANSWER: 6.133 kg\n", "tokens": 183, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.19", "model": "qwen3:8b", "output": "ANSWER: 39.91 J/(K\u00b7mol)\n", "tokens": 369, "issues": [], "correct": true}
+{"id": "sb-atkins-p3.17(a)", "model": "qwen3:8b", "output": "ANSWER: -4.768 kJ/mol\n", "tokens": 362, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.7(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 87.79 J/K/mol\n", "tokens": 118, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.23(a)(a)", "model": "qwen3:8b", "output": "ANSWER: -114.4 kJmol^-1\n", "tokens": 286, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.11(a)", "model": "qwen3:8b", "output": "ANSWER: 36.75 K\n", "tokens": 96, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.19(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 0.3395 nm\n", "tokens": 221, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.7(a)(b)", "model": "qwen3:8b", "output": "", "tokens": 112, "issues": ["exit 1: SyntaxError: invalid syntax", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-p1.1", "model": "qwen3:8b", "output": "ANSWER: -233.3 \u00b0N\n", "tokens": 235, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.15(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 0.7308\n", "tokens": 180, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.16(a)", "model": "qwen3:8b", "output": "ANSWER: 3822 J\n", "tokens": 187, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.18(a)(c)", "model": "qwen3:8b", "output": "ANSWER: 3.003 atm\n", "tokens": 163, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.13(a)(c)", "model": "qwen3:8b", "output": "ANSWER: 0\n", "tokens": 309, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.45(b)", "model": "qwen3:8b", "output": "ANSWER: 0.15 K\n", "tokens": 137, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.15(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 0.3838\n", "tokens": 111, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.23", "model": "qwen3:8b", "output": "ANSWER: -0.00263\n", "tokens": 570, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.6(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 2026 J\n", "tokens": 203, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.30(a)", "model": "qwen3:8b", "output": "ANSWER: -0.7097 Katm^-1\n", "tokens": 124, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.32(a)", "model": "qwen3:8b", "output": "ANSWER: 0.001303 K^-1\n", "tokens": 226, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.9(b)", "model": "qwen3:8b", "output": "ANSWER: 17.69 kJ/mol\n", "tokens": 325, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.3(a)", "model": "qwen3:8b", "output": "ANSWER: 27.58 lb/in\u00b2\n", "tokens": 149, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.17(a)(b)", "model": "qwen3:8b", "output": "ANSWER: -174.1 atm\n", "tokens": 314, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.20(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 2.814 nm\n", "tokens": 223, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.4(a)(c)", "model": "qwen3:8b", "output": "ANSWER: 4.125 kJ\n", "tokens": 111, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.7(a)", "model": "qwen3:8b", "output": "ANSWER: 8315 JK^-1mol^-1\n", "tokens": 302, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.12(a)", "model": "qwen3:8b", "output": "ANSWER: 3028 kJ/mol\n", "tokens": 293, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.6(a)(c)", "model": "qwen3:8b", "output": "ANSWER: -0.02 J\n", "tokens": 215, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.6(a)", "model": "qwen3:8b", "output": "ANSWER: 103.6 kPa\n", "tokens": 263, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.9(a)", "model": "qwen3:8b", "output": "ANSWER: 54.53 kJ/mol\n", "tokens": 423, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.15(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 0.1072\n", "tokens": 111, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.16(a)", "model": "qwen3:8b", "output": "ANSWER: 0.1354 atm\n", "tokens": 348, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.17(a)", "model": "qwen3:8b", "output": "ANSWER: 239.7 kJmol^-1\n", "tokens": 125, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.5(a)(a)", "model": "qwen3:8b", "output": "ANSWER: -8.799e+04 J\n", "tokens": 174, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.27(a)", "model": "qwen3:8b", "output": "ANSWER: 1.75e-05\n", "tokens": 219, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.11(a)", "model": "qwen3:8b", "output": "", "tokens": 475, "issues": ["exit 1: OverflowError: (34, 'Result too large')", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e3.6(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 0.0 J\n", "tokens": 214, "issues": ["asked for a unitless number, got 'J'"], "correct": true}
+{"id": "sb-atkins-e3.4(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 18.41 J/K\n", "tokens": 123, "issues": ["asked for a unitless number, got 'J/K'"], "correct": false}
+{"id": "sb-atkins-p3.35", "model": "qwen3:8b", "output": "ANSWER: 1 atm\n", "tokens": 504, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.14(a)", "model": "qwen3:8b", "output": "ANSWER: -817.8 kJmol\u207b\u00b9\n", "tokens": 255, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.17(b)", "model": "qwen3:8b", "output": "ANSWER: 228 kJmol^-1\n", "tokens": 123, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.6(a)(e)", "model": "qwen3:8b", "output": "ANSWER: 19.82 J/K\n", "tokens": 494, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.11(c)", "model": "qwen3:8b", "output": "ANSWER: 0.007389\n", "tokens": 541, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.14(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 7.61e-05 kgm^5s^-2mol^-2\n", "tokens": 170, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.21(a)", "model": "qwen3:8b", "output": "ANSWER: 1.003e+04 kJ\n", "tokens": 210, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.11(b)", "model": "qwen3:8b", "output": "ANSWER: 695.3\n", "tokens": 423, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.18(a)", "model": "qwen3:8b", "output": "ANSWER: 15.08 kJ\n", "tokens": 293, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.12(a)", "model": "qwen3:8b", "output": "ANSWER: 59.19 \u00b0C\n", "tokens": 372, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.22(a)", "model": "qwen3:8b", "output": "ANSWER: 0.6609\n", "tokens": 221, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.13(c)", "model": "qwen3:8b", "output": "ANSWER: 24.48 atm\n", "tokens": 120, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.13(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 2.88\n", "tokens": 205, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.5(a)(a)", "model": "qwen3:8b", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e1.2(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 3.377 atm\n", "tokens": 175, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.13(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 2.88 J/K\n", "tokens": 203, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.22(a)", "model": "qwen3:8b", "output": "ANSWER: 11.42 kJmol^-1\n", "tokens": 137, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.2(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 3.421 bar\n", "tokens": 135, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.3(a)", "model": "qwen3:8b", "output": "ANSWER: -37.97 J/K\n", "tokens": 194, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.4(a)(d)", "model": "qwen3:8b", "output": "ANSWER: 5.372 kJ\n", "tokens": 169, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.4(a)", "model": "qwen3:8b", "output": "ANSWER: 0.04216 atm\n", "tokens": 240, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.2(a)", "model": "qwen3:8b", "output": "ANSWER: 101.3 J\n", "tokens": 206, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.20(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 13.89 K\n", "tokens": 130, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.6(a)(d)", "model": "qwen3:8b", "output": "ANSWER: 35.18 K\n", "tokens": 275, "issues": [], "correct": false}
+{"id": "sb-atkins-p3.17(b)", "model": "qwen3:8b", "output": "ANSWER: 23.01 kJ mol^-1\n", "tokens": 374, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.1(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 24.42 atm\n", "tokens": 239, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.27(b)", "model": "qwen3:8b", "output": "ANSWER: 0.2708 atm\n", "tokens": 182, "issues": ["asked for a unitless number, got 'atm'"], "correct": false}
+{"id": "sb-atkins-p1.5(b)", "model": "qwen3:8b", "output": "ANSWER: 9.139 kPa\n", "tokens": 137, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.11(b)", "model": "qwen3:8b", "output": "ANSWER: 4.425 kg\n", "tokens": 99, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.5(a)", "model": "qwen3:8b", "output": "ANSWER: 0.02449 kPa\n", "tokens": 122, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.12(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 29.93 JK^-1mol^-1\n", "tokens": 86, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.14(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 2.26e-05 m\u00b3mol\u207b\u00b9\n", "tokens": 94, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.5(a)", "model": "qwen3:8b", "output": "ANSWER: 2.985 m^3\n", "tokens": 186, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.17(a)", "model": "qwen3:8b", "output": "ANSWER: -36.5 J/K\n", "tokens": 204, "issues": [], "correct": true}
+{"id": "sb-atkins-p3.37", "model": "qwen3:8b", "output": "ANSWER: -21.85 kJmol\u207b\u00b9\n", "tokens": 229, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.31", "model": "qwen3:8b", "output": "ANSWER: 0.1239 km\n", "tokens": 504, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.5(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 93.29 J/K\n", "tokens": 277, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.3(b)", "model": "qwen3:8b", "output": "ANSWER: 17.18 kJ\n", "tokens": 475, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.18(a)", "model": "qwen3:8b", "output": "ANSWER: -4565 kJ/mol\n", "tokens": 225, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.22(a)", "model": "qwen3:8b", "output": "ANSWER: -382.9 kJ/mol\n", "tokens": 329, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.10(a)", "model": "qwen3:8b", "output": "ANSWER: -1686 J\n", "tokens": 462, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.1(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 2551 J\n", "tokens": 63, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.1(a)(b)", "model": "qwen3:8b", "output": "ANSWER: -2.166 atm\n", "tokens": 250, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.5(c)", "model": "qwen3:8b", "output": "ANSWER: 0.02449 kPa\n", "tokens": 146, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.1(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 416 J\n", "tokens": 51, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.20(a)(b)", "model": "qwen3:8b", "output": "ANSWER: 0.205 K\n", "tokens": 344, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.11(a)", "model": "qwen3:8b", "output": "ANSWER: 21.75 kPa\n", "tokens": 141, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.12(a)(a)", "model": "qwen3:8b", "output": "ANSWER: 29.93 JK^-1mol^-1\n", "tokens": 89, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.20(a)", "model": "qwen3:8b", "output": "ANSWER: -0.5462 kJmol^-1\n", "tokens": 140, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.23(a)(b)", "model": "qwen3:8b", "output": "ANSWER: -0.8529 kJ/mol\n", "tokens": 573, "issues": [], "correct": false}
+{"id": "sb-atkins-2.2", "model": "qwen3:8b", "output": "ANSWER: -277.3 Pa\u00b7m\u00b3/mol\n", "tokens": 385, "issues": [], "correct": false}
+{"id": "sb-atkins-1.4", "model": "qwen3:8b", "output": "ANSWER: 0.3647 dm\u00b3mol\u207b\u00b9\n", "tokens": 270, "issues": [], "correct": true}
+{"id": "sb-atkins-20.3", "model": "qwen3:8b", "output": "ANSWER: -17.18 kN\n", "tokens": 136, "issues": [], "correct": false}
+{"id": "sb-atkins-5.2", "model": "qwen3:8b", "output": "ANSWER: 5.576 kJ\n", "tokens": 163, "issues": [], "correct": false}
+{"id": "sb-atkins-20.1", "model": "qwen3:8b", "output": "ANSWER: 474.8 ms^-1\n", "tokens": 121, "issues": [], "correct": true}
+{"id": "sb-atkins-20.2", "model": "qwen3:8b", "output": "ANSWER: 121.3 kPa\n", "tokens": 344, "issues": [], "correct": false}
+{"id": "sb-atkins-8.2", "model": "qwen3:8b", "output": "", "tokens": 207, "issues": ["exit 1: OverflowError: math range error", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-19.4", "model": "qwen3:8b", "output": "ANSWER: 2.912e-18 pm\n", "tokens": 162, "issues": [], "correct": false}
+{"id": "sb-atkins-19.1", "model": "qwen3:8b", "output": "ANSWER: 0.2131 nm\n", "tokens": 97, "issues": [], "correct": true}
+{"id": "sb-atkins-12.1", "model": "qwen3:8b", "output": "ANSWER: 1.916 kg\u00b7m\u00b2\n", "tokens": 302, "issues": [], "correct": true}
+{"id": "sb-atkins-6.3", "model": "qwen3:8b", "output": "ANSWER: 79.64 kJ/mol\n", "tokens": 340, "issues": [], "correct": true}
+{"id": "sb-atkins-5.4", "model": "qwen3:8b", "output": "ANSWER: 560.6 10\u00b2 kg/mol\n", "tokens": 396, "issues": [], "correct": false}
+{"id": "sb-atkins-7.2", "model": "qwen3:8b", "output": "", "tokens": 225, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-2.6", "model": "qwen3:8b", "output": "ANSWER: -241.5 kJ/mol\n", "tokens": 275, "issues": [], "correct": true}
+{"id": "sb-atkins-6.5", "model": "qwen3:8b", "output": "ANSWER: 0.04815 kJ/mol\n", "tokens": 252, "issues": [], "correct": false}
+{"id": "sb-atkins-1.2", "model": "qwen3:8b", "output": "ANSWER: 166.7 atm\n", "tokens": 115, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-38", "model": "qwen3:8b", "output": "ANSWER: 0.1226 nm\n", "tokens": 204, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-18", "model": "qwen3:8b", "output": "ANSWER: 3.522e-19 eV\n", "tokens": 98, "issues": [], "correct": false}
+{"id": "sb-chemmc-D-7", "model": "qwen3:8b", "output": "ANSWER: 1.5\n", "tokens": 76, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-49", "model": "qwen3:8b", "output": "", "tokens": 144, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-1-17", "model": "qwen3:8b", "output": "ANSWER: 5269 K\n", "tokens": 133, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-6", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 89, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-40", "model": "qwen3:8b", "output": "ANSWER: 0.08192 V\n", "tokens": 219, "issues": [], "correct": true}
+{"id": "sb-chemmc-5-9", "model": "qwen3:8b", "output": "ANSWER: 0.479 kN/m\n", "tokens": 121, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-25", "model": "qwen3:8b", "output": "ANSWER: 3\n", "tokens": 293, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-15", "model": "qwen3:8b", "output": "ANSWER: 4.741 10^14Hz\n", "tokens": 127, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-47", "model": "qwen3:8b", "output": "ANSWER: 1.055 10^-23kg*m*s^-1\n", "tokens": 154, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-34", "model": "qwen3:8b", "output": "ANSWER: 54.42 eV\n", "tokens": 300, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-51", "model": "qwen3:8b", "output": "", "tokens": 170, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-1-28", "model": "qwen3:8b", "output": "ANSWER: 121.5 nm\n", "tokens": 164, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-50", "model": "qwen3:8b", "output": "ANSWER: 6.626 10^-25 J\n", "tokens": 126, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-42", "model": "qwen3:8b", "output": "ANSWER: 1.669e-20 K\n", "tokens": 145, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-8", "model": "qwen3:8b", "output": "ANSWER: 14.4 10^-10m\n", "tokens": 180, "issues": [], "correct": false}
+{"id": "sb-chemmc-D-21", "model": "qwen3:8b", "output": "ANSWER: -0.5\n", "tokens": 177, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-8", "model": "qwen3:8b", "output": "ANSWER: 0.3333\n", "tokens": 68, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-4", "model": "qwen3:8b", "output": "ANSWER: 0.2492%\n", "tokens": 59, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-30", "model": "qwen3:8b", "output": "ANSWER: 7\n", "tokens": 99, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-45", "model": "qwen3:8b", "output": "ANSWER: 0.1389 mm\n", "tokens": 134, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-41", "model": "qwen3:8b", "output": "", "tokens": 167, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-1-13", "model": "qwen3:8b", "output": "ANSWER: 1.067 10^16 photons\n", "tokens": 227, "issues": [], "correct": true}
+{"id": "sb-chemmc-5-14", "model": "qwen3:8b", "output": "ANSWER: 3.512e+19 cm\u207b\u00b9\n", "tokens": 223, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-11", "model": "qwen3:8b", "output": "", "tokens": 154, "issues": ["exit 1: SyntaxError: invalid decimal literal", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-1-37", "model": "qwen3:8b", "output": "ANSWER: 7.763e-93 10^17Hz\n", "tokens": 296, "issues": [], "correct": false}
+{"id": "sb-chemmc-5-10", "model": "qwen3:8b", "output": "ANSWER: 0.004524 10^10 m^-1\n", "tokens": 321, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-44", "model": "qwen3:8b", "output": "ANSWER: 12 mm\n", "tokens": 142, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-46", "model": "qwen3:8b", "output": "ANSWER: 0.2894 10^7m*s^-1\n", "tokens": 195, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-14", "model": "qwen3:8b", "output": "ANSWER: 1.006 10^-5m\n", "tokens": 203, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-16", "model": "qwen3:8b", "output": "ANSWER: 1.696 10^15 photons/s^-1\n", "tokens": 233, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-7", "model": "qwen3:8b", "output": "ANSWER: 1.115e+04 K\n", "tokens": 110, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-26", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 223, "issues": [], "correct": false}
+{"id": "sb-chemmc-5-12", "model": "qwen3:8b", "output": "ANSWER: 5.41e-52\n", "tokens": 221, "issues": [], "correct": false}
+{"id": "sb-chemmc-5-13", "model": "qwen3:8b", "output": "ANSWER: 1.894e+15 kN\n", "tokens": 228, "issues": [], "correct": false}
+{"id": "sb-chemmc-D-1", "model": "qwen3:8b", "output": "ANSWER: 0.001246 10^-3%\n", "tokens": 67, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-39", "model": "qwen3:8b", "output": "", "tokens": 161, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-1.1_3", "model": "qwen3:8b", "output": "ANSWER: 5.512 10^14Hz\n", "tokens": 161, "issues": [], "correct": true}
+{"id": "sb-chemmc-1.1_11", "model": "qwen3:8b", "output": "ANSWER: 242.4 pm\n", "tokens": 153, "issues": [], "correct": true}
+{"id": "sb-chemmc-E.E_4", "model": "qwen3:8b", "output": "", "tokens": 1000, "issues": ["import not allowed: sympy", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-9.9_4", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 142, "issues": [], "correct": false}
+{"id": "sb-chemmc-11.11_11", "model": "qwen3:8b", "output": "ANSWER: 2\n", "tokens": 208, "issues": [], "correct": false}
+{"id": "sb-chemmc-5.5_12", "model": "qwen3:8b", "output": "", "tokens": 700, "issues": ["exit 1: NameError: name 'psi_0' is not defined. Did you mean: 'psi_n'?", "no ANSWER line"], "correct": false}
+{"id": "sb-chemmc-6.6_2", "model": "qwen3:8b", "output": "ANSWER: 50.51 pm\n", "tokens": 185, "issues": [], "correct": false}
+{"id": "sb-chemmc-9.9_1", "model": "qwen3:8b", "output": "ANSWER: 27.21 eV\n", "tokens": 206, "issues": [], "correct": true}
+{"id": "sb-chemmc-3.3_6", "model": "qwen3:8b", "output": "ANSWER: 0.5001\n", "tokens": 236, "issues": [], "correct": true}
+{"id": "sb-matter-37.7(a)", "model": "qwen3:8b", "output": "ANSWER: 2.139 \u00b0\n", "tokens": 239, "issues": [], "correct": true}
+{"id": "sb-matter-55.4(a)", "model": "qwen3:8b", "output": "ANSWER: 75.99 J\n", "tokens": 165, "issues": [], "correct": false}
+{"id": "sb-matter-69.2(a)", "model": "qwen3:8b", "output": "ANSWER: -0.1667 Jmol^-1\n", "tokens": 164, "issues": [], "correct": false}
+{"id": "sb-matter-69.3", "model": "qwen3:8b", "output": "", "tokens": 358, "issues": ["exit 1: NameError: name 'delta_T' is not defined. Did you mean: 'delta_V'?", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-11.3(a)", "model": "qwen3:8b", "output": "ANSWER: 5.455e-18 10^3K\n", "tokens": 244, "issues": [], "correct": false}
+{"id": "sb-matter-66.5(a)", "model": "qwen3:8b", "output": "ANSWER: 15.07 kJ\n", "tokens": 259, "issues": [], "correct": false}
+{"id": "sb-matter-39.1(a)", "model": "qwen3:8b", "output": "ANSWER: 3.542 eV\n", "tokens": 204, "issues": [], "correct": true}
+{"id": "sb-matter-37.1", "model": "qwen3:8b", "output": "ANSWER: 5.987e-09 10^5 g mol^-1\n", "tokens": 200, "issues": [], "correct": false}
+{"id": "sb-matter-2.7(a)", "model": "qwen3:8b", "output": "ANSWER: 1.876 10^8ms^-1\n", "tokens": 187, "issues": [], "correct": true}
+{"id": "sb-matter-56.1", "model": "qwen3:8b", "output": "ANSWER: 42.48 kJ/mol\n", "tokens": 279, "issues": [], "correct": false}
+{"id": "sb-matter-5.1(a)", "model": "qwen3:8b", "output": "ANSWER: 0.02\n", "tokens": 208, "issues": [], "correct": true}
+{"id": "sb-matter-57.1", "model": "qwen3:8b", "output": "", "tokens": 646, "issues": ["exit 1: NameError: name 'delta_u_benzo' is not defined", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-9.3(a)", "model": "qwen3:8b", "output": "ANSWER: 0.75\n", "tokens": 246, "issues": [], "correct": false}
+{"id": "sb-matter-38.3", "model": "qwen3:8b", "output": "", "tokens": 282, "issues": ["exit 1: SyntaxError: invalid syntax. Perhaps you forgot a comma?", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-40.7(a)", "model": "qwen3:8b", "output": "ANSWER: 11.18 m\n", "tokens": 135, "issues": [], "correct": false}
+{"id": "sb-matter-35.1(a)", "model": "qwen3:8b", "output": "ANSWER: 18.52 kJ/mol\n", "tokens": 262, "issues": [], "correct": false}
+{"id": "sb-matter-36.6(a)", "model": "qwen3:8b", "output": "ANSWER: 0.1354 atm\n", "tokens": 486, "issues": [], "correct": false}
+{"id": "sb-matter-48.2(a)", "model": "qwen3:8b", "output": "ANSWER: 11.4 \u00b5T\n", "tokens": 215, "issues": [], "correct": true}
+{"id": "sb-matter-10.1(a)", "model": "qwen3:8b", "output": "ANSWER: 0.4846\n", "tokens": 257, "issues": [], "correct": false}
+{"id": "sb-matter-81.11", "model": "qwen3:8b", "output": "ANSWER: 5 10^-2s\n", "tokens": 141, "issues": [], "correct": false}
+{"id": "sb-matter-78.6(a)", "model": "qwen3:8b", "output": "ANSWER: 0.05452 Pa\n", "tokens": 282, "issues": [], "correct": false}
+{"id": "sb-matter-73.4(a)", "model": "qwen3:8b", "output": "ANSWER: 22.4 kJ/mol\n", "tokens": 147, "issues": [], "correct": false}
+{"id": "sb-matter-11.5", "model": "qwen3:8b", "output": "ANSWER: 1.168 nm\n", "tokens": 438, "issues": [], "correct": false}
+{"id": "sb-matter-4.8(a)", "model": "qwen3:8b", "output": "ANSWER: 7.274 10^6ms^-1\n", "tokens": 197, "issues": [], "correct": true}
+{"id": "sb-matter-34.5", "model": "qwen3:8b", "output": "ANSWER: 0.1232\n", "tokens": 270, "issues": [], "correct": true}
+{"id": "sb-matter-52.4(a)", "model": "qwen3:8b", "output": "ANSWER: 3.634e+204 10^3\n", "tokens": 279, "issues": [], "correct": false}
+{"id": "sb-matter-66.1(a)", "model": "qwen3:8b", "output": "ANSWER: 16.58 J\n", "tokens": 169, "issues": [], "correct": false}
+{"id": "sb-matter-77.1(a)", "model": "qwen3:8b", "output": "ANSWER: 0.26 V\n", "tokens": 159, "issues": [], "correct": false}
+{"id": "sb-matter-78.11(a)", "model": "qwen3:8b", "output": "ANSWER: 0.3374 mg\n", "tokens": 247, "issues": [], "correct": false}
+{"id": "sb-matter-8.1(a)", "model": "qwen3:8b", "output": "ANSWER: 51.68 pm\n", "tokens": 215, "issues": [], "correct": true}
+{"id": "sb-matter-50.1", "model": "qwen3:8b", "output": "ANSWER: 2.799 10^13Hz\n", "tokens": 274, "issues": [], "correct": true}
+{"id": "sb-matter-2.1(a)", "model": "qwen3:8b", "output": "ANSWER: 39.69 mJ\n", "tokens": 145, "issues": [], "correct": false}
+{"id": "sb-matter-40.3", "model": "qwen3:8b", "output": "ANSWER: 4.357 10^3\n", "tokens": 240, "issues": [], "correct": true}
+{"id": "sb-matter-17.2(a)", "model": "qwen3:8b", "output": "ANSWER: 14.04 eV\n", "tokens": 275, "issues": [], "correct": true}
+{"id": "sb-matter-78.10(a)", "model": "qwen3:8b", "output": "ANSWER: 33.75 s\n", "tokens": 143, "issues": [], "correct": false}
+{"id": "sb-matter-52.10(a)", "model": "qwen3:8b", "output": "", "tokens": 347, "issues": ["timed out after 10s", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-57.5", "model": "qwen3:8b", "output": "ANSWER: -994.3 kJmol^-1\n", "tokens": 133, "issues": [], "correct": true}
+{"id": "sb-matter-66.1", "model": "qwen3:8b", "output": "ANSWER: -511.7 kJ/mol\n", "tokens": 281, "issues": [], "correct": true}
+{"id": "sb-matter-70.8(a)", "model": "qwen3:8b", "output": "ANSWER: -3.005e+04 gmol^-1\n", "tokens": 484, "issues": [], "correct": false}
+{"id": "sb-matter-60.3", "model": "qwen3:8b", "output": "ANSWER: 2.162e+25 Jmol^-1K^-1\n", "tokens": 612, "issues": [], "correct": false}
+{"id": "sb-matter-49.1(a)", "model": "qwen3:8b", "output": "", "tokens": 164, "issues": ["exit 1: SyntaxError: invalid decimal literal", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-18.1", "model": "qwen3:8b", "output": "ANSWER: 2.488e-08 pm\n", "tokens": 283, "issues": [], "correct": false}
+{"id": "sb-matter-64.5(a)", "model": "qwen3:8b", "output": "ANSWER: -5.657 kJ/mol\n", "tokens": 339, "issues": [], "correct": false}
+{"id": "sb-matter-69.9(a)", "model": "qwen3:8b", "output": "ANSWER: -7.354e+08 K\n", "tokens": 281, "issues": [], "correct": false}
+{"id": "sb-matter-51.4(a)", "model": "qwen3:8b", "output": "ANSWER: 2.608e+08 K\n", "tokens": 270, "issues": [], "correct": false}
+{"id": "sb-matter-36.3(a)", "model": "qwen3:8b", "output": "ANSWER: 11.74 cm\u00b3\n", "tokens": 194, "issues": [], "correct": false}
+{"id": "sb-matter-11.3", "model": "qwen3:8b", "output": "ANSWER: 0.5389 \u00b5m\n", "tokens": 396, "issues": [], "correct": false}
+{"id": "sb-matter-4.1", "model": "qwen3:8b", "output": "ANSWER: 540.2 nm\n", "tokens": 238, "issues": [], "correct": true}
+{"id": "sb-matter-36.1", "model": "qwen3:8b", "output": "ANSWER: 0.3647 dm\u00b3mol\u207b\u00b9\n", "tokens": 270, "issues": [], "correct": true}
+{"id": "sb-matter-17.1", "model": "qwen3:8b", "output": "ANSWER: -6.044 eV\n", "tokens": 111, "issues": [], "correct": true}
+{"id": "sb-matter-37.4", "model": "qwen3:8b", "output": "ANSWER: 225.6 pm\n", "tokens": 166, "issues": [], "correct": true}
+{"id": "sb-matter-1.1", "model": "qwen3:8b", "output": "ANSWER: 435 kPa\n", "tokens": 258, "issues": [], "correct": true}
+{"id": "sb-matter-14.1", "model": "qwen3:8b", "output": "ANSWER: 3991 GHz\n", "tokens": 225, "issues": [], "correct": false}
+{"id": "sb-matter-4.1", "model": "qwen3:8b", "output": "ANSWER: 2.08e-16 10^-16\n", "tokens": 254, "issues": [], "correct": false}
+{"id": "sb-matter-39.2", "model": "qwen3:8b", "output": "ANSWER: 5.96 K\n", "tokens": 116, "issues": [], "correct": true}
+{"id": "sb-matter-17.2", "model": "qwen3:8b", "output": "ANSWER: 8.226e+04 cm^-1\n", "tokens": 128, "issues": [], "correct": true}
+{"id": "sb-matter-48.2", "model": "qwen3:8b", "output": "ANSWER: 0 10^-5\n", "tokens": 58, "issues": [], "correct": false}
+{"id": "sb-quan-13.3", "model": "qwen3:8b", "output": "ANSWER: 1.827 eV\n", "tokens": 98, "issues": [], "correct": false}
+{"id": "sb-quan-1.3", "model": "qwen3:8b", "output": "ANSWER: 398.8 kJ/mol\n", "tokens": 209, "issues": [], "correct": true}
+{"id": "sb-quan-10.1", "model": "qwen3:8b", "output": "", "tokens": 154, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-13.5", "model": "qwen3:8b", "output": "ANSWER: 2.429 eV\n", "tokens": 326, "issues": [], "correct": true}
+{"id": "sb-quan-6.22", "model": "qwen3:8b", "output": "ANSWER: -268.6 eV\n", "tokens": 283, "issues": [], "correct": false}
+{"id": "sb-quan-6.29", "model": "qwen3:8b", "output": "ANSWER: 0\n", "tokens": 60, "issues": [], "correct": false}
+{"id": "sb-quan-11.22", "model": "qwen3:8b", "output": "ANSWER: 12\n", "tokens": 203, "issues": [], "correct": false}
+{"id": "sb-quan-17.9", "model": "qwen3:8b", "output": "ANSWER: 4.48e-22 kcal/mol\n", "tokens": 291, "issues": [], "correct": false}
+{"id": "sb-quan-2.13", "model": "qwen3:8b", "output": "ANSWER: 1.749 nm\n", "tokens": 294, "issues": [], "correct": true}
+{"id": "sb-quan-4.42", "model": "qwen3:8b", "output": "ANSWER: 0.2432\n", "tokens": 278, "issues": [], "correct": false}
+{"id": "sb-quan-1.6", "model": "qwen3:8b", "output": "ANSWER: 0.3324 nm\n", "tokens": 161, "issues": [], "correct": true}
+{"id": "sb-quan-10.2", "model": "qwen3:8b", "output": "ANSWER: 0 \u00b0\n", "tokens": 48, "issues": [], "correct": false}
+{"id": "sb-quan-17.29", "model": "qwen3:8b", "output": "ANSWER: 0.4046 kcal/mol\n", "tokens": 299, "issues": [], "correct": false}
+{"id": "sb-quan-14.35", "model": "qwen3:8b", "output": "ANSWER: -4.75 eV\n", "tokens": 89, "issues": [], "correct": false}
+{"id": "sb-quan-14.5", "model": "qwen3:8b", "output": "ANSWER: 7.632 eV\n", "tokens": 272, "issues": [], "correct": false}
+{"id": "sb-quan-16.1", "model": "qwen3:8b", "output": "ANSWER: 2.147e-19 10^28\n", "tokens": 196, "issues": [], "correct": false}
+{"id": "sb-quan-6.15", "model": "qwen3:8b", "output": "ANSWER: 2.805e-20 10^39\n", "tokens": 286, "issues": [], "correct": false}
+{"id": "sb-quan-1.13", "model": "qwen3:8b", "output": "ANSWER: 8.616e-05\n", "tokens": 199, "issues": [], "correct": false}
+{"id": "sb-quan-6.10", "model": "qwen3:8b", "output": "ANSWER: 278.1 GHz\n", "tokens": 267, "issues": [], "correct": false}
+{"id": "sb-quan-9.9", "model": "qwen3:8b", "output": "", "tokens": 556, "issues": ["exit 1: ZeroDivisionError: float division by zero", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-3.35", "model": "qwen3:8b", "output": "ANSWER: -1.392e+23 10^14s^-1\n", "tokens": 416, "issues": [], "correct": false}
+{"id": "sb-quan-15.57", "model": "qwen3:8b", "output": "ANSWER: 2.7 D\n", "tokens": 106, "issues": [], "correct": false}
+{"id": "sb-quan-16.3", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 159, "issues": [], "correct": true}
+{"id": "sb-quan-5.8", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 124, "issues": [], "correct": true}
+{"id": "sb-quan-1.31", "model": "qwen3:8b", "output": "ANSWER: 0.000405 kN\n", "tokens": 267, "issues": [], "correct": false}
+{"id": "sb-quan-2.13", "model": "qwen3:8b", "output": "ANSWER: 4.001\n", "tokens": 423, "issues": [], "correct": true}
+{"id": "sb-quan-2.11", "model": "qwen3:8b", "output": "ANSWER: 301838035928430414795898880 \n", "tokens": 288, "issues": [], "correct": false}
+{"id": "sb-quan-13.2", "model": "qwen3:8b", "output": "ANSWER: 432.1 kJ/mol\n", "tokens": 120, "issues": [], "correct": true}
+{"id": "sb-quan-15.39", "model": "qwen3:8b", "output": "ANSWER: 2.425 kJ/mol\n", "tokens": 280, "issues": [], "correct": false}
+{"id": "sb-quan-10.17", "model": "qwen3:8b", "output": "ANSWER: 0.9274 10^-23J/T\n", "tokens": 134, "issues": [], "correct": false}
+{"id": "sb-quan-14.29", "model": "qwen3:8b", "output": "ANSWER: 30 eV\n", "tokens": 112, "issues": [], "correct": false}
+{"id": "sb-quan-2.27", "model": "qwen3:8b", "output": "", "tokens": 375, "issues": ["exit 1: ValueError: math domain error", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-7.56", "model": "qwen3:8b", "output": "ANSWER: 1\n", "tokens": 121, "issues": [], "correct": false}
+{"id": "sb-quan-1.6.1_b", "model": "qwen3:8b", "output": "ANSWER: 0.4908\n", "tokens": 225, "issues": [], "correct": true}
+{"id": "sb-quan-6.6.1", "model": "qwen3:8b", "output": "ANSWER: -6.941e-50 eV\n", "tokens": 206, "issues": [], "correct": false}
+{"id": "sb-quan-6.6.3", "model": "qwen3:8b", "output": "ANSWER: 0.1376\n", "tokens": 156, "issues": [], "correct": false}
+{"id": "sb-quan-1.6.1_a", "model": "qwen3:8b", "output": "ANSWER: 4.978 1e-6\n", "tokens": 261, "issues": [], "correct": true}
+{"id": "sb-quan-2.6", "model": "qwen3:8b", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-5.1", "model": "qwen3:8b", "output": "ANSWER: 0.2821\n", "tokens": 67, "issues": [], "correct": true}
+{"id": "sb-quan-6.4", "model": "qwen3:8b", "output": "", "tokens": 271, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-4.3", "model": "qwen3:8b", "output": "ANSWER: 2.539e+07 kN\n", "tokens": 213, "issues": [], "correct": false}
+{"id": "sb-thermo-11.9", "model": "qwen3:8b", "output": "ANSWER: -131.1 kJ/mol\n", "tokens": 248, "issues": [], "correct": true}
+{"id": "sb-thermo-6.37", "model": "qwen3:8b", "output": "ANSWER: -0.008656 kJ/mol\n", "tokens": 120, "issues": [], "correct": false}
+{"id": "sb-thermo-1.1", "model": "qwen3:8b", "output": "ANSWER: 1.273 10^6\n", "tokens": 542, "issues": [], "correct": true}
+{"id": "sb-thermo-19.46", "model": "qwen3:8b", "output": "ANSWER: 5.455 \u00c5\n", "tokens": 364, "issues": [], "correct": false}
+{"id": "sb-thermo-5.4", "model": "qwen3:8b", "output": "ANSWER: 4.847 10^8J\n", "tokens": 161, "issues": [], "correct": true}
+{"id": "sb-thermo-8.14", "model": "qwen3:8b", "output": "ANSWER: 623.9 Pa\n", "tokens": 197, "issues": [], "correct": false}
+{"id": "sb-thermo-15.22", "model": "qwen3:8b", "output": "ANSWER: 5246 Jmol\u207b\u00b9K\u207b\u00b9\n", "tokens": 197, "issues": [], "correct": false}
+{"id": "sb-thermo-17.1", "model": "qwen3:8b", "output": "ANSWER: 125.6 nm^2\n", "tokens": 213, "issues": [], "correct": false}
+{"id": "sb-thermo-4.15", "model": "qwen3:8b", "output": "ANSWER: -6.498 10^3J\u00b0C^-1\n", "tokens": 331, "issues": [], "correct": false}
+{"id": "sb-thermo-18.37", "model": "qwen3:8b", "output": "ANSWER: 1.002\n", "tokens": 116, "issues": [], "correct": false}
+{"id": "sb-thermo-17.21", "model": "qwen3:8b", "output": "ANSWER: 1.533e+05 s\n", "tokens": 456, "issues": [], "correct": false}
+{"id": "sb-thermo-10.23", "model": "qwen3:8b", "output": "ANSWER: 7.181e-21 nm\n", "tokens": 237, "issues": [], "correct": false}
+{"id": "sb-thermo-2.13", "model": "qwen3:8b", "output": "ANSWER: 300 K\n", "tokens": 195, "issues": [], "correct": false}
+{"id": "sb-thermo-15.4", "model": "qwen3:8b", "output": "", "tokens": 408, "issues": ["exit 1: ZeroDivisionError: float division by zero", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-2.10", "model": "qwen3:8b", "output": "ANSWER: 0.4594 J\n", "tokens": 113, "issues": [], "correct": true}
+{"id": "sb-thermo-1.5", "model": "qwen3:8b", "output": "ANSWER: 31.96 %\n", "tokens": 322, "issues": [], "correct": true}
+{"id": "sb-thermo-1.6", "model": "qwen3:8b", "output": "ANSWER: 1.108 10^21\n", "tokens": 233, "issues": [], "correct": true}
+{"id": "sb-thermo-13.15", "model": "qwen3:8b", "output": "ANSWER: -4.152e+09 K\n", "tokens": 193, "issues": [], "correct": false}
+{"id": "sb-thermo-5.14", "model": "qwen3:8b", "output": "", "tokens": 0, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-17.15", "model": "qwen3:8b", "output": "ANSWER: 0.8065\n", "tokens": 208, "issues": [], "correct": false}
+{"id": "sb-thermo-18.39", "model": "qwen3:8b", "output": "ANSWER: 309.4 s\n", "tokens": 117, "issues": [], "correct": false}
+{"id": "sb-thermo-8.13", "model": "qwen3:8b", "output": "ANSWER: 32.28 atm\n", "tokens": 175, "issues": [], "correct": false}
+{"id": "sb-thermo-14.6", "model": "qwen3:8b", "output": "ANSWER: 1.608e-29 10^17\n", "tokens": 172, "issues": [], "correct": false}
+{"id": "sb-thermo-15.47", "model": "qwen3:8b", "output": "ANSWER: 0.0004619 1e-9\n", "tokens": 416, "issues": [], "correct": false}
+{"id": "sb-thermo-8.39", "model": "qwen3:8b", "output": "ANSWER: 1.506e-05 kPa\n", "tokens": 244, "issues": [], "correct": false}
+{"id": "sb-thermo-17.2", "model": "qwen3:8b", "output": "ANSWER: 7.855e-14 10^-5m^2s^-1\n", "tokens": 221, "issues": [], "correct": false}
+{"id": "sb-thermo-1.8", "model": "qwen3:8b", "output": "ANSWER: 37.95 L\n", "tokens": 231, "issues": [], "correct": true}
+{"id": "sb-thermo-8.7", "model": "qwen3:8b", "output": "ANSWER: 2.927 nJ\n", "tokens": 207, "issues": [], "correct": true}
+{"id": "sb-thermo-3.6", "model": "qwen3:8b", "output": "ANSWER: 93.45 bar\n", "tokens": 203, "issues": [], "correct": true}
+{"id": "sb-thermo-12.32", "model": "qwen3:8b", "output": "ANSWER: 1.55 10^4m\n", "tokens": 310, "issues": [], "correct": true}
+{"id": "sb-thermo-4.33", "model": "qwen3:8b", "output": "ANSWER: 41.53 g\n", "tokens": 322, "issues": [], "correct": false}
+{"id": "sb-thermo-9.8", "model": "qwen3:8b", "output": "ANSWER: 169.7 Torr\n", "tokens": 165, "issues": [], "correct": true}
+{"id": "sb-thermo-15.45", "model": "qwen3:8b", "output": "ANSWER: -49.18 kJmol^-1\n", "tokens": 348, "issues": [], "correct": false}
+{"id": "sb-thermo-6.12", "model": "qwen3:8b", "output": "ANSWER: 132 kJ/mol\n", "tokens": 269, "issues": [], "correct": true}
+{"id": "sb-thermo-10.6", "model": "qwen3:8b", "output": "ANSWER: 0.02398\n", "tokens": 77, "issues": [], "correct": false}
+{"id": "sb-thermo-8.43", "model": "qwen3:8b", "output": "ANSWER: 1777 \u00b0C\n", "tokens": 382, "issues": [], "correct": false}
+{"id": "sb-thermo-9.22", "model": "qwen3:8b", "output": "ANSWER: 72.3 L\n", "tokens": 471, "issues": [], "correct": false}
+{"id": "sb-thermo-16.15", "model": "qwen3:8b", "output": "ANSWER: 0\n", "tokens": 265, "issues": [], "correct": false}
+{"id": "sb-thermo-1.3", "model": "qwen3:8b", "output": "ANSWER: 26.92 bar\n", "tokens": 186, "issues": [], "correct": true}
+{"id": "sb-thermo-8.25", "model": "qwen3:8b", "output": "ANSWER: 4.393 K\n", "tokens": 289, "issues": [], "correct": false}
+{"id": "sb-thermo-9.24", "model": "qwen3:8b", "output": "ANSWER: 0.4662\n", "tokens": 490, "issues": [], "correct": true}
+{"id": "sb-thermo-5.42", "model": "qwen3:8b", "output": "ANSWER: 19.36 m\u00b2\n", "tokens": 221, "issues": [], "correct": true}
+{"id": "sb-thermo-2.4", "model": "qwen3:8b", "output": "ANSWER: 15.24 g\n", "tokens": 131, "issues": [], "correct": true}
+{"id": "sb-thermo-6.30", "model": "qwen3:8b", "output": "", "tokens": 358, "issues": ["import not allowed: scipy.optimize", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-6.20", "model": "qwen3:8b", "output": "ANSWER: 9537 kJ\n", "tokens": 89, "issues": [], "correct": false}
+{"id": "sb-thermo-16.30", "model": "qwen3:8b", "output": "ANSWER: 0.001232 10^34 m^-3 s^-1\n", "tokens": 435, "issues": [], "correct": false}
+{"id": "sb-thermo-9.9", "model": "qwen3:8b", "output": "ANSWER: 1.5\n", "tokens": 87, "issues": [], "correct": false}
+{"id": "sb-thermo-9.7", "model": "qwen3:8b", "output": "ANSWER: 1.458 10^3 g mol^-1\n", "tokens": 313, "issues": [], "correct": true}
+{"id": "sb-thermo-7.4", "model": "qwen3:8b", "output": "ANSWER: 310 K\n", "tokens": 145, "issues": [], "correct": true}
+{"id": "sb-thermo-5.33", "model": "qwen3:8b", "output": "ANSWER: 866.1 W\n", "tokens": 215, "issues": [], "correct": false}
+{"id": "sb-thermo-4.34", "model": "qwen3:8b", "output": "ANSWER: 1949\n", "tokens": 162, "issues": [], "correct": false}
+{"id": "sb-thermo-18.14", "model": "qwen3:8b", "output": "ANSWER: 7.41e-15 10^24\n", "tokens": 263, "issues": [], "correct": false}
+{"id": "sb-thermo-10.13", "model": "qwen3:8b", "output": "ANSWER: 0.227 molkg\u207b\u00b9\n", "tokens": 146, "issues": [], "correct": false}
+{"id": "sb-thermo-5.17", "model": "qwen3:8b", "output": "ANSWER: 0.4138\n", "tokens": 228, "issues": [], "correct": false}
+{"id": "sb-thermo-14.16", "model": "qwen3:8b", "output": "ANSWER: 4.123e+140\n", "tokens": 392, "issues": [], "correct": false}
+{"id": "sb-thermo-15.2", "model": "qwen3:8b", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-6.10", "model": "qwen3:8b", "output": "ANSWER: 1.114e+10 10^6\n", "tokens": 280, "issues": [], "correct": false}
+{"id": "sb-thermo-2.5", "model": "qwen3:8b", "output": "ANSWER: 0.03002 m\n", "tokens": 304, "issues": [], "correct": false}
+{"id": "sb-thermo-13.22", "model": "qwen3:8b", "output": "ANSWER: 4.32 K\n", "tokens": 221, "issues": [], "correct": false}
+{"id": "sb-thermo-5.5", "model": "qwen3:8b", "output": "ANSWER: 0.7621 K^-1\n", "tokens": 248, "issues": [], "correct": false}
+{"id": "sb-thermo-3.5", "model": "qwen3:8b", "output": "ANSWER: 273 K\n", "tokens": 382, "issues": [], "correct": false}
+{"id": "sb-thermo-4.4", "model": "qwen3:8b", "output": "ANSWER: 90.4 kJ/mol\n", "tokens": 326, "issues": [], "correct": true}
+{"id": "sb-thermo-13.27", "model": "qwen3:8b", "output": "ANSWER: 15.15 10^4 K\n", "tokens": 142, "issues": [], "correct": false}
+{"id": "sb-thermo-14.5", "model": "qwen3:8b", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-11.25", "model": "qwen3:8b", "output": "", "tokens": 447, "issues": ["exit 1: SyntaxError: invalid character '\u00b0' (U+00B0)", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-9.5", "model": "qwen3:8b", "output": "ANSWER: 327.3 cm\u00b3\n", "tokens": 195, "issues": [], "correct": false}
+{"id": "sb-thermo-5.6", "model": "qwen3:8b", "output": "ANSWER: 58.16 J/K\n", "tokens": 313, "issues": [], "correct": true}
+{"id": "sb-thermo-15.2", "model": "qwen3:8b", "output": "ANSWER: 181.1 K\n", "tokens": 375, "issues": [], "correct": false}
+{"id": "sb-thermo-17.9", "model": "qwen3:8b", "output": "ANSWER: 2.268e+10 nm\n", "tokens": 263, "issues": [], "correct": false}
+{"id": "sb-thermo-15.5", "model": "qwen3:8b", "output": "ANSWER: 146.3 Jmol^-1K^-1\n", "tokens": 68, "issues": [], "correct": true}
+{"id": "sb-thermo-18.4", "model": "qwen3:8b", "output": "ANSWER: 4.854e+11 s\n", "tokens": 209, "issues": [], "correct": false}
+{"id": "sb-thermo-18.4", "model": "qwen3:8b", "output": "ANSWER: 4.854e+11 s\n", "tokens": 209, "issues": [], "correct": false}
+{"id": "sb-thermo-17.1", "model": "qwen3:8b", "output": "ANSWER: 2.08e-33e-5 m\u00b2/s\n", "tokens": 274, "issues": [], "correct": false}
+{"id": "sb-thermo-17.7", "model": "qwen3:8b", "output": "ANSWER: 2806 10^6s\n", "tokens": 436, "issues": [], "correct": false}
+{"id": "sb-thermo-13.5", "model": "qwen3:8b", "output": "ANSWER: 0.04909\n", "tokens": 252, "issues": [], "correct": false}
+{"id": "sb-thermo-6.4", "model": "qwen3:8b", "output": "ANSWER: 355.1 kJmol\u207b\u00b9\n", "tokens": 209, "issues": [], "correct": true}
+{"id": "sb-thermo-19.6", "model": "qwen3:8b", "output": "ANSWER: 0.3959\n", "tokens": 291, "issues": [], "correct": true}
+{"id": "sb-thermo-5.5", "model": "qwen3:8b", "output": "ANSWER: 48.55 J/K\n", "tokens": 362, "issues": [], "correct": true}
+{"id": "sb-thermo-5.4", "model": "qwen3:8b", "output": "ANSWER: 24.43 J/K\n", "tokens": 348, "issues": [], "correct": true}
+{"id": "sb-thermo-11.3", "model": "qwen3:8b", "output": "ANSWER: 0.324 V\n", "tokens": 156, "issues": [], "correct": false}
+{"id": "sb-thermo-6.13", "model": "qwen3:8b", "output": "ANSWER: 0.8508 10^4bar\n", "tokens": 402, "issues": [], "correct": false}
+{"id": "sb-thermo-12.8", "model": "qwen3:8b", "output": "ANSWER: 0.1123\n", "tokens": 111, "issues": [], "correct": true}
+{"id": "sb-thermo-14.4", "model": "qwen3:8b", "output": "ANSWER: 2.687e-29 K\n", "tokens": 261, "issues": [], "correct": false}

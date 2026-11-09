@@ -19,22 +19,18 @@ fits (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 Public (2026-11-05): https://github.com/ro-rbl/plm-orchestrator and
 https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals (see "Publishing" below).
 
-**Overnight 2026-11-08 (read first):**
-- Fusion: FUSE_RULE says don't build `/fuse` (fusion 18/40 = CAD alone 18/40; perfect hand-off 32/40; the numeric
-  packs' calculations were right 23/40). See "Pack fusion" below for two hypotheses.
-- Follow-up questions shipped (server + interactive `plm`); routing right, but one live answer repeated the
-  original. See "Follow-ups" under Known bugs.
-- Physics routing attempt 1: 27/30 vs the 28 required: not shipped; diff in `docs/attempts/`.
-- SQL tables-flag plural fix: checked on seen answers first, moves scores by at most 1: no run, left as is.
-- New: units asked as symbols ("in m/s") aren't read, so those answers go unchecked (Known bugs).
-- The user's assistant re-pins `qwen3:8b`; overnight runs used `results/fusion_supervisor.sh` (waits for AC,
-  unpins). Turn the assistant back on: `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.ro.assistant.plist`.
-- 2026-11-08 day: the full-screen interface is built (`plm/tui.py`, extra `plm-core[tui]`, `evals/test_tui.py`),
-  from `mockups/tui.html`. Not yet: live step-by-step progress (packs report when done; a spinner shows meanwhile),
-  inline images (macOS Terminal can't; ctrl+p opens the part in Quick Look), more `/` commands (user wants to
-  discuss), fusion's multi-pack lighting. Needs a release (plm-core 0.1.3) to reach PyPI users.
-- Waiting on the user: PyPI upload of plm-physics/software/sql + plm-core 0.1.2 (Sunday 2026-11-08 after 23:00),
-  the TUI build from `mockups/tui.html`, slash commands.
+**Night of 2026-11-08 to 09 (read first):** all runs done by 05:09 (supervisor, assistant left on; coder and 4B
+unloaded at the end). Three rules, each committed before any answer:
+- **Fusion round 3 (coder computes), FUSE3_RULE: don't build.** fusion 22/40 vs CAD alone 17/40 (+5, paired 95%
+  -4 to +14); calculations 25/40; perfect hand-off 34/40. Across rounds fusion trends ahead but never clearly; the
+  bottleneck stays the calculation step. `results/fusion_round3_code.*`.
+- **Follow-up answers, FOLLOWUP_ANSWER_RULE: keep today's wording.** A 27/36, rewrite-first B 31/36 (+4, -2 to
+  +10), B costs 48% more tokens. A misses fa-01 ("now for 200 ohm"), 04, 07, 13, 15, 17, 21, 28, 36. `results/followup_*`.
+- **Unit check round 2, UNITS2_RULE: shipped.** `plm/numeric/expected.py` now drives the numeric packs' check and
+  "checked" flag: units asked as symbols ("in m/s") and the quantity asked ("What is the voltage?") count. On 698
+  fresh SciBench answers: 10 wrong newly caught, 1 right falsely flagged (limit 1.3). Routing unchanged. Gap: "in
+  cm^-1" isn't read as a symbol. Needs a plm-core release (0.1.3) to reach PyPI users.
+- PyPI: all seven packages up (see Publishing).
 
 Suggested order for the next session:
 1. **SQL flags are built** (2026-10-30): `plm --sql-db <file>` / `PLM_SQL_DB`. Live on four Spider test

@@ -1,0 +1,349 @@
+{"id": "sb-atkins-e1.17(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 50.68 atm\n", "tokens": 164, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.21(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 33.5 kJ/mol\n", "tokens": 299, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.19(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.281 kJmol^-1\n", "tokens": 199, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.1(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 200 J/K\n", "tokens": 118, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.4(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0\n", "tokens": 95, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.24(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -1368 kJmol^-1\n", "tokens": 266, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.6821 kJ\n", "tokens": 361, "issues": ["asked for a unitless number, got 'kJ'"], "correct": false}
+{"id": "sb-atkins-e1.11(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1687 gmol^-1\n", "tokens": 158, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.5(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1838 J\n", "tokens": 525, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.7(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.1283 kJ\n", "tokens": 320, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.31(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7958 Jmol^-1\n", "tokens": 229, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.21", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.0006451 kJ\n", "tokens": 381, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.2(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 157 J/K/mol\n", "tokens": 249, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.9(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 131.3 K\n", "tokens": 270, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.1(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 91.52 J/K\n", "tokens": 115, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.3(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 684.1 kJ\n", "tokens": 551, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.45(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e1.15(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.203 dm\u00b3/mol\n", "tokens": 247, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.9(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 6.18 kg\n", "tokens": 298, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.19", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-p3.17(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.13 kJ/mol\n", "tokens": 728, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.7(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 87.79 J/K\n", "tokens": 140, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.23(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 852.9 kJ/mol\n", "tokens": 477, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.11(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 36.75 K\n", "tokens": 102, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.19(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.679e+06 nm\n", "tokens": 230, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.7(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.08779 J/K\n", "tokens": 131, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -233.33333333333334 \u00b0N\n", "tokens": 231, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.15(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.88\n", "tokens": 126, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.16(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4988 J\n", "tokens": 255, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.18(a)(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.003 atm\n", "tokens": 172, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.13(a)(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0\n", "tokens": 252, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.45(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0 K\n", "tokens": 275, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.15(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3838\n", "tokens": 120, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.23", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.001e-05\n", "tokens": 270, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.6(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -20.27 J\n", "tokens": 416, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.30(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.7097 Katm^-1\n", "tokens": 170, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.32(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.337e-06 K^-1\n", "tokens": 104, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.9(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.702 kJ/mol\n", "tokens": 251, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 27.58 lb/in\u00b2\n", "tokens": 157, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.17(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 89.7 atm\n", "tokens": 342, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.20(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.493e+06 nm\n", "tokens": 407, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.4(a)(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.125 kJ\n", "tokens": 125, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.7(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 12.89 J/K/mol\n", "tokens": 358, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.12(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e3.6(a)(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.621e+04 J\n", "tokens": 855, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.6(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 103.6 kPa\n", "tokens": 282, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.9(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 17.69 kJ/mol\n", "tokens": 262, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.15(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1072\n", "tokens": 89, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.16(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 140.5 atm\n", "tokens": 332, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.17(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 239.7 kJmol^-1\n", "tokens": 166, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.5(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -87.99 J\n", "tokens": 219, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.27(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.803\n", "tokens": 144, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.11(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1353 dm\u00b3/mol\n", "tokens": 389, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.6(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0 unitless\n", "tokens": 276, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.4(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 18.41\n", "tokens": 259, "issues": [], "correct": false}
+{"id": "sb-atkins-p3.35", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2646 atm\n", "tokens": 760, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.14(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.35e+04 kJmol^-1\n", "tokens": 227, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.17(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 228 kJmol^-1\n", "tokens": 164, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.6(a)(e)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-p1.11(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e1.14(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.61e-14 kgm^5s^-2mol^-2\n", "tokens": 239, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.21(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.003e+04 kJ\n", "tokens": 233, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.11(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0006953\n", "tokens": 454, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.18(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 15.08 kJ\n", "tokens": 308, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.12(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -84.84 \u00b0C\n", "tokens": 335, "issues": ["degC answer must be positive, got -84.84"], "correct": false}
+{"id": "sb-atkins-e1.22(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -1.512 m^3 mol^-1\n", "tokens": 277, "issues": ["asked for a unitless number, got 'm^3 mol^-1'"], "correct": false}
+{"id": "sb-atkins-p1.13(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 24.47 atm\n", "tokens": 163, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.13(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.88\n", "tokens": 181, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.5(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.925e+05 J\n", "tokens": 321, "issues": ["asked for a unitless number, got 'J'"], "correct": false}
+{"id": "sb-atkins-e1.2(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.377 atm\n", "tokens": 195, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.13(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 28.7 J/K\n", "tokens": 341, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.22(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 11.42 kJ\n", "tokens": 187, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.2(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.421 bar\n", "tokens": 140, "issues": [], "correct": true}
+{"id": "sb-atkins-e3.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 58.18 J/K\n", "tokens": 235, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.4(a)(d)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.125 kJ\n", "tokens": 146, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.4(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 42.16 atm\n", "tokens": 289, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.2(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 101.3 J\n", "tokens": 212, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.20(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 721.7 K\n", "tokens": 109, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.6(a)(d)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3518 K\n", "tokens": 320, "issues": [], "correct": false}
+{"id": "sb-atkins-p3.17(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -2.622e+04 kJmol^-1\n", "tokens": 638, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.1(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 24.42 atm\n", "tokens": 198, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.27(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.2708\n", "tokens": 216, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.5(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.139 kPa\n", "tokens": 131, "issues": [], "correct": true}
+{"id": "sb-atkins-p2.11(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.425 kg\n", "tokens": 152, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.5(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.02449 kPa\n", "tokens": 124, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.12(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 29.93464052287582 J/K/mol\n", "tokens": 91, "issues": [], "correct": false}
+{"id": "sb-atkins-e1.14(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.26e-05 m^3/mol\n", "tokens": 106, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.5(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.6046 m^3\n", "tokens": 362, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.17(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 36.5 J/K\n", "tokens": 199, "issues": [], "correct": false}
+{"id": "sb-atkins-p3.37", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 21.85 kJmol^-1\n", "tokens": 192, "issues": [], "correct": false}
+{"id": "sb-atkins-p1.31", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.25 atm\n", "tokens": 590, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.5(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0 J/K\n", "tokens": 232, "issues": [], "correct": false}
+{"id": "sb-atkins-p2.3(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.35 kJ\n", "tokens": 381, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.18(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -4063.3 kJ/mol\n", "tokens": 379, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.22(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -382.7 kJ/mol\n", "tokens": 355, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.10(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 380, "issues": ["exit 1: NameError: name 'T_initial' is not defined", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-e2.1(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2551 J\n", "tokens": 89, "issues": [], "correct": true}
+{"id": "sb-atkins-e1.1(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 21.5 atm\n", "tokens": 283, "issues": [], "correct": true}
+{"id": "sb-atkins-p1.5(c)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.02449 kPa\n", "tokens": 147, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.1(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 416.0 J\n", "tokens": 81, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.20(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.2542 K\n", "tokens": 154, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.11(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 21.75 kPa\n", "tokens": 151, "issues": [], "correct": true}
+{"id": "sb-atkins-e2.12(a)(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 21.62 J/K/mol\n", "tokens": 174, "issues": [], "correct": false}
+{"id": "sb-atkins-e3.20(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.8143 kJmol^-1\n", "tokens": 189, "issues": [], "correct": false}
+{"id": "sb-atkins-e2.23(a)(b)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1881 kJ/mol\n", "tokens": 835, "issues": [], "correct": false}
+{"id": "sb-atkins-2.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.2773 Pam^3mol^-1\n", "tokens": 483, "issues": [], "correct": true}
+{"id": "sb-atkins-1.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 369, "issues": ["exit 1: OverflowError: (34, 'Result too large')", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-20.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -171.8 kN\n", "tokens": 131, "issues": [], "correct": false}
+{"id": "sb-atkins-5.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -5.576 kJ\n", "tokens": 528, "issues": [], "correct": false}
+{"id": "sb-atkins-20.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 515.3 ms^-1\n", "tokens": 138, "issues": [], "correct": false}
+{"id": "sb-atkins-20.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.483e+08 kPa\n", "tokens": 448, "issues": [], "correct": false}
+{"id": "sb-atkins-8.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 223, "issues": ["exit 1: OverflowError: math range error", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-19.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 159.5 pm\n", "tokens": 190, "issues": [], "correct": false}
+{"id": "sb-atkins-19.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.2131 nm\n", "tokens": 169, "issues": [], "correct": true}
+{"id": "sb-atkins-12.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 299, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-atkins-6.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 83.05 kJmol^-1\n", "tokens": 269, "issues": [], "correct": true}
+{"id": "sb-atkins-5.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 44.97 kgmol^-1\n", "tokens": 477, "issues": [], "correct": false}
+{"id": "sb-atkins-7.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 6.132 10^-12m\n", "tokens": 334, "issues": [], "correct": true}
+{"id": "sb-atkins-2.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -239.3 kJ/mol\n", "tokens": 284, "issues": [], "correct": true}
+{"id": "sb-atkins-6.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 48.15 kJmol^-1\n", "tokens": 556, "issues": [], "correct": false}
+{"id": "sb-atkins-1.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 166.66666666666669 atm\n", "tokens": 103, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-38", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1226 nm\n", "tokens": 186, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-18", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.525e-19 J\n", "tokens": 157, "issues": [], "correct": false}
+{"id": "sb-chemmc-D-7", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.5\n", "tokens": 132, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-49", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 8.841e-38 10^-23s\n", "tokens": 198, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-17", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 5269 K\n", "tokens": 107, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1\n", "tokens": 87, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-40", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.08192 V\n", "tokens": 237, "issues": [], "correct": true}
+{"id": "sb-chemmc-5-9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 479 N*m^-1\n", "tokens": 146, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-25", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.945\n", "tokens": 297, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.741e14 Hz\n", "tokens": 201, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-47", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.055e-23 10^-23 kg*m*s^-1\n", "tokens": 196, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-34", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 54.4 eV\n", "tokens": 264, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-51", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.5273 J\n", "tokens": 180, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-28", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 91.16 nm\n", "tokens": 330, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-50", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 6.626e-50 10^-25 J\n", "tokens": 154, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-42", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2531 K\n", "tokens": 249, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.898 10^-10 m\n", "tokens": 142, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-21", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.5001\n", "tokens": 281, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3333\n", "tokens": 115, "issues": [], "correct": true}
+{"id": "sb-chemmc-D-4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.2492 %\n", "tokens": 70, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-30", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7\n", "tokens": 109, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-45", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0001389 mm\n", "tokens": 134, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-41", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.28 J/alpha-particle\n", "tokens": 174, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.066e16 photons\n", "tokens": 185, "issues": [], "correct": false}
+{"id": "sb-chemmc-5-14", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 393.3 cm^-1\n", "tokens": 254, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-11", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.988e-30 10^-15 J\n", "tokens": 175, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-37", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.5771246938854078e+82 10^17Hz\n", "tokens": 294, "issues": [], "correct": false}
+{"id": "sb-chemmc-5-10", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.007495 10^10 m^-1\n", "tokens": 218, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-44", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.012 mm\n", "tokens": 131, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-46", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.28941909030369006 10^7 m/s\n", "tokens": 269, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-14", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.006e-05e-5m\n", "tokens": 95, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-16", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.695e+06 10^15 photon*s^-1\n", "tokens": 245, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-7", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.115e+04 K\n", "tokens": 106, "issues": [], "correct": true}
+{"id": "sb-chemmc-1-26", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2\n", "tokens": 355, "issues": [], "correct": true}
+{"id": "sb-chemmc-5-12", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.256e-28 cm^-1\n", "tokens": 208, "issues": ["asked for a unitless number, got 'cm^-1'"], "correct": false}
+{"id": "sb-chemmc-5-13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 5.222e-25 N/m\n", "tokens": 340, "issues": [], "correct": false}
+{"id": "sb-chemmc-D-1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.001246 10^-3%\n", "tokens": 93, "issues": [], "correct": false}
+{"id": "sb-chemmc-1-39", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.602 J/electron\n", "tokens": 140, "issues": [], "correct": true}
+{"id": "sb-chemmc-1.1_3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.1476743179017717e+38 10^14Hz\n", "tokens": 211, "issues": [], "correct": false}
+{"id": "sb-chemmc-1.1_11", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 242.5 pm\n", "tokens": 180, "issues": [], "correct": true}
+{"id": "sb-chemmc-E.E_4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -2\n", "tokens": 340, "issues": [], "correct": true}
+{"id": "sb-chemmc-9.9_4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.7071\n", "tokens": 164, "issues": [], "correct": true}
+{"id": "sb-chemmc-11.11_11", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.7071\n", "tokens": 322, "issues": [], "correct": true}
+{"id": "sb-chemmc-5.5_12", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1\n", "tokens": 307, "issues": [], "correct": false}
+{"id": "sb-chemmc-6.6_2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0001337 pm\n", "tokens": 318, "issues": [], "correct": false}
+{"id": "sb-chemmc-9.9_1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 27.21 eV\n", "tokens": 255, "issues": [], "correct": true}
+{"id": "sb-chemmc-3.3_6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.5\n", "tokens": 262, "issues": [], "correct": true}
+{"id": "sb-matter-37.7(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.2813 degrees\n", "tokens": 193, "issues": [], "correct": false}
+{"id": "sb-matter-55.4(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 75.99 J\n", "tokens": 194, "issues": [], "correct": false}
+{"id": "sb-matter-69.2(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.16666666666666669 Jmol^-1\n", "tokens": 126, "issues": [], "correct": false}
+{"id": "sb-matter-69.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 234.3 K\n", "tokens": 399, "issues": [], "correct": true}
+{"id": "sb-matter-11.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 8.74e-19 10^3K\n", "tokens": 306, "issues": [], "correct": false}
+{"id": "sb-matter-66.5(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.919e+06 kJ\n", "tokens": 224, "issues": [], "correct": false}
+{"id": "sb-matter-39.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.542 eV\n", "tokens": 186, "issues": [], "correct": true}
+{"id": "sb-matter-37.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.5907538029715532e-28 10^5 g mol^-1\n", "tokens": 305, "issues": [], "correct": false}
+{"id": "sb-matter-2.7(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 288, "issues": ["exit 1: ValueError: math domain error", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-56.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.649e+05 kJmol^-1\n", "tokens": 440, "issues": [], "correct": false}
+{"id": "sb-matter-5.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.004\n", "tokens": 182, "issues": [], "correct": false}
+{"id": "sb-matter-57.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -2127 kJ/mol\n", "tokens": 348, "issues": [], "correct": false}
+{"id": "sb-matter-9.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 243, "issues": ["exit 1: TypeError: prob_density() missing 1 required positional argument: 'L'", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-38.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.655e-24 gcm^-3\n", "tokens": 265, "issues": [], "correct": false}
+{"id": "sb-matter-40.7(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1118 m\n", "tokens": 219, "issues": [], "correct": false}
+{"id": "sb-matter-35.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 493, "issues": ["exit 1: SyntaxError: invalid character '\u00d7' (U+00D7)", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-36.6(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 140.2 atm\n", "tokens": 324, "issues": [], "correct": true}
+{"id": "sb-matter-48.2(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.681e+10 \u00b5T\n", "tokens": 315, "issues": [], "correct": false}
+{"id": "sb-matter-10.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 347, "issues": ["exit 1: ValueError: math domain error", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-81.11", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.5 10^-2s\n", "tokens": 119, "issues": [], "correct": false}
+{"id": "sb-matter-78.6(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.78e-24 Pa\n", "tokens": 315, "issues": [], "correct": false}
+{"id": "sb-matter-73.4(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 22.4 kJmol^-1\n", "tokens": 196, "issues": [], "correct": false}
+{"id": "sb-matter-11.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.168 nm\n", "tokens": 298, "issues": [], "correct": false}
+{"id": "sb-matter-4.8(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.274 10^6ms^-1\n", "tokens": 359, "issues": [], "correct": true}
+{"id": "sb-matter-34.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1232\n", "tokens": 313, "issues": [], "correct": true}
+{"id": "sb-matter-52.4(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3.485e+48\n", "tokens": 364, "issues": [], "correct": false}
+{"id": "sb-matter-66.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 16.58 J\n", "tokens": 179, "issues": [], "correct": false}
+{"id": "sb-matter-77.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 153, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-78.11(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.01948 mg\n", "tokens": 298, "issues": [], "correct": false}
+{"id": "sb-matter-8.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 51.76 pm\n", "tokens": 296, "issues": [], "correct": true}
+{"id": "sb-matter-50.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.76e-05 10^13Hz\n", "tokens": 195, "issues": [], "correct": false}
+{"id": "sb-matter-2.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 39.69 mJ\n", "tokens": 166, "issues": [], "correct": false}
+{"id": "sb-matter-40.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.357\n", "tokens": 250, "issues": [], "correct": true}
+{"id": "sb-matter-17.2(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 14.06 eV\n", "tokens": 259, "issues": [], "correct": true}
+{"id": "sb-matter-78.10(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 537.9 s\n", "tokens": 173, "issues": [], "correct": true}
+{"id": "sb-matter-52.10(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-57.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -44.44 kJ/mol\n", "tokens": 379, "issues": [], "correct": false}
+{"id": "sb-matter-66.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -792.5 kJmol^-1\n", "tokens": 327, "issues": [], "correct": false}
+{"id": "sb-matter-70.8(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1037 gmol^-1\n", "tokens": 318, "issues": [], "correct": false}
+{"id": "sb-matter-60.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 5.763 Jmol^-1K^-1\n", "tokens": 403, "issues": [], "correct": false}
+{"id": "sb-matter-49.1(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.2e+10 10^-4 T\n", "tokens": 208, "issues": [], "correct": false}
+{"id": "sb-matter-18.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 173, "issues": ["exit 1: SyntaxError: invalid syntax", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-64.5(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3433 kJmol^-1\n", "tokens": 527, "issues": [], "correct": false}
+{"id": "sb-matter-69.9(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 256.9 K\n", "tokens": 490, "issues": [], "correct": false}
+{"id": "sb-matter-51.4(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 523.9 K\n", "tokens": 260, "issues": [], "correct": true}
+{"id": "sb-matter-36.3(a)", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 8685 cm\u00b3\n", "tokens": 189, "issues": [], "correct": false}
+{"id": "sb-matter-11.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0001633 \u00b5m\n", "tokens": 497, "issues": [], "correct": false}
+{"id": "sb-matter-4.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 540.2 nm\n", "tokens": 240, "issues": [], "correct": true}
+{"id": "sb-matter-36.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 369, "issues": ["exit 1: OverflowError: (34, 'Result too large')", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-17.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -6.044 eV\n", "tokens": 162, "issues": [], "correct": true}
+{"id": "sb-matter-37.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 159.5 pm\n", "tokens": 190, "issues": [], "correct": false}
+{"id": "sb-matter-1.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.435 kPa\n", "tokens": 182, "issues": [], "correct": false}
+{"id": "sb-matter-14.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.508e+04 GHz\n", "tokens": 245, "issues": [], "correct": false}
+{"id": "sb-matter-4.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.283e-17 \n", "tokens": 358, "issues": [], "correct": false}
+{"id": "sb-matter-39.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 6.829 K\n", "tokens": 121, "issues": [], "correct": false}
+{"id": "sb-matter-17.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 121, "issues": ["exit 1: TypeError: 'float' object is not callable", "no ANSWER line"], "correct": false}
+{"id": "sb-matter-48.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0\n", "tokens": 67, "issues": [], "correct": false}
+{"id": "sb-quan-13.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.827 eV\n", "tokens": 87, "issues": [], "correct": false}
+{"id": "sb-quan-1.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 399 kJ/mol\n", "tokens": 236, "issues": [], "correct": true}
+{"id": "sb-quan-10.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 5.273 10^-35Js\n", "tokens": 222, "issues": [], "correct": false}
+{"id": "sb-quan-13.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.429 eV\n", "tokens": 209, "issues": [], "correct": true}
+{"id": "sb-quan-6.22", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -537.1 eV\n", "tokens": 328, "issues": [], "correct": false}
+{"id": "sb-quan-6.29", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3\n", "tokens": 90, "issues": [], "correct": false}
+{"id": "sb-quan-11.22", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-17.9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.433e-17 kcal/mol\n", "tokens": 343, "issues": [], "correct": false}
+{"id": "sb-quan-2.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.638e-09 nm\n", "tokens": 283, "issues": [], "correct": false}
+{"id": "sb-quan-4.42", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.056\n", "tokens": 323, "issues": [], "correct": false}
+{"id": "sb-quan-1.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3322 nm\n", "tokens": 160, "issues": [], "correct": true}
+{"id": "sb-quan-10.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0 \u00b0\n", "tokens": 47, "issues": [], "correct": false}
+{"id": "sb-quan-17.29", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.005345 kcal/mol\n", "tokens": 296, "issues": [], "correct": false}
+{"id": "sb-quan-14.35", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.75 eV\n", "tokens": 168, "issues": [], "correct": false}
+{"id": "sb-quan-14.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.648 eV\n", "tokens": 268, "issues": [], "correct": false}
+{"id": "sb-quan-16.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.074e-19 10^28\n", "tokens": 287, "issues": [], "correct": false}
+{"id": "sb-quan-6.15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.269e+39 \n", "tokens": 269, "issues": [], "correct": false}
+{"id": "sb-quan-1.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0\n", "tokens": 319, "issues": [], "correct": false}
+{"id": "sb-quan-6.10", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 252.8 GHz\n", "tokens": 153, "issues": [], "correct": true}
+{"id": "sb-quan-9.9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -1.943e-16 10^-8 eV\n", "tokens": 878, "issues": [], "correct": false}
+{"id": "sb-quan-3.35", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.577 10^14 s^-1\n", "tokens": 469, "issues": [], "correct": true}
+{"id": "sb-quan-15.57", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.6 D\n", "tokens": 114, "issues": [], "correct": false}
+{"id": "sb-quan-16.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1\n", "tokens": 126, "issues": [], "correct": true}
+{"id": "sb-quan-5.8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.0\n", "tokens": 128, "issues": [], "correct": true}
+{"id": "sb-quan-1.31", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.002563 N\n", "tokens": 147, "issues": [], "correct": false}
+{"id": "sb-quan-2.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 338, "issues": ["exit 1: TypeError: 'float' object cannot be interpreted as an integer", "no ANSWER line"], "correct": false}
+{"id": "sb-quan-2.11", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 106e26\n", "tokens": 335, "issues": [], "correct": false}
+{"id": "sb-quan-13.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 432.1 kJ/mol\n", "tokens": 468, "issues": [], "correct": true}
+{"id": "sb-quan-15.39", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1418 kJ/mol\n", "tokens": 277, "issues": [], "correct": true}
+{"id": "sb-quan-10.17", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.9285 J/T\n", "tokens": 81, "issues": [], "correct": false}
+{"id": "sb-quan-14.29", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 10.0 eV\n", "tokens": 348, "issues": [], "correct": false}
+{"id": "sb-quan-2.27", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1487 nm\n", "tokens": 402, "issues": [], "correct": false}
+{"id": "sb-quan-7.56", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0\n", "tokens": 52, "issues": [], "correct": true}
+{"id": "sb-quan-1.6.1_b", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.4908\n", "tokens": 235, "issues": [], "correct": true}
+{"id": "sb-quan-6.6.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -2.261e+30 eV\n", "tokens": 238, "issues": [], "correct": false}
+{"id": "sb-quan-6.6.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3233\n", "tokens": 417, "issues": [], "correct": true}
+{"id": "sb-quan-1.6.1_a", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.97821e-06\n", "tokens": 275, "issues": [], "correct": false}
+{"id": "sb-quan-2.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -3.447 kJ\n", "tokens": 422, "issues": [], "correct": false}
+{"id": "sb-quan-5.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.2821\n", "tokens": 77, "issues": [], "correct": true}
+{"id": "sb-quan-6.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.368e+10 10^-10m\n", "tokens": 620, "issues": [], "correct": false}
+{"id": "sb-quan-4.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.064e-14 N/m\n", "tokens": 206, "issues": [], "correct": false}
+{"id": "sb-thermo-11.9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -2.142e+04 kJmol^-1\n", "tokens": 324, "issues": [], "correct": false}
+{"id": "sb-thermo-6.37", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.008687 kJmol^-1\n", "tokens": 156, "issues": [], "correct": false}
+{"id": "sb-thermo-1.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.644e+13 10^6\n", "tokens": 441, "issues": [], "correct": false}
+{"id": "sb-thermo-19.46", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -5.455 \u00c5\n", "tokens": 167, "issues": [], "correct": false}
+{"id": "sb-thermo-5.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.127218604651163 10^8J\n", "tokens": 160, "issues": [], "correct": false}
+{"id": "sb-thermo-8.14", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 624 Pa\n", "tokens": 113, "issues": [], "correct": false}
+{"id": "sb-thermo-15.22", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 28.6 Jmol^-1K^-1\n", "tokens": 110, "issues": [], "correct": false}
+{"id": "sb-thermo-17.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.246e+15 nm\n", "tokens": 391, "issues": [], "correct": false}
+{"id": "sb-thermo-4.15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-18.37", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.002\n", "tokens": 151, "issues": [], "correct": false}
+{"id": "sb-thermo-17.21", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-10.23", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.609e-06 nm\n", "tokens": 407, "issues": [], "correct": false}
+{"id": "sb-thermo-2.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 322.2 K\n", "tokens": 207, "issues": [], "correct": true}
+{"id": "sb-thermo-15.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 341, "issues": ["exit 1: TypeError: unsupported operand type(s) for -: 'float' and 'function'", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-2.10", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -4594 J\n", "tokens": 132, "issues": [], "correct": false}
+{"id": "sb-thermo-1.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 31.96 %\n", "tokens": 498, "issues": [], "correct": true}
+{"id": "sb-thermo-1.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.108 10^21\n", "tokens": 258, "issues": [], "correct": true}
+{"id": "sb-thermo-13.15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -0.4151 K\n", "tokens": 313, "issues": [], "correct": false}
+{"id": "sb-thermo-5.14", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -198.7 J/K\u00b7mol\n", "tokens": 201, "issues": [], "correct": true}
+{"id": "sb-thermo-17.15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.286\n", "tokens": 122, "issues": [], "correct": true}
+{"id": "sb-thermo-18.39", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -309.36140258006265 s\n", "tokens": 143, "issues": [], "correct": false}
+{"id": "sb-thermo-8.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.47 atm\n", "tokens": 81, "issues": [], "correct": false}
+{"id": "sb-thermo-14.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 266, "issues": ["exit 1: NameError: name 'h' is not defined", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-15.47", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0 10^-9\n", "tokens": 520, "issues": [], "correct": false}
+{"id": "sb-thermo-8.39", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.06639 Pa\n", "tokens": 245, "issues": [], "correct": false}
+{"id": "sb-thermo-17.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.779e-40 10^-5 m^2 s^-1\n", "tokens": 259, "issues": [], "correct": false}
+{"id": "sb-thermo-1.8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.882e+04 L\n", "tokens": 205, "issues": [], "correct": false}
+{"id": "sb-thermo-8.7", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.895 nJ\n", "tokens": 193, "issues": [], "correct": true}
+{"id": "sb-thermo-3.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1 bar\n", "tokens": 274, "issues": [], "correct": false}
+{"id": "sb-thermo-12.32", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-4.33", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 26.7 g\n", "tokens": 413, "issues": [], "correct": false}
+{"id": "sb-thermo-9.8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 169.67999999999998 Torr\n", "tokens": 140, "issues": [], "correct": true}
+{"id": "sb-thermo-15.45", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9.202 kJmol^-1\n", "tokens": 357, "issues": [], "correct": false}
+{"id": "sb-thermo-6.12", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 132.9 kJ/mol\n", "tokens": 397, "issues": [], "correct": true}
+{"id": "sb-thermo-10.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.02398\n", "tokens": 91, "issues": [], "correct": false}
+{"id": "sb-thermo-8.43", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 18.53 \u00b0C\n", "tokens": 934, "issues": [], "correct": false}
+{"id": "sb-thermo-9.22", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-16.15", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0\n", "tokens": 341, "issues": [], "correct": false}
+{"id": "sb-thermo-1.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 26.92 bar\n", "tokens": 366, "issues": [], "correct": true}
+{"id": "sb-thermo-8.25", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 4.393 K\n", "tokens": 281, "issues": [], "correct": false}
+{"id": "sb-thermo-9.24", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 441, "issues": ["exit 1: ZeroDivisionError: float division by zero", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-5.42", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1936 m\u00b2\n", "tokens": 243, "issues": [], "correct": false}
+{"id": "sb-thermo-2.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 15.24 g\n", "tokens": 125, "issues": [], "correct": true}
+{"id": "sb-thermo-6.30", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.5\n", "tokens": 562, "issues": [], "correct": false}
+{"id": "sb-thermo-6.20", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -9.537 kJ\n", "tokens": 206, "issues": [], "correct": true}
+{"id": "sb-thermo-16.30", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-9.9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3116\n", "tokens": 210, "issues": [], "correct": true}
+{"id": "sb-thermo-9.7", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.4584952150943398 10^3gmol^-1\n", "tokens": 369, "issues": [], "correct": true}
+{"id": "sb-thermo-7.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 68.41 K\n", "tokens": 199, "issues": [], "correct": false}
+{"id": "sb-thermo-5.33", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 772.9 W\n", "tokens": 237, "issues": [], "correct": true}
+{"id": "sb-thermo-4.34", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1805\n", "tokens": 144, "issues": [], "correct": false}
+{"id": "sb-thermo-18.14", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 7.41e-18 10^24\n", "tokens": 287, "issues": [], "correct": false}
+{"id": "sb-thermo-10.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.321 molkg^-1\n", "tokens": 351, "issues": [], "correct": true}
+{"id": "sb-thermo-5.17", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.5367835028120207\n", "tokens": 212, "issues": [], "correct": false}
+{"id": "sb-thermo-14.16", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-15.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 461, "issues": ["exit 1: OverflowError: math range error", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-6.10", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 238, "issues": ["exit 1: NameError: name 'delta_S' is not defined. Did you mean: 'delta_H'?", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-2.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 30.02 m\n", "tokens": 339, "issues": [], "correct": true}
+{"id": "sb-thermo-13.22", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 248, "issues": ["exit 1: NameError: name 'h' is not defined", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-5.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 1024, "issues": ["no code block", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-3.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 304.2 K\n", "tokens": 512, "issues": [], "correct": true}
+{"id": "sb-thermo-4.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.3892 kJ/mol\n", "tokens": 344, "issues": [], "correct": false}
+{"id": "sb-thermo-13.27", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -5.85\n", "tokens": 205, "issues": [], "correct": false}
+{"id": "sb-thermo-14.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 3386 K\n", "tokens": 238, "issues": [], "correct": false}
+{"id": "sb-thermo-11.25", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1428\n", "tokens": 494, "issues": [], "correct": false}
+{"id": "sb-thermo-9.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -5.684e-14 cm^3\n", "tokens": 439, "issues": [], "correct": false}
+{"id": "sb-thermo-5.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 86.94 J/K\n", "tokens": 243, "issues": [], "correct": false}
+{"id": "sb-thermo-15.2", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 475, "issues": ["exit 1: OverflowError: (34, 'Result too large')", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-17.9", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.0002341+0.0004054j nm\n", "tokens": 438, "issues": [], "correct": false}
+{"id": "sb-thermo-15.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 115.15 Jmol^-1K^-1\n", "tokens": 74, "issues": [], "correct": false}
+{"id": "sb-thermo-18.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -8.091e+09 s\n", "tokens": 278, "issues": [], "correct": false}
+{"id": "sb-thermo-18.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: -8.091e+09 s\n", "tokens": 278, "issues": [], "correct": false}
+{"id": "sb-thermo-17.1", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 8.389e-25 10^-5 m^2/s\n", "tokens": 570, "issues": [], "correct": false}
+{"id": "sb-thermo-17.7", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 42.54435553843507 1e6s\n", "tokens": 361, "issues": [], "correct": false}
+{"id": "sb-thermo-13.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1221\n", "tokens": 311, "issues": [], "correct": false}
+{"id": "sb-thermo-6.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 355.1 kJmol^-1\n", "tokens": 249, "issues": [], "correct": true}
+{"id": "sb-thermo-19.6", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 2.528\n", "tokens": 281, "issues": [], "correct": false}
+{"id": "sb-thermo-5.5", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 87.55 J/K\n", "tokens": 365, "issues": [], "correct": false}
+{"id": "sb-thermo-5.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 9811 J/K\n", "tokens": 341, "issues": [], "correct": false}
+{"id": "sb-thermo-11.3", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "", "tokens": 157, "issues": ["exit 1: SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?", "no ANSWER line"], "correct": false}
+{"id": "sb-thermo-6.13", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 1.507 10^4bar\n", "tokens": 631, "issues": [], "correct": true}
+{"id": "sb-thermo-12.8", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 0.1123\n", "tokens": 77, "issues": [], "correct": true}
+{"id": "sb-thermo-14.4", "model": "hf.co/bartowski/Qwen_Qwen3-4B-GGUF:Q4_K_M", "output": "ANSWER: 243.4 K\n", "tokens": 284, "issues": [], "correct": false}

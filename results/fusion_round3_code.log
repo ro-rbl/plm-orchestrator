@@ -1,0 +1,179 @@
+[supervisor 22:49] waiting for AC power
+[supervisor 22:54] waiting for AC power
+[supervisor 22:59] waiting for AC power
+[supervisor 23:04] waiting for AC power
+[supervisor 23:09] waiting for AC power
+[supervisor 23:14] waiting for AC power
+[supervisor 23:19] waiting for AC power
+[supervisor 23:24] waiting for AC power
+[supervisor 23:26] attempt 1: results/run_fusion_round3.sh (pid 12285)
+cad_alone  f3-01 wrong_size    
+cad_alone  f3-02 wrong_size    
+cad_alone  f3-03 wrong_size    
+cad_alone  f3-04 correct       
+cad_alone  f3-05 correct       
+cad_alone  f3-06 correct       
+cad_alone  f3-07 wrong_size    
+cad_alone  f3-08 wrong_size    
+cad_alone  f3-09 wrong_size    
+cad_alone  f3-10 correct       
+cad_alone  f3-11 correct       
+cad_alone  f3-12 correct       
+cad_alone  f3-13 wrong_size    
+cad_alone  f3-14 wrong_size    
+cad_alone  f3-15 wrong_size    
+cad_alone  f3-16 correct       
+cad_alone  f3-17 correct       
+cad_alone  f3-18 correct       
+cad_alone  f3-19 correct       
+cad_alone  f3-20 correct       
+cad_alone  f3-21 wrong_size    
+cad_alone  f3-22 correct       
+cad_alone  f3-23 correct       
+cad_alone  f3-24 correct       
+cad_alone  f3-25 wrong_size    
+cad_alone  f3-26 wrong_size    
+cad_alone  f3-27 wrong_size    
+cad_alone  f3-28 wrong_size    
+cad_alone  f3-29 wrong_size    
+cad_alone  f3-30 wrong_size    
+cad_alone  f3-31 no_part       
+cad_alone  f3-32 no_part       
+cad_alone  f3-33 no_part       
+cad_alone  f3-34 no_part       
+cad_alone  f3-35 wrong_size    
+cad_alone  f3-36 no_part       
+cad_alone  f3-37 correct       
+cad_alone  f3-38 correct       
+cad_alone  f3-39 correct       
+cad_alone  f3-40 wrong_size    
+fusion     f3-01 correct       
+fusion     f3-02 wrong_size    
+fusion     f3-03 wrong_size    
+fusion     f3-04 wrong_size    
+fusion     f3-05 wrong_size    
+fusion     f3-06 wrong_size    
+fusion     f3-07 correct       
+fusion     f3-08 correct       
+fusion     f3-09 correct       
+fusion     f3-10 correct       
+fusion     f3-11 correct       
+fusion     f3-12 correct       
+fusion     f3-13 correct       
+fusion     f3-14 correct       
+fusion     f3-15 correct       
+fusion     f3-16 correct       
+fusion     f3-17 correct       
+fusion     f3-18 correct       
+fusion     f3-19 wrong_size    
+fusion     f3-20 wrong_size    
+fusion     f3-21 wrong_size    
+fusion     f3-22 wrong_volume  
+fusion     f3-23 wrong_volume  
+fusion     f3-24 wrong_volume  
+fusion     f3-25 wrong_size    
+fusion     f3-26 wrong_size    
+fusion     f3-27 wrong_size    
+fusion     f3-28 correct       
+fusion     f3-29 correct       
+fusion     f3-30 correct       
+fusion     f3-31 bad_calc      no answer
+fusion     f3-32 correct       
+fusion     f3-33 correct       
+fusion     f3-34 wrong_size    
+fusion     f3-35 wrong_size    
+fusion     f3-36 wrong_size    
+fusion     f3-37 correct       
+fusion     f3-38 correct       
+fusion     f3-39 correct       
+fusion     f3-40 correct       
+oracle     f3-01 correct       
+oracle     f3-02 correct       
+oracle     f3-03 correct       
+oracle     f3-04 correct       
+oracle     f3-05 correct       
+oracle     f3-06 correct       
+oracle     f3-07 correct       
+oracle     f3-08 correct       
+oracle     f3-09 correct       
+oracle     f3-10 correct       
+oracle     f3-11 correct       
+oracle     f3-12 correct       
+oracle     f3-13 correct       
+oracle     f3-14 correct       
+oracle     f3-15 correct       
+oracle     f3-16 correct       
+oracle     f3-17 correct       
+oracle     f3-18 correct       
+oracle     f3-19 correct       
+oracle     f3-20 correct       
+oracle     f3-21 correct       
+oracle     f3-22 wrong_volume  
+oracle     f3-23 wrong_volume  
+oracle     f3-24 wrong_volume  
+oracle     f3-25 wrong_size    
+oracle     f3-26 wrong_size    
+oracle     f3-27 wrong_size    
+oracle     f3-28 correct       
+oracle     f3-29 correct       
+oracle     f3-30 correct       
+oracle     f3-31 correct       
+oracle     f3-32 correct       
+oracle     f3-33 correct       
+oracle     f3-34 correct       
+oracle     f3-35 correct       
+oracle     f3-36 correct       
+oracle     f3-37 correct       
+oracle     f3-38 correct       
+oracle     f3-39 correct       
+oracle     f3-40 correct       
+round3.jsonl, results fusion_round3_code.jsonl
+problem cad_alone     fusion        oracle        plan pack / calc
+f3-01   wrong_size    correct       correct       physics / ok
+f3-02   wrong_size    wrong_size    correct       physics / -
+f3-03   wrong_size    wrong_size    correct       physics / 0.002
+f3-04   correct       wrong_size    correct       physics / 25000.0
+f3-05   correct       wrong_size    correct       physics / 22500.0
+f3-06   correct       wrong_size    correct       physics / 75000.0
+f3-07   wrong_size    correct       correct       electrical / ok
+f3-08   wrong_size    correct       correct       electrical / ok
+f3-09   wrong_size    correct       correct       electrical / ok
+f3-10   correct       correct       correct       physics / ok
+f3-11   correct       correct       correct       physics / ok
+f3-12   correct       correct       correct       physics / ok
+f3-13   wrong_size    correct       correct       physics / ok
+f3-14   wrong_size    correct       correct       physics / ok
+f3-15   wrong_size    correct       correct       physics / ok
+f3-16   correct       correct       correct       physics / ok
+f3-17   correct       correct       correct       physics / ok
+f3-18   correct       correct       correct       physics / ok
+f3-19   correct       wrong_size    correct       physics / 2000.0
+f3-20   correct       wrong_size    correct       physics / 1200.0
+f3-21   wrong_size    wrong_size    correct       physics / 2250.0
+f3-22   correct       wrong_volume  wrong_volume  aerospace / ok
+f3-23   correct       wrong_volume  wrong_volume  aerospace / ok
+f3-24   correct       wrong_volume  wrong_volume  aerospace / ok
+f3-25   wrong_size    wrong_size    wrong_size    aerospace / 10000.0
+f3-26   wrong_size    wrong_size    wrong_size    aerospace / 6000.0
+f3-27   wrong_size    wrong_size    wrong_size    aerospace / 13000.0
+f3-28   wrong_size    correct       correct       electrical / ok
+f3-29   wrong_size    correct       correct       electrical / ok
+f3-30   wrong_size    correct       correct       electrical / ok
+f3-31   no_part       bad_calc      correct       electrical / -
+f3-32   no_part       correct       correct       electrical / ok
+f3-33   no_part       correct       correct       electrical / ok
+f3-34   no_part       wrong_size    correct       physics / 40770.0
+f3-35   wrong_size    wrong_size    correct       physics / 124900.0
+f3-36   no_part       wrong_size    correct       physics / 14680.0
+f3-37   correct       correct       correct       physics / ok
+f3-38   correct       correct       correct       physics / ok
+f3-39   correct       correct       correct       physics / ok
+f3-40   wrong_size    correct       correct       electrical / ok
+cad_alone  correct 17/40  tokens 7899
+fusion     correct 22/40  tokens 13108
+oracle     correct 34/40  tokens 7140
+fusion - cad_alone: +5, paired bootstrap 95% -4 to +14
+rule: fusion with the calculation done by the coder (variant code: the numeric packs' calculator prompt, answered by the CAD pack's coder model) is built as an opt-in /fuse iff, on round3.jsonl, a paired bootstrap 95% interval (2000 resamples, seed 20261108) of its correct parts minus cad_alone's lies entirely above 0; tokens reported; oracle a diagnostic only. Fixed 2026-11-08 before any answer.
+-> DON'T BUILD (not clearly better than the CAD pack alone)
+fusion: usable plans 40/40, right calculations 25/40
+[supervisor 01:07] finished

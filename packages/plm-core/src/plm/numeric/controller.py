@@ -14,7 +14,8 @@ import time
 from plm.latex import plain
 from plm.numeric import calc, decompose
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer
-from plm.numeric.checks import check, requested_unit
+from plm.numeric.checks import requested_unit
+from plm.numeric.expected import check_expected as check, expected_unit
 from plm.ollama import ask
 
 
@@ -70,7 +71,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
 
     final = steps[-1]
     parsed = parse_answer(final["output"])
-    checked = requested_unit(task) is not None
+    checked = expected_unit(task)[0] is not None  # unit words, a unit symbol, or the quantity asked (UNITS2_RULE)
     return {
         "pack": pack,
         "task": task,
@@ -78,7 +79,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
         "reason": reason,
         "answer": {"value": parsed[0], "unit": parsed[1]} if parsed else None,
         "checked": checked,
-        "unchecked_reason": None if checked else "the question names no unit, so the answer couldn't be checked",
+        "unchecked_reason": None if checked else "the question names no unit or quantity, so the answer couldn't be checked",
         "trusted": checked and not final["issues"],
         "steps": steps,
         "tokens": sum(s["tokens"] for s in steps),

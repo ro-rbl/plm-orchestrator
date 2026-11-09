@@ -148,8 +148,14 @@ def run(port, log_path):
 
     status, _, body = call(port, "POST", "/v1/chat/completions",
                            chat_body("A 220 ohm resistor carries 0.1 A. What is the voltage across it?"))
+    r = json.loads(body)
+    expect("no unit named, but 'voltage' implies one: checked (UNITS2_RULE)",
+           r["choices"][0]["message"]["content"] == "22 V" and r["plm"]["checked"] is True, body)
+    status, _, body = call(port, "POST", "/v1/chat/completions",
+                           chat_body("A 220 ohm resistor carries 0.1 A. Work it out with Ohm's law."))
     content = json.loads(body)["choices"][0]["message"]["content"]
-    expect("unchecked electrical answer says so", content.startswith("22 V") and "(unchecked:" in content, content)
+    expect("no unit and no quantity named: the answer says it's unchecked", content.startswith("22 V")
+           and "(unchecked:" in content, content)
 
     task = [{"type": "text", "text": "Write a function `double(x: int) -> int` that returns twice x."},
             {"type": "text", "text": "assert double(2) == 4"}]
@@ -231,7 +237,7 @@ def run(port, log_path):
            and events[-1] == "[DONE]", events)
 
     logged = [json.loads(line) for line in open(log_path)]
-    expect("requests are logged with their pack", [e["pack"] for e in logged][:3] == ["electrical", "electrical", "software"]
+    expect("requests are logged with their pack", [e["pack"] for e in logged][:4] == ["electrical", "electrical", "electrical", "software"]
            and all("task" in e for e in logged), [e.get("pack") for e in logged])
 
     for host, want in [("127.0.0.1", True), ("localhost", True), ("::1", True), ("0.0.0.0", False),

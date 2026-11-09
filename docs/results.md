@@ -42,6 +42,10 @@ Model columns show each model's better strategy (direct or +calc) where both ran
   problem into a calculation for a numeric pack and a part for the CAD pack. On 40 problems written for it: fusion
   18/40, the CAD pack alone 18/40 (paired 95% -8 to +8): not built. With the correct numbers handed over, the same
   plans reach 32/40; the calculation step was right on 23/40.
+- **Fusion round 3** (the coder does the calculation step, FUSE3_RULE): 22/40 vs the CAD pack alone 17/40 (paired
+  95% -4 to +14): not built either; with the right numbers handed over, 34/40.
+- **Unit checks from the question** (UNITS2_RULE): units asked as symbols and the quantity asked now count as
+  something to check; on 698 fresh SciBench answers 10 wrong answers newly caught for 1 right one flagged: shipped.
 - **SQL flags confirmation on BIRD** (CONFIRM_RULE fixed before any answer): on 1035 BIRD dev questions mini-dev
   doesn't use (2025-11-06 revision; 1 dropped), the shipped policy 534 (51.6%) at 112% compute vs the coder alone
   528 (51.0%), -1 to +13 paired 95%. The rule reverts only if the coder alone is clearly ahead: confirmed, kept.

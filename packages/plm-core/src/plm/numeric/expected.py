@@ -1,4 +1,4 @@
-"""Checking against the unit a question expects, not only the unit words it names (attempt 2, not yet in use).
+"""Checking against the unit a question expects, not only the unit words it names (in use since 2026-11-09).
 
 plm.numeric.checks.check reads only unit words ("in volts"); a question asking "in m/s" or naming no unit
 ("What is its speed?") goes unchecked. expected_unit adds units asked as symbols and, with none named, a unit
@@ -8,7 +8,9 @@ Attempt 1 (2026-11-08, docs/attempts/units_check_2026-11-08.diff) flagged 28 rig
 UNITS_RULE's limit: the old "must be positive" rule reached charges and energies that can be negative, and
 "ratio"/"fraction of" questions were inferred as a speed or a length. Here a sign is checked only for quantities
 that are never negative, and such questions get no inferred unit. Judged by evals/score_units.py --round 2
-(UNITS2_RULE) on answers no check had seen; wired into the packs only if it passes.
+(UNITS2_RULE) on answers no check had seen: 10 wrong answers newly caught, 1 right one falsely flagged, over
+698 fresh SciBench answers; shipped. Known gap: "in cm^-1" isn't read as a symbol (the "-"), so a question naming
+"frequency" in cm^-1 gets an inferred Hz.
 """
 
 import re
