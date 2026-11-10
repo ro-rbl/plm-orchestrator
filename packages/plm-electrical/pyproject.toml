@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "plm-electrical"
-version = "0.1.0"
+version = "0.1.1"
 description = "plm pack: Electrical engineering calculations, checked by units and sanity rules"
 readme = "README.md"
 authors = [{ name = "ro-rbl" }]
