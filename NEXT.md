@@ -35,7 +35,11 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 - Physics routing attempt 1: 27/30 vs 28 needed. SQL tables-flag plural fix: moves scores by at most 1, no run.
 
 **Open, in the order I'd take them:**
-1. (done 2026-11-09: keep today's follow-up wording; the 25 misses in set 2 are the next thing to read.)
+1. (done 2026-11-09: keep today's follow-up wording.) Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW quantity
+   ("and the period?", "max height?") and got the original one, because A says "answer the original question again"
+   (B right on 8/10); 8 ignored the change (B right on 4: 016, 031, 036, 049, 089 vs 015, 024, 046); 3 unit slips
+   (025 mm^2 prefix, 069 knots, 073 km/s unconverted); 2 routed to general (063, 095); 2 wrong arithmetic.
+   Hypothesis for a NEW set (set 2 is seen): rewrite-first only when the follow-up asks for another quantity.
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
