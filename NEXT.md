@@ -32,7 +32,7 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 - Follow-up wording: **settled 2026-11-09, keep today's (A).** FOLLOWUP2_RULE on 100 new keyed conversations (14546bf,
   written first): A 75/100, rewrite-first 75/100 (paired 95% -12 to +12), B +20% tokens; by pack A/B aerospace 25/21,
   electrical 24/26, physics 26/28. Set 1 (36, seen) had B 31 vs A 27. `results/followup2_*.jsonl`.
-- Physics routing attempt 1: 27/30 vs 28 needed. SQL tables-flag plural fix: moves scores by at most 1, no run.
+- Physics routing attempt 1: 27/30 vs 28 needed (superseded: attempt 2 shipped 2026-11-10). SQL tables-flag plural fix: moves scores by at most 1, no run.
 
 **Open, in the order I'd take them:**
 1. (done 2026-11-09: keep today's follow-up wording.) Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW quantity
@@ -44,7 +44,8 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
    a hook in every pack's solve, not done.)
-4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 on new cases; PyPI Trusted Publishing:
+4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 shipped 2026-11-10 (PHYS2_RULE: 37/40 vs 33, others 18/20,
+   holdout 193/194; in the repo, ships with the pack's next release); PyPI Trusted Publishing:
    workflow in `.github/workflows/publish.yml` (2026-11-10, untested until the first tag); the user adds the GitHub
    publisher on PyPI for each package (steps in the file's header), then release = `git tag plm-core-v0.1.4 && git push origin plm-core-v0.1.4`.
 

@@ -125,3 +125,12 @@ expected unit; 6 wrong answers newly caught, 2 right answers newly flagged (a ba
 graded right for "in mol^-1"), 2 wrong answers no longer flagged (the cm^-1 ones, flagged before only for not being
 Hz). Judged against UNITS2_RULE's limits (false <= 0.5% of right: 0.08%; caught >= 2x false: 6 vs 2): passes. Note:
 those limits were applied after this replay was seen, not fixed for it in advance; ships with plm-core 0.1.4.
+
+## Physics routing attempt 2 (2026-11-10)
+PHYS2_RULE, the 60 new cases (`evals/router/physics_cases2.jsonl`) and the baseline committed first (c731906); the
+attempt was fixed in that commit as attempt 1's reverted diff plus its three named leftovers ("launched", "rev/s",
+radiating black body). Baseline physics 33/40, others 18/20. With the change: physics 37/40 (needed 36), others
+18/20, eval texts 279/279, holdout 193/194 (was 188) -> ship. The baseline misses were printed once before the
+attempt was committed (disclosed in the test). Still missed: an orbit question (aerospace), Carnot efficiency and a
+half-life fraction (general); ISA density and nozzle expansion (aerospace) go to physics.
+`.venv/bin/python evals/test_physics_routing2.py -v`.

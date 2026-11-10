@@ -33,10 +33,17 @@ PHYSICS_TERM = re.compile(
     r"|latent heat|boil\w*|melt\w*|thermal|conductivity|expansion|ideal gas|moles?|stress|strain"
     r"|young's modulus|tensile|cable|beam|collision|projectile|thrown|kicked|dropped|falls?|cliff|ramp"
     r"|incline\w*|slope|crate|ball|machine|motor|elevator|crane|pump|lifts?|kettle|gravity|centripetal|tension"
-    r"|brakes?|stopping distance|air resistance)\b",
+    r"|brakes?|stopping distance|air resistance"
+    # 2026-11-08, from the holdout misses in NEXT.md (pho-c6, pho-a4, pho-i3, k09); shared phrases like
+    # "speed of sound" and "gravitational acceleration" count for physics too, so a physics question that uses
+    # one ties aerospace on it and wins on its own words. Judged by evals/test_physics_routing.py (PHYS_RULE).
+    r"|speed of sound|in air|gravitational acceleration|bullet|block|string|stretch\w*"
+    # 2026-11-10, attempt 2 (PHYS2_RULE, evals/test_physics_routing2.py): attempt 1's named leftovers. "launched"
+    # counts here too, so "a projectile is launched" isn't a tie aerospace wins; a radiating black body is physics.
+    r"|launch(?:ed)?|radiates?|black body|blackbody)\b",
     re.IGNORECASE)
 QUANTITY = re.compile(r"\d\s*(?:m/s²|m/s\^?2|m/s|km/h|kg/m³|kg|g|N·m|N/m|N|kN|J|kJ|MJ|Pa|kPa|MPa|GPa|K|°C|m|cm|mm"
-                      r"|km|m²|m³|s|min|h|L|rpm|mol|degrees?|%)(?![\w/])")
+                      r"|km|m²|m³|rev/s|s|min|h|L|rpm|mol|degrees?|%)(?![\w/])")
 
 
 def claims(text):
