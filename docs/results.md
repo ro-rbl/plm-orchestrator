@@ -108,3 +108,11 @@ computed in code): ship rewrite-first (B) only if the paired bootstrap 95% of B 
 today's wording (A). Result: A 75/100 (12388 tokens), B 75/100 (14872 tokens), B - A +0, 95% -12 to +12 -> **keep A**.
 By pack (A/B): aerospace 25/21, electrical 24/26, physics 26/28 (reported, not decisive). Reproduce:
 `.venv/bin/python evals/followup/run.py --set 2 --report`.
+
+## General pack context window (2026-11-09)
+CONTEXT_RULE, committed before measuring (8b289ec, `evals/context/measure.py`): a ~7000-token conversation with a
+code word in its first message, qwen3:8b at each num_ctx. 4096: Ollama cut the prompt to 3975 tokens and the code
+word was lost (5.30 GB). 8192: 5.97 GB, 16384: 6.62 GB, 32768: 7.57 GB, 40960: 8.22 GB, all recalled it -> ship,
+cap 40960. Shipped as on-demand: `plm/general/controller.py:context_options` passes num_ctx (8192/16384/32768/40960)
+only when chars/3 + the reply budget exceeds 4096, so short chats keep sharing the copy the user's assistant keeps
+loaded. Live: the real pack recalled the code word from 6948 prompt tokens (loaded at 16384).

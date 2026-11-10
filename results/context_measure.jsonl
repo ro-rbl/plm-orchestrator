@@ -1,0 +1,5 @@
+{"num_ctx": 4096, "loaded_ctx": 4096, "size_gb": 5.3, "prompt_tokens": 3975, "seconds": 37.8, "recall": false, "reply": "Routine."}
+{"num_ctx": 8192, "loaded_ctx": 8192, "size_gb": 5.97, "prompt_tokens": 6952, "seconds": 66.0, "recall": true, "reply": "PELICAN-4471"}
+{"num_ctx": 16384, "loaded_ctx": 16384, "size_gb": 6.62, "prompt_tokens": 6952, "seconds": 91.7, "recall": true, "reply": "PELICAN-4471"}
+{"num_ctx": 32768, "loaded_ctx": 32768, "size_gb": 7.57, "prompt_tokens": 6952, "seconds": 84.2, "recall": true, "reply": "PELICAN-4471"}
+{"num_ctx": 40960, "loaded_ctx": 40960, "size_gb": 8.22, "prompt_tokens": 6952, "seconds": 105.4, "recall": true, "reply": "PELICAN-4471"}

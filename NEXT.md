@@ -36,8 +36,8 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 **Open, in the order I'd take them:**
 1. (done 2026-11-09: keep today's follow-up wording; the 25 misses in set 2 are the next thing to read.)
-2. The general pack's 4096-token context window (Ollama's default; the 8B supports 40960): pass num_ctx, measure
-   memory, decide.
+2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
+   ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. Live step-by-step progress in the interface (packs report steps as they go, instead of a spinner).
 4. Small: read "in cm^-1" as a unit symbol; physics routing attempt 2 on new cases; PyPI Trusted Publishing
    (GitHub Actions, no tokens; the user sets each package's trusted publisher on PyPI).

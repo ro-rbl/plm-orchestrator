@@ -412,6 +412,13 @@ def test_general():
     general.solve("Plain question")
     expect("general defaults", seen[-1][1] == [{"role": "user", "content": "Plain question"}]
            and seen[-1][2] == general.NUM_PREDICT and seen[-1][3] is None, seen[-1])
+    long = [{"role": "user", "content": "x" * 9000}]  # ~3000 tokens + 2048 reply > 4096
+    general.solve("x", messages=long)
+    expect("general raises num_ctx for a long conversation", seen[-1][3] == {"num_ctx": 8192}, seen[-1][3])
+    general.solve("x", messages=[{"role": "user", "content": "x" * 300000}], options={"temperature": 0.3})
+    expect("general caps num_ctx and keeps options", seen[-1][3] == {"temperature": 0.3, "num_ctx": 40960}, seen[-1][3])
+    general.solve("x", messages=long, options={"num_ctx": 4096})
+    expect("caller's num_ctx wins", seen[-1][3] == {"num_ctx": 4096}, seen[-1][3])
 
 
 def test_registry():
