@@ -101,3 +101,10 @@ prompts (some with chain-of-thought), mostly 2023-2024 models, so this is indica
 - **Code:** the same EvalPlus plus tests and greedy decoding; our prompt is the software pack's, not EvalPlus's.
 - Not compared: Spider (no matching small-model leaderboard for this setup), SciBench and GSM8K (published
   scores use different prompting, sampling and model generations).
+
+## Follow-up answer wording, set 2 (2026-11-09)
+FOLLOWUP2_RULE, committed with the 100 conversations before any answer (14546bf; `evals/followup/build2.py`, keys
+computed in code): ship rewrite-first (B) only if the paired bootstrap 95% of B - A is entirely above 0, else keep
+today's wording (A). Result: A 75/100 (12388 tokens), B 75/100 (14872 tokens), B - A +0, 95% -12 to +12 -> **keep A**.
+By pack (A/B): aerospace 25/21, electrical 24/26, physics 26/28 (reported, not decisive). Reproduce:
+`.venv/bin/python evals/followup/run.py --set 2 --report`.

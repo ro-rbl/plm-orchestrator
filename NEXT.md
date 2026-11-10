@@ -29,11 +29,13 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 **Measured, not shipped** (each with a rule fixed first; details further down):
 - Pack fusion: round 3 (coder calculates) 22/40 vs CAD alone 17/40 (-4 to +14); perfect hand-off 34/40. Only as
   the experimental `/fuse`.
-- Follow-up wording: rewrite-first 31/36 vs today's 27/36 (-2 to +10); "now for 200 ohm" still comes back 22 V.
+- Follow-up wording: **settled 2026-11-09, keep today's (A).** FOLLOWUP2_RULE on 100 new keyed conversations (14546bf,
+  written first): A 75/100, rewrite-first 75/100 (paired 95% -12 to +12), B +20% tokens; by pack A/B aerospace 25/21,
+  electrical 24/26, physics 26/28. Set 1 (36, seen) had B 31 vs A 27. `results/followup2_*.jsonl`.
 - Physics routing attempt 1: 27/30 vs 28 needed. SQL tables-flag plural fix: moves scores by at most 1, no run.
 
 **Open, in the order I'd take them:**
-1. Follow-up answers: a bigger keyed set (about 100 conversations, written first) to settle rewrite-first vs today.
+1. (done 2026-11-09: keep today's follow-up wording; the 25 misses in set 2 are the next thing to read.)
 2. The general pack's 4096-token context window (Ollama's default; the 8B supports 40960): pass num_ctx, measure
    memory, decide.
 3. Live step-by-step progress in the interface (packs report steps as they go, instead of a spinner).
