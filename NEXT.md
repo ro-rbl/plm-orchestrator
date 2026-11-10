@@ -37,15 +37,16 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 **Open, in the order I'd take them:**
 1. (done 2026-11-09: keep today's follow-up wording.) Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW quantity
    ("and the period?", "max height?") and got the original one, because A says "answer the original question again"
-   (B right on 8/10); 8 ignored the change (B right on 4: 016, 031, 036, 049, 089 vs 015, 024, 046); 3 unit slips
+   (B right on 8/10); 8 ignored the change (B right on 5: 016, 031, 036, 049, 089 vs 015, 024, 046); 3 unit slips
    (025 mm^2 prefix, 069 knots, 073 km/s unconverted); 2 routed to general (063, 095); 2 wrong arithmetic.
    Hypothesis for a NEW set (set 2 is seen): rewrite-first only when the follow-up asks for another quantity.
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
    a hook in every pack's solve, not done.)
-4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 on new cases; PyPI Trusted Publishing
-   (GitHub Actions, no tokens; the user sets each package's trusted publisher on PyPI).
+4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 on new cases; PyPI Trusted Publishing:
+   workflow in `.github/workflows/publish.yml` (2026-11-10, untested until the first tag); the user adds the GitHub
+   publisher on PyPI for each package (steps in the file's header), then release = `git tag plm-core-v0.1.4 && git push origin plm-core-v0.1.4`.
 
 **Machine notes:** the user's assistant (launchd `com.ro.assistant`) runs their 06:00 alarm and pins `qwen3:8b`;
 for long runs use `results/fusion_supervisor.sh <run script> 05:30` (waits for AC, unpins the 8B, stops at the

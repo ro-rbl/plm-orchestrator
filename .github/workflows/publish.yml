@@ -1,0 +1,29 @@
+# Publish one package to PyPI with Trusted Publishing (no tokens). Triggered by a tag naming the package and its
+# version, e.g. `git tag plm-core-v0.1.4 && git push origin plm-core-v0.1.4`. The tag's version must match the
+# package's pyproject.toml, or the job stops before uploading.
+# One-time setup per package, on PyPI (the owner, ro-rbl): Manage project -> Publishing -> add a GitHub publisher
+# with owner ro-rbl, repository plm-orchestrator, workflow publish.yml, environment pypi.
+name: publish
+on:
+  push:
+    tags: ["plm-*-v*"]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Package and version from the tag
+        id: tag
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          pkg="${tag%-v*}"; ver="${tag##*-v}"
+          test -d "packages/$pkg" || { echo "no packages/$pkg"; exit 1; }
+          grep -q "^version = \"$ver\"" "packages/$pkg/pyproject.toml" || { echo "packages/$pkg/pyproject.toml is not version $ver"; exit 1; }
+          echo "pkg=$pkg" >> "$GITHUB_OUTPUT"
+      - run: uv build --out-dir dist "packages/${{ steps.tag.outputs.pkg }}"
+      - uses: pypa/gh-action-pypi-publish@release/v1
