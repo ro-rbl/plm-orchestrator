@@ -14,6 +14,19 @@ import time
 import urllib.request
 
 
+LISTENERS = []  # callables(event, model, record): "start" before each model call, "end" with its record after
+
+
+def _notify(event, model, record=None):
+    """Tell progress listeners (the full-screen interface) about a model call; a listener's error never
+    breaks the call."""
+    for fn in list(LISTENERS):
+        try:
+            fn(event, model, record)
+        except Exception:
+            pass
+
+
 def unreachable(error):
     """True if a failed request means the Ollama server itself is down, not that one request went wrong.
 
@@ -67,10 +80,11 @@ def ask(model, prompt, think, num_predict, timeout):
         ollama_url() + endpoint, json.dumps(body).encode(), {"Content-Type": "application/json"}
     )
     start = time.time()
+    _notify("start", model)
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         r = json.load(resp)
     msg = r.get("message") or {"content": r.get("response", ""), "thinking": r.get("thinking")}
-    return {
+    record = {
         "mode": "raw-prefill" if endpoint == "/api/generate" else "chat",
         "response": msg.get("content", ""),
         "thinking_chars": len(msg.get("thinking") or ""),
@@ -80,6 +94,8 @@ def ask(model, prompt, think, num_predict, timeout):
         "wall_s": time.time() - start,
         "done_reason": r.get("done_reason"),
     }
+    _notify("end", model, record)
+    return record
 
 
 def version(timeout=5):
@@ -129,10 +145,13 @@ def chat(model, messages, num_predict, timeout, options=None):
     """
     endpoint, req = _chat_request(model, messages, num_predict, options, stream=False)
     start = time.time()
+    _notify("start", model)
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         r = json.load(resp)
     content = (r.get("message") or {}).get("content", r.get("response", ""))
-    return _record(endpoint, r, content, start)
+    record = _record(endpoint, r, content, start)
+    _notify("end", model, record)
+    return record
 
 
 def chat_stream(model, messages, num_predict, timeout, options=None):
@@ -140,6 +159,7 @@ def chat_stream(model, messages, num_predict, timeout, options=None):
     endpoint, req = _chat_request(model, messages, num_predict, options, stream=True)
     start = time.time()
     parts = []
+    _notify("start", model)
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         for line in resp:  # Ollama streams one JSON object per line
             if not line.strip():
@@ -152,7 +172,9 @@ def chat_stream(model, messages, num_predict, timeout, options=None):
                 parts.append(delta)
                 yield "delta", delta
             if r.get("done"):
-                yield "done", _record(endpoint, r, "".join(parts), start)
+                record = _record(endpoint, r, "".join(parts), start)
+                _notify("end", model, record)
+                yield "done", record
                 return
     raise RuntimeError("Ollama stream ended without a final message")
 

@@ -183,6 +183,14 @@ async def session(shots):
         expect("context meter shows the general pack's raised window", "/ 16.4k" in str(app.query_one("#context", Static).render()),
                str(app.query_one("#context", Static).render()))
         app.history.pop()
+        import time as _t
+        from plm import ollama as _ol
+        expect("no progress listener left after answers", _ol.LISTENERS == [], _ol.LISTENERS)
+        live = tui.progress_text("*", "electrical", [["qwen3:4b", _t.time() - 3, {"eval_tokens": 1200, "wall_s": 3}],
+                                                     ["qwen3:8b", _t.time() - 2, None]], 5).plain
+        expect("working line shows finished and running steps", "step 2 · qwen3:8b" in live
+               and "✓ step 1 · qwen3:4b · 1.2k tokens · 3 s" in live and "5 s total" in live, live)
+        expect("working line before any model call", "working…" in tui.progress_text("*", "cad", [], 0).plain)
 
         expect("/fuse lights both packs", app.query_one("#pack-physics").has_class("live")
                and app.query_one("#pack-cad").has_class("live"))

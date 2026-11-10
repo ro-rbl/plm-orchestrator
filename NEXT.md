@@ -38,7 +38,8 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 1. (done 2026-11-09: keep today's follow-up wording; the 25 misses in set 2 are the next thing to read.)
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
-3. Live step-by-step progress in the interface (packs report steps as they go, instead of a spinner).
+3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
+   a hook in every pack's solve, not done.)
 4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 on new cases; PyPI Trusted Publishing
    (GitHub Actions, no tokens; the user sets each package's trusted publisher on PyPI).
 

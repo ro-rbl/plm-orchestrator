@@ -94,6 +94,19 @@ def context_window(model, timeout=2):
     return 4096
 
 
+def progress_text(spin, pack, steps, elapsed):
+    """The working line: finished model calls (model, tokens, seconds), then the one running now."""
+    lines = []
+    for n, (model, started, record) in enumerate(steps, 1):
+        if record is not None:
+            lines.append(f"  ✓ step {n} · {model} · {kilo(record.get('eval_tokens') or 0)} tokens · "
+                         f"{record.get('wall_s', 0):.0f} s")
+    running = steps and steps[-1][2] is None
+    now = (f"step {len(steps)} · {steps[-1][0]} · {time.time() - steps[-1][1]:.0f} s" if running
+           else "checking…" if steps else "working…")
+    return Text("\n".join([f"{spin} {pack} · {now} · {elapsed:.0f} s total", *lines[-6:]]), "#56d4dd")
+
+
 def kilo(n):
     return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
 
@@ -395,13 +408,21 @@ class PlmApp(App):
     def run_task(self, text, pack, task, messages, followup, spinner, fuse=False):
         start = time.time()
         stop = []
+        steps = []  # [model, started, record or None] per model call, live from plm.ollama
+
+        def on_call(event, model, record):
+            if event == "start":
+                steps.append([model, time.time(), None])
+            elif steps:
+                steps[-1][2] = record
+        ollama.LISTENERS.append(on_call)
 
         def tick():
             i = 0
             while not stop:
                 i += 1
-                self.call_from_thread(spinner.update, Text(
-                    f"{SPIN[i % len(SPIN)]} {pack} · working… {time.time() - start:.0f} s", "#56d4dd"))
+                self.call_from_thread(spinner.update, progress_text(
+                    SPIN[i % len(SPIN)], "fusion" if fuse else pack, steps, time.time() - start))
                 time.sleep(0.15)
         threading.Thread(target=tick, daemon=True).start()
         s = self.settings
@@ -437,6 +458,8 @@ class PlmApp(App):
         finally:
             models.clear()
             models.update(saved)
+            if on_call in ollama.LISTENERS:
+                ollama.LISTENERS.remove(on_call)
         stop.append(True)
         self.call_from_thread(self.show, text, result, error, spinner, followup)
 
