@@ -1,0 +1,60 @@
+{"id": "p2-01", "pack": "physics", "text": "A stone is thrown horizontally at 12 m/s from a 30 m high bridge. How far from the base does it land, in meters?"}
+{"id": "p2-02", "pack": "physics", "text": "A projectile is launched at 25 m/s at 60 degrees. What is its maximum height, in meters?"}
+{"id": "p2-03", "pack": "physics", "text": "A satellite orbits 400 km above the Earth's surface. What is its orbital period, in minutes?"}
+{"id": "p2-04", "pack": "physics", "text": "What is the escape speed from the surface of the Moon, in km/s? The Moon's mass is 7.35e22 kg and radius 1737 km."}
+{"id": "p2-05", "pack": "physics", "text": "A 0.5 kg mass on a string is whirled in a horizontal circle of radius 0.8 m at 4 m/s. What is the tension, in newtons?"}
+{"id": "p2-06", "pack": "physics", "text": "A 2 kg block slides 3 m down a frictionless ramp inclined at 25 degrees. What is its speed at the bottom, in m/s?"}
+{"id": "p2-07", "pack": "physics", "text": "A spring is stretched 6 cm by a 300 g mass. What is its spring constant, in N/m?"}
+{"id": "p2-08", "pack": "physics", "text": "A 60 kg skater pushes off a 90 kg skater, moving away at 2 m/s. What is the 90 kg skater's speed, in m/s?"}
+{"id": "p2-09", "pack": "physics", "text": "A 10 g bullet moving at 400 m/s embeds in a 2 kg wooden block on a frictionless table. What is their speed after, in m/s?"}
+{"id": "p2-10", "pack": "physics", "text": "Sound travels through air at 20 \u00b0C. How long does an echo from a cliff 170 m away take to return, in seconds?"}
+{"id": "p2-11", "pack": "physics", "text": "What is the wavelength of a 440 Hz sound wave in air where sound travels at 343 m/s, in meters?"}
+{"id": "p2-12", "pack": "physics", "text": "A guitar string 0.65 m long vibrates at a fundamental of 196 Hz. What is the wave speed on the string, in m/s?"}
+{"id": "p2-13", "pack": "physics", "text": "A 75 kg person stands in an elevator accelerating upward at 1.5 m/s^2. What does the scale read, in newtons?"}
+{"id": "p2-14", "pack": "physics", "text": "A 1500 kg car rounds a curve of radius 50 m at 15 m/s. What friction force is needed, in newtons?"}
+{"id": "p2-15", "pack": "physics", "text": "A flywheel of moment of inertia 4 kg m^2 spins at 300 rpm. What is its rotational kinetic energy, in joules?"}
+{"id": "p2-16", "pack": "physics", "text": "A uniform rod 2 m long and 3 kg pivots at one end. What is its moment of inertia about the pivot, in kg m^2?"}
+{"id": "p2-17", "pack": "physics", "text": "A torque of 20 N m acts on a wheel with moment of inertia 0.5 kg m^2. What is its angular acceleration, in rad/s^2?"}
+{"id": "p2-18", "pack": "physics", "text": "A 200 g ice cube at 0 \u00b0C melts completely. How much heat does it absorb, in kilojoules? Latent heat of fusion is 334 kJ/kg."}
+{"id": "p2-19", "pack": "physics", "text": "An aluminium rod 1.2 m long is heated by 80 K. How much does it expand, in millimeters? Its expansion coefficient is 23e-6 per K."}
+{"id": "p2-20", "pack": "physics", "text": "A gas expands at a constant pressure of 200 kPa from 0.01 m^3 to 0.03 m^3. How much work does it do, in joules?"}
+{"id": "p2-21", "pack": "physics", "text": "A Carnot engine runs between 500 K and 300 K. What is its maximum efficiency, in percent?"}
+{"id": "p2-22", "pack": "physics", "text": "A 1 kg pendulum bob is released from 0.2 m above its lowest point. What is its speed at the bottom, in m/s?"}
+{"id": "p2-23", "pack": "physics", "text": "A diver jumps from a 10 m platform. How long until she reaches the water, in seconds?"}
+{"id": "p2-24", "pack": "physics", "text": "A ball rolls off a 1.2 m table at 3 m/s. How long is it in the air, in seconds?"}
+{"id": "p2-25", "pack": "physics", "text": "A 50 N force pulls a box 8 m along the floor at 30 degrees to the horizontal. How much work is done, in joules?"}
+{"id": "p2-26", "pack": "physics", "text": "A 4 kg object moving at 6 m/s collides elastically with a stationary 2 kg object. What is the 2 kg object's speed after, in m/s?"}
+{"id": "p2-27", "pack": "physics", "text": "Water flows through a pipe of 4 cm diameter at 2 m/s into a 2 cm section. What is its speed there, in m/s?"}
+{"id": "p2-28", "pack": "physics", "text": "A block of wood floats with 60% of its volume submerged in water. What is its density, in kg/m^3?"}
+{"id": "p2-29", "pack": "physics", "text": "What buoyant force acts on a 0.002 m^3 rock fully submerged in water, in newtons?"}
+{"id": "p2-30", "pack": "physics", "text": "A hydraulic press has pistons of 2 cm and 20 cm diameter. A 100 N force on the small one lifts what load, in newtons?"}
+{"id": "p2-31", "pack": "physics", "text": "How deep in seawater, density 1025 kg/m^3, is the gauge pressure 300 kPa, in meters?"}
+{"id": "p2-32", "pack": "physics", "text": "A wheel accelerates from rest to 2 rev/s in 5 seconds. What is its angular acceleration, in rad/s^2?"}
+{"id": "p2-33", "pack": "physics", "text": "A car's speed drops from 30 m/s to 0 over 45 m. What is its deceleration, in m/s^2?"}
+{"id": "p2-34", "pack": "physics", "text": "A crate is pushed up a 20 degree slope at constant speed with friction coefficient 0.3. What force is needed for a 40 kg crate, in newtons?"}
+{"id": "p2-35", "pack": "physics", "text": "A cyclist coasting at 8 m/s climbs a hill. How high can she go before stopping, ignoring friction, in meters?"}
+{"id": "p2-36", "pack": "physics", "text": "A 0.15 kg baseball leaves the bat at 45 m/s after a 1 ms contact. What average force acted, in newtons?"}
+{"id": "p2-37", "pack": "physics", "text": "A light bulb filament radiates like a black body at 2800 K with area 1e-5 m^2. What power does it radiate, in watts?"}
+{"id": "p2-38", "pack": "physics", "text": "A copper block of 0.5 kg at 200 \u00b0C is dropped into 1 kg of water at 20 \u00b0C. What is the final temperature, in \u00b0C?"}
+{"id": "p2-39", "pack": "physics", "text": "What is the de Broglie wavelength of an electron moving at 2e6 m/s, in nanometers?"}
+{"id": "p2-40", "pack": "physics", "text": "A radioactive sample has a half-life of 8 days. What fraction remains after 24 days?"}
+{"id": "o2-01", "pack": "aerospace", "text": "An aircraft cruises at Mach 0.82 at 11 km where the temperature is 216.65 K. What is its true airspeed, in m/s?"}
+{"id": "o2-02", "pack": "aerospace", "text": "A rocket burns from 120 t to 40 t with a specific impulse of 310 s. What is its delta-v, in m/s?"}
+{"id": "o2-03", "pack": "aerospace", "text": "A wing of 30 m^2 needs to lift 60 kN at 70 m/s in sea-level air. What lift coefficient is required?"}
+{"id": "o2-04", "pack": "aerospace", "text": "What is the stall speed of a 900 kg aircraft with 14 m^2 wing area and CLmax 1.5 at sea level, in m/s?"}
+{"id": "o2-05", "pack": "aerospace", "text": "A spacecraft performs a Hohmann transfer from a 300 km to a 35786 km altitude orbit. What is the total delta-v, in km/s?"}
+{"id": "o2-06", "pack": "aerospace", "text": "A turbojet takes in 50 kg/s of air at 200 m/s and exhausts it at 550 m/s. What is the thrust, in kilonewtons?"}
+{"id": "o2-07", "pack": "aerospace", "text": "An airliner glides with a lift-to-drag ratio of 18 from 10 km altitude. How far can it glide, in kilometers?"}
+{"id": "o2-08", "pack": "aerospace", "text": "What is the air density at 5000 m in the ISA standard atmosphere, in kg/m^3?"}
+{"id": "o2-09", "pack": "aerospace", "text": "A propeller aircraft needs 120 kW of thrust power at 60 m/s with propeller efficiency 0.8. What shaft power, in kilowatts?"}
+{"id": "o2-10", "pack": "aerospace", "text": "A nozzle expands exhaust from 7 MPa chamber pressure; with an area ratio of 40, what is the exit Mach number for gamma 1.2?"}
+{"id": "o2-11", "pack": "electrical", "text": "A 12 V battery charges a 470 microfarad capacitor through 1 kilohm. How long until it reaches 63% charge, in seconds?"}
+{"id": "o2-12", "pack": "electrical", "text": "Three resistors of 10, 20 and 30 ohm are in parallel across 6 V. What total current flows, in amperes?"}
+{"id": "o2-13", "pack": "electrical", "text": "A 230 V motor draws 8 A at a power factor of 0.85. What real power does it use, in kilowatts?"}
+{"id": "o2-14", "pack": "electrical", "text": "An inductor of 50 mH is in series with a 100 ohm resistor at 60 Hz. What is the impedance, in ohms?"}
+{"id": "o2-15", "pack": "electrical", "text": "A step-down transformer converts 11 kV to 400 V. What is its turns ratio?"}
+{"id": "o2-16", "pack": "electrical", "text": "A 5 W LED lamp runs 6 hours a day for 30 days. How much energy does it use, in kWh?"}
+{"id": "o2-17", "pack": "electrical", "text": "A voltage divider of 4.7 kilohm and 10 kilohm is fed 5 V. What is the output across the 10 kilohm, in volts?"}
+{"id": "o2-18", "pack": "electrical", "text": "A 1.5 mm^2 copper cable 30 m long carries 16 A. What is the voltage drop, in volts?"}
+{"id": "o2-19", "pack": "electrical", "text": "An op-amp inverting amplifier has 10 kilohm input and 220 kilohm feedback resistors. What is its gain?"}
+{"id": "o2-20", "pack": "electrical", "text": "A three-phase 400 V supply delivers 20 A per line at unity power factor. What power is delivered, in kilowatts?"}
