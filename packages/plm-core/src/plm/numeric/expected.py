@@ -9,8 +9,8 @@ UNITS_RULE's limit: the old "must be positive" rule reached charges and energies
 "ratio"/"fraction of" questions were inferred as a speed or a length. Here a sign is checked only for quantities
 that are never negative, and such questions get no inferred unit. Judged by evals/score_units.py --round 2
 (UNITS2_RULE) on answers no check had seen: 10 wrong answers newly caught, 1 right one falsely flagged, over
-698 fresh SciBench answers; shipped. Known gap: "in cm^-1" isn't read as a symbol (the "-"), so a question naming
-"frequency" in cm^-1 gets an inferred Hz.
+698 fresh SciBench answers; shipped. 2026-11-10: negative exponents ("in cm^-1", "in s^-1", "in cm⁻¹") are read as
+symbols; before, a question naming "frequency" in cm^-1 got an inferred Hz.
 """
 
 import re
@@ -20,8 +20,8 @@ from plm.numeric.answers import parse_answer
 from plm.numeric.checks import LITERAL_UNITS, check, requested_unit, ureg
 
 SYMBOL_PHRASE = re.compile(
-    r"\b(?:in|how many) ((?:[kMGmµunp]?(?:m|g|s|N|J|W|V|A|Pa|Hz|F|H|C|Ω|ohm|L|K|eV|Wh|rad|mol))"
-    r"(?:[·*/\^]?[a-zA-Zµ°Ω]*\^?[0-9²³]?){0,3}|km/h|rpm|°C)(?=\s*[?.,;:)]|\s*$)")
+    r"\b(?:in|how many) ((?:[kMGcdmµunp]?(?:m|g|s|N|J|W|V|A|Pa|Hz|F|H|C|Ω|ohm|L|K|eV|Wh|rad|mol))"
+    r"(?:[·*/\^]?[a-zA-Zµ°Ω]*(?:\^-?[0-9]|[0-9²³]|⁻¹)?){0,3}|km/h|rpm|°C)(?=\s*[?.,;:)]|\s*$)")
 ASKED = re.compile(r"(?:^|[.?!]\s+)((?:what|find|calculate|compute|determine|estimate|how)\b[^.?!]*[?.!]?)\s*$",
                    re.IGNORECASE)
 NO_UNIT = re.compile(r"\b(?:ratio|fraction|percent\w*|factor|times|relative|efficiency|coefficient|number of)\b",
@@ -44,7 +44,7 @@ NEVER_NEGATIVE = ("ohm", "ohm*m", "F", "H", "s", "Hz", "kg", "m^2", "m^3", "kg/m
 def symbol_unit(question):
     """A unit asked as a symbol ("in m/s", "in kN", "in km/h"), as a pint string, or None."""
     for m in reversed(list(SYMBOL_PHRASE.finditer(question))):
-        token = m.group(1).replace("²", "^2").replace("³", "^3").replace("·", "*").replace("Ω", "ohm")
+        token = m.group(1).replace("⁻¹", "^-1").replace("²", "^2").replace("³", "^3").replace("·", "*").replace("Ω", "ohm")
         try:
             q = ureg.Quantity(1, token)
         except Exception:

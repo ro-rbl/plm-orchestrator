@@ -110,9 +110,18 @@ def main():
     except ValueError:
         pass
 
+    from plm.numeric.expected import expected_unit  # negative exponents and centi (2026-11-10)
+    symbols = [("What is the wavenumber, in cm^-1?", ("cm^-1", "symbol")),
+               ("Find the frequency in cm^-1.", ("cm^-1", "symbol")), ("in cm⁻¹?", ("cm^-1", "symbol")),
+               ("rate constant in s^-1?", ("s^-1", "symbol")), ("speed in m/s?", ("m/s", "symbol")),
+               ("How long is it in cm?", ("cm", "symbol"))]
+    for q, want in symbols:
+        if expected_unit(q) != want:
+            fails.append(f"expected_unit({q!r}) = {expected_unit(q)}, want {want}")
+
     for f in fails:
         print("FAIL", f)
-    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2
+    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2 + len(symbols)
     print(f"checks tests: {total - len(fails)}/{total} passed")
     sys.exit(1 if fails else 0)
 

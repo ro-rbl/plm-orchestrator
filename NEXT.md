@@ -39,7 +39,7 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. Live step-by-step progress in the interface (packs report steps as they go, instead of a spinner).
-4. Small: read "in cm^-1" as a unit symbol; physics routing attempt 2 on new cases; PyPI Trusted Publishing
+4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 on new cases; PyPI Trusted Publishing
    (GitHub Actions, no tokens; the user sets each package's trusted publisher on PyPI).
 
 **Machine notes:** the user's assistant (launchd `com.ro.assistant`) runs their 06:00 alarm and pins `qwen3:8b`;

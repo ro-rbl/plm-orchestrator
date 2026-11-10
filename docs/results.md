@@ -116,3 +116,12 @@ word was lost (5.30 GB). 8192: 5.97 GB, 16384: 6.62 GB, 32768: 7.57 GB, 40960: 8
 cap 40960. Shipped as on-demand: `plm/general/controller.py:context_options` passes num_ctx (8192/16384/32768/40960)
 only when chars/3 + the reply budget exceeds 4096, so short chats keep sharing the copy the user's assistant keeps
 loaded. Live: the real pack recalled the code word from 6948 prompt tokens (loaded at 16384).
+
+## Unit symbols with negative exponents (2026-11-10)
+`plm/numeric/expected.py` now reads "in cm^-1", "in s^-1", "in cm⁻¹" (negative exponents, and the centi/deci
+prefixes) as asked units; before, "frequency ... in cm^-1" got an inferred Hz. Replayed old vs new `check_expected`
+on 5436 saved answers (2632 right; own sets, SciBench, TheoremQA, UGPhysics, units_fresh): 228 questions change
+expected unit; 6 wrong answers newly caught, 2 right answers newly flagged (a bare count for "in mm^-3"; "kJ/mol"
+graded right for "in mol^-1"), 2 wrong answers no longer flagged (the cm^-1 ones, flagged before only for not being
+Hz). Judged against UNITS2_RULE's limits (false <= 0.5% of right: 0.08%; caught >= 2x false: 6 vs 2): passes. Note:
+those limits were applied after this replay was seen, not fixed for it in advance; ships with plm-core 0.1.4.
