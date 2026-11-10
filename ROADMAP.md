@@ -145,5 +145,6 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] Unit checks from the question (`plm/numeric/expected.py`, UNITS2_RULE), released in plm-core 0.1.3.
 - [x] Pack fusion measured three times (FUSE_RULE, FUSE3_RULE): never clearly better than the CAD pack alone; kept
       as the experimental `/fuse`.
-- [ ] Follow-up wording on a bigger set; the general pack's context window; live step progress; plm-core 0.1.4.
+- [x] Follow-up wording settled (keep today's); general pack context on demand (cap 40960); "in cm^-1" read.
+- [ ] Live step progress; plm-core 0.1.4.
 

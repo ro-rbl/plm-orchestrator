@@ -178,6 +178,12 @@ async def session(shots):
         expect("context meter shows tokens out of the window", "/ 4.1k" in str(app.query_one("#context", Static).render()),
                str(app.query_one("#context", Static).render()))
 
+        app.history += [{"role": "user", "content": "x" * 30000}]  # a long general chat: ~10k tokens + reply
+        app.update_context({"pack": "general", "steps": [{"model": "qwen3:8b", "prompt_tokens": 10000, "tokens": 50}]})
+        expect("context meter shows the general pack's raised window", "/ 16.4k" in str(app.query_one("#context", Static).render()),
+               str(app.query_one("#context", Static).render()))
+        app.history.pop()
+
         expect("/fuse lights both packs", app.query_one("#pack-physics").has_class("live")
                and app.query_one("#pack-cad").has_class("live"))
 

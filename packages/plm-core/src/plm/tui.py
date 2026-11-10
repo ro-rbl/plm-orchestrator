@@ -489,10 +489,16 @@ class PlmApp(App):
         self.fill_side(result)
 
     def update_context(self, result):
-        """Bottom bar: the last request's tokens out of the context window its model is loaded with."""
+        """Bottom bar: the last request's tokens out of the context window its model is loaded with. The general
+        pack raises its window as the conversation grows (up to 40960), so there it shows what the next request
+        gets, not only what's loaded now."""
         step = result["steps"][-1]
         used = (step.get("prompt_tokens") or 0) + (step.get("tokens") or 0)
         window = self.context_of(step["model"])
+        if result["pack"] == "general":
+            from plm.general import controller as general
+            opts = general.context_options(self.history, general.NUM_PREDICT) or {}
+            window = max(window, opts.get("num_ctx", 0))
         share = used / window if window else 0
         color = RED if share > 0.9 else YELLOW if share > 0.7 else DIM
         self.query_one("#context", Static).update(Text.assemble(
