@@ -4,6 +4,7 @@
     .venv/bin/python evals/followup/run.py --variant B
     .venv/bin/python evals/followup/run.py --report         # FOLLOWUP_ANSWER_RULE
     .venv/bin/python evals/followup/run.py --set 2 --variant A   # then B, then --set 2 --report (FOLLOWUP2_RULE)
+    .venv/bin/python evals/followup/run.py --set 3 --variant A   # then B, then --set 3 --report (FOLLOWUP3_RULE: C vs A)
 
 A: plm.followup.resolve's task ("Original question / Previous answer / Change(s) / Answer the original question
    again with the change applied.") goes to the pack, as shipped on 2026-11-08.
@@ -23,6 +24,15 @@ keep A; if it contains 0, keep A (one model call fewer). Tokens (B's include the
 reported, never decide. Checked offline before any answer: every key grades right and 5% off grades wrong; routing
 (shared by A and B) sends 89/100 to the labeled pack (projectile and orbit cases to aerospace; f2-063 photon
 frequency and f2-095 load factor to general).
+
+Set 3 (--set 3, evals/followup/cases3.jsonl: 90 new conversations from build3.py; results/followup3_{A,B}.jsonl).
+Variant C, from the set-2 misses (10 of A's 25 asked a NEW quantity and got the original one): rewrite first (B)
+only when the follow-up asks for a quantity of another kind than the original question (new_quantity below: both
+expected units known and of different dimensionality); otherwise today's wording (A). Answers are deterministic
+(temperature 0), so C is A's or B's row per case, no run of its own. FOLLOWUP3_RULE, fixed 2026-11-10 before any
+model answered a set-3 case: ship C iff the paired bootstrap 95% interval (2000 resamples, seed 20261110) of C's
+correct answers minus A's, over all 90, lies entirely above 0; otherwise keep A. B - A, tokens and per-kind scores
+are reported, never decide.
 """
 
 import argparse
@@ -39,7 +49,8 @@ from plm.followup import resolve  # noqa: E402
 from plm.numeric.checks import ureg  # noqa: E402
 from plm.ollama import ask, unreachable  # noqa: E402
 
-SETS = {"1": Path(__file__).parent / "cases.jsonl", "2": Path(__file__).parent / "cases2.jsonl"}
+SETS = {"1": Path(__file__).parent / "cases.jsonl", "2": Path(__file__).parent / "cases2.jsonl",
+        "3": Path(__file__).parent / "cases3.jsonl"}
 CASES = SETS["1"]
 REWRITER = "qwen3:8b"
 REWRITE_PROMPT = """Below is a conversation. Rewrite the user's LAST message as one complete, self-contained question
@@ -48,6 +59,9 @@ earlier question that still applies, with the change in the last message applied
 different unit, ask for that unit; otherwise ask for the same unit as before. Answer with the question only.
 
 {transcript}"""
+RULE3 = ("ship C (rewrite first only for a new kind of quantity) iff the paired bootstrap 95% interval (2000 "
+         "resamples, seed 20261110) of C's correct answers minus A's over the 90 set-3 cases lies entirely above 0; "
+         "otherwise keep A; B - A, tokens and per-kind scores reported, not decisive")
 RULE2 = ("accuracy first: ship B (rewrite first) iff the paired bootstrap 95% interval (2000 resamples, seed 20261109) "
          "of B's correct answers minus A's over the 100 set-2 cases lies entirely above 0; otherwise keep A (entirely "
          "below 0: A is better; contains 0: A, one model call fewer); tokens and per-pack scores reported, not decisive")
@@ -60,7 +74,44 @@ def load(path):
 
 
 def out_path(variant):
-    return ROOT / (f"results/followup_{variant}.jsonl" if CASES == SETS["1"] else f"results/followup2_{variant}.jsonl")
+    tag = {SETS["1"]: "", SETS["2"]: "2", SETS["3"]: "3"}[CASES]
+    return ROOT / f"results/followup{tag}_{variant}.jsonl"
+
+
+def new_quantity(messages):
+    """True when the last message asks for a quantity of another kind than the first question (variant C)."""
+    from plm.numeric.expected import expected_unit
+    first = next(m["content"] for m in messages if m["role"] == "user")
+    a, b = expected_unit(first)[0], expected_unit(messages[-1]["content"])[0]
+    if not a or not b:
+        return False
+    try:
+        return ureg.Quantity(1, a).dimensionality != ureg.Quantity(1, b).dimensionality
+    except Exception:
+        return False
+
+
+def report3(cases, got):
+    ids = [c["id"] for c in cases]
+    if not all(i in got["A"] and i in got["B"] for i in ids):
+        print("set 3 incomplete:", {v: len(got[v]) for v in "AB"})
+        return
+    pick = {c["id"]: ("B" if new_quantity(c["messages"]) else "A") for c in cases}
+    C = {i: got[pick[i]][i] for i in ids}
+    for name, rows in (("A", got["A"]), ("B", got["B"]), ("C", C)):
+        print(f"{name}: {sum(rows[i]['right'] for i in ids)}/{len(ids)} right, {sum(rows[i]['tokens'] for i in ids)} tokens")
+    for kind in sorted({c["kind"] for c in cases}):
+        k = [c["id"] for c in cases if c["kind"] == kind]
+        print(f"  {kind:8} ({len(k)}): A {sum(got['A'][i]['right'] for i in k)}, B {sum(got['B'][i]['right'] for i in k)}, "
+              f"C {sum(C[i]['right'] for i in k)}; C rewrote {sum(pick[i] == 'B' for i in k)}")
+    diff = [C[i]["right"] - got["A"][i]["right"] for i in ids]
+    rng = random.Random(20261110)
+    boot = sorted(sum(diff[rng.randrange(len(diff))] for _ in diff) for _ in range(2000))
+    lo, hi = boot[50], boot[1949]
+    bdiff = sum(got["B"][i]["right"] - got["A"][i]["right"] for i in ids)
+    print(f"C - A: {sum(diff):+d}, paired bootstrap 95% {lo:+d} to {hi:+d}   (B - A: {bdiff:+d}, reported only)")
+    print(f"rule: {RULE3}")
+    print("-> SHIP C" if lo > 0 else "-> KEEP A")
 
 
 def right(answer, case):
@@ -119,6 +170,8 @@ def run(variant):
 def report():
     cases = load(CASES)
     got = {v: {r["id"]: r for r in load(out_path(v))} if out_path(v).exists() else {} for v in "AB"}
+    if CASES == SETS["3"]:
+        return report3(cases, got)
     ids = [c["id"] for c in cases]
     for v in "AB":
         rows = [got[v][i] for i in ids if i in got[v]]
