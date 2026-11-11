@@ -39,7 +39,11 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
    ("and the period?", "max height?") and got the original one, because A says "answer the original question again"
    (B right on 8/10); 8 ignored the change (B right on 5: 016, 031, 036, 049, 089 vs 015, 024, 046); 3 unit slips
    (025 mm^2 prefix, 069 knots, 073 km/s unconverted); 2 routed to general (063, 095); 2 wrong arithmetic.
-   Hypothesis for a NEW set (set 2 is seen): rewrite-first only when the follow-up asks for another quantity.
+   **Variant C shipped 2026-11-10** (FOLLOWUP3_RULE, set 3 of 90 written first in 8eae9eb): C 51/90 vs A 47/90, paired
+   95% +1 to +8; `plm/followup.py:phrase` rewrites only when the kind of quantity changes. Reported, not decisive:
+   always-rewrite B got 58/90 (+11 over A) on set 3 but +0 on set 2; new-quantity cases are still bad for all
+   (A 1, B 6, C 5 of 28), and 11 of C's 24 rewrites went to the general pack (wrong for every variant). Next
+   hypotheses, each needing a new set: re-route the rewritten question with detect(); B everywhere (set 4).
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need

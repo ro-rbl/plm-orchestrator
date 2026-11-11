@@ -222,8 +222,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._error(e.status, str(e), e.code)
         routed = followup.resolve(req["messages"])  # a follow-up keeps its conversation's pack and question
         pack, req["context"] = routed["pack"], routed["context"]
-        if routed["context"] and pack != "general":  # general already gets the whole conversation
-            req["task"] = routed["task"]
+        if pack != "general":  # general already gets the whole conversation; a new kind of quantity is rewritten
+            req["task"] = followup.phrase(req["messages"], routed)
         cid, created = "chatcmpl-" + uuid.uuid4().hex, int(time.time())
         if req["stream"]:
             self._stream(req, pack, cid, created)

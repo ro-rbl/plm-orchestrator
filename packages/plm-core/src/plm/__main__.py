@@ -64,7 +64,7 @@ def report(result, show_work):
 
 def run_one(task, args, history=()):
     """Solve one task; `history` is the interactive session's earlier messages, for follow-ups (plm.followup)."""
-    from plm.followup import resolve
+    from plm.followup import phrase, resolve
     from plm.packs import PACKS, detect
 
     if not task.strip():
@@ -72,10 +72,12 @@ def run_one(task, args, history=()):
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
     pack = args.pack if args.pack != "auto" else "sql" if args.sql_db else detect(task)
     if history and args.pack == "auto" and not args.sql_db:
-        routed = resolve([*history, {"role": "user", "content": task}])
-        if routed["context"] and routed["pack"] != "general":
-            pack, task = routed["pack"], routed["task"]
-            print(f"(follow-up: kept in {pack}, with the earlier question)")
+        convo = [*history, {"role": "user", "content": task}]
+        routed = resolve(convo)
+        if routed["pack"] != "general" and (routed["context"] or "anchor" in routed):
+            pack, task = routed["pack"], phrase(convo, routed)
+            if routed["context"]:
+                print(f"(follow-up: kept in {pack}, with the earlier question)")
     extra = {}
     if args.sql_db:
         if pack == "sql":

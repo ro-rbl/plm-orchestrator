@@ -134,3 +134,12 @@ radiating black body). Baseline physics 33/40, others 18/20. With the change: ph
 attempt was committed (disclosed in the test). Still missed: an orbit question (aerospace), Carnot efficiency and a
 half-life fraction (general); ISA density and nozzle expansion (aerospace) go to physics.
 `.venv/bin/python evals/test_physics_routing2.py -v`.
+
+## Follow-up wording, set 3: variant C ships (2026-11-10)
+FOLLOWUP3_RULE and 90 new conversations committed first (8eae9eb; `evals/followup/build3.py`). C = rewrite first only
+when the follow-up asks for a quantity of another dimension than the earlier question; else today's wording (A).
+A 47/90 (12619 tokens), B (always rewrite) 58/90 (15613), C 51/90 (13357). C - A +4, paired 95% +1 to +8 -> ship C.
+By kind (A/B/C): value 30/36/30 of 42, quantity 1/6/5 of 28, unit 12/13/12 of 16, two changes 4/3/4 of 4.
+Shipped as `plm.followup.phrase` (server, CLI, interface); the rewrite runs only for a new kind of quantity, and
+falls back to today's task if it fails. Live (fresh conversation): "and its kinetic energy, in joules?" after a
+momentum question was rewritten to a full question and answered 24 J. `.venv/bin/python evals/followup/run.py --set 3 --report`.

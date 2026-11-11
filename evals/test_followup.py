@@ -31,6 +31,52 @@ from plm.packs import detect  # noqa: E402
 from test_detect import holdout_texts, known_texts, latex_texts  # noqa: E402
 
 
+def phrase_checks():
+    """(d) phrase(): variant C as measured (FOLLOWUP3_RULE), with the model faked."""
+    import plm.followup as fu
+    import plm.ollama as ol
+    sys.path.insert(0, str(ROOT / "evals/followup"))
+    import run as measured
+    fails = []
+    if fu.REWRITE_PROMPT != measured.REWRITE_PROMPT:
+        fails.append("REWRITE_PROMPT differs from the measured one in evals/followup/run.py")
+    anchor = "A car accelerates from rest at 3 m/s^2 for 8 s. What speed does it reach, in meters per second?"
+    for last, want in [("how far does it travel in that time, in meters?", True), ("now for 12 s", False),
+                       ("and in km/h?", False), ("what is its kinetic energy, in joules?", True)]:
+        if fu.new_quantity(anchor, last) != want:
+            fails.append(f"new_quantity({last!r}) != {want}")
+    calls, real = [], ol.ask
+    def fake(model, prompt, think, n, timeout):
+        calls.append(prompt)
+        return {"response": " How far does a car travel from rest at 3 m/s^2 in 8 s, in meters? "}
+    ol.ask = fake
+    try:
+        for last, rewritten in [("and what distance does it cover in that time, in meters?", True), ("now for 12 s", False)]:
+            msgs = [{"role": "user", "content": anchor}, {"role": "assistant", "content": "24 m/s"},
+                    {"role": "user", "content": last}]
+            routed = fu.resolve(msgs)
+            task = fu.phrase(msgs, routed)
+            if rewritten and task != "How far does a car travel from rest at 3 m/s^2 in 8 s, in meters?":
+                fails.append(f"new quantity not rewritten: {task!r}")
+            if not rewritten and task != routed["task"]:
+                fails.append("value change was rewritten")
+        if len(calls) != 1 or "assistant: 24 m/s" not in calls[0]:
+            fails.append(f"rewriter calls {len(calls)}")
+        def broken(*a):
+            raise TimeoutError("down")
+        ol.ask = broken
+        msgs[-1]["content"] = "and what distance does it cover in that time, in meters?"
+        routed = fu.resolve(msgs)
+        if fu.phrase(msgs, routed) != routed["task"]:
+            fails.append("a failed rewrite didn't fall back to today's task")
+    finally:
+        ol.ask = real
+    for f in fails:
+        print("   FAIL", f)
+    print(f"(d) phrase (variant C): {'ok' if not fails else f'{len(fails)} failed'}")
+    return not fails
+
+
 def main():
     verbose = "-v" in sys.argv
     cases = [json.loads(line) for line in open(ROOT / "evals/router/followup_cases.jsonl") if line.strip()]
@@ -56,7 +102,8 @@ def main():
     print(f"(c) one-message conversations unchanged: {len(texts) - len(changed)}/{len(texts)}")
     for t in changed[:10] if verbose else []:
         print(f"   changed: {t[:90]!r}")
-    passed = a and b and c
+    d = phrase_checks()
+    passed = a and b and c and d
     print("FOLLOWUP_RULE:", "PASS" if passed else "FAIL")
     sys.exit(0 if passed else 1)
 

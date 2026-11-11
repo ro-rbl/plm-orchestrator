@@ -26,7 +26,7 @@ from textual.widgets import Input, Static, TabbedContent, TabPane
 
 from plm import ollama
 from plm.braille import draw
-from plm.followup import resolve
+from plm.followup import phrase, resolve
 from plm.packs import PACKS
 from plm.paths import log_dir
 from plm import skills as plm_skills
@@ -390,6 +390,7 @@ class PlmApp(App):
         self.say(Text.assemble(("› ", "#79c0ff"), ("/fuse " if fuse else "", ORANGE), text), classes="you")
         messages = [*self.history, {"role": "user", "content": text}]
         routed = resolve(messages)
+        self.routed = routed  # the worker words a follow-up with phrase() (a model call for a new quantity)
         pack, followup = routed["pack"], routed["context"]
         task = routed["task"] if followup and pack != "general" else text
         if fuse:
@@ -438,6 +439,9 @@ class PlmApp(App):
                 extra["thorough"] = True
             if pack == "sql" and s["db"]:
                 extra["db"] = s["db"]
+            routed = getattr(self, "routed", None)
+            if not fuse and routed and pack == routed["pack"] != "general" and task in (routed["task"], text):
+                task = phrase(messages, self.routed)
             active = [self.skills[n] for n in self.active_skills if n in self.skills]
             if pack == "general" and plm_skills.system_message(active):
                 messages = [{"role": "system", "content": plm_skills.system_message(active)}, *messages]
