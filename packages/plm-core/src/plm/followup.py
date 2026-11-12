@@ -55,7 +55,7 @@ def resolve(messages):
         return alone
     adopted = False
     if not FOLLOW.search(last):
-        # Experimental (FOLLOWUP4_RULE, off unless ROUTE_FIX): "what is its kinetic energy, in joules?" names no
+        # Measured, not shipped (FOLLOWUP4_RULE 2026-11-12: 66/83 with and without; off unless ROUTE_FIX): "what is its kinetic energy, in joules?" names no
         # pack on its own and went to general, which gives no checked number. If it asks for a quantity with a
         # unit, keep it in the earlier question's pack and always rewrite it (phrase) into a complete question.
         from plm.numeric.expected import expected_unit

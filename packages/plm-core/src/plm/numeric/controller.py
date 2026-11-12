@@ -63,7 +63,7 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
         level, reason = classify(plain(task))
     plan = levels[level]
 
-    asked = si.normalize(task) if si.ENABLED else task  # experimental (SI_RULE): the model sees no unit prefixes
+    asked = si.normalize(task) if si.ENABLED else task  # SI_RULE: the model sees no unit prefixes
     steps = []
     for model_key, strategy in plan["chain"]:
         steps.append(attempt(asked, models[model_key], strategy, plan["num_predict"], timeout))

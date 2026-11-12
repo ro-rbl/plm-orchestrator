@@ -1,4 +1,4 @@
-"""Unprefixed units for the model, prefixes handled in code (experimental; off unless ENABLED).
+"""Unprefixed units for the model, prefixes handled in code (shipped 2026-11-12, SI_RULE).
 
 The calculator step gets prefixed values wrong by powers of ten: "1.5 kW on 240 V" came back 0.00625 A, "5 mm"
 came back 0.0125 mm (follow-up set 3, 2026-11-10: 9 of 39 misses; the same bug as fusion round 1). normalize(task)
@@ -7,14 +7,16 @@ rewrites the text so the model never sees a prefix: "1.5 kW" -> "1500 W", "150 m
 
 Only plain prefixed units are touched: a symbol or word from the lists below, alone or with ^2/^3 on a length.
 Compound units ("km/h", "kJ/kg", "kg/m^3"), kilograms, bare grams ("a 9 g turn"), tonnes, minutes and hours are
-left as written. Judged by SI_RULE (evals/followup/run.py --set 4, and evals/si_regression.py).
+left as written. Judged by SI_RULE (evals/followup/run4.py and evals/si_regression.py), fixed before any answer:
+follow-up set 4 went from 66/83 to 74/83 (paired 95% +4 to +13), and the 66 own-set problems with a prefix from
+51 to 58 right (electrical 23 -> 23, aerospace 14 -> 16, physics 14 -> 19). ENABLED = False turns it off.
 """
 
 import re
 
 from plm.numeric.answers import LITERAL_UNITS, ureg
 
-ENABLED = False
+ENABLED = True
 
 PREFIX = {"k": 1e3, "M": 1e6, "G": 1e9, "T": 1e12, "m": 1e-3, "µ": 1e-6, "μ": 1e-6, "u": 1e-6, "n": 1e-9,
           "p": 1e-12, "c": 1e-2}

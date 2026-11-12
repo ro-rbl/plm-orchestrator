@@ -143,3 +143,13 @@ By kind (A/B/C): value 30/36/30 of 42, quantity 1/6/5 of 28, unit 12/13/12 of 16
 Shipped as `plm.followup.phrase` (server, CLI, interface); the rewrite runs only for a new kind of quantity, and
 falls back to today's task if it fails. Live (fresh conversation): "and its kinetic energy, in joules?" after a
 momentum question was rewritten to a full question and answered 24 J. `.venv/bin/python evals/followup/run.py --set 3 --report`.
+
+## Unit prefixes in code, and general-pack routing for follow-ups (set 4, 2026-11-12)
+Rules, 83 new conversations and both fixes (off) committed first (8496f10); `evals/followup/run4.py`,
+`evals/si_regression.py`. C = shipped pipeline, D = C + ROUTE_FIX, E = D + si, F = C + si.
+C 66/83, D 66/83, E 74/83, F 74/83. FOLLOWUP4_RULE: D - C +0 (95% -3 to +3) -> ROUTE_FIX not shipped (messages to
+general fell 10 -> 3, but the general pack's prose answers, graded leniently, were already right). SI_RULE: (a) F - C
++8 (95% +4 to +13) pass; (b) own-set problems whose text has a prefix (66 of 150), si off -> on: electrical 23 -> 23,
+aerospace 14 -> 16, physics 14 -> 19 (+7, need >= -2) pass -> `plm.numeric.si` shipped (ENABLED = True). By kind
+with si: value 38/39, unit 16/16, two 4/5, quantity 16/23. Live: "A 2.4 kW oven runs on 230 V ... in milliamperes?"
+gave 10.43 mA with si off (marked trusted) and 10434.8 mA with it on.

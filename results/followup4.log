@@ -1,0 +1,165 @@
+[supervisor 15:25] waiting for AC power (battery 38%)
+[supervisor 15:27] waiting for AC power (battery 36%)
+[supervisor 15:29] waiting for AC power (battery 36%)
+[supervisor 15:31] waiting for AC power (battery 35%)
+[supervisor 15:33] waiting for AC power (battery 34%)
+[supervisor 15:35] waiting for AC power (battery 34%)
+[supervisor 15:37] waiting for AC power (battery 34%)
+[supervisor 15:39] attempt 1: results/run_followup4.sh (pid 13583)
+variant C done
+variant D done
+variant E done
+variant F done
+ee-c05 si=off right {'value': 500.0, 'unit': 'ohm'}
+ee-c05 si=on  right {'value': 500.0, 'unit': 'ohm'}
+ee-c06 si=off right {'value': 265.3, 'unit': 'ohm'}
+ee-c06 si=on  right {'value': 265.3, 'unit': 'ohm'}
+ee-c07 si=off right {'value': 314.2, 'unit': 'ohm'}
+ee-c07 si=on  right {'value': 314.2, 'unit': 'ohm'}
+ee-c08 si=off right {'value': 0.125, 'unit': 'J'}
+ee-c08 si=on  right {'value': 0.125, 'unit': 'J'}
+ee-c10 si=off right {'value': 400.0, 'unit': 'Hz'}
+ee-c10 si=on  right {'value': 400.0, 'unit': 'Hz'}
+ee-a01 si=off right {'value': 2.878, 'unit': 'V'}
+ee-a01 si=on  right {'value': 2.8775510204081636, 'unit': 'V'}
+ee-a03 si=off right {'value': 1.034, 'unit': 'seconds'}
+ee-a03 si=on  right {'value': 1.034, 'unit': 'seconds'}
+ee-a04 si=off right {'value': 1.967, 'unit': 'V'}
+ee-a04 si=on  right {'value': 1.967, 'unit': 'V'}
+ee-a05 si=off right {'value': 150.0, 'unit': 'ohm'}
+ee-a05 si=on  right {'value': 150.0, 'unit': 'ohm'}
+ee-a07 si=off right {'value': 994.7, 'unit': 'Hz'}
+ee-a07 si=on  right {'value': 994.7, 'unit': 'Hz'}
+ee-a08 si=off right {'value': 5033.0, 'unit': 'Hz'}
+ee-a08 si=on  right {'value': 5033.0, 'unit': 'Hz'}
+ee-a10 si=off right {'value': -2.0, 'unit': 'V'}
+ee-a10 si=on  right {'value': -2.0, 'unit': 'V'}
+ee-a11 si=off right {'value': 5.0, 'unit': 'V'}
+ee-a11 si=on  right {'value': 5.0, 'unit': 'V'}
+ee-a12 si=off right {'value': 13.333333333333334, 'unit': 'hours'}
+ee-a12 si=on  right {'value': 13.333333333333334, 'unit': 'hours'}
+ee-a16 si=off right {'value': 5.999999999999999, 'unit': 'uF'}
+ee-a16 si=on  right {'value': 6.0, 'unit': 'uF'}
+ee-a20 si=off right {'value': 4.0, 'unit': 'ms'}
+ee-a20 si=on  right {'value': 4.0, 'unit': 'ms'}
+ee-i03 si=off right {'value': 0.9519, 'unit': 'A'}
+ee-i03 si=on  right {'value': 0.9519, 'unit': 'A'}
+ee-i04 si=off right {'value': 416.1, 'unit': 'uF'}
+ee-i04 si=on  right {'value': 416.1, 'unit': 'uF'}
+ee-i08 si=off right {'value': -1.5, 'unit': 'V'}
+ee-i08 si=on  right {'value': -1.5, 'unit': 'V'}
+ee-i09 si=off right {'value': 0.6516, 'unit': 's'}
+ee-i09 si=on  right {'value': 0.6516, 'unit': 's'}
+ee-i11 si=off right {'value': 8.0, 'unit': 'cells'}
+ee-i11 si=on  right {'value': 8.0, 'unit': 'cells'}
+ee-i12 si=off right {'value': 500.0, 'unit': 'W'}
+ee-i12 si=on  right {'value': 500.0, 'unit': 'W'}
+ee-i13 si=off right {'value': 10.0, 'unit': ''}
+ee-i13 si=on  right {'value': 10.0, 'unit': ''}
+ae-c10 si=off right {'value': 700.0, 'unit': 'kN'}
+ae-c10 si=on  right {'value': 700.0, 'unit': 'kN'}
+ae-c12 si=off WRONG {'value': 5000.0, 'unit': 'm/s'}
+ae-c12 si=on  right {'value': 5.0, 'unit': 'm/s'}
+ae-a02 si=off right {'value': 39.37, 'unit': 'kN'}
+ae-a02 si=on  right {'value': 39.37, 'unit': 'kN'}
+ae-a04 si=off right {'value': 7.673, 'unit': 'km/s'}
+ae-a04 si=on  right {'value': 7.673, 'unit': 'km/s'}
+ae-a05 si=off right {'value': 5.027, 'unit': 'km/s'}
+ae-a05 si=on  right {'value': 5.027, 'unit': 'km/s'}
+ae-a07 si=off right {'value': 255.6, 'unit': 'K'}
+ae-a07 si=on  right {'value': 255.6, 'unit': 'K'}
+ae-a10 si=off right {'value': 30.0, 'unit': 'km'}
+ae-a10 si=on  right {'value': 30.0, 'unit': 'km'}
+ae-a12 si=off right {'value': 92.41, 'unit': 'min'}
+ae-a12 si=on  right {'value': 92.41, 'unit': 'min'}
+ae-a15 si=off WRONG {'value': 237.6, 'unit': 'kPa'}
+ae-a15 si=on  WRONG {'value': 237.6, 'unit': 'kPa'}
+ae-a17 si=off right {'value': 8.643, 'unit': 'm/s²'}
+ae-a17 si=on  right {'value': 8.643, 'unit': 'm/s²'}
+ae-a20 si=off right {'value': 500.0, 'unit': 'kW'}
+ae-a20 si=on  right {'value': 500.0, 'unit': 'kW'}
+ae-i01 si=off WRONG {'value': -4.655, 'unit': 'km/s'}
+ae-i01 si=on  WRONG {'value': -66.75, 'unit': 'km/s'}
+ae-i03 si=off WRONG {'value': 0.06689, 'unit': 'km'}
+ae-i03 si=on  WRONG {'value': 1.858, 'unit': 'km'}
+ae-i04 si=off right {'value': 895.2, 'unit': 'kPa'}
+ae-i04 si=on  right {'value': 895.2, 'unit': 'kPa'}
+ae-i05 si=off WRONG {'value': 258.0, 'unit': 'kN'}
+ae-i05 si=on  WRONG {'value': 258.0, 'unit': 'kN'}
+ae-i06 si=off WRONG None
+ae-i06 si=on  right {'value': 19.9, 'unit': 'MW'}
+ae-i07 si=off right {'value': 20240.0, 'unit': 'km'}
+ae-i07 si=on  right {'value': 20240.0, 'unit': 'km'}
+ae-i08 si=off right {'value': 10.16, 'unit': 'km/s'}
+ae-i08 si=on  right {'value': 10.16, 'unit': 'km/s'}
+ae-i10 si=off right {'value': 3.202, 'unit': 'km/s'}
+ae-i10 si=on  right {'value': 3.202, 'unit': 'km/s'}
+ae-i11 si=off WRONG {'value': 3.0, 'unit': 'km'}
+ae-i11 si=on  WRONG {'value': 10.61, 'unit': 'km'}
+ae-i12 si=off WRONG {'value': 20.16, 'unit': 'MW'}
+ae-i12 si=on  WRONG {'value': 20.16, 'unit': 'MW'}
+ae-i13 si=off right {'value': 0.6638, 'unit': 'km/s'}
+ae-i13 si=on  right {'value': 0.6638, 'unit': 'km/s'}
+ae-i15 si=off WRONG {'value': 15.58, 'unit': 'rev'}
+ae-i15 si=on  WRONG {'value': 15.58, 'unit': 'rev'}
+ph-c08 si=off right {'value': 50.0, 'unit': 'MPa'}
+ph-c08 si=on  right {'value': 50.0, 'unit': 'MPa'}
+ph-a05 si=off right {'value': 264.9, 'unit': 'kJ'}
+ph-a05 si=on  right {'value': 264.87, 'unit': 'kJ'}
+ph-a06 si=off WRONG {'value': 2943.0, 'unit': 'kW'}
+ph-a06 si=on  right {'value': 2.943, 'unit': 'kW'}
+ph-a07 si=off right {'value': 12.0, 'unit': 'kN'}
+ph-a07 si=on  right {'value': 12.0, 'unit': 'kN'}
+ph-a08 si=off right {'value': 6.4, 'unit': 'J'}
+ph-a08 si=on  right {'value': 6.4, 'unit': 'J'}
+ph-a11 si=off right {'value': 245.2, 'unit': 'kPa'}
+ph-a11 si=on  right {'value': 245.25, 'unit': 'kPa'}
+ph-a14 si=off right {'value': 251.16, 'unit': 'kJ'}
+ph-a14 si=on  right {'value': 251.16, 'unit': 'kJ'}
+ph-a15 si=off right {'value': 0.678, 'unit': 'MJ'}
+ph-a15 si=on  right {'value': 0.678, 'unit': 'MJ'}
+ph-a16 si=off WRONG {'value': 99770.0, 'unit': 'kPa'}
+ph-a16 si=on  right {'value': 99.768, 'unit': 'kPa'}
+ph-a17 si=off right {'value': 8.4, 'unit': 'mm'}
+ph-a17 si=on  right {'value': 8.4, 'unit': 'mm'}
+ph-a18 si=off right {'value': 2.0, 'unit': 'mm'}
+ph-a18 si=on  WRONG {'value': 4.0, 'unit': 'mm'}
+ph-a19 si=off right {'value': 31.42, 'unit': 'kW'}
+ph-a19 si=on  right {'value': 31.42, 'unit': 'kW'}
+ph-a20 si=off right {'value': 2.4, 'unit': 'MJ'}
+ph-a20 si=on  right {'value': 2.4, 'unit': 'MJ'}
+ph-i04 si=off WRONG {'value': 54000.0, 'unit': 'kJ'}
+ph-i04 si=on  right {'value': 54.0, 'unit': 'kJ'}
+ph-i07 si=off right {'value': 197.4, 'unit': 'kJ'}
+ph-i07 si=on  right {'value': 197.4, 'unit': 'kJ'}
+ph-i09 si=off WRONG {'value': 30200.0, 'unit': 'kPa'}
+ph-i09 si=on  right {'value': 170.0, 'unit': 'kPa'}
+ph-i12 si=off WRONG {'value': 33.55, 'unit': 'kJ'}
+ph-i12 si=on  right {'value': 100.3, 'unit': 'kJ'}
+ph-i13 si=off WRONG {'value': 0.003753, 'unit': 'kJ'}
+ph-i13 si=on  right {'value': 3.753, 'unit': 'kJ'}
+ph-i14 si=off right {'value': 3.15, 'unit': 'MJ'}
+ph-i14 si=on  right {'value': 3.15, 'unit': 'MJ'}
+ph-i15 si=off right {'value': 3.747, 'unit': 'mm'}
+ph-i15 si=on  right {'value': 3.747, 'unit': 'mm'}
+electrical: 23 changed problems, off 23, on 23 (+0)
+aerospace: 23 changed problems, off 14, on 16 (+2)
+physics: 20 changed problems, off 14, on 19 (+5)
+total on - off: +7
+SI_RULE (b) -> pass
+=== FINAL ===
+C: 66/83 right, 9625 tokens (quantity 16/23, two 3/5, unit 13/16, value 34/39; to general 10)
+D: 66/83 right, 9023 tokens (quantity 16/23, two 3/5, unit 13/16, value 34/39; to general 3)
+E: 74/83 right, 8405 tokens (quantity 16/23, two 4/5, unit 16/16, value 38/39; to general 3)
+F: 74/83 right, 9043 tokens (quantity 16/23, two 4/5, unit 16/16, value 38/39; to general 10)
+D - C: +0, 95% -3 to +3
+FOLLOWUP4_RULE -> KEEP TODAY (no ROUTE_FIX)
+F - C: +8, 95% +4 to +13
+SI_RULE (a) -> pass   ((b): evals/si_regression.py)
+electrical: 23 changed problems, off 23, on 23 (+0)
+aerospace: 23 changed problems, off 14, on 16 (+2)
+physics: 20 changed problems, off 14, on 19 (+5)
+total on - off: +7
+SI_RULE (b) -> pass
+=== END ===
+[supervisor 16:15] finished

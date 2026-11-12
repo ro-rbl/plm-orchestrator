@@ -119,9 +119,28 @@ def main():
         if expected_unit(q) != want:
             fails.append(f"expected_unit({q!r}) = {expected_unit(q)}, want {want}")
 
+    from plm.numeric import si  # unit prefixes handled in code (SI_RULE, 2026-11-12)
+    si_cases = [
+        ("A 1.5 kW kettle runs on 240 V. What current, in amperes?", "A 1500 W kettle runs on 240 V. What current, in amperes?"),
+        ("A 2000 mAh battery, drawing 150 mA.", "A 2 Ah battery, drawing 0.15 A."),
+        ("cross-section of 1 mm^2, modulus 200 GPa, stretch in millimeters?", "cross-section of 1e-06 m^2, modulus 2e+11 Pa, stretch in meters?"),
+        ("R = 10 kilohm and C = 1 microfarad, in milliseconds?", "R = 10000 ohm and C = 1e-06 farad, in seconds?"),
+        ("7.7 km/s, 100 km/h, a 9 g turn, 300 g, 50 kg/s, 1.225 kg/m^3, 3.3 kJ/kg, 100 kilometers per hour, 5 m, 12 V",
+         "7.7 km/s, 100 km/h, a 9 g turn, 300 g, 50 kg/s, 1.225 kg/m^3, 3.3 kJ/kg, 100 kilometers per hour, 5 m, 12 V"),
+        ("5 MW vs 5 mW, and in kN?", "5000000 W vs 0.005 W, and in N?"),
+    ]
+    for before, after in si_cases:
+        if si.normalize(before) != after:
+            fails.append(f"si.normalize({before!r}) = {si.normalize(before)!r}")
+    q = "What current flows, in milliamperes?"
+    if si.restore({"value": 0.15, "unit": "A"}, q, si.normalize(q)) != {"value": 150.0, "unit": "mA"}:
+        fails.append("si.restore didn't convert A back to mA")
+    if si.restore({"value": 3.0, "unit": "A"}, "in amperes?", "in amperes?") != {"value": 3.0, "unit": "A"}:
+        fails.append("si.restore changed an answer to an unprefixed question")
+
     for f in fails:
         print("FAIL", f)
-    total = 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2 + len(symbols)
+    total = len(si_cases) + 2 + 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2 + len(symbols)
     print(f"checks tests: {total - len(fails)}/{total} passed")
     sys.exit(1 if fails else 0)
 

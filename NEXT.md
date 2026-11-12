@@ -44,6 +44,11 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
    always-rewrite B got 58/90 (+11 over A) on set 3 but +0 on set 2; new-quantity cases are still bad for all
    (A 1, B 6, C 5 of 28), and 11 of C's 24 rewrites went to the general pack (wrong for every variant). Next
    hypotheses, each needing a new set: re-route the rewritten question with detect(); B everywhere (set 4).
+   **Set 4 (2026-11-12, 83 conversations, rules first in 8496f10):** unit prefixes handled in code (`plm/numeric/si.py`)
+   **shipped**: 66/83 -> 74/83 (paired 95% +4 to +13), own-set problems with a prefix 51 -> 58 of 66; every numeric
+   pack gets it. Keeping unit-asking messages out of the general pack (ROUTE_FIX) **not shipped**: 66/83 either way
+   (-3 to +3); with lenient grading the general pack's prose answers were already right, they are only unchecked.
+   Still wrong after si: new-quantity follow-ups (16/23). Always-rewrite (B) is still untested on a fresh set.
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
