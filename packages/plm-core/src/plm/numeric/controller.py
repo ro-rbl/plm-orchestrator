@@ -12,7 +12,7 @@ None) the checks can't fail, so the answer is reported as unchecked instead.
 import time
 
 from plm.latex import plain
-from plm.numeric import calc, decompose
+from plm.numeric import calc, decompose, si
 from plm.numeric.answers import ANSWER_FORMAT, parse_answer
 from plm.numeric.checks import requested_unit
 from plm.numeric.expected import check_expected as check, expected_unit
@@ -63,14 +63,18 @@ def solve(task, *, pack, classify, levels, models, level=None, timeout=300):
         level, reason = classify(plain(task))
     plan = levels[level]
 
+    asked = si.normalize(task) if si.ENABLED else task  # experimental (SI_RULE): the model sees no unit prefixes
     steps = []
     for model_key, strategy in plan["chain"]:
-        steps.append(attempt(task, models[model_key], strategy, plan["num_predict"], timeout))
+        steps.append(attempt(asked, models[model_key], strategy, plan["num_predict"], timeout))
         if not steps[-1]["issues"]:
             break
 
     final = steps[-1]
     parsed = parse_answer(final["output"])
+    if parsed and asked != task:
+        back = si.restore({"value": parsed[0], "unit": parsed[1]}, task, asked)
+        parsed = (back["value"], back["unit"])
     checked = expected_unit(task)[0] is not None  # unit words, a unit symbol, or the quantity asked (UNITS2_RULE)
     return {
         "pack": pack,

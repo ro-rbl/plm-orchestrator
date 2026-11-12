@@ -38,6 +38,7 @@ FOLLOW = re.compile(
     re.IGNORECASE,
 )
 MAX_PREVIOUS_ANSWER = 2000
+ROUTE_FIX = False
 
 
 def resolve(messages):
@@ -50,8 +51,17 @@ def resolve(messages):
     alone = {"pack": detect(last), "task": last, "context": False}
     if anchor is not None:
         alone["anchor"] = anchor[1]  # for phrase(): even a message routed alone may ask a new quantity of it
-    if len(users) < 2 or not FOLLOW.search(last) or anchor is None:
+    if len(users) < 2 or anchor is None:
         return alone
+    adopted = False
+    if not FOLLOW.search(last):
+        # Experimental (FOLLOWUP4_RULE, off unless ROUTE_FIX): "what is its kinetic energy, in joules?" names no
+        # pack on its own and went to general, which gives no checked number. If it asks for a quantity with a
+        # unit, keep it in the earlier question's pack and always rewrite it (phrase) into a complete question.
+        from plm.numeric.expected import expected_unit
+        if not (ROUTE_FIX and alone["pack"] == "general" and expected_unit(last)[0]):
+            return alone
+        adopted = True
     anchor_i, anchor_text = anchor
     pack = detect(anchor_text)
     changes = [t for i, t in users if anchor_i < i]
@@ -62,7 +72,7 @@ def resolve(messages):
         parts.append(f"Previous answer:\n{answer[:MAX_PREVIOUS_ANSWER]}")
     parts.append("Change" + ("s, in order" if len(changes) > 1 else "") + ":\n" + "\n".join(changes))
     parts.append("Answer the original question again with the change applied.")
-    return {"pack": pack, "task": "\n\n".join(parts), "context": True, "anchor": anchor_text}
+    return {"pack": pack, "task": "\n\n".join(parts), "context": True, "anchor": anchor_text, "rewrite": adopted}
 
 
 def new_quantity(anchor, last):
@@ -85,7 +95,7 @@ def phrase(messages, routed, timeout=600):
     if routed["pack"] == "general" or "anchor" not in routed:  # general gets the whole conversation anyway
         return routed["task"]
     last = next(m["content"] for m in reversed(messages) if m.get("role") == "user")
-    if not new_quantity(routed["anchor"], last):
+    if not (routed.get("rewrite") or new_quantity(routed["anchor"], last)):
         return routed["task"]
     from plm.ollama import ask
     transcript = "\n".join(f"{m['role']}: {m['content']}" for m in messages)
