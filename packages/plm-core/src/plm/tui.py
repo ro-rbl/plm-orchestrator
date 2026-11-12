@@ -16,6 +16,7 @@ import time
 import urllib.request
 from importlib.metadata import PackageNotFoundError, version
 
+from rich.markdown import Heading, Markdown
 from rich.syntax import Syntax
 from rich.text import Text
 from textual import work
@@ -26,6 +27,7 @@ from textual.widgets import Input, Static, TabbedContent, TabPane
 
 from plm import ollama
 from plm.braille import draw
+from plm.display import tidy
 from plm.followup import phrase, resolve
 from plm.packs import PACKS
 from plm.paths import log_dir
@@ -147,6 +149,17 @@ def split_code(body):
     return out
 
 
+class LeftHeading(Heading):
+    """Rich centers headings and boxes the first level; in a chat column they read better flush left."""
+
+    def __rich_console__(self, console, options):
+        yield Text(self.text.plain, style=f"bold {ORANGE}" if self.tag in ("h1", "h2") else "bold")
+
+
+class Reply(Markdown):
+    elements = {**Markdown.elements, "heading_open": LeftHeading}
+
+
 class Chip(Static):
     pass
 
@@ -162,6 +175,8 @@ class PlmApp(App):
     #chat > Static {{ height: auto; margin-bottom: 0; }}
     #chat > .you {{ color: #79c0ff; margin: 1 0 0 0; }}
     .answer {{ text-style: bold; }}
+    #chat > .reply {{ margin: 0 2 0 0; }}
+    #chat > .status {{ margin: 0 0 1 0; }}
     #ask {{ margin: 0 1 1 1; border: round #3a3e4c; background: #15161b; }}
     #side {{ width: 46; background: #1b1d24; border-left: solid #2c2f3a; }}
     #side Static {{ padding: 1; height: auto; }}
@@ -244,9 +259,10 @@ class PlmApp(App):
         else:
             widget.update(Text.assemble(("│ ollama ", "#5c5f6b"), ("● ", GREEN), f"{up[1]:.1f} GB"))
 
-    def say(self, renderable, classes=""):
+    def say(self, renderable, classes="", source=None):
         chat = self.query_one("#chat", VerticalScroll)
         widget = Static(renderable, classes=classes)
+        widget.source = source  # the text behind a rendered reply (tests, export)
         chat.mount(widget)
         chat.scroll_end(animate=False)
         return widget
@@ -447,6 +463,9 @@ class PlmApp(App):
                 messages = [{"role": "system", "content": plm_skills.system_message(active)}, *messages]
             elif pack != "general":
                 task = plm_skills.apply_to_task(task, active, pack)
+            if pack == "general":
+                from plm.general.controller import styled
+                messages = styled(messages)
             if self.solve_fn:
                 result = self.solve_fn(pack, task, messages)
             elif fuse:
@@ -482,11 +501,13 @@ class PlmApp(App):
         with log.open("a") as f:
             f.write(json.dumps(result, default=str) + "\n")
         body = answer_body(result) or "(no answer)"
-        note = caveat(result)
+        note = caveat(result) if result["pack"] != "general" else ""  # general: the status line already says unchecked
         for kind, chunk in split_code(body):
             if kind == "code":
                 self.say(Syntax(chunk[1], chunk[0] or "text", theme="monokai", word_wrap=True, background_color="#15161b"))
-            elif chunk.strip():
+            elif chunk.strip() and "text" in (result.get("answer") or {}):  # prose: rendered Markdown, tidied
+                self.say(Reply(tidy(chunk)), classes="reply", source=tidy(chunk))
+            elif chunk.strip():  # a value ("22 V") or a short note beside code
                 self.say(Text(chunk.strip(), "bold"), classes="answer")
         if note:
             self.say(Text(note.strip(), YELLOW))
@@ -498,7 +519,7 @@ class PlmApp(App):
                 self.say(Text(f"fusion (experimental): {fusion['plan'].get('pack', '?')} calculation → "
                               f"{fusion['value_mm']:.4g} mm → cad", ORANGE))
         line = status_line(result)
-        self.say(line)
+        self.say(line, classes="status")
         if self.settings["show"]:
             for i, step in enumerate(result["steps"], 1):
                 work = (step.get("program") or step.get("code") or step.get("model_text") or "").strip()
@@ -506,7 +527,7 @@ class PlmApp(App):
                     self.say(Text(f"step {i} · {label(step['model'])}{' · ' + step['role'] if step.get('role') else ''}\n"
                                   + work[:2000], DIM))
         self.history += [{"role": "user", "content": text}, {"role": "assistant", "content": body}]
-        self.transcript.append((text, body, line.plain))
+        self.transcript.append((text, tidy(body) if "text" in (result.get("answer") or {}) else body, line.plain))
         used = [result["pack"]]
         if result.get("fusion", {}).get("plan"):  # both packs of a fusion: the calculation's and cad
             used.insert(0, result["fusion"]["plan"].get("pack"))

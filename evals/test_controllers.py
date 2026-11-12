@@ -419,6 +419,10 @@ def test_general():
     expect("general caps num_ctx and keeps options", seen[-1][3] == {"temperature": 0.3, "num_ctx": 40960}, seen[-1][3])
     general.solve("x", messages=long, options={"num_ctx": 4096})
     expect("caller's num_ctx wins", seen[-1][3] == {"num_ctx": 4096}, seen[-1][3])
+    one = [{"role": "user", "content": "hi"}]
+    expect("styled adds the style as a system message", general.styled(one) == [{"role": "system", "content": general.STYLE}, *one])
+    expect("styled keeps an existing system message", general.styled([{"role": "system", "content": "Be formal."}, *one])
+           == [{"role": "system", "content": general.STYLE + "\n\nBe formal."}, *one])
 
 
 def test_registry():

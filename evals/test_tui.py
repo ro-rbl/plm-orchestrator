@@ -65,12 +65,15 @@ CHATS = []
 
 def fake_general_chat(model, messages, num_predict, timeout, options=None):
     CHATS.append(messages)
-    return {"response": "Canberra.", "eval_tokens": 3, "prompt_tokens": 40, "load_s": 0, "wall_s": 0.0,
+    text = ("Sure!\n\n---\n\n### ✅ **1. Plates** 🚀\n\n- **Charge** sits on the plates\n- \\( E = \\frac{1}{2} C V^{2} \\)"
+            if "decorate" in messages[-1]["content"] else "Canberra.")
+    return {"response": text, "eval_tokens": 3, "prompt_tokens": 40, "load_s": 0, "wall_s": 0.0,
             "done_reason": "stop", "thinking_chars": 0, "mode": "fake"}
 
 
 def chat_text(app):
-    return "\n".join(str(w.render()) for w in app.query_one("#chat", VerticalScroll).query(Static))
+    return "\n".join(getattr(w, "source", None) or str(w.render())
+                     for w in app.query_one("#chat", VerticalScroll).query(Static))
 
 
 async def wait_idle(app, pilot, seconds=60):
@@ -217,6 +220,18 @@ async def session(shots):
             system = CHATS[-1][0] if CHATS else {}
             expect("the general pack gets the skills as a system message", system.get("role") == "system"
                    and "one short sentence" in system["content"] and "formula you used" in system["content"], CHATS[-1:])
+            expect("the general pack is asked for plain answers without emoji", "No emoji" in system["content"])
+            await ask("Please decorate: how does a capacitor store energy?")
+            import io
+            from rich.console import Console
+            reply = app.query(".reply").last()
+            out = io.StringIO()
+            Console(file=out, width=100, color_system=None).print(tui.Reply(reply.source))
+            shown = out.getvalue()
+            expect("a decorated reply is tidied", reply.source == "Sure!\n\n### 1. Plates\n\n- **Charge** sits on the "
+                   "plates\n- E = 1/2 C V^2", reply.source)
+            expect("the reply is rendered, not printed as Markdown source", "**" not in shown and "#" not in shown
+                   and "✅" not in shown and "1. Plates" in shown and "Charge sits on the plates" in shown, shown)
             await ask("A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?")
             expect("a pack named by a skill gets its instructions", "State the formula you used." in PROMPTS[-1]
                    and "one short sentence" not in PROMPTS[-1], PROMPTS[-1][-200:])

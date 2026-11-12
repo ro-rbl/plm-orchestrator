@@ -22,6 +22,7 @@ import urllib.error
 from pathlib import Path
 
 from plm.paths import log_dir
+from plm.display import unmark
 from plm.report import answer_text, final_step, short
 
 LOG = Path(os.environ.get("PLM_LOG") or log_dir() / "runs.jsonl")
@@ -34,7 +35,7 @@ def how(step):
 
 
 def report(result, show_work):
-    print("\n" + answer_text(result))
+    print("\n" + unmark(answer_text(result)))  # no emoji, #, ** in a terminal that doesn't render Markdown
     print(f"\npack    {result['pack']}")
     print(f"level   {result['level']}  ({result['reason']})")
     chosen = final_step(result)
@@ -89,6 +90,9 @@ def run_one(task, args, history=()):
             extra["thorough"] = True
         else:
             print("plm: --thorough only applies to the software pack; ignoring it", file=sys.stderr)
+    if pack == "general":
+        from plm.general.controller import styled
+        extra["messages"] = styled([{"role": "user", "content": task}])
     try:
         result = PACKS[pack].solve(task, level=args.level, timeout=args.timeout, **extra)
     except urllib.error.HTTPError as e:

@@ -21,6 +21,19 @@ DEFAULT_CONTEXT = 4096  # Ollama's default; staying on it shares the copy the us
 UNCHECKED = "no pack covers this task, so the answer wasn't checked"
 
 
+# For people reading the reply in plm's own interface or command line (not sent for API clients of the server,
+# who bring their own instructions). Local models otherwise decorate every answer with emoji, rules and headings.
+STYLE = ("Answer plainly and briefly, in short paragraphs. Use a short list only when the answer really is a list, "
+         "and headings only for a long answer. No emoji, no horizontal rules, no tables unless asked for one.")
+
+
+def styled(messages):
+    """messages with STYLE as (or added to the front of) the system message."""
+    if messages and messages[0].get("role") == "system":
+        return [{"role": "system", "content": STYLE + "\n\n" + messages[0]["content"]}, *messages[1:]]
+    return [{"role": "system", "content": STYLE}, *messages]
+
+
 def _messages(task, messages):
     return messages or [{"role": "user", "content": task}]
 

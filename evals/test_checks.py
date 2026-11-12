@@ -138,9 +138,24 @@ def main():
     if si.restore({"value": 3.0, "unit": "A"}, "in amperes?", "in amperes?") != {"value": 3.0, "unit": "A"}:
         fails.append("si.restore changed an answer to an unprefixed question")
 
+    from plm.display import tidy, unmark  # replies tidied for reading (2026-11-12)
+    raw = ("Intro **bold**.\n\n---\n\n### ✅ **1. Title** 🚀\n\n- **Cap**: \\( E = \\frac{1}{2} C V^{2} \\) → fast\n"
+           "```python\nx = \"**kept** ✅ ---\"\n```\nDone ✓ 👍")
+    display = [
+        (tidy(raw), "Intro **bold**.\n\n### 1. Title\n\n- **Cap**: E = 1/2 C V^2 → fast\n"
+                    "```python\nx = \"**kept** ✅ ---\"\n```\nDone ✓"),
+        (unmark(raw), "Intro bold.\n\n1. Title\n\n- Cap: E = 1/2 C V^2 → fast\n"
+                      "```python\nx = \"**kept** ✅ ---\"\n```\nDone ✓"),
+        (tidy("Costs $5 to $10, 2 * 3 * 4."), "Costs $5 to $10, 2 * 3 * 4."),
+        (unmark("22 V"), "22 V"),
+    ]
+    for got, want in display:
+        if got != want:
+            fails.append(f"display: {got!r} != {want!r}")
+
     for f in fails:
         print("FAIL", f)
-    total = len(si_cases) + 2 + 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2 + len(symbols)
+    total = len(display) + len(si_cases) + 2 + 2 * len(problems) + len(holdout) + len(bad) + len(good) + 1 + len(agreements) + 2 + len(symbols)
     print(f"checks tests: {total - len(fails)}/{total} passed")
     sys.exit(1 if fails else 0)
 

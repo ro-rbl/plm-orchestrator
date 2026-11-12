@@ -26,6 +26,11 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 - Follow-up questions in the server and the interface (`plm/followup.py`), and unit checks from the question
   (`plm/numeric/expected.py`, UNITS2_RULE; this one is in 0.1.3).
 
+- Readable replies (2026-11-12, user's request; no eval, the general pack is unchecked): `plm/display.py` strips emoji,
+  "---" rules and LaTeX delimiters; the interface renders Markdown (`tui.Reply`) instead of printing `**`/`##`; the
+  CLI prints plain text; the general pack gets a short plain-style instruction (`general.STYLE`) in the interface
+  and CLI only, never through the server.
+
 **Measured, not shipped** (each with a rule fixed first; details further down):
 - Pack fusion: round 3 (coder calculates) 22/40 vs CAD alone 17/40 (-4 to +14); perfect hand-off 34/40. Only as
   the experimental `/fuse`.
