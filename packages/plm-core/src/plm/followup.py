@@ -40,6 +40,10 @@ FOLLOW = re.compile(
 MAX_PREVIOUS_ANSWER = 2000
 ROUTE_FIX = False
 ALWAYS_REWRITE = False
+# Experimental (FOLLOWUP6_RULE, evals/followup/run6.py), off: nothing calls whole() outside the eval.
+WHOLE = False
+WHOLE_PROMPT = "Below is a conversation. Answer the user's last message.\n\n{transcript}\n\n"
+WHOLE_TOKENS = 1024
 
 
 def resolve(messages):
@@ -106,3 +110,49 @@ def phrase(messages, routed, timeout=600):
     except Exception:
         return routed["task"]
     return text or routed["task"]
+
+
+def whole(messages, routed, timeout=300):
+    """A follow-up to a numeric pack answered by that pack's large model from the whole conversation, with the
+    calculator format: one model call, no reworded task. Returns a result shaped like plm.numeric.controller.solve's,
+    or None when this isn't such a follow-up (not a numeric pack, no earlier pack question, or a message that
+    neither changes it nor asks a new kind of quantity of it: exactly the cases where the shipped path uses the
+    conversation). The caller falls back to phrase() + the pack when the last step has issues."""
+    import time
+
+    from plm.numeric import calc, si
+    from plm.numeric.answers import parse_answer
+    from plm.numeric.expected import check_expected, expected_unit
+    from plm.ollama import ask
+    from plm.packs import PACKS
+
+    pack = PACKS[routed["pack"]]
+    model = pack.models.get("large")
+    if not pack.unit_words or not model or "anchor" not in routed:
+        return None
+    last = next(m["content"] for m in reversed(messages) if m.get("role") == "user")
+    if not (routed.get("context") or new_quantity(routed["anchor"], last)):
+        return None
+    start = time.time()
+    transcript = "\n".join(f"{m['role']}: {(m.get('content') or '')[:MAX_PREVIOUS_ANSWER]}" for m in messages)
+    question = last if expected_unit(last)[0] else routed["anchor"]  # the message that says what unit is asked
+    if si.ENABLED:  # SI_RULE: the model sees no unit prefixes
+        transcript = si.normalize(transcript)
+    r = ask(model, WHOLE_PROMPT.format(transcript=transcript) + calc.TOOL_FORMAT, False, WHOLE_TOKENS, timeout)
+    code = calc.extract_program(r["response"])
+    output, program_error = calc.run_program(code) if code else ("", "no code block")
+    asked = si.normalize(question) if si.ENABLED else question
+    step = {"model": model, "strategy": "tool", "tokens": r["eval_tokens"], "prompt_tokens": r["prompt_tokens"],
+            "model_text": r["response"], "capped": r["done_reason"] == "length", "program": code, "output": output,
+            "issues": ([program_error] if program_error else []) + check_expected(asked, output),
+            "seconds": time.time() - start}
+    parsed = parse_answer(output)
+    answer = {"value": parsed[0], "unit": parsed[1]} if parsed else None
+    if answer and asked != question:
+        answer = si.restore(answer, question, asked)
+    checked = expected_unit(question)[0] is not None
+    return {"pack": pack.name, "task": last, "level": "follow-up", "reason": "follow-up: the whole conversation",
+            "answer": answer, "checked": checked,
+            "unchecked_reason": None if checked else "the question names no unit or quantity, so the answer couldn't be checked",
+            "trusted": checked and not step["issues"], "steps": [step], "tokens": step["tokens"],
+            "seconds": time.time() - start}
