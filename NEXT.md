@@ -1,12 +1,13 @@
 # NEXT
 
-_Updated: 2026-11-09 · branch: main · plan: ROADMAP.md · results: docs/results.md_
+_Updated: 2026-11-13 · branch: main · plan: ROADMAP.md · results: docs/results.md_
 
 ## Start here (next session)
-Phases 1-5 of `ROADMAP.md` are done and public: GitHub https://github.com/ro-rbl/plm-orchestrator, Hugging Face
-https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, and PyPI (all seven packages; plm-core 0.1.4,
-plm-cad 0.1.1, plm-physics and plm-electrical 0.1.1, the rest 0.1.0; `uv tool install "plm-core[tui]"`). Every policy was chosen by a rule committed
-before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
+Everything through phase 6 of `ROADMAP.md` is done and public: GitHub https://github.com/ro-rbl/plm-orchestrator,
+Hugging Face https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, PyPI (seven packages: **plm-core 0.1.4,
+plm-physics 0.1.1, plm-electrical 0.1.1 released 2026-11-12**; plm-cad 0.1.1; the rest 0.1.0;
+`uv tool install "plm-core[tui]"`). The repo matches what is released except one unreleased flag (below). Every
+policy was chosen by a rule committed before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 | Pack | Ships | Public benchmark (shipped) |
 |---|---|---|
@@ -17,31 +18,63 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 | sql | coder 14B alone (+4B second opinion with a database) | Spider 76%, BIRD mini-dev 51% |
 | cad | coder 14B alone | CADPrompt 14% (bbox + volume within 0.1%) |
 
-**Released 2026-11-12: plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1** (token upload; fresh install from
-PyPI checked, live 10434.8 mA for the 2.4 kW oven question). In it:
-- Full-screen interface (`plm` with no question; `plm/tui.py`; double-click `plm.command`, also on the Desktop):
-  chat with follow-ups, Part (Braille drawing of CAD parts) / Code / Steps / Log tabs, packs and models strips,
-  context meter. `/` commands: `/pack /model /level /thorough /db /show /fuse /export /settings /skills /skill
-  /new /help /quit`. Skills: Claude SKILL.md format in `~/.plm/skills` or `./.plm/skills` (`plm/skills.py`,
-  example in `examples/skills/`). `evals/test_tui.py` drives it with Textual's pilot.
-- Follow-up questions in the server and the interface (`plm/followup.py`), and unit checks from the question
-  (`plm/numeric/expected.py`, UNITS2_RULE; this one is in 0.1.3).
+(The table's numbers predate unit-prefix handling; with it, the own-set problems that contain a prefix went 51 -> 58
+of 66 right and the public physics ones +2 of 105. The headline sweeps were not re-run.)
 
-- Readable replies (2026-11-12, user's request; no eval, the general pack is unchecked): `plm/display.py` strips emoji,
-  "---" rules and LaTeX delimiters; the interface renders Markdown (`tui.Reply`) instead of printing `**`/`##`; the
-  CLI prints plain text; the general pack gets a short plain-style instruction (`general.STYLE`) in the interface
-  and CLI only, never through the server.
+**What the session of 2026-11-09 to 11-13 did** (all released in 0.1.4 / 0.1.1 unless marked):
+- Unit prefixes handled in code for every numeric pack (`plm/numeric/si.py`, SI_RULE): "1.5 kW" reaches the model as
+  "1500 W", the answer is converted back. Follow-up set 4: 66/83 -> 74/83.
+- Follow-ups: a follow-up that asks for another kind of quantity is rewritten into one question first
+  (`plm/followup.py:phrase`, FOLLOWUP3_RULE); everything else keeps the "Original question / Change" task.
+- General pack: context window raised on demand up to 40960 (CONTEXT_RULE); plain-style instruction and no emoji in
+  the interface and CLI (`general.STYLE`; never through the server).
+- Interface: live progress per model call (`plm.ollama.LISTENERS`), Markdown rendered instead of printed
+  (`tui.Reply`, `plm/display.py`), context meter shows the raised window. CLI prints plain text.
+- Units: "in cm^-1", "in s^-1" read as asked units. Physics routing attempt 2 (PHYS2_RULE: 37/40 vs 33).
+- `.github/workflows/publish.yml`: PyPI Trusted Publishing by tag. **Never run.**
 
-**Measured, not shipped** (each with a rule fixed first; details further down):
-- Pack fusion: round 3 (coder calculates) 22/40 vs CAD alone 17/40 (-4 to +14); perfect hand-off 34/40. Only as
-  the experimental `/fuse`.
-- Follow-up wording: **settled 2026-11-09, keep today's (A).** FOLLOWUP2_RULE on 100 new keyed conversations (14546bf,
-  written first): A 75/100, rewrite-first 75/100 (paired 95% -12 to +12), B +20% tokens; by pack A/B aerospace 25/21,
-  electrical 24/26, physics 26/28. Set 1 (36, seen) had B 31 vs A 27. `results/followup2_*.jsonl`.
-- Physics routing attempt 1: 27/30 vs 28 needed (superseded: attempt 2 shipped 2026-11-10). SQL tables-flag plural fix: moves scores by at most 1, no run.
+**The open problem: plm loses to a single model on follow-ups.** Set 5 (80 new conversations, 2026-11-13): plm 0.1.4
+69/80; qwen3:8b alone with the whole conversation 76/80 (paired +7, 95% +1 to +13, computed after the fact); coder
+14B alone 75/80; 8B with thinking 54/55 (partial). By kind (plm / 8B alone): new quantity 12/17 of 18, changed value
+36/39 of 41. Always-rewrite was worse than shipped (64/80, FOLLOWUP5_RULE) and is closed. Standalone questions are
+not affected by this result.
 
 **Open, in the order I'd take them:**
-1. (done 2026-11-09: keep today's follow-up wording.) Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW quantity
+1. **Follow-ups through the large model with the whole conversation** (the user said: later). Hypothesis: for a
+   resolved follow-up, give the pack's large model the conversation plus the calculator format instead of a reworded
+   task for the 4B. Needs set 6 (new anchors; sets 1-5 are seen; copy `evals/followup/build5.py` and `run5.py`), the
+   rule committed first: ship iff it beats shipped plm with the paired 95% interval above 0 AND is not below the 8B
+   alone by an interval entirely below 0. About 15 min to write, about 1 h of models.
+2. Finish the thinking baseline on set 5 (25 conversations left, resumes, about 30 min):
+   `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`, then `--report`.
+3. PyPI Trusted Publishing: the user adds a GitHub publisher on PyPI for each package (owner `ro-rbl`, repository
+   `plm-orchestrator`, workflow `publish.yml`, environment `pypi`); the next release is then
+   `git tag plm-core-v<version> && git push origin plm-core-v<version>` (first run of the workflow: watch it).
+4. Re-run the headline sweeps with unit-prefix handling on, so the table above is current (hours; overnight).
+5. Routing gaps left by PHYS2_RULE: an orbit question -> aerospace, Carnot efficiency and half-life -> general; ISA
+   density and nozzle expansion -> physics. Needs new cases first.
+
+**In the repo, off, not released behaviour** (flags kept so the runs reproduce): `plm.followup.ROUTE_FIX`
+(FOLLOWUP4_RULE: 66/83 with and without) and `plm.followup.ALWAYS_REWRITE` (FOLLOWUP5_RULE: 64 vs 69 of 80; this
+flag was added after 0.1.4, so the repo differs from PyPI by this dead switch only). `/fuse` stays experimental.
+
+**Unverified / known limits from this session:**
+- The 8B-alone comparison had no rule fixed in advance, and set 5 is now seen.
+- The context window was measured on recall of one code word at about 7000 tokens, not on answer quality.
+- `general.STYLE` and the reply tidying have no eval (the general pack is unchecked); answers got much shorter
+  (about 70-140 tokens, was about 900). Loosen `STYLE` in `plm/general/controller.py` if that is too terse.
+- Live progress labels steps by model call, not by each pack's own step names.
+- The "in cm^-1" change was judged against UNITS2_RULE's limits after its replay was seen.
+
+**Machine notes:** the user's assistant (launchd `com.ro.assistant`) runs their 06:00 alarm and pins `qwen3:8b`;
+for long runs use `results/fusion_supervisor.sh <run script> 05:30` (waits for AC, unpins the 8B, stops at the
+deadline, unloads our models). Restart the assistant only with `launchctl kickstart -k gui/$(id -u)/com.ro.assistant`,
+never `assistant serve` from a terminal. Before a long run: `pmset -g batt`, `ollama ps`, and say the Amphetamine
+time first.
+
+## Follow-up answers: sets 1-5 (2026-11-08 to 11-13)
+Set 1 (36 cases, FOLLOWUP_ANSWER_RULE): rewrite-first 31 vs 27, interval through 0. Set 2 (100, FOLLOWUP2_RULE):
+A 75 = B 75 -> keep A. Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW quantity
    ("and the period?", "max height?") and got the original one, because A says "answer the original question again"
    (B right on 8/10); 8 ignored the change (B right on 5: 016, 031, 036, 049, 089 vs 015, 024, 046); 3 unit slips
    (025 mm^2 prefix, 069 knots, 073 km/s unconverted); 2 routed to general (063, 095); 2 wrong arithmetic.
@@ -68,20 +101,6 @@ PyPI checked, live 10434.8 mA for the 2.4 kW oven question). In it:
    8B-alone run did) with the calculator format, instead of a reworded task for the 4B; ship only if it beats both
    shipped plm and the 8B alone is at least matched. Also finish the thinking baseline (resumes):
    `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`.
-2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
-   ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
-3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
-   a hook in every pack's solve, not done.)
-4. Small: ("in cm^-1" done 2026-11-10, see results); physics routing attempt 2 shipped 2026-11-10 (PHYS2_RULE: 37/40 vs 33, others 18/20,
-   holdout 193/194; in the repo, ships with the pack's next release); PyPI Trusted Publishing:
-   workflow in `.github/workflows/publish.yml` (2026-11-10, untested until the first tag); the user adds the GitHub
-   publisher on PyPI for each package (steps in the file's header), then release = `git tag plm-core-v0.1.4 && git push origin plm-core-v0.1.4`.
-
-**Machine notes:** the user's assistant (launchd `com.ro.assistant`) runs their 06:00 alarm and pins `qwen3:8b`;
-for long runs use `results/fusion_supervisor.sh <run script> 05:30` (waits for AC, unpins the 8B, stops at the
-deadline, unloads our models). Restart the assistant only with `launchctl kickstart -k gui/$(id -u)/com.ro.assistant`,
-never `assistant serve` from a terminal. Before a long run: `pmset -g batt`, `ollama ps`, and say the Amphetamine
-time first.
 
 ## Pack fusion (`/fuse`): spike done 2026-11-07
 User's design: `/fuse` at the start or end of a prompt; a planner splits a mixed problem between packs; each step lit

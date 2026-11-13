@@ -84,6 +84,8 @@ Models used by default (override with `PLM_SMALL_MODEL`, `PLM_LARGE_MODEL`,
 **Full screen:** run `plm` with no question (needs the optional extra: `pip install "plm-core[tui]"`,
 or `uv tool install "plm-core[tui]"`). Chat on the left, with follow-ups; the answer's Part, Code, Steps
 and Log on the right (a CAD part is drawn there); the packs and models at the bottom, the ones in use green.
+While an answer is being worked on, each model call shows as a step; replies are rendered (headings, lists, bold)
+with emoji and decoration removed.
 Commands: `/pack <name>` and `/model <4b|8b|coder|name>` force a pack or a model, `/level`, `/thorough`,
 `/db <file.sqlite>`, `/show` (each model's work), `/fuse <problem>` (experimental CAD + engineering fusion),
 `/export [file]`, `/settings`, `/new`, `/help`, `/quit`; settings in force show in orange at the bottom.
@@ -144,7 +146,11 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
   chunk when streaming).
 - Packs see the last user message, or, when it's a follow-up to an earlier pack question ("now for 200 ohm",
   "what if...", "make it 10 mm thick"), that question, the last answer and the change; they use their own token
-  budgets. The general pack gets the whole conversation and the client's `temperature`, `top_p` and `max_tokens`.
+  budgets. A follow-up that asks for another kind of quantity ("and its kinetic energy, in joules?" after a
+  momentum question) is first rewritten into one complete question. The general pack gets the whole conversation
+  (its context window grows with it, up to 40960 tokens) and the client's `temperature`, `top_p` and `max_tokens`.
+- The numeric packs never show the model a unit prefix: "1.5 kW" reaches it as "1500 W" and the answer is converted
+  back to the unit asked for (`plm/numeric/si.py`).
   The interactive `plm` (no question given) does the same with its session.
 - Every request is logged to `server.jsonl` in `./logs` if that folder exists, else `~/.local/state/plm/`
   (`PLM_LOG_DIR` to move it, `PLM_SERVER_LOG=off` to disable):

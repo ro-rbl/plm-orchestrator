@@ -86,6 +86,7 @@ async def wait_idle(app, pilot, seconds=60):
 
 async def session(shots):
     app = tui.PlmApp()
+    app.context_of = lambda model: 4096  # not whatever Ollama happens to have loaded (the assistant's 8B at 32768)
     async with app.run_test(size=(150, 42)) as pilot:
         await pilot.pause()
         expect("banner is orange", "plm" in str(app.query_one("#sub", Static).render()))

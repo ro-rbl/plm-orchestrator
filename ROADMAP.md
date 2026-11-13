@@ -138,7 +138,7 @@ What could carry over, in order of value per effort; each policy fixed before it
       question work without credentials. Optional: a Space, PyPI.
 - Public benchmarks are referenced, not redistributed (each has its own license).
 
-## 6. Using it day to day (2026-11-08/09)
+## 6. Using it day to day (2026-11-08 to 11-13)
 - [x] Follow-up questions (`plm/followup.py`, FOLLOWUP_RULE) in the server and the interactive CLI.
 - [x] Full-screen interface (`plm/tui.py`, extra `plm-core[tui]`) from the user's mockup; CAD parts drawn in Braille;
       `/` commands; skills (Claude SKILL.md format); context meter; `plm.command` launcher.
@@ -147,5 +147,14 @@ What could carry over, in order of value per effort; each policy fixed before it
       as the experimental `/fuse`.
 - [x] Follow-up wording settled (keep today's); general pack context on demand (cap 40960); "in cm^-1" read.
 - [x] Live step progress (per model call).
+- [x] Unit prefixes handled in code for the numeric packs (`plm/numeric/si.py`, SI_RULE); follow-ups asking for a new
+      kind of quantity rewritten first (FOLLOWUP3_RULE); physics routing attempt 2 (PHYS2_RULE); readable replies
+      (Markdown rendered, no emoji, plain style for the general pack).
 - [x] plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1 on PyPI (2026-11-12).
+
+## 7. Next
+- [ ] Follow-ups: plm 69/80 vs the 8B alone 76/80 on set 5 (2026-11-13). Try the pack's large model with the whole
+      conversation and the calculator, on a new set 6, rule first.
+- [ ] Finish the thinking baseline on set 5; re-run the headline sweeps with unit-prefix handling on.
+- [ ] PyPI Trusted Publishing: publishers set on PyPI by the user, first tagged release through the workflow.
 
