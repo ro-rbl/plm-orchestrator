@@ -39,6 +39,7 @@ FOLLOW = re.compile(
 )
 MAX_PREVIOUS_ANSWER = 2000
 ROUTE_FIX = False
+ALWAYS_REWRITE = False
 
 
 def resolve(messages):
@@ -95,7 +96,8 @@ def phrase(messages, routed, timeout=600):
     if routed["pack"] == "general" or "anchor" not in routed:  # general gets the whole conversation anyway
         return routed["task"]
     last = next(m["content"] for m in reversed(messages) if m.get("role") == "user")
-    if not (routed.get("rewrite") or new_quantity(routed["anchor"], last)):
+    # ALWAYS_REWRITE: experimental (FOLLOWUP5_RULE), off by default
+    if not (ALWAYS_REWRITE and routed.get("context") or routed.get("rewrite") or new_quantity(routed["anchor"], last)):
         return routed["task"]
     from plm.ollama import ask
     transcript = "\n".join(f"{m['role']}: {m['content']}" for m in messages)
