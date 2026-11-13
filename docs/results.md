@@ -153,3 +153,18 @@ general fell 10 -> 3, but the general pack's prose answers, graded leniently, we
 aerospace 14 -> 16, physics 14 -> 19 (+7, need >= -2) pass -> `plm.numeric.si` shipped (ENABLED = True). By kind
 with si: value 38/39, unit 16/16, two 4/5, quantity 16/23. Live: "A 2.4 kW oven runs on 230 V ... in milliamperes?"
 gave 10.43 mA with si off (marked trusted) and 10434.8 mA with it on.
+
+## Follow-ups, set 5: always-rewrite, and single models alone (2026-11-13)
+Set (80 conversations, `evals/followup/build5.py`), FOLLOWUP5_RULE and the comparison's method committed first
+(7f04a97). Shipped plm 0.1.4 (S) 69/80, always-rewrite (R) 64/80; R - S -5, paired 95% -12 to +2 -> keep shipped.
+Single models as plain chatbots on the same conversations (`evals/followup/baselines5.py`; whole conversation in
+one prompt, the packs' ANSWER format, no router, calculator, checks or rewrite): qwen3:8b 76/80, qwen2.5-coder:14b
+75/80, qwen3:8b with thinking 54/55 (partial, stopped by the 05:30 deadline). Paired against plm: 8B alone +7 (95%
++1 to +13), coder alone +6 (-1 to +13); these intervals were computed after the results, no rule was fixed for them.
+By kind (plm / 8B alone): value 36/39 of 41, quantity 12/17 of 18, unit 14/14, two changes 7/6 of 7. Tokens: plm
+9281, 8B alone 12061, coder alone 19821. On follow-up conversations the packs currently cost accuracy.
+
+## Unit prefixes on the public physics benchmarks (2026-11-13)
+`evals/bench_si.py`, method fixed first (7f04a97): the shipped physics pack on the 105 SciBench, TheoremQA and
+UGPhysics (first sample) problems whose text has a unit prefix, si off -> on: SciBench 18 -> 17 of 29, TheoremQA
+11 -> 12 of 36, UGPhysics 10 -> 12 of 40; total +2 (limit for turning it off: below -3) -> si stays on.

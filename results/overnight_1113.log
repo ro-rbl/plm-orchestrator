@@ -1,0 +1,35 @@
+[supervisor 00:26] attempt 1: results/run_overnight_1113.sh (pid 39236)
+set 5 variant S done 00:41
+set 5 variant R done 00:56
+=== FOLLOWUP5 ===
+S: 69/80 right, 9281 tokens (quantity 12/18, two 7/7, unit 14/14, value 36/41)
+R: 64/80 right, 12640 tokens (quantity 12/18, two 6/7, unit 11/14, value 35/41)
+R - S: -5, 95% -12 to +2
+FOLLOWUP5_RULE -> KEEP SHIPPED
+baseline qwen3:8b done 01:25
+[supervisor 01:40] battery 88% and no AC: pausing the run (it resumes)
+[supervisor 01:40] run stopped (exit 143); retrying in 2 min
+[supervisor 01:42] attempt 2: results/run_overnight_1113.sh (pid 86108)
+set 5 variant S done 01:42
+set 5 variant R done 01:42
+=== FOLLOWUP5 ===
+S: 69/80 right, 9281 tokens (quantity 12/18, two 7/7, unit 14/14, value 36/41)
+R: 64/80 right, 12640 tokens (quantity 12/18, two 6/7, unit 11/14, value 35/41)
+R - S: -5, 95% -12 to +2
+FOLLOWUP5_RULE -> KEEP SHIPPED
+baseline qwen3:8b done 01:42
+baseline qwen2.5-coder:14b done 02:37
+=== BASELINES ===
+plm 0.1.4 (shipped)                69/80 right, 9281 tokens (quantity 12/18, two 7/7, unit 14/14, value 36/41)
+plm, always rewrite                64/80 right, 12640 tokens (quantity 12/18, two 6/7, unit 11/14, value 35/41)
+alone: qwen2.5_coder_14b           75/80 right, 19821 tokens (quantity 15/18, two 7/7, unit 14/14, value 39/41)
+alone: qwen3_8b                    76/80 right, 12061 tokens (quantity 17/18, two 6/7, unit 14/14, value 39/41)
+=== BENCH SI ===
+scibench: 29 of 29 changed problems answered, off 18, on 17 (-1)
+theoremqa: 36 of 36 changed problems answered, off 11, on 12 (+1)
+ugphysics: 40 of 40 changed problems answered, off 10, on 12 (+2)
+total on - off: +2
+-> leave si on
+[supervisor 05:31] deadline: stopping the run (it resumes later)
+[supervisor 05:31] stopped at the deadline
+[supervisor 05:31] unloaded the coder and the 4B

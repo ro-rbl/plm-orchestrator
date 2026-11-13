@@ -1,0 +1,210 @@
+{"id": "sb-class-Problem 3.40", "bench": "scibench", "si": false, "right": false, "answer": {"value": 50.0, "unit": "mm"}, "trusted": true, "tokens": 612}
+{"id": "sb-class-Problem 3.40", "bench": "scibench", "si": true, "right": false, "answer": {"value": 50.0, "unit": "mm"}, "trusted": true, "tokens": 447}
+{"id": "sb-class-Problem 8.24", "bench": "scibench", "si": false, "right": false, "answer": {"value": 300.0, "unit": "km"}, "trusted": true, "tokens": 277}
+{"id": "sb-class-Problem 8.24", "bench": "scibench", "si": true, "right": false, "answer": {"value": -4212.0, "unit": "km"}, "trusted": true, "tokens": 1247}
+{"id": "sb-class-Problem 10.22", "bench": "scibench", "si": false, "right": false, "answer": {"value": 3.616, "unit": "mm"}, "trusted": true, "tokens": 266}
+{"id": "sb-class-Problem 10.22", "bench": "scibench", "si": true, "right": false, "answer": {"value": 2.635, "unit": "mm"}, "trusted": true, "tokens": 159}
+{"id": "sb-class-14.30", "bench": "scibench", "si": false, "right": true, "answer": {"value": 0.7820999999999813, "unit": "MeV"}, "trusted": true, "tokens": 183}
+{"id": "sb-class-14.30", "bench": "scibench", "si": true, "right": true, "answer": {"value": 0.7821, "unit": "MeV"}, "trusted": true, "tokens": 211}
+{"id": "sb-class-9.64 C.", "bench": "scibench", "si": false, "right": false, "answer": {"value": 1200.0, "unit": "km"}, "trusted": true, "tokens": 1619}
+{"id": "sb-class-9.64 C.", "bench": "scibench", "si": true, "right": false, "answer": {"value": 242.3, "unit": "km"}, "trusted": true, "tokens": 597}
+{"id": "sb-class-10.20", "bench": "scibench", "si": false, "right": true, "answer": {"value": 9.832, "unit": "m/s\u00b2"}, "trusted": true, "tokens": 255}
+{"id": "sb-class-10.20", "bench": "scibench", "si": true, "right": true, "answer": {"value": 9.832, "unit": "m/s\u00b2"}, "trusted": true, "tokens": 275}
+{"id": "sb-class-14.32", "bench": "scibench", "si": false, "right": true, "answer": {"value": 999.5, "unit": "MeV"}, "trusted": true, "tokens": 168}
+{"id": "sb-class-14.32", "bench": "scibench", "si": true, "right": true, "answer": {"value": 999.5, "unit": "MeV"}, "trusted": true, "tokens": 223}
+{"id": "sb-class-8.24 (b)", "bench": "scibench", "si": false, "right": true, "answer": {"value": 1900.0, "unit": "km"}, "trusted": true, "tokens": 102}
+{"id": "sb-class-8.24 (b)", "bench": "scibench", "si": true, "right": false, "answer": {"value": 552.6, "unit": "km"}, "trusted": true, "tokens": 345}
+{"id": "sb-class-9.64 B.", "bench": "scibench", "si": false, "right": false, "answer": {"value": 240.5, "unit": "km"}, "trusted": true, "tokens": 517}
+{"id": "sb-class-9.64 B.", "bench": "scibench", "si": true, "right": false, "answer": {"value": 429.0, "unit": "km"}, "trusted": true, "tokens": 414}
+{"id": "sb-class-9.64 D.", "bench": "scibench", "si": false, "right": false, "answer": {"value": -0.003347, "unit": "km"}, "trusted": true, "tokens": 713}
+{"id": "sb-class-9.64 D.", "bench": "scibench", "si": true, "right": false, "answer": {"value": 0.43, "unit": "km"}, "trusted": true, "tokens": 473}
+{"id": "sb-class-10.20 B.", "bench": "scibench", "si": false, "right": true, "answer": {"value": 9.741, "unit": "m/s\u00b2"}, "trusted": true, "tokens": 212}
+{"id": "sb-class-10.20 B.", "bench": "scibench", "si": true, "right": true, "answer": {"value": 9.805, "unit": "m/s\u00b2"}, "trusted": true, "tokens": 225}
+{"id": "sb-class-9.64 A.", "bench": "scibench", "si": false, "right": false, "answer": {"value": 248.7, "unit": "km"}, "trusted": true, "tokens": 389}
+{"id": "sb-class-9.64 A.", "bench": "scibench", "si": true, "right": false, "answer": {"value": 4572.0, "unit": "km"}, "trusted": true, "tokens": 415}
+{"id": "sb-class-2.6", "bench": "scibench", "si": false, "right": true, "answer": {"value": 201.4, "unit": "km"}, "trusted": true, "tokens": 127}
+{"id": "sb-class-2.6", "bench": "scibench", "si": true, "right": true, "answer": {"value": 201.4, "unit": "km"}, "trusted": true, "tokens": 110}
+{"id": "sb-fund-2.01", "bench": "scibench", "si": false, "right": true, "answer": {"value": 10.4, "unit": "km"}, "trusted": true, "tokens": 133}
+{"id": "sb-fund-2.01", "bench": "scibench", "si": true, "right": true, "answer": {"value": 10.4, "unit": "km"}, "trusted": true, "tokens": 142}
+{"id": "sb-fund-Question 21.19", "bench": "scibench", "si": false, "right": true, "answer": {"value": 3.0, "unit": "cm"}, "trusted": true, "tokens": 542}
+{"id": "sb-fund-Question 21.19", "bench": "scibench", "si": true, "right": true, "answer": {"value": 3.0, "unit": "cm"}, "trusted": true, "tokens": 1283}
+{"id": "sb-fund-Question 22.11", "bench": "scibench", "si": false, "right": false, "answer": {"value": 36.7, "unit": "cm"}, "trusted": true, "tokens": 1369}
+{"id": "sb-fund-Question 22.11", "bench": "scibench", "si": true, "right": false, "answer": {"value": 36.67, "unit": "cm"}, "trusted": true, "tokens": 421}
+{"id": "sb-fund-Question 22.73", "bench": "scibench", "si": false, "right": true, "answer": {"value": -1.0, "unit": "cm"}, "trusted": true, "tokens": 2639}
+{"id": "sb-fund-Question 22.73", "bench": "scibench", "si": true, "right": true, "answer": {"value": -1.0, "unit": "cm"}, "trusted": true, "tokens": 2424}
+{"id": "sb-fund-Question 22.77", "bench": "scibench", "si": false, "right": false, "answer": {"value": 4.0, "unit": "mm"}, "trusted": true, "tokens": 479}
+{"id": "sb-fund-Question 22.77", "bench": "scibench", "si": true, "right": true, "answer": {"value": 6.0, "unit": "mm"}, "trusted": true, "tokens": 1351}
+{"id": "sb-fund-Question 23.41", "bench": "scibench", "si": false, "right": false, "answer": {"value": 0.885, "unit": "mm"}, "trusted": true, "tokens": 198}
+{"id": "sb-fund-Question 23.41", "bench": "scibench", "si": true, "right": false, "answer": {"value": 0.885, "unit": "mm"}, "trusted": true, "tokens": 179}
+{"id": "sb-fund-Question 22.5", "bench": "scibench", "si": false, "right": true, "answer": {"value": 55.63, "unit": "pC"}, "trusted": true, "tokens": 170}
+{"id": "sb-fund-Question 22.5", "bench": "scibench", "si": true, "right": true, "answer": {"value": 55.63, "unit": "pC"}, "trusted": true, "tokens": 140}
+{"id": "sb-fund-Question 21.31", "bench": "scibench", "si": false, "right": true, "answer": {"value": 122.4, "unit": "mA"}, "trusted": true, "tokens": 187}
+{"id": "sb-fund-Question 21.31", "bench": "scibench", "si": true, "right": true, "answer": {"value": 122.4, "unit": "mA"}, "trusted": true, "tokens": 153}
+{"id": "sb-fund-Question 21.9", "bench": "scibench", "si": false, "right": false, "answer": null, "trusted": false, "tokens": 1231}
+{"id": "sb-fund-Question 21.9", "bench": "scibench", "si": true, "right": false, "answer": null, "trusted": false, "tokens": 1132}
+{"id": "sb-fund-Question 21.47", "bench": "scibench", "si": false, "right": true, "answer": {"value": -45.0, "unit": "uC"}, "trusted": true, "tokens": 345}
+{"id": "sb-fund-Question 21.47", "bench": "scibench", "si": true, "right": true, "answer": {"value": -45.0, "unit": "\u00b5C"}, "trusted": true, "tokens": 297}
+{"id": "sb-fund-Question 23.13", "bench": "scibench", "si": false, "right": true, "answer": {"value": 3.54, "unit": "uC"}, "trusted": true, "tokens": 259}
+{"id": "sb-fund-Question 23.13", "bench": "scibench", "si": true, "right": true, "answer": {"value": 3.54, "unit": "\u00b5C"}, "trusted": true, "tokens": 239}
+{"id": "sb-fund-Question 23.23", "bench": "scibench", "si": false, "right": true, "answer": {"value": 0.3223, "unit": "uC"}, "trusted": true, "tokens": 220}
+{"id": "sb-fund-Question 23.23", "bench": "scibench", "si": true, "right": true, "answer": {"value": 0.3223, "unit": "\u00b5C"}, "trusted": true, "tokens": 183}
+{"id": "sb-fund-Question 23.47", "bench": "scibench", "si": false, "right": true, "answer": {"value": -7.51, "unit": "nC"}, "trusted": true, "tokens": 200}
+{"id": "sb-fund-Question 23.47", "bench": "scibench", "si": true, "right": true, "answer": {"value": -7.51, "unit": "nC"}, "trusted": true, "tokens": 177}
+{"id": "sb-fund-Question 23.17", "bench": "scibench", "si": false, "right": true, "answer": {"value": 36.64, "unit": "uC"}, "trusted": true, "tokens": 107}
+{"id": "sb-fund-Question 23.17", "bench": "scibench", "si": true, "right": true, "answer": {"value": 36.64, "unit": "\u00b5C"}, "trusted": true, "tokens": 132}
+{"id": "sb-fund-Question 21.45", "bench": "scibench", "si": false, "right": true, "answer": {"value": 0.193, "unit": "MC"}, "trusted": true, "tokens": 181}
+{"id": "sb-fund-Question 21.45", "bench": "scibench", "si": true, "right": false, "answer": {"value": 0.09635, "unit": "MC"}, "trusted": true, "tokens": 142}
+{"id": "sb-fund-13.05", "bench": "scibench", "si": false, "right": true, "answer": {"value": -213.5, "unit": "MJ"}, "trusted": true, "tokens": 429}
+{"id": "sb-fund-13.05", "bench": "scibench", "si": true, "right": true, "answer": {"value": -213.5, "unit": "MJ"}, "trusted": true, "tokens": 374}
+{"id": "tqa-panlu/angular_frequency3.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.08978, "unit": "Hz"}, "trusted": false, "tokens": 138}
+{"id": "tqa-panlu/angular_frequency3.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 0.8978, "unit": "Hz"}, "trusted": false, "tokens": 159}
+{"id": "tqa-tonyxia/atom1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 4.0, "unit": ""}, "trusted": false, "tokens": 509}
+{"id": "tqa-tonyxia/atom1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 1e-06, "unit": ""}, "trusted": false, "tokens": 732}
+{"id": "tqa-tonyxia/nuclear2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 1.0, "unit": ""}, "trusted": false, "tokens": 190}
+{"id": "tqa-tonyxia/nuclear2.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 3.4e-30, "unit": ""}, "trusted": false, "tokens": 201}
+{"id": "tqa-tonyxia/wave1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.3858, "unit": "nm"}, "trusted": true, "tokens": 148}
+{"id": "tqa-tonyxia/wave1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.2728, "unit": "nm"}, "trusted": true, "tokens": 1204}
+{"id": "tqa-tonyxia/relativity3.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 3728.0, "unit": "MeV"}, "trusted": true, "tokens": 100}
+{"id": "tqa-tonyxia/relativity3.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": -3.447, "unit": "MeV"}, "trusted": true, "tokens": 318}
+{"id": "tqa-xinyi/rotation.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 1200.0, "unit": "cm"}, "trusted": true, "tokens": 263}
+{"id": "tqa-xinyi/rotation.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 12.0, "unit": "cm"}, "trusted": true, "tokens": 256}
+{"id": "tqa-xinyi/angular_momentum.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 2.424e-06, "unit": "rad/s"}, "trusted": true, "tokens": 130}
+{"id": "tqa-xinyi/angular_momentum.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 4640.0, "unit": "rad/s"}, "trusted": true, "tokens": 218}
+{"id": "tqa-tonyxia/photoelectric2.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 0.1718, "unit": "V"}, "trusted": true, "tokens": 202}
+{"id": "tqa-tonyxia/photoelectric2.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 0.1718, "unit": "V"}, "trusted": true, "tokens": 194}
+{"id": "tqa-wenhuchen/optics2.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 3.6666666666666665, "unit": "cm"}, "trusted": false, "tokens": 101}
+{"id": "tqa-wenhuchen/optics2.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 3.667, "unit": "cm"}, "trusted": false, "tokens": 168}
+{"id": "tqa-tonyxia/semiconductor3.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 3.69, "unit": "nm"}, "trusted": true, "tokens": 200}
+{"id": "tqa-tonyxia/semiconductor3.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 42820.0, "unit": "nm"}, "trusted": true, "tokens": 194}
+{"id": "tqa-wenhuchen/relativity2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 95.79, "unit": "km"}, "trusted": false, "tokens": 185}
+{"id": "tqa-wenhuchen/relativity2.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 95790.0, "unit": "m"}, "trusted": false, "tokens": 144}
+{"id": "tqa-panlu/rigid-body2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 506.4, "unit": "m/s\u00b2"}, "trusted": false, "tokens": 152}
+{"id": "tqa-panlu/rigid-body2.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 89.44, "unit": "m/s\u00b2"}, "trusted": false, "tokens": 132}
+{"id": "tqa-wenhuchen/optics7.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.6923, "unit": ""}, "trusted": false, "tokens": 192}
+{"id": "tqa-wenhuchen/optics7.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.6923, "unit": ""}, "trusted": false, "tokens": 181}
+{"id": "tqa-tonyxia/atom2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 1.299, "unit": "MeV"}, "trusted": false, "tokens": 300}
+{"id": "tqa-tonyxia/atom2.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 324700.0, "unit": "eV"}, "trusted": false, "tokens": 246}
+{"id": "tqa-tonyxia/particle3.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 938.272, "unit": "MeV"}, "trusted": true, "tokens": 359}
+{"id": "tqa-tonyxia/particle3.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 1877.0, "unit": "MeV"}, "trusted": true, "tokens": 199}
+{"id": "tqa-tonyxia/nuclear6.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 895200000000.0, "unit": "Bq"}, "trusted": false, "tokens": 351}
+{"id": "tqa-tonyxia/nuclear6.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 447600000000.0, "unit": "Bq"}, "trusted": false, "tokens": 167}
+{"id": "tqa-tonyxia/nuclear3.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 4.0, "unit": "MeV"}, "trusted": true, "tokens": 110}
+{"id": "tqa-tonyxia/nuclear3.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": -4.0, "unit": "MeV"}, "trusted": true, "tokens": 103}
+{"id": "tqa-panlu/thermal_stress1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": -1.689, "unit": "10^4 N"}, "trusted": false, "tokens": 284}
+{"id": "tqa-panlu/thermal_stress1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 7742.0, "unit": "10^4 N"}, "trusted": false, "tokens": 297}
+{"id": "tqa-tonyxia/photoelectric1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 3.102, "unit": "eV"}, "trusted": true, "tokens": 175}
+{"id": "tqa-tonyxia/photoelectric1.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 3.102, "unit": "eV"}, "trusted": true, "tokens": 152}
+{"id": "tqa-wenhuchen/relativity3.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 4.96, "unit": "us"}, "trusted": true, "tokens": 128}
+{"id": "tqa-wenhuchen/relativity3.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 4.96, "unit": "\u00b5s"}, "trusted": true, "tokens": 255}
+{"id": "tqa-tonyxia/semiconductor2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 6.262, "unit": "nm"}, "trusted": true, "tokens": 210}
+{"id": "tqa-tonyxia/semiconductor2.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 72670.0, "unit": "nm"}, "trusted": true, "tokens": 216}
+{"id": "tqa-tonyxia/nuclear1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.02176, "unit": "cm"}, "trusted": false, "tokens": 125}
+{"id": "tqa-tonyxia/nuclear1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.02152, "unit": ""}, "trusted": false, "tokens": 182}
+{"id": "tqa-xueguangma/physics_coulombs_law.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.05393, "unit": "kN"}, "trusted": true, "tokens": 244}
+{"id": "tqa-xueguangma/physics_coulombs_law.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.01798, "unit": "kN"}, "trusted": true, "tokens": 362}
+{"id": "tqa-panlu/fluid_flow1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 7.56, "unit": "m/s"}, "trusted": false, "tokens": 147}
+{"id": "tqa-panlu/fluid_flow1.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 7.56, "unit": "m/s"}, "trusted": false, "tokens": 140}
+{"id": "tqa-tonyxia/quantum4.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 264.6, "unit": "MeV"}, "trusted": true, "tokens": 247}
+{"id": "tqa-tonyxia/quantum4.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 1058.0, "unit": "MeV"}, "trusted": true, "tokens": 213}
+{"id": "tqa-xinyi/newtons_laws_1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 1.727, "unit": "m/s\u00b2"}, "trusted": false, "tokens": 139}
+{"id": "tqa-xinyi/newtons_laws_1.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 1.727, "unit": "m/s\u00b2"}, "trusted": false, "tokens": 138}
+{"id": "tqa-tonyxia/particle6.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 114.6, "unit": "GeV"}, "trusted": true, "tokens": 209}
+{"id": "tqa-tonyxia/particle6.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 7000.0, "unit": "GeV"}, "trusted": true, "tokens": 329}
+{"id": "tqa-wenhuchen/optics1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 3.374, "unit": "D"}, "trusted": false, "tokens": 263}
+{"id": "tqa-wenhuchen/optics1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 1.626, "unit": "D"}, "trusted": false, "tokens": 121}
+{"id": "tqa-tonyxia/relativity1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 364.6, "unit": "ps/s"}, "trusted": false, "tokens": 255}
+{"id": "tqa-tonyxia/relativity1.json", "bench": "theoremqa", "si": true, "right": false, "answer": null, "trusted": false, "tokens": 1075}
+{"id": "tqa-panlu/volume_thermal_expansion1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 2.688, "unit": "cm^3"}, "trusted": false, "tokens": 246}
+{"id": "tqa-panlu/volume_thermal_expansion1.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 2.688, "unit": "cm\u00b3"}, "trusted": false, "tokens": 287}
+{"id": "tqa-tonyxia/semiconductor1.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 1.28e-06, "unit": "V/K"}, "trusted": true, "tokens": 127}
+{"id": "tqa-tonyxia/semiconductor1.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 1.28e-06, "unit": "V/K"}, "trusted": true, "tokens": 134}
+{"id": "tqa-panlu/circular_orbit1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.2805, "unit": "10^10 J"}, "trusted": false, "tokens": 261}
+{"id": "tqa-panlu/circular_orbit1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.2805, "unit": "10^10 J"}, "trusted": false, "tokens": 262}
+{"id": "tqa-wenhuchen/kinetics2.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.001176, "unit": "yr"}, "trusted": false, "tokens": 1247}
+{"id": "tqa-wenhuchen/kinetics2.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 23.49, "unit": "y"}, "trusted": false, "tokens": 827}
+{"id": "tqa-tonyxia/wave3.json", "bench": "theoremqa", "si": false, "right": true, "answer": {"value": 0.1734, "unit": "nm"}, "trusted": true, "tokens": 489}
+{"id": "tqa-tonyxia/wave3.json", "bench": "theoremqa", "si": true, "right": true, "answer": {"value": 0.1734, "unit": "nm"}, "trusted": true, "tokens": 173}
+{"id": "tqa-tonyxia/quantum5.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.0, "unit": ""}, "trusted": false, "tokens": 213}
+{"id": "tqa-tonyxia/quantum5.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.0, "unit": ""}, "trusted": false, "tokens": 217}
+{"id": "tqa-panlu/young\u2019s_modulus1.json", "bench": "theoremqa", "si": false, "right": false, "answer": {"value": 0.0001799, "unit": "mm"}, "trusted": false, "tokens": 257}
+{"id": "tqa-panlu/young\u2019s_modulus1.json", "bench": "theoremqa", "si": true, "right": false, "answer": {"value": 0.01799, "unit": "mm"}, "trusted": false, "tokens": 208}
+{"id": "ug-ClassicalElectromagnetism-108", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 3.948e-05, "unit": "H"}, "trusted": true, "tokens": 133}
+{"id": "ug-ClassicalElectromagnetism-108", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 3.948e-05, "unit": "H"}, "trusted": true, "tokens": 128}
+{"id": "ug-ClassicalElectromagnetism-234", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 50.0, "unit": "s"}, "trusted": true, "tokens": 185}
+{"id": "ug-ClassicalElectromagnetism-234", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 50.0, "unit": "s"}, "trusted": true, "tokens": 182}
+{"id": "ug-ClassicalElectromagnetism-54", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 39.48, "unit": "uH"}, "trusted": true, "tokens": 240}
+{"id": "ug-ClassicalElectromagnetism-54", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 39.5, "unit": "\u00b5H"}, "trusted": true, "tokens": 678}
+{"id": "ug-ClassicalMechanics-1596", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 0.2, "unit": "cm"}, "trusted": false, "tokens": 143}
+{"id": "ug-ClassicalMechanics-1596", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 0.2, "unit": "m"}, "trusted": false, "tokens": 137}
+{"id": "ug-ClassicalMechanics-1634", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 157000.0, "unit": "N"}, "trusted": true, "tokens": 154}
+{"id": "ug-ClassicalMechanics-1634", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 157000.0, "unit": "N"}, "trusted": true, "tokens": 118}
+{"id": "ug-ClassicalMechanics-1663", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 300000000.0, "unit": "km"}, "trusted": true, "tokens": 1829}
+{"id": "ug-ClassicalMechanics-1663", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 15000000.0, "unit": "km"}, "trusted": true, "tokens": 1682}
+{"id": "ug-ClassicalMechanics-1788", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 1.0, "unit": "m/s"}, "trusted": true, "tokens": 128}
+{"id": "ug-ClassicalMechanics-1788", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 1.0, "unit": "m/s"}, "trusted": true, "tokens": 133}
+{"id": "ug-ClassicalMechanics-2024", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 1581.0, "unit": "m/s"}, "trusted": true, "tokens": 1391}
+{"id": "ug-ClassicalMechanics-2024", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 55000.0, "unit": "m/s"}, "trusted": true, "tokens": 223}
+{"id": "ug-ClassicalMechanics-2062", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 42.31, "unit": "min"}, "trusted": true, "tokens": 370}
+{"id": "ug-ClassicalMechanics-2062", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 42.31, "unit": "min"}, "trusted": true, "tokens": 290}
+{"id": "ug-ClassicalMechanics-2066", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.5235987755982988, "unit": "\u00b0"}, "trusted": false, "tokens": 387}
+{"id": "ug-ClassicalMechanics-2066", "bench": "ugphysics", "si": true, "right": false, "answer": null, "trusted": false, "tokens": 1807}
+{"id": "ug-ClassicalMechanics-2172", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.5, "unit": "m"}, "trusted": true, "tokens": 118}
+{"id": "ug-ClassicalMechanics-2172", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 2.0, "unit": "m"}, "trusted": true, "tokens": 1191}
+{"id": "ug-ClassicalMechanics-2229", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.0, "unit": "cm"}, "trusted": true, "tokens": 225}
+{"id": "ug-ClassicalMechanics-2229", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.0, "unit": "cm"}, "trusted": true, "tokens": 229}
+{"id": "ug-ClassicalMechanics-2247", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": -0.3, "unit": "cm"}, "trusted": true, "tokens": 1395}
+{"id": "ug-ClassicalMechanics-2247", "bench": "ugphysics", "si": true, "right": false, "answer": null, "trusted": false, "tokens": 2048}
+{"id": "ug-GeometricalOptics-5118", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 1.987, "unit": "cm"}, "trusted": true, "tokens": 148}
+{"id": "ug-GeometricalOptics-5118", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 1.987, "unit": "cm"}, "trusted": true, "tokens": 166}
+{"id": "ug-GeometricalOptics-5140", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 20.0, "unit": "cm"}, "trusted": true, "tokens": 83}
+{"id": "ug-GeometricalOptics-5140", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 20.0, "unit": "cm"}, "trusted": true, "tokens": 76}
+{"id": "ug-GeometricalOptics-5246", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 20.0, "unit": "cm"}, "trusted": true, "tokens": 80}
+{"id": "ug-GeometricalOptics-5246", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 20.0, "unit": "cm"}, "trusted": true, "tokens": 63}
+{"id": "ug-GeometricalOptics-5311", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 1.852, "unit": "cm"}, "trusted": true, "tokens": 138}
+{"id": "ug-GeometricalOptics-5311", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 1.852, "unit": "cm"}, "trusted": true, "tokens": 126}
+{"id": "ug-GeometricalOptics-5340", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 15.0, "unit": "cm"}, "trusted": true, "tokens": 85}
+{"id": "ug-GeometricalOptics-5340", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 15.0, "unit": "cm"}, "trusted": true, "tokens": 131}
+{"id": "ug-GeometricalOptics-5412", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 4.0, "unit": "cm"}, "trusted": true, "tokens": 126}
+{"id": "ug-GeometricalOptics-5412", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": -4.333, "unit": "cm"}, "trusted": true, "tokens": 184}
+{"id": "ug-GeometricalOptics-5484", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 1.0, "unit": "cm"}, "trusted": true, "tokens": 91}
+{"id": "ug-GeometricalOptics-5484", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 10.0, "unit": "cm"}, "trusted": true, "tokens": 65}
+{"id": "ug-Thermodynamics-2976", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.033, "unit": "cal/(s*cm*\u00b0C)"}, "trusted": false, "tokens": 122}
+{"id": "ug-Thermodynamics-2976", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.033, "unit": "cal/(s*cm*\u00b0C)"}, "trusted": false, "tokens": 140}
+{"id": "ug-Thermodynamics-3278", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": -1.249e-07, "unit": "m/s"}, "trusted": true, "tokens": 181}
+{"id": "ug-Thermodynamics-3278", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": -1.249e-05, "unit": "m/s"}, "trusted": true, "tokens": 386}
+{"id": "ug-Thermodynamics-3283", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 52920.0, "unit": "mm"}, "trusted": true, "tokens": 2387}
+{"id": "ug-Thermodynamics-3283", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 52920000.0, "unit": "mm"}, "trusted": true, "tokens": 169}
+{"id": "ug-Thermodynamics-3303", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.0003036, "unit": "\u00b0C"}, "trusted": true, "tokens": 134}
+{"id": "ug-Thermodynamics-3303", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.3036, "unit": "\u00b0C"}, "trusted": true, "tokens": 130}
+{"id": "ug-WaveOptics-5040", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 7.196, "unit": "cm"}, "trusted": true, "tokens": 105}
+{"id": "ug-WaveOptics-5040", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 7.196, "unit": "cm"}, "trusted": true, "tokens": 128}
+{"id": "ug-WaveOptics-5048", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 5.029, "unit": "cm"}, "trusted": true, "tokens": 111}
+{"id": "ug-WaveOptics-5048", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 5.029, "unit": "cm"}, "trusted": true, "tokens": 131}
+{"id": "ug-WaveOptics-5056", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.5, "unit": "um"}, "trusted": true, "tokens": 77}
+{"id": "ug-WaveOptics-5056", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.5, "unit": "\u00b5m"}, "trusted": true, "tokens": 65}
+{"id": "ug-WaveOptics-5104", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 9.0, "unit": "mm"}, "trusted": true, "tokens": 118}
+{"id": "ug-WaveOptics-5104", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 4.5, "unit": "mm"}, "trusted": true, "tokens": 132}
+{"id": "ug-WaveOptics-5122", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.61, "unit": "mm"}, "trusted": true, "tokens": 248}
+{"id": "ug-WaveOptics-5122", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 0.00305, "unit": "mm"}, "trusted": true, "tokens": 160}
+{"id": "ug-WaveOptics-5129", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 8568.0, "unit": "nm"}, "trusted": true, "tokens": 147}
+{"id": "ug-WaveOptics-5129", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 8568.0, "unit": "nm"}, "trusted": true, "tokens": 130}
+{"id": "ug-WaveOptics-5168", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.6667, "unit": "cm"}, "trusted": true, "tokens": 232}
+{"id": "ug-WaveOptics-5168", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 0.5128, "unit": "cm"}, "trusted": true, "tokens": 242}
+{"id": "ug-WaveOptics-5170", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 78.54, "unit": "mm\u00b2"}, "trusted": true, "tokens": 1145}
+{"id": "ug-WaveOptics-5170", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 314.2, "unit": "mm^2"}, "trusted": true, "tokens": 99}
+{"id": "ug-WaveOptics-5171", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 3.354e-05, "unit": "cm"}, "trusted": true, "tokens": 138}
+{"id": "ug-WaveOptics-5171", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.003355, "unit": "cm"}, "trusted": true, "tokens": 130}
+{"id": "ug-WaveOptics-5182", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 161.7, "unit": "um"}, "trusted": true, "tokens": 147}
+{"id": "ug-WaveOptics-5182", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 161.7, "unit": "\u00b5m"}, "trusted": true, "tokens": 127}
+{"id": "ug-WaveOptics-5203", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 736.3, "unit": "mm"}, "trusted": true, "tokens": 262}
+{"id": "ug-WaveOptics-5203", "bench": "ugphysics", "si": true, "right": true, "answer": {"value": 0.7362, "unit": "mm"}, "trusted": true, "tokens": 291}
+{"id": "ug-WaveOptics-5270", "bench": "ugphysics", "si": false, "right": true, "answer": {"value": 0.03164, "unit": "um"}, "trusted": true, "tokens": 194}
+{"id": "ug-WaveOptics-5270", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.06328, "unit": "\u00b5m"}, "trusted": true, "tokens": 162}
+{"id": "ug-WaveOptics-5338", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.1443, "unit": "mm"}, "trusted": true, "tokens": 129}
+{"id": "ug-WaveOptics-5338", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.1443, "unit": "mm"}, "trusted": true, "tokens": 103}
+{"id": "ug-WaveOptics-5455", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 0.002474, "unit": "rad"}, "trusted": true, "tokens": 245}
+{"id": "ug-WaveOptics-5455", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 0.002474, "unit": "rad"}, "trusted": true, "tokens": 223}
+{"id": "ug-WaveOptics-5461", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 50.0, "unit": "cm"}, "trusted": true, "tokens": 1266}
+{"id": "ug-WaveOptics-5461", "bench": "ugphysics", "si": true, "right": false, "answer": null, "trusted": false, "tokens": 2048}
+{"id": "ug-WaveOptics-5513", "bench": "ugphysics", "si": false, "right": false, "answer": {"value": 9.542e-06, "unit": "mm"}, "trusted": true, "tokens": 299}
+{"id": "ug-WaveOptics-5513", "bench": "ugphysics", "si": true, "right": false, "answer": {"value": 1.707e-05, "unit": "mm"}, "trusted": true, "tokens": 237}

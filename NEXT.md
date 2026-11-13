@@ -55,6 +55,19 @@ PyPI checked, live 10434.8 mA for the 2.4 kW oven question). In it:
    pack gets it. Keeping unit-asking messages out of the general pack (ROUTE_FIX) **not shipped**: 66/83 either way
    (-3 to +3); with lenient grading the general pack's prose answers were already right, they are only unchecked.
    Still wrong after si: new-quantity follow-ups (16/23). Always-rewrite (B) is still untested on a fresh set.
+   **Night of 2026-11-13 (set 5, 80 conversations, everything fixed first in 7f04a97):**
+   - FOLLOWUP5_RULE: always-rewrite 64/80 vs shipped 69/80 (-5, 95% -12 to +2) -> keep shipped. Always-rewrite is closed.
+   - **A single model alone beats plm on follow-ups.** Same 80 conversations, whole conversation as one prompt, no
+     packs: qwen3:8b 76/80 (paired vs plm +7, 95% +1 to +13; 12061 tokens, ~22 s each), coder 14B 75/80 (+6, -1 to
+     +13), 8B with thinking 54/55 (partial: the deadline cut it; ~74 s each). plm 69/80 at 9281 tokens. A comparison,
+     not a rule fixed in advance. plm's 9 losses to the 8B: 4 new-quantity, 3 ignored the change, 1 unit slip (L),
+     1 wrong value; 9 of plm's 80 went to the general pack.
+   - si on the public physics benchmarks (105 problems with a prefix; `evals/bench_si.py`): SciBench 18 -> 17,
+     TheoremQA 11 -> 12, UGPhysics 10 -> 12, total +2 -> si stays on.
+   **Next hypothesis (new set 6 needed):** for a follow-up, give the pack's LARGE model the whole conversation (as the
+   8B-alone run did) with the calculator format, instead of a reworded task for the 4B; ship only if it beats both
+   shipped plm and the 8B alone is at least matched. Also finish the thinking baseline (resumes):
+   `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`.
 2. (done 2026-11-09: the general pack raises num_ctx only when a conversation needs it, up to 40960; in the repo,
    ships with plm-core 0.1.4. CONTEXT_RULE, `evals/context/measure.py`.)
 3. (done 2026-11-10: live progress per model call via `plm.ollama.LISTENERS`; each pack's own step names would need
