@@ -147,5 +147,5 @@ What could carry over, in order of value per effort; each policy fixed before it
       as the experimental `/fuse`.
 - [x] Follow-up wording settled (keep today's); general pack context on demand (cap 40960); "in cm^-1" read.
 - [x] Live step progress (per model call).
-- [ ] plm-core 0.1.4 (needs the user's go-ahead).
+- [x] plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1 on PyPI (2026-11-12).
 

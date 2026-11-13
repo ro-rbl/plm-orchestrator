@@ -4,8 +4,8 @@ _Updated: 2026-11-09 · branch: main · plan: ROADMAP.md · results: docs/result
 
 ## Start here (next session)
 Phases 1-5 of `ROADMAP.md` are done and public: GitHub https://github.com/ro-rbl/plm-orchestrator, Hugging Face
-https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, and PyPI (all seven packages; plm-core 0.1.3,
-plm-cad 0.1.1, the rest 0.1.0; `uv tool install "plm-core[tui]"`). Every policy was chosen by a rule committed
+https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, and PyPI (all seven packages; plm-core 0.1.4,
+plm-cad 0.1.1, plm-physics and plm-electrical 0.1.1, the rest 0.1.0; `uv tool install "plm-core[tui]"`). Every policy was chosen by a rule committed
 before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 | Pack | Ships | Public benchmark (shipped) |
@@ -17,7 +17,8 @@ before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 | sql | coder 14B alone (+4B second opinion with a database) | Spider 76%, BIRD mini-dev 51% |
 | cad | coder 14B alone | CADPrompt 14% (bbox + volume within 0.1%) |
 
-**Built 2026-11-08/09, in the repo but not yet on PyPI** (plm-core 0.1.4 when the user wants a release):
+**Released 2026-11-12: plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1** (token upload; fresh install from
+PyPI checked, live 10434.8 mA for the 2.4 kW oven question). In it:
 - Full-screen interface (`plm` with no question; `plm/tui.py`; double-click `plm.command`, also on the Desktop):
   chat with follow-ups, Part (Braille drawing of CAD parts) / Code / Steps / Log tabs, packs and models strips,
   context meter. `/` commands: `/pack /model /level /thorough /db /show /fuse /export /settings /skills /skill
