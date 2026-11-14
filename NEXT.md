@@ -41,11 +41,18 @@ of 66 right and the public physics ones +2 of 105. The headline sweeps were not 
 large model's answer fails a check, the old path (phrase + the pack) answers. **plm-core on PyPI is still 0.1.4
 without it: a release needs the user's go-ahead** (token in `~/.pypi-token`, or Trusted Publishing, item 3).
 
+**Longer conversations (set 7, 83 with two or three follow-ups, FOLLOWUP7_RULE, rule first in 81c6cb2):** the repo
+after set 6 got 57/83, with the first question kept as the anchor (`plm.followup.ROOT_ANCHOR`) 72/83 (+15, paired
+95% +8 to +22), the 8B alone 72/83 -> **shipped in the repo** (True). Not on PyPI either.
+
 **Open, in the order I'd take them:**
-1. **Release plm-core 0.1.5** with the follow-up change (ask the user first). Then, on a new set 7: for a follow-up
-   that only changes a value, take the expected unit from the earlier question; on set 6 all 6 answers the unit
-   check rejected were right ("what if the wave speed is 420 m/s?" expected m/s; "fpm" and "m³/h" unreadable) and
-   the fallback lost 2 of them. Also still open: 7 of 92 new-quantity follow-ups go to the general pack.
+1. **Publish plm-core 0.1.5** (both follow-up changes; built in `dist/`, read back from the wheel). The user said
+   yes on 2026-11-13; it waits for the token in `~/.pypi-token`:
+   `uv publish dist/plm_core-0.1.5* --token "$(cat ~/.pypi-token)"`, then a fresh `uv tool install "plm-core[tui]"`
+   check, then remind the user to delete the token. Then, on a new set 8: (i) after two changes the large model often
+   applies only the latest one (6 of A's 11 misses on set 7; the 8B alone, same conversation without the
+   calculator format or prefix rewriting, got them); (ii) the unit check rejects right answers on value follow-ups
+   (6 on set 6, 2 on set 7); (iii) follow-ups asking a new quantity that go to the general pack (15 of 83).
 2. Finish the thinking baseline on set 5 (25 conversations left, resumes, about 30 min):
    `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`, then `--report`.
 3. PyPI Trusted Publishing: the user adds a GitHub publisher on PyPI for each package (owner `ro-rbl`, repository
@@ -61,14 +68,6 @@ flag was added after 0.1.4). The repo differs from PyPI 0.1.4 by this dead switc
 (`WHOLE`, on). `/fuse` stays experimental.
 
 **Unverified / known limits from this session:**
-- **A second follow-up loses the first question** (seen live 2026-11-13, older than the set-6 change; every set
-  has 3-message conversations, so it was never measured): after "A 24 V supply feeds a 30 W lamp. What current...",
-  "now a 60 W lamp" (right, 2.5 A), then "how much energy does it use in 3 hours, in watt-hours?" was solved alone
-  and gave 300 Wh. `resolve` takes "now a 60 W lamp" as the anchor because the electrical pack claims it on its own.
-  Needs a set of longer conversations first.
-- plm-core 0.1.5 (the set-6 follow-up path) is built in `dist/` and the version is bumped, **not published** until
-  the user puts the token in `~/.pypi-token`: `uv publish dist/plm_core-0.1.5* --token "$(cat ~/.pypi-token)"`,
-  then a fresh `uv tool install "plm-core[tui]"` check.
 - The 8B-alone comparison had no rule fixed in advance, and set 5 is now seen.
 - The context window was measured on recall of one code word at about 7000 tokens, not on answer quality.
 - `general.STYLE` and the reply tidying have no eval (the general pack is unchecked); answers got much shorter

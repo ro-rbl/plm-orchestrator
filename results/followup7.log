@@ -1,0 +1,16 @@
+[supervisor 20:19] attempt 1: results/run_followup7.sh (pid 1115)
+variant S done 20:46
+variant A done 20:49
+variant B done 21:10
+=== FINAL ===
+S repo today (0.1.5)     57/83 right, 11265 tokens (vq 11/20, vu 20/21, vv 16/21, vvq 9/20, vvu 1/1)
+A S + ROOT_ANCHOR        72/83 right, 10767 tokens (vq 19/20, vu 20/21, vv 16/21, vvq 16/20, vvu 1/1)
+B qwen3:8b alone         72/83 right, 14591 tokens (vq 18/20, vu 18/21, vv 17/21, vvq 18/20, vvu 1/1)
+S answered by: whole 44, fallback 5, shipped 34; of the 5 rejected whole answers, 2 were right
+A answered by: whole 61, fallback 5, shipped 17; of the 5 rejected whole answers, 2 were right
+A - S: +15, 95% +8 to +22   (a) pass
+A - B: +0, 95% -9 to +9   (b) pass
+B - S: +15, 95% +4 to +26   (reported only)
+FOLLOWUP7_RULE -> SHIP ROOT_ANCHOR
+=== END ===
+[supervisor 21:10] finished

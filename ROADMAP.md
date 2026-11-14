@@ -156,8 +156,10 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] Follow-ups: plm 69/80 vs the 8B alone 76/80 on set 5 (2026-11-13). The pack's large model with the whole
       conversation and the calculator ships (FOLLOWUP6_RULE, set 6: 88/92 vs 78/92; the 8B alone 89/92). In the repo,
       not yet on PyPI.
-- [ ] Follow-ups, next (new set 7 first): for a follow-up that only changes a value, check the unit against the
-      earlier question, not the value's own unit (6 right answers were rejected on set 6).
+- [x] Longer conversations (set 7, 83 with two or three follow-ups): the first question stays the anchor
+      (FOLLOWUP7_RULE: 72 vs 57; the 8B alone 72). In the repo, not yet on PyPI.
+- [ ] Follow-ups, next (new set 8 first): after two changes the large model often applies only the latest one
+      (6 of 11 misses on set 7); the unit check rejects some right answers (6 on set 6, 2 on set 7).
 - [ ] Finish the thinking baseline on set 5; re-run the headline sweeps with unit-prefix handling on.
 - [ ] PyPI Trusted Publishing: publishers set on PyPI by the user, first tagged release through the workflow.
 

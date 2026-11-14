@@ -51,15 +51,16 @@ WHOLE = True
 WHOLE_PROMPT = "Below is a conversation. Answer the user's last message.\n\n{transcript}\n\n"
 WHOLE_TOKENS = 1024
 
-# Experimental (FOLLOWUP7_RULE, evals/followup/run7.py), off: in a conversation with several follow-ups, keep the
-# question they all change as the anchor. Conversations with one earlier user message are unaffected.
-ROOT_ANCHOR = False
+# Shipped 2026-11-13 (FOLLOWUP7_RULE, evals/followup/run7.py, set 7 of 83 longer conversations: 72 vs 57 right,
+# paired 95% +8 to +22; the 8B alone 72): in a conversation with several follow-ups, keep the question they all
+# change as the anchor. Conversations with one earlier user message are unaffected. False = before.
+ROOT_ANCHOR = True
 
 
 def _anchor(earlier):
-    """(index, text) of the earlier user message the last one may be following, or None. Shipped: the latest one a
-    pack claims on its own, so after "now a 60 W lamp" (claimed by electrical) the lamp question itself is lost.
-    ROOT_ANCHOR: an earlier message that was itself a follow-up (a change, or a new kind of quantity asked of the
+    """(index, text) of the earlier user message the last one may be following, or None. Before ROOT_ANCHOR: the
+    latest one a pack claims on its own, so after "now a 60 W lamp" (claimed by electrical) the lamp question itself
+    was lost. With it: an earlier message that was itself a follow-up (a change, or a new kind of quantity asked of the
     anchor so far) never becomes the anchor."""
     if not ROOT_ANCHOR:
         return next(((i, t) for i, t in reversed(earlier) if detect(t) != "general"), None)

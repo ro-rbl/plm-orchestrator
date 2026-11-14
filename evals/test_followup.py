@@ -71,6 +71,13 @@ def phrase_checks():
             fails.append("a failed rewrite didn't fall back to today's task")
     finally:
         ol.ask = real
+    lamp = "A 24 V supply feeds a 30 W lamp. What current flows, in amperes?"
+    chat = [{"role": "user", "content": lamp}, {"role": "assistant", "content": "1.25 A"},
+            {"role": "user", "content": "now a 60 W lamp"}, {"role": "assistant", "content": "2.5 A"},
+            {"role": "user", "content": "how much energy does it use in 3 hours, in watt-hours?"}]
+    routed = fu.resolve(chat)  # FOLLOWUP7_RULE: a second follow-up still follows the first question
+    if routed.get("anchor") != lamp or not fu.new_quantity(routed["anchor"], chat[-1]["content"]):
+        fails.append(f"a second follow-up lost the first question: {routed.get('anchor')!r}")
     for f in fails:
         print("   FAIL", f)
     print(f"(d) phrase (variant C): {'ok' if not fails else f'{len(fails)} failed'}")

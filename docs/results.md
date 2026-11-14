@@ -178,6 +178,21 @@ and were rejected by the unit check, which took the expected unit from a value i
 speed is 420 m/s?") or could not read "fpm" or "m³/h"; the fallback then got 4 of the 6. L's other 2 misses: f6-060
 (15710 kg/s for 15.71) and f6-071 (6.003 m/s for 5.074).
 
+## Follow-ups, set 7: longer conversations, the first question stays the anchor (2026-11-13)
+Set (83 conversations of 5 or 7 messages on 21 new anchors, two or three follow-ups each, only the last graded;
+`evals/followup/build7.py`), the candidate (`plm.followup.ROOT_ANCHOR`, off) and FOLLOWUP7_RULE committed first
+(81c6cb2); `evals/followup/run7.py`. S = the repo after set 6; A = S + ROOT_ANCHOR (an earlier message that was
+itself a follow-up never becomes the anchor); B = qwen3:8b alone. Offline, before any answer: the anchor is the
+first question in 32 of 83 for S and 80 for A.
+S 57/83, A 72/83, B 72/83. Rule: (a) A - S +15, paired 95% +8 to +22, pass; (b) A - B +0, 95% -9 to +9, pass ->
+**ROOT_ANCHOR shipped** (True). B - S +15 (+4 to +26), reported only. By kind (S / A / B): change then change
+16/16/17 of 21, change then new quantity 11/19/18 of 20, change then unit 20/20/18 of 21, two changes then new
+quantity 9/16/18 of 20. Tokens: S 11265, A 10767, B 14591. A answered 61 by the large model, 5 by the fallback (2
+of the 5 rejected answers were right), 17 by the old path (15 of them the general pack). A's 11 misses, read after
+the verdict: in 6 the large model applied only the latest change and dropped the earlier one (f7-001, 033, 036,
+041, 049; 012 similar), 3 went to another route (f7-019, 020 solved alone; 071 general), 1 was off by 1000
+(f7-021), 1 was a right answer in "g" rejected by the unit check (f7-073). B got 9 of those 11.
+
 ## Unit prefixes on the public physics benchmarks (2026-11-13)
 `evals/bench_si.py`, method fixed first (7f04a97): the shipped physics pack on the 105 SciBench, TheoremQA and
 UGPhysics (first sample) problems whose text has a unit prefix, si off -> on: SciBench 18 -> 17 of 29, TheoremQA
