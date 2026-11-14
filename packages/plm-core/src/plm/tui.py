@@ -28,7 +28,7 @@ from textual.widgets import Input, Static, TabbedContent, TabPane
 from plm import ollama
 from plm.braille import draw
 from plm.display import tidy
-from plm.followup import phrase, resolve
+from plm.followup import answer, phrase, resolve
 from plm.packs import PACKS
 from plm.paths import log_dir
 from plm import skills as plm_skills
@@ -456,9 +456,10 @@ class PlmApp(App):
             if pack == "sql" and s["db"]:
                 extra["db"] = s["db"]
             routed = getattr(self, "routed", None)
-            if not fuse and routed and pack == routed["pack"] != "general" and task in (routed["task"], text):
-                task = phrase(messages, self.routed)
+            follow = bool(not fuse and routed and pack == routed["pack"] != "general" and task in (routed["task"], text))
             active = [self.skills[n] for n in self.active_skills if n in self.skills]
+            if follow and (active or self.solve_fn):  # a skill changes the task itself: word it as before
+                task, follow = phrase(messages, routed), False
             if pack == "general" and plm_skills.system_message(active):
                 messages = [{"role": "system", "content": plm_skills.system_message(active)}, *messages]
             elif pack != "general":
@@ -473,6 +474,8 @@ class PlmApp(App):
                 result = fusion.solve(task)
             elif pack == "general":
                 result = PACKS["general"].solve(task, messages=messages)
+            elif follow:  # a follow-up: worded, or answered from the whole conversation (plm.followup)
+                result = answer(messages, routed, lambda t: PACKS[pack].solve(t, **extra))
             else:
                 result = PACKS[pack].solve(task, **extra)
             error = None

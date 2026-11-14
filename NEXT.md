@@ -33,18 +33,19 @@ of 66 right and the public physics ones +2 of 105. The headline sweeps were not 
 - Units: "in cm^-1", "in s^-1" read as asked units. Physics routing attempt 2 (PHYS2_RULE: 37/40 vs 33).
 - `.github/workflows/publish.yml`: PyPI Trusted Publishing by tag. **Never run.**
 
-**The open problem: plm loses to a single model on follow-ups.** Set 5 (80 new conversations, 2026-11-13): plm 0.1.4
-69/80; qwen3:8b alone with the whole conversation 76/80 (paired +7, 95% +1 to +13, computed after the fact); coder
-14B alone 75/80; 8B with thinking 54/55 (partial). By kind (plm / 8B alone): new quantity 12/17 of 18, changed value
-36/39 of 41. Always-rewrite was worse than shipped (64/80, FOLLOWUP5_RULE) and is closed. Standalone questions are
-not affected by this result.
+**Follow-ups: the gap to a single model is closed in the repo, not yet on PyPI.** Set 5 (2026-11-13): plm 0.1.4
+69/80, qwen3:8b alone 76/80. Set 6 (92 new conversations, FOLLOWUP6_RULE, rule and set first in f979696): shipped
+78/92, the pack's large model with the whole conversation and the calculator (`plm.followup.whole`, called through
+`plm.followup.answer` by the server, CLI and interface) 88/92 (+10, paired 95% +4 to +17), the 8B alone 89/92 (L - B
+-1, -6 to +4) -> **shipped in the repo** (`WHOLE = True`). It applies to follow-ups to the numeric packs; if the
+large model's answer fails a check, the old path (phrase + the pack) answers. **plm-core on PyPI is still 0.1.4
+without it: a release needs the user's go-ahead** (token in `~/.pypi-token`, or Trusted Publishing, item 3).
 
 **Open, in the order I'd take them:**
-1. **Follow-ups through the large model with the whole conversation** (the user said: later). Hypothesis: for a
-   resolved follow-up, give the pack's large model the conversation plus the calculator format instead of a reworded
-   task for the 4B. Needs set 6 (new anchors; sets 1-5 are seen; copy `evals/followup/build5.py` and `run5.py`), the
-   rule committed first: ship iff it beats shipped plm with the paired 95% interval above 0 AND is not below the 8B
-   alone by an interval entirely below 0. About 15 min to write, about 1 h of models.
+1. **Release plm-core 0.1.5** with the follow-up change (ask the user first). Then, on a new set 7: for a follow-up
+   that only changes a value, take the expected unit from the earlier question; on set 6 all 6 answers the unit
+   check rejected were right ("what if the wave speed is 420 m/s?" expected m/s; "fpm" and "m³/h" unreadable) and
+   the fallback lost 2 of them. Also still open: 7 of 92 new-quantity follow-ups go to the general pack.
 2. Finish the thinking baseline on set 5 (25 conversations left, resumes, about 30 min):
    `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`, then `--report`.
 3. PyPI Trusted Publishing: the user adds a GitHub publisher on PyPI for each package (owner `ro-rbl`, repository
@@ -56,7 +57,8 @@ not affected by this result.
 
 **In the repo, off, not released behaviour** (flags kept so the runs reproduce): `plm.followup.ROUTE_FIX`
 (FOLLOWUP4_RULE: 66/83 with and without) and `plm.followup.ALWAYS_REWRITE` (FOLLOWUP5_RULE: 64 vs 69 of 80; this
-flag was added after 0.1.4, so the repo differs from PyPI by this dead switch only). `/fuse` stays experimental.
+flag was added after 0.1.4). The repo differs from PyPI 0.1.4 by this dead switch and by the set-6 follow-up path
+(`WHOLE`, on). `/fuse` stays experimental.
 
 **Unverified / known limits from this session:**
 - The 8B-alone comparison had no rule fixed in advance, and set 5 is now seen.
@@ -97,7 +99,9 @@ A 75 = B 75 -> keep A. Set-2 misses read 2026-11-10 (A wrong 25): 10 asked a NEW
      1 wrong value; 9 of plm's 80 went to the general pack.
    - si on the public physics benchmarks (105 problems with a prefix; `evals/bench_si.py`): SciBench 18 -> 17,
      TheoremQA 11 -> 12, UGPhysics 10 -> 12, total +2 -> si stays on.
-   **Next hypothesis (new set 6 needed):** for a follow-up, give the pack's LARGE model the whole conversation (as the
+   **Set 6 (2026-11-13, 92 conversations, FOLLOWUP6_RULE first in f979696):** S 78, L 88, B (8B alone) 89 of 92;
+   L - S +10 (95% +4 to +17), L - B -1 (-6 to +4) -> L shipped in the repo (`plm.followup.answer` / `whole`).
+   (Done:) **Hypothesis for set 6 was:** for a follow-up, give the pack's LARGE model the whole conversation (as the
    8B-alone run did) with the calculator format, instead of a reworded task for the 4B; ship only if it beats both
    shipped plm and the 8B alone is at least matched. Also finish the thinking baseline (resumes):
    `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`.

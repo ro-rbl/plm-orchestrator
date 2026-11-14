@@ -272,6 +272,7 @@ def run(port, log_path):
         prompts.append(prompt)
         return reply('```python\nprint(f"ANSWER: {200 * 0.1:.4g} V")\n```')
     numeric.ask = capture
+    real_ask, ollama.ask = ollama.ask, capture  # plm.followup.whole asks through plm.ollama
     convo = [{"role": "user", "content": "A 220 ohm resistor carries 0.1 A. What is the voltage across it, in volts?"},
              {"role": "assistant", "content": "22 V"}, {"role": "user", "content": "now for 200 ohm"}]
     status, _, body = call(port, "POST", "/v1/chat/completions", {"model": "plm-router", "messages": convo})
@@ -279,6 +280,21 @@ def run(port, log_path):
     expect("follow-up stays in electrical with the original question",
            status == 200 and r["plm"]["pack"] == "electrical" and r["choices"][0]["message"]["content"].startswith("20 V")
            and prompts and "220 ohm resistor" in prompts[-1] and "now for 200 ohm" in prompts[-1], (body, prompts[-1:]))
+    expect("a numeric follow-up is one call to the large model with the whole conversation (FOLLOWUP6_RULE)",
+           len(prompts) == 1 and "assistant: 22 V\nuser: now for 200 ohm" in prompts[0]
+           and [s["model"] for s in r["plm"]["steps"]] == [electrical.MODELS["large"]], (prompts, r["plm"]))
+
+    def no_program_first(model, prompt, think, num_predict, timeout):
+        prompts.append(prompt)
+        return reply("It is 20 V." if len(prompts) == 1 else '```python\nprint(f"ANSWER: {200 * 0.1:.4g} V")\n```')
+    del prompts[:]
+    numeric.ask = ollama.ask = no_program_first
+    status, _, body = call(port, "POST", "/v1/chat/completions", {"model": "plm-router", "messages": convo})
+    r = json.loads(body)
+    expect("a whole-conversation answer with no program falls back to the pack's reworded task",
+           status == 200 and len(prompts) == 2 and prompts[1].startswith("Original question:")
+           and r["choices"][0]["message"]["content"].startswith("20 V") and len(r["plm"]["steps"]) == 2, (body, prompts))
+    ollama.ask = real_ask
     logged = [json.loads(line) for line in open(log_path)]
     expect("follow-up is logged with context", logged[-1].get("context") is True and logged[-1]["pack"] == "electrical",
            logged[-1])

@@ -1,0 +1,24 @@
+[supervisor 09:06] waiting for AC power (battery 95%)
+[supervisor 09:08] waiting for AC power (battery 95%)
+[supervisor 09:10] waiting for AC power (battery 94%)
+[supervisor 09:12] waiting for AC power (battery 94%)
+[supervisor 09:14] waiting for AC power (battery 93%)
+[supervisor 09:16] waiting for AC power (battery 93%)
+[supervisor 09:18] waiting for AC power (battery 92%)
+[supervisor 09:20] waiting for AC power (battery 92%)
+[supervisor 17:24] waiting for AC power (battery 9%)
+[supervisor 17:26] attempt 1: results/run_followup6.sh (pid 85328)
+variant S done 17:46
+variant L done 18:02
+variant B done 18:30
+=== FINAL ===
+S plm 0.1.4 (shipped)              78/92 right, 11317 tokens (quantity 16/20, two 7/10, unit 13/14, value 42/48)
+L large model, whole conversation  88/92 right, 10980 tokens (quantity 19/20, two 9/10, unit 13/14, value 47/48)
+B qwen3:8b alone                   89/92 right, 15120 tokens (quantity 19/20, two 10/10, unit 14/14, value 46/48)
+L answered by: whole 79, fallback 6, shipped 7
+L - S: +10, 95% +4 to +17   (a) pass
+L - B: -1, 95% -6 to +4   (b) pass
+B - S: +11, 95% +4 to +18   (reported only)
+FOLLOWUP6_RULE -> SHIP L (plm.followup.whole)
+=== END ===
+[supervisor 18:31] finished

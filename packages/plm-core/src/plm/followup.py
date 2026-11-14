@@ -12,6 +12,11 @@ variant C: 51/90 vs 47/90, paired 95% +1 to +8): when the last message asks for 
 anchor ("and how far does it travel?" after a speed), a model first rewrites the conversation into one complete
 question, because "answer the original question again" returned the original quantity; otherwise the task above.
 
+answer(messages, routed, solve) is what the server, the CLI and the interface call (FOLLOWUP6_RULE, shipped
+2026-11-13; evals/followup/run6.py, set 6: 88/92 vs 78/92, paired 95% +4 to +17; qwen3:8b alone 89/92): a follow-up
+to a numeric pack is answered by whole(), the pack's large model with the whole conversation and the calculator
+format in one call; when that answer has an issue, and for every other pack, the pack solves phrase()'s task.
+
 A conversation of one message is routed exactly as plm.packs.detect routes it. Judged by
 evals/test_followup.py (FOLLOWUP_RULE). Known limit: a follow-up that changes what code should do keeps
 the anchor's examples, which the new code may then fail.
@@ -40,8 +45,9 @@ FOLLOW = re.compile(
 MAX_PREVIOUS_ANSWER = 2000
 ROUTE_FIX = False
 ALWAYS_REWRITE = False
-# Experimental (FOLLOWUP6_RULE, evals/followup/run6.py), off: nothing calls whole() outside the eval.
-WHOLE = False
+# Shipped 2026-11-13 (FOLLOWUP6_RULE, evals/followup/run6.py, set 6 of 92: 88 vs 78 right, paired 95% +4 to +17; the
+# 8B alone 89): answer() gives a numeric pack's follow-up to its large model with the whole conversation. False = before.
+WHOLE = True
 WHOLE_PROMPT = "Below is a conversation. Answer the user's last message.\n\n{transcript}\n\n"
 WHOLE_TOKENS = 1024
 
@@ -110,6 +116,21 @@ def phrase(messages, routed, timeout=600):
     except Exception:
         return routed["task"]
     return text or routed["task"]
+
+
+def answer(messages, routed, solve, timeout=300):
+    """The result for a conversation's last message, routed to a pack other than general. solve(task) is that
+    pack's solver. A follow-up to a numeric pack is answered by whole() (FOLLOWUP6_RULE); if that isn't one, or its
+    answer has an issue (no program, a program error, a failed unit check), the pack solves phrase()'s task as
+    before, and the failed step is kept at the front of the result's steps and counted in its tokens."""
+    first = whole(messages, routed, timeout) if WHOLE else None
+    if first and not first["steps"][-1]["issues"]:
+        return first
+    result = solve(phrase(messages, routed))
+    if first:
+        result["steps"] = first["steps"] + result["steps"]
+        result["tokens"] += first["tokens"]
+    return result
 
 
 def whole(messages, routed, timeout=300):

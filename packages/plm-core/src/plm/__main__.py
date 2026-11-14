@@ -65,18 +65,19 @@ def report(result, show_work):
 
 def run_one(task, args, history=()):
     """Solve one task; `history` is the interactive session's earlier messages, for follow-ups (plm.followup)."""
-    from plm.followup import phrase, resolve
+    from plm.followup import answer, resolve
     from plm.packs import PACKS, detect
 
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
     pack = args.pack if args.pack != "auto" else "sql" if args.sql_db else detect(task)
+    followed = None  # (conversation, routing) when the task continues an earlier pack question
     if history and args.pack == "auto" and not args.sql_db:
         convo = [*history, {"role": "user", "content": task}]
         routed = resolve(convo)
         if routed["pack"] != "general" and (routed["context"] or "anchor" in routed):
-            pack, task = routed["pack"], phrase(convo, routed)
+            pack, followed = routed["pack"], (convo, routed)
             if routed["context"]:
                 print(f"(follow-up: kept in {pack}, with the earlier question)")
     extra = {}
@@ -94,7 +95,9 @@ def run_one(task, args, history=()):
         from plm.general.controller import styled
         extra["messages"] = styled([{"role": "user", "content": task}])
     try:
-        result = PACKS[pack].solve(task, level=args.level, timeout=args.timeout, **extra)
+        def run(task):
+            return PACKS[pack].solve(task, level=args.level, timeout=args.timeout, **extra)
+        result = answer(*followed, run, timeout=args.timeout) if followed else run(task)
     except urllib.error.HTTPError as e:
         detail = e.read().decode(errors="replace")[:200]
         sys.exit(f"Ollama error {e.code}: {detail}\nModels in use: {PACKS[pack].models} "

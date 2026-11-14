@@ -153,8 +153,11 @@ What could carry over, in order of value per effort; each policy fixed before it
 - [x] plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1 on PyPI (2026-11-12).
 
 ## 7. Next
-- [ ] Follow-ups: plm 69/80 vs the 8B alone 76/80 on set 5 (2026-11-13). Try the pack's large model with the whole
-      conversation and the calculator, on a new set 6, rule first.
+- [x] Follow-ups: plm 69/80 vs the 8B alone 76/80 on set 5 (2026-11-13). The pack's large model with the whole
+      conversation and the calculator ships (FOLLOWUP6_RULE, set 6: 88/92 vs 78/92; the 8B alone 89/92). In the repo,
+      not yet on PyPI.
+- [ ] Follow-ups, next (new set 7 first): for a follow-up that only changes a value, check the unit against the
+      earlier question, not the value's own unit (6 right answers were rejected on set 6).
 - [ ] Finish the thinking baseline on set 5; re-run the headline sweeps with unit-prefix handling on.
 - [ ] PyPI Trusted Publishing: publishers set on PyPI by the user, first tagged release through the workflow.
 

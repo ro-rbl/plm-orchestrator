@@ -120,7 +120,13 @@ def solve(req, pack):
         return packs.PACKS["general"].solve(req["task"], messages=req["messages"], options=req["options"],
                                             max_tokens=req["max_tokens"])
     extra = MODEL_IDS[req["model"]] if pack == "software" else {}
-    return packs.PACKS[pack].solve(req["task"], **extra)
+    if "routed" not in req:
+        return packs.PACKS[pack].solve(req["task"], **extra)
+
+    def run(task):
+        req["task"] = task  # what the pack was given, for the log
+        return packs.PACKS[pack].solve(task, **extra)
+    return followup.answer(req["messages"], req["routed"], run)
 
 
 def usage(result):
@@ -222,8 +228,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._error(e.status, str(e), e.code)
         routed = followup.resolve(req["messages"])  # a follow-up keeps its conversation's pack and question
         pack, req["context"] = routed["pack"], routed["context"]
-        if pack != "general":  # general already gets the whole conversation; a new kind of quantity is rewritten
-            req["task"] = followup.phrase(req["messages"], routed)
+        if pack != "general":  # general already gets the whole conversation; solve() words or answers a follow-up
+            req["routed"] = routed
         cid, created = "chatcmpl-" + uuid.uuid4().hex, int(time.time())
         if req["stream"]:
             self._stream(req, pack, cid, created)

@@ -164,6 +164,20 @@ one prompt, the packs' ANSWER format, no router, calculator, checks or rewrite):
 By kind (plm / 8B alone): value 36/39 of 41, quantity 12/17 of 18, unit 14/14, two changes 7/6 of 7. Tokens: plm
 9281, 8B alone 12061, coder alone 19821. On follow-up conversations the packs currently cost accuracy.
 
+## Follow-ups, set 6: the pack's large model with the whole conversation ships (2026-11-13)
+Set (92 conversations on 23 new anchors, `evals/followup/build6.py`), the candidate (`plm.followup.whole`, off) and
+FOLLOWUP6_RULE committed first (f979696); `evals/followup/run6.py`. S = shipped plm 0.1.4; L = for a follow-up to a
+numeric pack, that pack's large model gets the whole conversation and the calculator format in one call, and the
+shipped path answers when that call's answer has an issue; B = qwen3:8b alone as a plain chatbot.
+S 78/92, L 88/92, B 89/92. Rule: (a) L - S +10, paired 95% +4 to +17, pass; (b) L - B -1, 95% -6 to +4, not
+entirely below 0, pass -> **L shipped** (`plm.followup.WHOLE = True`, through `plm.followup.answer`). B - S +11
+(+4 to +18), reported only. By kind (S / L / B): value 42/47/46 of 48, quantity 16/19/19 of 20, two 7/9/10 of 10,
+unit 13/13/14 of 14. Tokens: S 11317, L 10980, B 15120. L answered 79 by the large model, 6 by the fallback, and 7
+went to the general pack as in S. Read after the verdict: all 6 fallbacks had the right number from the large model
+and were rejected by the unit check, which took the expected unit from a value in the follow-up ("what if the wave
+speed is 420 m/s?") or could not read "fpm" or "m³/h"; the fallback then got 4 of the 6. L's other 2 misses: f6-060
+(15710 kg/s for 15.71) and f6-071 (6.003 m/s for 5.074).
+
 ## Unit prefixes on the public physics benchmarks (2026-11-13)
 `evals/bench_si.py`, method fixed first (7f04a97): the shipped physics pack on the 105 SciBench, TheoremQA and
 UGPhysics (first sample) problems whose text has a unit prefix, si off -> on: SciBench 18 -> 17 of 29, TheoremQA
