@@ -4,9 +4,9 @@ _Updated: 2026-11-13 · branch: main · plan: ROADMAP.md · results: docs/result
 
 ## Start here (next session)
 Everything through phase 6 of `ROADMAP.md` is done and public: GitHub https://github.com/ro-rbl/plm-orchestrator,
-Hugging Face https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, PyPI (seven packages: **plm-core 0.1.4,
-plm-physics 0.1.1, plm-electrical 0.1.1 released 2026-11-12**; plm-cad 0.1.1; the rest 0.1.0;
-`uv tool install "plm-core[tui]"`). The repo matches what is released except one unreleased flag (below). Every
+Hugging Face https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, PyPI (seven packages: **plm-core 0.1.5
+released 2026-11-13** (checked from a fresh install); plm-physics 0.1.1, plm-electrical 0.1.1, plm-cad 0.1.1; the
+rest 0.1.0; `uv tool install "plm-core[tui]"`). The repo matches what is released. Every
 policy was chosen by a rule committed before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 | Pack | Ships | Public benchmark (shipped) |
@@ -33,19 +33,18 @@ of 66 right and the public physics ones +2 of 105. The headline sweeps were not 
 - Units: "in cm^-1", "in s^-1" read as asked units. Physics routing attempt 2 (PHYS2_RULE: 37/40 vs 33).
 - `.github/workflows/publish.yml`: PyPI Trusted Publishing by tag. **Never run.**
 
-**Follow-ups: the gap to a single model is closed in the repo, not yet on PyPI.** Set 5 (2026-11-13): plm 0.1.4
+**Follow-ups: the gap to a single model is closed (released in plm-core 0.1.5).** Set 5 (2026-11-13): plm 0.1.4
 69/80, qwen3:8b alone 76/80. Set 6 (92 new conversations, FOLLOWUP6_RULE, rule and set first in f979696): shipped
 78/92, the pack's large model with the whole conversation and the calculator (`plm.followup.whole`, called through
 `plm.followup.answer` by the server, CLI and interface) 88/92 (+10, paired 95% +4 to +17), the 8B alone 89/92 (L - B
 -1, -6 to +4) -> **shipped in the repo** (`WHOLE = True`). It applies to follow-ups to the numeric packs; if the
-large model's answer fails a check, the old path (phrase + the pack) answers. **plm-core on PyPI is still 0.1.4
-without it: a release needs the user's go-ahead** (token in `~/.pypi-token`, or Trusted Publishing, item 3).
+large model's answer fails a check, the old path (phrase + the pack) answers. Released in 0.1.5.
 
 **Longer conversations (set 7, 83 with two or three follow-ups, FOLLOWUP7_RULE, rule first in 81c6cb2):** the repo
 after set 6 got 57/83, with the first question kept as the anchor (`plm.followup.ROOT_ANCHOR`) 72/83 (+15, paired
-95% +8 to +22), the 8B alone 72/83 -> **shipped in the repo** (True). Not on PyPI either.
+95% +8 to +22), the 8B alone 72/83 -> **shipped** (True), released in 0.1.5.
 
-**Interface, 2026-11-13 (in the repo, in the 0.1.5 build, no eval; `plm/project.py`, `tui.Ask`):** pasting several
+**Interface, 2026-11-13 (released in 0.1.5, no eval; `plm/project.py`, `tui.Ask`):** pasting several
 lines keeps every line (Textual's Input kept the first only); `/project <folder>` reads the files a question names
 into the task and writes the answer's code back (old file kept as `<name>.bak`); `/save [file]`. Checked live once:
 "add error handling to app.py" through the coder wrote a file that behaved right on four cases. Limits: one file
@@ -53,10 +52,7 @@ per answer (the longest code block, to the first file named); files over 12000 c
 pack's checks have nothing to run against for such a request, so the answer shows as unchecked.
 
 **Open, in the order I'd take them:**
-1. **Publish plm-core 0.1.5** (both follow-up changes; built in `dist/`, read back from the wheel). The user said
-   yes on 2026-11-13; it waits for the token in `~/.pypi-token`:
-   `uv publish dist/plm_core-0.1.5* --token "$(cat ~/.pypi-token)"`, then a fresh `uv tool install "plm-core[tui]"`
-   check, then remind the user to delete the token. Then, on a new set 8: (i) after two changes the large model often
+1. **Follow-ups, on a new set 8:** (i) after two changes the large model often
    applies only the latest one (6 of A's 11 misses on set 7; the 8B alone, same conversation without the
    calculator format or prefix rewriting, got them); (ii) the unit check rejects right answers on value follow-ups
    (6 on set 6, 2 on set 7); (iii) follow-ups asking a new quantity that go to the general pack (15 of 83).

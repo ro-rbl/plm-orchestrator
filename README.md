@@ -150,7 +150,7 @@ print(r.model_extra["plm"])            # pack, level, models called, checks, tok
 - Packs see the last user message, or, when it's a follow-up to an earlier pack question ("now for 200 ohm",
   "what if...", "make it 10 mm thick"), that question, the last answer and the change; they use their own token
   budgets. A follow-up that asks for another kind of quantity ("and its kinetic energy, in joules?" after a
-  momentum question) is first rewritten into one complete question. In the repo (not yet on PyPI): a follow-up to a numeric pack goes
+  momentum question) is first rewritten into one complete question. Since plm-core 0.1.5 a follow-up to a numeric pack goes
   to that pack's large model with the whole conversation and the calculator, and to the path above only if that
   answer fails a check (FOLLOWUP6_RULE: 88 vs 78 of 92 follow-ups right). The general pack gets the whole conversation
   (its context window grows with it, up to 40960 tokens) and the client's `temperature`, `top_p` and `max_tokens`.

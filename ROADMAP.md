@@ -151,13 +151,14 @@ What could carry over, in order of value per effort; each policy fixed before it
       kind of quantity rewritten first (FOLLOWUP3_RULE); physics routing attempt 2 (PHYS2_RULE); readable replies
       (Markdown rendered, no emoji, plain style for the general pack).
 - [x] plm-core 0.1.4, plm-physics 0.1.1, plm-electrical 0.1.1 on PyPI (2026-11-12).
+- [x] plm-core 0.1.5 on PyPI (2026-11-13): follow-ups (sets 6 and 7), multi-line paste, `/project` and `/save`.
 
 ## 7. Next
 - [x] Follow-ups: plm 69/80 vs the 8B alone 76/80 on set 5 (2026-11-13). The pack's large model with the whole
-      conversation and the calculator ships (FOLLOWUP6_RULE, set 6: 88/92 vs 78/92; the 8B alone 89/92). In the repo,
-      not yet on PyPI.
+      conversation and the calculator ships (FOLLOWUP6_RULE, set 6: 88/92 vs 78/92; the 8B alone 89/92). Released
+      in plm-core 0.1.5.
 - [x] Longer conversations (set 7, 83 with two or three follow-ups): the first question stays the anchor
-      (FOLLOWUP7_RULE: 72 vs 57; the 8B alone 72). In the repo, not yet on PyPI.
+      (FOLLOWUP7_RULE: 72 vs 57; the 8B alone 72). Released in plm-core 0.1.5.
 - [ ] Follow-ups, next (new set 8 first): after two changes the large model often applies only the latest one
       (6 of 11 misses on set 7); the unit check rejects some right answers (6 on set 6, 2 on set 7).
 - [ ] Finish the thinking baseline on set 5; re-run the headline sweeps with unit-prefix handling on.
