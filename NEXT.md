@@ -61,6 +61,14 @@ flag was added after 0.1.4). The repo differs from PyPI 0.1.4 by this dead switc
 (`WHOLE`, on). `/fuse` stays experimental.
 
 **Unverified / known limits from this session:**
+- **A second follow-up loses the first question** (seen live 2026-11-13, older than the set-6 change; every set
+  has 3-message conversations, so it was never measured): after "A 24 V supply feeds a 30 W lamp. What current...",
+  "now a 60 W lamp" (right, 2.5 A), then "how much energy does it use in 3 hours, in watt-hours?" was solved alone
+  and gave 300 Wh. `resolve` takes "now a 60 W lamp" as the anchor because the electrical pack claims it on its own.
+  Needs a set of longer conversations first.
+- plm-core 0.1.5 (the set-6 follow-up path) is built in `dist/` and the version is bumped, **not published** until
+  the user puts the token in `~/.pypi-token`: `uv publish dist/plm_core-0.1.5* --token "$(cat ~/.pypi-token)"`,
+  then a fresh `uv tool install "plm-core[tui]"` check.
 - The 8B-alone comparison had no rule fixed in advance, and set 5 is now seen.
 - The context window was measured on recall of one code word at about 7000 tokens, not on answer quality.
 - `general.STYLE` and the reply tidying have no eval (the general pack is unchecked); answers got much shorter

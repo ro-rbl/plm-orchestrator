@@ -106,6 +106,8 @@ async def session(shots):
         text = chat_text(app)
         expect("follow-up answered in electrical", "20 V" in text and "(follow-up)" in text, text[-300:])
         expect("follow-up prompt carries the question", "220 ohm resistor" in PROMPTS[-1], PROMPTS[-1][:200])
+        expect("follow-up is one call with the whole conversation (FOLLOWUP6_RULE)",
+               "assistant: " in PROMPTS[-1] and "user: now for 200 ohm" in PROMPTS[-1] and len(PROMPTS) == 2, PROMPTS[-1][:300])
         if shots:
             app.save_screenshot("tui_electrical.svg", path=shots)
         await ask("Make a CadQuery model of a 40 mm cube with a 10 mm hole through the center.")
@@ -254,13 +256,15 @@ def main():
     shots = sys.argv[sys.argv.index("--screenshots") + 1] if "--screenshots" in sys.argv else None
     import plm.fusion as fusion
     import plm.general.controller as general
-    real = numeric.ask, cad.ask, fusion.ask, general.chat
-    numeric.ask, cad.ask, fusion.ask, general.chat = fake_numeric, fake_cad, fake_planner, fake_general_chat
+    import plm.ollama as ollama
+    real = numeric.ask, cad.ask, fusion.ask, general.chat, ollama.ask
+    # ollama.ask: plm.followup.whole (a numeric follow-up) and phrase's rewriter ask through plm.ollama
+    numeric.ask, cad.ask, fusion.ask, general.chat, ollama.ask = fake_numeric, fake_cad, fake_planner, fake_general_chat, fake_numeric
     help_renders()
     try:
         asyncio.run(session(shots))
     finally:
-        numeric.ask, cad.ask, fusion.ask, general.chat = real
+        numeric.ask, cad.ask, fusion.ask, general.chat, ollama.ask = real
     for f in FAILS:
         print("FAIL", f)
     print("tui tests: all passed" if not FAILS else f"tui tests: {len(FAILS)} failed")
