@@ -51,6 +51,26 @@ WHOLE = True
 WHOLE_PROMPT = "Below is a conversation. Answer the user's last message.\n\n{transcript}\n\n"
 WHOLE_TOKENS = 1024
 
+# Experimental (FOLLOWUP7_RULE, evals/followup/run7.py), off: in a conversation with several follow-ups, keep the
+# question they all change as the anchor. Conversations with one earlier user message are unaffected.
+ROOT_ANCHOR = False
+
+
+def _anchor(earlier):
+    """(index, text) of the earlier user message the last one may be following, or None. Shipped: the latest one a
+    pack claims on its own, so after "now a 60 W lamp" (claimed by electrical) the lamp question itself is lost.
+    ROOT_ANCHOR: an earlier message that was itself a follow-up (a change, or a new kind of quantity asked of the
+    anchor so far) never becomes the anchor."""
+    if not ROOT_ANCHOR:
+        return next(((i, t) for i, t in reversed(earlier) if detect(t) != "general"), None)
+    root = None
+    for i, t in earlier:
+        if root is not None and (FOLLOW.search(t) or new_quantity(root[1], t)):
+            continue
+        if detect(t) != "general":
+            root = (i, t)
+    return root
+
 
 def resolve(messages):
     """{"pack", "task", "context"}: the pack for the last user message and the task to give it; context is
@@ -58,7 +78,7 @@ def resolve(messages):
     users = [(i, m["content"].strip()) for i, m in enumerate(messages)
              if m.get("role") == "user" and (m.get("content") or "").strip()]
     last_i, last = users[-1]
-    anchor = next(((i, t) for i, t in reversed(users[:-1]) if detect(t) != "general"), None)
+    anchor = _anchor(users[:-1])
     alone = {"pack": detect(last), "task": last, "context": False}
     if anchor is not None:
         alone["anchor"] = anchor[1]  # for phrase(): even a message routed alone may ask a new quantity of it
