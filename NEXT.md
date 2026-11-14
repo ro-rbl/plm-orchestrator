@@ -66,9 +66,8 @@ pack's checks have nothing to run against for such a request, so the answer show
    density and nozzle expansion -> physics. Needs new cases first.
 
 **In the repo, off, not released behaviour** (flags kept so the runs reproduce): `plm.followup.ROUTE_FIX`
-(FOLLOWUP4_RULE: 66/83 with and without) and `plm.followup.ALWAYS_REWRITE` (FOLLOWUP5_RULE: 64 vs 69 of 80; this
-flag was added after 0.1.4). The repo differs from PyPI 0.1.4 by this dead switch and by the set-6 follow-up path
-(`WHOLE`, on). `/fuse` stays experimental.
+(FOLLOWUP4_RULE: 66/83 with and without) and `plm.followup.ALWAYS_REWRITE` (FOLLOWUP5_RULE: 64 vs 69 of 80; both
+off in 0.1.5). `/fuse` stays experimental.
 
 **Unverified / known limits from this session:**
 - The 8B-alone comparison had no rule fixed in advance, and set 5 is now seen.
