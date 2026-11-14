@@ -89,6 +89,9 @@ with emoji and decoration removed.
 Commands: `/pack <name>` and `/model <4b|8b|coder|name>` force a pack or a model, `/level`, `/thorough`,
 `/db <file.sqlite>`, `/show` (each model's work), `/fuse <problem>` (experimental CAD + engineering fusion),
 `/export [file]`, `/settings`, `/new`, `/help`, `/quit`; settings in force show in orange at the bottom.
+`/project <folder>` works in a folder: a file you name ("add error handling to app.py") is read into the task and
+the answer's code is written back to it (the old version is kept as `app.py.bak`); `/save [file]` writes the last
+answer's code. Pasting several lines into the question box keeps all of them (shown with ⏎).
 **Skills** are instruction files in the Claude skills format (a folder with a `SKILL.md`: name, description,
 optional `packs:`, then the instructions) in `~/.plm/skills/` or `./.plm/skills/`: `/skills` lists them,
 `/skill <name>` turns one on (example: `examples/skills/explain-briefly`). The general pack gets them as a

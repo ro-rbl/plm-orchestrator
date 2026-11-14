@@ -189,6 +189,43 @@ async def session(shots):
         expect("context meter shows the general pack's raised window", "/ 16.4k" in str(app.query_one("#context", Static).render()),
                str(app.query_one("#context", Static).render()))
         app.history.pop()
+        # pasting several lines keeps them all (Textual's Input kept the first only); sent with real line breaks
+        import tempfile
+        from textual import events
+        from plm import project
+        box = app.query_one("#ask")
+        box.value = ""
+        box.post_message(events.Paste("\ndef f(x):\n    return x + 1\n\nprint(f(2))\n"))
+        await pilot.pause(0.2)
+        expect("a pasted block keeps every line", box.value == "def f(x): ⏎     return x + 1 ⏎  ⏎ print(f(2))", repr(box.value))
+        box.value = ""
+        # a project folder: named files are read into the task, the answer's code is written back, the old file kept
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "app.py").write_text("print(1)\n")
+            box.value = f"/project {tmp}"
+            await pilot.press("enter")
+            await pilot.pause(0.2)
+            expect("/project sets the folder", app.settings["project"] == str(Path(tmp).resolve()) or app.settings["project"] == tmp,
+                   app.settings["project"])
+            task, notes = project.with_files(tmp, "add error handling to app.py and ../secret.py")
+            expect("a named project file is read into the task", "Current contents of app.py:" in task and "print(1)" in task
+                   and any("read app.py" in n for n in notes), (task, notes))
+            expect("a file outside the folder is never read", "secret" not in task.split("Current contents")[1], task)
+            app.history += [{"role": "user", "content": "x"},
+                            {"role": "assistant", "content": "```python\ntry:\n    print(1)\nexcept OSError:\n    pass\n```"}]
+            app.save(question="add error handling to app.py")
+            expect("the answer's code is written to the named file, the old one kept",
+                   "try:" in (Path(tmp) / "app.py").read_text() and (Path(tmp) / "app.py.bak").read_text() == "print(1)\n")
+            app.save("../escape.py")
+            expect("saving outside the folder is refused", not (Path(tmp).parent / "escape.py").exists()
+                   and "outside the project folder" in chat_text(app), chat_text(app)[-200:])
+            app.save()
+            expect("with no file named, a new plm_<n> file is written", (Path(tmp) / "plm_1.py").exists())
+            del app.history[-2:]
+            box.value = "/project off"
+            await pilot.press("enter")
+            await pilot.pause(0.2)
+            expect("/project off", app.settings["project"] is None)
         import time as _t
         from plm import ollama as _ol
         expect("no progress listener left after answers", _ol.LISTENERS == [], _ol.LISTENERS)

@@ -45,6 +45,13 @@ without it: a release needs the user's go-ahead** (token in `~/.pypi-token`, or 
 after set 6 got 57/83, with the first question kept as the anchor (`plm.followup.ROOT_ANCHOR`) 72/83 (+15, paired
 95% +8 to +22), the 8B alone 72/83 -> **shipped in the repo** (True). Not on PyPI either.
 
+**Interface, 2026-11-13 (in the repo, in the 0.1.5 build, no eval; `plm/project.py`, `tui.Ask`):** pasting several
+lines keeps every line (Textual's Input kept the first only); `/project <folder>` reads the files a question names
+into the task and writes the answer's code back (old file kept as `<name>.bak`); `/save [file]`. Checked live once:
+"add error handling to app.py" through the coder wrote a file that behaved right on four cases. Limits: one file
+per answer (the longest code block, to the first file named); files over 12000 characters are cut; the software
+pack's checks have nothing to run against for such a request, so the answer shows as unchecked.
+
 **Open, in the order I'd take them:**
 1. **Publish plm-core 0.1.5** (both follow-up changes; built in `dist/`, read back from the wheel). The user said
    yes on 2026-11-13; it waits for the token in `~/.pypi-token`:

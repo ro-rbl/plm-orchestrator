@@ -25,7 +25,7 @@ from textual.binding import Binding
 from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.widgets import Input, Static, TabbedContent, TabPane
 
-from plm import ollama
+from plm import ollama, project
 from plm.braille import draw
 from plm.display import tidy
 from plm.followup import answer, phrase, resolve
@@ -52,9 +52,13 @@ Follow-ups ("now for 200 ohm", "make it 10 mm thick") stay with the question the
   /show on|off            show each model's program or reasoning under the answer
   /fuse <problem>         experimental: plan a CAD + engineering problem, calculate, then model
   /skills                 list skills (~/.plm/skills, ./.plm/skills); /skill <name> \\[off] turns one on or off
+  /project <folder>|off   work in a folder: files you name ("add error handling to app.py") are read, and the
+                          answer's code is written there (the old file is kept as <name>.bak)
+  /save \\[file]            write the last answer's code to a file (in the project folder, if one is set)
   /export \\[file]          save the conversation as Markdown
   /settings               what's set now
-  /new  /help  /quit      (also ctrl+n, ctrl+q); ctrl+p opens a CAD part's full drawing"""
+  /new  /help  /quit      (also ctrl+n, ctrl+q); ctrl+p opens a CAD part's full drawing
+Pasting several lines works: line breaks show as ⏎ and are sent as line breaks."""
 SPIN = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
 
 
@@ -160,6 +164,24 @@ class Reply(Markdown):
     elements = {**Markdown.elements, "heading_open": LeftHeading}
 
 
+NEWLINE = " ⏎ "
+
+
+class Ask(Input):
+    """The question box. Textual's Input keeps only the first line of a paste (nothing, if that line is blank);
+    here every line is kept, shown on one line with ⏎ between them, and sent with real line breaks."""
+
+    def _on_paste(self, event):
+        lines = [line.rstrip() for line in event.text.replace("\r\n", "\n").replace("\r", "\n").strip("\n").split("\n")]
+        text = NEWLINE.join(lines)
+        if text:
+            if self.selection.is_empty:
+                self.insert_text_at_cursor(text)
+            else:
+                self.replace(text, *self.selection)
+        event.stop()
+
+
 class Chip(Static):
     pass
 
@@ -195,7 +217,8 @@ class PlmApp(App):
         self.history = []
         self.last = None
         self.part_info = Text("")
-        self.settings = {"pack": None, "model": None, "level": None, "thorough": False, "db": None, "show": False}
+        self.settings = {"pack": None, "model": None, "level": None, "thorough": False, "db": None, "show": False,
+                         "project": None}
         self.transcript = []  # (question, answer text, status line) for /export
         self.skill_dirs = None  # None: ~/.plm/skills and ./.plm/skills
         self.skills = plm_skills.discover(self.skill_dirs)
@@ -209,7 +232,7 @@ class PlmApp(App):
                 yield Static(BANNER, id="banner")
                 yield Static("", id="sub")
                 yield VerticalScroll(id="chat")
-                yield Input(placeholder="ask anything, or /help", id="ask")
+                yield Ask(placeholder="ask anything, or /help", id="ask")
             with TabbedContent("Part", "Code", "Steps", "Log", id="side"):
                 for name in ("part", "code", "steps", "log"):
                     with TabPane(name.capitalize(), id=f"tab-{name}"):
@@ -313,6 +336,20 @@ class PlmApp(App):
                 os.environ["PLM_SQL_DB"] = path  # routing reads it: data questions about it go to sql
         elif name == "/show":
             s["show"] = on
+        elif name == "/project":
+            if arg in ("", "off"):
+                s["project"] = None
+            else:
+                path = os.path.abspath(os.path.expanduser(arg))
+                try:
+                    os.makedirs(path, exist_ok=True)
+                    if not os.access(path, os.W_OK):
+                        raise PermissionError("not writable")
+                except OSError as e:
+                    return self.say(Text(f"can't use {path} as the project folder: {e}", RED))
+                s["project"] = path
+        elif name == "/save":
+            return self.save(arg)
         elif name == "/export":
             return self.export(arg)
         elif name == "/skills":
@@ -348,13 +385,31 @@ class PlmApp(App):
         parts = [f"pack {s['pack'] or 'auto'}", f"model {label(s['model']) if s['model'] else 'auto'}",
                  f"level {s['level'] or 'auto'}", f"thorough {'on' if s['thorough'] else 'off'}",
                  f"db {os.path.basename(s['db']) if s['db'] else 'off'}", f"show {'on' if s['show'] else 'off'}",
+                 f"project {s['project'] or 'off'}",
                  f"skills {', '.join(self.active_skills) or 'none'}"]
         self.say(Text("settings: " + " · ".join(parts), DIM))
         forced = [f"{k} {os.path.basename(v) if k == 'db' else label(v) if k == 'model' else v}"
                   for k, v in s.items() if v and k in ("pack", "model", "level", "db")]
+        if s["project"]:
+            forced.append(f"project {os.path.basename(s['project'])}")
         forced += [k for k in ("thorough", "show") if s[k]]
         forced += [f"skill {n}" for n in self.active_skills]
         self.query_one("#overrides", Static).update(Text("│ " + " · ".join(forced), ORANGE) if forced else "")
+
+    def save(self, name="", question=""):
+        """Write the last answer's code into the project folder (or the current one): to name, else to the file the
+        question names, else to a new plm_<n> file. Every failure is a message, never a crash."""
+        found = project.code_of(self.history[-1]["content"]) if self.history else None
+        if not found:
+            return self.say(Text("the last answer has no code to save", DIM))
+        root = self.settings["project"] or os.getcwd()
+        try:
+            name = name or project.target(question, found[0], root)
+            path, backup = project.write(root, name, found[1])
+        except (OSError, ValueError) as e:
+            return self.say(Text(f"couldn't save the code: {e}", RED))
+        kept = f" (the old version is {backup.name})" if backup else ""
+        self.say(Text(f"wrote {path}{kept}", GREEN))
 
     def export(self, arg):
         if not self.transcript:
@@ -381,7 +436,7 @@ class PlmApp(App):
             chip.update(label(m) + (" ●" if self.model_id(m) in live else ""))
 
     def on_input_submitted(self, event: Input.Submitted):
-        text = event.value.strip()
+        text = event.value.replace(NEWLINE, "\n").replace(NEWLINE.strip(), "\n").strip()
         event.input.value = ""
         if not text:
             return
@@ -404,6 +459,11 @@ class PlmApp(App):
         if self.busy:
             return self.say(Text("still working on the last question", YELLOW))
         self.say(Text.assemble(("› ", "#79c0ff"), ("/fuse " if fuse else "", ORANGE), text), classes="you")
+        self.asked = text  # as typed: names the file the answer's code goes to
+        if self.settings["project"] and not fuse:
+            text, notes = project.with_files(self.settings["project"], text)
+            for note in notes:
+                self.say(Text(note, DIM))
         messages = [*self.history, {"role": "user", "content": text}]
         routed = resolve(messages)
         self.routed = routed  # the worker words a follow-up with phrase() (a model call for a new quantity)
@@ -538,6 +598,8 @@ class PlmApp(App):
         self.query_one("#level", Static).update(Text.assemble(("│ level ", "#5c5f6b"), result["level"] or "-"))
         self.update_context(result)
         self.fill_side(result)
+        if self.settings["project"] and project.code_of(body):
+            self.save(question=getattr(self, "asked", text))
 
     def update_context(self, result):
         """Bottom bar: the last request's tokens out of the context window its model is loaded with. The general
