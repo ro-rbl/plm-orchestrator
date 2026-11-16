@@ -51,6 +51,21 @@ into the task and writes the answer's code back (old file kept as `<name>.bak`);
 per answer (the longest code block, to the first file named); files over 12000 characters are cut; the software
 pack's checks have nothing to run against for such a request, so the answer shows as unchecked.
 
+**Project mode, 2026-11-15 (in the repo, NOT released, no eval; `plm/project.py`, `plm/recipes/`,
+`evals/test_project.py`):** why: the user's Anki Overdrive session in the general pack (runs.jsonl 366-377) wrote no
+file, claimed the app existed, and answered "make an Xcode project" with menu instructions. Now `/project <folder>`
+(or `plm --project`) sends every message to the coder with the folder's real contents; it changes the folder only
+by `FILE:` blocks (also `USE:` a building block, `DELETE:` to `.plm/trash`); plm writes them, generates the Xcode
+project with XcodeGen, builds it, adds missing framework imports itself, feeds other errors back (3 model calls at
+most), and ends every answer with a report written by code. `/run` opens the built app. Building blocks that
+compile (tested by a real build): `HTTPServer.swift`, `BLECentral.swift`. Reference notes in the folder are read:
+`examples/reference/ANKI_OVERDRIVE_PROTOCOL.md` (from Anki's SDK headers). Live replays of the user's three
+messages with qwen2.5-coder:14b are in this session's notes below. Known limits: the 14B often needs all three
+attempts and can still end with a failed build (reported as FAILED, never as done); it may leave out part of the
+request (the web page on port 3118); whole files only, so large files are slow; one app per folder; iOS is
+built for the simulator only (a device needs the user's signing team in Xcode); facts not in the folder's notes
+are still the model's guess.
+
 **Open, in the order I'd take them:**
 1. **Follow-ups, on a new set 8:** (i) after two changes the large model often
    applies only the latest one (6 of A's 11 misses on set 7; the 8B alone, same conversation without the

@@ -71,6 +71,17 @@ def run_one(task, args, history=()):
     if not task.strip():
         # An empty prompt still gets a confident answer from the models, so never send one.
         sys.exit("plm: empty task (if piping a file, check that stdin actually reaches plm)")
+    if getattr(args, "project", None) and args.pack == "auto":
+        from plm import project
+        coder = PACKS.get("software", PACKS["general"]).models.get("coder") or PACKS["general"].models["large"]
+        try:
+            result = project.solve(args.project, [*history, {"role": "user", "content": task}], coder, timeout=args.timeout)
+        except urllib.error.URLError as e:
+            sys.exit(f"Can't reach Ollama ({getattr(e, 'reason', e)}). Is it running? Address comes from OLLAMA_HOST.")
+        print(json.dumps(result, indent=2) if args.json else "\n" + result["answer"]["text"]
+              + f"\n\nproject  {result['tokens']} tokens, {result['seconds']:.0f} s, {len(result['steps'])} model "
+              f"call{'s' if len(result['steps']) > 1 else ''}")
+        return result
     pack = args.pack if args.pack != "auto" else "sql" if args.sql_db else detect(task)
     followed = None  # (conversation, routing) when the task continues an earlier pack question
     if history and args.pack == "auto" and not args.sql_db:
@@ -143,8 +154,16 @@ def main():
     ap.add_argument("--show-work", action="store_true", help="print each model's program or reasoning")
     ap.add_argument("--json", action="store_true", help="print the full result as JSON")
     ap.add_argument("--timeout", type=int, default=600, help="seconds per model call")
+    ap.add_argument("--project", metavar="FOLDER", help="project mode: the coder sees this folder, writes its files "
+                    "there, and plm builds and checks them (an app becomes a real Xcode project)")
     ap.add_argument("--plain", action="store_true", help="with no task: line-by-line mode instead of the full screen")
     args = ap.parse_args()
+    if args.project:
+        args.project = os.path.abspath(os.path.expanduser(args.project))
+        try:
+            os.makedirs(args.project, exist_ok=True)
+        except OSError as e:
+            sys.exit(f"plm: can't use {args.project} as the project folder: {e}")
 
     if args.task:
         run_one(" ".join(args.task), args)
@@ -157,7 +176,7 @@ def main():
             print('plm: the full-screen interface needs Textual: pip install "plm-core[tui]" '
                   "(plain line mode below; --plain to skip this note)\n")
         else:
-            return tui.main()
+            return tui.main(args.project)
         run_interactive(args)
     else:
         run_interactive(args)

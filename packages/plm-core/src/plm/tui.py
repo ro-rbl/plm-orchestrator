@@ -52,8 +52,10 @@ Follow-ups ("now for 200 ohm", "make it 10 mm thick") stay with the question the
   /show on|off            show each model's program or reasoning under the answer
   /fuse <problem>         experimental: plan a CAD + engineering problem, calculate, then model
   /skills                 list skills (~/.plm/skills, ./.plm/skills); /skill <name> \\[off] turns one on or off
-  /project <folder>|off   work in a folder: files you name ("add error handling to app.py") are read, and the
-                          answer's code is written there (the old file is kept as <name>.bak)
+  /project <folder>|off   project mode: the coder sees the folder, writes its files there (old versions kept as
+                          <name>.bak), and plm builds and checks them. "make a Mac app that ..." gives a real
+                          Xcode project. Every message goes to the project until /project off.
+  /run                    open the app (or Xcode project) the last project answer built
   /save \\[file]            write the last answer's code to a file (in the project folder, if one is set)
   /export \\[file]          save the conversation as Markdown
   /settings               what's set now
@@ -273,6 +275,8 @@ class PlmApp(App):
         self.refresh_ollama()
         self.set_interval(10, self.refresh_ollama)
         self.query_one("#ask", Input).focus()
+        if self.settings["project"]:
+            self.show_settings()
 
     def refresh_ollama(self):
         up = loaded_models()
@@ -350,6 +354,10 @@ class PlmApp(App):
                 s["project"] = path
         elif name == "/save":
             return self.save(arg)
+        elif name == "/run":
+            if not self.settings["project"]:
+                return self.say(Text("/run opens what project mode built: set a folder with /project <folder> first", DIM))
+            return self.say(Text(project.launch(project.state(self.settings["project"])), DIM))
         elif name == "/export":
             return self.export(arg)
         elif name == "/skills":
@@ -459,11 +467,13 @@ class PlmApp(App):
         if self.busy:
             return self.say(Text("still working on the last question", YELLOW))
         self.say(Text.assemble(("› ", "#79c0ff"), ("/fuse " if fuse else "", ORANGE), text), classes="you")
-        self.asked = text  # as typed: names the file the answer's code goes to
-        if self.settings["project"] and not fuse:
-            text, notes = project.with_files(self.settings["project"], text)
-            for note in notes:
-                self.say(Text(note, DIM))
+        if self.settings["project"] and not fuse and not self.settings["pack"]:
+            coder = self.settings["model"] or PACKS.get("software", PACKS["general"]).models.get("coder") \
+                or PACKS["general"].models["large"]
+            self.light(packs=[], models=[coder])
+            self.busy = True
+            spinner = self.say(Text(f"{SPIN[0]} project · working…", "#56d4dd"))
+            return self.run_project(text, [*self.history, {"role": "user", "content": text}], coder, spinner)
         messages = [*self.history, {"role": "user", "content": text}]
         routed = resolve(messages)
         self.routed = routed  # the worker words a follow-up with phrase() (a model call for a new quantity)
@@ -480,6 +490,38 @@ class PlmApp(App):
         self.busy = True
         spinner = self.say(Text(f"{SPIN[0]} {'fusion' if fuse else pack} · working…", "#56d4dd"))
         self.run_task(text, pack, task, messages, followup, spinner, fuse)
+
+    @work(thread=True, exclusive=True)
+    def run_project(self, text, messages, model, spinner):
+        """Project mode (plm.project.solve): the coder writes files into the folder, plm builds and checks them."""
+        start, stop = time.time(), []
+        steps = []
+
+        def on_call(event, name, record):
+            if event == "start":
+                steps.append([name, time.time(), None])
+            elif steps:
+                steps[-1][2] = record
+        ollama.LISTENERS.append(on_call)
+
+        def tick():
+            i = 0
+            while not stop:
+                i += 1
+                self.call_from_thread(spinner.update, progress_text(SPIN[i % len(SPIN)], "project", steps, time.time() - start))
+                time.sleep(0.15)
+        threading.Thread(target=tick, daemon=True).start()
+        try:
+            result = self.solve_fn("project", text, messages) if self.solve_fn else \
+                project.solve(self.settings["project"], messages, model)
+            error = None
+        except Exception as e:  # Ollama down, a full disk: shown, never a crash
+            result, error = None, f"{type(e).__name__}: {e}"
+        finally:
+            if on_call in ollama.LISTENERS:
+                ollama.LISTENERS.remove(on_call)
+        stop.append(True)
+        self.call_from_thread(self.show, text, result, error, spinner, False)
 
     @work(thread=True, exclusive=True)
     def run_task(self, text, pack, task, messages, followup, spinner, fuse=False):
@@ -564,7 +606,7 @@ class PlmApp(App):
         with log.open("a") as f:
             f.write(json.dumps(result, default=str) + "\n")
         body = answer_body(result) or "(no answer)"
-        note = caveat(result) if result["pack"] != "general" else ""  # general: the status line already says unchecked
+        note = caveat(result) if result["pack"] not in ("general", "project") else ""  # general: the status line already says unchecked
         for kind, chunk in split_code(body):
             if kind == "code":
                 self.say(Syntax(chunk[1], chunk[0] or "text", theme="monokai", word_wrap=True, background_color="#15161b"))
@@ -598,8 +640,8 @@ class PlmApp(App):
         self.query_one("#level", Static).update(Text.assemble(("│ level ", "#5c5f6b"), result["level"] or "-"))
         self.update_context(result)
         self.fill_side(result)
-        if self.settings["project"] and project.code_of(body):
-            self.save(question=getattr(self, "asked", text))
+        if result.get("project"):
+            self.last_project = result
 
     def update_context(self, result):
         """Bottom bar: the last request's tokens out of the context window its model is loaded with. The general
@@ -608,7 +650,7 @@ class PlmApp(App):
         step = result["steps"][-1]
         used = (step.get("prompt_tokens") or 0) + (step.get("tokens") or 0)
         window = self.context_of(step["model"])
-        if result["pack"] == "general":
+        if result["pack"] in ("general", "project"):
             from plm.general import controller as general
             opts = general.context_options(self.history, general.NUM_PREDICT) or {}
             window = max(window, opts.get("num_ctx", 0))
@@ -681,5 +723,8 @@ class PlmApp(App):
         self.say(Text(f"preview opened ({path})", DIM))
 
 
-def main():
-    PlmApp().run()
+def main(project_dir=None):
+    app = PlmApp()
+    if project_dir:
+        app.settings["project"] = project_dir
+    app.run()

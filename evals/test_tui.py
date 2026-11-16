@@ -189,6 +189,7 @@ async def session(shots):
         expect("context meter shows the general pack's raised window", "/ 16.4k" in str(app.query_one("#context", Static).render()),
                str(app.query_one("#context", Static).render()))
         app.history.pop()
+        fuse_lit = app.query_one("#pack-physics").has_class("live") and app.query_one("#pack-cad").has_class("live")
         # pasting several lines keeps them all (Textual's Input kept the first only); sent with real line breaks
         import tempfile
         from textual import events
@@ -222,6 +223,22 @@ async def session(shots):
             app.save()
             expect("with no file named, a new plm_<n> file is written", (Path(tmp) / "plm_1.py").exists())
             del app.history[-2:]
+            # project mode: with a folder set, a message goes to the coder, which writes files that plm checks
+            import plm.ollama as _ollama
+            real_chat = _ollama.chat
+            _ollama.chat = lambda model, messages, n, timeout, options=None: {
+                "response": "FILE: hello.py\n```python\nprint('hi')\n```\n\nA script that says hi.", "eval_tokens": 9,
+                "prompt_tokens": 7, "load_s": 0, "wall_s": 0.0, "done_reason": "stop", "thinking_chars": 0, "mode": "fake"}
+            try:
+                await ask("make a script that says hi")
+            finally:
+                _ollama.chat = real_chat
+            text = chat_text(app)
+            expect("project mode writes the file and reports it", (Path(tmp) / "hello.py").is_file()
+                   and (Path(tmp) / "hello.py").read_text() == "print('hi')\n"
+                   and "wrote 1 file" in text and "syntax check: passed" in text and app.last["pack"] == "project", text[-400:])
+            expect("project answers are marked checked", "✓ checked" in text[-300:], text[-300:])
+            app.history.clear()
             box.value = "/project off"
             await pilot.press("enter")
             await pilot.pause(0.2)
@@ -235,8 +252,7 @@ async def session(shots):
                and "✓ step 1 · qwen3:4b · 1.2k tokens · 3 s" in live and "5 s total" in live, live)
         expect("working line before any model call", "working…" in tui.progress_text("*", "cad", [], 0).plain)
 
-        expect("/fuse lights both packs", app.query_one("#pack-physics").has_class("live")
-               and app.query_one("#pack-cad").has_class("live"))
+        expect("/fuse lights both packs", fuse_lit)  # read before project mode, which lights no pack
 
         # skills: instruction files turned on per session
         import tempfile as _tf
