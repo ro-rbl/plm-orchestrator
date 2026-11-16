@@ -128,6 +128,16 @@ def main():
                     "import CoreBluetooth\n", "").replace('Text("cars")', 'Text(CBUUID(string: "180F").uuidString)'), "swift")])
                 expect("plm adds a missing framework import itself and the build passes", len(seen2) == 1 and r2["trusted"]
                        and "plm added import CoreBluetooth to Sources/ImpApp.swift" in r2["answer"]["text"], r2["answer"]["text"])
+            # a building block used but not added, and a second @main: both fixed by plm, no second model call
+            with tempfile.TemporaryDirectory() as tmp3:
+                main = ("import SwiftUI\n\n@main\nstruct FixApp: App {\n    @StateObject private var ble = BLECentral()\n"
+                        "    var body: some Scene {\n        WindowGroup { Text(\"\\(ble.devices.count)\").padding() }\n    }\n}")
+                old_style = "import AppKit\n\n@main\nclass AppDelegate: NSObject, NSApplicationDelegate {}\n"
+                r3, seen3 = ask(tmp3, "make a Mac app", ["APP: Fix macOS\n\n" + file_block("Sources/FixApp.swift", main, "swift")
+                                                         + file_block("Sources/AppDelegate.swift", old_style, "swift")])
+                text3 = r3["answer"]["text"]
+                expect("plm adds the missing building block and removes the second @main itself", len(seen3) == 1 and r3["trusted"]
+                       and "Sources/BLECentral.swift" in text3 and "removed its @main" in text3, text3)
             broken = app.replace('Text("cars")', 'Text(cars)')
             r, seen = ask(tmp, "make a Mac app that will control my cars over Bluetooth",
                           ["APP: Cars macOS\n\n" + file_block("Sources/CarsApp.swift", broken, "swift"),
@@ -194,6 +204,8 @@ def main():
         Path(tmp, "Old", "Main.swift").write_text("import NIO\n@main struct Old { static func main() {} }\n")
         expect("an Xcode-made project is recognised", project.foreign_xcode(tmp) == ["Old/Old.xcodeproj"]
                and "was made in Xcode, not by plm" in project.snapshot(tmp))
+        r, seen = ask(tmp, "is there an xcode project now?", ["No."])
+        expect("'is there an Xcode project' gets plm's own list", "Old/Old.xcodeproj (made in Xcode; plm leaves it alone)" in r["answer"]["text"], r["answer"]["text"])
         expect("an Xcode-made project is in the listing the model sees",
                "- Old/Old.xcodeproj (an Xcode project, made in Xcode by the user)" in project.snapshot(tmp))
         appkit = "import AppKit\n\nclass AppDelegate: NSObject, NSApplicationDelegate {}\n"
