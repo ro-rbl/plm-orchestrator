@@ -96,7 +96,7 @@ real Xcode project (XcodeGen writes `<Name>.xcodeproj`, Xcode builds it, compile
 to three attempts), Python, JavaScript and JSON files are parsed. `/run` opens the built app. Two building blocks
 that compile as they are, a local HTTP server and a Bluetooth LE central (`plm/recipes/`), are copied in when the
 coder asks for them, instead of third-party libraries. Reference notes in the folder are read too
-(`examples/reference/ANKI_OVERDRIVE_PROTOCOL.md` is one). Needs Xcode and `brew install xcodegen` for apps. Not
+(`examples/reference/ANKI_OVERDRIVE_PROTOCOL.md` is one). The folder is remembered across restarts, and plain chat now says it cannot see or write files and points to `/project`. A folder that already has a project made in Xcode keeps it untouched: plm builds its own project from `Sources/` beside it. `/copy [all|file]` puts code on the clipboard. Needs Xcode and `brew install xcodegen` for apps. Not
 measured by an eval. `/save [file]` writes the last answer's code. Pasting several lines into the question box
 keeps all of them (shown with ⏎).
 **Skills** are instruction files in the Claude skills format (a folder with a `SKILL.md`: name, description,

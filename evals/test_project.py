@@ -141,8 +141,9 @@ def main():
             plist = Path(r["project"]["product"] or "", "Contents", "Info.plist")
             expect("the Bluetooth usage text is in the built app's Info.plist", plist.is_file()
                    and b"NSBluetoothAlwaysUsageDescription" in plist.read_bytes(), plist)
-            expect("the model is not shown plm's generated files", "CONTENTS OF project.yml" not in project.snapshot(tmp)
-                   and "Cars.xcodeproj" not in project.snapshot(tmp))
+            expect("the model is told about plm's Xcode project but not shown its generated files",
+                   "CONTENTS OF project.yml" not in project.snapshot(tmp)
+                   and "- Cars.xcodeproj (the Xcode project plm generates" in project.snapshot(tmp))
 
     # the building blocks: offered when the conversation calls for them, copied in by USE, and they really build
     expect("building blocks are offered only when called for", "USE: HTTPServer.swift" in project.offered("a dashboard on localhost port 3118")
@@ -185,6 +186,33 @@ def main():
         'error: Filename "A.swift" used twice: \'/x/p/Sources/A.swift\' and \'/x/p/Sources/B/A.swift\'\n'
         "/x/p/Sources/C.swift:5:9: error: cannot find 'Foo' in scope\n", "/x/p")
         == ["Sources/C.swift:5: cannot find 'Foo' in scope", "Filename \"A.swift\" used twice: 'Sources/A.swift' and 'Sources/B/A.swift'"])
+
+    # a folder that already has a project made in Xcode: plm builds its own from Sources/ and says so
+    with tempfile.TemporaryDirectory() as tmp:
+        Path(tmp, "Old", "Old.xcodeproj").mkdir(parents=True)
+        Path(tmp, "Old", "Old.xcodeproj", "project.pbxproj").write_text("// !$*UTF8*$!\n")
+        Path(tmp, "Old", "Main.swift").write_text("import NIO\n@main struct Old { static func main() {} }\n")
+        expect("an Xcode-made project is recognised", project.foreign_xcode(tmp) == ["Old/Old.xcodeproj"]
+               and "was made in Xcode, not by plm" in project.snapshot(tmp))
+        expect("an Xcode-made project is in the listing the model sees",
+               "- Old/Old.xcodeproj (an Xcode project, made in Xcode by the user)" in project.snapshot(tmp))
+        appkit = "import AppKit\n\nclass AppDelegate: NSObject, NSApplicationDelegate {}\n"
+        r, seen = ask(tmp, "make it a working Mac app", [file_block("Sources/AppDelegate.swift", appkit, "swift"),
+                                                         "DELETE: Sources/AppDelegate.swift\nNothing more."])
+        expect("Swift with no SwiftUI entry point is sent back as a problem", len(seen) >= 2
+               and "there is no app to build" in seen[1][-1]["content"], r["answer"]["text"])
+        simple = ("import SwiftUI\n\n@main\nstruct NewApp: App {\n    var body: some Scene {\n        WindowGroup { Text(\"new\").padding() }\n    }\n}")
+        r, seen = ask(tmp, "make it a working Mac app", ["APP: Cars macOS\n\n" + file_block("Sources/NewApp.swift", simple, "swift") + "\nA window."])
+        text = r["answer"]["text"]
+        if shutil.which("xcodegen") and shutil.which(project.BUILD_TOOL):
+            expect("plm's app is built from Sources/ only, beside the Xcode-made project", r["trusted"] and "build: passed" in text
+                   and "plm cannot edit Xcode's own project files" in text and "Old/Old.xcodeproj" in text, text)
+            expect("the Xcode-made project is left untouched", Path(tmp, "Old", "Old.xcodeproj", "project.pbxproj").read_text() == "// !$*UTF8*$!\n"
+                   and Path(tmp, "Old", "Main.swift").exists())
+    r, seen = None, None
+    with tempfile.TemporaryDirectory() as tmp:
+        r, seen = ask(tmp, "make x.py", [file_block("x.py", "print(")])
+        expect("the model is asked to explain its work in depth", "what each file you wrote is for" in seen[0][0]["content"])
 
     for f in FAILS:
         print("FAIL", f)

@@ -141,7 +141,9 @@ Rules:
 - To run an app plm has built, the user types /run here in plm's own question box, not in a terminal (or opens the
   .xcodeproj in Xcode). Invent no other commands.
 - If the user asks for a plan first, give a short plan and write no files until they tell you to start.
-- After the files, at most five short plain lines: what you made and how the user uses it. No emoji, no headings.
+- After the files, explain your work in plain words, no emoji: (1) what you built and how it works, in a short
+  paragraph; (2) what each file you wrote is for, one line each; (3) how the user uses it, as numbered steps;
+  (4) what is not done yet or UNVERIFIED. When you only fixed errors, say what was wrong and what you changed.
 - A question that needs no change: answer it briefly, with no FILE blocks."""
 RECIPE_DIR = Path(__file__).parent / "recipes"
 RECIPES = {  # verified building blocks (evals/test_project.py builds them): file -> when to offer it
@@ -222,11 +224,16 @@ def snapshot(root, prefer=()):
     """What the model is shown of the folder: every file with its size, then the contents of the text files that
     fit SNAPSHOT_CHARS (the ones in prefer first, then the smallest)."""
     files = _files(root)
-    if not files:
+    theirs, own = foreign_xcode(root), app_of(root)
+    mine = f"{own[0]}.xcodeproj" if own and Path(root, f"{own[0]}.xcodeproj").exists() else None
+    if not files and not theirs:
         return "PROJECT FILES (" + str(root) + "): the folder is empty."
     sizes = {f: os.path.getsize(os.path.join(root, f)) for f in files}
     lines = [f"PROJECT FILES ({root}), {len(files)} in all:"]
     lines += [f"- {f} ({sizes[f]} bytes)" for f in files[:MAX_LISTED]]
+    lines += [f"- {x} (an Xcode project, made in Xcode by the user)" for x in theirs]
+    if mine:
+        lines.append(f"- {mine} (the Xcode project plm generates from Sources/; the one to open)")
     if len(files) > MAX_LISTED:
         lines.append(f"- ... and {len(files) - MAX_LISTED} more, not listed")
     blocks = [f for f in files if _is_recipe(root, f)]
@@ -249,6 +256,11 @@ def snapshot(root, prefer=()):
     for f in blocks:
         lines.append(f"\n{f} is plm's building block, already in the project; use it as its notes say, don't rewrite it:\n"
                      + recipe(os.path.basename(f))[1])
+    if theirs:
+        lines.append(f"\nNOTE: {', '.join(theirs)} was made in Xcode, not by plm. plm cannot edit an Xcode project file, so "
+                     "it builds its own project from the Swift files under Sources/. Write the app under Sources/ as the "
+                     "rules say (you may reuse code from the listed files); Swift files outside Sources/ are not part of "
+                     "plm's app, and only one file in Sources/ may have @main.")
     last = state(root)
     if last:
         lines.append("\nPROJECT STATE (from plm's last check): " + ("the app built; the user runs it with /run" if last.get("built")
@@ -296,6 +308,31 @@ def _swift_sources(root):
     return [f for f in _files(root) if f.endswith(".swift") and os.path.basename(f) != "Package.swift"]
 
 
+def _app_sources(root):
+    """The Swift files plm's app is built from: those under Sources/ when there are any (the rule the model is
+    given), else every Swift file in the folder."""
+    files = _swift_sources(root)
+    inside_sources = [f for f in files if f.split(os.sep)[0] == "Sources"]
+    return inside_sources or files
+
+
+def foreign_xcode(root):
+    """Xcode projects in the folder that plm did not generate (made in Xcode by the user), as relative paths."""
+    own = app_of(root)
+    found = []
+    for folder, dirs, _ in os.walk(root):
+        depth = os.path.relpath(folder, root).count(os.sep)
+        for d in list(dirs):
+            if d.endswith(".xcodeproj"):
+                rel = os.path.relpath(os.path.join(folder, d), root)
+                if not (own and rel == f"{own[0]}.xcodeproj"):
+                    found.append(rel)
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.endswith(SKIP_SUFFIXES) and not d.startswith(".")]
+        if depth >= 2:
+            dirs[:] = []
+    return sorted(found)
+
+
 def app_of(root, declared=None, hint=""):
     """(name, platform) of the folder's Xcode app, or None when it isn't one: what plm's own project.yml says,
     else what the model declared, else a SwiftUI @main found in the sources (iOS when the user speaks only of iPad
@@ -309,7 +346,7 @@ def app_of(root, declared=None, hint=""):
         return declared
     if Path(root, "Package.swift").exists():
         return None
-    for f in _swift_sources(root):
+    for f in _app_sources(root):
         body = Path(root, f).read_text(errors="replace")
         if "@main" in body and "SwiftUI" in body:
             name = re.sub(r"\W+", "", Path(root).resolve().name.title()) or "App"
@@ -321,7 +358,7 @@ def app_of(root, declared=None, hint=""):
 def write_spec(root, name, platform):
     """project.yml (XcodeGen) for a SwiftUI app made of the folder's Swift sources. The Info.plist is a real file
     with the usage texts the imported frameworks need (a missing one crashes the app at first use). Returns them."""
-    sources = _swift_sources(root)
+    sources = _app_sources(root)
     entries = sorted({f.split(os.sep)[0] if os.sep in f else f for f in sources})
     usage = {}
     for f in sources:
@@ -427,6 +464,12 @@ def check(root, written, app):
     if app:
         x = build_xcode(root, *app)
         return {"kind": "xcode", "errors": x["errors"], "xcode": x}
+    if any(f.endswith(".swift") for f in written) and not Path(root, "Package.swift").exists():
+        return {"kind": "xcode", "xcode": None, "errors": [
+            "there is no app to build: no file under Sources/ has a SwiftUI @main App struct. Write "
+            "Sources/<Name>App.swift with `import SwiftUI` and `@main struct <Name>App: App { var body: some Scene { "
+            "WindowGroup { ContentView() } } }`, put the line APP: <Name> macOS before your files, and do not use an "
+            "AppKit AppDelegate or NSApplicationMain"]}
     errors, kind = [], None
     if Path(root, "Package.swift").exists() and any(f.endswith(".swift") for f in written) and shutil.which("swift"):
         kind = "swift package"
@@ -596,8 +639,16 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
             report.append("- project status: " + (f"the last build passed ({was.get('at')}); /run opens the app" if was.get("built")
                           else f"the last build FAILED ({was.get('at')}), so there is nothing to run yet: "
                           + "; ".join(was.get("errors", [])[:3])))
+    theirs = foreign_xcode(root) if xcode.get("project") else []
+    if theirs:
+        report.append(f"- note: {', '.join(theirs)} was made in Xcode and plm cannot edit Xcode's own project files, so plm "
+                      f"built its own project, {xcode['project']}, from the Swift files in Sources/. Use that one; the "
+                      "Swift files outside Sources/ are not part of it")
     if xcode.get("built"):
-        report.append(f"- to run it: /run, or open {xcode['project']} in Xcode and press Run")
+        report.append(f"- to run it: type /run here, or open {os.path.join(root, xcode['project'])} in Xcode and press Run")
+    elif checked and checked["kind"] and errors:
+        report.append('- next: the app does not run yet. Say "fix the build errors" to have plm try again from where it '
+                      "stopped; the errors above are what is left")
     text = prose
     if report:
         head = "**What plm did**" if written or removed or cut or failed else "**From plm**"

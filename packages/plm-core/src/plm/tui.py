@@ -57,6 +57,10 @@ Follow-ups ("now for 200 ohm", "make it 10 mm thick") stay with the question the
                           Xcode project. Every message goes to the project until /project off.
   /run                    open the app (or Xcode project) the last project answer built
   /save \\[file]            write the last answer's code to a file (in the project folder, if one is set)
+  /copy \\[all|file]        copy to the clipboard: the last answer's code (or its text if it has none); all = the
+                          whole last answer; a file name = that file from the project folder. You can also select
+                          text with the mouse and press ctrl+c (in Terminal, hold fn or option while dragging to
+                          use the terminal's own selection instead)
   /export \\[file]          save the conversation as Markdown
   /settings               what's set now
   /new  /help  /quit      (also ctrl+n, ctrl+q); ctrl+p opens a CAD part's full drawing
@@ -164,6 +168,32 @@ class LeftHeading(Heading):
 
 class Reply(Markdown):
     elements = {**Markdown.elements, "heading_open": LeftHeading}
+
+
+SESSION_FILE = os.path.join(os.environ.get("XDG_STATE_HOME") or os.path.expanduser("~/.local/state"), "plm", "session.json")
+PROJECT_WORK = re.compile(r"xcode|\.xcodeproj|project folder|in (the|this|my) folder|\b(create|write|save|edit|modify|add) (it |this |that )?"
+                          r"(to |in |into )?(the |a |my )?(file|folder|project)|\bfiles?\b.*\b(written|created|saved)|"
+                          r"\b(make|build|code|create) (me )?(an? |the |my )?(app|project|website|server|script|program)", re.IGNORECASE)
+CHAT_NOTICE = ("chat mode: plm can't see or change files here, so this answer is only text. To have it write the files, make "
+               "the Xcode project and build it, type /project <folder> (for example /project ~/Desktop/my-app).")
+
+
+def remembered_project():
+    try:
+        with open(SESSION_FILE) as f:
+            path = json.load(f).get("project")
+        return path if path and os.path.isdir(path) else None
+    except (OSError, ValueError):
+        return None
+
+
+def remember_project(path):
+    try:
+        os.makedirs(os.path.dirname(SESSION_FILE), exist_ok=True)
+        with open(SESSION_FILE, "w") as f:
+            json.dump({"project": path}, f)
+    except OSError:
+        pass  # remembering is a convenience
 
 
 NEWLINE = " ⏎ "
@@ -275,7 +305,11 @@ class PlmApp(App):
         self.refresh_ollama()
         self.set_interval(10, self.refresh_ollama)
         self.query_one("#ask", Input).focus()
+        if not self.settings["project"]:
+            self.settings["project"] = remembered_project()  # the folder from last time: plm used to forget it
         if self.settings["project"]:
+            self.say(Text(f"project mode is on: {self.settings['project']}\nEvery message goes to the coder, which reads "
+                          "and writes files in that folder; plm builds and checks them. /project off for plain chat.", ORANGE))
             self.show_settings()
 
     def refresh_ollama(self):
@@ -352,8 +386,14 @@ class PlmApp(App):
                 except OSError as e:
                     return self.say(Text(f"can't use {path} as the project folder: {e}", RED))
                 s["project"] = path
+                self.say(Text(f"project mode is on: {path}\nEvery message now goes to the coder, which reads and writes "
+                              "files in that folder; plm builds and checks them and reports what happened. "
+                              "/run opens a built app; /project off goes back to plain chat.", ORANGE))
+            remember_project(s["project"])
         elif name == "/save":
             return self.save(arg)
+        elif name == "/copy":
+            return self.copy(arg)
         elif name == "/run":
             if not self.settings["project"]:
                 return self.say(Text("/run opens what project mode built: set a folder with /project <folder> first", DIM))
@@ -403,6 +443,39 @@ class PlmApp(App):
         forced += [k for k in ("thorough", "show") if s[k]]
         forced += [f"skill {n}" for n in self.active_skills]
         self.query_one("#overrides", Static).update(Text("│ " + " · ".join(forced), ORANGE) if forced else "")
+
+    system_clipboard = True  # tests turn this off so they don't replace what the user has copied
+
+    def copy_to_clipboard(self, text):
+        """Textual copies with a terminal escape that macOS Terminal ignores; also hand the text to pbcopy."""
+        super().copy_to_clipboard(text)
+        self.copied = text  # what was last copied (tests read it)
+        if not self.system_clipboard:
+            return
+        try:
+            subprocess.run(["pbcopy"], input=text.encode(), timeout=5, check=False)
+        except (OSError, subprocess.SubprocessError):
+            pass  # not a Mac, or no clipboard: the terminal escape above is all there is
+
+    def copy(self, arg=""):
+        """/copy: the last answer's code blocks (or its text), /copy all: the whole answer, /copy <file>: a project file."""
+        last = self.history[-1]["content"] if self.history else ""
+        if arg and arg != "all":
+            root = self.settings["project"] or os.getcwd()
+            try:
+                text, what = project.inside(root, arg).read_text(), arg
+            except (OSError, ValueError, UnicodeDecodeError) as e:
+                return self.say(Text(f"couldn't copy {arg}: {e}", RED))
+        elif not last:
+            return self.say(Text("nothing to copy yet", DIM))
+        else:
+            blocks = [chunk[1] for kind, chunk in split_code(last) if kind == "code"]
+            if blocks and arg != "all":
+                text, what = "\n\n".join(blocks) + "\n", f"the code ({len(blocks)} block{'s' if len(blocks) > 1 else ''})"
+            else:
+                text, what = last, "the last answer"
+        self.copy_to_clipboard(text)
+        self.say(Text(f"copied {what} to the clipboard ({len(text.splitlines())} lines)", GREEN))
 
     def save(self, name="", question=""):
         """Write the last answer's code into the project folder (or the current one): to name, else to the file the
@@ -487,6 +560,8 @@ class PlmApp(App):
             followup = followup and routed["pack"] == pack
         lit = [p for p in (("physics", "electrical", "aerospace") if fuse else ()) if p in PACKS] + [pack]
         self.light(packs=lit, models=[self.settings["model"]] if self.settings["model"] else PACKS[pack].models.values())
+        if pack in ("general", "software") and not fuse and PROJECT_WORK.search(text):
+            self.say(Text(CHAT_NOTICE, YELLOW))
         self.busy = True
         spinner = self.say(Text(f"{SPIN[0]} {'fusion' if fuse else pack} · working…", "#56d4dd"))
         self.run_task(text, pack, task, messages, followup, spinner, fuse)

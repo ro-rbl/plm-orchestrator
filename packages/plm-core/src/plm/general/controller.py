@@ -23,8 +23,15 @@ UNCHECKED = "no pack covers this task, so the answer wasn't checked"
 
 # For people reading the reply in plm's own interface or command line (not sent for API clients of the server,
 # who bring their own instructions). Local models otherwise decorate every answer with emoji, rules and headings.
-STYLE = ("Answer plainly and briefly, in short paragraphs. Use a short list only when the answer really is a list, "
-         "and headings only for a long answer. No emoji, no horizontal rules, no tables unless asked for one.")
+STYLE = ("Answer plainly, in short paragraphs, with enough detail to act on: say why as well as what, and give "
+         "numbered steps when there are steps. Use a list only when the answer really is a list, and headings only "
+         "for a long answer. No emoji, no horizontal rules, no tables unless asked for one.\n"
+         # the user's Anki session, 2026-11-15/16: the chat model said "you now have a complete Xcode project"
+         "You are in chat mode: you cannot see, create, change or run any file, folder, project or app on the user's "
+         "computer, and nothing you write is saved anywhere. Never say or imply that you created, wrote, saved or "
+         "changed a file or a project, and do not describe a folder's contents: you cannot see it. If the user wants "
+         "code written into a folder, a project built or an Xcode project made, tell them to type "
+         "/project <folder> in plm, which does that for real.")
 
 
 def styled(messages):

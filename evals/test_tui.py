@@ -85,7 +85,10 @@ async def wait_idle(app, pilot, seconds=60):
 
 
 async def session(shots):
+    import tempfile as _tf
+    tui.SESSION_FILE = str(Path(_tf.mkdtemp()) / "session.json")  # never the user's own remembered folder
     app = tui.PlmApp()
+    app.system_clipboard = False
     app.context_of = lambda model: 4096  # not whatever Ollama happens to have loaded (the assistant's 8B at 32768)
     async with app.run_test(size=(150, 42)) as pilot:
         await pilot.pause()
@@ -217,6 +220,12 @@ async def session(shots):
             app.save(question="add error handling to app.py")
             expect("the answer's code is written to the named file, the old one kept",
                    "try:" in (Path(tmp) / "app.py").read_text() and (Path(tmp) / "app.py.bak").read_text() == "print(1)\n")
+            app.copy()
+            expect("/copy takes the last answer's code", app.copied == "try:\n    print(1)\nexcept OSError:\n    pass\n", repr(getattr(app, "copied", None)))
+            app.copy("app.py")
+            expect("/copy <file> takes a project file", "try:" in app.copied and "copied app.py" in chat_text(app))
+            app.copy("all")
+            expect("/copy all takes the whole answer", app.copied.startswith("```python"))
             app.save("../escape.py")
             expect("saving outside the folder is refused", not (Path(tmp).parent / "escape.py").exists()
                    and "outside the project folder" in chat_text(app), chat_text(app)[-200:])
@@ -238,11 +247,17 @@ async def session(shots):
                    and (Path(tmp) / "hello.py").read_text() == "print('hi')\n"
                    and "wrote 1 file" in text and "syntax check: passed" in text and app.last["pack"] == "project", text[-400:])
             expect("project answers are marked checked", "✓ checked" in text[-300:], text[-300:])
+            expect("the project folder is remembered for the next start", tui.remembered_project() == app.settings["project"])
             app.history.clear()
             box.value = "/project off"
             await pilot.press("enter")
             await pilot.pause(0.2)
-            expect("/project off", app.settings["project"] is None)
+            expect("/project off", app.settings["project"] is None and tui.remembered_project() is None)
+        # chat mode says it can't touch files when the message is project work
+        await ask("is there an xcode project in the folder now?")
+        expect("chat mode says plainly that it can't see or write files", "chat mode: plm can't see or change files" in chat_text(app)
+               and "/project <folder>" in chat_text(app), chat_text(app)[-300:])
+        expect("the chat model is told it has no file access", "cannot see, create, change or run any file" in CHATS[-1][0]["content"], CHATS[-1][0])
         import time as _t
         from plm import ollama as _ol
         expect("no progress listener left after answers", _ol.LISTENERS == [], _ol.LISTENERS)

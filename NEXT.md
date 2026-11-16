@@ -60,7 +60,13 @@ project with XcodeGen, builds it, adds missing framework imports itself, feeds o
 most), and ends every answer with a report written by code. `/run` opens the built app. Building blocks that
 compile (tested by a real build): `HTTPServer.swift`, `BLECentral.swift`. Reference notes in the folder are read:
 `examples/reference/ANKI_OVERDRIVE_PROTOCOL.md` (from Anki's SDK headers). Live replays of the user's three
-messages with qwen2.5-coder:14b are in this session's notes below. Known limits: the 14B often needs all three
+messages with qwen2.5-coder:14b are in this session's notes below. 2026-11-16, after the user's next session (runs.jsonl
+461-466: it had restarted plm, the project folder was forgotten, and the chat pack said "you now have a complete Xcode
+project"): the folder is remembered (`tui.SESSION_FILE`) and announced at start; the chat pack's STYLE says it has no
+file access and a notice points to `/project`; an Xcode-made `.xcodeproj` in the folder is listed, left untouched,
+and plm builds its own from `Sources/`; Swift with no SwiftUI `@main` goes back to the coder as a problem; answers
+explain in depth (what, each file, steps, what's not done); `/copy [all|file]` and select + ctrl+c reach the Mac
+clipboard. Known limits: the 14B often needs all three
 attempts and can still end with a failed build (reported as FAILED, never as done); it may leave out part of the
 request (the web page on port 3118); whole files only, so large files are slow; one app per folder; iOS is
 built for the simulator only (a device needs the user's signing team in Xcode); facts not in the folder's notes
