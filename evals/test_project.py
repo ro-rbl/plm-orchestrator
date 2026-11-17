@@ -162,10 +162,12 @@ def main():
         uses = ("import SwiftUI\nimport CoreBluetooth\n\nenum Keep { static var server: HTTPServer? }\n\n@main\nstruct CarsApp: App {\n"
                 "    @StateObject private var ble = BLECentral()\n    var body: some Scene {\n        WindowGroup {\n"
                 "            List(ble.devices) { device in Text(\"\\(device.name) \\(device.rssi)\") }\n                .onAppear {\n"
-                "                    ble.startScanning()\n                    Keep.server = try? HTTPServer(port: 3118) { request in\n"
+                "                    ble.startScanning()\n                    ble.onReady = { car in ble.write(AnkiOverdrive.sdkModeOn(), to: car, characteristic: AnkiOverdrive.writeCharacteristic) }\n"
+                "                    _ = AnkiOverdrive.setSpeed(mmPerSecond: 500) + AnkiOverdrive.stop() + AnkiOverdrive.changeLane(toOffsetMM: 23)\n"
+                "                    Keep.server = try? HTTPServer(port: 3118) { request in\n"
                 "                        request.path == \"/\" ? .html(\"<h1>cars</h1>\") : .notFound\n                    }\n"
                 "                    Keep.server?.start()\n                }\n        }\n    }\n}")
-        reply = ("APP: Cars macOS\nUSE: HTTPServer.swift\nUSE: BLECentral.swift\n\n" + file_block("Sources/CarsApp.swift", uses, "swift")
+        reply = ("APP: Cars macOS\nUSE: HTTPServer.swift\nUSE: BLECentral.swift\nUSE: AnkiOverdrive.swift\n\n" + file_block("Sources/CarsApp.swift", uses, "swift")
                  + file_block("Sources/HTTPServer.swift", "// my own broken copy", "swift") + "\nScans and serves a page.")
         r, seen = ask(tmp, "make a Mac app: BLE scan and a page on localhost port 3118", [reply])
         text = r["answer"]["text"]
@@ -225,6 +227,29 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         r, seen = ask(tmp, "make x.py", [file_block("x.py", "print(")])
         expect("the model is asked to explain its work in depth", "what each file you wrote is for" in seen[0][0]["content"])
+
+    # the model never sees plm's reports, can't write one, and words without files are not accepted as a fix
+    with tempfile.TemporaryDirectory() as tmp:
+        Path(tmp, ".plm").mkdir()
+        Path(tmp, ".plm", "state.json").write_text('{"built": false, "errors": ["Sources/A.swift:3: boom"], "at": "now"}')
+        history = [{"role": "user", "content": "make it"},
+                   {"role": "assistant", "content": "I made it.\n\n**What plm did** (checked by plm, not by the model):\n- build: FAILED, 6 problems"}]
+        fake_report = "I fixed the types.\n\n**What plm did** (checked by plm, not by the model):\n- wrote 2 files\n- build: passed"
+        r, seen = ask(tmp, "fix the build errors once and for all", [fake_report, fake_report], history=history)
+        text = r["answer"]["text"]
+        expect("plm's earlier report is not shown to the model", not any("6 problems" in m["content"] for m in seen[0][1:]), seen[0][1:])
+        expect("a reply with no files is asked for again as files", len(seen) == 2 and "no FILE blocks" in seen[1][-1]["content"])
+        expect("a report written by the model is dropped, and plm says nothing was written",
+               "build: passed" not in text and "wrote 2 files" not in text and "nothing was written this time" in text, text)
+    expect("advice for the UUID / CBUUID loop", any("must be typed UUID, never CBUUID" in h for h in project.hints(
+        ["Sources/V.swift:16: cannot convert value of type 'UUID' to expected argument type 'CBUUID'"], "/nowhere"))
+        and any("write only that file again" in h for h in project.hints(["Sources/V.swift:16: x", "Sources/V.swift:20: y"], "/nowhere")))
+    with tempfile.TemporaryDirectory() as tmp:
+        Path(tmp, "Sources").mkdir()
+        Path(tmp, "Sources", "V.swift").write_text("line one\n    let ids: [CBUUID] = []\n")
+        got = project._errors(f"{tmp.upper()}/Sources/V.swift:2:9: error: bad type\n", tmp)
+        expect("errors carry their source line, and paths are relative whatever the letter case",
+               got == ["Sources/V.swift:2: bad type   | line 2 is: let ids: [CBUUID] = []"], got)
 
     for f in FAILS:
         print("FAIL", f)

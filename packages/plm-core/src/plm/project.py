@@ -149,11 +149,14 @@ RECIPE_DIR = Path(__file__).parent / "recipes"
 RECIPES = {  # verified building blocks (evals/test_project.py builds them): file -> when to offer it
     "HTTPServer.swift": re.compile(r"\b(localhost|server|port\s*\d+|https?|web ?page|browser|dashboard)\b", re.IGNORECASE),
     "BLECentral.swift": re.compile(r"\b(bluetooth|ble)\b", re.IGNORECASE),
+    "AnkiOverdrive.swift": re.compile(r"\b(anki|overdrive)\b", re.IGNORECASE),
 }
+REPORT_HEAD = re.compile(r"\*\*(What plm did|From plm)\*\*")
 DELETE_LINE = re.compile(r"^[#*\s]*DELETE:[ \t]*`?([^\n`]+?)`?[ \t]*$", re.MULTILINE)
 USE_LINE = re.compile(r"^[#*\s]*USE:[ \t]*`?(?:Sources/)?([\w.]+)`?.*$", re.MULTILINE)
 THIRD_PARTY = re.compile(r"no such module|GCDAsyncSocket|\bNIO|Vapor|Swifter|Alamofire|Kitura|Telegraph|CocoaAsyncSocket", re.IGNORECASE)
-NO_FILES = ("Your reply had code but no FILE blocks, so nothing was saved. Write the files now, each as\n"
+NO_FILES = ("Your reply had no FILE blocks, so nothing was saved and nothing changed. Describing a change does not make "
+            "it. Write the files now, each as\n"
             "FILE: relative/path.ext\nfollowed by a fenced block with the complete contents.")
 WANTS_CHANGE = re.compile(r"\b(make|build|create|write|code|coding|add|fix|change|update|implement|generate|set ?up|"
                           r"refactor|rename|remove|rewrite|start)\b", re.IGNORECASE)
@@ -383,14 +386,45 @@ def write_spec(root, name, platform):
 
 
 def _errors(output, root):
-    """The build's errors, deduplicated, with paths relative to the project: compile errors (file:line: message)
-    and the project-level ones Xcode prints without a file ("Filename ... used twice")."""
+    """The build's errors, deduplicated, with paths relative to the project (whatever letter case the folder was
+    typed in) and the source line each one points at: compile errors (file:line: message | the line) and the
+    project-level ones Xcode prints without a file ("Filename ... used twice")."""
     real = os.path.realpath(root)
     for prefix in {real, real.replace("/private/", "/", 1), str(root)}:
-        output = output.replace(prefix + "/", "")
-    found = [f"{p}:{line}: {msg}" for p, line, msg in XCODE_ERROR.findall(output)]
+        output = re.sub(re.escape(prefix + "/"), "", output, flags=re.IGNORECASE)
+    found = []
+    for path, line, msg in XCODE_ERROR.findall(output):
+        try:
+            code = Path(root, path).read_text(errors="replace").splitlines()[int(line) - 1].strip()
+        except (OSError, IndexError, ValueError):
+            code = ""
+        found.append(f"{path}:{line}: {msg}" + (f"   | line {line} is: {code[:160]}" if code else ""))
     found += [m[:400] for m in OTHER_ERROR.findall(output)]
     return list(dict.fromkeys(found))[:15]
+
+
+def hints(errors, root):
+    """Plain advice for errors the model keeps repeating (the user's session of 2026-11-16: eight rounds on UUID
+    against CBUUID). Added to the message that sends the errors back."""
+    text, out = " ".join(errors), []
+    if "CBUUID" in text and re.search(r"'UUID'|\bUUID\b", text.replace("CBUUID", "")):
+        out.append("A device's id (BLEDevice.id, and the id in onReady/onReceive/connect/write) is a Foundation UUID. CBUUID "
+                   "is only for services and characteristics. Every variable, array, set, dictionary key and function "
+                   "parameter that holds a device id must be typed UUID, never CBUUID.")
+    if "NSNumber" in text or "truncating" in text:
+        out.append("To take bytes from an integer write UInt8(truncatingIfNeeded: value) and "
+                   "UInt8(truncatingIfNeeded: value >> 8); UInt8(truncating:) is for NSNumber only."
+                   + (" Better: AnkiOverdrive.setSpeed(mmPerSecond:) and the other AnkiOverdrive functions return the "
+                      "command Data ready to write." if Path(root, "Sources", "AnkiOverdrive.swift").exists() else ""))
+    if re.search(r"has no member|extra argument|missing argument|incorrect argument label", text):
+        out.append("plm's building blocks have only the members and arguments shown in their notes. Call them exactly as "
+                   "the notes show and add nothing to them.")
+    if "of optional type" in text or "must be unwrapped" in text:
+        out.append("Unwrap an optional with `if let` or `guard let`, or give a default with `??`.")
+    files = {m.group(1) for m in (re.match(r"(\S+\.swift):\d+:", e) for e in errors) if m}
+    if len(files) == 1:
+        out.append(f"All of these are in {next(iter(files))}: write only that file again, in full. Leave the other files alone.")
+    return out
 
 
 def build_xcode(root, name, platform, timeout=600):
@@ -458,7 +492,7 @@ def add_imports(root, errors):
 
 
 BLOCK_TYPES = {"HTTPServer": "HTTPServer.swift", "HTTPRequest": "HTTPServer.swift", "HTTPResponse": "HTTPServer.swift",
-               "BLECentral": "BLECentral.swift", "BLEDevice": "BLECentral.swift"}
+               "BLECentral": "BLECentral.swift", "BLEDevice": "BLECentral.swift", "AnkiOverdrive": "AnkiOverdrive.swift"}
 MAIN_APP = re.compile(r"@main\s+(?:\w+\s+)*struct\s+\w+\s*:\s*(?:SwiftUI\.)?App\b")
 
 
@@ -534,6 +568,8 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
     start = time.time()
     root = str(Path(root).resolve())
     convo = [m for m in messages if m.get("role") in ("user", "assistant") and (m.get("content") or "").strip()][-12:]
+    convo = [m if m["role"] == "user" else
+             {"role": "assistant", "content": REPORT_HEAD.split(m["content"])[0].strip() or "(I wrote the files.)"} for m in convo]
     last = next((m["content"] for m in reversed(convo) if m["role"] == "user"), "")
     steps, written, backups, failed, prose, added, removed, imports = [], [], {}, [], "", [], [], []
     declared, checked, extra, cut, app, before = None, None, None, None, None, None
@@ -549,6 +585,7 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
                       "model_text": r["response"], "capped": r["done_reason"] == "length", "issues": [],
                       "seconds": r["wall_s"]})
         got = parse(r["response"])
+        got["prose"] = REPORT_HEAD.split(got["prose"])[0].strip()  # a report is plm's to write, never the model's
         prose = got["prose"] or prose
         declared, cut = got["app"] or declared, got["cut"]
         now = []
@@ -590,7 +627,7 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
                 failed.append(f"delete {name}: {e}")
         written += [n for n in now if n not in written]
         if not now and not got["deletes"]:
-            if attempt == 0 and not cut and WANTS_CHANGE.search(last) and "```" in r["response"]:
+            if attempt == 0 and not cut and WANTS_CHANGE.search(last) and ("```" in r["response"] or state(root).get("errors")):
                 steps[-1]["issues"] = ["code in the reply but no files"]
                 extra = NO_FILES
                 continue
@@ -615,6 +652,7 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
             break
         extra = ("plm saved your files and checked them. Problems found:\n" + "\n".join(f"- {p}" for p in problems)
                  + "\n\nFix them: write each file that needs a change again, in full, as FILE blocks. Change nothing else.")
+        extra += "".join(f"\n- Advice: {h}" for h in hints(problems, root))
         if THIRD_PARTY.search(" ".join(problems)):
             extra += ("\nThird-party libraries are not available here: use only Apple frameworks"
                       + (" and the BUILDING BLOCKS above (write the line USE: <file>)." if blocks else "."))
@@ -643,8 +681,9 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
         report.append("- plm added " + ", ".join(dict.fromkeys(imports)))
     if removed:
         report.append(f"- removed {', '.join(removed)} (kept in {os.path.join(root, '.plm', 'trash')})")
-    if not written and not removed and WANTS_CHANGE.search(last) and "```" in steps[-1]["model_text"]:
-        report.append("- nothing was written: the model gave code but not as files. Ask again, or name the file.")
+    if not written and not removed and WANTS_CHANGE.search(last) and ("```" in steps[-1]["model_text"] or state(root).get("errors")):
+        report.append("- nothing was written this time: the model answered in words without writing any file, so the "
+                      "project is exactly as it was. Ask again, or name the file to change.")
     report += [f"- could not write {f}" for f in failed]
     if xcode.get("project"):
         usage = f"; Info.plist has {', '.join(xcode['usage'])}" if xcode.get("usage") else ""

@@ -8,6 +8,10 @@
 //     ble.connect(device.id)                                    // several devices can be connected together
 //     ble.write(Data([0x01, 0x02]), to: device.id, characteristic: CBUUID(string: "..."))
 //
+// Types: a device's id is a Foundation UUID everywhere (BLEDevice.id, connect, disconnect, write(to:), onReady,
+// onReceive). CBUUID is only for services and characteristics. BLEDevice.name is a String, not optional.
+// Keep your own lists of devices as [UUID] or Set<UUID>, and dictionaries keyed by UUID.
+//
 // Everything here runs on the main queue. The app's Info.plist needs NSBluetoothAlwaysUsageDescription (plm adds it).
 
 import Combine
