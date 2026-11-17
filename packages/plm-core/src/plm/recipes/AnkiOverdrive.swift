@@ -13,6 +13,7 @@
 //     }
 //
 // Every command function returns Data to pass to BLECentral.write. Never build the command bytes by hand.
+// AnkiOverdrive is a namespace, not an object: never write AnkiOverdrive() or keep one in a property.
 
 import CoreBluetooth
 import Foundation

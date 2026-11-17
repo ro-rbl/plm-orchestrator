@@ -416,6 +416,10 @@ def hints(errors, root):
                    "UInt8(truncatingIfNeeded: value >> 8); UInt8(truncating:) is for NSNumber only."
                    + (" Better: AnkiOverdrive.setSpeed(mmPerSecond:) and the other AnkiOverdrive functions return the "
                       "command Data ready to write." if Path(root, "Sources", "AnkiOverdrive.swift").exists() else ""))
+    if re.search(r"AnkiOverdrive\(\)|var \w+\s*=\s*AnkiOverdrive\b", text):
+        out.append("AnkiOverdrive is not an object and holds no state: never create one or store one in a property. Call "
+                   "its functions directly, for example AnkiOverdrive.setSpeed(mmPerSecond: 500), and pass the Data to "
+                   "ble.write(_:to:characteristic:) with AnkiOverdrive.writeCharacteristic.")
     if re.search(r"has no member|extra argument|missing argument|incorrect argument label", text):
         out.append("plm's building blocks have only the members and arguments shown in their notes. Call them exactly as "
                    "the notes show and add nothing to them.")
@@ -726,7 +730,12 @@ def solve(root, messages, model, timeout=900, rounds=ROUNDS):
     text = prose
     if report:
         head = "**What plm did**" if written or removed or cut or failed else "**From plm**"
-        text = (prose + "\n\n" if prose else "") + head + " (checked by plm, not by the model):\n" + "\n".join(report)
+        facts = head + " (checked by plm, not by the model):\n" + "\n".join(report)
+        if errors and prose:  # the coder wrote its description before the check: the facts go first
+            text = (facts + "\n\nThe coder's own description follows. It was written before plm checked the result, so "
+                    "where it says something works or is resolved, the build result above is what is true.\n\n" + prose)
+        else:
+            text = (prose + "\n\n" if prose else "") + facts
     did_check = bool(checked and checked["kind"])
     return {"pack": "project", "task": last, "level": "project", "reason": f"project folder {root}",
             "answer": {"text": text or "(no answer)"}, "checked": did_check,

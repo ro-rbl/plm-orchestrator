@@ -86,6 +86,9 @@ def main():
 
         # errors that never get fixed are reported as failed, not as done
         r, seen = ask(tmp, "rewrite track.py", [file_block("track.py", "print(", "python")])
+        r2, _ = ask(tmp, "rewrite track.py", [file_block("track.py", "print(", "python") + "\nAll issues have been resolved."])
+        expect("when the check failed, plm's facts come before the coder's claims", r2["answer"]["text"].startswith("**What plm did**")
+               and "the build result above is what is true" in r2["answer"]["text"], r2["answer"]["text"])
         expect("an unfixed error is reported as FAILED", len(seen) == project.ROUNDS and "FAILED" in r["answer"]["text"]
                and not r["trusted"] and r["project"]["errors"], r["answer"]["text"])
 
