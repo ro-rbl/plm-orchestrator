@@ -161,6 +161,11 @@ What could carry over, in order of value per effort; each policy fixed before it
       (FOLLOWUP7_RULE: 72 vs 57; the 8B alone 72). Released in plm-core 0.1.5.
 - [ ] Follow-ups, next (new set 8 first): after two changes the large model often applies only the latest one
       (6 of 11 misses on set 7); the unit check rejects some right answers (6 on set 6, 2 on set 7).
+- [x] Project mode (2026-11-15 to 11-18, in the repo, not released): `/project <folder>` and `plm --project`; the
+      coder writes files, plm generates and builds the Xcode project with XcodeGen and reports the result itself;
+      `/run`, `/copy`; building blocks for an HTTP server, Bluetooth LE and the Anki Overdrive protocol.
+- [ ] Project mode, next: edit changed lines instead of whole files; smaller context and a memory warning; a
+      stronger coder (local or cloud, the user decides); then release plm-core 0.1.6.
 - [ ] Finish the thinking baseline on set 5; re-run the headline sweeps with unit-prefix handling on.
 - [ ] PyPI Trusted Publishing: publishers set on PyPI by the user, first tagged release through the workflow.
 

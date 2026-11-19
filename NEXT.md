@@ -1,12 +1,12 @@
 # NEXT
 
-_Updated: 2026-11-13 · branch: main · plan: ROADMAP.md · results: docs/results.md_
+_Updated: 2026-11-19 · branch: main · plan: ROADMAP.md · results: docs/results.md_
 
 ## Start here (next session)
 Everything through phase 6 of `ROADMAP.md` is done and public: GitHub https://github.com/ro-rbl/plm-orchestrator,
 Hugging Face https://huggingface.co/datasets/rblrbl/plm-orchestrator-evals, PyPI (seven packages: **plm-core 0.1.5
 released 2026-11-13** (checked from a fresh install); plm-physics 0.1.1, plm-electrical 0.1.1, plm-cad 0.1.1; the
-rest 0.1.0; `uv tool install "plm-core[tui]"`). The repo matches what is released. Every
+rest 0.1.0; `uv tool install "plm-core[tui]"`). The repo is ahead of PyPI by project mode (below, unreleased). Every
 policy was chosen by a rule committed before its results (`docs/results.md`, `.venv/bin/python evals/headline.py`):
 
 | Pack | Ships | Public benchmark (shipped) |
@@ -72,18 +72,42 @@ request (the web page on port 3118); whole files only, so large files are slow; 
 built for the simulator only (a device needs the user's signing team in Xcode); facts not in the folder's notes
 are still the model's guess.
 
+**State of project mode on 2026-11-19 (read this first):**
+- The user is building an Anki Overdrive controller in `~/Desktop/anki-dash` with `/project` (coder qwen2.5-coder:14b).
+  As of 2026-11-18 it does NOT build: `Sources/ContentView.swift:89,109` pass `Int` where `sendSetSpeed` takes
+  `Int16`; `Sources/JoystickView.swift:46,51` call `.clamped(to:)`, which is not available. The user has not yet
+  said whether Claude may edit that folder: ask before touching it (keep `.bak` copies). Never tested with real cars.
+- Speed measured 2026-11-18: the coder generates about 10 tok/s on this M4 / 24 GB (near the hardware limit); real
+  requests averaged 2-3 tok/s because of memory pressure (9.3 GB swap used, coder loaded at 12 GB with num_ctx 32768,
+  Autodesk Fusion 3.5 GB, the assistant's qwen3:8b). One request took 14-28 min with up to 3 attempts.
+- Errors are mostly the 14B's weakness at Swift types (it looped 8 times on UUID vs CBUUID in the user's session).
+  plm now sends each error with its source line and advice (`project.hints`), fixes missing imports, missing
+  building blocks and a second @main itself, hides its own reports from the model, and asks again when the model
+  answers in words without files. Building blocks in `plm/recipes/`: HTTPServer, BLECentral, AnkiOverdrive.
+
 **Open, in the order I'd take them:**
-1. **Follow-ups, on a new set 8:** (i) after two changes the large model often
+1. **Project mode: edit the changed lines instead of rewriting whole files** (an `EDIT:` block with the old and new
+   text, applied by plm; fall back to the whole file when the old text isn't found). Expected: faster attempts and
+   fewer working parts broken by a fix. Test first with `evals/test_project.py` (fake model), then live on a scratch
+   copy of a project: `rsync -a --exclude .plm --exclude '*.bak' ~/Desktop/anki-dash/ <scratchpad>/copy/`.
+2. **Memory while coding:** cap the coder's context at 16384 unless the folder truly needs more (it was loaded at
+   32768), and show a one-line warning in the interface when swap is high. Advice for the user: quit Fusion and
+   Xcode while coding, stay on power.
+3. **A stronger coder:** check whether a newer local coding model fits in 24 GB beside the rest (measure tok/s and
+   one live Swift request before recommending), or a cloud model (costs money and sends code out: the user decides).
+4. **Release plm-core 0.1.6** with project mode, after 1-2 (ask the user first; token in `~/.pypi-token`; the last
+   one was saved as `~/.pypi-token.save`, check it was deleted).
+5. **Follow-ups, on a new set 8:** (i) after two changes the large model often
    applies only the latest one (6 of A's 11 misses on set 7; the 8B alone, same conversation without the
    calculator format or prefix rewriting, got them); (ii) the unit check rejects right answers on value follow-ups
    (6 on set 6, 2 on set 7); (iii) follow-ups asking a new quantity that go to the general pack (15 of 83).
-2. Finish the thinking baseline on set 5 (25 conversations left, resumes, about 30 min):
+6. Finish the thinking baseline on set 5 (25 conversations left, resumes, about 30 min):
    `.venv/bin/python evals/followup/baselines5.py --model qwen3:8b --think`, then `--report`.
-3. PyPI Trusted Publishing: the user adds a GitHub publisher on PyPI for each package (owner `ro-rbl`, repository
+7. PyPI Trusted Publishing: the user adds a GitHub publisher on PyPI for each package (owner `ro-rbl`, repository
    `plm-orchestrator`, workflow `publish.yml`, environment `pypi`); the next release is then
    `git tag plm-core-v<version> && git push origin plm-core-v<version>` (first run of the workflow: watch it).
-4. Re-run the headline sweeps with unit-prefix handling on, so the table above is current (hours; overnight).
-5. Routing gaps left by PHYS2_RULE: an orbit question -> aerospace, Carnot efficiency and half-life -> general; ISA
+8. Re-run the headline sweeps with unit-prefix handling on, so the table above is current (hours; overnight).
+9. Routing gaps left by PHYS2_RULE: an orbit question -> aerospace, Carnot efficiency and half-life -> general; ISA
    density and nozzle expansion -> physics. Needs new cases first.
 
 **In the repo, off, not released behaviour** (flags kept so the runs reproduce): `plm.followup.ROUTE_FIX`
